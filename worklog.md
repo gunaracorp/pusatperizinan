@@ -522,3 +522,23 @@ Stage Summary:
 - 4 lever revenue baru AKTIF: (1) KepatuhanPRO MRR 6 SKU orderable via checkout nyata, (2) 1.500 layanan katalog kini orderable /checkout?paket={kode} harga server-side, (3) bundle 10% + social proof di 1.000 halaman detail (AOV up), (4) hub /wilayah memperkuat 200+ halaman local SEO existing
 - Arsitektur anti-kanibalisasi terjaga: tidak ada URL baru yang bersaing dengan halaman terindeks existing
 - Total aset: 11.207 URL, lint bersih, TS baseline, semua golden path terverifikasi browser end-to-end
+
+---
+Task ID: fix-preview
+Agent: Z.ai Code (main)
+Task: User reported website not displaying (only "z" logo visible in preview panel)
+
+Work Log:
+- Checked /home/z/my-project/dev.log — server had been serving normally earlier (all routes 200), but process had stopped
+- Verified with `ss -tlnp`: NOTHING listening on port 3000 — dev server was down (root cause)
+- Restarted dev server: `nohup bun run dev >> dev.log 2>&1 &` — Ready in 1470ms
+- Agent-browser E2E verification:
+  - GET / → 200, title correct, hero + consultation form + services render, "Pesan Sekarang" CTAs visible
+  - GET /kepatuhan-pro → 200, subscription hero + pricing render correctly
+  - GET /checkout?paket=PP-BU-001 → 200, "PILIHAN ANDA" card resolves catalog service (NIB UMKM Rp 722.500, strike Rp 850.000)
+  - No console errors (only cosmetic scroll-behavior warning)
+
+Stage Summary:
+- ROOT CAUSE: Next.js dev server was not running (stopped between sessions) — preview panel showed only Z.ai logo because port 3000 was dead
+- FIX: restarted dev server in background; verified via agent-browser that homepage, kepatuhan-pro, and catalog checkout all render interactively
+- No code changes were needed — the application itself is healthy
