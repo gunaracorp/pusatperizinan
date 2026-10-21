@@ -15,7 +15,7 @@
 ![Prisma](https://img.shields.io/badge/Prisma%206-SQLite-2D3748?style=for-the-badge&logo=prisma&logoColor=white)
 ![React](https://img.shields.io/badge/React%2019-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 
-![Pages](https://img.shields.io/badge/URL%20Sitemap-11.206-059669?style=flat-square)
+![Pages](https://img.shields.io/badge/URL%20Sitemap-11.207-059669?style=flat-square)
 ![Layanan](https://img.shields.io/badge/Katalog-1.000%20Layanan-059669?style=flat-square)
 ![Bahasa](https://img.shields.io/badge/UI-30%20Bahasa-059669?style=flat-square)
 ![AI](https://img.shields.io/badge/AI%20Tools-5%20Aktif-059669?style=flat-square)
@@ -70,7 +70,7 @@
 | Dimensi | Isi |
 |---|---|
 | 🎯 **Bisnis** | Jasa pengurusan NIB, pendirian PT/CV/PMA, sertifikasi halal, izin BPOM/PIRT, PBG/SLF, AMDAL, izin umroh (PPIU/PPIH), IATA, MISA Arab Saudi, RKAB tambang, pajak & kepatuhan |
-| 📄 **Konten** | **11.206 URL** terindeks sitemap (14 seksi): 500 halaman layanan detail, 500 Katalog Premium PP-XXX, 500 Katalog Pro PP3-XXX (baru), 36 KBLI, 15+ artikel blog, matriks industri, halaman biaya/syarat/perbandingan, 16 panduan + hub, 4 halaman dedikasi CTA (konsultasi/cek-izin/kalkulator/panduan) |
+| 📄 **Konten** | **11.207 URL** terindeks sitemap (14 seksi): 500 halaman layanan detail, 500 Katalog Premium PP-XXX, 500 Katalog Pro PP3-XXX, 36 KBLI, 15+ artikel blog, matriks industri, halaman biaya/syarat/perbandingan, 16 panduan + hub, 4 halaman dedikasi CTA, **KepatuhanPRO** (langganan MRR) + hub /wilayah |
 | 🤖 **AI** | 5 tool AI aktif: Cek Izin AI, AI Consultant "RIZKI" 24/7, Cek Dokumen (vision), AI Roadmap 12 bulan, kalkulator pajak |
 | 🌍 **Internasional** | UI **30 bahasa** (termasuk RTL penuh: Arab, Farsi, Urdu, Ibrani) + `llms.txt` siap GEO/AI-search |
 | 💰 **Monetisasi** | Checkout otomatis (Midtrans/Tripay) dengan harga server-side anti-manipulasi + mode demo |
@@ -506,7 +506,7 @@ bun run db:reset      # reset penuh
 
 ## 11. Mesin SEO & GEO
 
-### Sitemap — arsitektur 14 seksi (11.206 URL)
+### Sitemap — arsitektur 14 seksi (11.207 URL)
 
 ```text
 /sitemap.xml  (rewrite → /api/sitemap-index, <sitemapindex>)

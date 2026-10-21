@@ -41,7 +41,13 @@ interface CreateResponse {
   error?: string;
 }
 
-const CATEGORY_ORDER: PaketLayanan["category"][] = ["konsultasi", "izin", "legalitas", "sertifikasi"];
+const CATEGORY_ORDER: PaketLayanan["category"][] = ["kepatuhan", "konsultasi", "izin", "legalitas", "sertifikasi"];
+
+/** Layanan katalog yang di-resolve via API (kode item v1/v2/v3). */
+interface ResolvedService {
+  id: string; name: string; price: number; strike: number | null;
+  duration: string; categoryLabel: string; features: string[]; detailUrl: string;
+}
 
 /**
  * Bridge client untuk ?paket=xxx — memungkinkan /checkout di-prerender
@@ -55,8 +61,9 @@ export function CheckoutFromQuery() {
 
 export function CheckoutClient({ initialPaket }: { initialPaket: string }) {
   const [cfg, setCfg] = useState<CfgResponse | null>(null);
+  const [catalogSvc, setCatalogSvc] = useState<ResolvedService | null>(null);
   const [selectedId, setSelectedId] = useState<string>(
-    getPackage(initialPaket) ? initialPaket : PACKAGES.find((p) => p.popular)?.id || PACKAGES[0].id
+    getPackage(initialPaket) ? initialPaket : initialPaket || PACKAGES.find((p) => p.popular)?.id || PACKAGES[0].id
   );
   const [method, setMethod] = useState<string>("");
   const [name, setName] = useState("");
@@ -77,7 +84,46 @@ export function CheckoutClient({ initialPaket }: { initialPaket: string }) {
       .catch(() => setError("Gagal memuat konfigurasi pembayaran"));
   }, []);
 
-  const paket = useMemo(() => getPackage(selectedId) ?? PACKAGES[0], [selectedId]);
+  // Kode katalog (bukan paket siap-jual) → resolve via API (display)
+  const isCatalogCode = Boolean(initialPaket) && !getPackage(initialPaket);
+  useEffect(() => {
+    if (!isCatalogCode || !initialPaket) return;
+    let alive = true;
+    fetch(`/api/payment/service-resolve?code=${encodeURIComponent(initialPaket)}`)
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error("not-found"))))
+      .then((j: { ok: boolean; service: ResolvedService }) => {
+        if (alive && j.ok) setCatalogSvc(j.service);
+      })
+      .catch(() => {
+        if (alive) setCatalogSvc(null);
+      });
+    return () => {
+      alive = false;
+    };
+  }, [isCatalogCode, initialPaket]);
+
+  const paket = useMemo<PaketLayanan>(() => {
+    const std = getPackage(selectedId);
+    if (std) return std;
+    if (catalogSvc && selectedId === catalogSvc.id) {
+      return {
+        id: catalogSvc.id,
+        name: catalogSvc.name,
+        tagline: catalogSvc.categoryLabel,
+        price: catalogSvc.price,
+        strike: catalogSvc.strike ?? undefined,
+        duration: catalogSvc.duration,
+        category: "izin",
+        features: catalogSvc.features,
+        nextSteps: [
+          "Tim menghubungi WhatsApp-mu maks. 15 menit (jam kerja)",
+          "Check-list dokumen disesuaikan kasusmu",
+          "Pengurusan dimulai setelah data & dokumen lengkap",
+        ],
+      };
+    }
+    return PACKAGES[0];
+  }, [selectedId, catalogSvc]);
 
   async function submit() {
     setError(null);
@@ -218,6 +264,48 @@ export function CheckoutClient({ initialPaket }: { initialPaket: string }) {
         {/* KIRI: pilih paket */}
         <div className="lg:col-span-3 space-y-4">
           <h2 className="font-bold text-lg">1. Pilih layanan</h2>
+          {catalogSvc && (
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground mb-2">
+                {catalogSvc.categoryLabel}
+              </p>
+              <button
+                type="button"
+                onClick={() => setSelectedId(catalogSvc.id)}
+                aria-pressed={selectedId === catalogSvc.id}
+                className={`w-full text-left rounded-xl border p-4 transition-all ${
+                  selectedId === catalogSvc.id
+                    ? "border-primary ring-2 ring-primary/30 bg-primary/5 shadow-md"
+                    : "border-border hover:border-primary/40 hover:bg-muted/40"
+                }`}
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="font-bold text-sm">{catalogSvc.name}</span>
+                      <Badge className="rounded-full bg-emerald-600 text-white text-[9px] font-bold px-2 py-0">
+                        PILIHAN ANDA
+                      </Badge>
+                    </div>
+                    <p className="mt-1 text-xs text-muted-foreground line-clamp-2">
+                      Kode item {catalogSvc.id} — dari katalog resmi PusatPerizinan.com
+                    </p>
+                    <p className="mt-1.5 flex items-center gap-1 text-[11px] text-muted-foreground">
+                      <Clock className="h-3 w-3" /> {catalogSvc.duration}
+                    </p>
+                  </div>
+                  <div className="text-right shrink-0">
+                    <p className={`font-extrabold text-sm ${selectedId === catalogSvc.id ? "text-primary" : ""}`}>
+                      {fmtRupiah(catalogSvc.price)}
+                    </p>
+                    {catalogSvc.strike && (
+                      <p className="text-[11px] text-muted-foreground line-through">{fmtRupiah(catalogSvc.strike)}</p>
+                    )}
+                  </div>
+                </div>
+              </button>
+            </div>
+          )}
           <div className="space-y-3 max-h-[480px] overflow-y-auto pr-1 pay-scroll">
             {CATEGORY_ORDER.map((cat) => {
               const items = PACKAGES.filter((p) => p.category === cat);

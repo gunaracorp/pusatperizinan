@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ShoppingCart, Users } from "lucide-react";
 import {
   LAYANAN_500,
   ALL_LAYANAN_SLUGS,
@@ -227,6 +228,15 @@ export default async function LayananDetailPage({
               Pesan via WhatsApp — Kupon {Math.round(s.diskon * 100)}%
             </a>
             <Link
+              href={`/checkout?paket=${encodeURIComponent(s.kode)}`}
+              className="mt-2 flex min-h-11 items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-center text-sm font-extrabold text-emerald-900 shadow-lg transition hover:bg-emerald-50"
+            >
+              <ShoppingCart className="h-4 w-4" aria-hidden /> Pesan Sekarang — Bayar Langsung
+            </Link>
+            <p className="mt-2 flex items-center justify-center gap-1.5 text-[11px] font-medium text-emerald-200/80">
+              <Users className="h-3 w-3" aria-hidden /> QRIS, VA semua bank & e-wallet — diproses hari ini
+            </p>
+            <Link
               href="/roadmap"
               className="mt-2 block rounded-xl border border-white/25 px-5 py-3 text-center text-sm font-semibold transition hover:bg-white/10"
             >
@@ -381,13 +391,19 @@ export default async function LayananDetailPage({
             Konsultasi awal gratis, tanpa komitmen.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
+            <Link
+              href={`/checkout?paket=${encodeURIComponent(s.kode)}`}
+              className="rounded-xl bg-amber-400 px-5 py-3 text-sm font-extrabold text-emerald-950 transition hover:bg-amber-300"
+            >
+              Pesan Sekarang — {fmtIdr(s.harga_diskon)}
+            </Link>
             <a
               href={waHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-xl bg-amber-400 px-5 py-3 text-sm font-bold text-emerald-950 transition hover:bg-amber-300"
+              className="rounded-xl bg-white/10 px-5 py-3 text-sm font-bold text-white transition hover:bg-white/20"
             >
-              WhatsApp — Kupon {fmtIdr(s.harga_diskon)}
+              WhatsApp — Kupon {Math.round(s.diskon * 100)}%
             </a>
             <Link
               href="/kontak"

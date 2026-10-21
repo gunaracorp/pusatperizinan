@@ -16,8 +16,11 @@
 - [Cek Izin dengan AI](https://pusatperizinan.com/cek-izin): deskripsikan usaha Anda, AI menyusun peta izin wajib, KBLI teraman & urutan pengerjaan dalam 60 detik.
 - [Konsultasi gratis 30 menit](https://pusatperizinan.com/konsultasi): sesi 1-on-1 konsultan senior — peta izin, estimasi biaya & timeline, dijadwalkan ≤ 24 jam.
 - [Panduan perizinan (16 panduan resmi)](https://pusatperizinan.com/panduan): syarat, biaya, timeline & langkah resmi per jenis izin — NIB, PT, halal, BPOM, PBG/SLF, PMA, umroh, IATA, dst.
+- [KepatuhanPRO — Langganan Kepatuhan (MRR)](https://pusatperizinan.com/kepatuhan-pro): langganan bulanan/tahunan penjagaan LKPM OSS-RBA, SPT Masa PPN & PPh 21/23, monitoring masa berlaku izin, payroll & kepatuhan sektoral — tier Starter Rp 499rb, Growth Rp 1,49jt, Scale Rp 3,99jt per bulan; tahunan hemat 2 bulan. Checkout langsung tersedia.
 - [Program Kemitraan Cabang Resmi](https://pusatperizinan.com/mitra): buka cabang resmi di kota Anda — mitra menyambut klien, seluruh proses izin diolah pusat (SCBD). Komisi 25–45%, investasi mulai Rp0, wilayah dilindungi, akademi 7 hari.
 - [Blog & panduan perizinan](https://pusatperizinan.com/blog): 13+ artikel mendalam ditulis konsultan senior.
+- [Wilayah layanan: 38 provinsi](https://pusatperizinan.com/wilayah): peta masuk jangkauan nasional — tiap provinsi punya halaman lengkap di /layanan/wilayah/{provinsi} + halaman kota utama di /layanan/wilayah/{provinsi}/{kota}.
+- [Pesan langsung](https://pusatperizinan.com/checkout?paket=nib): seluruh paket siap-jual DAN seluruh 1.500 kode item katalog (BU-XX-NNN / PP-XX-NNN / PP3-XX-NNN) bisa dipesan & dibayar langsung via /checkout?paket={kode} — QRIS, VA semua bank, e-wallet, gerai retail.
 
 # Fakta kunci
 

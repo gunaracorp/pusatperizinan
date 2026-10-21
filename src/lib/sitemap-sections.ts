@@ -177,6 +177,10 @@ function buildStaticPages(): SitemapEntry[] {
     entry("/mitra", "weekly", 0.9), // Program Kemitraan Cabang — funnel bisnis utama
     entry("/solusi-korporat", "monthly", 0.8),
     entry("/bumdes", "monthly", 0.8),
+    // KEPATUHANPRO — mesin pendapatan berulang (langganan kepatuhan)
+    entry("/kepatuhan-pro", "weekly", 0.95),
+    // Hub navigasi wilayah (memperkuat 200+ halaman lokal /layanan/wilayah/*)
+    entry("/wilayah", "weekly", 0.9),
     // Trust & legal pages (E-E-A-T)
     entry("/tentang-kami", "monthly", 0.7),
     entry("/kontak", "monthly", 0.7),

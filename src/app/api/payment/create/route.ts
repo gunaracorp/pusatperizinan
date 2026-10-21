@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { getPackage, generateOrderNo, normalizeWa } from "@/lib/pricing";
+import { getPackage, generateOrderNo, normalizeWa, type PaketLayanan } from "@/lib/pricing";
+import { resolveAnyService } from "@/lib/service-order";
 import { getPaymentConfig } from "@/lib/payment/config";
 import { createMidtransTransaction } from "@/lib/payment/midtrans";
 import { createTripayTransaction } from "@/lib/payment/tripay";
@@ -10,7 +11,10 @@ import { notifyOrder } from "@/lib/notify";
 // ============================================================
 // POST /api/payment/create — buat order + sesi pembayaran
 // Body: { paketId, name, phone, email?, notes?, method? }
-// Harga SELALU dari pricing.ts (server) — input client tidak dipercaya.
+// paketId = id paket pricing.ts ATAU kode item katalog
+// (BU-XX-NNN / PP-XX-NNN / PP3-XX-NNN — 1.500 layanan).
+// Harga SELALU dari server (pricing.ts / service-order.ts) —
+// input client tidak dipercaya.
 // ============================================================
 
 export async function POST(req: NextRequest) {
@@ -24,9 +28,18 @@ export async function POST(req: NextRequest) {
       method?: string;
     } | null;
 
-    const paket = getPackage(String(body?.paketId || ""));
-    if (!paket) {
-      return NextResponse.json({ ok: false, error: "Paket tidak ditemukan" }, { status: 400 });
+    const rawId = String(body?.paketId || "");
+    const pkg = getPackage(rawId);
+    let paket: Pick<PaketLayanan, "id" | "name" | "price">;
+    if (pkg) {
+      paket = pkg;
+    } else {
+      // Kode katalog (1.500 layanan) — resolve harga server-side
+      const svc = resolveAnyService(rawId);
+      if (!svc) {
+        return NextResponse.json({ ok: false, error: "Paket atau kode layanan tidak ditemukan" }, { status: 400 });
+      }
+      paket = { id: svc.id, name: svc.name, price: svc.price };
     }
 
     const name = String(body?.name || "").trim();

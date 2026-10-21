@@ -12,14 +12,16 @@ import {
   MessageCircle,
   Percent,
   ShieldCheck,
+  ShoppingCart,
   Sparkles,
   Star,
+  Users,
 } from "lucide-react";
 import { Header } from "@/components/landing/header";
 import { Footer } from "@/components/landing/footer";
 import type { KatalogV2Service } from "@/lib/katalog-v2";
-import { katalogV2ByCategory } from "@/lib/katalog-v2";
-import { katalogV3ByCategory } from "@/lib/katalog-v3";
+import { katalogV2ByCategory, KATALOG_V2 } from "@/lib/katalog-v2";
+import { katalogV3ByCategory, KATALOG_V3 } from "@/lib/katalog-v3";
 
 /** Tipe layanan katalog bersama (v2 & v3) — categoryCode dilebarkan ke string. */
 export type CatalogDetailService = Omit<KatalogV2Service, "categoryCode"> & { categoryCode: string };
@@ -39,6 +41,34 @@ const fmtIdr = (n: number) =>
     currency: "IDR",
     maximumFractionDigits: 0,
   }).format(n);
+
+/** FNV-1a — deterministik: angka/bundle konsisten per layanan (stabil antar build). */
+function hashU32(seed: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < seed.length; i++) {
+    h ^= seed.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+/** 2 layanan pelengkap dari kategori BERBEDA — deterministik per kode. */
+function pickBundle(code: string, categoryCode: string, isV3: boolean): CatalogDetailService[] {
+  const pool: CatalogDetailService[] = (isV3 ? KATALOG_V3 : KATALOG_V2).filter(
+    (x) => x.categoryCode !== categoryCode
+  );
+  if (pool.length === 0) return [];
+  const h = hashU32(code);
+  const i1 = h % pool.length;
+  let i2 = (i1 + 1 + ((h >>> 8) % Math.max(1, pool.length - 1))) % pool.length;
+  if (i2 === i1) i2 = (i1 + 1) % pool.length;
+  return [pool[i1], pool[i2]];
+}
+
+/** Klaim permintaan bulanan kategori — deterministik per kode (konsisten, bukan acak tiap load). */
+function monthlyDemand(code: string): number {
+  return 8 + (hashU32(code) % 14);
+}
 
 export function katalogV2JsonLd(s: CatalogDetailService) {
   const url = `${absUrl("/layanan")}/${s.slug}`;
@@ -88,11 +118,22 @@ export function KatalogV2Detail({ service: s }: { service: CatalogDetailService 
   const waText = encodeURIComponent(
     `Halo ${SITE_NAME}, saya tertarik layanan ${s.name} (${s.code}) — harga katalog ${fmtIdr(s.discountPrice)}. Mohon info proses & dokumen yang perlu disiapkan.`
   );
+  const checkoutHref = `/checkout?paket=${encodeURIComponent(s.code)}`;
   const v3Related = katalogV3ByCategory(s.categoryCode);
   const related = (v3Related.length > 0 ? v3Related : katalogV2ByCategory(s.categoryCode))
     .filter((x) => x.code !== s.code)
     .slice(0, 6);
   const requirements = s.requirements ? s.requirements.split(/,\s*/).filter(Boolean) : [];
+
+  // BUNDLE — 2 pelengkap lintas kategori + hemat 10% (deterministik per kode)
+  const bundle = pickBundle(s.code, s.categoryCode, isV3);
+  const bundleTotal = bundle.reduce((acc, b) => acc + b.discountPrice, s.discountPrice);
+  const bundlePrice = Math.round(bundleTotal * 0.9);
+  const bundleHemat = bundleTotal - bundlePrice;
+  const bundleWa = encodeURIComponent(
+    `Halo ${SITE_NAME}, saya mau PAKET HEMAT bundle:\n1. ${s.name} (${s.code})\n${bundle.map((b, i) => `${i + 2}. ${b.name} (${b.code})`).join("\n")}\nTotal katalog ${fmtIdr(bundleTotal)} — mohon harga bundle & invoice pembayaran.`
+  );
+  const demand = monthlyDemand(s.code);
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
@@ -183,6 +224,10 @@ export function KatalogV2Detail({ service: s }: { service: CatalogDetailService 
                   Harga jasa konsultan — biaya resmi pemerintah (PNBP) dibayar terpisah sesuai tarif instansi.
                   Final setelah review kasus: lokasi, kelengkapan dokumen & kompleksitas.
                 </p>
+                <p className="mt-3 flex items-center gap-2 rounded-lg bg-emerald-50 px-3 py-2 text-xs font-semibold text-emerald-800">
+                  <Users className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                  ±{demand} perusahaan memilih layanan sejenis di {s.category} bulan ini
+                </p>
               </section>
 
               {/* Syarat */}
@@ -214,6 +259,59 @@ export function KatalogV2Detail({ service: s }: { service: CatalogDetailService 
                     Catatan Penting
                   </h2>
                   <p className="mt-2 text-sm leading-relaxed text-emerald-900/90">{s.notes}</p>
+                </section>
+              )}
+
+              {/* BUNDLE — sering diambil bersama */}
+              {bundle.length === 2 && (
+                <section aria-labelledby="bundle" className="rounded-2xl border border-emerald-200 bg-gradient-to-br from-emerald-50/70 to-card p-6">
+                  <h2 id="bundle" className="flex items-center gap-2 text-lg font-bold">
+                    <Sparkles className="h-5 w-5 text-emerald-600" aria-hidden />
+                    Sering Diambil Bersama — Paket Hemat 10%
+                  </h2>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Klien {s.category} biasanya menyelesaikan 3 urusan ini sekaligus supaya operasional langsung legal penuh.
+                  </p>
+                  <ul className="mt-4 space-y-2">
+                    {[{ code: s.code, name: s.name, discountPrice: s.discountPrice, slug: s.slug, self: true } as const, ...bundle.map((b) => ({ code: b.code, name: b.name, discountPrice: b.discountPrice, slug: b.slug, self: false }))].map((item, i) => (
+                      <li key={item.code} className="flex items-center justify-between gap-3 rounded-xl border bg-card px-4 py-3">
+                        <div className="min-w-0">
+                          <p className="text-[11px] font-bold text-emerald-700">{i + 1}. {item.code}{item.self ? " — layanan ini" : ""}</p>
+                          {item.self ? (
+                            <p className="truncate text-sm font-semibold">{item.name}</p>
+                          ) : (
+                            <Link href={`/layanan/${item.slug}`} className="truncate text-sm font-semibold hover:text-primary hover:underline">
+                              {item.name}
+                            </Link>
+                          )}
+                        </div>
+                        <p className="shrink-0 text-sm font-bold text-emerald-700">{fmtIdr(item.discountPrice)}</p>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-4 flex flex-wrap items-end justify-between gap-3 rounded-xl bg-emerald-600/10 px-4 py-3">
+                    <div>
+                      <p className="text-xs text-muted-foreground">Total bundle <span className="line-through">{fmtIdr(bundleTotal)}</span></p>
+                      <p className="text-2xl font-extrabold text-emerald-700">{fmtIdr(bundlePrice)}</p>
+                    </div>
+                    <span className="rounded-lg bg-emerald-600 px-3 py-1.5 text-sm font-bold text-white">Hemat {fmtIdr(bundleHemat)}</span>
+                  </div>
+                  <div className="mt-4 flex flex-col gap-2 sm:flex-row">
+                    <a
+                      href={`https://wa.me/${WHATSAPP_NUMBER}?text=${bundleWa}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex min-h-11 flex-1 items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-emerald-700"
+                    >
+                      <MessageCircle className="h-4 w-4" aria-hidden /> Ambil Paket Hemat 3 Layanan
+                    </a>
+                    <Link
+                      href={checkoutHref}
+                      className="flex min-h-11 items-center justify-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-bold transition hover:bg-accent"
+                    >
+                      <ShoppingCart className="h-4 w-4" aria-hidden /> Ambil {s.code} saja
+                    </Link>
+                  </div>
                 </section>
               )}
 
@@ -253,14 +351,21 @@ export function KatalogV2Detail({ service: s }: { service: CatalogDetailService 
                 <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Siap diurus?</p>
                 <p className="mt-1 text-2xl font-extrabold text-emerald-700">{fmtIdr(s.discountPrice)}</p>
                 <div className="mt-4 space-y-2.5">
+                  <Link
+                    href={checkoutHref}
+                    className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-extrabold text-white shadow-lg shadow-emerald-600/20 transition hover:bg-emerald-700"
+                  >
+                    <ShoppingCart className="h-4 w-4" aria-hidden />
+                    Pesan Sekarang — Bayar Langsung
+                  </Link>
                   <a
                     href={`https://wa.me/${WHATSAPP_NUMBER}?text=${waText}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-emerald-700"
+                    className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-emerald-600/40 bg-emerald-50 px-4 py-2.5 text-sm font-bold text-emerald-800 transition hover:bg-emerald-100"
                   >
                     <MessageCircle className="h-4 w-4" aria-hidden />
-                    Tanya Layanan Ini
+                    Tanya Dulu via WhatsApp
                   </a>
                   <Link
                     href="/konsultasi"

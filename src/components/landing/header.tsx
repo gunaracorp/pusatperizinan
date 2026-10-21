@@ -184,6 +184,7 @@ export function Header() {
         {
           title: L("Perizinan & Legalitas", "Permits & Legal"),
           items: [
+            { icon: ShieldCheck, label: L("KepatuhanPRO — Langganan", "CompliancePRO — Subscription"), href: "/kepatuhan-pro", desc: L("LKPM & pajak dijaga tiap bulan, mulai Rp 499rb", "Monthly LKPM & tax care, from Rp 499k") },
             { icon: LayoutGrid, label: L("Semua Layanan", "All Services"), href: "/layanan", desc: L("1.500+ halaman layanan hulu-hilir", "1,500+ end-to-end service pages") },
             { icon: FileText, label: L("Katalog Layanan", "Service Catalog"), href: "/katalog", desc: L("1.500 layanan · 3 edisi katalog", "1,500 services · 3 catalog editions") },
             { icon: Compass, label: L("Layanan per Industri", "Services by Industry"), href: "/industri", desc: L("Regulasi khusus sektor usaha", "Sector-specific regulations") },
@@ -230,6 +231,7 @@ export function Header() {
         { icon: Newspaper, label: L("Blog & Artikel", "Blog & Articles"), href: "/blog", desc: L("Kabar regulasi terbaru", "Latest regulatory updates") },
         { icon: FileText, label: L("Panduan Perizinan", "Permit Guides"), href: "/panduan", desc: L("Panduan praktik per jenis izin", "Practical guides per permit type") },
         { icon: Database, label: L("Kode KBLI", "KBLI Code Database"), href: "/kbli", desc: L("Cari kode lapangan usaha", "Find your business field code") },
+        { icon: MapPin, label: L("Wilayah Layanan 38 Provinsi", "Coverage — 38 Provinces"), href: "/wilayah", desc: L("Jasa perizinan per provinsi & kota", "Licensing services per province & city") },
         { icon: Compass, label: L("Syarat & Prosedur", "Requirements & Procedures"), href: "/syarat", desc: L("Dokumen yang perlu disiapkan", "Documents you need to prepare") },
         { icon: CalendarCheck, label: L("Kalender Kepatuhan", "Compliance Calendar"), href: "/kalender-kepatuhan", desc: L("Jatuh tempo lapor & pajak", "Filing & tax deadlines") },
         { icon: ShieldCheck, label: L("Kanal Resmi Pemerintah", "Official Government Channels"), href: "/kanal-resmi", desc: L("Portal & cek status otentik", "Authentic portals & status checks") },

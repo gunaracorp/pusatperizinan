@@ -10,7 +10,7 @@
 // order lama menyimpan amount-nya sendiri di tabel Order.
 // ============================================================
 
-export type PaketCategory = "konsultasi" | "legalitas" | "izin" | "sertifikasi";
+export type PaketCategory = "kepatuhan" | "konsultasi" | "legalitas" | "izin" | "sertifikasi";
 
 export interface PaketLayanan {
   /** id unik — dipakai sebagai ?paket= di /checkout */
@@ -30,6 +30,7 @@ export interface PaketLayanan {
 }
 
 export const PAKET_LABEL: Record<PaketCategory, string> = {
+  kepatuhan: "KepatuhanPRO — Langganan",
   konsultasi: "Konsultasi",
   legalitas: "Badan Usaha",
   izin: "Perizinan Dasar",
@@ -37,6 +38,135 @@ export const PAKET_LABEL: Record<PaketCategory, string> = {
 };
 
 export const PACKAGES: PaketLayanan[] = [
+  // ============ KEPATUHANPRO — LANGGANAN BULANAN (MRR) ============
+  {
+    id: "kepatuhan-starter",
+    name: "KepatuhanPRO Starter",
+    tagline: "Nol denda LKPM & pajak — alarm kepatuhan + admin pribadi setiap bulan.",
+    price: 499_000,
+    strike: 750_000,
+    duration: "Langganan bulanan",
+    category: "kepatuhan",
+    features: [
+      "Pengingat & pendampingan LKPM triwulanan (OSS-RBA)",
+      "Checklist kepatuhan pajak bulanan + reminder WA",
+      "2 jam konsultasi perizinan/pajak per bulan",
+      "1 pengurusan dokumen tambahan per bulan (NIB baru/ubah data)",
+      "Monitoring status izin & jatuh tempo di dashboard pribadi",
+    ],
+    nextSteps: [
+      "Tim menghubungi WhatsApp-mu maks. 15 menit (jam kerja)",
+      "Audit kepatuhan awal gratis — peta kewajiban usahamu",
+      "Aktivasi dashboard + alarm jatuh tempo hari itu juga",
+    ],
+  },
+  {
+    id: "kepatuhan-growth",
+    name: "KepatuhanPRO Growth",
+    tagline: "Tim pajak & perizinan penuh untuk usaha yang naik kelas — fokus jualan, urusan legal aman.",
+    price: 1_490_000,
+    strike: 2_250_000,
+    duration: "Langganan bulanan",
+    category: "kepatuhan",
+    popular: true,
+    features: [
+      "Semua fitur Starter",
+      "Pelaporan SPT Masa PPN & PPh 21/23 unifikasi tiap bulan",
+      "LKPM diajarkan + dibantu submit sampai beres",
+      "4 jam konsultasi senior per bulan (pajak, ketenagakerjaan, izin)",
+      "3 pengurusan dokumen/izin tambahan per bulan",
+      "Dedicated admin via WhatsApp (respons ≤ 30 menit jam kerja)",
+    ],
+    nextSteps: [
+      "Tim menghubungi WhatsApp-mu maks. 15 menit (jam kerja)",
+      "Onboarding: akses dokumen & kalender kewajiban",
+      "Pelaporan pertama diurus siklus terdekat",
+    ],
+  },
+  {
+    id: "kepatuhan-scale",
+    name: "KepatuhanPRO Scale",
+    tagline: "Departemen kepatuhan penuh di luar gedung — siap audit, siap tender, siap due diligence.",
+    price: 3_990_000,
+    strike: 5_990_000,
+    duration: "Langganan bulanan",
+    category: "kepatuhan",
+    features: [
+      "Semua fitur Growth",
+      "Payroll & kepatuhan ketenagakerjaan (BPJS TK+Kes, kontrak kerja)",
+      "Kepatuhan sektoral (Halal, BPOM, ISO, sertifikasi industri)",
+      "8 jam konsultasi senior + review dokumen kontrak",
+      "5 pengurusan dokumen/izin tambahan per bulan",
+      "Compliance manager khusus + laporan bulanan tertulis",
+    ],
+    nextSteps: [
+      "Tim menghubungi WhatsApp-mu maks. 15 menit (jam kerja)",
+      "Gap analysis kepatuhan menyeluruh (2 minggu pertama)",
+      "Roadmap kepatuhan 12 bulan + eksekusi mulai bulan ke-1",
+    ],
+  },
+  // ============ KEPATUHANPRO — PAKET TAHUNAN (2 bulan gratis) ============
+  {
+    id: "kepatuhan-starter-tahunan",
+    name: "KepatuhanPRO Starter — Tahunan",
+    tagline: "Bayar 10 bulan, dapat 12 — hemat Rp 2,9 juta dibanding bulanan.",
+    price: 4_990_000,
+    strike: 8_988_000,
+    duration: "Langganan 12 bulan",
+    category: "kepatuhan",
+    features: [
+      "Semua fitur Starter (12 bulan penuh)",
+      "Kunci harga 1 tahun — bebas kenaikan",
+      "Audit kepatuhan awal + laporan tahunan",
+      "Prioritas antrean pengurusan",
+    ],
+    nextSteps: [
+      "Tim menghubungi WhatsApp-mu maks. 15 menit (jam kerja)",
+      "Onboarding + audit kepatuhan awal",
+      "Aktivasi 12 bulan penuh hari itu juga",
+    ],
+  },
+  {
+    id: "kepatuhan-growth-tahunan",
+    name: "KepatuhanPRO Growth — Tahunan",
+    tagline: "Paket paling laris untuk bisnis serius: 12 bulan ketenangan, bayar 10 bulan.",
+    price: 14_900_000,
+    strike: 26_880_000,
+    duration: "Langganan 12 bulan",
+    category: "kepatuhan",
+    popular: true,
+    features: [
+      "Semua fitur Growth (12 bulan penuh)",
+      "Kunci harga 1 tahun — bebas kenaikan",
+      "Review SPT Tahunan badan gratis",
+      "Prioritas antrean + dedicated admin penuh",
+    ],
+    nextSteps: [
+      "Tim menghubungi WhatsApp-mu maks. 15 menit (jam kerja)",
+      "Onboarding + kalender kewajiban 12 bulan",
+      "Pelaporan pertama diurus siklus terdekat",
+    ],
+  },
+  {
+    id: "kepatuhan-scale-tahunan",
+    name: "KepatuhanPRO Scale — Tahunan",
+    tagline: "Department-grade kepatuhan sepanjang tahun — siap audit & due diligence kapan pun.",
+    price: 39_900_000,
+    strike: 71_880_000,
+    duration: "Langganan 12 bulan",
+    category: "kepatuhan",
+    features: [
+      "Semua fitur Scale (12 bulan penuh)",
+      "Kunci harga 1 tahun — bebas kenaikan",
+      "Gap analysis + roadmap kepatuhan 12 bulan",
+      "Compliance manager khusus sepanjang periode",
+    ],
+    nextSteps: [
+      "Tim menghubungi WhatsApp-mu maks. 15 menit (jam kerja)",
+      "Gap analysis menyeluruh (2 minggu pertama)",
+      "Roadmap + eksekusi mulai bulan ke-1",
+    ],
+  },
   {
     id: "konsultasi-30",
     name: "Konsultasi Perizinan 30 Menit",

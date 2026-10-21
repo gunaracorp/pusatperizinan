@@ -4,6 +4,7 @@ import { PMI_B2B_SERVICES, PMI_B2C_SERVICES } from "@/lib/pmi-services";
 import { CATEGORIES, BUNDLES } from "@/lib/katalog-lengkap";
 import { KATALOG_V2, KATALOG_V2_STATS } from "@/lib/katalog-v2";
 import { KATALOG_V3, KATALOG_V3_STATS, KATALOG_V3_CATEGORIES } from "@/lib/katalog-v3";
+import { KEPATUHAN_TIERS } from "@/lib/kepatuhan-pro";
 import { PERMIT_GUIDES } from "@/lib/seo-content";
 import { BLOG_ARTICLES } from "@/lib/blog-content";
 import { SITE_URL, CONTACT } from "@/lib/site";
@@ -27,6 +28,18 @@ export function GET() {
   ];
   for (const s of SERVICES) {
     lines.push(`- ${s.title} — mulai ${s.price}, durasi ${s.duration}. ${s.desc} URL: ${SITE_URL}/layanan/${s.id}`);
+  }
+  lines.push(
+    "",
+    "## KepatuhanPRO — Langganan Kepatuhan Usaha (recurring)",
+    "",
+    `Langganan bulanan/tahunan: LKPM OSS-RBA, SPT Masa PPN & PPh 21/23, monitoring masa berlaku izin, payroll & kepatuhan sektoral. Halaman: ${SITE_URL}/kepatuhan-pro. Paket:`,
+    ""
+  );
+  for (const t of KEPATUHAN_TIERS) {
+    lines.push(
+      `- KepatuhanPRO ${t.name} — Rp ${new Intl.NumberFormat("id-ID").format(t.monthly)}/bulan atau Rp ${new Intl.NumberFormat("id-ID").format(t.annual)}/tahun (hemat 2 bulan). ${t.audience} Pesan: ${SITE_URL}/checkout?paket=${t.sku}`
+    );
   }
   lines.push("", "## Katalog Lengkap per Divisi (31 divisi)", "");
   for (const c of CATEGORIES) {
