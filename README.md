@@ -647,6 +647,8 @@ Log penuh & transparan: [`worklog.md`](./worklog.md) — 26 entri terverifikasi.
 
 ## 22. Roadmap
 
+> 🎯 **Roadmap besar 99 langkah** menuju nomor #1 dunia tersimpan di **[`ROADMAP-99.md`](./ROADMAP-99.md)** — status: *TERSIMPAN, belum dieksekusi*. Dokumen itu berisi 12 fase, tag dampak/effort/prioritas, Top-10 Quick Wins, dan milestone kuartalan. Daftar di bawah adalah ringkasan eksekusi teknis harian.
+
 ### Kelompok A — butuh akses produksi
 
 - [ ] Submit 14 seksi sitemap ke Google Search Console + Bing Webmaster
@@ -1328,6 +1330,8 @@ Full transparent log: [`worklog.md`](./worklog.md) — 26 verified entries.
 ---
 
 ## 22. Roadmap
+
+> 🎯 **The grand 99-step roadmap** toward world #1 lives in **[`ROADMAP-99.md`](./ROADMAP-99.md)** — status: *SAVED, not yet executed*. It contains 12 phases, impact/effort/priority tags, a Top-10 Quick Wins table, and quarterly milestones. The list below is the day-to-day technical-execution summary.
 
 ### Group A — needs production access
 
