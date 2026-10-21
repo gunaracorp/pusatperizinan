@@ -686,3 +686,25 @@ Stage Summary:
 - ROADMAP-99.md = dokumen strategi hidup "tinggal buka" — status: TERSIMPAN, belum ada satu pun item yang dieksekusi (permintaan eksplisit user)
 - Semua 99 langkah selaras dengan arsitektur aktual proyek: resolver 1.500 layanan, KepatuhanPRO MRR 3 tier, CRM Admin 13 modul, static export idwebhost, 30 bahasa, PAYMENT_DEMO_MODE yang harus dimatikan dulu untuk revenue nyata
 - Deliverable sesi ini murni dokumentasi (ROADMAP-99.md baru + README.md callout + entri ini) — situs tetap berjalan normal pada port 3000
+
+---
+Task ID: 19
+Agent: Z.ai Code (main orchestrator)
+Task: WEBMASTER TOOLS MASTER — halaman alat verifikasi situs di semua mesin pencari dunia (Google diprioritaskan) + jawaban "ada berapa mesin pencari di dunia"
+
+Work Log:
+- Riset & kurasi data: src/lib/webmaster-tools.ts — katalog 26 mesin pencari dunia dalam 4 tier (T1 Wajib: Google/Bing/Yandex/Yahoo · T2 Regional: Baidu/Naver/Seznam/Sogou/360/Shenma · T3 Privasi: DDG/Brave/Ecosia/Qwant/Startpage/Mojeek/Swisscows/Yep/Petal/SearXNG · T4 AI-GEO: AI Overviews/ChatGPT/Perplexity/Copilot/Apple/Claude), masing-masing dengan pangsa pasar, jenis index, URL portal, metode verifikasi, meta tag resmi, env var, prioritas P0-P3, flag IndexNow + objek SEARCH_ENGINE_STATS (jawaban: 200+ mesin aktif, 6 kategori, ≈10 index independen, 3 portal inti menutup 99%+)
+- Halaman baru /webmaster (noindex): page.tsx (server — baca env verifikasi, cek nyata filesystem untuk 8 item kesiapan situs, susun 15 URL sitemap) + webmaster-client.tsx (7 tab: Google P0 panduan 5 langkah + 15 sitemap salin + 5 tautan GSC · Tier 1-4 kartu mesin dgn tag verifikasi + tombol portal/submit · IndexNow generator kunci + ping · Progres checklist localStorage)
+- API IndexNow: /api/indexnow (GET status + POST ping server-side ke api.indexnow.org, validasi host & limit 10.000 URL, mapping status 200/202/403/422/429 → pesan ID) — kunci INDEXNOW_KEY=fc3546a2cb9d002f2e886b3b3dbb159e di .env
+- Pelajaran lapangan #7: rewrite /:param(regex{32}).txt GAGAL di Next.js 16 (path-to-regexp tidak lagi mendukung regex param inline) → solusi final: file kunci STATIS public/<key>.txt (32 byte tanpa newline, isi = kunci, sesuai spek IndexNow) — bekerja di dev + standalone + static export; rewrite dicabut
+- layout.tsx: meta verifikasi diperluas Google→6 mesin (google-site-verification, msvalidate.01, yandex-verification, baidu-site-verification, naver-site-verification, seznam-wmt) semuanya via env, tanpa token = tidak dirender
+- robots.txt: diperbaiki dari 12→14 baris Sitemap (layanan-pp.xml & layanan-pp3.xml sebelumnya hilang — bug nyata)
+- Footer: tautan "🔎 Webmaster Tools Master (26 Mesin Pencari)" di seksi Alat Gratis; README.md: 4 sinkronisasi (peta rute ID/EN + API ID/EN)
+- E2E agent-browser: /webmaster 200 render sempurna (hero, jawaban 200+, kesiapan 7/8, 7 tab) · tab Tier 1 kartu Google/Bing/Yandex/Yahoo + meta tag + env chip · checklist klik Google → "1/26 (4%)" + localStorage {"google":true} · IndexNow tab ping UI → /api/indexnow → api.indexnow.org HTTP 202 "1 URL diterima" · tab Progres checklist lengkap + Salin/Reset · mobile 390px tanpa overflow · console 0 error
+- curl: /webmaster 200 · /<key>.txt 200 isi persis kunci · kunci salah 404 · POST 2 URL → 202 · homepage 200 · lint 0 error (2x)
+
+Stage Summary:
+- /webmaster = panel alat owner satu-stop: jawaban "200+ mesin pencari, cukup 3 portal inti", Google diprioritaskan penuh (panduan 5 langkah, 15 sitemap siap salin, cheat code Import GSC→Bing), 26 mesin terkurasi, dan IndexNow yang SUDAH TERBUKTI hidup (ping 202 diterima jaringan nyata)
+- Kesiapan verifikasi: situs hanya menunggu 6 token env (NEXT_PUBLIC_GSC_VERIFICATION dkk.) — set token di .env → tag meta otomatis muncul di 11.200+ halaman → /webmaster menandai ✓
+- Bug 2 sitemap robots.txt ditemukan & diperbaiki; pelajaran lapangan #7 (regex rewrite Next 16) terdokumentasi di next.config.ts
+- Deliverable: 6 file baru (webmaster-tools.ts, /webmaster/*, /api/indexnow) + 5 edit (layout, robots, footer, .env, README×4) — semua lint 0 error, E2E terverifikasi browser

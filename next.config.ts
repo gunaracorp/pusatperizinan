@@ -30,6 +30,11 @@ const nextConfig: NextConfig = {
           return {
             beforeFiles: [
               { source: "/sitemap.xml", destination: "/api/sitemap-index" },
+              // CATATAN INDEXNOW: file kunci /<key>.txt disajikan sebagai
+              // FILE STATIS dari public/<key>.txt — bukan rewrite. Alasan:
+              // path-to-regexp Next.js 16 tidak lagi mendukung regex param
+              // inline di rewrites. Pendekatan file statis bekerja di
+              // ketiga mode: dev, standalone, DAN static export (out/).
             ],
             afterFiles: [],
             fallback: [],

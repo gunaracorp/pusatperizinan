@@ -162,9 +162,19 @@ export default function RootLayout({
             dari alternates.canonical di atas. */}
         {/* M25 (audit): verifikasi Search Console via env — set
             NEXT_PUBLIC_GSC_VERIFICATION=<token> tanpa perlu ubah kode. */}
-        {process.env.NEXT_PUBLIC_GSC_VERIFICATION ? (
-          <meta name="google-site-verification" content={process.env.NEXT_PUBLIC_GSC_VERIFICATION} />
-        ) : null}
+        {/* WEBMASTER TOOLS MASTER: verifikasi kepemilikan lintas mesin
+            pencari (Google #1, lalu Bing/Yahoo, Yandex, Baidu, Naver,
+            Seznam). Semua via env — tanpa token, tag tidak dirender. */}
+        {([
+          ["google-site-verification", process.env.NEXT_PUBLIC_GSC_VERIFICATION],
+          ["msvalidate.01", process.env.NEXT_PUBLIC_BING_VERIFICATION],
+          ["yandex-verification", process.env.NEXT_PUBLIC_YANDEX_VERIFICATION],
+          ["baidu-site-verification", process.env.NEXT_PUBLIC_BAIDU_VERIFICATION],
+          ["naver-site-verification", process.env.NEXT_PUBLIC_NAVER_VERIFICATION],
+          ["seznam-wmt", process.env.NEXT_PUBLIC_SEZNAM_VERIFICATION],
+        ] as const).map(([name, content]) =>
+          content ? <meta key={name} name={name} content={content} /> : null
+        )}
         {/* M05 (audit): geo default kantor pusat SCBD — halaman berlokasi
             (/layanan/<layanan>-<provinsi>, dst.) menimpa dengan geoMetaForSlug()
             dari src/lib/geo.ts via metadata.other di generateMetadata masing-masing. */}

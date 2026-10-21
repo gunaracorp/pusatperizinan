@@ -68,7 +68,7 @@ Allow: /
 # Tidak ada halaman konten yang dilarang — seluruh konten panduan & layanan
 # dibuka penuh untuk diindeks
 
-# Sitemap — indeks + 12 seksi programatik (M03: lastmod deterministik)
+# Sitemap — indeks + 14 seksi programatik (M03: lastmod deterministik)
 Sitemap: https://pusatperizinan.com/sitemap.xml
 Sitemap: https://pusatperizinan.com/sitemap/static.xml
 Sitemap: https://pusatperizinan.com/sitemap/blog.xml
@@ -81,6 +81,8 @@ Sitemap: https://pusatperizinan.com/sitemap/jobs.xml
 Sitemap: https://pusatperizinan.com/sitemap/bandingkan.xml
 Sitemap: https://pusatperizinan.com/sitemap/katalog.xml
 Sitemap: https://pusatperizinan.com/sitemap/layanan500.xml
+Sitemap: https://pusatperizinan.com/sitemap/layanan-pp.xml
+Sitemap: https://pusatperizinan.com/sitemap/layanan-pp3.xml
 Sitemap: https://pusatperizinan.com/sitemap/seo-expansion.xml
 
 # Ringkasan situs untuk asisten AI (ChatGPT, Perplexity, Claude)

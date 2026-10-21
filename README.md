@@ -318,6 +318,7 @@ Poin arsitektur penting:
 | `/katalog` | Browser 3 katalog: klasik + `#premium` (PP) + `#pro` (PP3) |
 | `/wilayah` | ★ Hub navigasi 38 provinsi → memperkuat 200+ halaman lokal `/layanan/wilayah/{prov}` |
 | `/kepatuhan-pro` | ★ **Langganan MRR** — 3 tier × Bulanan/Tahunan, toggle harga live, JSON-LD Service+6 Offer |
+| `/webmaster` | 🔎 **Webmaster Tools Master** — verifikasi 26 mesin pencari dunia (Google #1), checklist localStorage, alat ping IndexNow (noindex) |
 | `/konsultasi` · `/cek-izin` · `/kalkulator` · `/panduan` (+`/[id]`) | Halaman dedikasi CTA (form, tool, tool, hub 16 panduan) |
 | `/mitra` | Program Kemitraan — 3 tier komisi 25/35/45% + simulasi profit interaktif |
 | `/kbli` · `/kbli/[...slug]` | Pencarian & detail KBLI |
@@ -370,6 +371,7 @@ Semua endpoint di `src/app/api/**/route.ts`. Endpoint AI **wajib server-side**.
 | `GET` | `/api/payment/status/[orderNo]` | Polling status order |
 | `POST` | `/api/payment/demo-pay` | Simulasi bayar (`PAYMENT_DEMO_MODE=true` saja) |
 | `POST` | `/api/payment/webhook/midtrans` · `/tripay` | Webhook dengan verifikasi signature/callback |
+| `GET/POST` | `/api/indexnow` | Status kunci / ping instan URL ke jaringan IndexNow (Bing, Yandex, Seznam, Naver, Ecosia, Qwant, Yep) — kunci dari `INDEXNOW_KEY`, file kunci di `public/<key>.txt` |
 
 ### Admin — Mission Control (cookie `pp_admin_token`)
 
@@ -1012,6 +1014,7 @@ Key architecture points:
 | `/katalog` | 3-catalog browser: classic + `#premium` (PP) + `#pro` (PP3) |
 | `/wilayah` | ★ 38-province navigation hub → strengthens 200+ indexed `/layanan/wilayah/{prov}` pages |
 | `/kepatuhan-pro` | ★ **MRR subscription** — 3 tiers × Monthly/Yearly, live price toggle, Service+6 Offer JSON-LD |
+| `/webmaster` | 🔎 **Webmaster Tools Master** — verify across 26 world search engines (Google #1), localStorage checklist, IndexNow ping tool (noindex) |
 | `/konsultasi` · `/cek-izin` · `/kalkulator` · `/panduan` (+`/[id]`) | Dedicated CTA pages (form, tool, tool, 16-guide hub) |
 | `/mitra` | Partnership program — 3 tiers (25/35/45%) + interactive profit simulator |
 | `/kbli` · `/blog` · `/faq` | KBLI search · hybrid blog · 51-Q&A FAQ |
@@ -1063,6 +1066,7 @@ All endpoints live in `src/app/api/**/route.ts`. AI endpoints are **server-side 
 | `GET` | `/api/payment/status/[orderNo]` | Order status polling |
 | `POST` | `/api/payment/demo-pay` | Payment simulation (`PAYMENT_DEMO_MODE=true` only) |
 | `POST` | `/api/payment/webhook/midtrans` · `/tripay` | Webhooks with signature/callback verification |
+| `GET/POST` | `/api/indexnow` | Key status / instant URL ping to the IndexNow network (Bing, Yandex, Seznam, Naver, Ecosia, Qwant, Yep) — key from `INDEXNOW_KEY`, key file at `public/<key>.txt` |
 
 ### Admin — Mission Control (cookie `pp_admin_token`)
 

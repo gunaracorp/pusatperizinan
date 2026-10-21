@@ -222,6 +222,11 @@ export function Footer() {
                   💰 Kalkulator Biaya Layanan
                 </a>
               </li>
+              <li>
+                <a href="/webmaster" className="text-sm text-emerald-100/70 hover:text-emerald-300 transition-colors">
+                  🔎 Webmaster Tools Master (26 Mesin Pencari)
+                </a>
+              </li>
             </ul>
           </nav>
         </div>
