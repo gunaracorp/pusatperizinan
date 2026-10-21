@@ -20,7 +20,9 @@
 [![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-New_York_48_komponen-000000?style=for-the-badge&logo=shadcnui&logoColor=white)](#3-tech-stack--teknologi)
 [![Prisma 6](https://img.shields.io/badge/Prisma-6_%2B_SQLite-2D3748?style=for-the-badge&logo=prisma&logoColor=white)](#9-database--12-model-prisma)
 [![Bun](https://img.shields.io/badge/Bun-runtime_(_dev_)-F9F1F1?style=for-the-badge&logo=bun&logoColor=black)](#4-quick-start--mulai-cepat)
+[![Versi](https://img.shields.io/badge/Versi-v1.4.0_Version_Master-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](./CHANGELOG.md)
 
+![Versioning](https://img.shields.io/badge/Versi-v1.4.0_%C2%B7_SemVer_2.0.0_%C2%B7_20_rilis-8B5CF6?style=flat-square&logo=semver&logoColor=white)
 ![Sitemap](https://img.shields.io/badge/URL_Sitemap-11.207-059669?style=flat-square&logo=google&logoColor=white)
 ![Layanan](https://img.shields.io/badge/Layanan_Orderable-1.500_in_3_katalog-059669?style=flat-square)
 ![MRR](https://img.shields.io/badge/KepatuhanPRO-MRR_6_SKU-f59e0b?style=flat-square)
@@ -45,7 +47,7 @@
 
 # 🇮🇩 — Bahasa Indonesia
 
-> 📌 **Dokumen ini bilingual & penuh navigasi.** Klik daftar isi mana pun untuk melompat. Sumber kebenaran kode: `src/lib/site.ts` (NAP, trust metrics) & `src/lib/pricing.ts` (harga). Log pengembangan 100% transparan: [`worklog.md`](./worklog.md).
+> 📌 **Dokumen ini bilingual & penuh navigasi.** Klik daftar isi mana pun untuk melompat. Sumber kebenaran kode: `src/lib/site.ts` (NAP, trust metrics) & `src/lib/pricing.ts` (harga). Log pengembangan 100% transparan & **ber-versi SemVer**: [`WORKLOG.md`](./WORKLOG.md) · riwayat rilis: [`CHANGELOG.md`](./CHANGELOG.md) · **Versi saat ini: `v1.4.0 "Version Master"` (2026-10-22)** — cek live: `GET /api/version`.
 
 ## 📑 Daftar Isi (ID)
 
@@ -269,7 +271,9 @@ pusatperizinan/
 │   └── seo-audit.ts · postbuild.mjs · remote-setup.sh · process-logo.mjs
 ├── docs/ · examples/websocket/     # Panduan GSC · demo socket.io
 ├── DEPLOY-IDWEBHOST.md · .htaccess # Deploy cPanel
-├── worklog.md                      # ★ Log 26 entri task (transparan penuh)
+├── WORKLOG.md                      # ★ Log 30 entri task ber-versi SemVer (aditif)
+├── CHANGELOG.md                    # ★ Riwayat 20 rilis (Keep a Changelog + SemVer 2.0.0)
+├── ROADMAP-99.md                   # ★ 99 langkah penyempurnaan (TERSIMPAN, belum dieksekusi)
 └── README.md                       # ← file ini
 ```
 
@@ -355,6 +359,7 @@ Semua endpoint di `src/app/api/**/route.ts`. Endpoint AI **wajib server-side**.
 | `POST` | `/api/leads` | Simpan lead (WA → `62xxx`, deteksi `source`) · Validasi ketat: `businessType` ∈ SECTORS, `package` ∈ PACKAGES |
 | `POST` | `/api/subscribe` | Pendaftar kursus email 7 hari |
 | `GET` | `/api/stats` | Statistik agregat (social proof) |
+| `GET` | `/api/version` | Metadata rilis & riwayat SemVer lengkap (20 rilis) — sumber tunggal `src/lib/version.ts` |
 | `POST`/`GET` | `/api/vitals` | RUM Core Web Vitals (LCP/CLS/INP) |
 | `POST` | `/api/chat` | Chatbot RIZKI — bahasa dinamis 30 bahasa |
 | `POST` | `/api/license-checker` | Deskripsi usaha → rekomendasi izin |
@@ -623,7 +628,7 @@ Bonus pitfall: anchor relatif `#xxx` mati di non-beranda → selalu `/#xxx` · r
 
 ## 21. Riwayat Pengembangan (Task 1–16)
 
-Log penuh & transparan: [`worklog.md`](./worklog.md) — 26 entri terverifikasi.
+Log penuh & transparan: [`WORKLOG.md`](./WORKLOG.md) — **30 entri terverifikasi, setiap entri ber-tag rilis SemVer**. Riwayat naratif 20 rilis: [`CHANGELOG.md`](./CHANGELOG.md) · peta versi ↔ task: [`WORKLOG.md § Peta Versi`](./WORKLOG.md#peta-versi).
 
 | Task | Ringkasan | Hasil utama |
 |---|---|---|
@@ -711,10 +716,10 @@ Tambahkan ke dataset katalog yang relevan (v1/v2/v3) dengan kode & harga valid �
 
 ## 24. Kontribusi
 
-1. **Baca dulu**: [`worklog.md`](./worklog.md) (26 entri konteks) & `src/lib/site.ts` (aturan single-source-of-truth).
+1. **Baca dulu**: [`WORKLOG.md`](./WORKLOG.md) (30 entri konteks ber-versi) & `src/lib/site.ts` (aturan single-source-of-truth).
 2. **Larangan keras**: tidak hardcode `https://pusatperizinan.com` (pakai `SITE_URL`/`absUrl()`); tidak hardcode angka trust (pakai `TRUST_METRICS`); tidak mengirim harga dari client; tidak menyentuh sitasi regulasi dengan pola "freshness year".
 3. **Gaya kode**: TypeScript strict, ES modules, shadcn/ui dulu sebelum custom, `'use client'` seperlunya, animasi compositor-only.
-4. **Setelah selesai**: catat ke `worklog.md` (format `Task ID / Agent / Task / Work Log / Stage Summary`).
+4. **Setelah selesai**: catat ke `WORKLOG.md` (format `Task ID / Agent / Task / Work Log / Stage Summary` + tag `🏷️ Rilis vX.Y.Z`) dan jalankan **checklist rilis**: `CHANGELOG.md` · `src/lib/version.ts` · `package.json` — footer, JSON-LD & `/api/version` mengikuti otomatis.
 5. `bun run lint` wajib 0 error.
 
 ---
@@ -743,7 +748,7 @@ Dibangun dengan ❤️ untuk kemajuan UMKM Indonesia.
 
 # 🇬🇧 — English
 
-> 📌 **This document is bilingual & fully navigable.** Code source-of-truth: `src/lib/site.ts` (NAP, trust metrics) & `src/lib/pricing.ts` (prices). 100% transparent dev log: [`worklog.md`](./worklog.md).
+> 📌 **This document is bilingual & fully navigable.** Code source-of-truth: `src/lib/site.ts` (NAP, trust metrics) & `src/lib/pricing.ts` (prices). 100% transparent, **SemVer-versioned** dev log: [`WORKLOG.md`](./WORKLOG.md) · release history: [`CHANGELOG.md`](./CHANGELOG.md) · **Current version: `v1.4.0 "Version Master"` (2026-10-22)** — live check: `GET /api/version`.
 
 ## 📑 Table of Contents (EN)
 
@@ -965,7 +970,9 @@ pusatperizinan/
 │   └── seo-audit.ts · postbuild.mjs · remote-setup.sh · process-logo.mjs
 ├── docs/ · examples/websocket/     # GSC guides · socket.io demo
 ├── DEPLOY-IDWEBHOST.md · .htaccess # cPanel deployment
-├── worklog.md                      # ★ 26 verified task entries
+├── WORKLOG.md                      # ★ 30 versioned task entries (SemVer-tagged)
+├── CHANGELOG.md                    # ★ 20-release history (Keep a Changelog + SemVer 2.0.0)
+├── ROADMAP-99.md                   # ★ 99-step enhancement blueprint (SAVED, not executed)
 └── README.md                       # ← this file
 ```
 
@@ -1050,6 +1057,7 @@ All endpoints live in `src/app/api/**/route.ts`. AI endpoints are **server-side 
 | `POST` | `/api/leads` | Save lead (WA normalized to `62xxx`, `source` detection) · Strict validation: `businessType` ∈ SECTORS, `package` ∈ PACKAGES |
 | `POST` | `/api/subscribe` | 7-day email course signup |
 | `GET` | `/api/stats` | Aggregate stats (social proof) |
+| `GET` | `/api/version` | Release metadata & full SemVer history (20 releases) — single source `src/lib/version.ts` |
 | `POST`/`GET` | `/api/vitals` | RUM Core Web Vitals (LCP/CLS/INP) |
 | `POST` | `/api/chat` | RIZKI chatbot — dynamic language across 30 locales |
 | `POST` | `/api/license-checker` | Business description → permit recommendations |
@@ -1309,7 +1317,7 @@ Bonus pitfalls: relative `#xxx` anchors die on non-home pages → always `/#xxx`
 
 ## 21. Development History (Tasks 1–16)
 
-Full transparent log: [`worklog.md`](./worklog.md) — 26 verified entries.
+Full transparent log: [`WORKLOG.md`](./WORKLOG.md) — **30 verified entries, every entry SemVer-tagged**. Narrative history of 20 releases: [`CHANGELOG.md`](./CHANGELOG.md) · version ↔ task map: [`WORKLOG.md § Peta Versi`](./WORKLOG.md#peta-versi).
 
 | Task | Summary | Key outcome |
 |---|---|---|
@@ -1397,10 +1405,10 @@ Add it to the relevant catalog dataset (v1/v2/v3) with a valid code & price — 
 
 ## 24. Contributing
 
-1. **Read first**: [`worklog.md`](./worklog.md) (26 context entries) & `src/lib/site.ts` (single-source-of-truth rules).
+1. **Read first**: [`WORKLOG.md`](./WORKLOG.md) (30 versioned context entries) & `src/lib/site.ts` (single-source-of-truth rules).
 2. **Hard prohibitions**: no hardcoding `https://pusatperizinan.com` (use `SITE_URL`/`absUrl()`); no hardcoding trust numbers (use `TRUST_METRICS`); no client-side prices; no touching regulation citations with "freshness year" patterns.
 3. **Code style**: strict TypeScript, ES modules, shadcn/ui before custom, `'use client'` sparingly, compositor-only animation.
-4. **When done**: log to `worklog.md` (format `Task ID / Agent / Task / Work Log / Stage Summary`).
+4. **When done**: log to `WORKLOG.md` (format `Task ID / Agent / Task / Work Log / Stage Summary` + tag `🏷️ Rilis vX.Y.Z`) and run the **release checklist**: `CHANGELOG.md` · `src/lib/version.ts` · `package.json` — footer, JSON-LD & `/api/version` follow automatically.
 5. `bun run lint` must be 0 errors.
 
 ---

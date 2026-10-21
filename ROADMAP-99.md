@@ -20,8 +20,8 @@
 > ## ⚠️ BACA INI DULU (aturan dokumen)
 >
 > 1. **Dokumen ini hanya peta — bukan perintah eksekusi.** Tidak ada item yang boleh dijalankan secara otomatis atau serentak.
-> 2. **Cara membuka:** kapan pun ingin mulai, buka file ini → pilih item `P0` teratas yang belum dicentang → kerjakan **satu item per satu sesi** → centang kotaknya `- [x]` → catat ke `worklog.md` (format `Task ID / Agent / Task / Work Log / Stage Summary`).
-> 3. **Definisi selesai** tiap item: lint 0 error + terverifikasi di browser (agent-browser) + dicatat di worklog. Tanpa tiga itu, kotak tidak boleh dicentang.
+> 2. **Cara membuka:** kapan pun ingin mulai, buka file ini → pilih item `P0` teratas yang belum dicentang → kerjakan **satu item per satu sesi** → centang kotaknya `- [x]` → catat ke `WORKLOG.md` (format `Task ID / Agent / Task / Work Log / Stage Summary` + tag `🏷️ Rilis vX.Y.Z`).
+> 3. **Definisi selesai** tiap item: lint 0 error + terverifikasi di browser (agent-browser) + dicatat di `WORKLOG.md` + dirilis sebagai **versi baru** (checklist: `CHANGELOG.md § Aturan Versioning`). Tanpa empat itu, kotak tidak boleh dicentang.
 > 4. Urutan boleh digeser, tapi **Quick Wins Top-10 (Tabel A) adalah awal yang terbaik** karena dampak revenue paling langsung.
 
 ---
@@ -215,7 +215,7 @@
 
 ## 📏 Aturan Main Saat Eksekusi (nanti)
 
-1. **Satu langkah = satu entri worklog.** Format baku: `Task ID / Agent / Task / Work Log / Stage Summary`.
+1. **Satu langkah = satu entri worklog + satu versi baru.** Format baku: `Task ID / Agent / Task / Work Log / Stage Summary` + tag `🏷️ Rilis vX.Y.Z` — sinkronkan `CHANGELOG.md`, `src/lib/version.ts`, `package.json`.
 2. **Verifikasi 3 lapis sebelum centang**: `bun run lint` 0 error → agent-browser E2E jalur yang berubah → dev.log bersih.
 3. **Jangan pernah**: kirim harga dari client, hardcode domain (pakai `SITE_URL`/`absUrl()`), hardcode angka trust (pakai `TRUST_METRICS`), menyentuh sitasi regulasi dgn pola "freshness year".
 4. **Dokumen hidup**: setiap selesai langkah, centang `- [x]`, tulis tanggal + bukti (link PR/commit) di samping item.
@@ -228,7 +228,7 @@
 **Dokumen ini adalah janji strategis, bukan daftar impian.**
 Setiap langkah dibuat spesifik untuk arsitektur yang sudah ada: 1.500 layanan orderable, KepatuhanPRO MRR, CRM Admin 13 modul, 11.207 URL SEO, 30 bahasa, dan jalur static-export ke hosting produksi.
 
-📚 Konteks penuh: [`README.md`](./README.md) · 📒 Rekam jejak: [`worklog.md`](./worklog.md)
+📚 Konteks penuh: [`README.md`](./README.md) · 📒 Rekam jejak ber-versi: [`WORKLOG.md`](./WORKLOG.md) · 📦 Riwayat rilis: [`CHANGELOG.md`](./CHANGELOG.md) — versi saat ini: **v1.4.0 "Version Master"**
 
 | Top | Strategi 3 Horison | Quick Wins |
 |---|---|---|

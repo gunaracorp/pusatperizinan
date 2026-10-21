@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { ShieldCheck, MapPin, Mail, PhoneCall, Globe } from "lucide-react";
+import { ShieldCheck, MapPin, Mail, PhoneCall, Globe, Tag } from "lucide-react";
+import { APP_VERSION, RELEASE_NAME, RELEASE_DATE } from "@/lib/version";
 import { WHATSAPP_DISPLAY } from "@/lib/landing-data";
 import { useLanguage } from "@/lib/i18n/language-provider";
 import { LanguageSwitcher } from "@/components/landing/language-switcher";
@@ -337,6 +338,15 @@ export function Footer() {
               <span aria-hidden>·</span>
               <Link href="/syarat-ketentuan" className="text-xs text-emerald-100/50 hover:text-emerald-300 transition-colors">Syarat &amp; Ketentuan</Link>
             </nav>
+            {/* 🏷️ Badge versi resmi — sumber tunggal: src/lib/version.ts (v1.4.0+) */}
+            <a
+              href="/api/version"
+              title={`Rilis "${RELEASE_NAME}" — ${RELEASE_DATE} (WIB) · riwayat lengkap 20 versi via GET /api/version`}
+              className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-emerald-400/25 bg-white/[0.05] px-3 py-1 text-[11px] font-semibold tracking-wide text-emerald-200/90 transition-colors hover:border-emerald-400/50 hover:bg-white/10 hover:text-white"
+            >
+              <Tag className="h-3 w-3 text-emerald-400" aria-hidden="true" />
+              pusatperizinan.com · v{APP_VERSION}
+            </a>
           </div>
           {/* Support system credit — PT Top Konsultan Internasional */}
           <div className="flex justify-center">

@@ -6,6 +6,7 @@ import { Header } from "@/components/landing/header";
 import { Footer } from "@/components/landing/footer";
 import { LicenseChecker } from "@/components/landing/license-checker";
 import { SITE_NAME, SITE_URL, absUrl } from "@/lib/site";
+import { APP_VERSION } from "@/lib/version";
 
 // ============================================================
 // PUSATPERIZINAN.COM — /cek-izin (server component)
@@ -108,6 +109,7 @@ const cekIzinJsonLd = {
       name: "Cek Izin AI — PusatPerizinan.com",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
+      softwareVersion: APP_VERSION,
       offers: { "@type": "Offer", price: "0", priceCurrency: "IDR" },
       aggregateRating: {
         "@type": "AggregateRating",
