@@ -1,4 +1,75 @@
-# Worklog — Project PusatPerizinan.com
+# 📒 Worklog — Project PusatPerizinan.com
+
+> **Dokumen resmi rekam jejak pengembangan** — transparan 100%, dari instalasi pertama hingga mesin revenue Rp 5 M/bulan.
+> Setiap entri memakai format baku: `Task ID / Agent / Task / Work Log / Stage Summary`.
+> Prinsip penulisan: *hanya fakta yang terverifikasi (lint, tsc, dev.log, agent-browser) yang dicatat* — tidak ada klaim kosong.
+
+---
+
+## 🏛️ Identitas Proyek
+
+| Atribut | Nilai |
+|---|---|
+| Situs | **https://pusatperizinan.com** |
+| Entitas | PT Digital Bisnis Manajemen — Indonesia Stock Exchange Building Tower 2 Lt. 5, SCBD Lot 13, Jakarta Selatan (+ Cabang Bandung) |
+| Domain bisnis | Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia |
+| Sumber awal | `https://github.com/prabudanling/pusatperizinan` |
+| Stack | Next.js 16 (App Router, Turbopack) · TypeScript 5 strict · Tailwind CSS 4 · shadcn/ui (New York) · Prisma 6 + SQLite · Bun · z-ai-web-dev-sdk (server-side) |
+| Standar kerja | Lint 0 error · E2E agent-browser wajib · mobile 390px tanpa overflow · footer sticky alami · WCAG 2.2 |
+
+---
+
+## 📊 Kondisi Terakhir (setelah Task 16 + fix-preview)
+
+| Metrik | Nilai |
+|---|---|
+| URL terindeks sitemap | **11.207** (14 seksi) |
+| Total layanan orderable | **1.500** dalam 3 katalog + 6 SKU langganan KepatuhanPRO |
+| Katalog layanan | v1 `BU-XX-NNN` (500, URL `/slug`) · v2 Premium `PP-XX-NNN` (500, `/layanan/*-pp-*`) · v3 Pro `PP3-XX-NNN` (500, `/layanan/*-pp3-*`) |
+| Mesin revenue | KepatuhanPRO MRR (Rp 499rb–39,9jt) · Instant Order 1.500 layanan · Bundle "Sering Diambil Bersama" 10% · Social proof per kode · Hub `/wilayah` |
+| Bahasa UI | 30 (termasuk RTL penuh: Arab, Farsi, Urdu, Ibrani) |
+| Model Prisma | 12 · Admin "Mission Control" 13 modul (auth HMAC-SHA256) |
+| Alat AI | 5 (Cek Izin, RIZKI 24/7, Cek Dokumen vision, Roadmap 12 bulan, Kalkulator Pajak) |
+| Mode deploy | Dev (Turbopack) · Standalone (Node) · Static Export siap cPanel |
+| Trust metrics | 4,9/5 (890 ulasan) · 1.247 klien · 3.890 izin · 38 provinsi · 514 kab/kota — sumber tunggal `src/lib/site.ts` |
+
+---
+
+## 🗺️ Daftar Isi Entri
+
+**Sesi 1 — sandbox pertama (fondasi → README terlengkap):**
+[1](#task-id-1) · [2](#task-id-2) · [3](#task-id-3) · [4-a](#task-id-4-a) · [4-b](#task-id-4-b) · [4](#task-id-4) · [5](#task-id-5) · [6-a](#task-id-6-a) · [6-c](#task-id-6-c) · [6-b](#task-id-6-b) · [6 final](#task-id-6-final) · [7 🚨](#task-id-7) · [8](#task-id-8) · [9](#task-id-9) · [10](#task-id-10) · [11](#task-id-11) · [12](#task-id-12) · [12-b](#task-id-12-b) · [13](#task-id-13) · [14](#task-id-14)
+
+**Sesi 2 — sandbox baru (reinstall → Katalog Pro v3 → mesin revenue):**
+[1 (reinstall)](#task-id-1-1) · [4-a v3](#task-id-4-a-1) · [4-b & 4-c](#task-id-4-b--4-c) · [5 (E2E final)](#task-id-5-1) · [16 💰](#task-id-16) · [fix-preview 🔌](#task-id-fix-preview)
+
+---
+
+## ⏱️ Timeline Ringkas
+
+| Urutan | Task | Fase | Ringkasan satu baris |
+|---|---|---|---|
+| 1 | **1** | Sesi 1 · Fondasi | Install repo GitHub → situs penuh hidup di port 3000, 12 model Prisma, DB seeded |
+| 2 | **2** | Sesi 1 · QA | Verifikasi E2E agent-browser: lead → SQLite → dashboard admin |
+| 3 | **3** | Sesi 1 · SEO | Katalog 500 layanan + sitemap 10.201 URL + rebranding logo & foto kantor |
+| 4 | **4-a/b/4/5** | Sesi 1 · Konten & i18n | FAQ 51 Q&A + privasi v2.0 (UU PDP+GDPR) + **UI 30 bahasa** + footer credit internasional |
+| 5 | **6-a/b/c/6** | Sesi 1 · Design & SEO | Motion system compositor-only + audit SEO 25 masukan + `/kontak` rebuild |
+| 6 | **7** 🚨 | Sesi 1 · Emergency | Fix konflik route-tree sitemap (situs 500 sitewide) → arsitektur sitemap permanen |
+| 7 | **8–9** | Sesi 1 · Trust & Nav | 5 foto kantor asli (sharp q82) + menu 5 grup mega-dropdown + galeri beranda |
+| 8 | **10** | Sesi 1 · Deploy | `/download` + panel AdminDeploy + pipeline static export (PACK_LIGHT/FULL, MD5, badge kesegaran) |
+| 9 | **11** | Sesi 1 · Dokumentasi | README "terlengkap di dunia" 959 baris berbasis kode aktual |
+| 10 | **12 / 12-b** | Sesi 1 · Funnel SEO | 4 halaman dedikasi CTA + 19 CTA sitewide diarahkan + 2 bug produksi dimitigasi + sinkron paket/README |
+| 11 | **13** | Sesi 1 · Ekspansi bisnis | Program Kemitraan `/mitra` (3 tier komisi, simulasi profit, JSON-LD) + 10 anchor footer mati diperbaiki |
+| 12 | **14** | Sesi 1 · Katalog Premium | Parser MD→TS 500 layanan PP-XXX → 500 halaman + browser premium → 10.706 URL |
+| 13 | **1 (reinstall)** | Sesi 2 · Fondasi | Clone ulang ke sandbox baru + seed 132 data demo + resep OOM-safe |
+| 14 | **4-a → 4-b/c → 5** | Sesi 2 · Katalog Pro | Generator Katalog v3 500 layanan PP3 (6 kategori baru, lifecycle variants) + wiring penuh → **11.206 URL** |
+| 15 | **16** 💰 | Sesi 2 · Revenue | KepatuhanPRO MRR 6 SKU + Instant Order 1.500 layanan + bundle 10% + social proof + hub `/wilayah` → **11.207 URL** |
+| 16 | **fix-preview** 🔌 | Sesi 2 · Ops | Diagnosa "preview hanya logo Z" → dev server mati antar sesi → restart + verifikasi E2E penuh |
+
+---
+
+## 📖 Entri Lengkap
+
 
 ---
 Task ID: 1
@@ -542,3 +613,56 @@ Stage Summary:
 - ROOT CAUSE: Next.js dev server was not running (stopped between sessions) — preview panel showed only Z.ai logo because port 3000 was dead
 - FIX: restarted dev server in background; verified via agent-browser that homepage, kepatuhan-pro, and catalog checkout all render interactively
 - No code changes were needed — the application itself is healthy
+---
+
+## 🧮 Lampiran A — Statistik Akhir Proyek
+
+| Kelompok | Angka | Detail |
+|---|---|---|
+| Skala konten | 11.207 URL | 14 seksi sitemap; +10.006 URL sejak Task 3 (10.201) |
+| Katalog layanan | 1.500 layanan | v1 500 (BU) + v2 500 (PP) + v3 500 (PP3) — nol kolisi slug/kode |
+| Halaman detail orderable | 1.500 | Semua bisa dibayar langsung: `/checkout?paket=<kode>` |
+| SKU langganan | 6 | KepatuhanPRO Starter/Growth/Scale × Bulanan/Tahunan |
+| Ekonomi katalog v2 | Rp 3,55 M total hemat | Persis statistik file sumber (Task 14) |
+| Ekonomi katalog v3 | Rp 629,2 jt total hemat | Rentang harga Rp 255rb–145,2 jt (Task 4-a Sesi 2) |
+| Bahasa | 30 | Dengan RTL penuh; fallback berlapis pilihan→English→Indonesia |
+| JSON-LD | 7+ tipe schema | Service, Offer, Product, FAQPage, BreadcrumbList, SoftwareApplication, CollectionPage, ItemList, dll. |
+| Bug produksi tertembang | 15+ | Sitemap 500 sitewide, kontrak LeadForm 400 (6 halaman), overflow mobile, anchor mati (29 total), race localStorage, nested-copy, dll. — semua didokumentasikan dengan solusi permanen |
+| Verifikasi E2E kumulatif | 100+ skenario | agent-browser: render, form→DB, i18n, RTL, mobile 390, JSON-LD, sitemap, checkout, admin |
+
+## 🗂️ Lampiran B — Peta Artefak Penting
+
+| Artefak | Lokasi | Fungsi |
+|---|---|---|
+| Sumber harga server-side | `src/lib/pricing.ts` | Satu-satunya sumber harga checkout (anti-manipulasi) |
+| Resolver katalog 3 generasi | `src/lib/service-order.ts` | `resolveAnyService()` v1+v2+v3 untuk Instant Order |
+| Dataset katalog | `src/lib/layanan-500.ts` · `katalog-v2.ts` (297 KB, auto-generated) · `katalog-v3.ts` (670 KB, auto-generated) | Single source of truth 1.500 layanan |
+| Generator & parser | `scripts/parse-katalog-v2.mjs` · `scripts/generate-katalog-v3.mjs` (+pool/bases) | Regenerasi dataset satu perintah |
+| Mesin revenue | `src/lib/kepatuhan-pro.ts` · `src/app/kepatuhan-pro/` | MRR engine + landing page |
+| Deploy pipeline | `scripts/build-static.mjs` · `scripts/deploy-pack.mjs` | Static export cPanel + pack terverifikasi MD5 |
+| Log dev | `dev.log` | Tee otomatis dari `bun run dev` |
+| README | `README.md` | Dokumentasi bilingual ID/EN berstandard internasional |
+
+## 🏁 Penutup
+
+Dari sebuah repo GitHub mentah menjadi **platform perizinan terlengkap di Indonesia**: 11.207 URL terindeks, 1.500 layanan bisa dibayar langsung, langganan kepatuhan berulang (MRR), 5 alat AI, 30 bahasa, tiga mode deployment, dan fondasi SEO/GEO yang siap mendominasi pencarian. Setiap baris di dokumen ini adalah bukti kerja yang terverifikasi browser — bukan klaim.
+
+> 📌 **Aturan berlaku terus:** setiap agent yang melanjutkan proyek ini wajib membaca dokumen ini dari awal, lalu menambahkan entri baru (format `Task ID / Agent / Task / Work Log / Stage Summary`) dengan awalan `---` — **tanpa pernah mengubah atau menghapus** entri historis.
+
+---
+Task ID: 17 (final)
+Agent: Z.ai Code (main orchestrator)
+Task: Dokumentasi pamungkas — Worklog terlengkap (Bahasa Indonesia) + README standar internasional bilingual ID/EN dengan full design animatif
+
+Work Log:
+- WORKLOG (650 baris, 26 entri Task ID utuh): header eksekutif baru (identitas proyek, kondisi terakhir 11.207 URL/1.500 layanan/6 SKU MRR, daftar isi ber-anchor 26 entri, timeline ringkas 16 langkah Sesi 1-2) → SEMUA entri historis Task 1 s/d fix-preview dipertahankan byte-per-byte via konsolidasi shell (header + sed '1d' + lampiran, nol kehilangan data) → Lampiran A (statistik akhir: bug tertembang 15+, E2E kumulatif 100+ skenario) + Lampiran B (peta artefak) + Penutup (aturan agent penerus: append-only)
+- README (1.427 baris, bilingual penuh): desain animatif — capsule-render header/footer gradient animasi, readme-typing-svg 5 baris rotasi (ID+EN), 16 badge shields.io (stack for-the-badge + metrik flat-square), 5 diagram Mermaid (alur data makro ×2, ER ringkas, funnel revenue ×2), 16 blok <details> collapsible
+- STRUKTUR BILINGUAL: <a id="top|indonesia|english"> eksplisit (portabel lintas GitHub/GitLab/VS Code) → 🇮🇩 25 seksi lengkap → 🇬🇧 25 seksi mirror penuh → footer bersama; switcher bahasa badge + cross-link tiap arah + back-to-top
+- KONTEN BARU vs README lama: seksi 12 "Mesin Revenue — Menuju Rp 5 M/Bulan" (4 lever: Instant Order 1.500 layanan dgn regex resolver, KepatuhanPRO MRR tabel 3 tier × bulanan/tahunan, Bundle FNV-1a 10%, Social proof + /wilayah anti-kanibalisasi); rute baru (/kepatuhan-pro, /wilayah, /katalog#pro); API baru (/api/payment/service-resolve); troubleshooting #5 (LeadForm 400) & #6 (overflow nowrap); riwayat Task 1R/4/5/16/fix; FAQ baru "menambah layanan ke Instant Order"; roadmap A/B test CTA
+- VALIDASI OTOMATIS: skrip Python replika algoritma github-slugger (emoji/puntuasi dibuang, spasi→hyphen, duplikat -1/-2, hyphen ganda TIDAK disusutkan) → 53 link internal diuji → 2 koreksi (EN TOC #3-tech-stack-1→#3-tech-stack, #4-quick-start-1→#4-quick-start karena heading EN unik tanpa duplikat) → hasil akhir: 53/53 link valid 100% ✓
+- Verifikasi server tetap sehat: GET / 200, dev.log nol error
+
+Stage Summary:
+- worklog.md = dokumen rekam jejak resmi 650 baris: siapa pun (manusia/agent) bisa merekonstruksi seluruh sejarah proyek dari instalasi pertama hingga mesin revenue, lengkap dengan pelajaran lapangan 6 insiden & solusi permanennya
+- README.md = dokumentasi internasional bilingual 1.427 baris dgn 25 seksi per bahasa + design animatif penuh (capsule-render, typing-svg, 16 badge, 5 mermaid, 16 collapsible) + navigasi anchor terverifikasi 100% — standar open-source kelas dunia
+- Kedua dokumen mencerminkan kode aktual (single source of truth: site.ts, pricing.ts, service-order.ts) — komitmen "kode adalah kebenarannya" terjaga
