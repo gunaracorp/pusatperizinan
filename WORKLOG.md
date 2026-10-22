@@ -798,3 +798,21 @@ Stage Summary:
 - **pusatperizinan.com kini resmi v1.4.0 "Version Master"** — identitas versi hidup di 6 lapisan: (1) footer 11.207 halaman, (2) `GET /api/version`, (3) JSON-LD softwareVersion, (4) package.json, (5) CHANGELOG.md, (6) WORKLOG.md
 - 20 rilis terdokumentasi penuh v0.1.0 "Fondasi" → v1.4.0, dipetakan 1:1 ke entri worklog tanpa kehilangan satu pun; entri historis 100% utuh (anotasi murni aditif)
 - Aturan mengikat ke depan: 1 task = 1 versi; checklist sinkronisasi 4 titik (WORKLOG + CHANGELOG + version.ts + package.json) — footer/JSON-LD/API mengikuti otomatis; rilis berikutnya v1.5.0 diisi dari [Unreleased] saat ROADMAP-99 dieksekusi
+
+---
+Task ID: 21
+> 🏷️ **Rilis: v1.4.0 — "Version Master"** (event ops restart · 2026-10-22) — *tanpa bump versi: nol perubahan kode, versi produk tetap v1.4.0*
+Agent: Z.ai Code (main orchestrator)
+Task: Hidupkan ulang website — preview hanya menampilkan logo Z karena dev server mati antar sesi (kasus berulang, pola sama dengan Task fix-preview / v1.0.1 "Restart")
+
+Work Log:
+- DIAGNOSA: `ss -tlnp` → port 3000 TIDAK ada listener; `ps aux` → nol proses bun/next; dev.log lama membekas `GET /api/version 200` (bukti sistem versi berjalan baik sebelum mati)
+- Percobaan `nohup bun run dev >> dev.log 2>&1 &` → proses terbunuh diam-diam oleh sesi shell (dev.log 0 byte) — pelajaran baru: pola nohup-saja tidak lagi cukup di sandbox ini
+- Diagnosa lanjutan memastikan aplikasi sehat: memori 3,4 GB bebas, disk 24%, uji foreground 25 dtk → Next.js 16.1.3 "Ready in 1301ms" + `GET / 200 in 7.9s` (exit 124 hanya karena timeout uji)
+- SOLUSI: start dengan `setsid bun run dev >> dev.log 2>&1 < /dev/null &` (sesi terpisah, kebal pembunuhan process-group shell) → port 3000 UP, proses PID stabil
+- VERIFIKASI E2E agent-browser: `GET / 200` · judul halaman penuh SEO (bukan logo Z) · screenshot hero render sempurna · footer badge "pusatperizinan.com · v1.4.0" terdeteksi DOM & terfoto · `GET /api/version` JSON benar (1.4.0, Version Master, stable, semverValid:true) · console 0 error · page errors 0 · dev.log hanya 200/204
+
+Stage Summary:
+- Website pusatperizinan.com v1.4.0 kembali HIDUP di port 3000 — preview pengguna menampilkan situs lengkap, bukan logo Z
+- Resep start server resmi tercatat: `setsid bun run dev >> dev.log 2>&1 < /dev/null &` (gantikan pola nohup yang kini rapuh) — referensi untuk semua sesi berikutnya
+- Nol perubahan kode/dokumen produk; sistem versi 6 lapisan (footer · /api/version · JSON-LD · package.json · CHANGELOG · WORKLOG) terbukti selamat dari restart — bukti nyata desain v1.4.0 anti-regresi
