@@ -17,11 +17,11 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.5.0";
+export const APP_VERSION = "1.6.0";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "SEO Titan";
+export const RELEASE_NAME = "Peta Nusantara";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
-export const RELEASE_DATE = "2026-10-24";
+export const RELEASE_DATE = "2026-10-25";
 /** Channel rilis: stable | beta | alpha. */
 export const RELEASE_CHANNEL = "stable" as const;
 
@@ -46,6 +46,18 @@ export interface ReleaseEntry {
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.6.0",
+    date: "2026-10-25",
+    type: "minor",
+    name: "Peta Nusantara",
+    taskId: "22",
+    highlights: [
+      "Halaman kota level-3 diperluas 94 → 516 hub: seluruh 514 kab/kota resmi (BPS 2022) + 2 alias existing (langkah 25)",
+      "Data baru kabkota-data.ts (516 entri terverifikasi per provinsi, nol duplikat slug, nol perubahan URL lama)",
+      "/wilayah jadi engine internal-linking 554 halaman lokal + ItemList JSON-LD 516 kab/kota — indeks 11.207 → 11.629 URL",
+    ],
+  },
   {
     version: "1.5.0",
     date: "2026-10-24",
@@ -262,7 +274,7 @@ export const CURRENT_RELEASE: ReleaseEntry = RELEASES[0];
 
 /** Statistik platform yang dikirim /api/version — singkron dengan site.ts. */
 export const PLATFORM_STATS = {
-  indexedUrls: 11207,
+  indexedUrls: 11629,
   sitemapSections: 14,
   orderableServices: 1500,
   subscriptionSkus: 6,

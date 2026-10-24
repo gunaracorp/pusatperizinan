@@ -100,7 +100,7 @@
 
 - [x] **23.** Schema **FAQPage + HowTo** di 1.500 halaman detail (banyak yang belum punya). `🔥🔥 · 🟡 · P1`
 - [x] **24.** **Internal linking engine otomatis**: related services, breadcrumb, tautan kategori — dilakukan programatik dari katalog. `🔥🔥 · 🟡 · P1`
-- [ ] **25.** **Halaman level kota** (±500 kota/kab) di bawah `/wilayah/[provinsi]/[kota]` — gandakan permukaan SEO lokal. `🔥🔥🔥 · 🔴 · P2`
+- [x] **25.** **Halaman level kota** (±500 kota/kab) di bawah `/wilayah/[provinsi]/[kota]` — gandakan permukaan SEO lokal. `🔥🔥🔥 · 🔴 · P2` — ✅ **v1.6.0 "Peta Nusantara" (2026-10-25): 514 kab/kota resmi + 2 alias = 516 hub live (+422 URL), data terverifikasi BPS/Wikipedia, /wilayah jadi engine internal-linking, sitemap hubs 137→559**
 - [x] **26.** **EEAT penuh**: halaman redaksi, profil penulis, `author` schema, kebijakan editorial. `🔥 · 🟢 · P1`
 - [x] **27.** **Optimasi featured snippet**: jawaban inti 40–60 kata tepat di atas konten setiap halaman. `🔥🔥 · 🟡 · P2`
 - [ ] **28.** **Indexing API** (Google Indexing Connector) — halaman baru terindeks < 24 jam. `🔥 · 🟡 · P2`
@@ -226,9 +226,9 @@
 <div align="center">
 
 **Dokumen ini adalah janji strategis, bukan daftar impian.**
-Setiap langkah dibuat spesifik untuk arsitektur yang sudah ada: 1.500 layanan orderable, KepatuhanPRO MRR, CRM Admin 13 modul, 11.207 URL SEO, 30 bahasa, dan jalur static-export ke hosting produksi.
+Setiap langkah dibuat spesifik untuk arsitektur yang sudah ada: 1.500 layanan orderable, KepatuhanPRO MRR, CRM Admin 13 modul, 11.629 URL SEO, 30 bahasa, dan jalur static-export ke hosting produksi.
 
-📚 Konteks penuh: [`README.md`](./README.md) · 📒 Rekam jejak ber-versi: [`WORKLOG.md`](./WORKLOG.md) · 📦 Riwayat rilis: [`CHANGELOG.md`](./CHANGELOG.md) — versi saat ini: **v1.4.0 "Version Master"**
+📚 Konteks penuh: [`README.md`](./README.md) · 📒 Rekam jejak ber-versi: [`WORKLOG.md`](./WORKLOG.md) · 📦 Riwayat rilis: [`CHANGELOG.md`](./CHANGELOG.md) — versi saat ini: **v1.6.0 "Peta Nusantara"**
 
 | Top | Strategi 3 Horison | Quick Wins |
 |---|---|---|

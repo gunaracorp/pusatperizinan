@@ -179,7 +179,8 @@ function buildStaticPages(): SitemapEntry[] {
     entry("/bumdes", "monthly", 0.8),
     // KEPATUHANPRO — mesin pendapatan berulang (langganan kepatuhan)
     entry("/kepatuhan-pro", "weekly", 0.95),
-    // Hub navigasi wilayah (memperkuat 200+ halaman lokal /layanan/wilayah/*)
+    // Hub navigasi wilayah (memperkuat ±654 halaman lokal: 38 hub provinsi
+    // + 516 hub kab/kota — ROADMAP-99 langkah 25)
     entry("/wilayah", "weekly", 0.9),
     // Trust & legal pages (E-E-A-T)
     entry("/tentang-kami", "monthly", 0.7),

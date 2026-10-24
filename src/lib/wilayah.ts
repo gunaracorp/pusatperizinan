@@ -10,6 +10,7 @@
 // ============================================================
 
 import { PROVINCES, type ProvinceCoverage, type Island } from "@/lib/coverage-data";
+import { KABKOTA_PER_PROVINSI } from "@/lib/kabkota-data";
 
 function slugify(text: string): string {
   return text
@@ -30,10 +31,16 @@ export interface WilayahEntry {
   hubHref: string;
   /** URL hub kota utama yang SUDAH ADA. */
   cityHrefs: { name: string; href: string }[];
+  /** ROADMAP-99 langkah 25: SELURUH kab/kota provinsi ini (majors paling
+   *  depan, sisanya dari kabkota-data) — engine internal-linking /wilayah. */
+  kabkotaHrefs: { name: string; href: string }[];
 }
 
 export const WILAYAH: WilayahEntry[] = PROVINCES.map((p: ProvinceCoverage) => {
   const slug = slugify(p.name);
+  const extra = (KABKOTA_PER_PROVINSI[p.name] ?? []).filter(
+    (k) => !p.majors.includes(k)
+  );
   return {
     name: p.name,
     island: p.island,
@@ -45,8 +52,18 @@ export const WILAYAH: WilayahEntry[] = PROVINCES.map((p: ProvinceCoverage) => {
       name: c,
       href: `/layanan/wilayah/${slug}/${slugify(c)}`,
     })),
+    kabkotaHrefs: [...p.majors, ...extra].map((c) => ({
+      name: c,
+      href: `/layanan/wilayah/${slug}/${slugify(c)}`,
+    })),
   };
 });
+
+/** Jumlah total link hub kab/kota yang tersedia (±514 resmi + alias existing). */
+export const TOTAL_KABKOTA_HUBS = WILAYAH.reduce(
+  (n, w) => n + w.kabkotaHrefs.length,
+  0
+);
 
 export const WILAYAH_BY_SLUG = new Map<string, WilayahEntry>(WILAYAH.map((w) => [w.slug, w]));
 

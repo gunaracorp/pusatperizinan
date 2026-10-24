@@ -8,6 +8,7 @@ import { SERVICES } from "@/lib/landing-data";
 import { TAX_ALL } from "@/lib/tax-services";
 import { PMI_B2B_SERVICES, PMI_B2C_SERVICES, PMI_COUNTRIES } from "@/lib/pmi-services";
 import { PROVINCES } from "@/lib/coverage-data";
+import { KABKOTA_PER_PROVINSI } from "@/lib/kabkota-data";
 import { PERMIT_GUIDES } from "@/lib/seo-content";
 import type { ServicePage, ServiceFaq, CatalogCategory } from "./types";
 import { CATEGORY_META } from "./types";
@@ -865,13 +866,30 @@ function buildSectorPage(code: string, sectorIdx: number): ServicePage | null {
 // BUILDER: Halaman Kota Hub (wilayah/{prov}/{kota}) — indeks semua layanan di satu kota
 // ------------------------------------------------------------
 
+// ROADMAP-99 langkah 25: hub kota kini memakai seluruh 514 kab/kota
+// (516 baris data) — memoize per-slug agar getAnyPage/request O(1)
+// setelah build pertama.
+const CITY_HUB_CACHE = new Map<string, ServicePage | null>();
+
 function buildCityHubPage(provIdx: number, city: string): ServicePage | null {
   const prov = PROVINCES[provIdx];
   if (!prov || !city) return null;
   const provSlug = slugify(prov.name);
   const citySlug = slugify(city);
   const slug = `wilayah/${provSlug}/${citySlug}`;
+  if (CITY_HUB_CACHE.has(slug)) return CITY_HUB_CACHE.get(slug)!;
 
+  const page = buildCityHubPageUncached(prov, provSlug, slug, city);
+  CITY_HUB_CACHE.set(slug, page);
+  return page;
+}
+
+function buildCityHubPageUncached(
+  prov: (typeof PROVINCES)[number],
+  provSlug: string,
+  slug: string,
+  city: string
+): ServicePage | null {
   const regionMembers = ALL_SERVICE_PAGES.filter(
     (p) => p.kind === "region" && p.region === prov.name
   );
@@ -1245,15 +1263,29 @@ export function getHubSlugs(): string[] {
   return slugs;
 }
 
-/** Halaman kota hub (wilayah/{prov}/{kota}) — dibangun lazy setelah ALL_SERVICE_PAGES siap */
+/** Semua nama kab/kota yang dilayani satu provinsi — majors dulu (slug
+ *  existing terjaga), sisanya dari kabkota-data (ROADMAP-99 langkah 25). */
+export function allCityNames(provIdx: number): string[] {
+  const prov = PROVINCES[provIdx];
+  if (!prov) return [];
+  const extra = KABKOTA_PER_PROVINSI[prov.name] ?? [];
+  return [...prov.majors, ...extra.filter((k) => !prov.majors.includes(k))];
+}
+
+/** Halaman kota hub (wilayah/{prov}/{kota}) — 514 kab/kota resmi + 2 alias
+ *  existing (Luwuk, Sorong di hub Papua Barat). Memoized: hasil array
+ *  dipakai ulang antara sitemap, generateStaticParams & render request. */
+let CITY_HUBS_CACHE: ServicePage[] | null = null;
 export function getCityHubs(): ServicePage[] {
+  if (CITY_HUBS_CACHE) return CITY_HUBS_CACHE;
   const pages: ServicePage[] = [];
   for (let i = 0; i < PROVINCES.length; i++) {
-    for (const city of PROVINCES[i].majors) {
+    for (const city of allCityNames(i)) {
       const p = buildCityHubPage(i, city);
       if (p) pages.push(p);
     }
   }
+  CITY_HUBS_CACHE = pages;
   return pages;
 }
 
@@ -1270,7 +1302,11 @@ export function getAnyPage(slugOrPath: string): ServicePage | undefined {
     const provIdx = PROVINCES.findIndex((p) => slugify(p.name) === parts[0]);
     if (provIdx < 0) return undefined;
     if (parts.length === 1) return getRegionHub(provIdx) ?? undefined;
-    if (parts.length === 2) return buildCityHubPage(provIdx, PROVINCES[provIdx].majors.find((c) => slugify(c) === parts[1]) ?? "");
+    if (parts.length === 2) {
+      // ROADMAP-99 langkah 25: lookup ke seluruh 514 kab/kota, bukan majors saja
+      const city = allCityNames(provIdx).find((c) => slugify(c) === parts[1]) ?? "";
+      return buildCityHubPage(provIdx, city);
+    }
   }
   return undefined;
 }

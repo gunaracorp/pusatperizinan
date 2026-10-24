@@ -39,3 +39,24 @@ Stage Summary:
 - Bundle client −360KB sumber (28 bahasa lazy) + chat widget idle-mount → target perbaikan TBT/LCP PSI
 - Nol perubahan URL → indeks 11.207 URL aman
 - File tambahan: src/lib/catalog/detail-seo.ts, src/components/landing/chat-widget-lazy.tsx, WORKLOG.md
+
+---
+Task ID: 22
+Agent: Z.ai Code (main agent — Master Polymath mode)
+Task: Eksekusi langkah ROADMAP-99 berikutnya (FASE 4 langkah 25): halaman level kota untuk seluruh 514 kabupaten/kota resmi di bawah /layanan/wilayah/{prov}/{kota} — rilis v1.6.0 "Peta Nusantara".
+
+Work Log:
+- Seleksi langkah dari sisa FASE 4 (25/28–34): langkah 25 terpilih (🔥🔥🔥, self-contained, kelanjutan alami engine lokal)
+- Verifikasi data resmi via Wikipedia + UU pemekaran Papua 2022: 416 kab + 98 kota = 514; distribusi per provinsi dicocokkan 1:1 (termasuk resolve Kalbar 12 kab — Kayong Barat tak pernah terbentuk)
+- File baru src/lib/kabkota-data.ts (516 entri = 514 resmi + 2 alias existing: Luwuk, Sorong-Pabar); konvensi nama menjaga URL existing 100%
+- generators.ts: buildCityHubPage memoized per-slug, allCityNames() export, getCityHubs() 516 hub + cache array, getAnyPage lookup penuh
+- wilayah.ts: kabkotaHrefs + TOTAL_KABKOTA_HUBS; /wilayah dirombak multi-anchor (fix anchor bersarang) + <details> 516 link internal + ItemList JSON-LD 516
+- Sitemap hubs 137→559 URL; indeks 11.207→11.629 (+422, nol URL berubah); PLATFORM_STATS + footer + /api/version singkron
+- QA: verify-kabkota.ts (nol duplikat slug; menangkap duplikat Sungai Penuh) + smoke-city-hubs.ts PASS
+- agent-browser: kabupaten-deli-serdang/toba, kota-sukabumi render penuh + schema; /wilayah 598 link + ItemList 38+516; 404 valid; mobile 390px tanpa overflow; lint 0 error
+- Versioning: version.ts 1.6.0 "Peta Nusantara" (Task 22), package.json, CHANGELOG.md entri 1.6.0 + badge header disingkronkan, WORKLOG.md Task 22, ROADMAP-99 centang langkah 25, api/version nextRelease → v1.7.0
+
+Stage Summary:
+- Situs v1.6.0 "Peta Nusantara": 554 halaman lokal (38 hub provinsi + 516 hub kab/kota) — seluruh 514 kab/kota resmi kini punya halaman
+- Indeks target 11.629 URL; nol perubahan URL lama → 11.207 URL terindeks aman
+- FASE 4 ROADMAP-99 kini 23/24/25/26/27 ✅ — sisa 28–34 menunggu sesi berikutnya

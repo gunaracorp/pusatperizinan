@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, Building2, MapPin, ShieldCheck, Star } from "lucide-react";
 import { Header } from "@/components/landing/header";
 import { Footer } from "@/components/landing/footer";
-import { WILAYAH, WILAYAH_ISLANDS, wilayahByIsland } from "@/lib/wilayah";
+import { WILAYAH, WILAYAH_ISLANDS, wilayahByIsland, TOTAL_KABKOTA_HUBS } from "@/lib/wilayah";
 import { TOTAL_KABKOTA, TOTAL_PROVINCES } from "@/lib/coverage-data";
 import { SITE_NAME, SITE_URL, absUrl, TRUST_METRICS } from "@/lib/site";
 import { LAYANAN_STATS } from "@/lib/layanan-500";
@@ -13,8 +13,9 @@ import { LAYANAN_STATS } from "@/lib/layanan-500";
 // BUKAN halaman kompetitor: halaman lokal ASLI hidup di
 // /layanan/wilayah/{prov} & /layanan/wilayah/{prov}/{kota}
 // (dibangun generators.ts, terindeks sitemap "hubs").
-// Halaman ini = peta masuk yang memperkuat 200+ halaman lokal
-// lewat internal-linking + ItemList JSON-LD.
+// ROADMAP-99 langkah 25: kini memperkuat 554 halaman lokal
+// (38 hub provinsi + 516 hub kab/kota) lewat internal-linking
+// penuh ke seluruh kab/kota + ItemList JSON-LD.
 // ============================================================
 
 export const metadata: Metadata = {
@@ -54,6 +55,20 @@ function jsonLd() {
           name: `Jasa Perizinan & Konsultan di ${w.name}`,
           url: absUrl(w.hubHref),
         })),
+      },
+      {
+        // ROADMAP-99 langkah 25: seluruh 514 kab/kota (±alias) sebagai
+        // ItemList — sinyal cakupan lokal penuh untuk mesin pencari.
+        "@type": "ItemList",
+        name: "Kabupaten & Kota yang dilayani PusatPerizinan.com",
+        numberOfItems: TOTAL_KABKOTA_HUBS,
+        itemListElement: WILAYAH.flatMap((w) =>
+          w.kabkotaHrefs.map((k) => ({
+            "@type": "ListItem",
+            name: `Jasa Perizinan di ${k.name}`,
+            url: absUrl(k.href),
+          }))
+        ),
       },
       {
         "@type": "BreadcrumbList",
@@ -119,28 +134,56 @@ export default function WilayahHubPage() {
                   </h3>
                   <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                     {list.map((w) => (
-                      <Link
+                      // v1.6.0: kartu bukan lagi <Link> tunggal — berisi
+                      // banyak anchor (hub kab/kota); anchor bersarang
+                      // adalah HTML invalid & merusak hidrasi React.
+                      <div
                         key={w.slug}
-                        href={w.hubHref}
-                        className="group rounded-xl border bg-card p-4 transition hover:border-emerald-300 hover:shadow-md"
+                        className="rounded-xl border bg-card p-4 transition hover:border-emerald-300 hover:shadow-md"
                       >
-                        <p className="text-sm font-bold leading-snug group-hover:text-emerald-700">
-                          Jasa Perizinan di {w.name}
-                        </p>
-                        <p className="mt-1.5 flex flex-wrap gap-1.5">
-                          {w.cityHrefs.slice(0, 4).map((c) => (
-                            <span
-                              key={c.href}
-                              className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-semibold text-muted-foreground"
-                            >
-                              {c.name}
-                            </span>
-                          ))}
-                        </p>
-                        <p className="mt-2 inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700">
-                          Lihat semua layanan <ArrowRight className="h-3 w-3 transition group-hover:translate-x-0.5" aria-hidden />
-                        </p>
-                      </Link>
+                        <Link
+                          href={w.hubHref}
+                          className="group block"
+                        >
+                          <p className="text-sm font-bold leading-snug group-hover:text-emerald-700">
+                            Jasa Perizinan di {w.name}
+                          </p>
+                          <p className="mt-1.5 flex flex-wrap gap-1.5">
+                            {w.cityHrefs.slice(0, 4).map((c) => (
+                              <span
+                                key={c.href}
+                                className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-semibold text-muted-foreground"
+                              >
+                                {c.name}
+                              </span>
+                            ))}
+                          </p>
+                        </Link>
+                        {/* ROADMAP-99 langkah 25: internal-link ke SELURUH
+                            kab/kota — <details> = ringan, tetap crawlable */}
+                        <details className="mt-2">
+                          <summary className="cursor-pointer select-none text-[11px] font-bold text-emerald-700 hover:text-emerald-800">
+                            {w.kabkotaHrefs.length} kabupaten/kota dilayani — lihat semua
+                          </summary>
+                          <div className="mt-2 flex flex-wrap gap-1.5">
+                            {w.kabkotaHrefs.map((k) => (
+                              <Link
+                                key={k.href}
+                                href={k.href}
+                                className="rounded-full border bg-background px-2 py-0.5 text-[10px] font-semibold text-muted-foreground transition hover:border-emerald-300 hover:text-emerald-700"
+                              >
+                                {k.name}
+                              </Link>
+                            ))}
+                          </div>
+                        </details>
+                        <Link
+                          href={w.hubHref}
+                          className="mt-2 inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700"
+                        >
+                          Lihat semua layanan <ArrowRight className="h-3 w-3" aria-hidden />
+                        </Link>
+                      </div>
                     ))}
                   </div>
                 </div>

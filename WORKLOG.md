@@ -5,6 +5,34 @@
 
 ---
 
+## Task 22 — Halaman Level Kota 514 Kab/Kota (ROADMAP-99 langkah 25)
+
+> 🏷️ Rilis v1.6.0 — "Peta Nusantara" · type: minor
+> Tanggal: 2026-10-25 (WIB) · Agent: Z.ai Code (Master Polymath · Sage Universal · The Ultimate Problem Solver)
+
+**Task:** Eksekusi langkah ROADMAP-99 berikutnya — langkah 25 FASE 4: halaman level kota (±500 kota/kab) di bawah `/wilayah/[provinsi]/[kota]` untuk menggandakan permukaan SEO lokal.
+
+**Work Log:**
+- Seleksi langkah: dari sisa FASE 4 (25/28/29/30/31/32/33/34), langkah 25 dipilih — 🔥🔥🔥, self-contained (tanpa kredensial eksternal), dan lanjut alami dari engine lokal yang ada
+- Riset & verifikasi data resmi: jumlah kab/kota per provinsi via Wikipedia "Daftar kabupaten dan kota di Indonesia menurut provinsi" (total 416 kab + 98 kota = 514) + resolusi distribusi Papua pasca UU 14/15/16/13-2022 (Tengah: Nabire, Paniai, Mimika, Puncak, Puncak Jaya, Intan Jaya, Dogiyai, Deiyai; Pegunungan: Jayawijaya, Lanny Jaya, Mamberamo Tengah, Nduga, Pegunungan Bintang, Tolikara, Yahukimo, Yalimo; dst.) + konfirmasi Kalbar 12 kab (Kayong Barat TIDAK pernah terbentuk — hanya Kayong Utara/Sukadana)
+- **Modul baru `src/lib/kabkota-data.ts`**: 516 entri (514 resmi + 2 alias existing yang dipertahankan: Luwuk & Sorong di hub Papua Barat); konvensi nama menjaga URL: majors ditulis exact ("Medan", "Jambi (Kota)", "Jakarta Selatan (SCBD)"), kota baru ber-prefix "Kota", kabupaten "Kabupaten" (membedakan Bogor/Bekasi/Tangerang kota vs kab)
+- **generators.ts**: `buildCityHubPage` di-memoize (Map per-slug) + dipecah jadi `buildCityHubPageUncached`; helper export `allCityNames(provIdx)` (majors dulu, sisanya kabkota-data); `getCityHubs()` bangun 516 hub dari seluruh kab/kota + cache array; `getAnyPage("wilayah/{prov}/{kota}")` lookup penuh — sitemap/staticParams/request jadi O(1) pasca build pertama
+- **wilayah.ts**: `WilayahEntry.kabkotaHrefs` (seluruh kab/kota per provinsi) + export `TOTAL_KABKOTA_HUBS` (=516)
+- **/wilayah**: kartu provinsi dirombak — `<Link>` tunggal jadi `<div>` multi-anchor (fix anchor bersarang invalid sebelum sempat ter-render), tambah `<details>` per provinsi berisi link SELURUH kab/kota (516 link internal) + ItemList JSON-LD baru "Kabupaten & Kota yang dilayani" (numberOfItems 516)
+- Sitemap seksi `hubs` otomatis 137 → 559 URL (getHubSlugs); indeks total 11.207 → 11.629 (+422, nol URL berubah); `PLATFORM_STATS.indexedUrls` disesuaikan
+- QA data: script verify (516 entri, per-provinsi = rujukan, nol duplikat slug) — menangkap 2 bug saat dev: duplikat Sungai Penuh (Jambi) & tidak ada duplikat lain
+- Verifikasi browser (agent-browser): halaman baru `kabupaten-deli-serdang` / `kabupaten-toba` / `kota-sukabumi` (H1 + breadcrumb 4 level + 108+ layanan + 5 FAQ + schema FAQPage/BreadcrumbList/rating, tanpa error console); `/wilayah` 598 link internal + ItemList 38+516; expand details Aceh = 23 link; slug invalid → 404; URL existing (Medan, Jambi (Kota), Jakarta Selatan (SCBD), Luwuk, Sorong, Timika (Mimika)) identik; mobile 390px tanpa overflow
+- `bun run lint` → 0 error, 0 warning
+- Versioning: `version.ts` (1.6.0 "Peta Nusantara" + entri RELEASES + indexedUrls), `package.json`, `CHANGELOG.md` (entri 1.6.0 + badge header disingkronkan — tertinggal di v1.4.0), ROADMAP-99 (centang langkah 25)
+
+**Stage Summary:**
+- 422 halaman kota baru live → total 516 hub kab/kota + 38 hub provinsi = 554 halaman lokal; situs kini punya halaman untuk SELURUH 514 kab/kota resmi Indonesia
+- Internal-linking lokal diperkuat dua arah: /wilayah → 516 hub (details), hub kota → provinsi/kota saudara, sitemap hubs 559 URL
+- Nol perubahan URL existing → 11.207 URL terindeks aman; indeks target 11.629
+- FASE 4 ROADMAP-99: 23 ✅ 24 ✅ 25 ✅ 26 ✅ 27 ✅ — sisa 28–34 (Indexing API, GSC audit, backlink, GBP, thin content, comparison)
+
+---
+
 ## Task 21 — Full Upgrade SEO (ROADMAP-99 FASE 4) + Core Web Vitals
 
 > 🏷️ Rilis v1.5.0 — "SEO Titan" · type: minor
