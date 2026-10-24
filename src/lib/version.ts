@@ -17,11 +17,11 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.4.0";
+export const APP_VERSION = "1.5.0";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Version Master";
+export const RELEASE_NAME = "SEO Titan";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
-export const RELEASE_DATE = "2026-10-22";
+export const RELEASE_DATE = "2026-10-24";
 /** Channel rilis: stable | beta | alpha. */
 export const RELEASE_CHANNEL = "stable" as const;
 
@@ -46,6 +46,18 @@ export interface ReleaseEntry {
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.5.0",
+    date: "2026-10-24",
+    type: "minor",
+    name: "SEO Titan",
+    taskId: "21",
+    highlights: [
+      "FAQPage + HowTo schema & section nyata di 1.000 halaman Katalog v2/v3 (langkah 23)",
+      "Ringkasan Cepat 40–60 kata (featured snippet) + internal-linking 38 hub wilayah (langkah 24/27)",
+      "E-E-A-T blog (author url/knowsAbout + speakable) & perf: i18n lazy-load + chat widget idle-mount",
+    ],
+  },
   {
     version: "1.4.0",
     date: "2026-10-22",

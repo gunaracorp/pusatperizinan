@@ -24,7 +24,7 @@ import { Comparison } from "@/components/landing/comparison";
 import { Faq } from "@/components/landing/faq";
 import { FinalCta } from "@/components/landing/final-cta";
 import { Footer } from "@/components/landing/footer";
-import { ChatWidget } from "@/components/landing/chat-widget";
+import { ChatWidgetLazy } from "@/components/landing/chat-widget-lazy";
 import { AdminDeploy } from "@/components/landing/admin-deploy";
 import { CatalogTeaser } from "@/components/landing/catalog-teaser";
 import { FAQS } from "@/lib/landing-data";
@@ -91,7 +91,7 @@ export default function Home() {
         <HtmlSitemap />
       </main>
       <Footer />
-      <ChatWidget />
+      <ChatWidgetLazy />
       {/* Panel deploy privat — hanya aktif via /?admin=1, tidak tampil di publik */}
       <AdminDeploy />
     </div>

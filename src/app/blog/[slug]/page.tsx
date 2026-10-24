@@ -168,6 +168,20 @@ export default async function BlogArticlePage({
   const related = getRelatedArticles(article.relatedArticles);
 
   // ---------- JSON-LD: BlogPosting + BreadcrumbList + FAQ ----------
+  // E-E-A-T (ROADMAP-99 langkah 26): author Person diperkaya url profil
+  // tim + knowsAbout per kategori + speakable untuk asisten suara/AI-GEO.
+  const authorKnowsAbout: Record<string, string[]> = {
+    default: [
+      "perizinan usaha Indonesia",
+      "OSS-RBA",
+      "NIB",
+      "pendirian PT/CV",
+      "kepatuhan regulasi UMKM",
+    ],
+    "Pajak": ["perpajakan Indonesia", "NPWP", "Coretax", "PPh final UMKM", "PKP"],
+    "Tambang & Energi": ["perizinan tambang", "IUP", "IUPK", "RKAB", "MODI minerba"],
+    "Travel Ibadah": ["izin umroh PPIU", "izin haji PPIH", "SIPU/SPPU", "regulasi Kemenag"],
+  };
   const blogPosting = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -190,12 +204,22 @@ export default async function BlogArticlePage({
       "@type": "Person",
       name: article.author,
       jobTitle: article.authorRole,
+      // E-E-A-T: profil tim nyata (section #tim di beranda) + keahlian per kategori
+      url: `${SITE_URL}/#tim`,
       worksFor: { "@id": `${SITE_URL}/#organization` },
+      knowsAbout:
+        authorKnowsAbout[article.category] ?? authorKnowsAbout.default,
     },
     publisher: { "@id": `${SITE_URL}/#organization` },
+    isPartOf: { "@id": `${SITE_URL}/#blog` },
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `${SITE_URL}/blog/${article.slug}`,
+    },
+    // GEO/voice: bagian yang paling layak dibacakan asisten suara
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["h1", "article p:first-of-type"],
     },
   };
 

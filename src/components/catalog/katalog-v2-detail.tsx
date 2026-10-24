@@ -285,8 +285,10 @@ export function KatalogV2Detail({ service: s }: { service: CatalogDetailService 
           </section>
 
           <div className="mt-8 grid gap-6 lg:grid-cols-3">
-            {/* KOLOM UTAMA */}
-            <div className="space-y-6 lg:col-span-2">
+            {/* KOLOM UTAMA — min-w-0 wajib: tanpa ini, teks truncate/nowrap
+                di dalam (nama layanan panjang di bundle & FAQ) memaksa
+                min-width:auto grid item → horizontal scroll di mobile. */}
+            <div className="min-w-0 space-y-6 lg:col-span-2">
               {/* Harga */}
               <section aria-labelledby="harga" className="rounded-2xl border bg-card p-6">
                 <h2 id="harga" className="flex items-center gap-2 text-lg font-bold">
@@ -312,12 +314,12 @@ export function KatalogV2Detail({ service: s }: { service: CatalogDetailService 
                 </div>
                 <p className="mt-4 flex items-start gap-2 text-xs leading-relaxed text-muted-foreground">
                   <Info className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden />
-                  Harga jasa konsultan — biaya resmi pemerintah (PNBP) dibayar terpisah sesuai tarif instansi.
-                  Final setelah review kasus: lokasi, kelengkapan dokumen & kompleksitas.
+                  <span className="min-w-0">Harga jasa konsultan — biaya resmi pemerintah (PNBP) dibayar terpisah sesuai tarif instansi.
+                  Final setelah review kasus: lokasi, kelengkapan dokumen & kompleksitas.</span>
                 </p>
                 <p className="mt-3 flex items-center gap-2 rounded-lg bg-emerald-50 px-3 py-2 text-xs font-semibold text-emerald-800">
                   <Users className="h-3.5 w-3.5 shrink-0" aria-hidden />
-                  ±{demand} perusahaan memilih layanan sejenis di {s.category} bulan ini
+                  <span className="min-w-0">±{demand} perusahaan memilih layanan sejenis di {s.category} bulan ini</span>
                 </p>
               </section>
 
@@ -346,8 +348,8 @@ export function KatalogV2Detail({ service: s }: { service: CatalogDetailService 
                   server-rendered + HowToStep schema di @graph atas. */}
               <section aria-labelledby="proses" className="rounded-2xl border bg-card p-6">
                 <h2 id="proses" className="flex items-center gap-2 text-lg font-bold">
-                  <Compass className="h-5 w-5 text-emerald-600" aria-hidden />
-                  Proses Pengurusan — 5 Langkah
+                  <Compass className="h-5 w-5 shrink-0 text-emerald-600" aria-hidden />
+                  <span className="min-w-0 break-words">Proses Pengurusan — 5 Langkah</span>
                 </h2>
                 <ol className="mt-4 space-y-4">
                   {steps.map((st, i) => (
@@ -435,8 +437,8 @@ export function KatalogV2Detail({ service: s }: { service: CatalogDetailService 
                   + FAQPage schema di @graph atas. */}
               <section aria-labelledby="faq" className="rounded-2xl border bg-card p-6">
                 <h2 id="faq" className="flex items-center gap-2 text-lg font-bold">
-                  <HelpCircle className="h-5 w-5 text-emerald-600" aria-hidden />
-                  Pertanyaan Umum {s.name}
+                  <HelpCircle className="h-5 w-5 shrink-0 text-emerald-600" aria-hidden />
+                  <span className="min-w-0 break-words">Pertanyaan Umum {s.name}</span>
                 </h2>
                 <Accordion type="single" collapsible className="mt-4">
                   {faqs.map((f, i) => (
@@ -486,8 +488,8 @@ export function KatalogV2Detail({ service: s }: { service: CatalogDetailService 
                   /layanan/wilayah/<prov> (pemilihan deterministik per kode). */}
               <section aria-labelledby="jangkauan" className="rounded-2xl border bg-card p-6">
                 <h2 id="jangkauan" className="flex items-center gap-2 text-lg font-bold">
-                  <MapPin className="h-5 w-5 text-emerald-600" aria-hidden />
-                  Urus {s.name} dari Mana Saja
+                  <MapPin className="h-5 w-5 shrink-0 text-emerald-600" aria-hidden />
+                  <span className="min-w-0 break-words">Urus {s.name} dari Mana Saja</span>
                 </h2>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                   {SITE_NAME} memproses {s.name.toLowerCase()} untuk klien di 38 provinsi & 514 kabupaten/kota —
@@ -517,7 +519,7 @@ export function KatalogV2Detail({ service: s }: { service: CatalogDetailService 
             </div>
 
             {/* SIDEBAR */}
-            <aside className="space-y-5">
+            <aside className="min-w-0 space-y-5">
               <div className="rounded-2xl border bg-card p-6 lg:sticky lg:top-24">
                 <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Siap diurus?</p>
                 <p className="mt-1 text-2xl font-extrabold text-emerald-700">{fmtIdr(s.discountPrice)}</p>

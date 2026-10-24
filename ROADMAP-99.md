@@ -98,11 +98,11 @@
 
 ## 📅 FASE 4 — SEO Dominasi Nasional — langkah 23–34
 
-- [ ] **23.** Schema **FAQPage + HowTo** di 1.500 halaman detail (banyak yang belum punya). `🔥🔥 · 🟡 · P1`
-- [ ] **24.** **Internal linking engine otomatis**: related services, breadcrumb, tautan kategori — dilakukan programatik dari katalog. `🔥🔥 · 🟡 · P1`
+- [x] **23.** Schema **FAQPage + HowTo** di 1.500 halaman detail (banyak yang belum punya). `🔥🔥 · 🟡 · P1`
+- [x] **24.** **Internal linking engine otomatis**: related services, breadcrumb, tautan kategori — dilakukan programatik dari katalog. `🔥🔥 · 🟡 · P1`
 - [ ] **25.** **Halaman level kota** (±500 kota/kab) di bawah `/wilayah/[provinsi]/[kota]` — gandakan permukaan SEO lokal. `🔥🔥🔥 · 🔴 · P2`
-- [ ] **26.** **EEAT penuh**: halaman redaksi, profil penulis, `author` schema, kebijakan editorial. `🔥 · 🟢 · P1`
-- [ ] **27.** **Optimasi featured snippet**: jawaban inti 40–60 kata tepat di atas konten setiap halaman. `🔥🔥 · 🟡 · P2`
+- [x] **26.** **EEAT penuh**: halaman redaksi, profil penulis, `author` schema, kebijakan editorial. `🔥 · 🟢 · P1`
+- [x] **27.** **Optimasi featured snippet**: jawaban inti 40–60 kata tepat di atas konten setiap halaman. `🔥🔥 · 🟡 · P2`
 - [ ] **28.** **Indexing API** (Google Indexing Connector) — halaman baru terindeks < 24 jam. `🔥 · 🟡 · P2`
 - [ ] **29.** **Audit cannibalization keyword** via GSC API + konsolidasi halaman yang saling makan. `🔥🔥 · 🟡 · P2`
 - [ ] **30.** **A/B meta title CTR-driven** — revisi title/description dari data Search Console per template. `🔥 · 🟡 · P2`

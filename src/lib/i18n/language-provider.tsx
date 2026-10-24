@@ -12,12 +12,15 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useReducer,
   useRef,
   useState,
   type ReactNode,
 } from "react";
 import { DEFAULT_LANG, LANG_MAP, type LanguageMeta } from "./languages";
-import { TRANSLATIONS } from "./index";
+// PERF-01: TRANSLATIONS kini hanya berisi core (id+en); 28 bahasa
+// lain diunduh on-demand lewat ensureTranslations() — lihat ./index
+import { TRANSLATIONS, ensureTranslations } from "./index";
 import type { LangCode, Translation } from "./types";
 
 const STORAGE_KEY = "pp-lang";
@@ -68,6 +71,10 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   // preferensi tersimpan dengan "id" sebelum deteksi sempat membacanya.
   const [ready, setReady] = useState(false);
   const initializedRef = useRef(false);
+  // PERF-01: versi dict — dinaikkan saat paket bahasa on-demand selesai
+  // diunduh, sehingga t() (memegang dictVersion di deps) dibuat ulang
+  // dan komponen konsumen me-render ulang dengan teks bahasa baru.
+  const [dictVersion, bumpDictVersion] = useReducer((n: number) => n + 1, 0);
 
   // Deteksi bahasa setelah mount (URL -> storage -> browser) via microtask
   // agar setState tidak dipanggil sinkron di dalam effect
@@ -79,6 +86,18 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       setReady(true);
     });
   }, []);
+
+  // PERF-01: unduh paket bahasa aktif bila bukan id/en (id/en statis).
+  // ensureTranslations resolve seketika untuk bahasa statis & cache-hit.
+  useEffect(() => {
+    let cancelled = false;
+    void ensureTranslations(lang).then(() => {
+      if (!cancelled) bumpDictVersion();
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [lang]);
 
   // Sinkronkan <html lang/dir> + persist setiap kali bahasa berubah
   // (persist di-skip sampai deteksi awal selesai — lihat catatan ready)
@@ -96,6 +115,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   }, [lang, ready]);
 
   const setLang = useCallback((code: LangCode) => {
+    // PERF-01: mulai unduh paket bahasa target sejak klik switcher —
+    // render ulang teks menyusul begitu dict tiba (fallback id sementara).
+    void ensureTranslations(code);
     setLangState(code);
   }, []);
 
@@ -104,7 +126,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       const dict = TRANSLATIONS[lang] as Partial<Translation> | undefined;
       return dict?.[key] ?? TRANSLATIONS.id[key] ?? String(key);
     },
-    [lang]
+    // dictVersion disengaja di deps — t dibuat ulang saat paket bahasa
+    // on-demand tiba sehingga komponen konsumen me-render teks baru.
+    [lang, dictVersion]
   );
 
   const value = useMemo<LanguageContextValue>(() => {

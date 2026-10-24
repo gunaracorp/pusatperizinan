@@ -45,15 +45,38 @@
 
 <a id="unreleased"></a>
 
-## [Unreleased] — akan menjadi `v1.5.0`
+## [Unreleased] — akan menjadi `v1.6.0`
 
-> 📦 **99 langkah penyempurnaan TERSIMPAN di [`ROADMAP-99.md`](./ROADMAP-99.md)** — status: belum satu pun dieksekusi (permintaan eksplisit owner). Saat eksekusi dimulai: 1 langkah = 1 entri WORKLOG = minimal 1 versi baru di sini.
+> 📦 **Sisa langkah ROADMAP-99** tetap TERSIMPAN di [`ROADMAP-99.md`](./ROADMAP-99.md) — langkah 23, 24, 26, 27 kini DIEKSEKUSI di v1.5.0 (dicentang di roadmap). Sisanya (pembayaran produksi, GSC submission, GA4, dst.) menunggu sesi berikutnya.
 
-### Planned — Quick Wins P0 teratas (dari ROADMAP-99 Tabel A)
+### Planned — Quick Wins P0 teratas (dari ROADMAP-99 Tabel A, sisa)
 - **Aktifkan pembayaran produksi** Midtrans/Tripay — matikan `PAYMENT_DEMO_MODE` (langkah 1)
 - **Submit 14 sitemap** (11.207 URL) ke Google Search Console + Bing Webmaster (langkah 2)
-- Install GA4 + Microsoft Clarity di seluruh halaman (langkah 4)
 - Verifikasi token 6 mesin pencari via env → meta tag otomatis (lanjutan `v1.3.0`)
+- Re-ukur PSI mobile setelah deploy v1.5.0 — target LCP < 4 s & TBT < 500 ms
+
+---
+
+<a id="v1-5-0"></a>
+
+## [1.5.0] — 2026-10-24 — 🦾 "SEO Titan" (Task 21)
+
+Rilis upgrade SEO menyeluruh — mengeksekusi FASE 4 ROADMAP-99 (langkah 23, 24, 26, 27) + perbaikan Core Web Vitals berbasis data PSI mobile produksi (Performance 38 · LCP 9,2 s · TBT 1.520 ms · SEO 100).
+
+### Added
+- **FAQPage + HowTo schema & section untuk 1.000 halaman Katalog v2/v3** (langkah 23) — modul baru `src/lib/catalog/detail-seo.ts`: 5 FAQ bisnis-nyata + 5 langkah proses per layanan, semua **deterministik** (FNV-1a dari kode layanan — stabil antar-build). Section on-page server-rendered: "Pertanyaan Umum" (Accordion) + "Proses Pengurusan — 5 Langkah"; schema digabung ke `@graph` Product/Breadcrumb yang ada
+- **Blok "Ringkasan Cepat"** di 1.000 halaman detail (langkah 27) — jawaban langsung 40–60 kata (terukur: 55 kata) + dl biaya/estimasi/penerbit; target featured snippet Google untuk query "biaya/jasa pengurusan X"
+- **Engine internal-linking "Urus X dari Mana Saja"** (langkah 24) — 6 hub provinsi `/layanan/wilayah/<prov>` deterministik per kode layanan + link induk `/wilayah`; menyalurkan link equity 1.000 halaman katalog ke 200+ halaman lokal
+- **HowTo schema di halaman detail v1** (`/layanan/...`) — `page.steps` yang sudah ada kini di-emisi sebagai HowToStep (ambang ≥ 3 langkah)
+
+### Changed
+- **E-E-A-T blog** (langkah 26) — `author` Person diperkaya: `url` → profil tim nyata (`/#tim`), `knowsAbout` per kategori artikel (Pajak / Tambang & Energi / Travel Ibadah / default perizinan), + `speakable` (h1 + paragraf pertama) untuk asisten suara & AI-GEO, + `isPartOf` → `#blog`
+- **PERF-01 — i18n lazy-load**: 28 bahasa non-inti (≈360 KB sumber) tidak lagi di-bundle statis di semua halaman; hanya core id+en (22 KB) yang statis, sisanya diunduh on-demand via dynamic import per kode bahasa (`ensureTranslations()`), cache per sesi, fallback id tetap aman
+- **PERF-02 — ChatWidget idle-mount**: widget chat (framer-motion + chunk sendiri) baru di-mount saat browser idle (`requestIdleCallback`, fallback 1,5 s) via `chat-widget-lazy.tsx` — keluar dari jalur hidrasi kritis
+
+### Fixed
+- **Horizontal scroll mobile di halaman detail katalog** — grid item kolom utama tanpa `min-w-0` membiarkan teks `truncate`/nowrap melebarkan track (PSI mobile: sw 543 px vs vw 390 px); kini kolom utama & sidebar diberi `min-w-0`, teks flex panjang dibungkus `span.min-w-0.break-words` — terverifikasi browser: scrollWidth = viewport persis
+- **H2 flex baru** tidak lagi memicu overflow (ikon `shrink-0` + teks dalam `span` wrap-able)
 
 ---
 
