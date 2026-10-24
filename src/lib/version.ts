@@ -17,9 +17,9 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.9.0";
+export const APP_VERSION = "1.10.0";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Kamus Raja";
+export const RELEASE_NAME = "Mesin Redaksi";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
 export const RELEASE_DATE = "2026-10-25";
 /** Channel rilis: stable | beta | alpha. */
@@ -46,6 +46,18 @@ export interface ReleaseEntry {
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.10.0",
+    date: "2026-10-25",
+    type: "minor",
+    name: "Mesin Redaksi",
+    taskId: "26",
+    highlights: [
+      "Kalender editorial blog 3×/minggu (langkah 35): Senin=Panduan · Rabu=Regulasi (berita) · Jumat=Tips Pajak — berjalan penuh di CMS admin (Mission Control → Konten & SEO → tab Kalender Editorial)",
+      "Bank topik kurasi 36 topik (12 minggu × 3 pilar) digulir otomatis & idempoten — slot bisa diedit, diganti dari bank, dilewati, dan satu-klik 'Tulis draft' membuat Post CMS ter-prefill (judul, kategori, kata kunci, sudut pandang, kerangka 3 H2)",
+      "Siklus PLANNED → DRAFTED → PUBLISHED tersinkron otomatis dengan siklus hidup Post (terbit/unpublish/hapus), model EditorialSlot + API /api/admin/editorial + QA verify-editorial.ts PASS",
+    ],
+  },
   {
     version: "1.9.0",
     date: "2026-10-25",
@@ -317,7 +329,7 @@ export const PLATFORM_STATS = {
   languages: 30,
   aiTools: 5,
   provinces: 38,
-  prismaModels: 12,
+  prismaModels: 13,
 } as const;
 
 /** Ringkasan ringkas untuk tampilan footer/chip. */

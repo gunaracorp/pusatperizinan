@@ -113,7 +113,7 @@
 
 ## 📅 FASE 5 — Konten & Authority — langkah 35–44
 
-- [ ] **35.** **Kalender editorial blog 3×/minggu** (panduan, berita regulasi, tips pajak) — jalankan via CMS admin yang sudah ada. `🔥🔥 · 🟡 · P1`
+- [x] **35.** **Kalender editorial blog 3×/minggu** (panduan, berita regulasi, tips pajak) — jalankan via CMS admin yang sudah ada. `🔥🔥 · 🟡 · P1` — ✅ **v1.10.0 "Mesin Redaksi" (2026-10-25): kalender 12 minggu × 3 slot (Senin=Panduan · Rabu=Regulasi · Jumat=Tips Pajak) berjalan penuh di CMS admin — bank topik kurasi 36 topik digulir idempoten, slot edit/ganti/skip, satu-klik Tulis draft membuat Post CMS ter-prefill (judul+kategori+kw+sudut pandang+3 kerangka H2), siklus PLANNED→DRAFTED→PUBLISHED tersinkron siklus hidup Post; QA verify-editorial.ts PASS**
 - [ ] **36.** **Newsroom regulasi**: pantau peraturan baru (OSS-RBA, UU Cipta Kerja, perpajakan) + alert email subscriber. `🔥🔥 · 🟡 · P2`
 - [ ] **37.** **Kalkulator interaktif baru**: estimasi biaya izin per jenis usaha, pajak UMKM lengkap, PPnBM — perluas `/kalkulator`. `🔥 · 🟡 · P2`
 - [ ] **38.** **50 video YouTube** tutorial per layanan utama + embed di halaman detail terkait (+ schema VideoObject). `🔥🔥 · 🔴 · P2`

@@ -135,3 +135,28 @@ Stage Summary:
 - +215 URL (11.661 → 11.876), nol perubahan URL lama; sitemap 15 seksi; internal linking 729 related + 207 service-link mengalirkan link equity ke halaman layanan
 - Konten konsisten dengan seo-policy: tanpa angka trust, tanpa harga spesifik, sitasi regulasi statis
 - ROADMAP-99 FASE 5: 41 ✅ — sisa FASE 5 (35–40, 42–44) menunggu sesi berikutnya; langkah 1–2 (produksi pembayaran + GSC) tetap butuh kredensial owner (API keys Midtrans/Tripay + akses akun GSC/Bing)
+
+---
+Task ID: 26
+Agent: Z.ai Code (main agent — Master Polymath mode)
+Task: Eksekusi langkah ROADMAP-99 FASE 5 langkah 35: Kalender editorial blog 3×/minggu (panduan, berita regulasi, tips pajak) via CMS admin yang sudah ada — rilis v1.10.0 "Mesin Redaksi".
+
+Work Log:
+- Seleksi langkah: user memilih "lanjut langkah 35 (kalender editorial via CMS admin)" dari opsi FASE 5; 🔥🔥 · P1, 100% murni kode, memakai infrastruktur CMS admin (Post, /api/admin/posts, CmsTab) yang sudah ada
+- **Model Prisma baru `EditorialSlot`** (prismaModels 12 → 13): unik `[weekStart, slotIndex]` (weekStart = ISO Senin WIB), pilar PANDUAN|REGULASI|PAJAK, judul kerja + focusKeyword + keywords + notes, status PLANNED→DRAFTED→PUBLISHED (+SKIPPED), tautan postId; `prisma db push` SQLite OK
+- **Modul `src/lib/editorial.ts`**: bank topik kurasi 36 topik (12 minggu × 3 pilar — Senin=Panduan, Rabu=Regulasi/berita, Jumat=Tips Pajak) masing-masing dengan focusKeyword + keywords + sudut pandang penulisan; helper minggu WIB UTC+7 (currentWeekStart Senin-tepat, weekLabel rentang "19 Okt – 25 Okt 2026", slotDate +0/+2/+4); rotasi topik deterministik per minggu absolut dari epoch Senin 2026-01-05 (tidak berulang dalam 12 minggu); ensureUpcomingWeeks() idempoten (cari-lalu-buat, tak pernah menimpa editan admin); scaffold kerangka H2 per pilar (Panduan: Syarat/Langkah/Kesalahan · Regulasi: Isi pokok/Terdampak/Kepatuhan · Pajak: Dasar & tarif/Contoh hitung/Pelaporan); starterExcerpt untuk draft; syncSlotForPost() sinkron status slot ⇄ Post
+- **API `/api/admin/editorial`**: GET (ensure + papan 12 minggu + stats + join Post slug/status), PATCH slot (skip bila PLANNED/SKIPPED saja, unskip, update topik — ditolak bila slot DRAFTED/PUBLISHED), POST action start-draft (buat Post DRAFT ter-prefill: slug unik via ensureUniqueSlug, kategori pilar, kata kunci, starter excerpt, sections scaffold 3 H2, cta default → slot DRAFTED + postId); guard cookie admin sama dengan posts
+- **Wire siklus hidup**: PUT /api/admin/posts/[id] kini memanggil syncSlotForPost (PUBLISHED ⇄ DRAFTED), DELETE mengembalikan slot ke PLANNED + lepas postId — try/catch agar kegagalan sinkron tak mematahkan operasi post
+- **UI `src/components/admin/editorial.tsx`** + switcher di CmsTab (tablist Artikel ⇄ Kalender Editorial): 4 kartu statistik, info ritme, kartu minggu ber-highlight MINGGU INI + hitungan status, baris slot ber-chip hari/tanggal & badge pilar berwarna; aksi per status: Tulis draft (POST start-draft → langsung membuka editor terisi via onOpenEditor), Edit topik (inline form), Dari bank (pemilih topik kurasi per pilar), Lewati/Batalkan, Lanjutkan draft, Lihat/Pratinjau; memakai useAdminData + apiPatch + toast konvensi admin
+- **QA `scripts/verify-editorial.ts`**: PASS 0 warning — 36/36 topik unik (judul & focusKeyword global), rotasi 12/12 minggu tanpa pengulangan × 3 pilar, helper WIB (Senin, label, tanggal slot), scaffold/excerpt valid, ensure idempoten (36 slot tetap), pilar↔slotIndex↔hari sinkron
+- Verifikasi runtime curl (cookie admin): GET 200 (12 minggu × 3 = 36 slot, minggu-0 current), GET ke-2 tetap 36 (idempoten), skip/unskip/update/restore 200, start-draft 201 (slug benar, DRAFT, kategori Panduan, scaffold terisi), PUT publish → slot PUBLISHED, DELETE → slot kembali PLANNED post-null, tanpa auth 401
+- Verifikasi browser (agent-browser): login Mission Control → tab Konten & SEO → switcher Kalender Editorial → statistik + kartu minggu + 3 baris slot + 4 aksi ter-render; klik Tulis draft membuka editor CMS ter-prefill (judul + 3 kerangka H2 + panel Skor SEO 12/100); pratinjau draft /blog dengan cookie admin 200 (Mode Pratinjau Admin); konsol bersih; data uji dihapus → kalender kembali 36 PLANNED
+- Dev server di-restart (Prisma client regenerasi) — catatan: proses background mati antar tool-call di lingkungan ini, verifikasi runtime digabung dalam satu sesi skrip (scripts/verify-editorial-runtime.sh)
+- `bun run lint` 0 error 0 warning; `tsc --noEmit` 181 → **178** (3 error pre-existing di api/admin/posts/helpers.ts ikut diperbaiki saat menyentuh modul tsb; nol error file baru)
+- Versioning: version.ts (1.10.0 "Mesin Redaksi", +RELEASES Task 26, prismaModels 13), package.json 1.10.0, api/version nextRelease → v1.11.0, CHANGELOG.md entri 1.10.0 + badge (Total Rilis 26, Berikutnya v1.11.0), ROADMAP-99 centang langkah 35
+
+Stage Summary:
+- Situs v1.10.0 "Mesin Redaksi": kalender editorial 3×/minggu hidup di CMS admin — redaksi tinggal klik "Tulis draft" tiap Senin/Rabu/Jumat, artikel ter-prefill lengkap dengan kategori, kata kunci, sudut pandang, dan kerangka H2 siap isi
+- Mesin konten kini ujung-ke-ujung: perencanaan (kalender 12 minggu otomatis) → penulisan (editor + skor SEO live) → publikasi (sitemap/RSS/IndexNow otomatis yang sudah ada) — mendukung langkah 36 (newsroom) di kemudian hari
+- Nol URL publik baru → indeks 11.876 URL aman; PLATFORM_STATS hanya prismaModels 12→13; bank topik business-real (tanpa angka trust/harga spesifik) sesuai seo-policy
+- ROADMAP-99 FASE 5: 35 ✅ 41 ✅ — sisa 36–40, 42–44 menunggu sesi berikutnya; langkah 1–2 (pembayaran produksi + submit sitemap GSC/Bing) tetap menunggu kredensial owner

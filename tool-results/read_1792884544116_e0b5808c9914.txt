@@ -1,0 +1,750 @@
+     1→"use client";
+     2→
+     3→import { useCallback, useEffect, useMemo, useState } from "react";
+     4→import {
+     5→  AlertTriangle, ArrowLeft, CheckCircle2, CircleDashed, Eye, FileText,
+     6→  Loader2, Newspaper, PenLine, Plus, RefreshCw, Save, Search, Trash2, XCircle,
+     7→} from "lucide-react";
+     8→import { Button } from "@/components/ui/button";
+     9→import { Input } from "@/components/ui/input";
+    10→import { Label } from "@/components/ui/label";
+    11→import { Textarea } from "@/components/ui/textarea";
+    12→import { Badge } from "@/components/ui/badge";
+    13→import { Switch } from "@/components/ui/switch";
+    14→import { Progress } from "@/components/ui/progress";
+    15→import {
+    16→  Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
+    17→} from "@/components/ui/select";
+    18→import { useToast } from "@/hooks/use-toast";
+    19→import { relativeTime } from "@/components/admin/shared";
+    20→import type { CmsPost } from "@/lib/blog-cms";
+    21→
+    22→// ============================================================
+    23→// MISSION CONTROL — Tab "Konten & SEO"
+    24→// CMS ala WordPress tapi fokus: tulis → cek skor SEO → terbit.
+    25→// Artikel tersimpan di database, langsung tampil di /blog tanpa deploy.
+    26→// ============================================================
+    27→
+    28→const CATEGORIES = [
+    29→  "Panduan", "Biaya & Modal", "Regulasi", "Studi Kasus",
+    30→  "Internasional", "Tambang & Energi", "Travel Ibadah", "Pajak",
+    31→];
+    32→
+    33→const ANCHORS = [
+    34→  { value: "#konsultasi", label: "Konsultasi (#konsultasi)" },
+    35→  { value: "#kalkulator", label: "Kalkulator (#kalkulator)" },
+    36→  { value: "#cek-izin", label: "Cek Izin (#cek-izin)" },
+    37→  { value: "#layanan", label: "Layanan (#layanan)" },
+    38→  { value: "#panduan", label: "Panduan (#panduan)" },
+    39→];
+    40→
+    41→interface SectionForm { heading: string; paragraphs: string; bullets: string; }
+    42→interface FaqForm { question: string; answer: string; }
+    43→
+    44→interface PostForm {
+    45→  id: string | null;
+    46→  slug: string;
+    47→  title: string;
+    48→  metaTitle: string;
+    49→  metaDescription: string;
+    50→  focusKeyword: string;
+    51→  keywords: string;
+    52→  category: string;
+    53→  excerpt: string;
+    54→  author: string;
+    55→  authorRole: string;
+    56→  sections: SectionForm[];
+    57→  faq: FaqForm[];
+    58→  ctaText: string;
+    59→  ctaAnchor: string;
+    60→  relatedArticles: string;
+    61→  relatedGuides: string;
+    62→  status: "DRAFT" | "PUBLISHED";
+    63→  noindex: boolean;
+    64→}
+    65→
+    66→interface SeoItem { label: string; ok: boolean; hint: string; }
+    67→
+    68→function slugify(raw: string): string {
+    69→  return raw
+    70→    .toLowerCase()
+    71→    .trim()
+    72→    .replace(/[^a-z0-9\s-]/g, "")
+    73→    .replace(/[\s_]+/g, "-")
+    74→    .replace(/-+/g, "-")
+    75→    .replace(/^-|-$/g, "")
+    76→    .slice(0, 90);
+    77→}
+    78→
+    79→function emptyForm(): PostForm {
+    80→  return {
+    81→    id: null, slug: "", title: "", metaTitle: "", metaDescription: "",
+    82→    focusKeyword: "", keywords: "", category: "Panduan", excerpt: "",
+    83→    author: "Tim PusatPerizinan", authorRole: "Konsultan Perizinan",
+    84→    sections: [{ heading: "", paragraphs: "", bullets: "" }],
+    85→    faq: [{ question: "", answer: "" }],
+    86→    ctaText: "Konsultasi Sekarang", ctaAnchor: "#konsultasi",
+    87→    relatedArticles: "", relatedGuides: "", status: "DRAFT", noindex: false,
+    88→  };
+    89→}
+    90→
+    91→function postToForm(p: CmsPost): PostForm {
+    92→  return {
+    93→    id: p.id, slug: p.slug, title: p.title, metaTitle: p.metaTitle,
+    94→    metaDescription: p.metaDescription, focusKeyword: p.focusKeyword,
+    95→    keywords: p.keywords, category: p.category, excerpt: p.excerpt,
+    96→    author: p.author, authorRole: p.authorRole,
+    97→    sections: p.sections.length > 0
+    98→      ? p.sections.map((s) => ({
+    99→          heading: s.heading,
+   100→          paragraphs: s.paragraphs.join("\n"),
+   101→          bullets: (s.bullets ?? []).join("\n"),
+   102→        }))
+   103→      : [{ heading: "", paragraphs: "", bullets: "" }],
+   104→    faq: p.faq.length > 0 ? p.faq.map((f) => ({ question: f.question, answer: f.answer })) : [{ question: "", answer: "" }],
+   105→    ctaText: p.cta?.text ?? "Konsultasi Sekarang",
+   106→    ctaAnchor: p.cta?.anchor ?? "#konsultasi",
+   107→    relatedArticles: p.relatedArticles.join(", "),
+   108→    relatedGuides: p.relatedGuides.join(", "),
+   109→    status: p.status, noindex: p.noindex,
+   110→  };
+   111→}
+   112→
+   113→function formToPayload(f: PostForm) {
+   114→  return {
+   115→    slug: f.slug || f.title,
+   116→    title: f.title,
+   117→    metaTitle: f.metaTitle,
+   118→    metaDescription: f.metaDescription,
+   119→    focusKeyword: f.focusKeyword,
+   120→    keywords: f.keywords,
+   121→    category: f.category,
+   122→    excerpt: f.excerpt,
+   123→    author: f.author,
+   124→    authorRole: f.authorRole,
+   125→    sections: f.sections
+   126→      .filter((s) => s.heading.trim())
+   127→      .map((s) => ({
+   128→        heading: s.heading.trim(),
+   129→        paragraphs: s.paragraphs.split("\n").map((x) => x.trim()).filter(Boolean),
+   130→        bullets: s.bullets.split("\n").map((x) => x.trim()).filter(Boolean),
+   131→      })),
+   132→    faq: f.faq
+   133→      .filter((q) => q.question.trim() && q.answer.trim())
+   134→      .map((q) => ({ question: q.question.trim(), answer: q.answer.trim() })),
+   135→    ctaText: f.ctaText,
+   136→    ctaAnchor: f.ctaAnchor,
+   137→    relatedArticles: f.relatedArticles.split(",").map((x) => x.trim()).filter(Boolean),
+   138→    relatedGuides: f.relatedGuides.split(",").map((x) => x.trim()).filter(Boolean),
+   139→    status: f.status,
+   140→    noindex: f.noindex,
+   141→  };
+   142→}
+   143→
+   144→/** Skor SEO live — 10 pemeriksaan ala Yoast, bobot total 100 */
+   145→function computeSeoAudit(f: PostForm): { score: number; items: SeoItem[] } {
+   146→  const kw = f.focusKeyword.trim().toLowerCase();
+   147→  const titleSeo = (f.metaTitle || f.title).trim();
+   148→  const desc = (f.metaDescription || f.excerpt).trim();
+   149→  const slug = slugify(f.slug || f.title);
+   150→  const firstPara = f.sections.find((s) => s.heading.trim())?.paragraphs.split("\n").map((x) => x.trim()).filter(Boolean)[0] ?? "";
+   151→  const contentSections = f.sections.filter(
+   152→    (s) => s.heading.trim() && (s.paragraphs.trim() || s.bullets.trim())
+   153→  ).length;
+   154→  const realFaq = f.faq.filter((q) => q.question.trim() && q.answer.trim()).length;
+   155→
+   156→  const items: SeoItem[] = [
+   157→    {
+   158→      label: "Kata kunci fokus ditentukan", ok: kw.length > 0,
+   159→      hint: "Tentukan 1 frasa utama yang dicari calon klien, mis. \u201cbiaya pendirian PT\u201d",
+   160→    },
+   161→    {
+   162→      label: "Kata kunci ada di judul SEO", ok: kw.length > 0 && titleSeo.toLowerCase().includes(kw),
+   163→      hint: "Sisipkan kata kunci secara natural di judul",
+   164→    },
+   165→    {
+   166→      label: `Panjang judul SEO 30\u201360 karakter (kini ${titleSeo.length})`,
+   167→      ok: titleSeo.length >= 30 && titleSeo.length <= 60,
+   168→      hint: "Judul terlalu pendek terpotong peluang; terlalu panjang terpotong di hasil pencarian",
+   169→    },
+   170→    {
+   171→      label: "Kata kunci ada di meta description", ok: kw.length > 0 && desc.toLowerCase().includes(kw),
+   172→      hint: "Meta description yang mengandung kata kunci ditebalkan Google",
+   173→    },
+   174→    {
+   175→      label: `Panjang meta description 110\u2013160 karakter (kini ${desc.length})`,
+   176→      ok: desc.length >= 110 && desc.length <= 160,
+   177→      hint: "Terlalu pendek = informasi kurang; terlalu panjang = terpotong",
+   178→    },
+   179→    {
+   180→      label: "Kata kunci ada di URL (slug)", ok: kw.length > 0 && slug.includes(slugify(kw)),
+   181→      hint: "URL yang mengandung kata kunci memperkuat relevansi",
+   182→    },
+   183→    {
+   184→      label: "Kata kunci ada di paragraf pembuka", ok: kw.length > 0 && firstPara.toLowerCase().includes(kw),
+   185→      hint: "Sebut kata kunci di 100 kata pertama",
+   186→    },
+   187→    {
+   188→      label: `Minimal 3 bagian berisi (kini ${contentSections})`,
+   189→      ok: contentSections >= 3,
+   190→      hint: "Artikel mendalam butuh struktur H2 yang jelas",
+   191→    },
+   192→    {
+   193→      label: `Minimal 3 FAQ (kini ${realFaq})`,
+   194→      ok: realFaq >= 3,
+   195→      hint: "FAQ membuka peluang rich snippet di Google",
+   196→    },
+   197→    {
+   198→      label: `Ringkasan \u2265 100 karakter (kini ${f.excerpt.trim().length})`,
+   199→      ok: f.excerpt.trim().length >= 100,
+   200→      hint: "Ringkasan tampil di kartu blog & meta default",
+   201→    },
+   202→  ];
+   203→
+   204→  const weights = [10, 12, 12, 10, 12, 10, 10, 10, 8, 6];
+   205→  const score = items.reduce((n, it, i) => n + (it.ok ? weights[i] : 0), 0);
+   206→  return { score, items };
+   207→}
+   208→
+   209→interface Stats { total: number; published: number; draft: number; noindex: number; }
+   210→
+   211→export function CmsTab() {
+   212→  const { toast } = useToast();
+   213→  const [posts, setPosts] = useState<CmsPost[] | null>(null);
+   214→  const [stats, setStats] = useState<Stats | null>(null);
+   215→  const [form, setForm] = useState<PostForm | null>(null);
+   216→  const [slugTouched, setSlugTouched] = useState(false);
+   217→  const [busy, setBusy] = useState(false);
+   218→  const [query, setQuery] = useState("");
+   219→
+   220→  const load = useCallback(async () => {
+   221→    try {
+   222→      const res = await fetch("/api/admin/posts", { cache: "no-store" });
+   223→      const json = await res.json();
+   224→      if (res.status === 401) { window.location.reload(); return; }
+   225→      if (json.success) {
+   226→        setPosts(json.data.posts as CmsPost[]);
+   227→        setStats(json.data.stats as Stats);
+   228→      }
+   229→    } catch {
+   230→      // jaringan berkedip — coba lagi pada refresh berikutnya
+   231→    }
+   232→  }, []);
+   233→
+   234→  useEffect(() => { void load(); }, [load]);
+   235→
+   236→  const audit = useMemo(() => (form ? computeSeoAudit(form) : null), [form]);
+   237→
+   238→  function patch(p: Partial<PostForm>) {
+   239→    setForm((f) => (f ? { ...f, ...p } : f));
+   240→  }
+   241→
+   242→  function onTitleChange(title: string) {
+   243→    setForm((f) =>
+   244→      f ? { ...f, title, slug: !slugTouched && f.id === null ? slugify(title) : f.slug } : f
+   245→    );
+   246→  }
+   247→
+   248→  function openNew() {
+   249→    setForm(emptyForm());
+   250→    setSlugTouched(false);
+   251→  }
+   252→
+   253→  function openEdit(p: CmsPost) {
+   254→    setForm(postToForm(p));
+   255→    setSlugTouched(true);
+   256→    window.scrollTo({ top: 0, behavior: "smooth" });
+   257→  }
+   258→
+   259→  async function save() {
+   260→    if (!form) return;
+   261→    if (!form.title.trim() || !form.excerpt.trim()) {
+   262→      toast({ title: "Lengkapi dulu", description: "Judul dan ringkasan wajib diisi." });
+   263→      return;
+   264→    }
+   265→    setBusy(true);
+   266→    try {
+   267→      const isNew = form.id === null;
+   268→      const res = await fetch(isNew ? "/api/admin/posts" : `/api/admin/posts/${form.id}`, {
+   269→        method: isNew ? "POST" : "PUT",
+   270→        headers: { "Content-Type": "application/json" },
+   271→        body: JSON.stringify(formToPayload(form)),
+   272→      });
+   273→      const json = await res.json();
+   274→      if (res.status === 401) { window.location.reload(); return; }
+   275→      if (json.success) {
+   276→        const saved = json.data as CmsPost;
+   277→        setForm(postToForm(saved));
+   278→        setSlugTouched(true);
+   279→        toast({
+   280→          title: saved.status === "PUBLISHED" ? "Artikel TERBIT ✓" : "Draft tersimpan",
+   281→          description: saved.status === "PUBLISHED"
+   282→            ? `Langsung tampil di /blog/${saved.slug}`
+   283→            : `Hanya admin yang bisa melihat pratinjau /blog/${saved.slug}`,
+   284→        });
+   285→        await load();
+   286→      } else {
+   287→        toast({ title: "Gagal menyimpan", description: json.error });
+   288→      }
+   289→    } finally {
+   290→      setBusy(false);
+   291→    }
+   292→  }
+   293→
+   294→  async function remove(p: CmsPost) {
+   295→    if (!confirm(`Hapus artikel "${p.title}"? Tindakan ini tidak bisa dibatalkan.`)) return;
+   296→    setBusy(true);
+   297→    try {
+   298→      const res = await fetch(`/api/admin/posts/${p.id}`, { method: "DELETE" });
+   299→      const json = await res.json();
+   300→      if (json.success) {
+   301→        toast({ title: "Artikel dihapus", description: p.slug });
+   302→        if (form?.id === p.id) setForm(null);
+   303→        await load();
+   304→      } else {
+   305→        toast({ title: "Gagal menghapus", description: json.error });
+   306→      }
+   307→    } finally {
+   308→      setBusy(false);
+   309→    }
+   310→  }
+   311→
+   312→  function toggleStatus() {
+   313→    if (!form) return;
+   314→    patch({ status: form.status === "PUBLISHED" ? "DRAFT" : "PUBLISHED" });
+   315→  }
+   316→
+   317→  const filtered = (posts ?? []).filter((p) => {
+   318→    const q = query.trim().toLowerCase();
+   319→    if (!q) return true;
+   320→    return p.title.toLowerCase().includes(q) || p.slug.includes(q);
+   321→  });
+   322→
+   323→  // ===================== TAMPILAN EDITOR =====================
+   324→  if (form) {
+   325→    const grade =
+   326→      audit && audit.score >= 80
+   327→        ? { text: "Siap terbit", cls: "text-emerald-300" }
+   328→        : audit && audit.score >= 50
+   329→          ? { text: "Perlu perbaikan", cls: "text-amber-300" }
+   330→          : { text: "Lemah", cls: "text-rose-300" };
+   331→
+   332→    return (
+   333→      <div className="space-y-6">
+   334→        {/* Header editor */}
+   335→        <div className="flex flex-wrap items-center gap-3">
+   336→          <Button
+   337→            variant="outline" size="sm"
+   338→            onClick={() => setForm(null)}
+   339→            className="border-stone-700 bg-stone-900/60 text-stone-300 hover:bg-stone-800"
+   340→          >
+   341→            <ArrowLeft aria-hidden className="mr-2 h-4 w-4" /> Daftar artikel
+   342→          </Button>
+   343→          <h2 className="text-lg font-bold">
+   344→            {form.id ? "Edit Artikel" : "Artikel Baru"}
+   345→          </h2>
+   346→          <Badge className={
+   347→            form.status === "PUBLISHED"
+   348→              ? "rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30"
+   349→              : "rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30"
+   350→          }>
+   351→            {form.status === "PUBLISHED" ? "TERBIT" : "DRAFT"}
+   352→          </Badge>
+   353→          <div className="ml-auto flex gap-2">
+   354→            {form.id && !form.noindex && (
+   355→              <Button
+   356→                variant="outline" size="sm"
+   357→                onClick={() => window.open(`/blog/${form.slug}`, "_blank")}
+   358→                className="border-stone-700 bg-stone-900/60 text-stone-300 hover:bg-stone-800"
+   359→              >
+   360→                <Eye aria-hidden className="mr-2 h-4 w-4" /> Pratinjau
+   361→              </Button>
+   362→            )}
+   363→            <Button size="sm" onClick={save} disabled={busy} className="bg-emerald-600 font-bold hover:bg-emerald-500">
+   364→              {busy ? <Loader2 aria-hidden className="mr-2 h-4 w-4 animate-spin" /> : <Save aria-hidden className="mr-2 h-4 w-4" />}
+   365→              {form.status === "PUBLISHED" ? "Simpan & Terbitkan" : "Simpan Draft"}
+   366→            </Button>
+   367→          </div>
+   368→        </div>
+   369→
+   370→        <div className="grid min-w-0 gap-6 xl:grid-cols-[minmax(0,1fr)_340px]">
+   371→          {/* ---------- Kolom utama: form ---------- */}
+   372→          <div className="space-y-5">
+   373→            {/* Identitas */}
+   374→            <section className="rounded-2xl border border-stone-800 bg-stone-900/40 p-5">
+   375→              <h3 className="flex items-center gap-2 text-sm font-bold text-stone-200">
+   376→                <PenLine aria-hidden className="h-4 w-4 text-emerald-400" /> Identitas Artikel
+   377→              </h3>
+   378→              <div className="mt-4 space-y-4">
+   379→                <div className="space-y-1.5">
+   380→                  <Label htmlFor="cms-title" className="text-stone-400">Judul (H1) *</Label>
+   381→                  <Input id="cms-title" value={form.title} onChange={(e) => onTitleChange(e.target.value)}
+   382→                    placeholder="Cara Mengurus NIB Online 2026: Panduan Lengkap" className="border-stone-700 bg-stone-950 text-stone-100" />
+   383→                </div>
+   384→                <div className="space-y-1.5">
+   385→                  <Label htmlFor="cms-slug" className="text-stone-400">
+   386→                    Slug URL <span className="text-stone-600">— /blog/{"{slug}"}</span>
+   387→                  </Label>
+   388→                  <Input id="cms-slug" value={form.slug}
+   389→                    onChange={(e) => { setSlugTouched(true); patch({ slug: e.target.value }); }}
+   390→                    placeholder="cara-mengurus-nib-online" className="border-stone-700 bg-stone-950 font-mono text-sm text-emerald-300" />
+   391→                </div>
+   392→                <div className="grid gap-4 sm:grid-cols-2">
+   393→                  <div className="space-y-1.5">
+   394→                    <Label className="text-stone-400">Kategori</Label>
+   395→                    <Select value={form.category} onValueChange={(v) => patch({ category: v })}>
+   396→                      <SelectTrigger className="border-stone-700 bg-stone-950 text-stone-100"><SelectValue /></SelectTrigger>
+   397→                      <SelectContent className="border-stone-700 bg-stone-900 text-stone-100">
+   398→                        {CATEGORIES.map((c) => <SelectItem key={c} value={c}>{c}</SelectItem>)}
+   399→                      </SelectContent>
+   400→                    </Select>
+   401→                  </div>
+   402→                  <div className="space-y-1.5">
+   403→                    <Label htmlFor="cms-keywords" className="text-stone-400">Kata kunci tambahan (koma)</Label>
+   404→                    <Input id="cms-keywords" value={form.keywords} onChange={(e) => patch({ keywords: e.target.value })}
+   405→                      placeholder="nib oss, nomor induk berusaha" className="border-stone-700 bg-stone-950 text-stone-100" />
+   406→                  </div>
+   407→                </div>
+   408→                <div className="space-y-1.5">
+   409→                  <Label htmlFor="cms-excerpt" className="text-stone-400">Ringkasan (tampil di kartu blog & meta) *</Label>
+   410→                  <Textarea id="cms-excerpt" value={form.excerpt} onChange={(e) => patch({ excerpt: e.target.value })}
+   411→                    rows={3} placeholder="Ringkas isi artikel 1–2 kalimat yang memancing klik…" className="border-stone-700 bg-stone-950 text-stone-100" />
+   412→                  <p className="text-xs text-stone-500">{form.excerpt.trim().length} karakter — ideal 110–160</p>
+   413→                </div>
+   414→              </div>
+   415→            </section>
+   416→
+   417→            {/* Konten */}
+   418→            <section className="rounded-2xl border border-stone-800 bg-stone-900/40 p-5">
+   419→              <div className="flex items-center justify-between">
+   420→                <h3 className="flex items-center gap-2 text-sm font-bold text-stone-200">
+   421→                  <FileText aria-hidden className="h-4 w-4 text-emerald-400" /> Isi Artikel (Bagian H2)
+   422→                </h3>
+   423→                <Button variant="outline" size="sm"
+   424→                  onClick={() => setForm((f) => f ? { ...f, sections: [...f.sections, { heading: "", paragraphs: "", bullets: "" }] } : f)}
+   425→                  className="border-stone-700 bg-stone-900/60 text-stone-300 hover:bg-stone-800"
+   426→                >
+   427→                  <Plus aria-hidden className="mr-1 h-4 w-4" /> Bagian
+   428→                </Button>
+   429→              </div>
+   430→              <div className="mt-4 space-y-4">
+   431→                {form.sections.map((s, i) => (
+   432→                  <div key={i} className="rounded-xl border border-stone-800 bg-stone-950/60 p-4">
+   433→                    <div className="flex items-center gap-2">
+   434→                      <span className="text-xs font-bold text-emerald-400">H2 #{i + 1}</span>
+   435→                      {form.sections.length > 1 && (
+   436→                        <button
+   437→                          onClick={() => setForm((f) => f ? { ...f, sections: f.sections.filter((_, j) => j !== i) } : f)}
+   438→                          aria-label={`Hapus bagian ${i + 1}`}
+   439→                          className="ml-auto rounded p-1 text-stone-500 hover:bg-rose-500/10 hover:text-rose-400"
+   440→                        >
+   441→                          <Trash2 aria-hidden className="h-4 w-4" />
+   442→                        </button>
+   443→                      )}
+   444→                    </div>
+   445→                    <Input value={s.heading}
+   446→                      onChange={(e) => setForm((f) => f ? { ...f, sections: f.sections.map((x, j) => j === i ? { ...x, heading: e.target.value } : x) } : f)}
+   447→                      placeholder={`Judul bagian ${i + 1}, mis. "Syarat yang Harus Disiapkan"`}
+   448→                      className="mt-2 border-stone-700 bg-stone-950 font-semibold text-stone-100" />
+   449→                    <Textarea value={s.paragraphs} rows={4}
+   450→                      onChange={(e) => setForm((f) => f ? { ...f, sections: f.sections.map((x, j) => j === i ? { ...x, paragraphs: e.target.value } : x) } : f)}
+   451→                      placeholder={"Satu paragraf per baris…"} className="mt-2 border-stone-700 bg-stone-950 text-sm text-stone-100" />
+   452→                    <Textarea value={s.bullets} rows={2}
+   453→                      onChange={(e) => setForm((f) => f ? { ...f, sections: f.sections.map((x, j) => j === i ? { ...x, bullets: e.target.value } : x) } : f)}
+   454→                      placeholder={"Poin daftar (opsional) — satu poin per baris"} className="mt-2 border-stone-700 bg-stone-950 text-sm text-stone-100" />
+   455→                  </div>
+   456→                ))}
+   457→              </div>
+   458→            </section>
+   459→
+   460→            {/* FAQ */}
+   461→            <section className="rounded-2xl border border-stone-800 bg-stone-900/40 p-5">
+   462→              <div className="flex items-center justify-between">
+   463→                <h3 className="flex items-center gap-2 text-sm font-bold text-stone-200">
+   464→                  <CircleDashed aria-hidden className="h-4 w-4 text-emerald-400" /> FAQ (rich snippet Google)
+   465→                </h3>
+   466→                <Button variant="outline" size="sm"
+   467→                  onClick={() => setForm((f) => f ? { ...f, faq: [...f.faq, { question: "", answer: "" }] } : f)}
+   468→                  className="border-stone-700 bg-stone-900/60 text-stone-300 hover:bg-stone-800"
+   469→                >
+   470→                  <Plus aria-hidden className="mr-1 h-4 w-4" /> FAQ
+   471→                </Button>
+   472→              </div>
+   473→              <div className="mt-4 space-y-3">
+   474→                {form.faq.map((q, i) => (
+   475→                  <div key={i} className="rounded-xl border border-stone-800 bg-stone-950/60 p-4">
+   476→                    <div className="flex items-center gap-2">
+   477→                      <span className="text-xs font-bold text-emerald-400">FAQ #{i + 1}</span>
+   478→                      {form.faq.length > 1 && (
+   479→                        <button
+   480→                          onClick={() => setForm((f) => f ? { ...f, faq: f.faq.filter((_, j) => j !== i) } : f)}
+   481→                          aria-label={`Hapus FAQ ${i + 1}`}
+   482→                          className="ml-auto rounded p-1 text-stone-500 hover:bg-rose-500/10 hover:text-rose-400"
+   483→                        >
+   484→                          <Trash2 aria-hidden className="h-4 w-4" />
+   485→                        </button>
+   486→                      )}
+   487→                    </div>
+   488→                    <Input value={q.question}
+   489→                      onChange={(e) => setForm((f) => f ? { ...f, faq: f.faq.map((x, j) => j === i ? { ...x, question: e.target.value } : x) } : f)}
+   490→                      placeholder="Pertanyaan yang sering diajukan…" className="mt-2 border-stone-700 bg-stone-950 font-semibold text-stone-100" />
+   491→                    <Textarea value={q.answer} rows={2}
+   492→                      onChange={(e) => setForm((f) => f ? { ...f, faq: f.faq.map((x, j) => j === i ? { ...x, answer: e.target.value } : x) } : f)}
+   493→                      placeholder="Jawaban singkat & tegas…" className="mt-2 border-stone-700 bg-stone-950 text-sm text-stone-100" />
+   494→                  </div>
+   495→                ))}
+   496→              </div>
+   497→            </section>
+   498→
+   499→            {/* Penutup & tautan */}
+   500→            <section className="rounded-2xl border border-stone-800 bg-stone-900/40 p-5">
+   501→              <h3 className="flex items-center gap-2 text-sm font-bold text-stone-200">
+   502→                <Newspaper aria-hidden className="h-4 w-4 text-emerald-400" /> Penutup & Tautan Internal
+   503→              </h3>
+   504→              <div className="mt-4 grid gap-4 sm:grid-cols-2">
+   505→                <div className="space-y-1.5">
+   506→                  <Label htmlFor="cms-cta" className="text-stone-400">Teks CTA akhir artikel</Label>
+   507→                  <Input id="cms-cta" value={form.ctaText} onChange={(e) => patch({ ctaText: e.target.value })}
+   508→                    className="border-stone-700 bg-stone-950 text-stone-100" />
+   509→                </div>
+   510→                <div className="space-y-1.5">
+   511→                  <Label className="text-stone-400">CTA menuju</Label>
+   512→                  <Select value={form.ctaAnchor} onValueChange={(v) => patch({ ctaAnchor: v })}>
+   513→                    <SelectTrigger className="border-stone-700 bg-stone-950 text-stone-100"><SelectValue /></SelectTrigger>
+   514→                    <SelectContent className="border-stone-700 bg-stone-900 text-stone-100">
+   515→                      {ANCHORS.map((a) => <SelectItem key={a.value} value={a.value}>{a.label}</SelectItem>)}
+   516→                    </SelectContent>
+   517→                  </Select>
+   518→                </div>
+   519→                <div className="space-y-1.5">
+   520→                  <Label htmlFor="cms-relart" className="text-stone-400">Artikel terkait (slug, koma)</Label>
+   521→                  <Input id="cms-relart" value={form.relatedArticles} onChange={(e) => patch({ relatedArticles: e.target.value })}
+   522→                    placeholder="cara-mengurus-nib-online, biaya-pendirian-pt" className="border-stone-700 bg-stone-950 text-sm text-stone-100" />
+   523→                </div>
+   524→                <div className="space-y-1.5">
+   525→                  <Label htmlFor="cms-relguide" className="text-stone-400">Panduan terkait (id, koma)</Label>
+   526→                  <Input id="cms-relguide" value={form.relatedGuides} onChange={(e) => patch({ relatedGuides: e.target.value })}
+   527→                    placeholder="nib, pt, oss" className="border-stone-700 bg-stone-950 text-sm text-stone-100" />
+   528→                </div>
+   529→              </div>
+   530→            </section>
+   531→          </div>
+   532→
+   533→          {/* ---------- Sidebar: SEO + publikasi ---------- */}
+   534→          <div className="space-y-5">
+   535→            {/* Publikasi */}
+   536→            <section className="rounded-2xl border border-stone-800 bg-stone-900/40 p-5">
+   537→              <h3 className="text-sm font-bold text-stone-200">Publikasi</h3>
+   538→              <div className="mt-4 space-y-4">
+   539→                <div className="flex items-center justify-between gap-3">
+   540→                  <div>
+   541→                    <p className="text-sm font-semibold text-stone-200">
+   542→                      {form.status === "PUBLISHED" ? "Terbit (publik)" : "Draft (pratinjau admin)"}
+   543→                    </p>
+   544→                    <p className="text-xs text-stone-500">
+   545→                      {form.status === "PUBLISHED"
+   546→                        ? "Tampil di /blog, sitemap & RSS otomatis"
+   547→                        : "Belum terlihat pengunjung & mesin pencari"}
+   548→                    </p>
+   549→                  </div>
+   550→                  <Switch checked={form.status === "PUBLISHED"} onCheckedChange={toggleStatus}
+   551→                    aria-label="Terbitkan artikel" />
+   552→                </div>
+   553→                <div className="flex items-center justify-between gap-3 border-t border-stone-800 pt-4">
+   554→                  <div>
+   555→                    <p className="text-sm font-semibold text-stone-200">noindex</p>
+   556→                    <p className="text-xs text-stone-500">Sembunyikan dari Google (tetap bisa diakses)</p>
+   557→                  </div>
+   558→                  <Switch checked={form.noindex} onCheckedChange={(v) => patch({ noindex: v })}
+   559→                    aria-label="Set noindex" />
+   560→                </div>
+   561→                <div className="grid grid-cols-2 gap-3 border-t border-stone-800 pt-4">
+   562→                  <div className="space-y-1.5">
+   563→                    <Label htmlFor="cms-author" className="text-stone-400">Penulis</Label>
+   564→                    <Input id="cms-author" value={form.author} onChange={(e) => patch({ author: e.target.value })}
+   565→                      className="border-stone-700 bg-stone-950 text-sm text-stone-100" />
+   566→                  </div>
+   567→                  <div className="space-y-1.5">
+   568→                    <Label htmlFor="cms-role" className="text-stone-400">Jabatan</Label>
+   569→                    <Input id="cms-role" value={form.authorRole} onChange={(e) => patch({ authorRole: e.target.value })}
+   570→                      className="border-stone-700 bg-stone-950 text-sm text-stone-100" />
+   571→                  </div>
+   572→                </div>
+   573→              </div>
+   574→            </section>
+   575→
+   576→            {/* Skor SEO */}
+   577→            <section className="rounded-2xl border border-stone-800 bg-stone-900/40 p-5">
+   578→              <div className="flex items-center justify-between">
+   579→                <h3 className="text-sm font-bold text-stone-200">Skor SEO</h3>
+   580→                <span className={`text-2xl font-extrabold ${grade.cls}`}>{audit?.score ?? 0}<span className="text-sm text-stone-500">/100</span></span>
+   581→              </div>
+   582→              <Progress value={audit?.score ?? 0} className="mt-3 h-2 bg-stone-800" aria-label={`Skor SEO ${audit?.score ?? 0} dari 100`} />
+   583→              <p className={`mt-2 text-xs font-semibold ${grade.cls}`}>{grade.text}</p>
+   584→              <ul className="mt-4 space-y-2.5">
+   585→                {audit?.items.map((it) => (
+   586→                  <li key={it.label} className="flex items-start gap-2.5 text-xs">
+   587→                    {it.ok
+   588→                      ? <CheckCircle2 aria-hidden className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-400" />
+   589→                      : <XCircle aria-hidden className="mt-0.5 h-3.5 w-3.5 shrink-0 text-stone-600" />}
+   590→                    <div>
+   591→                      <p className={it.ok ? "text-stone-300" : "text-stone-400"}>{it.label}</p>
+   592→                      {!it.ok && <p className="mt-0.5 text-[11px] leading-relaxed text-stone-600">{it.hint}</p>}
+   593→                    </div>
+   594→                  </li>
+   595→                ))}
+   596→              </ul>
+   597→            </section>
+   598→
+   599→            {/* Meta preview (snippet Google) */}
+   600→            <section className="rounded-2xl border border-stone-800 bg-stone-900/40 p-5">
+   601→              <h3 className="text-sm font-bold text-stone-200">Pratinjau Hasil Google</h3>
+   602→              <div className="mt-3 max-w-full overflow-hidden rounded-xl bg-white p-4">
+   603→                <p className="max-w-full truncate text-xs text-[#4d5156]">pusatperizinan.com › blog › {form.slug || "slug-artikel"}</p>
+   604→                <p className="mt-0.5 max-w-full truncate text-lg text-[#1a0dab]">{form.metaTitle || form.title || "Judul artikel"}</p>
+   605→                <p className="mt-0.5 line-clamp-2 text-xs leading-relaxed text-[#4d5156]">
+   606→                  {form.metaDescription || form.excerpt || "Meta description akan tampil di sini."}
+   607→                </p>
+   608→              </div>
+   609→            </section>
+   610→
+   611→            {/* SEO meta */}
+   612→            <section className="rounded-2xl border border-stone-800 bg-stone-900/40 p-5">
+   613→              <h3 className="text-sm font-bold text-stone-200">Meta Tag</h3>
+   614→              <div className="mt-4 space-y-4">
+   615→                <div className="space-y-1.5">
+   616→                  <Label htmlFor="cms-metattle" className="text-stone-400">Judul SEO (fallback: judul artikel)</Label>
+   617→                  <Input id="cms-metattle" value={form.metaTitle} onChange={(e) => patch({ metaTitle: e.target.value })}
+   618→                    className="border-stone-700 bg-stone-950 text-stone-100" />
+   619→                  <p className={`text-xs ${
+   620→                    (form.metaTitle || form.title).length >= 30 && (form.metaTitle || form.title).length <= 60
+   621→                      ? "text-emerald-400" : "text-amber-400"}`}>
+   622→                    {(form.metaTitle || form.title).length} / 60 karakter
+   623→                  </p>
+   624→                </div>
+   625→                <div className="space-y-1.5">
+   626→                  <Label htmlFor="cms-metadesc" className="text-stone-400">Meta description (fallback: ringkasan)</Label>
+   627→                  <Textarea id="cms-metadesc" value={form.metaDescription} onChange={(e) => patch({ metaDescription: e.target.value })}
+   628→                    rows={3} className="border-stone-700 bg-stone-950 text-sm text-stone-100" />
+   629→                  <p className={`text-xs ${
+   630→                    (form.metaDescription || form.excerpt).length >= 110 && (form.metaDescription || form.excerpt).length <= 160
+   631→                      ? "text-emerald-400" : "text-amber-400"}`}>
+   632→                    {(form.metaDescription || form.excerpt).length} / 160 karakter
+   633→                  </p>
+   634→                </div>
+   635→                <div className="space-y-1.5">
+   636→                  <Label htmlFor="cms-focus" className="text-stone-400">Kata kunci fokus</Label>
+   637→                  <Input id="cms-focus" value={form.focusKeyword} onChange={(e) => patch({ focusKeyword: e.target.value })}
+   638→                    placeholder="biaya pendirian pt" className="border-stone-700 bg-stone-950 text-stone-100" />
+   639→                </div>
+   640→              </div>
+   641→            </section>
+   642→          </div>
+   643→        </div>
+   644→      </div>
+   645→    );
+   646→  }
+   647→
+   648→  // ===================== TAMPILAN DAFTAR =====================
+   649→  return (
+   650→    <div className="space-y-5">
+   651→      {/* Ringkasan */}
+   652→      <div className="grid gap-4 sm:grid-cols-3">
+   653→        {[
+   654→          { label: "Total artikel CMS", value: stats?.total ?? 0, icon: FileText },
+   655→          { label: "Terbit (publik)", value: stats?.published ?? 0, icon: CheckCircle2 },
+   656→          { label: "Draft", value: stats?.draft ?? 0, icon: AlertTriangle },
+   657→        ].map((s) => {
+   658→          const Icon = s.icon;
+   659→          return (
+   660→            <div key={s.label} className="rounded-2xl border border-stone-800 bg-stone-900/40 p-4">
+   661→              <div className="flex items-center justify-between">
+   662→                <p className="text-xs font-medium text-stone-500">{s.label}</p>
+   663→                <Icon aria-hidden className="h-4 w-4 text-emerald-400" />
+   664→              </div>
+   665→              <p className="mt-1 text-2xl font-extrabold">{s.value}</p>
+   666→            </div>
+   667→          );
+   668→        })}
+   669→      </div>
+   670→
+   671→      {/* Toolbar */}
+   672→      <div className="flex flex-wrap items-center gap-3">
+   673→        <div className="relative flex-1 sm:max-w-xs">
+   674→          <Search aria-hidden className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-500" />
+   675→          <Input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Cari judul / slug…"
+   676→            className="border-stone-700 bg-stone-900/60 pl-9 text-stone-100" aria-label="Cari artikel" />
+   677→        </div>
+   678→        <Button onClick={openNew} className="bg-emerald-600 font-bold hover:bg-emerald-500">
+   679→          <Plus aria-hidden className="mr-2 h-4 w-4" /> Artikel Baru
+   680→        </Button>
+   681→        <Button variant="outline" size="icon" onClick={() => void load()}
+   682→          className="border-stone-700 bg-stone-900/60 hover:bg-stone-800"
+   683→          aria-label="Muat ulang daftar artikel" title="Muat ulang">
+   684→          <RefreshCw aria-hidden className="h-4 w-4" />
+   685→        </Button>
+   686→      </div>
+   687→
+   688→      {/* Info konten statis */}
+   689→      <div className="rounded-2xl border border-stone-800 bg-stone-900/40 p-4 text-xs leading-relaxed text-stone-500">
+   690→        <strong className="text-stone-300">Info:</strong> 15 artikel bawaan repo (blog-content.ts) dikelola lewat kode &amp; tampil
+   691→        bersama artikel di bawah ini di /blog. Artikel CMS terbit langsung tanpa deploy — slug sama dengan artikel bawaan akan
+   692→        menimpanya. Sitemap &amp; RSS otomatis mengikuti (noindex otomatis dikecualikan).
+   693→      </div>
+   694→
+   695→      {/* Daftar */}
+   696→      <div className="space-y-3">
+   697→        {posts === null && (
+   698→          <p className="flex items-center gap-2 p-6 text-sm text-stone-500">
+   699→            <Loader2 aria-hidden className="h-4 w-4 animate-spin" /> Memuat artikel…
+   700→          </p>
+   701→        )}
+   702→        {posts !== null && filtered.length === 0 && (
+   703→          <p className="p-6 text-sm text-stone-500">
+   704→            Belum ada artikel CMS. Klik <strong className="text-emerald-400">Artikel Baru</strong> untuk menulis yang pertama —
+   705→            skor SEO live akan memandu Anda sampai siap terbit.
+   706→          </p>
+   707→        )}
+   708→        {filtered.map((p) => (
+   709→          <div key={p.id} className="flex flex-wrap items-center gap-3 rounded-2xl border border-stone-800 bg-stone-900/40 p-4 transition-colors hover:border-emerald-500/30">
+   710→            <div className="min-w-0 flex-1">
+   711→              <div className="flex flex-wrap items-center gap-2">
+   712→                <p className="truncate font-bold text-stone-100">{p.title}</p>
+   713→                <Badge className={
+   714→                  p.status === "PUBLISHED"
+   715→                    ? "rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 text-[10px]"
+   716→                    : "rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 text-[10px]"
+   717→                }>
+   718→                  {p.status === "PUBLISHED" ? "TERBIT" : "DRAFT"}
+   719→                </Badge>
+   720→                {p.noindex && (
+   721→                  <Badge className="rounded-full bg-stone-700/50 text-stone-300 border border-stone-600 text-[10px]">noindex</Badge>
+   722→                )}
+   723→              </div>
+   724→              <p className="mt-1 truncate font-mono text-xs text-emerald-500/80">/blog/{p.slug}</p>
+   725→              <p className="mt-1 text-xs text-stone-500">
+   726→                {p.category} · diperbarui {relativeTime(p.updatedAt)}
+   727→              </p>
+   728→            </div>
+   729→            <div className="flex gap-2">
+   730→              <Button variant="outline" size="sm"
+   731→                onClick={() => window.open(`/blog/${p.slug}`, "_blank")}
+   732→                className="border-stone-700 bg-stone-900/60 text-stone-300 hover:bg-stone-800">
+   733→                <Eye aria-hidden className="mr-1.5 h-3.5 w-3.5" /> Lihat
+   734→              </Button>
+   735→              <Button variant="outline" size="sm" onClick={() => openEdit(p)}
+   736→                className="border-emerald-500/40 bg-emerald-500/10 text-emerald-300 hover:bg-emerald-500/20">
+   737→                <PenLine aria-hidden className="mr-1.5 h-3.5 w-3.5" /> Edit
+   738→              </Button>
+   739→              <Button variant="outline" size="sm" onClick={() => remove(p)} disabled={busy}
+   740→                className="border-stone-700 bg-stone-900/60 text-stone-400 hover:bg-rose-500/10 hover:text-rose-300">
+   741→                <Trash2 aria-hidden className="h-3.5 w-3.5" />
+   742→              </Button>
+   743→            </div>
+   744→          </div>
+   745→        ))}
+   746→      </div>
+   747→    </div>
+   748→  );
+   749→}
+   750→

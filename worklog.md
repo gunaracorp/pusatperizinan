@@ -79,3 +79,21 @@ Stage Summary:
 - Situs v1.7.0 "Konten Raja": ±1.065 halaman detail membawa prosa unik ±300–400 kata di atas data aktual — gap thin-content FASE 4 tertutup
 - 2 bug latent ikut dibereskan: overflow bundle mobile + syarat FAQ terpotong kurung
 - Nol perubahan URL → indeks 11.629 aman; FASE 4 kini 23/24/25/26/27/33 ✅ — sisa 28–32 & 34 (34 comparison kandidat sesi berikutnya)
+
+---
+Task ID: 26
+Agent: Z.ai Code (main agent — Master Polymath mode)
+Task: ROADMAP-99 langkah 35 — Kalender editorial blog 3×/minggu via CMS admin (rilis v1.10.0 "Mesin Redaksi")
+
+Work Log:
+- Model Prisma EditorialSlot (unik weekStart+slotIndex, pilar, status PLANNED/DRAFTED/PUBLISHED/SKIPPED, postId) + prisma db push
+- src/lib/editorial.ts: bank topik kurasi 36 (12 minggu × Senin=Panduan/Rabu=Regulasi/Jumat=Tips Pajak), helper minggu WIB, rotasi deterministik tanpa pengulangan 12 minggu, ensureUpcomingWeeks idempoten, scaffold H2 per pilar, syncSlotForPost
+- API /api/admin/editorial: GET board / PATCH skip-unskip-update / POST start-draft (prefill Post CMS: slug, kategori, kata kunci, excerpt, 3 kerangka H2) — guard cookie admin
+- Wire PUT/DELETE /api/admin/posts/[id] → sinkron status slot (publish/unpublish/hapus)
+- UI components/admin/editorial.tsx + switcher di CmsTab (Artikel ⇄ Kalender Editorial): statistik, kartu minggu MINGGU INI, slot beraksi (Tulis draft/Edit topik/Dari bank/Lewati/Lanjutkan)
+- QA scripts/verify-editorial.ts PASS 0 warning; runtime curl & browser (agent-browser) lulus; lint 0/0; tsc 181→178 (3 error lama helpers.ts ikut diperbaiki)
+- Version trio: package.json 1.10.0, version.ts (RELEASES Task 26, prismaModels 13), CHANGELOG entri 1.10.0 + badge, /api/version nextRelease v1.11.0, ROADMAP centang langkah 35, WORKLOG.md Task 26
+
+Stage Summary:
+- Kalender editorial 12 minggu hidup di Mission Control: klik "Tulis draft" → editor CMS ter-prefill → terbit via alur lama (sitemap/RSS/IndexNow otomatis)
+- Nol URL publik baru (indeks 11.876 aman); FASE 5: 35 ✅ 41 ✅; sisa 36–40, 42–44 menunggu sesi berikutnya

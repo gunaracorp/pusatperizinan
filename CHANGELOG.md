@@ -5,19 +5,19 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.9.0_Kamus_Raja-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-9-0)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.10.0_Mesin_Redaksi-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-10-0)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-25_(0.1.0_%E2%86%92_1.9.0)-059669?style=flat-square)
-![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-35_ber_versi-059669?style=flat-square)
-![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.10.0_(Unreleased)-f59e0b?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-26_(0.1.0_%E2%86%92_1.10.0)-059669?style=flat-square)
+![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-36_ber_versi-059669?style=flat-square)
+![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.11.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.9.0 — "Kamus Raja"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.10.0 — "Mesin Redaksi"`**
 
 <sub>Versi terlihat hidup di: footer setiap halaman (11.876 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
@@ -37,7 +37,7 @@
 | Sumber kebenaran | [`WORKLOG.md`](./WORKLOG.md) (rekam jejak 1:1) · `src/lib/version.ts` (data mesin) · `package.json` (runtime) |
 | Ritme | **1 task/permintaan user = 1 nomor versi baru** — fitur → `MINOR`, perbaikan → `PATCH`, perombakan arah produk → `MAJOR` |
 | Presisi tanggal | Era `0.x` (Sesi 1–2) direkonstruksi dari metadata file & jejak invoice (`INV-20261021`) → presisi bulan; era `1.x` → presisi hari (terverifikasi) |
-| Rilis berikutnya | **`v1.10.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
+| Rilis berikutnya | **`v1.11.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
 
 > 🔗 Navigasi cepat: **[Tabel Lengkap 20 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
 
@@ -45,15 +45,41 @@
 
 <a id="unreleased"></a>
 
-## [Unreleased] — akan menjadi `v1.10.0`
+## [Unreleased] — akan menjadi `v1.11.0`
 
-> 📦 **Sisa langkah ROADMAP-99** tetap TERSIMPAN di [`ROADMAP-99.md`](./ROADMAP-99.md) — langkah 23, 24, 25, 26, 27, 33, 34, **41** kini DIEKSEKUSI (dicentang di roadmap). Sisanya menunggu sesi berikutnya.
+> 📦 **Sisa langkah ROADMAP-99** tetap TERSIMPAN di [`ROADMAP-99.md`](./ROADMAP-99.md) — langkah 23, 24, 25, 26, 27, 33, 34, **35**, 41 kini DIEKSEKUSI (dicentang di roadmap). Sisanya menunggu sesi berikutnya.
 
 ### Planned — Quick Wins P0 teratas (dari ROADMAP-99 Tabel A, sisa)
 - **Aktifkan pembayaran produksi** Midtrans/Tripay — matikan `PAYMENT_DEMO_MODE` (langkah 1)
 - **Submit 15 sitemap** (11.876 URL) ke Google Search Console + Bing Webmaster (langkah 2)
 - Verifikasi token 6 mesin pencari via env → meta tag otomatis (lanjutan `v1.3.0`)
 - Re-ukur PSI mobile setelah deploy v1.5.0–v1.9.0 — target LCP < 4 s & TBT < 500 ms
+
+---
+
+<a id="v1-10-0"></a>
+
+## [1.10.0] — 2026-10-25 — 🗓️ "Mesin Redaksi" (Task 26)
+
+Rilis kalender editorial — mengeksekusi **langkah 35 ROADMAP-99 FASE 5** (🔥🔥, P1): **Kalender editorial blog 3×/minggu** (panduan, berita regulasi, tips pajak) yang berjalan penuh di **CMS admin yang sudah ada** (Mission Control → Konten & SEO → tab baru **Kalender Editorial**).
+
+### Added
+- **Model Prisma `EditorialSlot`** (prismaModels 12 → 13): satu sel kalender per (minggu-Senin WIB, slotIndex) — unik `[weekStart, slotIndex]`, pilar `PANDUAN | REGULASI | PAJAK`, status siklus `PLANNED → DRAFTED → PUBLISHED` (+ `SKIPPED`), tautan `postId` ke Post CMS, judul kerja + kata kunci + sudut pandang yang bisa diedit admin
+- **Modul `src/lib/editorial.ts`**: **bank topik kurasi 36 topik** (12 × 3 pilar) dengan kata kunci fokus + sudut pandang penulisan per topik; helper minggu **WIB (UTC+7, minggu mulai Senin)**; rotasi topik deterministik per minggu absolut (tidak berulang dalam 12 minggu); `ensureUpcomingWeeks()` **idempoten** — menggulir horizonta 12 minggu tanpa menimpa editan admin; scaffold kerangka H2 per pilar (Panduan: Syarat/Langkah/Kesalahan · Regulasi: Isi/Terdampak/Kepatuhan · Pajak: Dasar/Contoh Hitung/Pelaporan)
+- **API `/api/admin/editorial`** (terlindungi cookie admin): `GET` papan 12 minggu + statistik (join Post untuk slug/status), `PATCH` slot (`skip`/`unskip`/`update` topik — ditolak bila slot sudah dipakai), `POST {action:"start-draft"}` — satu klik membuat **Post CMS ter-prefill** (slug unik, judul, kategori sesuai pilar, kata kunci, starter excerpt, kerangka 3 H2) dan menautkan slot → `DRAFTED`
+- **Tab UI baru "Kalender Editorial"** di CMS admin (switcher Artikel ⇄ Kalender): kartu statistik (Rencana/Draft/Terbit/Dilewati), kartu minggu ber-highlight **MINGGU INI** dengan hitungan status, baris slot ber-chip hari+tanggal & badge pilar berwarna (Senin=Panduan hijau · Rabu=Regulasi biru · Jumat=Tips Pajak kuning), aksi per status — **Tulis draft** (langsung membuka editor terisi), **Edit topik** (inline), **Dari bank** (pemilih topik kurasi), **Lewati/Batalkan**, **Lanjutkan draft/Edit/Lihat** untuk slot berjalan
+- **QA baru `scripts/verify-editorial.ts`**: kelengkapan & keunikan bank (judul/kata kunci global unik), rotasi tanpa pengulangan 12 minggu per pilar, helper minggu WIB (Senin, label rentang, tanggal slot +0/+2/+4), scaffold & starter excerpt, **idempotensi DB** (ensure 2× → 36 slot tetap), sinkron pilar↔slotIndex↔hari — **PASS, 0 warning**
+
+### Changed
+- **Sinkron siklus hidup**: `PUT /api/admin/posts/[id]` kini memperbarui status slot tertaut (terbit → `PUBLISHED`, unpublish → `DRAFTED`); `DELETE` mengembalikan slot ke `PLANNED` dan melepas tautan — slot tidak pernah menggantung
+- Pratinjau draft kalender mengikuti alur CMS yang ada (mode pratinjau admin di `/blog/{slug}`)
+- `version.ts`: `APP_VERSION 1.10.0 "Mesin Redaksi"`, `RELEASES` +1 entri (Task 26), `PLATFORM_STATS` — `prismaModels 12 → 13` (nol URL publik baru — alat internal redaksi); `package.json` 1.10.0; `/api/version` `nextRelease → v1.11.0`
+
+### Verifikasi (definisi selesai ROADMAP-99)
+- `bun run lint` → **0 error, 0 warning**; `tsc --noEmit` → **181 → 178 error pre-existing** (3 error lama di `posts/helpers.ts` ikut diperbaiki; nol error pada file baru)
+- QA script `verify-editorial.ts`: **36/36 topik unik** · rotasi 12/12 minggu tanpa pengulangan × 3 pilar · minggu WIB Senin-tepat · ensure idempoten (36 slot) · pilar↔hari sinkron — **PASS**
+- curl runtime (cookie admin): `GET /api/admin/editorial` **200** (12 minggu × 3 slot = 36, minggu-0 MINGGU INI) · skip/unskip **200** · update/restore topik **200** · `start-draft` **201** (slug, DRAFT, kategori Panduan, scaffold 3 H2, excerpt starter) · `PUT` publish → slot `PUBLISHED` · `DELETE` → slot kembali `PLANNED` post-null · tanpa auth **401**
+- Verifikasi browser (agent-browser): login → tab Konten & SEO → switcher **Kalender Editorial** ter-render (statistik + kartu minggu + baris slot ber-aksi), klik **Tulis draft** membuka editor CMS ter-prefill (judul + 3 kerangka H2 + panel Skor SEO), konsol bersih
 
 ---
 

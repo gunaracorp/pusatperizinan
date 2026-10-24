@@ -224,3 +224,25 @@ model NotificationLog {
   @@index([createdAt])
   @@index([status])
 }
+
+// EditorialSlot: satu sel kalender editorial blog (langkah 35) —
+// ritme 3×/minggu: Senin=Panduan, Rabu=Regulasi (berita), Jumat=Tips Pajak.
+// Siklus: PLANNED → DRAFTED (draft Post dibuat via CMS) → PUBLISHED; SKIPPED = topik dilewati.
+model EditorialSlot {
+  id           String   @id @default(cuid())
+  weekStart    String   // ISO tanggal Senin minggu edisi (YYYY-MM-DD, WIB)
+  slotIndex    Int      // 0=Senin(Panduan) 1=Rabu(Regulasi) 2=Jumat(Tips Pajak)
+  pillar       String   // PANDUAN | REGULASI | PAJAK
+  title        String   // judul kerja topik (boleh diubah admin)
+  focusKeyword String?  // kata kunci fokus usulan (prefill skor SEO CMS)
+  keywords     String?  // kata kunci tambahan, dipisah koma
+  notes        String?  // sudut pandang / angle penulisan
+  status       String   @default("PLANNED") // PLANNED | DRAFTED | PUBLISHED | SKIPPED
+  postId       String?  // tautan ke Post CMS saat draft dibuat / terbit
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@unique([weekStart, slotIndex])
+  @@index([weekStart])
+  @@index([status])
+}

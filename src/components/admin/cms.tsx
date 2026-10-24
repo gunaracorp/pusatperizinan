@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
-  AlertTriangle, ArrowLeft, CheckCircle2, CircleDashed, Eye, FileText,
+  AlertTriangle, ArrowLeft, CalendarDays, CheckCircle2, CircleDashed, Eye, FileText,
   Loader2, Newspaper, PenLine, Plus, RefreshCw, Save, Search, Trash2, XCircle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { relativeTime } from "@/components/admin/shared";
+import { EditorialBoard } from "@/components/admin/editorial";
 import type { CmsPost } from "@/lib/blog-cms";
 
 // ============================================================
@@ -216,6 +217,7 @@ export function CmsTab() {
   const [slugTouched, setSlugTouched] = useState(false);
   const [busy, setBusy] = useState(false);
   const [query, setQuery] = useState("");
+  const [view, setView] = useState<"artikel" | "kalender">("artikel");
 
   const load = useCallback(async () => {
     try {
@@ -646,8 +648,50 @@ export function CmsTab() {
   }
 
   // ===================== TAMPILAN DAFTAR =====================
+  const switcher = (
+    <div
+      className="flex w-full max-w-md gap-1 rounded-xl border border-stone-800 bg-stone-900/40 p-1"
+      role="tablist"
+      aria-label="Mode Konten & SEO"
+    >
+      {([
+        { id: "artikel" as const, label: "Artikel", icon: Newspaper },
+        { id: "kalender" as const, label: "Kalender Editorial", icon: CalendarDays },
+      ]).map((v) => {
+        const Icon = v.icon;
+        const active = view === v.id;
+        return (
+          <button
+            key={v.id}
+            role="tab"
+            aria-selected={active}
+            onClick={() => setView(v.id)}
+            className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold transition-colors ${
+              active
+                ? "bg-emerald-500/15 text-emerald-300 shadow-[inset_0_0_0_1px_rgba(16,185,129,0.25)]"
+                : "text-stone-400 hover:bg-stone-800/60 hover:text-stone-200"
+            }`}
+          >
+            <Icon aria-hidden className="h-4 w-4" /> {v.label}
+          </button>
+        );
+      })}
+    </div>
+  );
+
+  if (view === "kalender") {
+    return (
+      <div className="space-y-5">
+        {switcher}
+        <EditorialBoard posts={posts} onOpenEditor={openEdit} />
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-5">
+      {switcher}
+
       {/* Ringkasan */}
       <div className="grid gap-4 sm:grid-cols-3">
         {[

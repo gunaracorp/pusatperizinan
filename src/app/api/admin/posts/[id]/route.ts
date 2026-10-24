@@ -7,6 +7,7 @@ import {
   ensureUniqueSlug,
   rowToCmsPost,
 } from "@/lib/blog-cms";
+import { syncSlotForPost } from "@/lib/editorial";
 import { normalizeSlug, sanitizeFaq, sanitizeSections } from "../helpers";
 
 // ============================================================
@@ -105,6 +106,13 @@ export async function PUT(
       },
     });
 
+    // Kalender editorial: status slot ikut status post (PUBLISHED ⇄ DRAFTED)
+    try {
+      await syncSlotForPost({ id: updated.id, status: updated.status === "PUBLISHED" ? "PUBLISHED" : "DRAFT" });
+    } catch {
+      // kalender gagal sinkron — penyimpanan post tetap sukses
+    }
+
     return NextResponse.json({ success: true, data: rowToCmsPost(updated) });
   } catch (e) {
     return NextResponse.json(
@@ -124,6 +132,12 @@ export async function DELETE(
   try {
     const { id } = await params;
     await db.post.delete({ where: { id } });
+    // Kalender editorial: slot yang tadinya tertaut kembali jadi rencana
+    try {
+      await db.editorialSlot.updateMany({ where: { postId: id }, data: { status: "PLANNED", postId: null } });
+    } catch {
+      // kalender gagal sinkron — penghapusan post tetap sukses
+    }
     return NextResponse.json({ success: true, data: { id } });
   } catch {
     return NextResponse.json(

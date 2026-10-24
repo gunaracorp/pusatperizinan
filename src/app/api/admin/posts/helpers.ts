@@ -19,11 +19,11 @@ export function sanitizeSections(raw: unknown): string | null {
   if (!Array.isArray(raw)) return null;
   const clean = raw
     .filter(
-      (s) =>
+      (s): s is { heading: string } =>
         s &&
         typeof s === "object" &&
         typeof (s as Record<string, unknown>).heading === "string" &&
-        (s as Record<string, unknown>).heading.trim()
+        ((s as Record<string, unknown>).heading as string).trim().length > 0
     )
     .map((s) => {
       const sec = s as Record<string, unknown>;
@@ -47,13 +47,13 @@ export function sanitizeFaq(raw: unknown): string | null {
   if (!Array.isArray(raw)) return null;
   const clean = raw
     .filter(
-      (f) =>
+      (f): f is { question: string; answer: string } =>
         f &&
         typeof f === "object" &&
         typeof (f as Record<string, unknown>).question === "string" &&
         typeof (f as Record<string, unknown>).answer === "string" &&
-        (f as Record<string, unknown>).question.trim() &&
-        (f as Record<string, unknown>).answer.trim()
+        ((f as Record<string, unknown>).question as string).trim().length > 0 &&
+        ((f as Record<string, unknown>).answer as string).trim().length > 0
     )
     .map((f) => {
       const q = f as Record<string, unknown>;
