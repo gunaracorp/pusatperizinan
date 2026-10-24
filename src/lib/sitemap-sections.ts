@@ -2,6 +2,7 @@ import { ALL_SERVICE_PAGES, getHubSlugs } from "@/lib/catalog";
 import { KBLI_PAGES, KBLI_CATEGORY_PAGES } from "@/lib/kbli-catalog";
 import { JOBS } from "@/lib/jobs-data";
 import { COMPARISONS } from "@/lib/comparisons";
+import { TRIO_COMPARISONS } from "@/lib/comparisons-trio";
 import { TESTIMONIAL_CATEGORIES } from "@/lib/testimonials-data";
 import { PERMIT_GUIDES } from "@/lib/seo-content";
 import { BLOG_ARTICLES } from "@/lib/blog-content";
@@ -98,7 +99,10 @@ export function buildSection(id: SitemapSectionId): Promise<SitemapEntry[]> | Si
     case "jobs":
       return JOBS.map((j) => entry(`/lowongan-kerja/${j.slug}`, "daily", 0.8));
     case "bandingkan":
-      return COMPARISONS.map((c) => entry(`/bandingkan/${c.slug}`, "monthly", 0.85));
+      return [
+        ...COMPARISONS.map((c) => entry(`/bandingkan/${c.slug}`, "monthly", 0.85)),
+        ...TRIO_COMPARISONS.map((t) => entry(`/bandingkan/${t.slug}`, "monthly", 0.85)), // langkah 34
+      ];
     case "katalog":
       return CATEGORIES.map((c) => entry(`/katalog/${c.slug}`, "monthly", c.flagship ? 0.9 : 0.8));
     case "layanan500":

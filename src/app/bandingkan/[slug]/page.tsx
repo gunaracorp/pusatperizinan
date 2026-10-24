@@ -16,15 +16,35 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { COMPARISONS, getComparison, getRelatedComparisons } from "@/lib/comparisons";
+import { TRIO_COMPARISONS, getTrio } from "@/lib/comparisons-trio";
+import { TrioView } from "@/components/bandingkan/trio-view";
 import { WHATSAPP_NUMBER } from "@/lib/landing-data";
 import { langAlternates } from "@/lib/seo";
 
 export function generateStaticParams() {
-  return COMPARISONS.map((c) => ({ slug: c.slug }));
+  return [
+    ...COMPARISONS.map((c) => ({ slug: c.slug })),
+    ...TRIO_COMPARISONS.map((t) => ({ slug: t.slug })), // ROADMAP-99 langkah 34
+  ];
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
+  const trio = getTrio(slug);
+  if (trio) {
+    return {
+      title: trio.metaTitle,
+      description: trio.metaDesc,
+      keywords: trio.keywords,
+      alternates: langAlternates(`/bandingkan/${trio.slug}`),
+      openGraph: {
+        title: trio.metaTitle,
+        description: trio.metaDesc,
+        url: `/bandingkan/${trio.slug}`,
+        type: "article",
+      },
+    };
+  }
   const c = getComparison(slug);
   if (!c) return {};
   return {
@@ -44,6 +64,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function ComparisonDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  // ROADMAP-99 langkah 34 — rute trio (PT vs CV vs PT Perorangan)
+  const trio = getTrio(slug);
+  if (trio) return <TrioView trio={trio} />;
+
   const c = getComparison(slug);
   if (!c) notFound();
 
@@ -74,7 +98,9 @@ export default async function ComparisonDetailPage({ params }: { params: Promise
     ],
   };
 
-  // Mapping entitas → slug layanan yang benar-benar ada di katalog
+  // Mapping entitas → slug layanan yang benar-benar ada di katalog.
+  // Langkah 34: fallback kini id itu sendiri (semua base page hidup di /layanan/{slug})
+  // — penting untuk 30 pasangan baru (iso-14001, lkpm, ekspansi-asing, dst).
   const SERVICE_SLUG_MAP: Record<string, string> = {
     pt: "pt",
     cv: "cv",
@@ -86,11 +112,14 @@ export default async function ComparisonDetailPage({ params }: { params: Promise
     koperasi: "koperasi-yayasan",
     firma: "cv",
     "nib-op": "nib",
+    siup: "nib", // lisensi warisan — arahkan ke NIB
   };
 
+  const serviceHref = (id: string) => `/layanan/${SERVICE_SLUG_MAP[id] ?? id}`;
+
   const serviceLinks = [
-    { label: `Jasa Pendirian ${c.aName.split(" (")[0]}`, href: `/layanan/${SERVICE_SLUG_MAP[c.aId] ?? "nib"}` },
-    { label: `Jasa Pendirian ${c.bName.split(" (")[0]}`, href: `/layanan/${SERVICE_SLUG_MAP[c.bId] ?? "nib"}` },
+    { label: `Jasa Pendirian ${c.aName.split(" (")[0]}`, href: serviceHref(c.aId) },
+    { label: `Jasa Pendirian ${c.bName.split(" (")[0]}`, href: serviceHref(c.bId) },
     { label: "NIB & OSS-RBA", href: "/layanan/nib" },
     { label: "Konsultasi Pajak", href: "/layanan/kategori/pajak" },
   ];

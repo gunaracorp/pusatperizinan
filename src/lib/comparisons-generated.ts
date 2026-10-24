@@ -36,7 +36,13 @@ const SHORT_MAP: Record<string, string> = {
   "ppmp-pihk": "PPMP-PIHK", "upgrade-ppiu-ke-pihk": "Upgrade PPIU → PIHK",
   "paket-pendirian-travel-umrah": "Pendirian Travel Umrah", "kepatuhan-pmh-2-2026": "Kepatuhan PMHU",
   "dokumen-pmi": "Dokumen PMI", "kontrak-visa-pmi": "Kontrak & Visa PMI",
-  ekspansi: "PT PMA", "ekspansi-asing": "PT PMA",
+  ekspansi: "PT PMA", "ekspansi-asing": "Entitas LN",
+  "koperasi-yayasan": "Koperasi/Yayasan", tambang: "IUP/IUPK Tambang", "rkab-tambang": "RKAB Tambang",
+  alkes: "Izin Alkes/PKRT", "higiene-sanitasi": "Higiene Sanitasi", reklame: "Izin Reklame", lkpm: "LKPM",
+  "tax-restitusi": "Restitusi Pajak", "tax-transfer-pricing": "Transfer Pricing",
+  "tax-spt-masa-badan": "SPT Masa Badan",
+  pptkis: "Izin P3MI/PPTKIS", "lpk-pmi": "LPK Berizin", "bnsp-pmi": "BNSP PMI", "bahasa-pmi": "Pelatihan Bahasa",
+  "barat-pmi": "Penempatan Barat",
 };
 
 function shortName(p: ServicePage): string {
@@ -94,6 +100,42 @@ const PAIRS: PairSpec[] = [
   { a: "dokumen-pmi", b: "kontrak-visa-pmi" },
   { a: "ppmp-pihk", b: "upgrade-ppiu-ke-pihk" },
   { a: "paket-pendirian-travel-umrah", b: "kepatuhan-pmh-2-2026" },
+  // ROADMAP-99 langkah 34 — ekspansi arena perbandingan (38 → 68 pasangan)
+  // Badan usaha & entitas
+  { a: "ekspansi-asing", b: "pt" },
+  { a: "ekspansi-asing", b: "pt-perorangan" },
+  { a: "koperasi-yayasan", b: "cv" },
+  // Sertifikasi & standar
+  { a: "iso-14001", b: "iso-45001" },
+  { a: "iso-9001", b: "iso-22000" },
+  { a: "iso-14001", b: "iso-27001" },
+  { a: "iso-9001", b: "smk3" },
+  { a: "halal", b: "pirt" },
+  { a: "bpom", b: "alkes" },
+  { a: "halal", b: "higiene-sanitasi" },
+  { a: "pirt", b: "higiene-sanitasi" },
+  { a: "halal", b: "halal-jasa-restoran" },
+  // Pajak
+  { a: "tax-spt-op", b: "tax-spt-tahunan-badan" },
+  { a: "tax-npwp-badan", b: "tax-pkp-badan" },
+  { a: "tax-audit", b: "tax-restitusi" },
+  { a: "tax-restitusi", b: "tax-sengketa" },
+  { a: "tax-planning", b: "tax-audit" },
+  { a: "tax-umkm", b: "tax-pkp-op" },
+  { a: "tax-spt-masa-op", b: "tax-spt-masa-badan" },
+  { a: "tax-transfer-pricing", b: "tax-audit" },
+  // PMI & penempatan
+  { a: "pptkis", b: "lpk-pmi" },
+  { a: "bnsp-pmi", b: "pptkis" },
+  { a: "bahasa-pmi", b: "lpk-pmi" },
+  { a: "barat-pmi", b: "timur-tengah-pmi" },
+  { a: "korea-eps", b: "taiwan-hk-sg" },
+  // Tambang, operasional & virtual office
+  { a: "rkab-tambang", b: "tambang" },
+  { a: "reklame", b: "pbg" },
+  { a: "nib", b: "lkpm" },
+  { a: "virtual-office-serviced", b: "virtual-office-plus-pajak" },
+  { a: "virtual-office-plus-pajak", b: "virtual-office-bundle-pt" },
 ];
 
 const BASE_BY_SLUG = new Map(ALL_SERVICE_PAGES.filter((p) => p.kind === "base").map((p) => [p.slug, p]));

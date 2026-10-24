@@ -5,21 +5,21 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.7.0_Konten_Raja-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-7-0)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.8.0_Arena_Banding-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-8-0)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-23_(0.1.0_%E2%86%92_1.7.0)-059669?style=flat-square)
-![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-33_ber_versi-059669?style=flat-square)
-![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.8.0_(Unreleased)-f59e0b?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-24_(0.1.0_%E2%86%92_1.8.0)-059669?style=flat-square)
+![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-34_ber_versi-059669?style=flat-square)
+![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.9.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.7.0 — "Konten Raja"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.8.0 — "Arena Banding"`**
 
-<sub>Versi terlihat hidup di: footer setiap halaman (11.629 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
+<sub>Versi terlihat hidup di: footer setiap halaman (11.661 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=0:059669,100:f59e0b&height=3&section=footer" width="100%" alt=""/>
 
@@ -45,15 +45,40 @@
 
 <a id="unreleased"></a>
 
-## [Unreleased] — akan menjadi `v1.8.0`
+## [Unreleased] — akan menjadi `v1.9.0`
 
-> 📦 **Sisa langkah ROADMAP-99** tetap TERSIMPAN di [`ROADMAP-99.md`](./ROADMAP-99.md) — langkah 23, 24, 25, 26, 27, 33 kini DIEKSEKUSI (dicentang di roadmap). Sisanya menunggu sesi berikutnya.
+> 📦 **Sisa langkah ROADMAP-99** tetap TERSIMPAN di [`ROADMAP-99.md`](./ROADMAP-99.md) — langkah 23, 24, 25, 26, 27, 33, **34** kini DIEKSEKUSI (dicentang di roadmap). Sisanya menunggu sesi berikutnya.
 
 ### Planned — Quick Wins P0 teratas (dari ROADMAP-99 Tabel A, sisa)
 - **Aktifkan pembayaran produksi** Midtrans/Tripay — matikan `PAYMENT_DEMO_MODE` (langkah 1)
-- **Submit 14 sitemap** (11.629 URL) ke Google Search Console + Bing Webmaster (langkah 2)
+- **Submit 14 sitemap** (11.661 URL) ke Google Search Console + Bing Webmaster (langkah 2)
 - Verifikasi token 6 mesin pencari via env → meta tag otomatis (lanjutan `v1.3.0`)
-- Re-ukur PSI mobile setelah deploy v1.5.0–v1.7.0 — target LCP < 4 s & TBT < 500 ms
+- Re-ukur PSI mobile setelah deploy v1.5.0–v1.8.0 — target LCP < 4 s & TBT < 500 ms
+
+---
+
+<a id="v1-8-0"></a>
+
+## [1.8.0] — 2026-10-25 — ⚖️ "Arena Banding" (Task 24)
+
+Rilis perbandingan programatik — mengeksekusi **langkah 34 ROADMAP-99 FASE 4** (🔥🔥): memperluas `comparisons-generated.ts` menjadi arena perbandingan layanan berskala penuh. Dua contoh eksplisit roadmap kini hidup: **"NIB vs SIUP"** (lisensi warisan yang dihapus UU Cipta Kerja) dan **"PT vs CV vs Perseorangan"** (perbandingan trio pertama).
+
+### Added
+- **+30 pasangan programatik** di `comparisons-generated.ts` (38 → 68) — semuanya resolve ke base page katalog nyata: badan usaha & entitas (ekspansi-asing vs PT/PPO, koperasi-yayasan vs CV), sertifikasi (ISO 14001/45001/22000/27001/9001-SMK3, halal-PIRT, BPOM-alkes, higiene sanitasi, halal restoran), pajak (8 pasangan: SPT OP vs Badan, NPWP-PKP Badan, audit-restitusi-sengketa, planning-audit, UMKM-PKP OP, SPT masa OP vs Badan, transfer pricing), PMI (P3MI-LPK, BNSP-P3MI, bahasa-LPK, barat-timur tengah, Korea-Taiwan/HK/SG), tambang (RKAB-IUP), operasional (reklame-PBG, **NIB-LKPM**) & virtual office (2 pasangan)
+- **Perbandingan handmade `nib-vs-siup`** (comparisons.ts) — jawaban SEO untuk kueri "perbedaan NIB dan SIUP": 10 aspek status-hukum (NIB berlaku sebagai SIUP sejak Pasal 12 PP 5/2018), FAQ migrasi SIUP lama, SIUPULG PMA, izin khusus komoditas — verdict jujur "ini bukan duel"
+- **Engine trio `comparisons-trio.ts` + `TrioView`** — tipe `TrioComparison` (rows 3-sel + `best: 0|1|2|null`), halaman `pt-vs-cv-vs-perseorangan`: tabel 10 aspek 3-kolom berpewarnaan per pihak (crown "Terbaik di aspek ini"), peta keputusan 3 jalur, verdict naik-kelas (PPO → PT biasa, CV → PT), FAQ 5 — kartu mobile per aspek / grid desktop 4 kolom
+- **Kartu trio unggulan "Paling dicari"** di index `/bandingkan` (di atas grid) + badge jumlah dinamis `COMPARISONS.length + TRIO_TOTAL`
+
+### Changed
+- `SERVICE_SLUG_MAP` di `/bandingkan/[slug]`: fallback kini **id itu sendiri** (`/layanan/{slug}` — semua 114 base page hidup di sana), map alias hanya untuk entitas warisan + `siup: "nib"` — memperbaiki internal-link 30 pasangan baru (iso-14001, lkpm, ekspansi-asing, dst. sebelumnya salah arah ke nib)
+- `generateStaticParams` + `generateMetadata` `/bandingkan/[slug]` mendukung trio; sitemap seksi `bandingkan` memasukkan trio (78 URL)
+- QA baru `scripts/verify-comparisons.ts`: resolusi pasangan, slug unik lintas sumber, kualitas minimal (≥6 aspek & ≥4 FAQ), winner/best valid, determinisme dua-run
+
+### Verifikasi (definisi selesai ROADMAP-99)
+- `bun run lint` → 0 error, 0 warning; `tsc --noEmit` → 0 error pada seluruh file yang disentuh (baseline proyek 181 error pre-existing di scripts/examples tidak tersentuh)
+- QA script: 68/68 pasangan programatik resolve · **78 slug unik** · semua ≥6 aspek & ≥4 FAQ · determinisme PASS · prosa rata-rata **405 kata** per perbandingan
+- curl dev: `/bandingkan` 200 (badge 78 + kartu trio) · `/bandingkan/nib-vs-siup` 200 FAQPage+BreadcrumbList · `/bandingkan/nib-vs-lkpm` 200 + link `/layanan/lkpm` ✓ · `/bandingkan/ekspansi-asing-vs-pt` link `/layanan/ekspansi-asing` ✓ · `/bandingkan/pt-vs-cv-vs-perseorangan` 200 (10 crown, peta keputusan, verdict, FAQ accordion) · `/sitemap/bandingkan` **78 `<loc>`**
+- Indeks 11.629 → **11.661 URL** (+32: 30 programatik + 1 handmade + 1 trio); `PLATFORM_STATS.indexedUrls` disingkronkan
 
 ---
 

@@ -538,6 +538,67 @@ const HAND_MADE_COMPARISONS: Comparison[] = [
       "legalitas toko online",
     ],
   },
+  {
+    // ROADMAP-99 langkah 34 — perbandingan lisensi warisan (SIUP dihapus UU Cipta Kerja)
+    slug: "nib-vs-siup",
+    aId: "nib",
+    bId: "siup",
+    aName: "NIB (Nomor Induk Berusaha)",
+    bName: "SIUP (Surat Izin Usaha Perdagangan)",
+    aShort: "NIB",
+    bShort: "SIUP",
+    title: "NIB vs SIUP: Apa Bedanya & Apakah SIUP Masih Berlaku? (Panduan Lengkap)",
+    metaTitle: "NIB vs SIUP — Perbedaan, Status Hukum & Penggantinya | 2026",
+    metaDesc:
+      "SIUP sudah dihapus UU Cipta Kerja — NIB kini berlaku sebagai SIUP. Perbandingan 10 aspek: status hukum, penerbit, biaya, durasi & cara migrasi SIUP lama ke NIB. Gratis.",
+    intro: [
+      "NIB dan SIUP adalah dua dokumen yang paling sering tertukar dalam percakapan pelaku usaha — dan pertanyaannya hampir selalu sama: \"Saya sudah punya SIUP, apakah perlu NIB?\" atau sebaliknya. Faktanya: sejak UU Cipta Kerja dan PP 5/2018, SIUP tidak lagi diterbitkan — NIB dari OSS-RBA kini berlaku sebagai SIUP bagi Perusahaan Perdagangan. Artinya ini bukan pilihan dua opsi, melainkan satu jalur baru yang menggantikan dokumen lama.",
+      "Tabel di bawah membandingkan keduanya dalam 10 aspek nyata — status hukum terkini, dasar hukum, penerbit, biaya, durasi, dan bagaimana menangani SIUP lama yang masih Anda pegang. Setelah tabel, ada panduan keputusan untuk tiga kondisi paling umum: usaha baru, pemegang SIUP lama, dan perusahaan penanaman modal yang dulu wajib SIUPULG.",
+    ],
+    aspects: [
+      { aspect: "Status hukum 2026", a: "Aktif — dokumen identitas utama setiap pelaku usaha, diterbitkan OSS-RBA", b: "Tidak berlaku untuk penerbitan baru — dihapus UU Cipta Kerja; SIUP lama tetap sah sebagai dokumen", winner: "a" },
+      { aspect: "Dasar hukum", a: "PP 5/2018 jo. UU Cipta Kerja — Pasal 12: NIB berlaku sebagai SIUP bagi Perusahaan Perdagangan", b: "Rezim pra-Cipta Kerja (UU 7/2014 Perdagangan & turunannya) — telah diubah", winner: "a" },
+      { aspect: "Penerbit & jalur", a: "OSS-RBA (BKPM) — online terintegrasi sekali akun untuk semua izin", b: "Dulu: Disperindag kabupaten/kota atau provinsi — proses manual/semi-manual", winner: "a" },
+      { aspect: "Format dokumen", a: "Elektronik dengan QR-Code — bisa diverifikasi siapa pun kapan pun", b: "Dulu: kartu/cetak fisik — rawat hilang, perlu fotokopi legalisir", winner: "a" },
+      { aspect: "Cakupan kegiatan usaha", a: "Seluruh 5 sektor + 42 bidang usaha, sesuai KBLI yang Anda pilih", b: "Hanya kegiatan perdagangan umum (distribusi barang) — di luar itu butuh izin lain", winner: "a" },
+      { aspect: "Biaya penerbitan", a: "PNBP NIB terjangkau (mulai Rp50 ribu tergantung modal) + jasa pendampingan", b: "Dulu: PNBP SIUP lebih besar (Rp150 ribu–2,5 juta sesuai modal) + biaya datang ke kantor", winner: "a" },
+      { aspect: "Durasi proses", a: "Realistis 1–3 hari kerja (kami rata-rata < 1 hari) — sekali submit di OSS", b: "Dulu: 3–10 hari kerja, datang ke kantor, revisi berulang", winner: "a" },
+      { aspect: "Fungsi tambahan", a: "Sekali terbit: identitas usaha + berlaku sebagai SIUP + dasar pengajuan izin turunan & kewajiban LKPM", b: "Dulu: hanya izin perdagangan umum — izin lain diajukan terpisah", winner: "a" },
+      { aspect: "Perusahaan penanaman modal (PMA)", a: "Cukup NIB — SIUPULG dihapus; konfirmasi kebutuhan distribusi melebur ke NIB + izin khusus bila ada", b: "Dulu: wajib SIUPULG (SIUP khusus PMA) terpisah setelah PT berdiri", winner: "a" },
+      { aspect: "Masa berlaku & pemeliharaan", a: "Berlaku selama usaha aktif — cukup jaga kewajiban LKPM tahunan; tanpa perpanjangan", b: "Dulu: perpanjangan berkala (5 tahun) dengan datang ke Disperindag", winner: "a" },
+    ],
+    chooseA: [
+      "Anda memulai/menjalankan usaha perdagangan sekarang — NIB satu-satunya dokumen yang diterbitkan",
+      "Anda butuh identitas usaha untuk rekening bank, marketplace, tender, atau pengajuan izin turunan",
+      "Perusahaan Anda PMA/penanaman modal — SIUPULG sudah tidak ada, jalurnya NIB",
+      "Anda ingin dokumen elektronik yang bisa diverifikasi mitra via QR-Code",
+    ],
+    chooseB: [
+      "Anda masih memegang SIUP lama — tetap sah sebagai dokumen, tidak perlu membuangnya",
+      "Usaha Anda tidak berubah kegiatan, modal, atau alamat — SIUP lama cukup sebagai arsip legalitas",
+      "Anda hanya diminta menunjukkan dokumen historis (mis. untuk perbankan atau audit masa lalu)",
+      "Catatan: begitu ada perubahan data usaha, jalurnya bukan perpanjangan SIUP — melainkan NIB",
+    ],
+    verdict:
+      "Ini bukan duel — SIUP sudah menjadi bagian dari sejarah: sejak UU Cipta Kerja, NIB dari OSS-RBA berlaku sebagai SIUP bagi Perusahaan Perdagangan. Semua jalur baru mengarah ke NIB; SIUP lama tetap sah sebagai dokumen tetapi tidak bisa diterbitkan atau diperpanjang lagi. Kalau usaha Anda masih memakai SIUP lama, jadwalkan migrasi ke NIB sebelum Anda butuh izin turunan, LKPM, atau perubahan data — karena semua proses OSS dimulai dari NIB. Tim kami menangani migrasi ini setiap hari; konsultasi awal gratis dan dokumen SIUP lama Anda justru mempercepat prosesnya.",
+    faq: [
+      { q: "Apakah SIUP masih berlaku?", a: "SIUP yang sudah terbit tetap sah sebagai dokumen — pemerintah tidak mencabutnya. Namun sejak UU Cipta Kerja, SIUP tidak lagi diterbitkan atau diperpanjang. Pelaku usaha yang sudah terbit SIUP dan belum punya NIB pada praktiknya bermigrasi ke NIB, karena seluruh layanan OSS (izin turunan, LKPM, perubahan data) kini dimulai dari NIB." },
+      { q: "Apa pengganti SIUP sekarang?", a: "NIB (Nomor Induk Berusaha) yang terbit dari OSS-RBA. Sesuai Pasal 12 PP 5/2018, NIB berlaku sebagai SIUP bagi Perusahaan Perdagangan — satu dokumen menggantikan banyak. Untuk barang tertentu yang diatur khusus (obat, alat kesehatan, pangan olahan, BBM), Anda tetap perlu izin khusus sektor di atas NIB, misalnya AKL/AKD atau izin edar." },
+      { q: "Saya sudah punya SIUP lama — wajib urus NIB?", a: "Tidak ada sanksi otomatis, tapi hampir selalu menguntungkan bermigrasi: tanpa NIB Anda tidak bisa mengajukan izin turunan, melaporkan LKPM, mengubah data usaha, atau memanfaatkan fasilitas OSS. Prosesnya cepat karena data SIUP lama Anda justru menjadi bahan. Kami bisa urus satu hari kerja." },
+      { q: "Apakah SIUPULG untuk PMA masih ada?", a: "Tidak. SIUPULG (SIUP untuk perusahaan penanaman modal, termasuk asing) telah dihapus seiring integrasi izin ke OSS. Perusahaan PMA kini cukup memiliki NIB; kebutuhan distribusi tertentu ditangani lewat izin khusus yang relevan dengan barangnya. Kalau PT PMA Anda masih memakai dokumen SIUPULG lama, simpan sebagai arsip — dokumen aktifnya kini NIB." },
+      { q: "Kalau NIB sudah berlaku sebagai SIUP, apa lagi yang perlu saya siapkan untuk berdagang?", a: "Tiga hal paling sering: (1) PKP bila omzet menyentuh ambang PPN, (2) izin khusus komoditas bila barangnya diatur sektor — obat, alkes, pangan olahan, kosmetik, BBM, (3) kewajiban LKPM tahunan ke OSS yang sering terlewat. Konsultasi gratis kami memetakan ketiganya sesuai KBLI Anda dalam satu sesi." },
+    ],
+    keywords: [
+      "perbedaan nib dan siup",
+      "nib vs siup",
+      "siup masih berlaku",
+      "pengganti siup",
+      "siup dihapus uu cipta kerja",
+      "nib untuk siup",
+      "siup ulg masih ada",
+      "migrasi siup ke nib",
+    ],
+  },
 ];
 
 // Gabungan: perbandingan hand-crafted + programatik (dibangun dari data katalog)

@@ -87,3 +87,28 @@
 - Bundle client turun ±360 KB sumber (±200 KB+ minified) untuk pengunjung id/en (mayoritas trafik) → direktuk TBT/LCP
 - Nol URL baru/changed → indeks 11.207 URL tidak terganggu; tidak ada kanibalizasi (arsitektur lokal mengikuti keputusan wilayah.ts yang ada)
 - Catatan lanjutan untuk sesi berikutnya: kompresi gambar `public/kantor/*.jpg` (156–336 KB, unoptimized di static export), evaluasi framer-motion di landing (kandidat lazy per-section), re-ukur PSI pasca-deploy
+
+---
+Task ID: 24
+Agent: Z.ai Code (main agent — Master Polymath mode)
+Task: Eksekusi langkah ROADMAP-99 berikutnya (FASE 4 langkah 34): halaman perbandingan programatik — perluas comparisons-generated.ts ("NIB vs SIUP", "PT vs CV vs Perseorangan", dst) — rilis v1.8.0 "Arena Banding".
+
+Work Log:
+- Seleksi langkah 34 dari sisa FASE 4 (28–32 & 34): 🔥🔥, murni kode (28–30 butuh kredensial/data GSC eksternal; 31–32 kampanye luar), kedua contoh eksplisit roadmap dieksekusi utuh
+- Enumerasi pool via scripts/list-base-services.ts + validate-pairs.ts: 114 base page di ALL_SERVICE_PAGES (bukan 65 BASE_SERVICES) — 30 kandidat pasangan baru tervalidasi 30/30, nol duplikat slug
+- comparisons-generated.ts: PAIRS 38 → 68 (+SHORT_MAP 14 slug baru); 30 pasangan lintas domain: badan usaha/entitas, ISO & sertifikasi, 8 pasangan pajak, PMI & penempatan, tambang (RKAB-IUP), operasional (reklame-PBG, NIB-LKPM), virtual office
+- Handmade "nib-vs-siup" di comparisons.ts: 10 aspek status hukum (NIB berlaku sebagai SIUP — Pasal 12 PP 5/2018 jo. UU Cipta Kerja), 4 poin chooseA/chooseB per kondisi (usaha baru / pemegang SIUP lama / PMA-SIUPULG), FAQ 5 (SIUP masih berlaku?, pengganti, migrasi, SIUPULG, izin khusus), 8 keyword warisan
+- comparisons-trio.ts (baru): tipe TrioComparison {parties, rows 3-sel + best:0|1|2|null, choose 3 jalur, verdict, faq}; entri "pt-vs-cv-vs-perseorangan" 10 aspek (UU 40/2007 vs KUHD vs UU Cipta Kerja; biaya Rp0 PPO; pajak final 0,5%; investor/tender PT; naik-kelas PPO→PT)
+- TrioView (src/components/bandingkan/): desktop grid [210px|3 kolom] berpewarnaan per pihak + crown "Terbaik di aspek ini"; mobile kartu per aspek; FAQPage+BreadcrumbList JSON-LD; WA CTA
+- Integrasi: [slug]/page.tsx (generateStaticParams+metadata+render trio, SERVICE_SLUG_MAP fallback → id sendiri + siup→nib), /bandingkan (kartu trio "Paling dicari" + badge 78 dinamis), sitemap-sections.ts (trio masuk seksi bandingkan)
+- QA scripts/verify-comparisons.ts: 68/68 pasangan resolve, 78 slug unik, ≥6 aspek & ≥4 FAQ semua, winner/best valid, determinisme PASS, prosa rata-rata 405 kata
+- Fix sendiri: duplikat key iso-45001/iso-22000 di SHORT_MAP (TS1117) + key ber-hyphen tanpa kutip di alias TrioView (syntax)
+- curl dev (server di-restart via setsid — dev server sempat mati antar sesi): /bandingkan 200 (badge+kartu trio), nib-vs-siup & nib-vs-lkpm & ekspansi-asing-vs-pt & trio 200 dengan FAQPage+BreadcrumbList, internal-link base baru /layanan/{slug} ✓, /sitemap/bandingkan 78 <loc>
+- lint 0 error 0 warning; tsc 0 error pada file sentuhan (baseline 181 pre-existing tak berubah 181→183→181)
+- Versioning: version.ts 1.8.0 "Arena Banding" (Task 24, +RELEASES, indexedUrls 11629→11661), package.json, CHANGELOG.md entri 1.8.0 + badge (Total Rilis 24, Berikutnya v1.9.0, 11.661 URL), WORKLOG.md Task 24, ROADMAP-99 centang langkah 34, api/version nextRelease → v1.9.0
+
+Stage Summary:
+- Situs v1.8.0 "Arena Banding": 78 halaman /bandingkan/* (68 programatik dari katalog nyata + 9 handmade + 1 trio PT vs CV vs PT Perorangan) — kueri komersial "X vs Y" & "perbedaan X dan Y" kini punya landing bernilai
+- Dua contoh eksplisit roadmap hidup utuh: NIB vs SIUP (lisensi warisan) + trio badan usaha; bonus fix internal-link fallback 30 pasangan baru
+- Indeks 11.629 → 11.661 URL (+32); nol perubahan URL lama → indeks aman
+- FASE 4 ROADMAP-99 kini 23/24/25/26/27/33/34 ✅ — sisa 28–32 (butuh kredensial GSC / kampanye eksternal / GBP) menunggu sesi dengan akses eksternal

@@ -17,9 +17,9 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.7.0";
+export const APP_VERSION = "1.8.0";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Konten Raja";
+export const RELEASE_NAME = "Arena Banding";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
 export const RELEASE_DATE = "2026-10-25";
 /** Channel rilis: stable | beta | alpha. */
@@ -46,6 +46,18 @@ export interface ReleaseEntry {
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.8.0",
+    date: "2026-10-25",
+    type: "minor",
+    name: "Arena Banding",
+    taskId: "24",
+    highlights: [
+      "Langkah 34 — arena perbandingan 48 → 78 halaman: +30 pasangan programatik dari katalog nyata (ISO, pajak, PMI, virtual office, tambang) + handmade NIB vs SIUP (lisensi warisan dihapus UU Cipta Kerja)",
+      "Trio pertama 'PT vs CV vs PT Perorangan' (comparisons-trio.ts + TrioView): tabel 10 aspek 3-kolom ber-pewarnaan per pihak, peta keputusan 3 jalur — kartu mobile / grid desktop",
+      "Fix internal-link /bandingkan/*: entitas base kini ke /layanan/{slug} masing-masing (bukan fallback nib) — sitemap bandingkan 78 URL, indeks 11.629 → 11.661",
+    ],
+  },
   {
     version: "1.7.0",
     date: "2026-10-25",
@@ -286,7 +298,7 @@ export const CURRENT_RELEASE: ReleaseEntry = RELEASES[0];
 
 /** Statistik platform yang dikirim /api/version — singkron dengan site.ts. */
 export const PLATFORM_STATS = {
-  indexedUrls: 11629,
+  indexedUrls: 11661,
   sitemapSections: 14,
   orderableServices: 1500,
   subscriptionSkus: 6,

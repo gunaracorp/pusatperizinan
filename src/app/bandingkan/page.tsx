@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, GitCompareArrows, PhoneCall, Sparkles, TrendingUp } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { COMPARISONS } from "@/lib/comparisons";
+import { TRIO_COMPARISONS, TRIO_TOTAL } from "@/lib/comparisons-trio";
 import { WHATSAPP_NUMBER } from "@/lib/landing-data";
 import { langAlternates } from "@/lib/seo";
 
@@ -12,12 +13,14 @@ export function generateStaticParams() {
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "Perbandingan Badan Usaha — PT vs CV, PMA, Yayasan, Koperasi & Lainnya",
+    title: "Perbandingan Badan Usaha & Layanan — PT vs CV, NIB vs SIUP & 78 Lainnya",
     description:
-      "Panduan memilih badan usaha: perbandingan PT vs CV, PT PMA vs PT Lokal, PT Perorangan vs NIB, CV vs UD, PT vs Yayasan/Koperasi, Firma vs CV — tabel lengkap, pajak, biaya, risiko. Gratis.",
+      "Panduan memilih badan usaha: perbandingan PT vs CV, PT Perorangan, PMA, Yayasan, Koperasi, NIB vs SIUP, plus 68 pasangan layanan (ISO, pajak, BPOM, PMI) — tabel lengkap, pajak, biaya, verdict. Gratis.",
     keywords: [
       "perbandingan badan usaha",
       "pt vs cv",
+      "pt vs cv vs pt perorangan",
+      "nib vs siup",
       "pt pma vs pt lokal",
       "pt perorangan vs nib",
       "cv vs usaha dagang",
@@ -31,7 +34,7 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title: "Perbandingan Badan Usaha — PusatPerizinan.com",
       description:
-        "8 panduan perbandingan badan usaha lengkap: PT, CV, PMA, PT Perorangan, UD, Yayasan, Koperasi, Firma. Tabel per aspek, pajak, biaya, verdict siap pakai.",
+        "Panduan perbandingan badan usaha & layanan: PT, CV, PT Perorangan, PMA, NIB vs SIUP, ISO, pajak, BPOM, PMI. Tabel per aspek, pajak, biaya, verdict siap pakai.",
       url: "/bandingkan",
     },
   };
@@ -72,7 +75,7 @@ export default function BandingkanIndexPage() {
           </nav>
           <div className="flex items-center gap-2 mb-3">
             <Badge className="bg-primary/10 text-primary border border-primary/20">
-              <GitCompareArrows className="h-3 w-3 mr-1" aria-hidden /> {COMPARISONS.length} Panduan Perbandingan — Basis Regulasi Resmi
+              <GitCompareArrows className="h-3 w-3 mr-1" aria-hidden /> {COMPARISONS.length + TRIO_TOTAL} Panduan Perbandingan — Basis Regulasi Resmi
             </Badge>
           </div>
           <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-balance">
@@ -90,6 +93,32 @@ export default function BandingkanIndexPage() {
           </div>
         </div>
       </section>
+
+      {/* Trio unggulan (langkah 34) — PT vs CV vs PT Perorangan */}
+      {TRIO_COMPARISONS.map((t) => (
+        <section key={t.slug} className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-10">
+          <article className="rounded-2xl border-2 border-primary/25 bg-gradient-to-br from-primary/5 to-gold/5 p-5 md:p-6">
+            <div className="flex flex-wrap items-center gap-2 text-xs font-bold text-muted-foreground mb-3">
+              <span className="rounded-full bg-primary/10 text-primary px-2.5 py-1">{t.parties[0].short}</span>
+              <span className="font-extrabold text-foreground">vs</span>
+              <span className="rounded-full bg-gold/10 text-gold px-2.5 py-1">{t.parties[1].short}</span>
+              <span className="font-extrabold text-foreground">vs</span>
+              <span className="rounded-full bg-emerald-500/10 text-emerald-600 px-2.5 py-1">{t.parties[2].short}</span>
+              <span className="ml-auto rounded-full bg-primary text-primary-foreground px-2.5 py-1">Paling dicari</span>
+            </div>
+            <h2 className="font-bold text-lg leading-snug">
+              <Link href={`/bandingkan/${t.slug}`} className="hover:text-primary transition-colors">{t.title}</Link>
+            </h2>
+            <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{t.intro[0]}</p>
+            <Link
+              href={`/bandingkan/${t.slug}`}
+              className="mt-4 inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-all hover:shadow-md min-h-[44px]"
+            >
+              Bandingkan Ketiganya <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
+          </article>
+        </section>
+      ))}
 
       {/* Grid perbandingan */}
       <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-10">
