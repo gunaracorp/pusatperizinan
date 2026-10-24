@@ -18,6 +18,7 @@ import { VO_PAGES } from "./virtual-office";
 import { CERT_PAGES } from "./certifications";
 import { CERT_REGION_PAGES, CERT_PROV_HUBS } from "./sertifikasi-provinsi";
 import { slugify, parsePrice } from "./utils";
+import { buildRichParagraphs } from "./rich-content";
 import { CURRENT_YEAR } from "@/lib/site";
 
 // ------------------------------------------------------------
@@ -266,6 +267,18 @@ function buildBasePage(id: string): ServicePage | null {
       b.desc,
       `Tim PusatPerizinan.com sudah menangani 3.899+ pengurusan serupa untuk 1.247+ klien di seluruh 38 provinsi dengan rating 4,9/5. Semua proses menggunakan jalur resmi — ${b.authority} — dan didokumentasikan transparan sehingga Anda bisa memantau progres setiap tahap.`,
       `Biaya jasa kami mulai ${b.price} dengan estimasi waktu ${b.duration}. Konsultasi awal gratis: kami bedah kondisi Anda, susun roadmap, dan baru bergerak setelah Anda setuju. Bergaransi uang kembali 100% bila gagal terbit karena kesalahan proses kami.`,
+      // ROADMAP-99 langkah 33 — anti-thin content: prosa deterministik
+      // ±300 kata per layanan (konteks, dokumen, timeline, pasca-terbit)
+      // supaya halaman induk tidak lagi seragam-template antar layanan.
+      ...buildRichParagraphs({
+        seed: b.id,
+        name: b.title,
+        authority: b.authority,
+        category: CATEGORY_META[b.category].label,
+        estimate: b.duration,
+        requirements: b.requirements.slice(0, 4).join(", "),
+        priceLabel: b.price,
+      }),
     ],
     price: b.price,
     priceNumeric: parsePrice(b.price),

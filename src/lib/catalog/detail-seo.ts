@@ -23,6 +23,7 @@
 
 import { SITE_NAME } from "@/lib/site";
 import { WILAYAH } from "@/lib/wilayah";
+import { splitRequirements } from "@/lib/catalog/rich-content";
 // type-only import: mencegah siklus runtime detail-seo ↔ katalog-v2-detail
 import type { CatalogDetailService } from "@/components/catalog/katalog-v2-detail";
 
@@ -85,9 +86,9 @@ export interface DetailFaq {
 }
 
 export function buildFaqs(s: CatalogDetailService): DetailFaq[] {
-  const reqs = (s.requirements || "")
-    .split(/,\s*/)
-    .filter(Boolean)
+  // Split sadar-kurung: koma di dalam "(...)" tidak dipecah —
+  // mencegah syarat terpotong seperti "dokumen 8 SNP (isi".
+  const reqs = splitRequirements(s.requirements || "")
     .slice(0, 3)
     .join(", ");
 

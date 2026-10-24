@@ -17,9 +17,9 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.6.0";
+export const APP_VERSION = "1.7.0";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Peta Nusantara";
+export const RELEASE_NAME = "Konten Raja";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
 export const RELEASE_DATE = "2026-10-25";
 /** Channel rilis: stable | beta | alpha. */
@@ -46,6 +46,18 @@ export interface ReleaseEntry {
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.7.0",
+    date: "2026-10-25",
+    type: "minor",
+    name: "Konten Raja",
+    taskId: "23",
+    highlights: [
+      "Anti-thin content (langkah 33): prosa deterministik ±300 kata di 1.000 halaman Katalog v2/v3 + 65 halaman induk v1 — 100% kombinasi unik",
+      "rich-content.ts: 4 paragraf business-real (konteks, dokumen & jebakan, timeline jujur, kewajiban pasca-terbit) — FNV-1a stabil antar build",
+      "Fix overflow mobile latent: link bundle truncate wajib display:block + FAQ syarat sadar-kurung (tidak terpotong di dalam \"(...)\")",
+    ],
+  },
   {
     version: "1.6.0",
     date: "2026-10-25",

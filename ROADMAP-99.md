@@ -108,7 +108,7 @@
 - [ ] **30.** **A/B meta title CTR-driven** — revisi title/description dari data Search Console per template. `🔥 · 🟡 · P2`
 - [ ] **31.** **Kampanye backlink**: HARO, guest post, 50 direktori bisnis, PR digital, sponsor event lokal. `🔥🔥 · 🔴 · P2`
 - [ ] **32.** **Google Business Profile** (Jakarta + Bandung) + 50 local citations. `🔥 · 🟢 · P1`
-- [ ] **33.** **Anti-thin content**: perkaya 1.500 halaman detail dengan ±300 kata unik per layanan (syarat, proses, FAQ lokal). `🔥🔥🔥 · 🔴 · P2`
+- [x] **33.** **Anti-thin content**: perkaya 1.500 halaman detail dengan ±300 kata unik per layanan (syarat, proses, FAQ lokal). `🔥🔥🔥 · 🔴 · P2` — ✅ **v1.7.0 "Konten Raja" (2026-10-25): prosa deterministik ±300 kata di 1.000 halaman Katalog v2/v3 + 65 halaman induk v1 — 100% kombinasi unik, rata-rata 304 kata, split syarat sadar-kurung + fix overflow bundle**
 - [ ] **34.** **Halaman perbandingan programatik** — perluas `comparisons-generated.ts` ("NIB vs SIUP", "PT vs CV vs Perseorangan", dst). `🔥🔥 · 🟡 · P2`
 
 ## 📅 FASE 5 — Konten & Authority — langkah 35–44

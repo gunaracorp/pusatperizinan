@@ -5,19 +5,19 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.6.0_Peta_Nusantara-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-6-0)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.7.0_Konten_Raja-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-7-0)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-22_(0.1.0_%E2%86%92_1.6.0)-059669?style=flat-square)
-![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-32_ber_versi-059669?style=flat-square)
-![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.7.0_(Unreleased)-f59e0b?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-23_(0.1.0_%E2%86%92_1.7.0)-059669?style=flat-square)
+![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-33_ber_versi-059669?style=flat-square)
+![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.8.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.6.0 — "Peta Nusantara"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.7.0 — "Konten Raja"`**
 
 <sub>Versi terlihat hidup di: footer setiap halaman (11.629 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
@@ -37,7 +37,7 @@
 | Sumber kebenaran | [`WORKLOG.md`](./WORKLOG.md) (rekam jejak 1:1) · `src/lib/version.ts` (data mesin) · `package.json` (runtime) |
 | Ritme | **1 task/permintaan user = 1 nomor versi baru** — fitur → `MINOR`, perbaikan → `PATCH`, perombakan arah produk → `MAJOR` |
 | Presisi tanggal | Era `0.x` (Sesi 1–2) direkonstruksi dari metadata file & jejak invoice (`INV-20261021`) → presisi bulan; era `1.x` → presisi hari (terverifikasi) |
-| Rilis berikutnya | **`v1.7.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 mulai dieksekusi |
+| Rilis berikutnya | **`v1.8.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 mulai dieksekusi |
 
 > 🔗 Navigasi cepat: **[Tabel Lengkap 20 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
 
@@ -45,15 +45,43 @@
 
 <a id="unreleased"></a>
 
-## [Unreleased] — akan menjadi `v1.7.0`
+## [Unreleased] — akan menjadi `v1.8.0`
 
-> 📦 **Sisa langkah ROADMAP-99** tetap TERSIMPAN di [`ROADMAP-99.md`](./ROADMAP-99.md) — langkah 23, 24, 25, 26, 27 kini DIEKSEKUSI (dicentang di roadmap). Sisanya menunggu sesi berikutnya.
+> 📦 **Sisa langkah ROADMAP-99** tetap TERSIMPAN di [`ROADMAP-99.md`](./ROADMAP-99.md) — langkah 23, 24, 25, 26, 27, 33 kini DIEKSEKUSI (dicentang di roadmap). Sisanya menunggu sesi berikutnya.
 
 ### Planned — Quick Wins P0 teratas (dari ROADMAP-99 Tabel A, sisa)
 - **Aktifkan pembayaran produksi** Midtrans/Tripay — matikan `PAYMENT_DEMO_MODE` (langkah 1)
 - **Submit 14 sitemap** (11.629 URL) ke Google Search Console + Bing Webmaster (langkah 2)
 - Verifikasi token 6 mesin pencari via env → meta tag otomatis (lanjutan `v1.3.0`)
-- Re-ukur PSI mobile setelah deploy v1.5.0/v1.6.0 — target LCP < 4 s & TBT < 500 ms
+- Re-ukur PSI mobile setelah deploy v1.5.0–v1.7.0 — target LCP < 4 s & TBT < 500 ms
+
+---
+
+<a id="v1-7-0"></a>
+
+## [1.7.0] — 2026-10-25 — 👑 "Konten Raja" (Task 23)
+
+Rilis anti-thin content — mengeksekusi **langkah 33 ROADMAP-99 FASE 4** (🔥🔥🔥): memperkaya halaman detail dengan prosa panjang ±300 kata per layanan. Target: 1.000 halaman Katalog v2/v3 yang sebelumnya hanya berisi blok terstruktur (syarat/langkah/FAQ tanpa prosa) + 65 halaman induk v1 yang sebelumnya seragam-template.
+
+### Added
+- **Modul `src/lib/catalog/rich-content.ts`** — generator prosa deterministik (FNV-1a dari kode/id layanan, pola `detail-seo.ts`): 4 paragraf per layanan — ① konteks & urgensi legal, ② dokumen & jebakan umum (2 jebakan dipilih dari 8, interpolasi syarat aktual), ③ timeline jujur (estimasi + alur 5 fase + faktor penundaan), ④ kewajiban pasca-terbit (2 dari 5, masa berlaku, kalender kepatuhan). Bank varian per slot → ruang kombinasi besar anti-doorway
+- **Section "Panduan Lengkap"** (judul 4 varian deterministik) di semua 1.000 halaman detail Katalog v2/v3 — ditempatkan setelah "Proses Pengurusan", server-rendered
+- **Pengayaan `buildBasePage`** — 4 paragraf rich content ditambahkan ke `longDesc` 65 halaman induk v1, menghapus pola longDesc seragam-template antar layanan
+- `splitRequirements()` sadar-kurung — koma di dalam "(...)" tidak dipecah; dipakai juga oleh FAQ `detail-seo.ts`
+
+### Changed
+- `KatalogV2Detail` memakai rich content via adapter `RichContentInput` (seed = kode layanan; price terformat IDR); `generators.ts` (seed = id layanan, tanpa validity → kalimat generik instansi)
+- QA baru `scripts/verify-rich-content.ts`: word-count, keunikan kombinasi, determinisme dua-run — keluaran di Verifikasi
+
+### Fixed
+- **Overflow mobile latent di blok bundle** — `<Link>` dengan `truncate` tetap `display:inline` sehingga teks nama layanan panjang meluber `scrollWidth` (terdeteksi di halaman v3 dengan nama terkait panjang, 529px > 390px) → wajib `block w-full`
+- **Syarat FAQ terpotong di dalam kurung** — split koma naif memecah "dokumen 8 SNP (isi, proses, …)" menjadi "…(isi" → kini split sadar-kurung
+
+### Verifikasi (definisi selesai ROADMAP-99)
+- `bun run lint` → 0 error, 0 warning
+- QA script: 1.000 layanan — min 264 · rata-rata **304** · max 401 kata; **1.000/1.000 (100%) kombinasi paragraf unik** + 1.000 judul unik; 65/65 halaman induk unik (rata-rata 410 kata); determinisme dua-run PASS
+- agent-browser (390×844): halaman v2/v3/v1 render section panduan (4 paragraf) tanpa error console; overflow v3 terdeteksi lalu dimitigasi (`scrollW` 529 → 390); `/layanan/nib` 8 paragraf isi (422 kata)
+- Nol perubahan URL → indeks 11.629 URL aman; `PLATFORM_STATS` tidak berubah
 
 ---
 

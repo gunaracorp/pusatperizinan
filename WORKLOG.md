@@ -5,6 +5,33 @@
 
 ---
 
+## Task 23 — Anti-Thin Content ±300 Kata/Halaman (ROADMAP-99 langkah 33)
+
+> 🏷️ Rilis v1.7.0 — "Konten Raja" · type: minor
+> Tanggal: 2026-10-25 (WIB) · Agent: Z.ai Code (Master Polymath · Sage Universal · The Ultimate Problem Solver)
+
+**Task:** Eksekusi langkah ROADMAP-99 berikutnya — langkah 33 FASE 4: anti-thin content, perkaya halaman detail dengan ±300 kata unik per layanan (syarat, proses, konteks bisnis, pasca-terbit).
+
+**Work Log:**
+- Seleksi langkah: dari sisa FASE 4 (28–34), langkah 33 dipilih — 🔥🔥🔥, murni kode (28–30 butuh kredensial/data GSC eksternal, 31–32 kampanye luar), kelanjutan alami engine deterministik `detail-seo.ts`; target gap teridentifikasi via audit: 1.000 halaman Katalog v2/v3 berisi blok terstruktur TANPA prosa panjang, 65 halaman induk v1 longDesc-nya seragam-template
+- **Modul baru `src/lib/catalog/rich-content.ts`**: `buildRichParagraphs()` — 4 paragraf per layanan (① konteks & urgensi legal ② dokumen & jebakan umum — 2 dari 8 jebakan + interpolasi syarat aktual ③ timeline jujur — estimasi + alur 5 fase + faktor penundaan ④ kewajiban pasca-terbit — 2 dari 5 + masa berlaku + kalender kepatuhan); FNV-1a dari seed kode/id — deterministik antar build; `richSectionTitle()` — 4 varian judul section; `splitRequirements()` — split koma sadar-kurung
+- **katalog-v2-detail.tsx**: section "Panduan Lengkap" (aria `#panduan`, ikon BookOpen) antara "Proses Pengurusan" dan "Catatan Penting" — server-rendered di seluruh 1.000 halaman PP/PP3
+- **generators.ts `buildBasePage`**: 4 paragraf rich content di-append ke `longDesc` 65 halaman induk v1 — menghilangkan pola "3 paragraf sama untuk semua layanan"
+- **detail-seo.ts**: FAQ syarat kini memakai `splitRequirements` — memperbaiki syarat terpotong di dalam kurung (kasus nyata: "dokumen 8 SNP (isi, proses, …)" → sebelumnya tampil "…(isi")
+- QA baru `scripts/verify-rich-content.ts` — hasil: 1.000 layanan min 264 / rata-rata **304** / max 401 kata; **1.000/1.000 (100%) kombinasi paragraf unik** + 1.000 judul unik; 65/65 halaman induk unik (rata-rata 410 kata); determinisme dua-run PASS; verdict PASS
+- Verifikasi browser (agent-browser 390×844): halaman v2 (PP-BU-001 → 4 paragraf/291 kata), v3 (PP3-PN-018 → 4 paragraf/315 kata), v1 (`/layanan/nib` → 8 paragraf/422 kata) — tanpa error console; **overflow mobile latent ditemukan & dimitigasi**: `<Link>` bundle bert class `truncate` tetap `display:inline` → nama layanan panjang meluber scrollWidth (529px > 390px) → wajib `block w-full` (kini 390 persis); dev.log bersih
+- `bun run lint` → 0 error, 0 warning
+- Versioning: `version.ts` (1.7.0 "Konten Raja" + entri RELEASES taskId 23), `package.json`, `CHANGELOG.md` (entri 1.7.0 + badge header + Unreleased→v1.8.0), `ROADMAP-99` (centang langkah 33), `/api/version` nextRelease → v1.8.0
+
+**Stage Summary:**
+- ±1.065 halaman detail kini membawa prosa unik ±300–400 kata di atas data aktual layanan → depth seo-policy naik signifikan, gap thin-content FASE 4 tertutup
+- Kualitas anti-spam terjaga: 100% kombinasi unik (bukan satu template diulang), konten business-real tanpa klaim kuota/sitasi karangan, deterministik (konsisten antar build — anti sinyal instabilitas)
+- 2 bug latent ikut dimitigasi: overflow bundle mobile + syarat FAQ terpotong kurung
+- Nol perubahan URL → indeks 11.629 URL aman; `PLATFORM_STATS` tidak berubah
+- FASE 4 ROADMAP-99: 23 ✅ 24 ✅ 25 ✅ 26 ✅ 27 ✅ 33 ✅ — sisa 28/29/30/31/32/34 (Indexing API & GSC audit butuh kredensial/data eksternal; 34 comparison kandidat sesi berikutnya)
+
+---
+
 ## Task 22 — Halaman Level Kota 514 Kab/Kota (ROADMAP-99 langkah 25)
 
 > 🏷️ Rilis v1.6.0 — "Peta Nusantara" · type: minor

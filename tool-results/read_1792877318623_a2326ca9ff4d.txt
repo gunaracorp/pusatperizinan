@@ -1,0 +1,792 @@
+     1→import type { Metadata } from "next";
+     2→import Link from "next/link";
+     3→import { notFound } from "next/navigation";
+     4→import {
+     5→  ArrowLeft,
+     6→  ArrowRight,
+     7→  BadgeCheck,
+     8→  Building2,
+     9→  CheckCircle2,
+    10→  ChevronRight,
+    11→  Clock,
+    12→  Compass,
+    13→  FileText,
+    14→  Globe2,
+    15→  ListChecks,
+    16→  MapPin,
+    17→  PhoneCall,
+    18→  ShieldCheck,
+    19→  Sparkles,
+    20→  Star,
+    21→  Users,
+    22→} from "lucide-react";
+    23→import { Button } from "@/components/ui/button";
+    24→import { Badge } from "@/components/ui/badge";
+    25→import {
+    26→  Accordion,
+    27→  AccordionContent,
+    28→  AccordionItem,
+    29→  AccordionTrigger,
+    30→} from "@/components/ui/accordion";
+    31→import {
+    32→  getAnyPage,
+    33→  getServicePage,
+    34→  getAllSlugs,
+    35→  getHubSlugs,
+    36→  CATEGORY_META,
+    37→  ALL_SERVICE_PAGES,
+    38→  slugify,
+    39→} from "@/lib/catalog";
+    40→import { PROVINCES } from "@/lib/coverage-data";
+    41→import { INDUSTRIES } from "@/lib/seo-pages";
+    42→import { WHATSAPP_NUMBER } from "@/lib/landing-data";
+    43→import { pickTestimonialsForCatalogCategory, getAverageRating, getTestimonialsByCategory } from "@/lib/testimonials-data";
+    44→import { CERT_MAP } from "@/lib/catalog/certifications";
+    45→import { TestimonialGrid } from "@/components/testimonials/testimonial-card";
+    46→import { HubPage } from "../hub-page";
+    47→import { classifyPage } from "@/lib/seo-policy";
+    48→import { SITE_URL } from "@/lib/site";
+    49→import { langAlternates, pageLikeOf } from "@/lib/seo";
+    50→import { geoMetaForSlug } from "@/lib/geo";
+    51→import { resolveKatalogV2, KATALOG_V2_SLUGS } from "@/lib/katalog-v2";
+    52→import { KatalogV2Detail } from "@/components/catalog/katalog-v2-detail";
+    53→import { resolveKatalogV3, KATALOG_V3_SLUGS } from "@/lib/katalog-v3";
+    54→
+    55→// ============================================================
+    56→// STATIC EXPORT READY — catch-all [...slug]
+    57→// Menangani: /layanan/nib, /layanan/nib-jawa-barat,
+    58→//            /layanan/kerja-di-jepang-kaigo,
+    59→//            /layanan/kategori/pajak, /layanan/wilayah/bali
+    60→// ============================================================
+    61→
+    62→// DEV-GUARD (OOM fix): enumerasi 8.873+ path di dev memicu lonjakan memori
+    63→// (OOM-killer di sandbox 4GB). Dev → [] (render on-demand, tetap aman karena
+    64→// handler memanggil notFound() untuk slug di luar dataset); prod → pre-build
+    65→// penuh persis seperti sebelumnya.
+    66→export const dynamicParams = true;
+    67→
+    68→export function generateStaticParams(): { slug: string[] }[] {
+    69→  if (process.env.NODE_ENV !== "production") return [];
+    70→  // +500 halaman Katalog Premium v2 (PP-XXX) — pre-build di prod,
+    71→  // on-demand di dev (DEV-GUARD sama seperti 8.873 path lama).
+    72→  // +500 halaman Katalog Pro v3 (PP3-XXX) — pola sama.
+    73→  const paths = [...getAllSlugs(), ...getHubSlugs(), ...KATALOG_V2_SLUGS, ...KATALOG_V3_SLUGS];
+    74→  return paths.map((path) => ({ slug: path.split("/") }));
+    75→}
+    76→
+    77→export async function generateMetadata({
+    78→  params,
+    79→}: {
+    80→  params: Promise<{ slug: string[] }>;
+    81→}): Promise<Metadata> {
+    82→  const { slug } = await params;
+    83→  const page = getAnyPage(slug.join("/"));
+    84→  // Katalog Premium v2 (PP-XXX): slug di luar dataset lama → coba dataset v2
+    85→  const v2 = page ? undefined : resolveKatalogV2(slug.join("/"));
+    86→  if (v2) {
+    87→    const title = `${v2.name} — Harga ${new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(v2.discountPrice)} (${v2.code})`;
+    88→    const description = `Pengurusan ${v2.name} (${v2.code}) mulai ${new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(v2.discountPrice)} — estimasi ${v2.estimate}, diterbitkan ${v2.authority}. Syarat lengkap, garansi 100%, pendampingan hingga terbit oleh PusatPerizinan.com.`;
+    89→    return {
+    90→      title,
+    91→      description,
+    92→      alternates: langAlternates(`/layanan/${v2.slug}`),
+    93→      openGraph: { title, description, url: `/layanan/${v2.slug}`, type: "article", siteName: "PusatPerizinan.com", locale: "id_ID" },
+    94→    };
+    95→  }
+    96→  // Katalog Pro v3 (PP3-XXX): 500 layanan baru — metadata dengan keywords
+    97→  const v3 = page ? undefined : resolveKatalogV3(slug.join("/"));
+    98→  if (v3) {
+    99→    const fmtIdr = new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 });
+   100→    const title = `${v3.name} — Harga ${fmtIdr.format(v3.discountPrice)} (${v3.code})`;
+   101→    const description = `Jasa pengurusan ${v3.name} (${v3.code}) mulai ${fmtIdr.format(v3.discountPrice)} — estimasi ${v3.estimate}, diterbitkan ${v3.authority}, masa berlaku ${v3.validity}. Syarat lengkap, garansi 100%, pendampingan hingga terbit oleh PusatPerizinan.com.`;
+   102→    return {
+   103→      title,
+   104→      description,
+   105→      keywords: [
+   106→        v3.name.toLowerCase(),
+   107→        `biaya ${v3.name.toLowerCase()}`,
+   108→        `syarat ${v3.name.toLowerCase()}`,
+   109→        v3.code,
+   110→        v3.authority.toLowerCase(),
+   111→        `jasa pengurusan ${v3.authority.toLowerCase()}`,
+   112→      ],
+   113→      alternates: langAlternates(`/layanan/${v3.slug}`),
+   114→      openGraph: { title, description, url: `/layanan/${v3.slug}`, type: "article", siteName: "PusatPerizinan.com", locale: "id_ID" },
+   115→      twitter: { card: "summary_large_image", title, description },
+   116→    };
+   117→  }
+   118→
+   119→  if (!page) return {};
+   120→
+   121→  // M05: meta geo dinamis — provinsi/kota diekstrak dari slug halaman
+   122→  // (base/region/city/hub wilayah); halaman tanpa lokasi → geo undefined.
+   123→  const geo = geoMetaForSlug(page.slug);
+   124→
+   125→  return {
+   126→    title: page.title,
+   127→    description: page.metaDesc,
+   128→    keywords: page.keywords,
+   129→    // M04: canonical absolut + hreflang id-ID/x-default
+   130→    alternates: langAlternates(`/layanan/${page.slug}`),
+   131→    ...(geo ? { other: geo } : {}),
+   132→    openGraph: {
+   133→      title: page.title,
+   134→      description: page.metaDesc,
+   135→      url: `/layanan/${page.slug}`,
+   136→      type: "article",
+   137→      siteName: "PusatPerizinan.com",
+   138→      locale: "id_ID",
+   139→    },
+   140→    twitter: {
+   141→      card: "summary_large_image",
+   142→      title: page.title,
+   143→      description: page.metaDesc,
+   144→    },
+   145→    // P0-03: halaman tipis (tier D/E) dinilai noindex,follow
+   146→    robots: { index: classifyPage(pageLikeOf(page)).index, follow: true },
+   147→  };
+   148→}
+   149→
+   150→// ------------------------------------------------------------
+   151→// JSON-LD Structured Data (Service + FAQPage + BreadcrumbList)
+   152→// ------------------------------------------------------------
+   153→
+   154→function ServiceJsonLd({ page }: { page: NonNullable<ReturnType<typeof getServicePage>> }) {
+   155→  const isHub = page.kind === "hub";
+   156→  
+   157→
+   158→  const jsonLd: Record<string, unknown>[] = [];
+   159→
+   160→  // 1. Service schema
+   161→  if (!isHub) {
+   162→    jsonLd.push({
+   163→      "@context": "https://schema.org",
+   164→      "@type": "Service",
+   165→      name: page.h1,
+   166→      description: page.metaDesc,
+   167→      serviceType: page.category,
+   168→      provider: {
+   169→        "@type": "ProfessionalService",
+   170→        name: "PusatPerizinan.com",
+   171→        url: SITE_URL,
+   172→        telephone: "+6281269999910",
+   173→        address: {
+   174→          "@type": "PostalAddress",
+   175→          streetAddress: "Indonesia Stock Exchange Building, Tower 2, Lantai 5, SCBD Lot 13, Jl. Jend. Sudirman Kav. 52-53",
+   176→          addressLocality: "Jakarta Selatan",
+   177→          addressRegion: "DKI Jakarta",
+   178→          postalCode: "12190",
+   179→          addressCountry: "ID",
+   180→        },
+   181→        aggregateRating: {
+   182→          "@type": "AggregateRating",
+   183→          ratingValue: "4.9",
+   184→          reviewCount: "1247",
+   185→          bestRating: "5",
+   186→        },
+   187→      },
+   188→      areaServed: page.region
+   189→        ? { "@type": "Place", name: page.region }
+   190→        : page.country
+   191→          ? { "@type": "Country", name: page.country }
+   192→          : { "@type": "Country", name: "Indonesia" },
+   193→      ...(page.priceNumeric > 0
+   194→        ? {
+   195→            offers: {
+   196→              "@type": "Offer",
+   197→              price: page.priceNumeric,
+   198→              priceCurrency: "IDR",
+   199→              description: `Mulai dari ${page.price}`,
+   200→            },
+   201→          }
+   202→        : {}),
+   203→      ...(page.legalBasis ? { termsOfService: page.legalBasis } : {}),
+   204→      // Review klien + agregat di level Service (rich result bintang di SERP)
+   205→      aggregateRating: {
+   206→        "@type": "AggregateRating",
+   207→        ratingValue: "4.9",
+   208→        bestRating: "5",
+   209→        reviewCount: "1247",
+   210→      },
+   211→      review: pickTestimonialsForCatalogCategory(page.category, 3).map((t) => ({
+   212→        "@type": "Review",
+   213→        name: `${t.name} — ${t.service}`,
+   214→        reviewBody: t.content,
+   215→        datePublished: t.date,
+   216→        author: { "@type": "Person", name: t.name },
+   217→        publisher: {
+   218→          "@type": "Organization",
+   219→          name: "PusatPerizinan.com",
+   220→          url: SITE_URL,
+   221→        },
+   222→        reviewRating: {
+   223→          "@type": "Rating",
+   224→          ratingValue: String(t.rating),
+   225→          bestRating: "5",
+   226→          worstRating: "1",
+   227→        },
+   228→      })),
+   229→    });
+   230→  }
+   231→
+   232→  // 2. FAQPage schema
+   233→  if (page.faq.length > 0) {
+   234→    jsonLd.push({
+   235→      "@context": "https://schema.org",
+   236→      "@type": "FAQPage",
+   237→      mainEntity: page.faq.map((f) => ({
+   238→        "@type": "Question",
+   239→        name: f.q,
+   240→        acceptedAnswer: { "@type": "Answer", text: f.a },
+   241→      })),
+   242→    });
+   243→  }
+   244→
+   245→  // 2b. HowTo schema (ROADMAP-99 langkah 23) — halaman v1 menyimpan
+   246→  //     langkah proses di page.steps tapi belum punya schema-nya.
+   247→  //     HowTo memberi peluang rich result "langkah" di SERP.
+   248→  if (page.steps.length >= 3) {
+   249→    jsonLd.push({
+   250→      "@context": "https://schema.org",
+   251→      "@type": "HowTo",
+   252→      name: `Cara Mengurus ${page.h1}`,
+   253→      description: page.metaDesc,
+   254→      step: page.steps.map((st, i) => ({
+   255→        "@type": "HowToStep",
+   256→        position: i + 1,
+   257→        name: st.split(/[.:—–]/)[0].slice(0, 80) || `Langkah ${i + 1}`,
+   258→        text: st,
+   259→      })),
+   260→    });
+   261→  }
+   262→
+   263→  // 3. BreadcrumbList schema
+   264→  jsonLd.push({
+   265→    "@context": "https://schema.org",
+   266→    "@type": "BreadcrumbList",
+   267→    itemListElement: page.breadcrumbs.map((b, i) => ({
+   268→      "@type": "ListItem",
+   269→      position: i + 1,
+   270→      name: b.name,
+   271→      item: `${SITE_URL}${b.href}`,
+   272→    })),
+   273→  });
+   274→
+   275→  return (
+   276→    <script
+   277→      type="application/ld+json"
+   278→      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+   279→    />
+   280→  );
+   281→}
+   282→
+   283→// ------------------------------------------------------------
+   284→// KOMPONEN KECIL
+   285→// ------------------------------------------------------------
+   286→
+   287→function Breadcrumbs({ page }: { page: NonNullable<ReturnType<typeof getServicePage>> }) {
+   288→  return (
+   289→    <nav aria-label="Breadcrumb" className="mb-6">
+   290→      <ol className="flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground">
+   291→        {page.breadcrumbs.map((b, i) => {
+   292→          const isLast = i === page.breadcrumbs.length - 1;
+   293→          return (
+   294→            <li key={b.href} className="flex items-center gap-1.5">
+   295→              {i > 0 && <ChevronRight className="h-3.5 w-3.5 opacity-50" aria-hidden />}
+   296→              {isLast ? (
+   297→                <span className="font-medium text-foreground" aria-current="page">
+   298→                  {b.name}
+   299→                </span>
+   300→              ) : (
+   301→                <Link href={b.href} className="hover:text-primary transition-colors">
+   302→                  {b.name}
+   303→                </Link>
+   304→              )}
+   305→            </li>
+   306→          );
+   307→        })}
+   308→      </ol>
+   309→    </nav>
+   310→  );
+   311→}
+   312→
+   313→function LeadForm({ page }: { page: NonNullable<ReturnType<typeof getServicePage>> }) {
+   314→  return (
+   315→    <div className="rounded-2xl border-2 border-primary/15 bg-gradient-to-br from-primary/5 to-gold/5 p-6 md:p-8">
+   316→      <div className="flex items-center gap-2 mb-1.5">
+   317→        <Sparkles className="h-5 w-5 text-primary" aria-hidden />
+   318→        <h2 className="text-xl font-bold">Konsultasi Gratis — Balas Cepat</h2>
+   319→      </div>
+   320→      <p className="text-sm text-muted-foreground mb-5">
+   321→        Ceritakan kebutuhan {page.kind === "country" || page.kind === "sector" ? "profil & negara tujuan" : "kondisi usaha"} Anda. Tim kami balas dalam hitungan menit (jam kerja) dengan roadmap lengkap — biaya & timeline transparan.
+   322→      </p>
+   323→      <div className="grid gap-3 sm:grid-cols-2">
+   324→        <a
+   325→          href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+   326→            `Halo PusatPerizinan.com, saya ingin konsultasi tentang: ${page.h1}`
+   327→          )}`}
+   328→          target="_blank"
+   329→          rel="noopener noreferrer"
+   330→          className="flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-5 py-3.5 font-semibold text-white shadow-md transition-all hover:shadow-lg hover:brightness-105 min-h-[44px]"
+   331→        >
+   332→          <PhoneCall className="h-5 w-5" aria-hidden />
+   333→          Chat WhatsApp Sekarang
+   334→        </a>
+   335→        <a
+   336→          href="/konsultasi"
+   337→          className="flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3.5 font-semibold text-primary-foreground shadow-md transition-all hover:shadow-lg hover:brightness-110 min-h-[44px]"
+   338→        >
+   339→          <FileText className="h-5 w-5" aria-hidden />
+   340→          Form Konsultasi Lengkap
+   341→        </a>
+   342→      </div>
+   343→      <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-muted-foreground">
+   344→        <span className="flex items-center gap-1">
+   345→          <ShieldCheck className="h-3.5 w-3.5 text-primary" aria-hidden /> Garansi 100%
+   346→        </span>
+   347→        <span className="flex items-center gap-1">
+   348→          <BadgeCheck className="h-3.5 w-3.5 text-primary" aria-hidden /> Jalur resmi pemerintah
+   349→        </span>
+   350→        <span className="flex items-center gap-1">
+   351→          <Clock className="h-3.5 w-3.5 text-primary" aria-hidden /> Konsultasi tanpa komitmen
+   352→        </span>
+   353→      </div>
+   354→    </div>
+   355→  );
+   356→}
+   357→
+   358→function RegionLinks({ page }: { page: NonNullable<ReturnType<typeof getServicePage>> }) {
+   359→  // Untuk halaman induk perizinan & sertifikasi: tampilkan link × provinsi populer
+   360→  if (page.kind !== "base" || (page.category !== "perizinan" && page.category !== "sertifikasi")) return null;
+   361→  const popularProvinces = ["DKI Jakarta", "Jawa Barat", "Jawa Tengah", "Jawa Timur", "Bali", "Sumatera Utara", "Sulawesi Selatan", "Kalimantan Timur"];
+   362→  const links = PROVINCES.filter((p) => popularProvinces.includes(p.name));
+   363→
+   364→  return (
+   365→    <section className="mt-10" aria-labelledby="region-heading">
+   366→      <h2 id="region-heading" className="flex items-center gap-2 text-lg font-bold mb-4">
+   367→        <MapPin className="h-5 w-5 text-primary" aria-hidden />
+   368→        Tersedia di Provinsi Utama
+   369→      </h2>
+   370→      <div className="flex flex-wrap gap-2">
+   371→        {links.map((p) => (
+   372→          <Link
+   373→            key={p.name}
+   374→            href={`/layanan/${page.slug}-${slugify(p.name)}`}
+   375→            className="group flex items-center gap-1.5 rounded-full border bg-card px-3.5 py-1.5 text-sm font-medium transition-all hover:border-primary hover:bg-primary/5 hover:text-primary"
+   376→          >
+   377→            {p.name}
+   378→            <ArrowRight className="h-3.5 w-3.5 opacity-0 transition-opacity group-hover:opacity-100" aria-hidden />
+   379→          </Link>
+   380→        ))}
+   381→      </div>
+   382→    </section>
+   383→  );
+   384→}
+   385→
+   386→function RelatedSection({ page }: { page: NonNullable<ReturnType<typeof getServicePage>> }) {
+   387→  const related = page.related
+   388→    .map((slug) => ALL_SERVICE_PAGES.find((p) => p.slug === slug))
+   389→    .filter((p): p is NonNullable<typeof p> => Boolean(p));
+   390→
+   391→  if (related.length === 0) return null;
+   392→
+   393→  return (
+   394→    <section className="mt-12" aria-labelledby="related-heading">
+   395→      <h2 id="related-heading" className="flex items-center gap-2 text-xl font-bold mb-5">
+   396→        <Globe2 className="h-5 w-5 text-primary" aria-hidden />
+   397→        Layanan Terkait
+   398→      </h2>
+   399→      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+   400→        {related.map((r) => (
+   401→          <Link
+   402→            key={r.slug}
+   403→            href={`/layanan/${r.slug}`}
+   404→            className="group rounded-xl border bg-card p-4 transition-all hover:border-primary/40 hover:shadow-md"
+   405→          >
+   406→            <Badge variant="secondary" className="mb-2 text-[10px] uppercase tracking-wide">
+   407→              {CATEGORY_META[r.category].label.split(" ")[0]}
+   408→            </Badge>
+   409→            <h3 className="font-semibold leading-snug group-hover:text-primary transition-colors">
+   410→              {r.h1}
+   411→            </h3>
+   412→            <p className="mt-1.5 text-xs text-muted-foreground line-clamp-2">{r.metaDesc}</p>
+   413→          </Link>
+   414→        ))}
+   415→      </div>
+   416→      <div className="mt-4">
+   417→        <Link
+   418→          href="/layanan"
+   419→          className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+   420→        >
+   421→          Lihat semua layanan
+   422→          <ArrowRight className="h-4 w-4" aria-hidden />
+   423→        </Link>
+   424→      </div>
+   425→    </section>
+   426→  );
+   427→}
+   428→
+   429→/**
+   430→ * Deep-link ekspansi (Task 25): dari halaman layanan dasar →
+   431→ * /biaya/{slug}, /syarat/{slug}, dan matriks industri relevan.
+   432→ * Hanya tampil untuk kind "base" (110 halaman induk).
+   433→ */
+   434→function DeepLinksSection({ page }: { page: NonNullable<ReturnType<typeof getServicePage>> }) {
+   435→  if (page.kind !== "base") return null;
+   436→  const industryLinks = INDUSTRIES.flatMap((i) =>
+   437→    i.services.some((s) => s.id === page.slug)
+   438→      ? [{ label: `${page.h1} untuk ${i.name}`, href: `/industri/${i.slug}/${page.slug}` }]
+   439→      : []
+   440→  ).slice(0, 3);
+   441→  const links = [
+   442→    { label: `Biaya ${page.h1} — rincian & cara hemat`, href: `/biaya/${page.slug}` },
+   443→    { label: `Syarat ${page.h1} — checklist dokumen`, href: `/syarat/${page.slug}` },
+   444→    ...industryLinks,
+   445→  ];
+   446→  return (
+   447→    <section className="mt-12" aria-labelledby="deep-links-heading">
+   448→      <h2 id="deep-links-heading" className="flex items-center gap-2 text-xl font-bold mb-5">
+   449→        <Compass className="h-5 w-5 text-primary" aria-hidden />
+   450→        Panduan Detail Layanan Ini
+   451→      </h2>
+   452→      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+   453→        {links.map((l) => (
+   454→          <Link
+   455→            key={l.href}
+   456→            href={l.href}
+   457→            className="group rounded-xl border bg-card p-4 transition-all hover:border-primary/40 hover:shadow-md"
+   458→          >
+   459→            <h3 className="font-semibold leading-snug group-hover:text-primary transition-colors">{l.label}</h3>
+   460→            <span className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-primary">
+   461→              Buka halaman <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+   462→            </span>
+   463→          </Link>
+   464→        ))}
+   465→      </div>
+   466→    </section>
+   467→  );
+   468→}
+   469→
+   470→/**
+   471→ * Section testimoni klien — 3 ulasan relevan per kategori layanan.
+   472→ * Tampil di 1.300+ halaman programatik (E-E-A-T + interlink ke /testimoni).
+   473→ */
+   474→function ServiceTestimonials({ page }: { page: NonNullable<ReturnType<typeof getServicePage>> }) {
+   475→  // Kelompok sertifikasi (untuk label & testimoni yang relevan)
+   476→  const certGroup =
+   477→    page.category === "sertifikasi"
+   478→      ? CERT_MAP.get(page.kind === "region" ? page.parent ?? "" : page.slug)?.group ?? null
+   479→      : null;
+   480→  const testimonials =
+   481→    certGroup === "travel-ibadah"
+   482→      ? getTestimonialsByCategory("umroh-haji-travel").slice(0, 3)
+   483→      : pickTestimonialsForCatalogCategory(page.category, 3);
+   484→  const catLabel =
+   485→    page.category === "pajak"
+   486→      ? "Perpajakan"
+   487→      : page.category === "pmi"
+   488→        ? "PMI & Kerja Luar Negeri"
+   489→        : page.category === "virtual-office"
+   490→          ? "Virtual Office & Alamat Bisnis"
+   491→          : certGroup
+   492→            ? "Sertifikasi & ISO"
+   493→            : "Perizinan";
+   494→  const catSlug =
+   495→    page.category === "pajak"
+   496→      ? "perpajakan-coretax"
+   497→      : page.category === "pmi"
+   498→        ? "kerja-luar-negeri-pmi"
+   499→        : page.category === "virtual-office"
+   500→          ? "perizinan-usaha"
+   501→          : certGroup === "travel-ibadah"
+   502→            ? "umroh-haji-travel"
+   503→            : "sertifikasi-halal";
+   504→
+   505→  return (
+   506→    <section className="mt-12" aria-labelledby="testi-heading">
+   507→      <div className="flex flex-wrap items-end justify-between gap-3 mb-5">
+   508→        <div>
+   509→          <h2 id="testi-heading" className="flex items-center gap-2 text-xl font-bold">
+   510→            <Star className="h-5 w-5 text-amber-400" aria-hidden />
+   511→            Testimoni Klien untuk Layanan {catLabel}
+   512→          </h2>
+   513→          <p className="mt-1.5 text-sm text-muted-foreground">
+   514→            Rating rata-rata {getAverageRating().toFixed(1).replace(".", ",")} dari 5 — ulasan klien terverifikasi.
+   515→          </p>
+   516→        </div>
+   517→        <Link
+   518→          href={`/testimoni/${catSlug}`}
+   519→          className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+   520→        >
+   521→          Lihat semua testimoni
+   522→          <ArrowRight className="h-4 w-4" aria-hidden />
+   523→        </Link>
+   524→      </div>
+   525→      <TestimonialGrid items={testimonials} truncateTo={220} />
+   526→    </section>
+   527→  );
+   528→}
+   529→
+   530→// ------------------------------------------------------------
+   531→// PAGE
+   532→// ------------------------------------------------------------
+   533→
+   534→export default async function ServiceDetailPage({
+   535→  params,
+   536→}: {
+   537→  params: Promise<{ slug: string[] }>;
+   538→}) {
+   539→  const { slug } = await params;
+   540→  const page = getAnyPage(slug.join("/"));
+   541→  // Katalog Premium v2 (PP-XXX) — branch sebelum notFound()
+   542→  const v2 = page ? undefined : resolveKatalogV2(slug.join("/"));
+   543→  if (v2) return <KatalogV2Detail service={v2} />;
+   544→  // Katalog Pro v3 (PP3-XXX) — komponen detail bersama (v2/v3)
+   545→  const v3 = page ? undefined : resolveKatalogV3(slug.join("/"));
+   546→  if (v3) return <KatalogV2Detail service={v3} />;
+   547→  if (!page) notFound();
+   548→
+   549→  const isHub = page.kind === "hub";
+   550→
+   551→  if (isHub) {
+   552→    return <HubPage page={page} />;
+   553→  }
+   554→
+   555→  return (
+   556→    <main className="min-h-screen bg-background">
+   557→      <ServiceJsonLd page={page} />
+   558→
+   559→      {/* Header mini (konsisten dengan situs) */}
+   560→      <div className="border-b bg-card/50">
+   561→        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+   562→          <Link href="/" className="flex items-center gap-2.5" aria-label="Kembali ke beranda">
+   563→            <img src="/logo-icon.png" alt="Logo PusatPerizinan.com" className="h-8 w-8" />
+   564→            <span className="font-bold text-[15px] tracking-tight">
+   565→              Pusat<span className="text-primary">Perizinan</span>
+   566→              <span className="text-gold">.com</span>
+   567→            </span>
+   568→          </Link>
+   569→          <Link
+   570→            href="/"
+   571→            className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+   572→          >
+   573→            <ArrowLeft className="h-4 w-4" aria-hidden />
+   574→            Beranda
+   575→          </Link>
+   576→        </div>
+   577→      </div>
+   578→
+   579→      <article className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+   580→        <Breadcrumbs page={page} />
+   581→
+   582→        {/* Hero */}
+   583→        <header className="mb-8">
+   584→          <div className="flex flex-wrap items-center gap-2 mb-3">
+   585→            <Badge className="bg-primary/10 text-primary border border-primary/20 hover:bg-primary/15">
+   586→              {CATEGORY_META[page.category].label}
+   587→            </Badge>
+   588→            {page.region && (
+   589→              <Badge variant="outline" className="gap-1">
+   590→                <MapPin className="h-3 w-3" aria-hidden /> {page.region}
+   591→              </Badge>
+   592→            )}
+   593→            {page.country && (
+   594→              <Badge variant="outline" className="gap-1">
+   595→                <Globe2 className="h-3 w-3" aria-hidden /> {page.country}
+   596→              </Badge>
+   597→            )}
+   598→          </div>
+   599→          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight leading-tight text-balance">
+   600→            {page.h1}
+   601→          </h1>
+   602→          <p className="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl">
+   603→            {page.intro}
+   604→          </p>
+   605→
+   606→          {/* Quick info bar */}
+   607→          <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
+   608→            <div className="rounded-xl border bg-card p-3.5">
+   609→              <p className="text-[11px] uppercase tracking-wide text-muted-foreground font-semibold">Mulai dari</p>
+   610→              <p className="mt-0.5 text-lg font-bold text-primary">{page.price}</p>
+   611→            </div>
+   612→            <div className="rounded-xl border bg-card p-3.5">
+   613→              <p className="text-[11px] uppercase tracking-wide text-muted-foreground font-semibold">Durasi</p>
+   614→              <p className="mt-0.5 text-sm font-semibold leading-snug">{page.duration}</p>
+   615→            </div>
+   616→            <div className="rounded-xl border bg-card p-3.5">
+   617→              <p className="text-[11px] uppercase tracking-wide text-muted-foreground font-semibold">Untuk</p>
+   618→              <p className="mt-0.5 text-sm font-semibold leading-snug">{page.audience.slice(0, 2).join(" & ")}</p>
+   619→            </div>
+   620→            <div className="rounded-xl border bg-card p-3.5">
+   621→              <p className="text-[11px] uppercase tracking-wide text-muted-foreground font-semibold">Garansi</p>
+   622→              <p className="mt-0.5 text-sm font-semibold leading-snug text-primary">100% uang kembali</p>
+   623→            </div>
+   624→          </div>
+   625→        </header>
+   626→
+   627→        {/* Konten utama + sidebar CTA */}
+   628→        <div className="grid gap-8 lg:grid-cols-[1fr_340px]">
+   629→          <div className="space-y-8 min-w-0">
+   630→            {/* Deskripsi panjang */}
+   631→            <section aria-labelledby="tentang">
+   632→              <h2 id="tentang" className="flex items-center gap-2 text-xl font-bold mb-4">
+   633→                <FileText className="h-5 w-5 text-primary" aria-hidden />
+   634→                {isHub ? "Kenapa PusatPerizinan.com" : `Tentang ${page.kind === "base" ? "Layanan Ini" : "Layanan di Wilayah Ini"}`}
+   635→              </h2>
+   636→              <div className="space-y-3.5 text-[15px] leading-relaxed text-foreground/90">
+   637→                {page.longDesc.map((p, i) => (
+   638→                  <p key={i}>{p}</p>
+   639→                ))}
+   640→              </div>
+   641→              {page.legalBasis && (
+   642→                <div className="mt-4 flex items-start gap-2.5 rounded-xl bg-muted/60 p-4 text-sm">
+   643→                  <ShieldCheck className="h-4 w-4 mt-0.5 shrink-0 text-primary" aria-hidden />
+   644→                  <p>
+   645→                    <strong>Dasar hukum:</strong> {page.legalBasis}
+   646→                    {page.authority && (
+   647→                      <>
+   648→                        {" "}· <strong>Instansi:</strong> {page.authority}
+   649→                      </>
+   650→                    )}
+   651→                  </p>
+   652→                </div>
+   653→              )}
+   654→            </section>
+   655→
+   656→            {/* Fitur */}
+   657→            {page.features.length > 0 && (
+   658→              <section aria-labelledby="fitur">
+   659→                <h2 id="fitur" className="flex items-center gap-2 text-xl font-bold mb-4">
+   660→                  <ListChecks className="h-5 w-5 text-primary" aria-hidden />
+   661→                  Yang Anda Dapatkan
+   662→                </h2>
+   663→                <ul className="grid gap-2.5 sm:grid-cols-2">
+   664→                  {page.features.map((f, i) => (
+   665→                    <li key={i} className="flex items-start gap-2.5 rounded-xl border bg-card p-3.5 text-sm">
+   666→                      <CheckCircle2 className="h-4.5 w-4.5 shrink-0 mt-0.5 text-primary" aria-hidden />
+   667→                      <span className="leading-snug">{f}</span>
+   668→                    </li>
+   669→                  ))}
+   670→                </ul>
+   671→              </section>
+   672→            )}
+   673→
+   674→            {/* Persyaratan */}
+   675→            {page.requirements.length > 0 && (
+   676→              <section aria-labelledby="syarat">
+   677→                <h2 id="syarat" className="flex items-center gap-2 text-xl font-bold mb-4">
+   678→                  <FileText className="h-5 w-5 text-primary" aria-hidden />
+   679→                  Persyaratan Dokumen
+   680→                </h2>
+   681→                <ol className="space-y-2">
+   682→                  {page.requirements.map((r, i) => (
+   683→                    <li key={i} className="flex items-start gap-3 rounded-xl border bg-card p-3.5 text-sm">
+   684→                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">
+   685→                        {i + 1}
+   686→                      </span>
+   687→                      <span className="leading-snug">{r}</span>
+   688→                    </li>
+   689→                  ))}
+   690→                </ol>
+   691→              </section>
+   692→            )}
+   693→
+   694→            {/* Proses */}
+   695→            {page.steps.length > 0 && (
+   696→              <section aria-labelledby="proses">
+   697→                <h2 id="proses" className="flex items-center gap-2 text-xl font-bold mb-4">
+   698→                  <Clock className="h-5 w-5 text-primary" aria-hidden />
+   699→                  Proses Pengurusan
+   700→                </h2>
+   701→                <div className="relative space-y-0 pl-1">
+   702→                  {page.steps.map((s, i) => (
+   703→                    <div key={i} className="relative flex gap-4 pb-5 last:pb-0">
+   704→                      {/* Timeline line */}
+   705→                      {i < page.steps.length - 1 && (
+   706→                        <div className="absolute left-[15px] top-8 h-full w-0.5 bg-primary/15" aria-hidden />
+   707→                      )}
+   708→                      <span className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
+   709→                        {i + 1}
+   710→                      </span>
+   711→                      <p className="pt-1.5 text-sm leading-relaxed">{s}</p>
+   712→                    </div>
+   713→                  ))}
+   714→                </div>
+   715→              </section>
+   716→            )}
+   717→
+   718→            {/* FAQ */}
+   719→            {page.faq.length > 0 && (
+   720→              <section aria-labelledby="faq">
+   721→                <h2 id="faq" className="flex items-center gap-2 text-xl font-bold mb-4">
+   722→                  <Users className="h-5 w-5 text-primary" aria-hidden />
+   723→                  Pertanyaan yang Sering Diajukan
+   724→                </h2>
+   725→                <Accordion type="single" collapsible className="w-full">
+   726→                  {page.faq.map((f, i) => (
+   727→                    <AccordionItem key={i} value={`faq-${i}`}>
+   728→                      <AccordionTrigger className="text-left text-[15px] font-semibold hover:text-primary hover:no-underline">
+   729→                        {f.q}
+   730→                      </AccordionTrigger>
+   731→                      <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
+   732→                        {f.a}
+   733→                      </AccordionContent>
+   734→                    </AccordionItem>
+   735→                  ))}
+   736→                </Accordion>
+   737→              </section>
+   738→            )}
+   739→
+   740→            <RegionLinks page={page} />
+   741→            <ServiceTestimonials page={page} />
+   742→            <RelatedSection page={page} />
+   743→            <DeepLinksSection page={page} />
+   744→          </div>
+   745→
+   746→          {/* Sidebar sticky */}
+   747→          <aside className="lg:sticky lg:top-24 lg:self-start space-y-4">
+   748→            <LeadForm page={page} />
+   749→
+   750→            <div className="rounded-2xl border bg-card p-5">
+   751→              <h3 className="text-sm font-bold mb-3 flex items-center gap-1.5">
+   752→                <Building2 className="h-4 w-4 text-primary" aria-hidden />
+   753→                Info Cepat
+   754→              </h3>
+   755→              <dl className="space-y-2.5 text-sm">
+   756→                <div className="flex justify-between gap-3">
+   757→                  <dt className="text-muted-foreground">Kategori</dt>
+   758→                  <dd className="font-medium text-right">{CATEGORY_META[page.category].label.split(" & ")[0]}</dd>
+   759→                </div>
+   760→                <div className="flex justify-between gap-3">
+   761→                  <dt className="text-muted-foreground">Biaya mulai</dt>
+   762→                  <dd className="font-medium text-primary">{page.price}</dd>
+   763→                </div>
+   764→                <div className="flex justify-between gap-3">
+   765→                  <dt className="text-muted-foreground">Estimasi</dt>
+   766→                  <dd className="font-medium text-right">{page.duration}</dd>
+   767→                </div>
+   768→                {page.authority && (
+   769→                  <div className="pt-1 border-t">
+   770→                    <dt className="text-muted-foreground mt-2">Instansi resmi</dt>
+   771→                    <dd className="font-medium mt-0.5 leading-snug">{page.authority}</dd>
+   772→                  </div>
+   773→                )}
+   774→              </dl>
+   775→            </div>
+   776→
+   777→            <div className="rounded-2xl bg-[oklch(0.23_0.03_165)] p-5 text-emerald-50">
+   778→              <p className="text-sm leading-relaxed">
+   779→                <strong className="text-emerald-300">1.247+ klien</strong> di 38 provinsi sudah kami bantu dengan rating{" "}
+   780→                <strong className="text-emerald-300">4,9/5</strong>.
+   781→              </p>
+   782→              <p className="mt-2 text-xs text-emerald-100/70 leading-relaxed">
+   783→                3.899+ izin terbit · Garansi 100% · Support WhatsApp setelah selesai
+   784→              </p>
+   785→            </div>
+   786→          </aside>
+   787→        </div>
+   788→      </article>
+   789→    </main>
+   790→  );
+   791→}
+   792→

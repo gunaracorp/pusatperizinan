@@ -3,6 +3,7 @@ import {
   ArrowRight,
   BadgeCheck,
   Banknote,
+  BookOpen,
   Building2,
   CalendarClock,
   CheckCircle2,
@@ -37,6 +38,10 @@ import {
   pickProvinceLinks,
   snippetAnswer,
 } from "@/lib/catalog/detail-seo";
+import {
+  buildRichParagraphs,
+  richSectionTitle,
+} from "@/lib/catalog/rich-content";
 
 /** Tipe layanan katalog bersama (v2 & v3) — categoryCode dilebarkan ke string. */
 export type CatalogDetailService = Omit<KatalogV2Service, "categoryCode"> & { categoryCode: string };
@@ -197,6 +202,18 @@ export function KatalogV2Detail({ service: s }: { service: CatalogDetailService 
   const faqs = buildFaqs(s);
   const steps = buildHowToSteps(s);
   const provinceLinks = pickProvinceLinks(s.code);
+  // ROADMAP-99 langkah 33 — prosa panjang anti-thin-content (±300 kata)
+  const richTitle = richSectionTitle(s.code, s.name);
+  const richParagraphs = buildRichParagraphs({
+    seed: s.code,
+    name: s.name,
+    authority: s.authority,
+    category: s.category,
+    estimate: s.estimate,
+    validity: s.validity,
+    requirements: s.requirements || "",
+    priceLabel: fmtIdr(s.discountPrice),
+  });
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
@@ -369,6 +386,22 @@ export function KatalogV2Detail({ service: s }: { service: CatalogDetailService 
                 </ol>
               </section>
 
+              {/* PANDUAN LENGKAP — ROADMAP-99 langkah 33: prosa panjang
+                  ±300 kata per layanan (konteks, dokumen, timeline jujur,
+                  kewajiban pasca-terbit) — menutup gap thin-content pada
+                  1.000 halaman katalog v2/v3. Deterministik per kode. */}
+              <section aria-labelledby="panduan" className="rounded-2xl border bg-card p-6">
+                <h2 id="panduan" className="flex items-center gap-2 text-lg font-bold">
+                  <BookOpen className="h-5 w-5 shrink-0 text-emerald-600" aria-hidden />
+                  <span className="min-w-0 break-words">{richTitle}</span>
+                </h2>
+                <div className="mt-4 space-y-3.5 text-[15px] leading-relaxed text-foreground/90">
+                  {richParagraphs.map((p, i) => (
+                    <p key={i}>{p}</p>
+                  ))}
+                </div>
+              </section>
+
               {/* CATATAN */}
               {s.notes && (
                 <section className="rounded-2xl border border-emerald-200 bg-emerald-50/60 p-5">
@@ -395,10 +428,13 @@ export function KatalogV2Detail({ service: s }: { service: CatalogDetailService 
                       <li key={item.code} className="flex items-center justify-between gap-3 rounded-xl border bg-card px-4 py-3">
                         <div className="min-w-0">
                           <p className="text-[11px] font-bold text-emerald-700">{i + 1}. {item.code}{item.self ? " — layanan ini" : ""}</p>
+                          {/* block wajib pada <Link>: <a> default inline —
+                              truncate tanpa display:block tidak memotong teks,
+                              meluberkan scrollWidth di mobile (nama panjang). */}
                           {item.self ? (
                             <p className="truncate text-sm font-semibold">{item.name}</p>
                           ) : (
-                            <Link href={`/layanan/${item.slug}`} className="truncate text-sm font-semibold hover:text-primary hover:underline">
+                            <Link href={`/layanan/${item.slug}`} className="block w-full truncate text-sm font-semibold hover:text-primary hover:underline">
                               {item.name}
                             </Link>
                           )}

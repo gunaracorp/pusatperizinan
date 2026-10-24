@@ -1,0 +1,580 @@
+     1→import Link from "next/link";
+     2→import {
+     3→  ArrowRight,
+     4→  BadgeCheck,
+     5→  Banknote,
+     6→  Building2,
+     7→  CalendarClock,
+     8→  CheckCircle2,
+     9→  Clock,
+    10→  Compass,
+    11→  HelpCircle,
+    12→  Info,
+    13→  ListChecks,
+    14→  MapPin,
+    15→  MessageCircle,
+    16→  Percent,
+    17→  ShieldCheck,
+    18→  ShoppingCart,
+    19→  Sparkles,
+    20→  Star,
+    21→  Users,
+    22→} from "lucide-react";
+    23→import { Header } from "@/components/landing/header";
+    24→import { Footer } from "@/components/landing/footer";
+    25→import {
+    26→  Accordion,
+    27→  AccordionContent,
+    28→  AccordionItem,
+    29→  AccordionTrigger,
+    30→} from "@/components/ui/accordion";
+    31→import type { KatalogV2Service } from "@/lib/katalog-v2";
+    32→import { katalogV2ByCategory, KATALOG_V2 } from "@/lib/katalog-v2";
+    33→import { katalogV3ByCategory, KATALOG_V3 } from "@/lib/katalog-v3";
+    34→import {
+    35→  buildFaqs,
+    36→  buildHowToSteps,
+    37→  pickProvinceLinks,
+    38→  snippetAnswer,
+    39→} from "@/lib/catalog/detail-seo";
+    40→
+    41→/** Tipe layanan katalog bersama (v2 & v3) — categoryCode dilebarkan ke string. */
+    42→export type CatalogDetailService = Omit<KatalogV2Service, "categoryCode"> & { categoryCode: string };
+    43→import { SITE_NAME, SITE_URL, absUrl, TRUST_METRICS } from "@/lib/site";
+    44→import { WHATSAPP_NUMBER } from "@/lib/landing-data";
+    45→
+    46→// ============================================================
+    47→// PUSATPERIZINAN.COM — Halaman Detail Katalog Premium v2 (PP-XXX)
+    48→// Server component. URL: /layanan/{slug}-pp-{cat}-{nnn}
+    49→// SEO: JSON-LD BreadcrumbList + Product(+Offer harga diskon) —
+    50→// memungkinkan rich result harga di Google.
+    51→// ============================================================
+    52→
+    53→const fmtIdr = (n: number) =>
+    54→  new Intl.NumberFormat("id-ID", {
+    55→    style: "currency",
+    56→    currency: "IDR",
+    57→    maximumFractionDigits: 0,
+    58→  }).format(n);
+    59→
+    60→/** FNV-1a — deterministik: angka/bundle konsisten per layanan (stabil antar build). */
+    61→function hashU32(seed: string): number {
+    62→  let h = 2166136261;
+    63→  for (let i = 0; i < seed.length; i++) {
+    64→    h ^= seed.charCodeAt(i);
+    65→    h = Math.imul(h, 16777619);
+    66→  }
+    67→  return h >>> 0;
+    68→}
+    69→
+    70→/** 2 layanan pelengkap dari kategori BERBEDA — deterministik per kode. */
+    71→function pickBundle(code: string, categoryCode: string, isV3: boolean): CatalogDetailService[] {
+    72→  const pool: CatalogDetailService[] = (isV3 ? KATALOG_V3 : KATALOG_V2).filter(
+    73→    (x) => x.categoryCode !== categoryCode
+    74→  );
+    75→  if (pool.length === 0) return [];
+    76→  const h = hashU32(code);
+    77→  const i1 = h % pool.length;
+    78→  let i2 = (i1 + 1 + ((h >>> 8) % Math.max(1, pool.length - 1))) % pool.length;
+    79→  if (i2 === i1) i2 = (i1 + 1) % pool.length;
+    80→  return [pool[i1], pool[i2]];
+    81→}
+    82→
+    83→/** Klaim permintaan bulanan kategori — deterministik per kode (konsisten, bukan acak tiap load). */
+    84→function monthlyDemand(code: string): number {
+    85→  return 8 + (hashU32(code) % 14);
+    86→}
+    87→
+    88→// ============================================================
+    89→// ROADMAP-99 langkah 23 — JSON-LD FAQPage + HowTo (1.000 halaman
+    90→// Katalog v2/v3). Digabung ke @graph yang sama dengan
+    91→// BreadcrumbList + Product agar satu script per halaman.
+    92→// ============================================================
+    93→
+    94→export function katalogV2SeoJsonLd(s: CatalogDetailService) {
+    95→  const faqs = buildFaqs(s);
+    96→  const steps = buildHowToSteps(s);
+    97→  const url = `${absUrl("/layanan")}/${s.slug}`;
+    98→
+    99→  const faqPage = {
+   100→    "@type": "FAQPage",
+   101→    "@id": url + "#faq",
+   102→    mainEntity: faqs.map((f) => ({
+   103→      "@type": "Question",
+   104→      name: f.q,
+   105→      acceptedAnswer: { "@type": "Answer", text: f.a },
+   106→    })),
+   107→  };
+   108→
+   109→  const howTo = {
+   110→    "@type": "HowTo",
+   111→    "@id": url + "#howto",
+   112→    name: `Cara Mengurus ${s.name} (${s.code})`,
+   113→    description: `Langkah-langkah pengurusan ${s.name} oleh ${SITE_NAME} — dari konsultasi sampai izin terbit di tangan Anda.`,
+   114→    totalTime: s.estimate,
+   115→    step: steps.map((st, i) => ({
+   116→      "@type": "HowToStep",
+   117→      position: i + 1,
+   118→      name: st.name,
+   119→      text: st.text,
+   120→      url: url + `#langkah-${i + 1}`,
+   121→    })),
+   122→  };
+   123→
+   124→  return { faqPage, howTo };
+   125→}
+   126→
+   127→export function katalogV2JsonLd(s: CatalogDetailService) {
+   128→  const url = `${absUrl("/layanan")}/${s.slug}`;
+   129→  const isV3 = s.code.startsWith("PP3-");
+   130→  // ROADMAP-99 langkah 23: FAQPage + HowTo ikut dalam @graph yang sama
+   131→  const { faqPage, howTo } = katalogV2SeoJsonLd(s);
+   132→  return {
+   133→    "@context": "https://schema.org",
+   134→    "@graph": [
+   135→      {
+   136→        "@type": "BreadcrumbList",
+   137→        itemListElement: [
+   138→          { "@type": "ListItem", position: 1, name: "Beranda", item: SITE_URL + "/" },
+   139→          { "@type": "ListItem", position: 2, name: "Katalog Layanan", item: absUrl("/katalog") },
+   140→          { "@type": "ListItem", position: 3, name: s.category, item: absUrl(isV3 ? "/katalog#pro" : "/katalog#premium") },
+   141→          { "@type": "ListItem", position: 4, name: s.name, item: url },
+   142→        ],
+   143→      },
+   144→      {
+   145→        "@type": "Product",
+   146→        "@id": url + "#product",
+   147→        name: `${s.name} — ${s.code}`,
+   148→        sku: s.code,
+   149→        description:
+   150→          s.description ||
+   151→          `Jasa pengurusan ${s.name} oleh ${SITE_NAME}. Estimasi ${s.estimate}, diterbitkan ${s.authority}.`,
+   152→        brand: { "@type": "Brand", name: SITE_NAME },
+   153→        category: s.category,
+   154→        offers: {
+   155→          "@type": "Offer",
+   156→          url,
+   157→          priceCurrency: "IDR",
+   158→          price: s.discountPrice,
+   159→          availability: "https://schema.org/InStock",
+   160→          itemCondition: "https://schema.org/NewCondition",
+   161→        },
+   162→        aggregateRating: {
+   163→          "@type": "AggregateRating",
+   164→          ratingValue: TRUST_METRICS.rating,
+   165→          reviewCount: TRUST_METRICS.reviewCount,
+   166→        },
+   167→      },
+   168→      faqPage,
+   169→      howTo,
+   170→    ],
+   171→  };
+   172→}
+   173→
+   174→export function KatalogV2Detail({ service: s }: { service: CatalogDetailService }) {
+   175→  const isV3 = s.code.startsWith("PP3-");
+   176→  const waText = encodeURIComponent(
+   177→    `Halo ${SITE_NAME}, saya tertarik layanan ${s.name} (${s.code}) — harga katalog ${fmtIdr(s.discountPrice)}. Mohon info proses & dokumen yang perlu disiapkan.`
+   178→  );
+   179→  const checkoutHref = `/checkout?paket=${encodeURIComponent(s.code)}`;
+   180→  const v3Related = katalogV3ByCategory(s.categoryCode);
+   181→  const related = (v3Related.length > 0 ? v3Related : katalogV2ByCategory(s.categoryCode))
+   182→    .filter((x) => x.code !== s.code)
+   183→    .slice(0, 6);
+   184→  const requirements = s.requirements ? s.requirements.split(/,\s*/).filter(Boolean) : [];
+   185→
+   186→  // BUNDLE — 2 pelengkap lintas kategori + hemat 10% (deterministik per kode)
+   187→  const bundle = pickBundle(s.code, s.categoryCode, isV3);
+   188→  const bundleTotal = bundle.reduce((acc, b) => acc + b.discountPrice, s.discountPrice);
+   189→  const bundlePrice = Math.round(bundleTotal * 0.9);
+   190→  const bundleHemat = bundleTotal - bundlePrice;
+   191→  const bundleWa = encodeURIComponent(
+   192→    `Halo ${SITE_NAME}, saya mau PAKET HEMAT bundle:\n1. ${s.name} (${s.code})\n${bundle.map((b, i) => `${i + 2}. ${b.name} (${b.code})`).join("\n")}\nTotal katalog ${fmtIdr(bundleTotal)} — mohon harga bundle & invoice pembayaran.`
+   193→  );
+   194→  const demand = monthlyDemand(s.code);
+   195→  // ROADMAP-99 langkah 23/24/27 — konten SEO deterministik per kode
+   196→  const snippet = snippetAnswer(s);
+   197→  const faqs = buildFaqs(s);
+   198→  const steps = buildHowToSteps(s);
+   199→  const provinceLinks = pickProvinceLinks(s.code);
+   200→
+   201→  return (
+   202→    <div className="flex min-h-screen flex-col bg-background">
+   203→      <script
+   204→        type="application/ld+json"
+   205→        dangerouslySetInnerHTML={{ __html: JSON.stringify(katalogV2JsonLd(s)) }}
+   206→      />
+   207→      <Header />
+   208→      <main className="flex-1">
+   209→        <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-12">
+   210→          {/* Breadcrumb */}
+   211→          <nav aria-label="Breadcrumb" className="mb-6 text-sm text-muted-foreground">
+   212→            <ol className="flex flex-wrap items-center gap-1.5">
+   213→              <li><Link href="/" className="hover:text-primary">Beranda</Link></li>
+   214→              <li aria-hidden>/</li>
+   215→              <li><Link href="/katalog" className="hover:text-primary">Katalog Layanan</Link></li>
+   216→              <li aria-hidden>/</li>
+   217→              <li><Link href={isV3 ? "/katalog#pro" : "/katalog#premium"} className="hover:text-primary">{s.category}</Link></li>
+   218→              <li aria-hidden>/</li>
+   219→              <li aria-current="page" className="font-semibold text-foreground">{s.name}</li>
+   220→            </ol>
+   221→          </nav>
+   222→
+   223→          {/* HERO */}
+   224→          <header>
+   225→            <div className="flex flex-wrap items-center gap-2">
+   226→              <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-bold text-primary">
+   227→                <BadgeCheck className="h-3.5 w-3.5" aria-hidden />
+   228→                {s.code}
+   229→              </span>
+   230→              <span className="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
+   231→                {isV3 ? "Katalog Pro" : "Katalog Premium"} · {s.category}
+   232→              </span>
+   233→              {s.savings > 0 && (
+   234→                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700">
+   235→                  <Percent className="h-3.5 w-3.5" aria-hidden />
+   236→                  Diskon {s.discountPct}%
+   237→                </span>
+   238→              )}
+   239→            </div>
+   240→            <h1 className="mt-4 max-w-3xl text-3xl font-extrabold tracking-tight sm:text-4xl">
+   241→              {s.name}
+   242→            </h1>
+   243→            <p className="mt-4 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+   244→              {s.description || `Jasa pengurusan ${s.name} lengkap oleh tim ${SITE_NAME} — pendampingan hingga terbit.`}
+   245→            </p>
+   246→            <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
+   247→              <span className="inline-flex items-center gap-1.5">
+   248→                <Clock className="h-4 w-4 text-emerald-600" aria-hidden /> Estimasi: <strong className="text-foreground">{s.estimate}</strong>
+   249→              </span>
+   250→              <span className="inline-flex items-center gap-1.5">
+   251→                <CalendarClock className="h-4 w-4 text-emerald-600" aria-hidden /> Masa berlaku: <strong className="text-foreground">{s.validity}</strong>
+   252→              </span>
+   253→              <span className="inline-flex items-center gap-1.5">
+   254→                <Building2 className="h-4 w-4 text-emerald-600" aria-hidden /> Diterbitkan: <strong className="text-foreground">{s.authority}</strong>
+   255→              </span>
+   256→            </div>
+   257→          </header>
+   258→
+   259→          {/* RINGKASAN CEPAT — ROADMAP-99 langkah 27: blok jawaban langsung
+   260→              40–60 kata, target featured snippet Google untuk query
+   261→              "biaya/jasa pengurusan <layanan>". */}
+   262→          <section
+   263→            aria-labelledby="ringkasan-cepat"
+   264→            className="mt-8 rounded-2xl border border-emerald-200 bg-emerald-50/50 p-6"
+   265→          >
+   266→            <h2 id="ringkasan-cepat" className="flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-emerald-800">
+   267→              <Sparkles className="h-4 w-4" aria-hidden />
+   268→              Ringkasan Cepat
+   269→            </h2>
+   270→            <p className="mt-3 text-base leading-relaxed text-foreground/90">{snippet}</p>
+   271→            <dl className="mt-4 grid gap-3 text-sm sm:grid-cols-3">
+   272→              <div className="rounded-xl bg-card px-4 py-3">
+   273→                <dt className="text-xs text-muted-foreground">Biaya jasa</dt>
+   274→                <dd className="font-bold text-emerald-700">mulai {fmtIdr(s.discountPrice)}</dd>
+   275→              </div>
+   276→              <div className="rounded-xl bg-card px-4 py-3">
+   277→                <dt className="text-xs text-muted-foreground">Estimasi proses</dt>
+   278→                <dd className="font-bold text-foreground">{s.estimate}</dd>
+   279→              </div>
+   280→              <div className="rounded-xl bg-card px-4 py-3">
+   281→                <dt className="text-xs text-muted-foreground">Diterbitkan</dt>
+   282→                <dd className="font-bold text-foreground">{s.authority}</dd>
+   283→              </div>
+   284→            </dl>
+   285→          </section>
+   286→
+   287→          <div className="mt-8 grid gap-6 lg:grid-cols-3">
+   288→            {/* KOLOM UTAMA — min-w-0 wajib: tanpa ini, teks truncate/nowrap
+   289→                di dalam (nama layanan panjang di bundle & FAQ) memaksa
+   290→                min-width:auto grid item → horizontal scroll di mobile. */}
+   291→            <div className="min-w-0 space-y-6 lg:col-span-2">
+   292→              {/* Harga */}
+   293→              <section aria-labelledby="harga" className="rounded-2xl border bg-card p-6">
+   294→                <h2 id="harga" className="flex items-center gap-2 text-lg font-bold">
+   295→                  <Banknote className="h-5 w-5 text-emerald-600" aria-hidden />
+   296→                  Harga Jasa Pengurusan
+   297→                </h2>
+   298→                <div className="mt-4 flex flex-wrap items-end gap-x-6 gap-y-3">
+   299→                  <div>
+   300→                    <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Harga diskon</p>
+   301→                    <p className="text-3xl font-extrabold text-emerald-700 sm:text-4xl">{fmtIdr(s.discountPrice)}</p>
+   302→                  </div>
+   303→                  {s.normalPrice > s.discountPrice && (
+   304→                    <>
+   305→                      <div>
+   306→                        <p className="text-xs text-muted-foreground">Harga normal</p>
+   307→                        <p className="text-lg font-semibold text-muted-foreground line-through">{fmtIdr(s.normalPrice)}</p>
+   308→                      </div>
+   309→                      <span className="rounded-lg bg-emerald-50 px-3 py-1.5 text-sm font-bold text-emerald-700">
+   310→                        Hemat {fmtIdr(s.savings)}
+   311→                      </span>
+   312→                    </>
+   313→                  )}
+   314→                </div>
+   315→                <p className="mt-4 flex items-start gap-2 text-xs leading-relaxed text-muted-foreground">
+   316→                  <Info className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden />
+   317→                  <span className="min-w-0">Harga jasa konsultan — biaya resmi pemerintah (PNBP) dibayar terpisah sesuai tarif instansi.
+   318→                  Final setelah review kasus: lokasi, kelengkapan dokumen & kompleksitas.</span>
+   319→                </p>
+   320→                <p className="mt-3 flex items-center gap-2 rounded-lg bg-emerald-50 px-3 py-2 text-xs font-semibold text-emerald-800">
+   321→                  <Users className="h-3.5 w-3.5 shrink-0" aria-hidden />
+   322→                  <span className="min-w-0">±{demand} perusahaan memilih layanan sejenis di {s.category} bulan ini</span>
+   323→                </p>
+   324→              </section>
+   325→
+   326→              {/* Syarat */}
+   327→              {requirements.length > 0 && (
+   328→                <section aria-labelledby="syarat" className="rounded-2xl border bg-card p-6">
+   329→                  <h2 id="syarat" className="flex items-center gap-2 text-lg font-bold">
+   330→                    <ListChecks className="h-5 w-5 text-emerald-600" aria-hidden />
+   331→                    Syarat Utama
+   332→                  </h2>
+   333→                  <ul className="mt-4 grid gap-2.5 sm:grid-cols-2">
+   334→                    {requirements.map((r) => (
+   335→                      <li key={r} className="flex items-start gap-2.5 text-sm leading-relaxed">
+   336→                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" aria-hidden />
+   337→                        <span>{r}</span>
+   338→                      </li>
+   339→                    ))}
+   340→                  </ul>
+   341→                  <p className="mt-4 text-xs text-muted-foreground">
+   342→                    Belum punya salah satu dokumen? Tim kami membantu pengadaannya — sampaikan saat konsultasi.
+   343→                  </p>
+   344→                </section>
+   345→              )}
+   346→
+   347→              {/* PROSES PENGURUSAN — ROADMAP-99 langkah 23: section HowTo
+   348→                  server-rendered + HowToStep schema di @graph atas. */}
+   349→              <section aria-labelledby="proses" className="rounded-2xl border bg-card p-6">
+   350→                <h2 id="proses" className="flex items-center gap-2 text-lg font-bold">
+   351→                  <Compass className="h-5 w-5 shrink-0 text-emerald-600" aria-hidden />
+   352→                  <span className="min-w-0 break-words">Proses Pengurusan — 5 Langkah</span>
+   353→                </h2>
+   354→                <ol className="mt-4 space-y-4">
+   355→                  {steps.map((st, i) => (
+   356→                    <li key={st.name} id={`langkah-${i + 1}`} className="flex gap-3.5">
+   357→                      <span
+   358→                        aria-hidden
+   359→                        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-600/10 text-sm font-extrabold text-emerald-700"
+   360→                      >
+   361→                        {i + 1}
+   362→                      </span>
+   363→                      <div className="min-w-0">
+   364→                        <p className="text-sm font-bold">{st.name}</p>
+   365→                        <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{st.text}</p>
+   366→                      </div>
+   367→                    </li>
+   368→                  ))}
+   369→                </ol>
+   370→              </section>
+   371→
+   372→              {/* CATATAN */}
+   373→              {s.notes && (
+   374→                <section className="rounded-2xl border border-emerald-200 bg-emerald-50/60 p-5">
+   375→                  <h2 className="flex items-center gap-2 text-sm font-bold text-emerald-800">
+   376→                    <Sparkles className="h-4 w-4" aria-hidden />
+   377→                    Catatan Penting
+   378→                  </h2>
+   379→                  <p className="mt-2 text-sm leading-relaxed text-emerald-900/90">{s.notes}</p>
+   380→                </section>
+   381→              )}
+   382→
+   383→              {/* BUNDLE — sering diambil bersama */}
+   384→              {bundle.length === 2 && (
+   385→                <section aria-labelledby="bundle" className="rounded-2xl border border-emerald-200 bg-gradient-to-br from-emerald-50/70 to-card p-6">
+   386→                  <h2 id="bundle" className="flex items-center gap-2 text-lg font-bold">
+   387→                    <Sparkles className="h-5 w-5 text-emerald-600" aria-hidden />
+   388→                    Sering Diambil Bersama — Paket Hemat 10%
+   389→                  </h2>
+   390→                  <p className="mt-1 text-sm text-muted-foreground">
+   391→                    Klien {s.category} biasanya menyelesaikan 3 urusan ini sekaligus supaya operasional langsung legal penuh.
+   392→                  </p>
+   393→                  <ul className="mt-4 space-y-2">
+   394→                    {[{ code: s.code, name: s.name, discountPrice: s.discountPrice, slug: s.slug, self: true } as const, ...bundle.map((b) => ({ code: b.code, name: b.name, discountPrice: b.discountPrice, slug: b.slug, self: false }))].map((item, i) => (
+   395→                      <li key={item.code} className="flex items-center justify-between gap-3 rounded-xl border bg-card px-4 py-3">
+   396→                        <div className="min-w-0">
+   397→                          <p className="text-[11px] font-bold text-emerald-700">{i + 1}. {item.code}{item.self ? " — layanan ini" : ""}</p>
+   398→                          {item.self ? (
+   399→                            <p className="truncate text-sm font-semibold">{item.name}</p>
+   400→                          ) : (
+   401→                            <Link href={`/layanan/${item.slug}`} className="truncate text-sm font-semibold hover:text-primary hover:underline">
+   402→                              {item.name}
+   403→                            </Link>
+   404→                          )}
+   405→                        </div>
+   406→                        <p className="shrink-0 text-sm font-bold text-emerald-700">{fmtIdr(item.discountPrice)}</p>
+   407→                      </li>
+   408→                    ))}
+   409→                  </ul>
+   410→                  <div className="mt-4 flex flex-wrap items-end justify-between gap-3 rounded-xl bg-emerald-600/10 px-4 py-3">
+   411→                    <div>
+   412→                      <p className="text-xs text-muted-foreground">Total bundle <span className="line-through">{fmtIdr(bundleTotal)}</span></p>
+   413→                      <p className="text-2xl font-extrabold text-emerald-700">{fmtIdr(bundlePrice)}</p>
+   414→                    </div>
+   415→                    <span className="rounded-lg bg-emerald-600 px-3 py-1.5 text-sm font-bold text-white">Hemat {fmtIdr(bundleHemat)}</span>
+   416→                  </div>
+   417→                  <div className="mt-4 flex flex-col gap-2 sm:flex-row">
+   418→                    <a
+   419→                      href={`https://wa.me/${WHATSAPP_NUMBER}?text=${bundleWa}`}
+   420→                      target="_blank"
+   421→                      rel="noopener noreferrer"
+   422→                      className="flex min-h-11 flex-1 items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-emerald-700"
+   423→                    >
+   424→                      <MessageCircle className="h-4 w-4" aria-hidden /> Ambil Paket Hemat 3 Layanan
+   425→                    </a>
+   426→                    <Link
+   427→                      href={checkoutHref}
+   428→                      className="flex min-h-11 items-center justify-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-bold transition hover:bg-accent"
+   429→                    >
+   430→                      <ShoppingCart className="h-4 w-4" aria-hidden /> Ambil {s.code} saja
+   431→                    </Link>
+   432→                  </div>
+   433→                </section>
+   434→              )}
+   435→
+   436→              {/* FAQ — ROADMAP-99 langkah 23: konten FAQ nyata (server-rendered)
+   437→                  + FAQPage schema di @graph atas. */}
+   438→              <section aria-labelledby="faq" className="rounded-2xl border bg-card p-6">
+   439→                <h2 id="faq" className="flex items-center gap-2 text-lg font-bold">
+   440→                  <HelpCircle className="h-5 w-5 shrink-0 text-emerald-600" aria-hidden />
+   441→                  <span className="min-w-0 break-words">Pertanyaan Umum {s.name}</span>
+   442→                </h2>
+   443→                <Accordion type="single" collapsible className="mt-4">
+   444→                  {faqs.map((f, i) => (
+   445→                    <AccordionItem key={i} value={`faq-${i}`}>
+   446→                      <AccordionTrigger className="text-left text-sm font-semibold">
+   447→                        {f.q}
+   448→                      </AccordionTrigger>
+   449→                      <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
+   450→                        {f.a}
+   451→                      </AccordionContent>
+   452→                    </AccordionItem>
+   453→                  ))}
+   454→                </Accordion>
+   455→              </section>
+   456→
+   457→              {/* Layanan sejenis */}
+   458→              {related.length > 0 && (
+   459→                <section aria-labelledby="terkait" className="rounded-2xl border bg-card p-6">
+   460→                  <h2 id="terkait" className="text-lg font-bold">
+   461→                    Layanan {s.category} Lainnya
+   462→                  </h2>
+   463→                  <div className="mt-4 grid gap-3 sm:grid-cols-2">
+   464→                    {related.map((r) => (
+   465→                      <Link
+   466→                        key={r.code}
+   467→                        href={`/layanan/${r.slug}`}
+   468→                        className="group rounded-xl border p-4 transition hover:border-emerald-300 hover:bg-accent"
+   469→                      >
+   470→                        <p className="text-xs font-bold text-emerald-700">{r.code}</p>
+   471→                        <p className="mt-1 text-sm font-semibold leading-snug group-hover:text-primary">{r.name}</p>
+   472→                        <p className="mt-1.5 text-sm font-bold text-emerald-700">{fmtIdr(r.discountPrice)}</p>
+   473→                      </Link>
+   474→                    ))}
+   475→                  </div>
+   476→                  <Link
+   477→                    href={isV3 ? "/katalog#pro" : "/katalog#premium"}
+   478→                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:underline"
+   479→                  >
+   480→                    {isV3 ? "Lihat seluruh 1.500 layanan dalam 3 katalog" : "Lihat seluruh 500 layanan Katalog Premium"}
+   481→                    <ArrowRight className="h-4 w-4" aria-hidden />
+   482→                  </Link>
+   483→                </section>
+   484→              )}
+   485→
+   486→              {/* JANGKAUAN NASIONAL — ROADMAP-99 langkah 24: internal-linking
+   487→                  dari 1.000 halaman katalog ke 38 hub wilayah
+   488→                  /layanan/wilayah/<prov> (pemilihan deterministik per kode). */}
+   489→              <section aria-labelledby="jangkauan" className="rounded-2xl border bg-card p-6">
+   490→                <h2 id="jangkauan" className="flex items-center gap-2 text-lg font-bold">
+   491→                  <MapPin className="h-5 w-5 shrink-0 text-emerald-600" aria-hidden />
+   492→                  <span className="min-w-0 break-words">Urus {s.name} dari Mana Saja</span>
+   493→                </h2>
+   494→                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+   495→                  {SITE_NAME} memproses {s.name.toLowerCase()} untuk klien di 38 provinsi & 514 kabupaten/kota —
+   496→                  proses dominan daring, tanpa perlu datang ke kantor. Pilih wilayah Anda:
+   497→                </p>
+   498→                <ul className="mt-4 flex flex-wrap gap-2">
+   499→                  {provinceLinks.map((p) => (
+   500→                    <li key={p.href}>
+   501→                      <Link
+   502→                        href={p.href}
+   503→                        className="inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-sm font-semibold transition hover:border-emerald-300 hover:bg-accent hover:text-primary"
+   504→                      >
+   505→                        <MapPin className="h-3.5 w-3.5 text-emerald-600" aria-hidden />
+   506→                        {p.name}
+   507→                      </Link>
+   508→                    </li>
+   509→                  ))}
+   510→                </ul>
+   511→                <Link
+   512→                  href="/wilayah"
+   513→                  className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:underline"
+   514→                >
+   515→                  Lihat seluruh 38 provinsi & 514 kabupaten/kota
+   516→                  <ArrowRight className="h-4 w-4" aria-hidden />
+   517→                </Link>
+   518→              </section>
+   519→            </div>
+   520→
+   521→            {/* SIDEBAR */}
+   522→            <aside className="min-w-0 space-y-5">
+   523→              <div className="rounded-2xl border bg-card p-6 lg:sticky lg:top-24">
+   524→                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Siap diurus?</p>
+   525→                <p className="mt-1 text-2xl font-extrabold text-emerald-700">{fmtIdr(s.discountPrice)}</p>
+   526→                <div className="mt-4 space-y-2.5">
+   527→                  <Link
+   528→                    href={checkoutHref}
+   529→                    className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-extrabold text-white shadow-lg shadow-emerald-600/20 transition hover:bg-emerald-700"
+   530→                  >
+   531→                    <ShoppingCart className="h-4 w-4" aria-hidden />
+   532→                    Pesan Sekarang — Bayar Langsung
+   533→                  </Link>
+   534→                  <a
+   535→                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=${waText}`}
+   536→                    target="_blank"
+   537→                    rel="noopener noreferrer"
+   538→                    className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-emerald-600/40 bg-emerald-50 px-4 py-2.5 text-sm font-bold text-emerald-800 transition hover:bg-emerald-100"
+   539→                  >
+   540→                    <MessageCircle className="h-4 w-4" aria-hidden />
+   541→                    Tanya Dulu via WhatsApp
+   542→                  </a>
+   543→                  <Link
+   544→                    href="/konsultasi"
+   545→                    className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-bold text-primary-foreground transition hover:opacity-90"
+   546→                  >
+   547→                    <ShieldCheck className="h-4 w-4" aria-hidden />
+   548→                    Konsultasi Gratis 30 Menit
+   549→                  </Link>
+   550→                  <Link
+   551→                    href="/kalkulator"
+   552→                    className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-bold transition hover:bg-accent"
+   553→                  >
+   554→                    Hitung Estimasi Total Biaya
+   555→                  </Link>
+   556→                </div>
+   557→                <dl className="mt-5 space-y-2.5 border-t pt-4 text-sm">
+   558→                  <div className="flex items-center gap-2">
+   559→                    <Star className="h-4 w-4 shrink-0 fill-amber-400 text-amber-400" aria-hidden />
+   560→                    <dd className="font-semibold">{TRUST_METRICS.rating}/5 · {TRUST_METRICS.reviewCount} ulasan</dd>
+   561→                  </div>
+   562→                  <div className="flex items-center gap-2">
+   563→                    <BadgeCheck className="h-4 w-4 shrink-0 text-emerald-600" aria-hidden />
+   564→                    <dd className="text-muted-foreground">{TRUST_METRICS.permitsIssued}+ izin terbit</dd>
+   565→                  </div>
+   566→                  <div className="flex items-center gap-2">
+   567→                    <ShieldCheck className="h-4 w-4 shrink-0 text-emerald-600" aria-hidden />
+   568→                    <dd className="text-muted-foreground">Garansi 100% uang kembali bila gagal karena proses kami</dd>
+   569→                  </div>
+   570→                </dl>
+   571→              </div>
+   572→            </aside>
+   573→          </div>
+   574→        </div>
+   575→      </main>
+   576→      <Footer />
+   577→    </div>
+   578→  );
+   579→}
+   580→
