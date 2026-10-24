@@ -17,9 +17,9 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.8.0";
+export const APP_VERSION = "1.9.0";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Arena Banding";
+export const RELEASE_NAME = "Kamus Raja";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
 export const RELEASE_DATE = "2026-10-25";
 /** Channel rilis: stable | beta | alpha. */
@@ -46,6 +46,18 @@ export interface ReleaseEntry {
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.9.0",
+    date: "2026-10-25",
+    type: "minor",
+    name: "Kamus Raja",
+    taskId: "25",
+    highlights: [
+      "Glosarium 214 istilah perizinan (langkah 41): 8 kategori — dasar/OSS, badan usaha, pajak, sektor, ketenagakerjaan, ekspor-impor, regulasi, proses — definisi 30-60 kata + 2 paragraf pendalaman + dasar hukum eksplisit",
+      "Schema DefinedTerm + BreadcrumbList per istilah dan DefinedTermSet (214 hasDefinedTerm) di indeks — ramah featured snippet sekaligus rujukan kutipan AI/LLM",
+      "Sitemap seksi glosarium (214 URL) + llms.txt + nav header & footer; indeks 11.661 → 11.876 URL, seksi sitemap 14 → 15",
+    ],
+  },
   {
     version: "1.8.0",
     date: "2026-10-25",
@@ -298,8 +310,8 @@ export const CURRENT_RELEASE: ReleaseEntry = RELEASES[0];
 
 /** Statistik platform yang dikirim /api/version — singkron dengan site.ts. */
 export const PLATFORM_STATS = {
-  indexedUrls: 11661,
-  sitemapSections: 14,
+  indexedUrls: 11876,
+  sitemapSections: 15,
   orderableServices: 1500,
   subscriptionSkus: 6,
   languages: 30,

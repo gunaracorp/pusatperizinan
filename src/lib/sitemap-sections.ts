@@ -3,6 +3,7 @@ import { KBLI_PAGES, KBLI_CATEGORY_PAGES } from "@/lib/kbli-catalog";
 import { JOBS } from "@/lib/jobs-data";
 import { COMPARISONS } from "@/lib/comparisons";
 import { TRIO_COMPARISONS } from "@/lib/comparisons-trio";
+import { GLOSSARY_TERMS } from "@/lib/glosarium"; // ROADMAP-99 langkah 41
 import { TESTIMONIAL_CATEGORIES } from "@/lib/testimonials-data";
 import { PERMIT_GUIDES } from "@/lib/seo-content";
 import { BLOG_ARTICLES } from "@/lib/blog-content";
@@ -48,6 +49,7 @@ export const SITEMAP_SECTION_IDS = [
   "hubs",
   "jobs",
   "bandingkan",
+  "glosarium",
   "katalog",
   "layanan500",
   "layanan-pp",
@@ -103,6 +105,9 @@ export function buildSection(id: SitemapSectionId): Promise<SitemapEntry[]> | Si
         ...COMPARISONS.map((c) => entry(`/bandingkan/${c.slug}`, "monthly", 0.85)),
         ...TRIO_COMPARISONS.map((t) => entry(`/bandingkan/${t.slug}`, "monthly", 0.85)), // langkah 34
       ];
+    case "glosarium":
+      // ROADMAP-99 langkah 41 — glosarium 200+ istilah (DefinedTerm)
+      return GLOSSARY_TERMS.map((t) => entry(`/glosarium/${t.slug}`, "monthly", 0.8));
     case "katalog":
       return CATEGORIES.map((c) => entry(`/katalog/${c.slug}`, "monthly", c.flagship ? 0.9 : 0.8));
     case "layanan500":
@@ -161,6 +166,8 @@ function buildStaticPages(): SitemapEntry[] {
     entry("/cek-dokumen", "monthly", 0.9),
     entry("/lowongan-kerja", "daily", 0.85),
     entry("/bandingkan", "monthly", 0.85),
+    // Glosarium 200+ istilah (langkah 41 — rujukan SEO & AI search)
+    entry("/glosarium", "weekly", 0.9),
     entry("/testimoni", "weekly", 0.9),
     entry("/virtual-office", "weekly", 0.95),
     entry("/kanal-resmi", "monthly", 0.85),

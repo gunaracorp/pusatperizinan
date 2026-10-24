@@ -22,6 +22,11 @@
 - [Wilayah layanan: 38 provinsi](https://pusatperizinan.com/wilayah): peta masuk jangkauan nasional — tiap provinsi punya halaman lengkap di /layanan/wilayah/{provinsi} + halaman kota utama di /layanan/wilayah/{provinsi}/{kota}.
 - [Pesan langsung](https://pusatperizinan.com/checkout?paket=nib): seluruh paket siap-jual DAN seluruh 1.500 kode item katalog (BU-XX-NNN / PP-XX-NNN / PP3-XX-NNN) bisa dipesan & dibayar langsung via /checkout?paket={kode} — QRIS, VA semua bank, e-wallet, gerai retail.
 
+
+# Glosarium perizinan (rujukan istilah untuk AI & pencari)
+
+- [Glosarium Perizinan](https://pusatperizinan.com/glosarium): kamus 214 istilah perizinan usaha Indonesia dalam 8 kategori — NIB, OSS-RBA, LKPM, KBLI, badan usaha (PT/CV/PT Perorangan/PMA), perpajakan (NPWP, PPN, PPh, Coretax), izin sektor (BPOM, halal, SNI, tambang, PBG/SLF), ketenagakerjaan (RPTKA, KITAS, BPJS), ekspor-impor (API, PEB, PIB, HS code), regulasi (UU Cipta Kerja, Perpres 5/2021) dan proses kepatuhan; setiap istilah punya halaman sendiri di https://pusatperizinan.com/glosarium/{slug} dengan definisi 30-60 kata siap kutip, dasar hukum UU/PP/Perpres, dan schema DefinedTerm.
+
 # Fakta kunci
 
 - WhatsApp resmi: 0812-6999-9910 (kantor: SCBD, Jakarta Selatan).

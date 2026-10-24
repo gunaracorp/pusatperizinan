@@ -58,6 +58,7 @@ const COMPANY_LINKS = [
   { label: "Alat Gratis: AI Roadmap", href: "/roadmap" },
   { label: "Kalkulator Pajak", href: "/kalkulator-pajak" },
   { label: "Database KBLI", href: "/kbli" },
+  { label: "Glosarium Perizinan", href: "/glosarium" },
   { label: "Kenapa Kami", href: "/#keunggulan" },
   { label: "Cara Kerja", href: "/#cara-kerja" },
   { label: "Blog Perizinan", href: "/blog" },
@@ -191,6 +192,11 @@ export function Footer() {
               <li>
                 <a href="/bandingkan" className="text-sm text-emerald-100/70 hover:text-emerald-300 transition-colors">
                   ⚖️ Perbandingan Badan Usaha (PT vs CV)
+                </a>
+              </li>
+              <li>
+                <a href="/glosarium" className="text-sm text-emerald-100/70 hover:text-emerald-300 transition-colors">
+                  📖 Glosarium Perizinan (200+ Istilah)
                 </a>
               </li>
               <li>

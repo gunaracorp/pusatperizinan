@@ -5,21 +5,21 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.8.0_Arena_Banding-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-8-0)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.9.0_Kamus_Raja-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-9-0)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-24_(0.1.0_%E2%86%92_1.8.0)-059669?style=flat-square)
-![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-34_ber_versi-059669?style=flat-square)
-![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.9.0_(Unreleased)-f59e0b?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-25_(0.1.0_%E2%86%92_1.9.0)-059669?style=flat-square)
+![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-35_ber_versi-059669?style=flat-square)
+![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.10.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.8.0 — "Arena Banding"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.9.0 — "Kamus Raja"`**
 
-<sub>Versi terlihat hidup di: footer setiap halaman (11.661 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
+<sub>Versi terlihat hidup di: footer setiap halaman (11.876 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=0:059669,100:f59e0b&height=3&section=footer" width="100%" alt=""/>
 
@@ -37,7 +37,7 @@
 | Sumber kebenaran | [`WORKLOG.md`](./WORKLOG.md) (rekam jejak 1:1) · `src/lib/version.ts` (data mesin) · `package.json` (runtime) |
 | Ritme | **1 task/permintaan user = 1 nomor versi baru** — fitur → `MINOR`, perbaikan → `PATCH`, perombakan arah produk → `MAJOR` |
 | Presisi tanggal | Era `0.x` (Sesi 1–2) direkonstruksi dari metadata file & jejak invoice (`INV-20261021`) → presisi bulan; era `1.x` → presisi hari (terverifikasi) |
-| Rilis berikutnya | **`v1.8.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 mulai dieksekusi |
+| Rilis berikutnya | **`v1.10.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
 
 > 🔗 Navigasi cepat: **[Tabel Lengkap 20 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
 
@@ -45,15 +45,42 @@
 
 <a id="unreleased"></a>
 
-## [Unreleased] — akan menjadi `v1.9.0`
+## [Unreleased] — akan menjadi `v1.10.0`
 
-> 📦 **Sisa langkah ROADMAP-99** tetap TERSIMPAN di [`ROADMAP-99.md`](./ROADMAP-99.md) — langkah 23, 24, 25, 26, 27, 33, **34** kini DIEKSEKUSI (dicentang di roadmap). Sisanya menunggu sesi berikutnya.
+> 📦 **Sisa langkah ROADMAP-99** tetap TERSIMPAN di [`ROADMAP-99.md`](./ROADMAP-99.md) — langkah 23, 24, 25, 26, 27, 33, 34, **41** kini DIEKSEKUSI (dicentang di roadmap). Sisanya menunggu sesi berikutnya.
 
 ### Planned — Quick Wins P0 teratas (dari ROADMAP-99 Tabel A, sisa)
 - **Aktifkan pembayaran produksi** Midtrans/Tripay — matikan `PAYMENT_DEMO_MODE` (langkah 1)
-- **Submit 14 sitemap** (11.661 URL) ke Google Search Console + Bing Webmaster (langkah 2)
+- **Submit 15 sitemap** (11.876 URL) ke Google Search Console + Bing Webmaster (langkah 2)
 - Verifikasi token 6 mesin pencari via env → meta tag otomatis (lanjutan `v1.3.0`)
-- Re-ukur PSI mobile setelah deploy v1.5.0–v1.8.0 — target LCP < 4 s & TBT < 500 ms
+- Re-ukur PSI mobile setelah deploy v1.5.0–v1.9.0 — target LCP < 4 s & TBT < 500 ms
+
+---
+
+<a id="v1-9-0"></a>
+
+## [1.9.0] — 2026-10-25 — 📖 "Kamus Raja" (Task 25)
+
+Rilis glosarium — mengeksekusi **langkah 41 ROADMAP-99 FASE 5** (🔥): **Glosarium 214 istilah perizinan** ramah SEO sekaligus rujukan kutipan LLM/AI search. +215 URL baru (214 istilah + 1 indeks) dengan skema `DefinedTerm` penuh.
+
+### Added
+- **Modul data `src/lib/glosarium/`** (types + 8 file kategori + index): **214 istilah** dalam 8 kategori — perizinan dasar & OSS (26), badan usaha & kepemilikan (28), perpajakan (31), izin sektor & sertifikasi (37), ketenagakerjaan & PMI (22), perdagangan & ekspor-impor (17), regulasi & lembaga (24), proses-dokumen & kepatuhan (29)
+- Struktur konten per istilah: **definisi inti 30–60 kata** (jawaban langsung siap kutip featured snippet/AI) + **2 paragraf pendalaman** (konteks, cara kerja, praktik, jebakan) + **dasar hukum eksplisit** (UU/PP/Perpres statis, tanpa pola "freshness year") + **729 tautan related** antar-istilah + **207 tautan layanan internal terverifikasi**
+- **Halaman indeks `/glosarium`**: 14 kartu "Paling Sering Dicari", **pencarian & filter kategori client-side** (static-export friendly), ringkasan 8 kategori, **indeks A–Z 214 istilah**, CTA WA — JSON-LD **`DefinedTermSet`** dengan 214 `hasDefinedTerm` (nama + URL) untuk citasi AI/LLM
+- **Halaman detail `/glosarium/[slug]` × 214**: Definisi Singkat ber-border (blok snippet), Pendalaman & Praktiknya, kartu Dasar Hukum, CTA layanan terkait per istilah, grid Istilah Terkait — JSON-LD **`DefinedTerm`** (`inDefinedTermSet`) + `BreadcrumbList`
+- **QA baru `scripts/verify-glossary.ts`**: jumlah ≥200, slug unik & URL-safe, kategori valid, konten minimum (short ≥30 kata, detail ≥2 paragraf ≥30 kata), related resolve tanpa self-ref, href layanan tervalidasi ke `ALL_SERVICE_PAGES` + allowlist statis — **PASS 214/729/207, 0 warning**
+
+### Changed
+- **Sitemap**: seksi baru `glosarium` (214 URL, prioritas 0.8) — seksi sitemap **14 → 15**; `/glosarium` masuk seksi static (weekly 0.9)
+- **llms.txt**: seksi baru "Glosarium perizinan (rujukan istilah untuk AI & pencari)" — satu baris ringkas 214 istilah + pola URL `{slug}`
+- **Navigasi**: header dropdown Informasi + item "Glosarium Perizinan"; footer 2 kolom (+"Database KBLI" company links & quick-links "📖 Glosarium Perizinan (200+ Istilah)")
+- `version.ts`: `APP_VERSION 1.9.0 "Kamus Raja"`, `RELEASES` +1 entri (Task 25), `PLATFORM_STATS` — `indexedUrls 11.661 → 11.876`, `sitemapSections 14 → 15`; `package.json` 1.9.0; `/api/version` `nextRelease → v1.10.0`
+
+### Verifikasi (definisi selesai ROADMAP-99)
+- `bun run lint` → **0 error, 0 warning**; `tsc --noEmit` → baseline **181 error pre-existing** tidak berubah (nol error pada file glosarium/wiring)
+- QA script: **214 istilah** (≥200 ✓) · slug unik & URL-safe · 8 kategori valid (min 17) · **729 related resolve** tanpa self-ref · **207 service-link valid** · sort deterministik PASS
+- curl dev: `/glosarium` 200 (DefinedTermSet + hasDefinedTerm + indeks A–Z) · 7 sampel detail (nib, oss-rba, pt-perorangan, halal, rptka, api-u, uu-cipta-kerja, kalender-kepatuhan) 200 dengan DefinedTerm + BreadcrumbList · slug invalid → **404** · `/sitemap/glosarium.xml` **214 `<loc>`** · sitemap index memuat seksi glosarium · llms.txt terisi · footer landing 2 tautan glosarium · `dev.log` bersih
+- Indeks 11.661 → **11.876 URL** (+215: 214 istilah + 1 indeks); nol perubahan URL lama → indeks aman
 
 ---
 

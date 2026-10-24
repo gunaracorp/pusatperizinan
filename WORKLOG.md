@@ -112,3 +112,26 @@ Stage Summary:
 - Dua contoh eksplisit roadmap hidup utuh: NIB vs SIUP (lisensi warisan) + trio badan usaha; bonus fix internal-link fallback 30 pasangan baru
 - Indeks 11.629 → 11.661 URL (+32); nol perubahan URL lama → indeks aman
 - FASE 4 ROADMAP-99 kini 23/24/25/26/27/33/34 ✅ — sisa 28–32 (butuh kredensial GSC / kampanye eksternal / GBP) menunggu sesi dengan akses eksternal
+
+---
+Task ID: 25
+Agent: Z.ai Code (main agent — Master Polymath mode)
+Task: Eksekusi langkah ROADMAP-99 FASE 5 langkah 41: Glossary 200+ istilah perizinan (ramah SEO sekaligus rujukan LLM/AI search) — rilis v1.9.0 "Kamus Raja".
+
+Work Log:
+- Seleksi langkah: user menawarkan FASE 5 (langkah 35 kalender editorial ATAU 41 glossary) atau langkah 1–2 (pembayaran produksi + GSC — butuh kredensial eksternal); langkah 41 dipilih karena 100% murni kode, +215 URL baru, dan lanjut alami programatik-SEO v1.5.0–v1.8.0
+- **Modul data baru `src/lib/glosarium/`** (types.ts + 8 file kategori + index.ts): 214 istilah — dasar/OSS 26 (nib, oss-rba, lkpm, kbli, profil-risiko, sertifikat-standar, siup/tdp/HO warisan, dst.), badan-usaha 28 (pt, pt-perorangan, cv, firma, koperasi, yayasan, pma/pmdn/kppa, modal dasar-ditempatkan-disetor, rups, direksi, komisaris, akta, SK, dst.), pajak 31 (npwp, coretax, ppn, pkp, pph 21/22/23/25/29/badan/final-UMKM/4(2), spt, faktur, coretax, TER, NPPN, pemeriksaan, sanksi, dst.), sektor 37 (BPOM, PIRT, halal, SNI, IUP/IUPK/RKAB, PBG/SLF/IMB, SPPL/UKL-UPL/AMDAL, PPIU/PIHK/PPIH, PSE, alkes, SIP/SIK, SMK3, ISO, PROPER, B3, dst.), ketenagakerjaan 22 (RPTKA, notifikasi, KITAS/KITAP, DKP-TKA, BPJS, PKWT/PKWTT, UMP/UMK, PHK, pesangon, PMI, PPTKIS, SPO, LPK, BNSP, K3), perdagangan 17 (API-U/P, PEB, PIB/BC 2.0, HS code, bea masuk, PPN/PPh22 impor, lartas, LPSI, kawasan berikat, incoterms, dst.), regulasi 24 (UU Cipta Kerja, PP 5/2018, Perpres 5/2021, UU 25/2007, Perpres 10/2021, UU 40/2007, KUHD, PP 34/2021, UU JPH, PP 16/2021, PP 22/2021, UU HPP, UU PDP, BKPM, Kemendag, Kemenkumham, Kemnaker, Komdigi, DJP), proses 29 (PNBP, verifikasi, pemeriksaan lapangan, kuasa, materai, apostille, SLA, izin prinsip-operasional, perubahan data, pencabutan, denda, notaris, KAP, SLO, kalender kepatuhan, dst.)
+- Struktur konten per istilah: definisi inti 30–60 kata (jawaban langsung snippet/AI) + 2 paragraf pendalaman (428 paragraf, median 37 kata) + dasar hukum statis + related + service-link; 729 tautan related antar-istilah, 207 tautan layanan internal
+- **Halaman indeks /glosarium**: 14 kartu "Paling Sering Dicari", GlossarySearch client-side (search + filter 8 kategori, static-export friendly), ringkasan kategori, indeks A–Z, CTA WA — JSON-LD DefinedTermSet 214 hasDefinedTerm
+- **Halaman detail /glosarium/[slug] × 214**: generateStaticParams dari sumber data tunggal; Definisi Singkat (blok snippet), Pendalaman, kartu Dasar Hukum, CTA layanan per istilah, Istilah Terkait — JSON-LD DefinedTerm (inDefinedTermSet) + BreadcrumbList; slug invalid → 404
+- Wire: sitemap seksi `glosarium` (SITEMAP_SECTION_IDS 14→15, 214 URL @0.8) + /glosarium di seksi static; llms.txt seksi glosarium; header dropdown Informasi + item Glosarium; footer 2 kolom + link
+- QA `scripts/verify-glossary.ts`: ≥200, slug unik/URL-safe, kategori valid, konten minimum (short ≥30 kata, detail ≥2 paragraf ≥30 kata), related resolve tanpa self-ref, service href tervalidasi ke ALL_SERVICE_PAGES + allowlist — PASS 214/729/207, 0 warning
+- Fix saat QA: 21 related broken (menunjuk slug layanan/kategori, bukan istilah) → dialihkan ke istilah glosarium terkait; 2 self-ref sip/sik tertukar → dipulihkan; 11 paragraf <30 kata → diperluas; typo "ditemputkan"→"ditempatkan" + "Legalisisas"→"Legalisasi"
+- Verifikasi: `bun run lint` 0 error 0 warning; tsc baseline 181 tak berubah (nol error file glosarium); curl dev (server di-restart setsid): /glosarium 200 DefinedTermSet, 7 sampel detail 200 (nib, oss-rba, pt-perorangan, halal, rptka, api-u, uu-cipta-kerja + kalender-kepatuhan) dengan DefinedTerm+BreadcrumbList, slug invalid 404, /sitemap/glosarium.xml 214 <loc>, sitemap index memuat glosarium, llms.txt terisi, footer landing 2 tautan, dev.log bersih
+- Versioning: version.ts (1.9.0 "Kamus Raja", +RELEASES Task 25, indexedUrls 11661→11876, sitemapSections 14→15), package.json 1.9.0, api/version nextRelease → v1.10.0, CHANGELOG.md entri 1.9.0 + badge (Total Rilis 25, Berikutnya v1.10.0, 11.876 URL), ROADMAP-99 centang langkah 41 + footer versi
+
+Stage Summary:
+- Situs v1.9.0 "Kamus Raja": 214 halaman glosarium + indeks live dengan skema DefinedTerm penuh — kueri "apa itu X" perizinan (NIB, LKPM, RPTKA, faktur pajak, dst.) kini punya landing jawaban langsung yang dapat dikutip AI/LLM
+- +215 URL (11.661 → 11.876), nol perubahan URL lama; sitemap 15 seksi; internal linking 729 related + 207 service-link mengalirkan link equity ke halaman layanan
+- Konten konsisten dengan seo-policy: tanpa angka trust, tanpa harga spesifik, sitasi regulasi statis
+- ROADMAP-99 FASE 5: 41 ✅ — sisa FASE 5 (35–40, 42–44) menunggu sesi berikutnya; langkah 1–2 (produksi pembayaran + GSC) tetap butuh kredensial owner (API keys Midtrans/Tripay + akses akun GSC/Bing)

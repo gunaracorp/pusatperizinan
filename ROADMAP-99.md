@@ -119,7 +119,7 @@
 - [ ] **38.** **50 video YouTube** tutorial per layanan utama + embed di halaman detail terkait (+ schema VideoObject). `🔥🔥 · 🔴 · P2`
 - [ ] **39.** **Webinar bulanan gratis** + replay gated (email capture → nurturing). `🔥 · 🟡 · P2`
 - [ ] **40.** **E-book "Panduan Lengkap Izin Usaha"** sebagai lead magnet utama. `🔥 · 🟢 · P1`
-- [ ] **41.** **Glossary 200+ istilah perizinan** (ramah SEO sekaligus rujukan LLM/AI search). `🔥 · 🟡 · P2`
+- [x] **41.** **Glossary 200+ istilah perizinan** (ramah SEO sekaligus rujukan LLM/AI search). `🔥 · 🟡 · P2` — ✅ **v1.9.0 "Kamus Raja" (2026-10-25): 214 istilah dalam 8 kategori (dasar/OSS, badan usaha, pajak, sektor, ketenagakerjaan, ekspor-impor, regulasi, proses) — definisi 30–60 kata + 2 paragraf pendalaman + dasar hukum, schema DefinedTerm/DefinedTermSet/BreadcrumbList, sitemap seksi baru (indeks 11.661 → 11.876), llms.txt + nav/header/footer + QA script PASS**
 - [ ] **42.** **Template dokumen gratis** (surat pernyataan, kuitansi, NDA) dengan auto-fill form. `🔥 · 🟡 · P2`
 - [ ] **43.** **Konten shorts** TikTok/Reels: 1 video 60 detik per layanan populer (skrip ada di `docs/SCRIPT-60-DETIK.md`). `🔥🔥 · 🟡 · P2`
 - [ ] **44.** **10 studi kasus klien** dengan angka nyata (waktu proses, biaya, hasil). `🔥🔥 · 🟡 · P1`
@@ -228,7 +228,7 @@
 **Dokumen ini adalah janji strategis, bukan daftar impian.**
 Setiap langkah dibuat spesifik untuk arsitektur yang sudah ada: 1.500 layanan orderable, KepatuhanPRO MRR, CRM Admin 13 modul, 11.629 URL SEO, 30 bahasa, dan jalur static-export ke hosting produksi.
 
-📚 Konteks penuh: [`README.md`](./README.md) · 📒 Rekam jejak ber-versi: [`WORKLOG.md`](./WORKLOG.md) · 📦 Riwayat rilis: [`CHANGELOG.md`](./CHANGELOG.md) — versi saat ini: **v1.6.0 "Peta Nusantara"**
+📚 Konteks penuh: [`README.md`](./README.md) · 📒 Rekam jejak ber-versi: [`WORKLOG.md`](./WORKLOG.md) · 📦 Riwayat rilis: [`CHANGELOG.md`](./CHANGELOG.md) — versi saat ini: **v1.9.0 "Kamus Raja"**
 
 | Top | Strategi 3 Horison | Quick Wins |
 |---|---|---|
