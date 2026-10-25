@@ -155,7 +155,7 @@
 - [ ] **65.** **Scheduler follow-up otomatis** berbasis perilaku lead (buka email, klik harga, WhatsApp reply). `🔥 · 🟡 · P2`
 - [ ] **66.** **Sistem tiket pasca-penjualan** + NPS survey otomatis 7 hari setelah order selesai. `🔥 · 🟡 · P2`
 - [ ] **67.** **Dashboard metrik bisnis**: MRR, CAC, LTV, funnel konversi, revenue per kanal — di Admin Mission Control. `🔥🔥 · 🟡 · P1`
-- [ ] **68.** **Keandalan**: backup DB harian otomatis + uji restore, error monitoring (Sentry) server & client. `🔥🔥 · 🟢 · P0`
+- [x] **68.** **Keandalan**: backup DB harian otomatis + uji restore, error monitoring (Sentry) server & client. `🔥🔥 · 🟢 · P0` — ✅ **v1.13.5 "Jaring Pengaman" (2026-10-26): backup-db.mjs (VACUUM INTO + integrity check + gzip + retensi 14 snapshot) + restore-db.mjs TERUJI (13 tabel/171 baris identik; dry-run/--to/--commit) + self-healing predev/prestart (--if-stale >24 jam, crontab produksi terdokumentasi) + @sentry/nextjs server+client ENV-GATED (DSN kosong = SDK tak dimuat, nol overhead CWV, sendDefaultPii=false ramah UU PDP) — lint 0 error, homepage/sitemap 200, GA4 tetap SSR**
 
 ## 📅 FASE 9 — Infrastruktur, Keamanan & Kepatuhan Diri — langkah 69–76
 

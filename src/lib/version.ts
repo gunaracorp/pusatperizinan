@@ -17,9 +17,9 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.13.4";
+export const APP_VERSION = "1.13.5";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Dokumen Hidup II";
+export const RELEASE_NAME = "Jaring Pengaman";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
 export const RELEASE_DATE = "2026-10-26";
 /** Channel rilis: stable | beta | alpha. */
@@ -42,10 +42,23 @@ export interface ReleaseEntry {
 }
 
 /**
- * Riwayat lengkap 33 rilis — urut TERBARU lebih dulu.
+ * Riwayat lengkap 34 rilis — urut TERBARU lebih dulu.
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.13.5",
+    date: "2026-10-26",
+    type: "patch",
+    name: "Jaring Pengaman",
+    taskId: "35",
+    highlights: [
+      "Backup DB harian otomatis: VACUUM INTO + integrity check + gzip + retensi 14 snapshot (langkah 68 ROADMAP-99)",
+      "Restore teruji end-to-end: snapshot 13 tabel/171 baris identik dengan DB aktif; mode dry-run/--to/--commit",
+      "Self-healing tanpa cron: predev/prestart hook backup bila terakhir > 24 jam + crontab produksi terdokumentasi",
+      "Error monitoring Sentry server+client ENV-GATED (@sentry/nextjs) — DSN kosong = mati total, nol overhead CWV",
+    ],
+  },
   {
     version: "1.13.4",
     date: "2026-10-26",

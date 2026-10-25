@@ -53,3 +53,6 @@ server.log
 # Skills directory
 /skills/
 /pusatperizinan-v1.4.0
+
+# backup database lokal (Langkah 68)
+/backups

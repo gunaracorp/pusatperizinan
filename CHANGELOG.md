@@ -5,13 +5,13 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.13.4_Dokumen_Hidup_II-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-13-4)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.13.5_Jaring_Pengaman-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-13-5)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-33_(0.1.0_%E2%86%92_1.13.4)-059669?style=flat-square)
-![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-41_ber_versi-059669?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-34_(0.1.0_%E2%86%92_1.13.5)-059669?style=flat-square)
+![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-42_ber_versi-059669?style=flat-square)
 ![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.14.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
@@ -47,16 +47,34 @@
 
 ## [Unreleased] — akan menjadi `v1.14.0`
 
-> 📦 **Sisa langkah ROADMAP-99** tetap TERSIMPAN di [`ROADMAP-99.md`](./ROADMAP-99.md) — langkah **7**, 23, 24, 25, 26, 27, **3**, **5**, 33, 34, **35**, 41, **4** kini DIEKSEKUSI (dicentang di roadmap); **langkah 4 (GA4) SELESAI penuh via `v1.13.3`** — Clarity tinggal set `NEXT_PUBLIC_CLARITY_ID`. Sisanya menunggu sesi berikutnya.
+> 📦 **Sisa langkah ROADMAP-99** tetap TERSIMPAN di [`ROADMAP-99.md`](./ROADMAP-99.md) — langkah **7**, 23, 24, 25, 26, 27, **3**, **5**, 33, 34, **35**, 41, **4**, **68** kini DIEKSEKUSI (dicentang di roadmap); **langkah 68 (Keandalan) SELESAI penuh via `v1.13.5`** — backup harian teruji + Sentry env-gated. Sisanya menunggu sesi berikutnya.
 
 ### Planned — Quick Wins P0 teratas (dari ROADMAP-99 Tabel A, sisa)
 - **Aktifkan pembayaran produksi** Midtrans/Tripay — matikan `PAYMENT_DEMO_MODE` (langkah 1) — *checklist kredensial: `docs/CHECKLIST-KREDENSIAL-LANGKAH-1-2.md`*
 - **Submit 15 sitemap** (11.876 URL) ke Google Search Console + Bing Webmaster (langkah 2) — *checklist kredensial: `docs/CHECKLIST-KREDENSIAL-LANGKAH-1-2.md`*
 - ~~Langkah 4 eksekusi akhir~~ ✅ **SELESAI di v1.13.3** — GA4 `G-KMZRQJQXCB` aktif sitewide (fallback hardcode, tanpa env); Clarity tinggal set `NEXT_PUBLIC_CLARITY_ID`
+- ~~Langkah 68 keandalan~~ ✅ **SELESAI di v1.13.5** — backup harian otomatis + uji restore + Sentry env-gated
 - Verifikasi token 6 mesin pencari via env → meta tag otomatis (lanjutan `v1.3.0`)
 - Re-ukur PSI mobile setelah deploy v1.5.0–v1.11.0 — target LCP < 4 s & TBT < 500 ms
 
 ---
+
+<a id="v1-13-5"></a>
+
+## [1.13.5] — 2026-10-26 — 🛡️ "Jaring Pengaman" (Task 35)
+
+Rilis keandalan (ROADMAP-99 langkah **68**, Fase 8 — P0): mesin yang menjaga data & memberi mata saat produksi bermasalah.
+
+### 🛡️ Ops / Reliability
+- **Backup DB harian otomatis**: `scripts/backup-db.mjs` — snapshot konsisten SQLite via `VACUUM INTO` (tanpa dependensi sqlite3 CLI), **integrity check wajib** sebelum snapshot dianggap valid, kompresi gzip (236 KB → 24 KB), retensi otomatis **14 snapshot**, log ke `backups/backup.log`
+- **Restore teruji end-to-end**: `scripts/restore-db.mjs` — mode **DRY-RUN** (default, aman), `--to <path>` (uji ke path lain), `--commit` (timpa DB aktif dengan pengamanan `.pre-restore-<stamp>`); verifikasi nyata: snapshot 13 tabel / 171 baris **identik** dengan DB aktif
+- **Self-healing tanpa cron daemon**: hook `predev`/`prestart` (`backup-db.mjs --if-stale`) — setiap server menyala, backup diambil bila terakhir **> 24 jam**; baris crontab produksi (`0 22 * * *` = 03:00 WIB) terdokumentasi untuk mesin dengan cron
+- **Error monitoring Sentry (server + client) ENV-GATED** sejajar pola GA4: `@sentry/nextjs` — server via `src/instrumentation.ts` (`register()` + `onRequestError`), klien via `src/instrumentation-client.ts` (dynamic import — **DSN kosong = SDK tak dimuat, nol overhead bundle/CWV**); `sendDefaultPii: false` (ramah UU PDP); aktifasi = isi `SENTRY_DSN` + `NEXT_PUBLIC_SENTRY_DSN` di `.env` tanpa menyentuh kode
+- Folder `backups/` di-gitignore; `.env` += placeholder komentar Sentry
+
+### ✅ Verifikasi
+- `bun run lint` 0 error · homepage/sitemap/`/api/version` HTTP 200 · dev.log bersih · GA4 `G-KMZRQJQXCB` tetap tercetak di SSR
+- Uji restore nyata lulus (integrity ok, jumlah tabel & baris identik); `--if-stale` terbukti SKIP saat backup segar
 
 <a id="v1-13-4"></a>
 

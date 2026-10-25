@@ -233,3 +233,21 @@ Work Log:
 Stage Summary:
 - README 1:1 dengan kode (±1.560 baris, bilingual penuh); semua angka terverifikasi dari server hidup
 - Versi konsisten 5 titik; ladder 33 rilis; Task 33–34 tercatat di WORKLOG ini
+
+Task ID: 35
+Agent: main
+Task: 🛡️ "Jaring Pengaman" — keandalan produksi: backup DB harian otomatis + uji restore + error monitoring Sentry (ROADMAP-99 langkah 68, Fase 8, P0) 🏷️ Rilis v1.13.5
+
+Work Log:
+- Pilih item sesuai aturan roadmap (1 item/sesi, prioritas P0): langkah 1/2/4-sisa butuh kredensial user (Midtrans keys, GSC, Clarity) → langkah 68 satu-satunya P0 yang bisa dieksekusi mandiri
+- Backup: scripts/backup-db.mjs — VACUUM INTO (snapshot konsisten, tanpa sqlite3 CLI via node:sqlite built-in), integrity_check wajib 'ok', gzip (236 KB → 24 KB), retensi 14 snapshot, log backups/backup.log
+- Restore: scripts/restore-db.mjs — DRY-RUN default / --to <path> uji / --commit timpa (dengan pengamanan .pre-restore-<stamp>); UJI NYATA lulus: snapshot 13 tabel/171 baris identik DB aktif
+- Self-healing: flag --if-stale (skip bila backup < 24 jam) + hook predev/prestart di package.json (sandbox tanpa cron daemon); crontab produksi terdokumentasi di header script (0 22 * * * = 03:00 WIB)
+- Sentry: bun add @sentry/nextjs@11.9.0; src/instrumentation.ts (register + onRequestError) + src/instrumentation-client.ts (dynamic import) — ENV-GATED SENTRY_DSN/NEXT_PUBLIC_SENTRY_DSN, tracesSampleRate 0, sendDefaultPii false (UU PDP); .env += placeholder komentar; aktifasi tanpa sentuh kode
+- .gitignore += /backups; sinkron versi 6 titik: version.ts (APP_VERSION 1.13.5 + RELEASES +1), package.json, CHANGELOG (entri v1.13.5 + badge 34 rilis + worklog 42), scripts/ver.json (total 34), ROADMAP-99.md (langkah 68 dicentang + bukti), WORKLOG.md (entri ini)
+- Verifikasi: bun run lint 0 error; homepage HTTP 200; sitemap.xml 200; /api/version 1.13.5; GA4 G-KMZRQJQXCB tetap tercetak SSR; dev.log bersih tanpa noise Sentry
+
+Stage Summary:
+- v1.13.5 "Jaring Pengaman" rilis: data order/lead kini terlindungi backup harian teruji-restore, error produksi terpantau begitu DSN diisi
+- Roadmap-99: 13/99 selesai (langkah 3, 5, 7, 23, 24, 25, 26, 27, 33, 34, 35, 41, 68) — P0 tersisa: langkah 1 (pembayaran, butuh API keys), 2 (GSC submit), 4-sisa (Clarity ID)
+- Ganti nama rilis berjalan: RELEASE_NAME "Jaring Pengaman" di version.ts
