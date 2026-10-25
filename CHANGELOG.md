@@ -5,19 +5,19 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.13.5_Jaring_Pengaman-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-13-5)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.14.0_Kejar_Order-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-14-0)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-34_(0.1.0_%E2%86%92_1.13.5)-059669?style=flat-square)
-![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-42_ber_versi-059669?style=flat-square)
-![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.14.0_(Unreleased)-f59e0b?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-35_(0.1.0_%E2%86%92_1.14.0)-059669?style=flat-square)
+![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-43_ber_versi-059669?style=flat-square)
+![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.15.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.13.4 — "Dokumen Hidup II"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.14.0 — "Kejar Order"`**
 
 <sub>Versi terlihat hidup di: footer setiap halaman (11.876 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
@@ -37,27 +37,52 @@
 | Sumber kebenaran | [`WORKLOG.md`](./WORKLOG.md) (rekam jejak 1:1) · `src/lib/version.ts` (data mesin) · `package.json` (runtime) |
 | Ritme | **1 task/permintaan user = 1 nomor versi baru** — fitur → `MINOR`, perbaikan → `PATCH`, perombakan arah produk → `MAJOR` |
 | Presisi tanggal | Era `0.x` (Sesi 1–2) direkonstruksi dari metadata file & jejak invoice (`INV-20261021`) → presisi bulan; era `1.x` → presisi hari (terverifikasi) |
-| Rilis berikutnya | **`v1.14.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
+| Rilis berikutnya | **`v1.15.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
 
-> 🔗 Navigasi cepat: **[Tabel Lengkap 33 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+> 🔗 Navigasi cepat: **[Tabel Lengkap 35 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
 
 ---
 
 <a id="unreleased"></a>
 
-## [Unreleased] — akan menjadi `v1.14.0`
+## [Unreleased] — akan menjadi `v1.15.0`
 
-> 📦 **Sisa langkah ROADMAP-99** tetap TERSIMPAN di [`ROADMAP-99.md`](./ROADMAP-99.md) — langkah **7**, 23, 24, 25, 26, 27, **3**, **5**, 33, 34, **35**, 41, **4**, **68** kini DIEKSEKUSI (dicentang di roadmap); **langkah 68 (Keandalan) SELESAI penuh via `v1.13.5`** — backup harian teruji + Sentry env-gated. Sisanya menunggu sesi berikutnya.
+> 📦 **Sisa langkah ROADMAP-99** tetap TERSIMPAN di [`ROADMAP-99.md`](./ROADMAP-99.md) — langkah **7**, 23, 24, 25, 26, 27, **3**, **5**, **6**, 33, 34, **35**, 41, **4**, **68** kini DIEKSEKUSI (dicentang di roadmap); **langkah 6 (Follow-up otomatis) SELESAI penuh via `v1.14.0`** — sequence 24/48/72 jam + lane admin/lead + panel Mission Control. Sisanya menunggu sesi berikutnya.
 
 ### Planned — Quick Wins P0 teratas (dari ROADMAP-99 Tabel A, sisa)
 - **Aktifkan pembayaran produksi** Midtrans/Tripay — matikan `PAYMENT_DEMO_MODE` (langkah 1) — *checklist kredensial: `docs/CHECKLIST-KREDENSIAL-LANGKAH-1-2.md`*
 - **Submit 15 sitemap** (11.876 URL) ke Google Search Console + Bing Webmaster (langkah 2) — *checklist kredensial: `docs/CHECKLIST-KREDENSIAL-LANGKAH-1-2.md`*
 - ~~Langkah 4 eksekusi akhir~~ ✅ **SELESAI di v1.13.3** — GA4 `G-KMZRQJQXCB` aktif sitewide (fallback hardcode, tanpa env); Clarity tinggal set `NEXT_PUBLIC_CLARITY_ID`
+- ~~Langkah 6 follow-up otomatis~~ ✅ **SELESAI di v1.14.0** — sequence 3 langkah + lane admin/lead + cron
 - ~~Langkah 68 keandalan~~ ✅ **SELESAI di v1.13.5** — backup harian otomatis + uji restore + Sentry env-gated
 - Verifikasi token 6 mesin pencari via env → meta tag otomatis (lanjutan `v1.3.0`)
 - Re-ukur PSI mobile setelah deploy v1.5.0–v1.11.0 — target LCP < 4 s & TBT < 500 ms
 
 ---
+
+<a id="v1-14-0"></a>
+
+## [1.14.0] — 2026-10-26 — 🏃 "Kejar Order" (Task 36)
+
+Rilis monetisasi jalur-lancir (ROADMAP-99 langkah **6**, Quick Wins #6 — P1): mesin follow-up yang mengubah lead mengendap jadi order — "80% penjualan datang dari follow-up, bukan klik pertama".
+
+### 🏃 Added — Mesin Follow-up Otomatis
+- **Sequence 3 langkah untuk lead status NEW**: step 1 (24 jam, sapaan ramah) → step 2 (48 jam, value-push + tawarkan slot konsultasi) → step 3 (72 jam, pesan terakhir yang sopan + pintu tetap terbuka); **catch-up cerdas** — lead yang baru ditemukan telat (mis. 55 jam) langsung diposisikan di window terakhir yang berlaku, bukan mengulang dari awal
+- **Dua lane pengiriman**: lane **lead** — pesan otomatis langsung ke nomor lead via gateway WhatsApp (Fonnte/Wablas, hanya bila gateway terpasang); lane **admin** — reminder ke Telegram/WA admin berisi konteks lengkap (nilai estimasi, umur, sumber) + **link wa.me 1-klik dengan pesan sudah ter-dispatch**
+- **Idempotensi absolut**: `@@unique([leadId, step, lane])` + upsert — sweep dipanggil berulang (cron tiap jam + tombol manual) tidak pernah mengirim dobel; baris `failed` otomatis di-retry sweep berikutnya
+- **Berhenti dengan sopan**: sequence berhenti seketika begitu lead dihubungi (`status ≠ NEW`); lead lebih tua dari **30 hari** tidak dikejar; step 3 menyatakan eksplisit "pesan terakhir"
+
+### ⚙️ Infrastruktur
+- Model Prisma baru **`FollowUpLog`** (14 model total) + relasi `Lead.followUps` — `prisma db push` aditif, nol migrasi merusak
+- `src/lib/followup.ts` — engine sweep + antrean + template; `sendTelegram`/`sendWhatsapp` kini diekspor dari `notify.ts` untuk dipakai ulang
+- **`GET|POST /api/cron/followup`** — pemicu sweep eksternal (cron-job.org / Vercel Cron): auth `Authorization: Bearer $CRON_SECRET` atau `?secret=` atau cookie admin; respons ringkasan angka **tanpa PII**
+- **`GET /api/admin/followup`** — antrean jatuh tempo + statistik + status kanal (dipakai UI)
+- **Panel "⏰ Follow-up 24 Jam"** di Mission Control tab Leads: ringkasan (jumlah jatuh tempo, nilai mengendap, selesai sequence), tabel lead dengan tombol **💬 Chat (step N)** + **✓ Dihubungi**, tombol **Jalankan Sweep**, refresh otomatis tiap 60 dtk
+- QA: `scripts/verify-followup.mjs` — 23 asersi end-to-end (seed → sweep → idempotensi → catch-up → antrean → auth → PII → cleanup) **23/23 PASS** + verifikasi visual agent-browser
+
+### ✅ Verifikasi
+- `eslint` 0 error pada seluruh file baru/ubah · QA 23/23 PASS · panel terverifikasi di browser (14 lead jatuh tempo · Rp 52,5 jt mengendap · catch-up step 3/3 tampil benar)
+- Cron produksi: pasang `CRON_SECRET` di env + jadwal jam-an ke `https://pusatperizinan.com/api/cron/followup`
 
 <a id="v1-13-5"></a>
 
@@ -546,11 +571,13 @@ Rilis pertama dengan **identitas versi resmi**. Seluruh proyek kini punya nomor 
 
 <a id="ladder"></a>
 
-## 🪜 Tabel Lengkap 33 Rilis
+## 🪜 Tabel Lengkap 35 Rilis
 
 | # | Versi | Tanggal (WIB) | Tipe | Nama Rilis | Task WORKLOG | Status |
 |---|---|---|---|---|---|---|
-| 33 | **v1.13.4** ⭐ | **2026-10-26** | patch | **Dokumen Hidup II** | Task 34 | **🟢 AKTIF — versi berjalan** |
+| 35 | **v1.14.0** ⭐ | **2026-10-26** | minor | **Kejar Order** | Task 36 | **🟢 AKTIF — versi berjalan** |
+| 34 | v1.13.5 | 2026-10-26 | patch | Jaring Pengaman | Task 35 | ✅ Rilis |
+| 33 | v1.13.4 | 2026-10-26 | patch | Dokumen Hidup II | Task 34 | ✅ Rilis |
 | 32 | v1.13.3 | 2026-10-26 | patch | Analitik Penuh | Task 33 | ✅ Rilis |
 | 31 | v1.13.2 | 2026-10-25 | patch | Peta Live | Task 32 | ✅ Rilis |
 | 30 | v1.13.1 | 2026-10-25 | patch | Logo Resmi | Task 31 | ✅ Rilis |
@@ -612,6 +639,6 @@ Rilis pertama dengan **identitas versi resmi**. Seluruh proyek kini punya nomor 
 <sub>📦 Di-maintain manual oleh tim <strong>PusatPerizinan.com</strong> · Format <a href="https://keepachangelog.com/id/1.1.0/">Keep a Changelog</a> · Semantik <a href="https://semver.org/lang/id/">SemVer 2.0.0</a></sub><br>
 <sub>🔎 Versi juga tersedia secara programatik: <code>GET /api/version</code> · Rekam jejak 1:1: <a href="./WORKLOG.md">WORKLOG.md</a></sub>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:059669,50:10b981,100:f59e0b&height=110&section=footer&text=v1.4.0%20%E2%80%94%20Version%20Master&fontSize=26&fontColor=ffffff&fontAlignY=60&animation=fadeIn" width="100%" alt="Footer CHANGELOG"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:059669,50:10b981,100:f59e0b&height=110&section=footer&text=v1.14.0%20%E2%80%94%20Kejar%20Order&fontSize=26&fontColor=ffffff&fontAlignY=60&animation=fadeIn" width="100%" alt="Footer CHANGELOG"/>
 
 </div>

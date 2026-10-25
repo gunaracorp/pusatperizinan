@@ -27,6 +27,7 @@ model Lead {
   notes        String?
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+  followUps    FollowUpLog[]
 
   @@index([status])
   @@index([createdAt])
@@ -206,6 +207,27 @@ model Post {
 
   @@index([status])
   @@index([updatedAt])
+}
+
+// FollowUpLog: satu kirim follow-up otomatis ke lead (langkah 6 ROADMAP-99).
+// Sequence 3 langkah utk lead status NEW yang belum dibalas: 24h → 48h → 72h.
+// lane "lead"  = pesan langsung ke nomor lead via gateway WA (bila gateway aktif).
+// lane "admin" = reminder ke admin (Telegram/WA) berisi link wa.me siap 1-klik.
+// Idempoten per (lead, step, lane) — sweep berulang tak pernah dobel kirim.
+model FollowUpLog {
+  id        String   @id @default(cuid())
+  leadId    String
+  step      Int      // 1 = 24 jam · 2 = 48 jam · 3 = 72 jam
+  lane      String   // lead | admin
+  channel   String   // whatsapp | telegram
+  status    String   @default("sent") // sent | failed | skipped
+  message   String?  // pesan ter-render / pesan prefill wa.me
+  error     String?
+  createdAt DateTime @default(now())
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  @@unique([leadId, step, lane])
+  @@index([createdAt])
 }
 
 // NotificationLog: riwayat pengiriman notifikasi (bahan feed real-time dashboard)

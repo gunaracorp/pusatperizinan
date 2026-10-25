@@ -16,6 +16,7 @@ import {
   EmptyState, SkeletonRows, StatusBadge, SourceBadge, useAdminData, apiPatch,
   downloadCSV, formatRp, relativeTime, waLink, LEAD_STATUSES, triggerRefresh,
 } from "@/components/admin/shared";
+import { FollowUpPanel } from "@/components/admin/followup";
 import { ChevronLeft, ChevronRight, Download, MessageCircle, NotebookPen, Search } from "lucide-react";
 
 // ============================================================
@@ -101,6 +102,9 @@ export function LeadsTab() {
 
   return (
     <div className="space-y-4">
+      {/* ⏰ Follow-up 24 jam (langkah 6) — lead NEW ≥24 jam, WA 1-klik */}
+      <FollowUpPanel />
+
       {/* Filter bar */}
       <Card className="border-stone-800 bg-stone-900/50 shadow-none">
         <CardContent className="flex flex-wrap items-center gap-2 p-3">

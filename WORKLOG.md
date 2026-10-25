@@ -251,3 +251,23 @@ Stage Summary:
 - v1.13.5 "Jaring Pengaman" rilis: data order/lead kini terlindungi backup harian teruji-restore, error produksi terpantau begitu DSN diisi
 - Roadmap-99: 13/99 selesai (langkah 3, 5, 7, 23, 24, 25, 26, 27, 33, 34, 35, 41, 68) — P0 tersisa: langkah 1 (pembayaran, butuh API keys), 2 (GSC submit), 4-sisa (Clarity ID)
 - Ganti nama rilis berjalan: RELEASE_NAME "Jaring Pengaman" di version.ts
+
+Task ID: 36
+Agent: main
+Task: 🏃 "Kejar Order" — follow-up otomatis lead 24 jam: sequence WA 3 langkah + reminder admin + panel Mission Control (ROADMAP-99 langkah 6, Quick Wins #6, Fase 1, P1) 🏷️ Rilis v1.14.0
+
+Work Log:
+- Arah user ("yang uang duluan"): langkah 1 (pembayaran) murni menunggu kredensial (kode gateway 100% siap sejak v1.11.0) → eksekusi Quick Wins #6 yang mandiri penuh: follow-up otomatis lead 24 jam
+- Schema: model FollowUpLog baru (14 model) — @@unique([leadId, step, lane]) utk idempotensi absolut + relasi Lead.followUps; prisma db push aditif (nol data hilang)
+- Engine src/lib/followup.ts: sequence 3 langkah 24/48/72 jam (template nada naik: sapa ramah → value-push + slot konsultasi → pesan terakhir sopan); CATCH-UP cerdas (lead ditemukan telat 55 jam → langsung window terakhir, bukan ulang step 1); berhenti otomatis saat status ≠ NEW; lead >30 hari tak dikejar; batch 50/sweep
+- Dua lane: lane LEAD kirim langsung via gateway WA (Fonnte/Wablas — aktif bila token terpasang); lane ADMIN reminder Telegram/WA berisi konteks (nilai estimasi, umur, sumber) + link wa.me 1-klik pesan ter-dispatch; sendTelegram/sendWhatsapp diekspor dari notify.ts
+- API: GET|POST /api/cron/followup (auth: Bearer $CRON_SECRET / ?secret= / cookie admin; respons angka tanpa PII) + GET /api/admin/followup (antrean + stats + status kanal)
+- UI: komponen admin/followup.tsx — panel "⏰ Follow-up 24 Jam" di atas tab Leads: ringkasan (due, nilai mengendap, selesai sequence, lead aktif), badge status kanal, tabel lead dgn tombol 💬 Chat (step N) + ✓ Dihubungi, tombol Jalankan Sweep, auto-refresh 60 dtk
+- QA scripts/verify-followup.mjs: 23 asersi E2E (seed 4 lead QA + fake Telegram → sweep → step mapping benar (25j→1, 50j→2, CONTACTED/40-hari tereliminasi) → idempotensi (baris tetap setelah sweep ulang) → sequence berhenti setelah dihubungi → antrean admin + prefill wa.me 628… → 401 tanpa auth → respons tanpa PII → cleanup pulih) — 23/23 PASS (setelah fix catch-up)
+- Verifikasi visual agent-browser: login admin → tab Leads → panel tampil "14 lead jatuh tempo · Rp 52,5 jt nilai mengendap" + catch-up step 3/3 benar utk lead 556 jam + tombol aksi lengkap; eslint 0 error file baru/ubah
+- Sinkron versi 7 titik: version.ts (APP_VERSION 1.14.0 + RELEASES 35 entri + prismaModels 14), package.json, CHANGELOG (entri v1.14.0 + badge 35 rilis + ladder +2 baris (v1.13.5 sempat lolos ladder)), scripts/ver.json (total 35), ROADMAP-99.md (langkah 6 dicentang + bukti), README ID+EN (badge v1.14.0 · §9 14 model + baris FollowUpLog + ER diagram · §14 panel follow-up · §22 status 16 langkah · env CRON_SECRET), WORKLOG.md (entri ini)
+
+Stage Summary:
+- v1.14.0 "Kejar Order" rilis: 43 lead demo dgn 14 jatuh tempo (Rp 52,5 jt mengendap) kini punya mesin pengejar otomatis — tinggal pasang kanal (Telegram gratis 2 menit / gateway WA) + cron eksternal agar menyala penuh
+- Roadmap-99: 16/99 selesai (langkah 3, 5, 6, 7, 23, 24, 25, 26, 27, 33, 34, 35, 41, 4, 68 + langkah 1 kode-siap) — Quick Wins tersisa yang mandiri: langkah 8 (social proof), 9-10 (checkout/cart), 12 (abandoned recovery); P0 terkunci kredensial: 1 (Midtrans/Tripay keys), 2 (GSC), 4-sisa (Clarity ID)
+- Pola baru utk sesi berikutnya: engine lib/followup.ts + endpoint /api/cron/followup reusable utk langkah 12 (abandoned checkout recovery)

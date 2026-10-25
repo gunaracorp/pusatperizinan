@@ -17,9 +17,9 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.13.5";
+export const APP_VERSION = "1.14.0";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Jaring Pengaman";
+export const RELEASE_NAME = "Kejar Order";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
 export const RELEASE_DATE = "2026-10-26";
 /** Channel rilis: stable | beta | alpha. */
@@ -42,10 +42,23 @@ export interface ReleaseEntry {
 }
 
 /**
- * Riwayat lengkap 34 rilis — urut TERBARU lebih dulu.
+ * Riwayat lengkap 35 rilis — urut TERBARU lebih dulu.
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.14.0",
+    date: "2026-10-26",
+    type: "minor",
+    name: "Kejar Order",
+    taskId: "36",
+    highlights: [
+      "Follow-up otomatis lead 24 jam (langkah 6 ROADMAP-99): sequence 3 langkah 24/48/72 jam untuk lead status NEW — catch-up ke window terakhir saat lead ditemukan telat",
+      "Dua lane: kirim otomatis ke lead via gateway WA (Fonnte/Wablas) + reminder admin via Telegram/WA berisi link wa.me 1-klik pesan siap kirim",
+      "Idempoten per (lead, step, lane) — sweep berulang tak pernah dobel kirim; berhenti otomatis saat lead dihubungi (status ≠ NEW); lead >30 hari tak dikejar",
+      "Mission Control: panel 'Follow-up 24 Jam' di tab Leads (antrean jatuh tempo + nilai mengendap + tombol sweep) + cron eksternal GET /api/cron/followup (CRON_SECRET)",
+    ],
+  },
   {
     version: "1.13.5",
     date: "2026-10-26",
@@ -426,7 +439,7 @@ export const PLATFORM_STATS = {
   languages: 30,
   aiTools: 5,
   provinces: 38,
-  prismaModels: 13,
+  prismaModels: 14,
 } as const;
 
 /** Ringkasan ringkas untuk tampilan footer/chip. */

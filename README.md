@@ -18,11 +18,11 @@
 [![React 19](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](#3-tech-stack--teknologi)
 [![Tailwind CSS 4](https://img.shields.io/badge/Tailwind_CSS-4-38BDF8?style=for-the-badge&logo=tailwindcss&logoColor=white)](#3-tech-stack--teknologi)
 [![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-New_York_48_komponen-000000?style=for-the-badge&logo=shadcnui&logoColor=white)](#3-tech-stack--teknologi)
-[![Prisma 6](https://img.shields.io/badge/Prisma-6_%2B_SQLite-2D3748?style=for-the-badge&logo=prisma&logoColor=white)](#9-database--13-model-prisma)
+[![Prisma 6](https://img.shields.io/badge/Prisma-6_%2B_SQLite-2D3748?style=for-the-badge&logo=prisma&logoColor=white)](#9-database--14-model-prisma)
 [![Bun](https://img.shields.io/badge/Bun-runtime_(_dev_)-F9F1F1?style=for-the-badge&logo=bun&logoColor=black)](#4-quick-start--mulai-cepat)
-[![Versi](https://img.shields.io/badge/Versi-v1.13.5_Jaring_Pengaman-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](./CHANGELOG.md)
+[![Versi](https://img.shields.io/badge/Versi-v1.14.0_Kejar_Order-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](./CHANGELOG.md)
 
-![Versioning](https://img.shields.io/badge/Versi-v1.13.5_%C2%B7_SemVer_2.0.0_%C2%B7_34_rilis-8B5CF6?style=flat-square&logo=semver&logoColor=white)
+![Versioning](https://img.shields.io/badge/Versi-v1.14.0_%C2%B7_SemVer_2.0.0_%C2%B7_35_rilis-8B5CF6?style=flat-square&logo=semver&logoColor=white)
 ![Sitemap](https://img.shields.io/badge/URL_Sitemap-11.876_%C2%B7_15_seksi-059669?style=flat-square&logo=google&logoColor=white)
 ![Layanan](https://img.shields.io/badge/Layanan_Orderable-1.500_in_3_katalog-059669?style=flat-square)
 ![MRR](https://img.shields.io/badge/KepatuhanPRO-MRR_6_SKU-f59e0b?style=flat-square)
@@ -48,7 +48,7 @@
 
 # 🇮🇩 — Bahasa Indonesia
 
-> 📌 **Dokumen ini bilingual & penuh navigasi.** Klik daftar isi mana pun untuk melompat. Sumber kebenaran kode: `src/lib/site.ts` (NAP, trust metrics) & `src/lib/pricing.ts` (harga). Log pengembangan 100% transparan & **ber-versi SemVer**: [`WORKLOG.md`](./WORKLOG.md) · riwayat rilis: [`CHANGELOG.md`](./CHANGELOG.md) · **Versi saat ini: `v1.13.5 "Jaring Pengaman"` (2026-10-26)** — cek live: `GET /api/version`.
+> 📌 **Dokumen ini bilingual & penuh navigasi.** Klik daftar isi mana pun untuk melompat. Sumber kebenaran kode: `src/lib/site.ts` (NAP, trust metrics) & `src/lib/pricing.ts` (harga). Log pengembangan 100% transparan & **ber-versi SemVer**: [`WORKLOG.md`](./WORKLOG.md) · riwayat rilis: [`CHANGELOG.md`](./CHANGELOG.md) · **Versi saat ini: `v1.14.0 "Kejar Order"` (2026-10-26)** — cek live: `GET /api/version`.
 
 ## 📑 Daftar Isi (ID)
 
@@ -60,7 +60,7 @@
 - [6. Arsitektur & 3 Mode Deployment](#6-arsitektur--3-mode-deployment)
 - [7. Peta Rute Lengkap](#7-peta-rute-lengkap)
 - [8. API Reference](#8-api-reference)
-- [9. Database — 13 Model Prisma](#9-database--13-model-prisma)
+- [9. Database — 14 Model Prisma](#9-database--14-model-prisma)
 - [10. Internasionalisasi — 30 Bahasa](#10-internasionalisasi--30-bahasa)
 - [11. Mesin SEO & GEO](#11-mesin-seo--geo)
 - [12. 💰 Mesin Revenue — Menuju Rp 5 M/Bulan](#12--mesin-revenue--menuju-rp-5-mbulan)
@@ -285,7 +285,7 @@ pusatperizinan/
 │   │   ├── payment/ · seo/ (seo.ts, sitemap-sections.ts) · geo.ts
 │   │   └── db.ts · admin-auth.ts · notify.ts · kbli-*.ts · …
 │   └── hooks/                      # use-toast, use-mobile
-├── prisma/schema.prisma            # 13 model (§9)
+├── prisma/schema.prisma            # 14 model (§9)
 ├── db/custom.db                    # SQLite (seeded)
 ├── public/
 │   ├── kantor/                     # 5 foto kantor resmi (sharp q82)
@@ -422,11 +422,12 @@ Semua endpoint di `src/app/api/**/route.ts`. Endpoint AI **wajib server-side**.
 
 ---
 
-## 9. Database — 13 Model Prisma
+## 9. Database — 14 Model Prisma
 
 ```mermaid
 erDiagram
     Lead ||--o{ NotificationLog : "memicu"
+    Lead ||--o{ FollowUpLog : "dikejar"
     Consultation ||--o{ NotificationLog : "memicu"
     Order ||--o{ NotificationLog : "memicu"
     Post }o--|| "CMS" : "blog"
@@ -447,6 +448,7 @@ erDiagram
 | 11 | `Post` | Artikel blog CMS (metaTitle/focusKeyword/noindex) |
 | 12 | `NotificationLog` | Audit semua notifikasi terkirim |
 | 13 | `EditorialSlot` | Penjadwalan redaksi konten (Mesin Redaksi, v1.10.0) |
+| 14 | `FollowUpLog` | Riwayat follow-up otomatis lead (24/48/72 jam, lane admin/lead — v1.14.0) |
 
 > ⚙️ Field kompleks disimpan sebagai **string JSON** (primitif SQLite tidak mendukung list) — di-parse saat render.
 
@@ -567,7 +569,7 @@ Di **1.000 halaman detail v2/v3**: 2 layanan pelengkap lintas kategori dipilih *
 
 ## 14. Panel Admin — Mission Control
 
-`/admin` — login password → cookie HMAC-SHA256 (12 jam, timing-safe compare). 13 modul: Overview KPI · Leads (**+ follow-up WhatsApp cepat**) · Orders · Konsultasi · Subscriber · CMS Blog · Testimoni · Settings Notifikasi · Dokumen · Roadmap · Chat Log · Vitals RUM · Pack Deploy.
+`/admin` — login password → cookie HMAC-SHA256 (12 jam, timing-safe compare). 13 modul: Overview KPI · Leads (**+ panel Follow-up 24 Jam: antrean jatuh tempo, WA 1-klik per step, tombol sweep — v1.14.0**) · Orders · Konsultasi · Subscriber · CMS Blog · Testimoni · Settings Notifikasi · Dokumen · Roadmap · Chat Log · Vitals RUM · Pack Deploy.
 
 `/?admin=1` — **Panel AdminDeploy**: unduh paket hosting statis terbaru dengan badge kesegaran (`TERBARU` < 24 jam), MD5, ukuran, daftar isi `ISI-PACK.txt`.
 
@@ -617,6 +619,7 @@ NEXT_PUBLIC_GA_ID=G-KMZRQJQXCB      # GA4 tetap aktif walau tanpa env
 # NEXT_PUBLIC_CLARITY_ID=...        # Microsoft Clarity (kode siap sejak v1.11.0)
 # SENTRY_DSN=...                    # Sentry server (Langkah 68, v1.13.5 — kosong = mati)
 # NEXT_PUBLIC_SENTRY_DSN=...        # Sentry browser (aktif bersama SENTRY_DSN)
+# CRON_SECRET=...                   # follow-up sweep (v1.14.0) — Bearer utk /api/cron/followup
 # INDEXNOW_KEY=...                  # kunci IndexNow (file kunci public/<key>.txt)
 ```
 
@@ -705,12 +708,13 @@ Log penuh & transparan: [`WORKLOG.md`](./WORKLOG.md) — **34 entri terverifikas
 | **33** | 📊 **Analitik Penuh** | **GA4 `G-KMZRQJQXCB` sitewide** + 7 titik konversi + preconnect (v1.13.3) |
 | **34** | 📚 **Dokumen Hidup II** | README full refresh (dokumen ini) + sinkron versi 5 titik (v1.13.4) |
 | **35** | 🛡️ **Jaring Pengaman** | Backup DB harian teruji-restore + Sentry env-gated server+client (v1.13.5) |
+| **36** | 🏃 **Kejar Order** | Follow-up otomatis lead 24/48/72 jam + lane admin/lead + panel Mission Control (v1.14.0) |
 
 ---
 
 ## 22. Roadmap
 
-> 🎯 **Roadmap besar 99 langkah** menuju nomor #1 dunia tersimpan di **[`ROADMAP-99.md`](./ROADMAP-99.md)** — status: *eksekusi berjalan — 15 langkah selesai (terbaru: langkah 68 Keandalan via v1.13.5)*. Dokumen itu berisi 12 fase, tag dampak/effort/prioritas, Top-10 Quick Wins, dan milestone kuartalan. Daftar di bawah adalah ringkasan eksekusi teknis harian.
+> 🎯 **Roadmap besar 99 langkah** menuju nomor #1 dunia tersimpan di **[`ROADMAP-99.md`](./ROADMAP-99.md)** — status: *eksekusi berjalan — 16 langkah selesai (terbaru: langkah 6 Follow-up Otomatis via v1.14.0)*. Dokumen itu berisi 12 fase, tag dampak/effort/prioritas, Top-10 Quick Wins, dan milestone kuartalan. Daftar di bawah adalah ringkasan eksekusi teknis harian.
 
 ### Kelompok A — butuh akses produksi
 
@@ -810,7 +814,7 @@ Dibangun dengan ❤️ untuk kemajuan UMKM Indonesia.
 
 # 🇬🇧 — English
 
-> 📌 **This document is bilingual & fully navigable.** Code source-of-truth: `src/lib/site.ts` (NAP, trust metrics) & `src/lib/pricing.ts` (prices). 100% transparent, **SemVer-versioned** dev log: [`WORKLOG.md`](./WORKLOG.md) · release history: [`CHANGELOG.md`](./CHANGELOG.md) · **Current version: `v1.13.5 "Jaring Pengaman"` (2026-10-26)** — live check: `GET /api/version`.
+> 📌 **This document is bilingual & fully navigable.** Code source-of-truth: `src/lib/site.ts` (NAP, trust metrics) & `src/lib/pricing.ts` (prices). 100% transparent, **SemVer-versioned** dev log: [`WORKLOG.md`](./WORKLOG.md) · release history: [`CHANGELOG.md`](./CHANGELOG.md) · **Current version: `v1.14.0 "Kejar Order"` (2026-10-26)** — live check: `GET /api/version`.
 
 ## 📑 Table of Contents (EN)
 
@@ -822,7 +826,7 @@ Dibangun dengan ❤️ untuk kemajuan UMKM Indonesia.
 - [6. Architecture & 3 Deployment Modes](#6-architecture--3-deployment-modes)
 - [7. Complete Route Map](#7-complete-route-map)
 - [8. API Reference](#8-api-reference-1)
-- [9. Database — 13 Prisma Models](#9-database--13-prisma-models)
+- [9. Database — 14 Prisma Models](#9-database--14-prisma-models)
 - [10. Internationalization — 30 Languages](#10-internationalization--30-languages)
 - [11. SEO & GEO Engine](#11-seo--geo-engine)
 - [12. 💰 Revenue Engine — Toward Rp 5B/Month](#12--revenue-engine--toward-rp-5bmonth)
@@ -1046,7 +1050,7 @@ pusatperizinan/
 │   │   ├── payment/ · seo.ts · sitemap-sections.ts · geo.ts
 │   │   └── db.ts · admin-auth.ts · notify.ts · kbli-*.ts · …
 │   └── hooks/                      # use-toast, use-mobile
-├── prisma/schema.prisma            # 13 models (§9)
+├── prisma/schema.prisma            # 14 models (§9)
 ├── db/custom.db                    # SQLite (seeded)
 ├── public/
 │   ├── kantor/                     # 5 official office photos (sharp q82)
@@ -1181,7 +1185,7 @@ All endpoints live in `src/app/api/**/route.ts`. AI endpoints are **server-side 
 
 ---
 
-## 9. Database — 13 Prisma Models
+## 9. Database — 14 Prisma Models
 
 | # | Model | Key purpose |
 |---|---|---|
@@ -1198,6 +1202,7 @@ All endpoints live in `src/app/api/**/route.ts`. AI endpoints are **server-side 
 | 11 | `Post` | CMS blog articles (metaTitle/focusKeyword/noindex) |
 | 12 | `NotificationLog` | Audit trail of all sent notifications |
 | 13 | `EditorialSlot` | Content editorial scheduling (Mesin Redaksi, v1.10.0) |
+| 14 | `FollowUpLog` | Automated lead follow-up history (24/48/72h, admin/lead lanes — v1.14.0) |
 
 > ⚙️ Complex fields are stored as **JSON strings** (SQLite primitives don't support lists) — parsed at render time.
 
@@ -1317,7 +1322,7 @@ On **1,000 v2/v3 detail pages**: 2 cross-category complements chosen **determini
 
 ## 14. Admin Panel — Mission Control
 
-`/admin` — password login → HMAC-SHA256 cookie (12 hours, timing-safe compare). 13 modules: KPI Overview · Leads (**with quick WhatsApp follow-up**) · Orders · Consultations · Subscribers · Blog CMS · Testimonials · Notification Settings · Documents · Roadmap · Chat Log · Vitals RUM · Pack Deploy.
+`/admin` — password login → HMAC-SHA256 cookie (12 hours, timing-safe compare). 13 modules: KPI Overview · Leads (**+ Follow-up 24 Jam panel: due queue, 1-click WhatsApp per step, sweep button — v1.14.0**) · Orders · Consultations · Subscribers · Blog CMS · Testimonials · Notification Settings · Documents · Roadmap · Chat Log · Vitals RUM · Pack Deploy.
 
 `/?admin=1` — **AdminDeploy panel**: download the latest static hosting pack with freshness badge (`FRESH` < 24 hours), MD5, size, and `ISI-PACK.txt` contents.
 
@@ -1453,12 +1458,13 @@ Full transparent log: [`WORKLOG.md`](./WORKLOG.md) — **34 verified entries, ev
 | **33** | 📊 **Analitik Penuh** | **GA4 `G-KMZRQJQXCB` sitewide** + 7 conversion touchpoints + preconnect (v1.13.3) |
 | **34** | 📚 **Dokumen Hidup II** | Full README refresh (this document) + 5-point version sync (v1.13.4) |
 | **35** | 🛡️ **Jaring Pengaman** | Tested daily DB backup + env-gated Sentry server+client (v1.13.5) |
+| **36** | 🏃 **Kejar Order** | Automated 24/48/72h lead follow-up + admin/lead lanes + Mission Control panel (v1.14.0) |
 
 ---
 
 ## 22. Roadmap
 
-> 🎯 **The grand 99-step roadmap** toward world #1 lives in **[`ROADMAP-99.md`](./ROADMAP-99.md)** — status: *execution in progress — 15 steps done (latest: step 68 Reliability via v1.13.5)*. It contains 12 phases, impact/effort/priority tags, a Top-10 Quick Wins table, and quarterly milestones. The list below is the day-to-day technical-execution summary.
+> 🎯 **The grand 99-step roadmap** toward world #1 lives in **[`ROADMAP-99.md`](./ROADMAP-99.md)** — status: *execution in progress — 16 steps done (latest: step 6 Automated Follow-up via v1.14.0)*. It contains 12 phases, impact/effort/priority tags, a Top-10 Quick Wins table, and quarterly milestones. The list below is the day-to-day technical-execution summary.
 
 ### Group A — needs production access
 
@@ -1558,7 +1564,7 @@ Built with ❤️ for the advancement of Indonesian MSMEs.
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:f59e0b,100:059669&height=110&section=footer&animation=fadeIn" width="100%" alt="Footer animasi"/>
 
-<sub>⭐ Developed with Z.ai Code — 35 verified tasks · 11,876 SEO URLs · 1,500 orderable services · 30 languages · 5 AI tools · GA4 full-funnel ⭐</sub>
-<sub>README last updated: v1.13.5 "Jaring Pengaman" (Task 35, 2026-10-26) · This document reflects actual code — when in doubt, the code is the truth. 🟢</sub>
+<sub>⭐ Developed with Z.ai Code — 36 verified tasks · 11,876 SEO URLs · 1,500 orderable services · 30 languages · 5 AI tools · GA4 full-funnel ⭐</sub>
+<sub>README last updated: v1.14.0 "Kejar Order" (Task 36, 2026-10-26) · This document reflects actual code — when in doubt, the code is the truth. 🟢</sub>
 
 </div>

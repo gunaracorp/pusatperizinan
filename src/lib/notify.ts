@@ -183,7 +183,8 @@ export function renderTemplate(tpl: string, lead: LeadPayload): string {
 }
 
 // ---------- sender: Telegram Bot API ----------
-async function sendTelegram(
+/** Diekspor juga untuk mesin follow-up (langkah 6) — pola kirim identik. */
+export async function sendTelegram(
   botToken: string,
   chatId: string,
   text: string
@@ -210,7 +211,8 @@ async function sendTelegram(
 }
 
 // ---------- sender: WhatsApp gateway ----------
-async function sendWhatsapp(
+/** Diekspor juga untuk mesin follow-up (langkah 6) — target bebas (nomor lead). */
+export async function sendWhatsapp(
   provider: "fonnte" | "wablas",
   apiToken: string,
   target: string,
