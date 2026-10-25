@@ -17,9 +17,9 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.13.0";
+export const APP_VERSION = "1.13.1";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Peta Provinsi";
+export const RELEASE_NAME = "Logo Resmi";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
 export const RELEASE_DATE = "2026-10-25";
 /** Channel rilis: stable | beta | alpha. */
@@ -46,6 +46,18 @@ export interface ReleaseEntry {
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.13.1",
+    date: "2026-10-25",
+    type: "patch",
+    name: "Logo Resmi",
+    taskId: "31",
+    highlights: [
+      "Hapus sisa logo template \"Z\" (huruf Z putih + animasi breathe — warisan template awal) dari /logo.svg; file kini berisi marka resmi situs: perisai emerald + centang emas, konsisten dengan favicon.svg",
+      "Aset PNG utama (logo-icon.png, logo-icon-white.png, logo.png — karangan PP + bintang emas) terverifikasi visual bersih; rilis v1.14.0 \"Identitas Visual\" yang keliru dipasang sudah di-revert penuh (revert commit eab4f49)",
+      "Verifikasi menyeluruh: nol referensi /logo.svg di kode (penggantian isi aman), manifest.json + metadata ikon + header/footer tetap logo PP, cache .next bersih dari aset Z",
+    ],
+  },
   {
     version: "1.13.0",
     date: "2026-10-25",

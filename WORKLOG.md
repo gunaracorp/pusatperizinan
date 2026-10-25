@@ -225,3 +225,23 @@ Stage Summary:
 - v1.13.0 "Peta Provinsi": lapisan sinyal lokal lengkap — 554 hub wilayah membawa schema Service + Offer (harga IDR nyata) + geo meta 38 provinsi utuh → target featured snippet & local pack SEO
 - Nol URL baru → indeks 11.876 URL aman; FASE 1 kini 3 ✅ 5 ✅ 7 ✅ (4 kode-siap; 1–2 kredensial owner; 6 & 8 antre)
 - Sisa ROADMAP-99: FASE 1 (1–2, 4 eksekusi-akhir, 6, 8), FASE 4 (28–32), FASE 5 (36–40, 42–44), FASE 6 dst.
+
+---
+
+## Task 31 — Hapus Sisa Logo Template "Z" dari /logo.svg (koreksi Task 30)
+
+> 🏷️ Rilis v1.13.1 — "Logo Resmi" · type: patch
+> Tanggal: 2026-10-25 (WIB) · Agent: Z.ai Code (Master Polymath · Sage Universal · The Ultimate Problem Solver)
+
+**Task:** Koreksi lanjutan salah paham Task 30 — user meminta logo "Z" yang tampil dihapus; Task 30 sebelumnya justru MEMBUAT & memasang logo Z baru ke website (v1.14.0 "Identitas Visual", commit d26ad5b) lalu di-revert penuh (revert commit eab4f49). Audit lanjutan menemukan **sisa logo Z asli**: `public/logo.svg` — huruf "Z" putih + animasi CSS `z-breathe`, warisan template awal proyek, terlayani publik di URL `/logo.svg`.
+
+**Work Log:**
+- Audit identitas menyeluruh: `public/logo.svg` terkonfirmasi logo template Z (path huruf Z + `@keyframes breathe`); grep seluruh repo → **nol referensi `/logo.svg` di kode** (hanya disebut di worklog) → penggantian isi berisiko nol
+- Verifikasi visual (Read PNG): `logo-icon.png`, `logo.png` (karangan PP + bintang emas + "PUSATPERIZINAN.COM" + "PT. TOP KONSULTAN INTERNASIONAL - SINCE 2009") — semua bersih dari Z; `manifest.json` → `/logo-icon.png` + `/logo-icon-white.png` (PP); metadata ikon layout → `/logo-icon.png`; 27+ komponen `<img>` header/footer/halaman → aset PP; cache `.next` bersih (`rg z-breathe|logo.svg` → 0 file); `public/download/` & `public/kantor/` bersih
+- **Fix**: `public/logo.svg` ditulis ulang → marka resmi situs: perisai emerald gradient + centang emas (geometri identik `favicon.svg`), komentar header menjelaskan penggantian; logo Z hilang total dari aset publik
+- Versioning: `version.ts` (1.13.1 "Logo Resmi" + entri RELEASES patch taskId 31), `package.json` 1.13.1, `/api/version` nextRelease tetap v1.14.0, `CHANGELOG.md` (entri 1.13.1 + badge 30 rilis/40 entri + ladder baris 30), WORKLOG.md + worklog.md Task 31; ROADMAP-99 tidak berubah (bukan langkah roadmap)
+
+**Stage Summary:**
+- Satu-satunya jejak logo Z di `pusatperizinan.com` dihapus — seluruh aset identitas (SVG, PNG, favicon, manifest, metadata) kini 100% logo resmi PP
+- Riwayat bersih: v1.14.0 "Identitas Visual" (salah paham) di-revert penuh; nomor v1.14.0 tetap tersedia untuk langkah ROADMAP-99 berikutnya
+- QA: lint 0/0 · tsc baseline 178 · `/logo.svg` terlayani tanpa huruf Z

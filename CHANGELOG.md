@@ -5,19 +5,19 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.13.0_Peta_Provinsi-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-13-0)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.13.1_Logo_Resmi-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-13-1)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-29_(0.1.0_%E2%86%92_1.13.0)-059669?style=flat-square)
-![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-39_ber_versi-059669?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-30_(0.1.0_%E2%86%92_1.13.1)-059669?style=flat-square)
+![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-40_ber_versi-059669?style=flat-square)
 ![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.14.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.13.0 — "Peta Provinsi"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.13.1 — "Logo Resmi"`**
 
 <sub>Versi terlihat hidup di: footer setiap halaman (11.876 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
@@ -39,7 +39,7 @@
 | Presisi tanggal | Era `0.x` (Sesi 1–2) direkonstruksi dari metadata file & jejak invoice (`INV-20261021`) → presisi bulan; era `1.x` → presisi hari (terverifikasi) |
 | Rilis berikutnya | **`v1.14.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
 
-> 🔗 Navigasi cepat: **[Tabel Lengkap 29 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+> 🔗 Navigasi cepat: **[Tabel Lengkap 30 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
 
 ---
 
@@ -55,6 +55,25 @@
 - **Langkah 4 eksekusi akhir**: set `NEXT_PUBLIC_GA_ID` + `NEXT_PUBLIC_CLARITY_ID` di env → GA4 & Clarity aktif (kode v1.11.0 sudah siap)
 - Verifikasi token 6 mesin pencari via env → meta tag otomatis (lanjutan `v1.3.0`)
 - Re-ukur PSI mobile setelah deploy v1.5.0–v1.11.0 — target LCP < 4 s & TBT < 500 ms
+
+---
+
+<a id="v1-13-1"></a>
+
+## [1.13.1] — 2026-10-25 — 🛡️ "Logo Resmi" (Task 31)
+
+Rilis patch pembersihan identitas: sisa logo template **"Z"** (huruf Z putih + animasi breathe — warisan template awal proyek) yang masih terlayani di URL `/logo.svg` dihapus dan diganti marka resmi situs. Rilis `v1.14.0 "Identitas Visual"` yang keliru dipasang pada sesi sebelumnya telah **di-revert penuh** (commit revert `eab4f49`) sebelum patch ini dibuat — tidak ada logo baru yang dipasang, website kembali ke logo PP semula.
+
+### Fixed
+- **`public/logo.svg` — sisa logo template Z dihapus**: file berisi huruf "Z" putih dengan animasi CSS `z-breathe` (warisan template Next.js awal) kini diganti marka resmi PusatPerizinan.com — perisai emerald + centang emas, geometri identik dengan `favicon.svg` — sehingga seluruh URL aset identitas situs bebas logo Z
+- **Audit identitas menyeluruh**: 3 PNG utama (`logo-icon.png`, `logo-icon-white.png`, `logo.png` — karangan PP + bintang emas + "PUSATPERIZINAN.COM") diverifikasi visual; `manifest.json`, metadata `icons` layout, header, footer, dan 27 komponen `<img>` lainnya tetap mengarah ke aset PP; cache `.next` bersih; **nol referensi `/logo.svg` di kode** sehingga penggantian isi berisiko nol
+
+### Removed
+- Logo template "Z" (SVG + animasi `z-breathe`) dari aset publik situs — satu-satunya jejak logo Z pada `pusatperizinan.com`
+
+### Verifikasi
+- `GET /logo.svg` → marka perisai + centang (tanpa huruf Z, tanpa `z-breathe`); `rg "logo\.svg"` di `src/` → 0 hasil; QA visual PNG (Read) → semua logo PP
+- `bun run lint` 0 error · `bunx tsc --noEmit` 178 (baseline v1.11.0) · homepage 200
 
 ---
 
@@ -466,11 +485,12 @@ Rilis pertama dengan **identitas versi resmi**. Seluruh proyek kini punya nomor 
 
 <a id="ladder"></a>
 
-## 🪜 Tabel Lengkap 29 Rilis
+## 🪜 Tabel Lengkap 30 Rilis
 
 | # | Versi | Tanggal (WIB) | Tipe | Nama Rilis | Task WORKLOG | Status |
 |---|---|---|---|---|---|---|
-| 29 | **v1.13.0** ⭐ | **2026-10-25** | minor | **Peta Provinsi** | Task 29 | **🟢 AKTIF — versi berjalan** |
+| 30 | **v1.13.1** ⭐ | **2026-10-25** | patch | **Logo Resmi** | Task 31 | **🟢 AKTIF — versi berjalan** |
+| 29 | v1.13.0 | 2026-10-25 | minor | Peta Provinsi | Task 29 | ✅ Rilis |
 | 28 | v1.12.0 | 2026-10-25 | minor | Identitas Resmi | Task 28 | ✅ Rilis |
 | 27 | v1.11.0 | 2026-10-25 | minor | Sapa Langsung | Task 27 | ✅ Rilis |
 | 26 | v1.10.0 | 2026-10-25 | minor | Mesin Redaksi | Task 26 | ✅ Rilis |

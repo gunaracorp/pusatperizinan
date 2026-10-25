@@ -168,3 +168,18 @@ Stage Summary:
 - Website kembali persis ke kondisi v1.13.0 "Peta Provinsi" — logo lama PP (perisai emerald + centang) utuh, tidak ada jejak logo Z
 - Klarisasi ke user: logo Z di samping chat = UI platform Z.ai (bukan bagian website), tidak dapat diubah dari kode website
 - Versi berjalan tetap v1.13.0; antrean rilis berikutnya v1.14.0 (tidak dipakai untuk logo)
+
+---
+Task ID: 31
+Agent: main
+Task: Hapus sisa logo template "Z" dari public/logo.svg (koreksi lanjutan Task 30 — user: "sekarang masih logo Z yang tampil tolong fix kan")
+
+Work Log:
+- Audit: public/logo.svg terbukti logo Z template (huruf Z putih + animasi z-breathe), terlayani di /logo.svg, nol referensi di kode
+- Verifikasi visual PNG (logo-icon.png, logo.png) → semua logo PP resmi; manifest.json + layout icons + header/footer → aset PP; .next cache bersih
+- Fix: public/logo.svg ditulis ulang → perisai emerald + centang emas (konsisten favicon.svg)
+- Versioning 5 titik: v1.13.1 "Logo Resmi" (patch, Task 31) — version.ts + RELEASES, package.json, CHANGELOG (entri + badge 30 rilis + ladder), /api/version tetap next v1.14.0
+- QA: curl /logo.svg tanpa Z; lint 0/0; tsc baseline 178
+
+Stage Summary:
+- Website 100% bebas logo Z — semua aset identitas = logo resmi PP; v1.14.0 tetap diantrekan untuk ROADMAP-99
