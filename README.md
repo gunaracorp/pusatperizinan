@@ -20,9 +20,9 @@
 [![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-New_York_48_komponen-000000?style=for-the-badge&logo=shadcnui&logoColor=white)](#3-tech-stack--teknologi)
 [![Prisma 6](https://img.shields.io/badge/Prisma-6_%2B_SQLite-2D3748?style=for-the-badge&logo=prisma&logoColor=white)](#9-database--14-model-prisma)
 [![Bun](https://img.shields.io/badge/Bun-runtime_(_dev_)-F9F1F1?style=for-the-badge&logo=bun&logoColor=black)](#4-quick-start--mulai-cepat)
-[![Versi](https://img.shields.io/badge/Versi-v1.14.0_Kejar_Order-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](./CHANGELOG.md)
+[![Versi](https://img.shields.io/badge/Versi-v1.14.1_Detak_Jantung-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](./CHANGELOG.md)
 
-![Versioning](https://img.shields.io/badge/Versi-v1.14.0_%C2%B7_SemVer_2.0.0_%C2%B7_35_rilis-8B5CF6?style=flat-square&logo=semver&logoColor=white)
+![Versioning](https://img.shields.io/badge/Versi-v1.14.1_%C2%B7_SemVer_2.0.0_%C2%B7_36_rilis-8B5CF6?style=flat-square&logo=semver&logoColor=white)
 ![Sitemap](https://img.shields.io/badge/URL_Sitemap-11.876_%C2%B7_15_seksi-059669?style=flat-square&logo=google&logoColor=white)
 ![Layanan](https://img.shields.io/badge/Layanan_Orderable-1.500_in_3_katalog-059669?style=flat-square)
 ![MRR](https://img.shields.io/badge/KepatuhanPRO-MRR_6_SKU-f59e0b?style=flat-square)
@@ -48,7 +48,7 @@
 
 # 🇮🇩 — Bahasa Indonesia
 
-> 📌 **Dokumen ini bilingual & penuh navigasi.** Klik daftar isi mana pun untuk melompat. Sumber kebenaran kode: `src/lib/site.ts` (NAP, trust metrics) & `src/lib/pricing.ts` (harga). Log pengembangan 100% transparan & **ber-versi SemVer**: [`WORKLOG.md`](./WORKLOG.md) · riwayat rilis: [`CHANGELOG.md`](./CHANGELOG.md) · **Versi saat ini: `v1.14.0 "Kejar Order"` (2026-10-26)** — cek live: `GET /api/version`.
+> 📌 **Dokumen ini bilingual & penuh navigasi.** Klik daftar isi mana pun untuk melompat. Sumber kebenaran kode: `src/lib/site.ts` (NAP, trust metrics) & `src/lib/pricing.ts` (harga). Log pengembangan 100% transparan & **ber-versi SemVer**: [`WORKLOG.md`](./WORKLOG.md) · riwayat rilis: [`CHANGELOG.md`](./CHANGELOG.md) · **Versi saat ini: `v1.14.1 "Detak Jantung"` (2026-10-26)** — cek live: `GET /api/version`.
 
 ## 📑 Daftar Isi (ID)
 
@@ -620,6 +620,7 @@ NEXT_PUBLIC_GA_ID=G-KMZRQJQXCB      # GA4 tetap aktif walau tanpa env
 # SENTRY_DSN=...                    # Sentry server (Langkah 68, v1.13.5 — kosong = mati)
 # NEXT_PUBLIC_SENTRY_DSN=...        # Sentry browser (aktif bersama SENTRY_DSN)
 # CRON_SECRET=...                   # follow-up sweep (v1.14.0) — Bearer utk /api/cron/followup
+# FOLLOWUP_SWEEP_MINUTES=15         # detak jantung sweep otomatis (v1.14.1) — default 15 menit; 0 = mati (pakai cron)
 # INDEXNOW_KEY=...                  # kunci IndexNow (file kunci public/<key>.txt)
 ```
 
@@ -709,12 +710,13 @@ Log penuh & transparan: [`WORKLOG.md`](./WORKLOG.md) — **34 entri terverifikas
 | **34** | 📚 **Dokumen Hidup II** | README full refresh (dokumen ini) + sinkron versi 5 titik (v1.13.4) |
 | **35** | 🛡️ **Jaring Pengaman** | Backup DB harian teruji-restore + Sentry env-gated server+client (v1.13.5) |
 | **36** | 🏃 **Kejar Order** | Follow-up otomatis lead 24/48/72 jam + lane admin/lead + panel Mission Control (v1.14.0) |
+| **37** | 🫀 **Detak Jantung** | Sweep follow-up berdenyut sendiri dari dalam server tiap 15 menit — tanpa cron eksternal (v1.14.1) |
 
 ---
 
 ## 22. Roadmap
 
-> 🎯 **Roadmap besar 99 langkah** menuju nomor #1 dunia tersimpan di **[`ROADMAP-99.md`](./ROADMAP-99.md)** — status: *eksekusi berjalan — 16 langkah selesai (terbaru: langkah 6 Follow-up Otomatis via v1.14.0)*. Dokumen itu berisi 12 fase, tag dampak/effort/prioritas, Top-10 Quick Wins, dan milestone kuartalan. Daftar di bawah adalah ringkasan eksekusi teknis harian.
+> 🎯 **Roadmap besar 99 langkah** menuju nomor #1 dunia tersimpan di **[`ROADMAP-99.md`](./ROADMAP-99.md)** — status: *eksekusi berjalan — 16 langkah selesai (terbaru: langkah 6 Follow-up Otomatis via v1.14.0 + detak jantung v1.14.1)*. Dokumen itu berisi 12 fase, tag dampak/effort/prioritas, Top-10 Quick Wins, dan milestone kuartalan. Daftar di bawah adalah ringkasan eksekusi teknis harian.
 
 ### Kelompok A — butuh akses produksi
 
@@ -814,7 +816,7 @@ Dibangun dengan ❤️ untuk kemajuan UMKM Indonesia.
 
 # 🇬🇧 — English
 
-> 📌 **This document is bilingual & fully navigable.** Code source-of-truth: `src/lib/site.ts` (NAP, trust metrics) & `src/lib/pricing.ts` (prices). 100% transparent, **SemVer-versioned** dev log: [`WORKLOG.md`](./WORKLOG.md) · release history: [`CHANGELOG.md`](./CHANGELOG.md) · **Current version: `v1.14.0 "Kejar Order"` (2026-10-26)** — live check: `GET /api/version`.
+> 📌 **This document is bilingual & fully navigable.** Code source-of-truth: `src/lib/site.ts` (NAP, trust metrics) & `src/lib/pricing.ts` (prices). 100% transparent, **SemVer-versioned** dev log: [`WORKLOG.md`](./WORKLOG.md) · release history: [`CHANGELOG.md`](./CHANGELOG.md) · **Current version: `v1.14.1 "Detak Jantung"` (2026-10-26)** — live check: `GET /api/version`.
 
 ## 📑 Table of Contents (EN)
 
@@ -1459,12 +1461,13 @@ Full transparent log: [`WORKLOG.md`](./WORKLOG.md) — **34 verified entries, ev
 | **34** | 📚 **Dokumen Hidup II** | Full README refresh (this document) + 5-point version sync (v1.13.4) |
 | **35** | 🛡️ **Jaring Pengaman** | Tested daily DB backup + env-gated Sentry server+client (v1.13.5) |
 | **36** | 🏃 **Kejar Order** | Automated 24/48/72h lead follow-up + admin/lead lanes + Mission Control panel (v1.14.0) |
+| **37** | 🫀 **Heartbeat** | In-server automated follow-up sweep every 15 min — no external cron needed (v1.14.1) |
 
 ---
 
 ## 22. Roadmap
 
-> 🎯 **The grand 99-step roadmap** toward world #1 lives in **[`ROADMAP-99.md`](./ROADMAP-99.md)** — status: *execution in progress — 16 steps done (latest: step 6 Automated Follow-up via v1.14.0)*. It contains 12 phases, impact/effort/priority tags, a Top-10 Quick Wins table, and quarterly milestones. The list below is the day-to-day technical-execution summary.
+> 🎯 **The grand 99-step roadmap** toward world #1 lives in **[`ROADMAP-99.md`](./ROADMAP-99.md)** — status: *execution in progress — 16 steps done (latest: step 6 Automated Follow-up via v1.14.0 + heartbeat v1.14.1)*. It contains 12 phases, impact/effort/priority tags, a Top-10 Quick Wins table, and quarterly milestones. The list below is the day-to-day technical-execution summary.
 
 ### Group A — needs production access
 
@@ -1565,6 +1568,6 @@ Built with ❤️ for the advancement of Indonesian MSMEs.
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:f59e0b,100:059669&height=110&section=footer&animation=fadeIn" width="100%" alt="Footer animasi"/>
 
 <sub>⭐ Developed with Z.ai Code — 36 verified tasks · 11,876 SEO URLs · 1,500 orderable services · 30 languages · 5 AI tools · GA4 full-funnel ⭐</sub>
-<sub>README last updated: v1.14.0 "Kejar Order" (Task 36, 2026-10-26) · This document reflects actual code — when in doubt, the code is the truth. 🟢</sub>
+<sub>README last updated: v1.14.1 "Detak Jantung" (Task 37, 2026-10-26) · This document reflects actual code — when in doubt, the code is the truth. 🟢</sub>
 
 </div>

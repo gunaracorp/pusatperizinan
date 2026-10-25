@@ -5,19 +5,19 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.14.0_Kejar_Order-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-14-0)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.14.1_Detak_Jantung-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-14-1)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-35_(0.1.0_%E2%86%92_1.14.0)-059669?style=flat-square)
-![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-43_ber_versi-059669?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-36_(0.1.0_%E2%86%92_1.14.1)-059669?style=flat-square)
+![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-44_ber_versi-059669?style=flat-square)
 ![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.15.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.14.0 — "Kejar Order"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.14.1 — "Detak Jantung"`**
 
 <sub>Versi terlihat hidup di: footer setiap halaman (11.876 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
@@ -39,7 +39,7 @@
 | Presisi tanggal | Era `0.x` (Sesi 1–2) direkonstruksi dari metadata file & jejak invoice (`INV-20261021`) → presisi bulan; era `1.x` → presisi hari (terverifikasi) |
 | Rilis berikutnya | **`v1.15.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
 
-> 🔗 Navigasi cepat: **[Tabel Lengkap 35 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+> 🔗 Navigasi cepat: **[Tabel Lengkap 36 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
 
 ---
 
@@ -47,16 +47,36 @@
 
 ## [Unreleased] — akan menjadi `v1.15.0`
 
-> 📦 **Sisa langkah ROADMAP-99** tetap TERSIMPAN di [`ROADMAP-99.md`](./ROADMAP-99.md) — langkah **7**, 23, 24, 25, 26, 27, **3**, **5**, **6**, 33, 34, **35**, 41, **4**, **68** kini DIEKSEKUSI (dicentang di roadmap); **langkah 6 (Follow-up otomatis) SELESAI penuh via `v1.14.0`** — sequence 24/48/72 jam + lane admin/lead + panel Mission Control. Sisanya menunggu sesi berikutnya.
+> 📦 **Sisa langkah ROADMAP-99** tetap TERSIMPAN di [`ROADMAP-99.md`](./ROADMAP-99.md) — langkah **7**, 23, 24, 25, 26, 27, **3**, **5**, **6**, 33, 34, **35**, 41, **4**, **68** kini DIEKSEKUSI (dicentang di roadmap); **langkah 6 (Follow-up otomatis) SELESAI penuh via `v1.14.0` + detak jantung otomatis via `v1.14.1`** — sequence 24/48/72 jam + lane admin/lead + panel Mission Control + sweep mandiri tanpa cron. Sisanya menunggu sesi berikutnya.
 
 ### Planned — Quick Wins P0 teratas (dari ROADMAP-99 Tabel A, sisa)
 - **Aktifkan pembayaran produksi** Midtrans/Tripay — matikan `PAYMENT_DEMO_MODE` (langkah 1) — *checklist kredensial: `docs/CHECKLIST-KREDENSIAL-LANGKAH-1-2.md`*
 - **Submit 15 sitemap** (11.876 URL) ke Google Search Console + Bing Webmaster (langkah 2) — *checklist kredensial: `docs/CHECKLIST-KREDENSIAL-LANGKAH-1-2.md`*
 - ~~Langkah 4 eksekusi akhir~~ ✅ **SELESAI di v1.13.3** — GA4 `G-KMZRQJQXCB` aktif sitewide (fallback hardcode, tanpa env); Clarity tinggal set `NEXT_PUBLIC_CLARITY_ID`
-- ~~Langkah 6 follow-up otomatis~~ ✅ **SELESAI di v1.14.0** — sequence 3 langkah + lane admin/lead + cron
+- ~~Langkah 6 follow-up otomatis~~ ✅ **SELESAI di v1.14.0 + v1.14.1** — sequence 3 langkah + lane admin/lead + detak jantung otomatis (tanpa cron)
 - ~~Langkah 68 keandalan~~ ✅ **SELESAI di v1.13.5** — backup harian otomatis + uji restore + Sentry env-gated
 - Verifikasi token 6 mesin pencari via env → meta tag otomatis (lanjutan `v1.3.0`)
 - Re-ukur PSI mobile setelah deploy v1.5.0–v1.11.0 — target LCP < 4 s & TBT < 500 ms
+
+---
+
+<a id="v1-14-1"></a>
+
+## [1.14.1] — 2026-10-26 — 🫀 "Detak Jantung" (Task 37)
+
+Rilis aktivasi mesin (lanjutan langsung langkah 6 ROADMAP-99): sweep follow-up kini **berdenyut sendiri dari dalam server** — pasang token Telegram → mesin menyala penuh, tanpa cron eksternal.
+
+### 🫀 Added — Detak Jantung Otomatis
+- **Scheduler internal**: `src/lib/scheduler.ts` dipanggil dari `instrumentation.ts register()` — denyut pertama 25 detik setelah server hidup, lalu berkala tiap 15 menit (default); hanya runtime Node.js (guard edge + guard `NEXT_PHASE=phase-production-build`, interval ter-guard sekali-pasang).
+- **Kendali env**: `FOLLOWUP_SWEEP_MINUTES=15` (default) · `0` = matikan detak jantung (kembali ke tombol manual Mission Control / cron eksternal `/api/cron/followup`).
+- **Aman berdampingan**: sweep idempoten per (lead, step, lane) — cron eksternal + detak jantung boleh aktif bersamaan tanpa pernah dobel kirim; error satu denyut tidak pernah mematikan denyut berikutnya.
+- **Log denyut**: `[detak-jantung] ON — sweep follow-up otomatis tiap 15 menit` saat boot; ringkasan scan/sent/failed hanya saat ada aktivitas (sunyi = tidak ada lead jatuh tempo).
+
+### 🧪 QA
+- `tsc --noEmit`: nol error pada berkas baru (2 error `instrumentation.ts` pra-ada terbukti via `git stash` — isu tipe @sentry/nextjs bawaan, bukan patch ini)
+- ESLint `scheduler.ts` + `instrumentation.ts`: nol temuan
+- Boot test nyata: `bun run dev` → `✓ Ready in 4.7s` + log `[detak-jantung] ON`
+- Smoke engine: `sweepFollowUps()` langsung → `{"scanned":0,...,"skippedNoChannel":true}` — perilaku benar menunggu kanal terpasang (token Telegram/WA)
 
 ---
 
@@ -571,11 +591,12 @@ Rilis pertama dengan **identitas versi resmi**. Seluruh proyek kini punya nomor 
 
 <a id="ladder"></a>
 
-## 🪜 Tabel Lengkap 35 Rilis
+## 🪜 Tabel Lengkap 36 Rilis
 
 | # | Versi | Tanggal (WIB) | Tipe | Nama Rilis | Task WORKLOG | Status |
 |---|---|---|---|---|---|---|
-| 35 | **v1.14.0** ⭐ | **2026-10-26** | minor | **Kejar Order** | Task 36 | **🟢 AKTIF — versi berjalan** |
+| 36 | **v1.14.1** ⭐ | **2026-10-26** | patch | **Detak Jantung** | Task 37 | **🟢 AKTIF — versi berjalan** |
+| 35 | v1.14.0 | 2026-10-26 | minor | Kejar Order | Task 36 | ✅ Rilis |
 | 34 | v1.13.5 | 2026-10-26 | patch | Jaring Pengaman | Task 35 | ✅ Rilis |
 | 33 | v1.13.4 | 2026-10-26 | patch | Dokumen Hidup II | Task 34 | ✅ Rilis |
 | 32 | v1.13.3 | 2026-10-26 | patch | Analitik Penuh | Task 33 | ✅ Rilis |
@@ -639,6 +660,6 @@ Rilis pertama dengan **identitas versi resmi**. Seluruh proyek kini punya nomor 
 <sub>📦 Di-maintain manual oleh tim <strong>PusatPerizinan.com</strong> · Format <a href="https://keepachangelog.com/id/1.1.0/">Keep a Changelog</a> · Semantik <a href="https://semver.org/lang/id/">SemVer 2.0.0</a></sub><br>
 <sub>🔎 Versi juga tersedia secara programatik: <code>GET /api/version</code> · Rekam jejak 1:1: <a href="./WORKLOG.md">WORKLOG.md</a></sub>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:059669,50:10b981,100:f59e0b&height=110&section=footer&text=v1.14.0%20%E2%80%94%20Kejar%20Order&fontSize=26&fontColor=ffffff&fontAlignY=60&animation=fadeIn" width="100%" alt="Footer CHANGELOG"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:059669,50:10b981,100:f59e0b&height=110&section=footer&text=v1.14.1%20%E2%80%94%20Detak%20Jantung&fontSize=26&fontColor=ffffff&fontAlignY=60&animation=fadeIn" width="100%" alt="Footer CHANGELOG"/>
 
 </div>

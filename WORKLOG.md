@@ -271,3 +271,22 @@ Stage Summary:
 - v1.14.0 "Kejar Order" rilis: 43 lead demo dgn 14 jatuh tempo (Rp 52,5 jt mengendap) kini punya mesin pengejar otomatis — tinggal pasang kanal (Telegram gratis 2 menit / gateway WA) + cron eksternal agar menyala penuh
 - Roadmap-99: 16/99 selesai (langkah 3, 5, 6, 7, 23, 24, 25, 26, 27, 33, 34, 35, 41, 4, 68 + langkah 1 kode-siap) — Quick Wins tersisa yang mandiri: langkah 8 (social proof), 9-10 (checkout/cart), 12 (abandoned recovery); P0 terkunci kredensial: 1 (Midtrans/Tripay keys), 2 (GSC), 4-sisa (Clarity ID)
 - Pola baru utk sesi berikutnya: engine lib/followup.ts + endpoint /api/cron/followup reusable utk langkah 12 (abandoned checkout recovery)
+
+Task ID: 37
+Agent: main
+Task: 🫀 "Detak Jantung" — sweep follow-up berdenyut sendiri dari dalam server, tanpa cron eksternal (aktivasi penuh mesin v1.14.0; pemicu: user "yang uang duluan" + rencana pasang token Telegram @BotFather) 🏷️ Rilis v1.14.1
+
+Work Log:
+- Kondisi awal sesi: workspace sandbox kosong total (hanya download/README.md) → repo dipulihkan penuh via git clone (main @ bc6ccd8 v1.14.0), bun install + prisma generate
+- Celah terakhir menuju "menyala penuh": sweep hanya jalan saat tombol admin ditekan / cron eksternal menembak /api/cron/followup — owner non-teknis tak boleh disibukkan setup cron → scheduler internal
+- src/lib/scheduler.ts BARU: denyut pertama 25 dtk pasca-boot (beri waktu Prisma/DB), lalu setInterval tiap FOLLOWUP_SWEEP_MINUTES (default 15; 0 = mati) — error satu denyut TIDAK PERNAH mematikan denyut berikutnya; log ON saat boot + ringkasan scan/sent/failed hanya saat ada aktivitas
+- src/instrumentation.ts: register() kini guard edge → panggil scheduler (dynamic import, aman build) → lanjut Sentry DSN-gated (struktur lama dipertahankan); guard NEXT_PHASE=phase-production-build + started-guard anti interval ganda
+- Idempotensi: mewarisi jaminan v1.14.0 @@unique([leadId,step,lane]) — detak jantung + cron eksternal + tombol manual boleh berdampingan, dobel kirim mustahil
+- QA: tsc --noEmit → 0 error berkas baru (2 error lama instrumentation.ts terbukti pra-ada via git stash — tipe @sentry/nextjs bawaan); eslint scheduler+instrumentation → 0 temuan; boot test nyata bun run dev → "✓ Ready in 4.7s" + log "[detak-jantung] ON — sweep follow-up otomatis tiap 15 menit"; smoke engine sweepFollowUps() langsung → skippedNoChannel:true (perilaku benar menunggu kanal)
+- .env += placeholder komentar FOLLOWUP_SWEEP_MINUTES + TELEGRAM_BOT_TOKEN/CHAT_ID (fallback env terdokumentasi)
+- Sinkron versi 8 titik: version.ts (APP_VERSION 1.14.1 "Detak Jantung" + RELEASES 36 entri), package.json, CHANGELOG (entri v1.14.1 + badge 36 rilis + worklog 44 + ladder + footer), scripts/ver.json (total 36, history +1), /api/version nextRelease → v1.15.0 (diperbaiki dari v1.14.0 yang basi), ROADMAP-99.md (catatan v1.14.1 di langkah 6), README ID+EN (badge ×2, versi saat ini ×2, status 16 langkah ×2, task row 37 ×2, env FOLLOWUP_SWEEP_MINUTES, footer), WORKLOG.md (entri ini)
+
+Stage Summary:
+- v1.14.1 "Detak Jantung" rilis: mesin follow-up kini MANDIRI PENUH — pasang token Telegram (gratis 2 menit via @BotFather) di Mission Control → Notifikasi → mesin langsung mengejar 14 lead jatuh tempo (Rp 52,5 jt mengendap) tanpa cron, tanpa setup tambahan
+- Roadmap-99 tetap 16/99 selesai (patch aktivasi, bukan langkah baru) — jalur uang berikutnya siap: lane WA gateway penuh (Fonnte), langkah 9 abandoned checkout recovery (engine reusable), langkah 1 pembayaran produksi (menunggu kredensial)
+- Sesi ini juga memulihkan sandbox dari clone GitHub + merintis ulang worklog eksternal /home/z/my-project/worklog.md

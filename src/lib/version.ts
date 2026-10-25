@@ -17,9 +17,9 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.14.0";
+export const APP_VERSION = "1.14.1";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Kejar Order";
+export const RELEASE_NAME = "Detak Jantung";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
 export const RELEASE_DATE = "2026-10-26";
 /** Channel rilis: stable | beta | alpha. */
@@ -42,10 +42,22 @@ export interface ReleaseEntry {
 }
 
 /**
- * Riwayat lengkap 35 rilis — urut TERBARU lebih dulu.
+ * Riwayat lengkap 36 rilis — urut TERBARU lebih dulu.
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.14.1",
+    date: "2026-10-26",
+    type: "patch",
+    name: "Detak Jantung",
+    taskId: "37",
+    highlights: [
+      "Detak jantung mesin follow-up: sweep otomatis dari dalam server — 25 detik setelah hidup, lalu tiap 15 menit — TANPA cron eksternal (Task 37)",
+      "Instrumentation server memanggil scheduler hanya di runtime Node (aman edge & build); kendali env FOLLOWUP_SWEEP_MINUTES (0 = mati)",
+      "Idempoten penuh mewarisi jaminan v1.14.0 — detak ganda mustahil dobel kirim; pasang token Telegram = mesin menyala penuh dalam 2 menit",
+    ],
+  },
   {
     version: "1.14.0",
     date: "2026-10-26",
