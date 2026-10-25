@@ -5,19 +5,19 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.13.1_Logo_Resmi-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-13-1)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.13.2_Peta_Live-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-13-2)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-30_(0.1.0_%E2%86%92_1.13.1)-059669?style=flat-square)
-![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-40_ber_versi-059669?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-31_(0.1.0_%E2%86%92_1.13.2)-059669?style=flat-square)
+![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-41_ber_versi-059669?style=flat-square)
 ![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.14.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.13.1 — "Logo Resmi"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.13.2 — "Peta Live"`**
 
 <sub>Versi terlihat hidup di: footer setiap halaman (11.876 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
@@ -39,7 +39,7 @@
 | Presisi tanggal | Era `0.x` (Sesi 1–2) direkonstruksi dari metadata file & jejak invoice (`INV-20261021`) → presisi bulan; era `1.x` → presisi hari (terverifikasi) |
 | Rilis berikutnya | **`v1.14.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
 
-> 🔗 Navigasi cepat: **[Tabel Lengkap 30 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+> 🔗 Navigasi cepat: **[Tabel Lengkap 31 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
 
 ---
 
@@ -55,6 +55,23 @@
 - **Langkah 4 eksekusi akhir**: set `NEXT_PUBLIC_GA_ID` + `NEXT_PUBLIC_CLARITY_ID` di env → GA4 & Clarity aktif (kode v1.11.0 sudah siap)
 - Verifikasi token 6 mesin pencari via env → meta tag otomatis (lanjutan `v1.3.0`)
 - Re-ukur PSI mobile setelah deploy v1.5.0–v1.11.0 — target LCP < 4 s & TBT < 500 ms
+
+---
+
+<a id="v1-13-2"></a>
+
+## [1.13.2] — 2026-10-25 — 🗺️ "Peta Live" (Task 32)
+
+Rilis patch deployment: merespons laporan **Google Search Console** — `GET https://pusatperizinan.com/sitemap.xml` → **404** ("Kesalahan HTTP umum", 0 halaman ditemukan). Diagnosis: aplikasi lokal sehat (indeks sitemap 200 + seksi programatik), masalah ada di sisi hosting statis idwebhost — paket yang live adalah build **2026-10-16** (LIGHT, 48 halaman) dan `sitemap.xml` tidak terbaca Google di root domain.
+
+### Fixed
+- **Paket deploy statis dibangun ulang dari kode v1.13.1** (`build-static.mjs` PACK_LIGHT + `deploy-pack.mjs`): **266 halaman HTML** (sebelumnya 48), 2.443 file, 28,67 MB — mencakup seluruh pembaruan konten v1.6.0–v1.13.1
+- **Sitemap statis konsisten otomatis**: `out/sitemap.xml` (indeks 3 seksi: blog, glosarium, static 35 URL) + `robots.txt` disinkronkan saat build; seksi yang kosong setelah prune (layanan, layanan500, panduan, seo-expansion, testimoni) dihapus — GSC tidak akan menemui 404 pada seksi hantu
+- **File deploy root dipulihkan**: `.htaccess` (routing/404/gzip/cache cPanel) & `DEPLOY-IDWEBHOST.md` kembali ke root proyek — sebelumnya hilang, padahal `deploy-pack.mjs` menempelkannya hanya `if existsSync` (paket baru bisa lahir tanpa keduanya)
+
+### Verifikasi
+- Isi tar diverifikasi: `sitemap.xml` + 3 seksi + `robots.txt` (4 baris Sitemap, 1:1 dengan file fisik) + `.htaccess` ✓; build-static memulihkan seluruh folder yang digeser; dev server restart → `/` 200 & `/sitemap.xml` 200
+- Live site dilindungi challenge anti-bot JS ("Checking your browser") — Googlebot bisa terdampak; sarankan whitelist Googlebot / cek WAF di panel hosting
 
 ---
 
@@ -485,11 +502,12 @@ Rilis pertama dengan **identitas versi resmi**. Seluruh proyek kini punya nomor 
 
 <a id="ladder"></a>
 
-## 🪜 Tabel Lengkap 30 Rilis
+## 🪜 Tabel Lengkap 31 Rilis
 
 | # | Versi | Tanggal (WIB) | Tipe | Nama Rilis | Task WORKLOG | Status |
 |---|---|---|---|---|---|---|
-| 30 | **v1.13.1** ⭐ | **2026-10-25** | patch | **Logo Resmi** | Task 31 | **🟢 AKTIF — versi berjalan** |
+| 31 | **v1.13.2** ⭐ | **2026-10-25** | patch | **Peta Live** | Task 32 | **🟢 AKTIF — versi berjalan** |
+| 30 | v1.13.1 | 2026-10-25 | patch | Logo Resmi | Task 31 | ✅ Rilis |
 | 29 | v1.13.0 | 2026-10-25 | minor | Peta Provinsi | Task 29 | ✅ Rilis |
 | 28 | v1.12.0 | 2026-10-25 | minor | Identitas Resmi | Task 28 | ✅ Rilis |
 | 27 | v1.11.0 | 2026-10-25 | minor | Sapa Langsung | Task 27 | ✅ Rilis |

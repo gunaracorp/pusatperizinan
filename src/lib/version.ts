@@ -17,9 +17,9 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.13.1";
+export const APP_VERSION = "1.13.2";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Logo Resmi";
+export const RELEASE_NAME = "Peta Live";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
 export const RELEASE_DATE = "2026-10-25";
 /** Channel rilis: stable | beta | alpha. */
@@ -46,6 +46,18 @@ export interface ReleaseEntry {
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.13.2",
+    date: "2026-10-25",
+    type: "patch",
+    name: "Peta Live",
+    taskId: "32",
+    highlights: [
+      "Perbaikan laporan GSC \"Kesalahan HTTP 404\" pada /sitemap.xml: paket deploy statis dibangun ulang dari v1.13.1 (266 halaman, sebelumnya 48 dari build 2026-10-16) — sitemap ikut segar",
+      "Sitemap statis konsisten otomatis: indeks 3 seksi (blog, glosarium, static 35 URL) + robots.txt disinkronkan; seksi kosong pasca-prune dihapus agar GSC bebas 404",
+      "File deploy root dipulihkan: .htaccess & DEPLOY-IDWEBHOST.md kembali ke root (deploy-pack menempelkannya hanya if-exists — tanpa ini paket baru lahir tanpa routing/404/gzip cPanel)",
+    ],
+  },
   {
     version: "1.13.1",
     date: "2026-10-25",

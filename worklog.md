@@ -183,3 +183,19 @@ Work Log:
 
 Stage Summary:
 - Website 100% bebas logo Z — semua aset identitas = logo resmi PP; v1.14.0 tetap diantrekan untuk ROADMAP-99
+
+---
+Task ID: 32
+Agent: main
+Task: Perbaiki sitemap.xml 404 di Google Search Console (laporan user) — diagnosis + rebuild paket deploy statis
+
+Work Log:
+- Diagnosis: aplikasi lokal sehat (sitemap.xml 200, 15 seksi); live site = challenge anti-bot + 404 asli → sitemap tidak ada di root hosting (paket lama 2026-10-16, LIGHT 48 halaman, tidak/belum ter-upload utuh)
+- Rebuild pack: build-static.mjs PACK_LIGHT (sitemap dipangkas per-URL-ada → indeks 3 seksi, static.xml 35 URL) + deploy-pack.mjs → 266 halaman / 2.443 file / 28,67 MB
+- Mitigasi bug latent: .htaccess & DEPLOY-IDWEBHOST.md hilang dari root → dipulihkan (deploy-pack if-exists)
+- Restart dev server via setsid -f .zscripts/dev.sh (pola PID 1, tahan antar-panggilan)
+- Versioning 5 titik: v1.13.2 "Peta Live" (patch, Task 32)
+
+Stage Summary:
+- Paket baru siap di public/download/ untuk di-upload user ke public_html → lalu GSC resubmit
+- Sitemap ↔ robots.txt ↔ file fisik konsisten otomatis; risiko WAF terhadap Googlebot dicatat sebagai tindak lanjut owner

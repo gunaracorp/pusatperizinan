@@ -245,3 +245,28 @@ Stage Summary:
 - Satu-satunya jejak logo Z di `pusatperizinan.com` dihapus — seluruh aset identitas (SVG, PNG, favicon, manifest, metadata) kini 100% logo resmi PP
 - Riwayat bersih: v1.14.0 "Identitas Visual" (salah paham) di-revert penuh; nomor v1.14.0 tetap tersedia untuk langkah ROADMAP-99 berikutnya
 - QA: lint 0/0 · tsc baseline 178 · `/logo.svg` terlayani tanpa huruf Z
+
+---
+
+## Task 32 — Perbaikan Sitemap 404 di GSC + Rebuild Paket Deploy Statis
+
+> 🏷️ Rilis v1.13.2 — "Peta Live" · type: patch
+> Tanggal: 2026-10-25 (WIB) · Agent: Z.ai Code (Master Polymath · Sage Universal · The Ultimate Problem Solver)
+
+**Task:** Merespons laporan Google Search Console — `GET https://pusatperizinan.com/sitemap.xml` → **HTTP 404** ("Kesalahan HTTP umum", 0 halaman ditemukan, terakhir dibaca 25/10/26). Diagnosis akar masalah & perbaikan paket deploy.
+
+**Work Log:**
+- Diagnosis aplikasi: `/sitemap.xml` lokal → 200 (sitemapindex; `src/app/sitemap/[id]/route.ts`); robots.txt mendeklarasikan 15 sitemap → aplikasi SEHAT, masalah di sisi hosting live
+- Diagnosis live (WebFetch): domain aktif tapi dilindungi challenge anti-bot JS ("Checking your browser"); GSC menerima 404 asli → file sitemap.xml TIDAK ADA di root hosting (paket tidak/belum ter-upload utuh)
+- Audit paket lama (`public/download/pusatperizinan-static-hosting.tar.gz`, build 2026-10-16): LIGHT 48 halaman, hanya sitemap.xml + static.xml + blog.xml — tertinggal 9 hari dari kode (v1.6.0–v1.13.1)
+- **Rebuild**: `PACK_LIGHT=1 node scripts/build-static.mjs` → post-proses SEO memangkas sitemap per-URL-ada (static.xml 35 URL; seksi kosong — layanan/layanan500/panduan/seo-expansion/testimoni — dihapus) + `node scripts/deploy-pack.mjs` → paket baru **266 halaman / 2.443 file / 28,67 MB**
+- **Bug latent ditemukan & dimitigasi**: `.htaccess` & `DEPLOY-IDWEBHOST.md` HILANG dari root proyek (deploy-pack menempel via `if existsSync` — paket baru bisa lahir tanpa routing/404/gzip cPanel); keduanya dipulihkan (`.htaccess` diekstrak dari paket lama, doc dari public/download/)
+- Verifikasi paket: tar berisi sitemap.xml (indeks 3 seksi: blog/glosarium/static) + 3 file seksi fisik + robots.txt 4 baris Sitemap 1:1 + .htaccess ✓
+- Infra sandbox: server preview yang stabil ditemukan polanya — `.zscripts/dev.sh` via `setsid -f` (reparent ke PID 1, pola boot platform) bertahan antar-panggilan tool (server dev di-restart setelah build)
+- Versioning: version.ts 1.13.2 "Peta Live" (RELEASES taskId 32), package.json 1.13.2, /api/version nextRelease tetap v1.14.0, CHANGELOG (entri + badge 31 rilis/41 entri + ladder baris 31), WORKLOG.md + worklog.md Task 32
+
+**Stage Summary:**
+- Paket deploy v1.13.2 siap upload: `public/download/pusatperizinan-static-hosting.tar.gz` (MD5 eb44d23bdcf7ec88b47b2b0e4d14a1ba) — user upload → extract ke public_html → GSC resubmit sitemap
+- Konsistensi sitemap ↔ robots.txt ↔ file fisik terjamin otomatis oleh build-static (GSC bebas 404 seksi hantu)
+- Catatan risiko: challenge anti-bot di live hosting bisa menghambat Googlebot — perlu whitelist di panel hosting/WAF (tindak lanjut owner)
+- Langkah 2 ROADMAP-99 (submit sitemap ke GSC) kini terbuka jalannya: setelah paket live, submit 4 sitemap statis; 15 sitemap penuh berlaku saat pindah hosting Node

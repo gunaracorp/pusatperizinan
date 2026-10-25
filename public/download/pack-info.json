@@ -1,14 +1,14 @@
 {
   "schema": 2,
   "file": "pusatperizinan-static-hosting.tar.gz",
-  "sizeBytes": 9918296,
-  "sizeLabel": "9.46 MB",
-  "md5": "2961baba742fd886dc1b97921ef4f4a4",
-  "fileCount": 476,
-  "htmlCount": 48,
+  "sizeBytes": 30062089,
+  "sizeLabel": "28.67 MB",
+  "md5": "eb44d23bdcf7ec88b47b2b0e4d14a1ba",
+  "fileCount": 2443,
+  "htmlCount": 266,
   "mode": "light",
   "modeLabel": "LIGHT — halaman inti + direktori + artikel blog (ringan, cepat di-upload cPanel)",
-  "builtAt": "2026-10-16T14:27:47.364Z",
+  "builtAt": "2026-10-25T13:29:31.591Z",
   "target": "idwebhost shared hosting (cPanel) — tanpa Node.js",
   "note": "Upload & extract ke public_html. Lihat DEPLOY-IDWEBHOST.md.",
   "files": [
@@ -16,17 +16,17 @@
       "name": "pusatperizinan-static-hosting.tar.gz",
       "kind": "pack",
       "label": "Paket deploy utama (upload & extract)",
-      "bytes": 9918296,
-      "sizeLabel": "9.46 MB",
-      "mtime": "2026-10-16T14:27:47.113Z"
+      "bytes": 30062089,
+      "sizeLabel": "28.67 MB",
+      "mtime": "2026-10-25T13:29:30.703Z"
     },
     {
       "name": "DEPLOY-IDWEBHOST.md",
       "kind": "doc",
       "label": "Panduan deploy cPanel (± 5 menit)",
-      "bytes": 6290,
+      "bytes": 6293,
       "sizeLabel": "0.01 MB",
-      "mtime": "2026-10-16T14:10:52.024Z"
+      "mtime": "2026-10-25T11:59:51.428Z"
     },
     {
       "name": "ISI-PACK.txt",
@@ -34,7 +34,7 @@
       "label": "Checklist isi paket",
       "bytes": 3647,
       "sizeLabel": "0.00 MB",
-      "mtime": "2026-10-16T14:10:52.024Z"
+      "mtime": "2026-10-24T14:56:13.000Z"
     },
     {
       "name": "katalog-500-layanan-pusatperizinan.pdf",
@@ -42,7 +42,7 @@
       "label": "Katalog 500+ layanan (PDF)",
       "bytes": 1208387,
       "sizeLabel": "1.15 MB",
-      "mtime": "2026-10-12T22:53:57.000Z"
+      "mtime": "2026-10-24T14:56:13.000Z"
     },
     {
       "name": "pack-info.json",
@@ -50,7 +50,7 @@
       "label": "Manifest paket (ukuran, MD5, tanggal)",
       "bytes": 1619,
       "sizeLabel": "0.00 MB",
-      "mtime": "2026-10-16T14:10:52.024Z"
+      "mtime": "2026-10-24T14:56:13.000Z"
     }
   ]
 }
