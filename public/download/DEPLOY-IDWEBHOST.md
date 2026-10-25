@@ -96,5 +96,5 @@ Alur update:
 
 ---
 
-**PT Digital Bisnis Manajemen** · pusatperizinan.com · WA 0812-6999-9910
+**PT Top Konsultan Internasional** · pusatperizinan.com · WA 0812-6999-9910
 *Dibangun otomatis oleh pipeline deploy statis — jangan menyerah sebelum semua selesai.* 💪

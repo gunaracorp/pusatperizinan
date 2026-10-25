@@ -27,7 +27,7 @@ import { FOUNDER, TEAM } from "@/lib/team-data";
 import { PERMIT_GUIDES, SECTOR_GUIDES } from "@/lib/seo-content";
 import { BLOG_ARTICLES } from "@/lib/blog-content";
 import { LANGUAGES } from "@/lib/i18n/languages";
-import { SITE_URL, CONTACT, TRUST_METRICS, priceToIdr } from "@/lib/site";
+import { SITE_URL, CONTACT, TRUST_METRICS, LEGAL_ENTITY, priceToIdr } from "@/lib/site";
 
 /** Escape "<" agar JSON-LD tidak bisa membuka tag/script baru di HTML. */
 function safeJson(data: object): string {
@@ -50,7 +50,8 @@ export function SeoJsonLd() {
     "@type": "ProfessionalService",
     "@id": `${SITE_URL}/#organization`,
     name: "PusatPerizinan.com",
-    alternateName: "PT Digital Bisnis Manajemen",
+    legalName: LEGAL_ENTITY,
+    alternateName: LEGAL_ENTITY,
     url: SITE_URL,
     logo: `${SITE_URL}/logo.png`,
     // Foto kantor resmi (bukti fisik E-E-A-T) + logo

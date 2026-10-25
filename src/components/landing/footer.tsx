@@ -6,6 +6,7 @@ import { APP_VERSION, RELEASE_NAME, RELEASE_DATE } from "@/lib/version";
 import { WHATSAPP_DISPLAY } from "@/lib/landing-data";
 import { useLanguage } from "@/lib/i18n/language-provider";
 import { LanguageSwitcher } from "@/components/landing/language-switcher";
+import { SUPPORT_SYSTEM_URL } from "@/lib/site";
 
 const SERVICE_LINKS = [
   { label: "NIB & OSS-RBA", href: "/layanan/nib" },
@@ -354,14 +355,19 @@ export function Footer() {
               pusatperizinan.com · v{APP_VERSION}
             </a>
           </div>
-          {/* Support system credit — PT Top Konsultan Internasional */}
+          {/* Support system credit — PT Digital Bisnis Manajemen (digiman.id) */}
           <div className="flex justify-center">
-            <div className="inline-flex max-w-full items-center justify-center gap-2.5 rounded-full border border-emerald-400/20 bg-white/[0.04] px-5 py-2.5 text-center shadow-[0_0_24px_-8px_rgba(16,185,129,0.35)]">
+            <a
+              href={SUPPORT_SYSTEM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex max-w-full items-center justify-center gap-2.5 rounded-full border border-emerald-400/20 bg-white/[0.04] px-5 py-2.5 text-center shadow-[0_0_24px_-8px_rgba(16,185,129,0.35)] transition-colors hover:border-emerald-400/50 hover:bg-white/10"
+            >
               <Globe className="h-4 w-4 shrink-0 text-emerald-400" aria-hidden="true" />
-              <p className="text-xs leading-relaxed tracking-wide text-emerald-100/85">
+              <span className="text-xs leading-relaxed tracking-wide text-emerald-100/85">
                 {t("footerMade")}
-              </p>
-            </div>
+              </span>
+            </a>
           </div>
         </div>
       </div>

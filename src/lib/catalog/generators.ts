@@ -523,7 +523,7 @@ function buildCityPage(serviceId: string, city: string, category: CatalogCategor
     },
     {
       q: `Bagaimana pembayaran untuk klien dari ${city}?`,
-      a: `Transfer bank ke rekening perusahaan resmi (PT Digital Bisnis Manajemen) — bukan rekening pribadi — dengan invoice & perjanjian kerja tertulis. Bisa bertahap sesuai progres. Semua transparan sejak penawaran pertama.`,
+      a: `Transfer bank ke rekening perusahaan resmi (PT Top Konsultan Internasional) — bukan rekening pribadi — dengan invoice & perjanjian kerja tertulis. Bisa bertahap sesuai progres. Semua transparan sejak penawaran pertama.`,
     },
     {
       q: `Apakah dokumen ${b.title} dari ${city} berlaku nasional?`,

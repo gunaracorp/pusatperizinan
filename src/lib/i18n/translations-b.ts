@@ -175,8 +175,8 @@ export const TRANSLATIONS_B: Partial<Record<LangCode, Translation>> = {
     footerNote:
       "इंडोनेशिया स्टॉक एक्सचेंज के उसी फ़्लोर पर • पूरे इंडोनेशिया की ऑनलाइन सेवा",
     footerRights:
-      "© {year} PusatPerizinan.com — PT Digital Bisnis Manajemen। सर्वाधिकार सुरक्षित।",
-    footerMade: "Support system by PT Top Konsultan Internasional — McKinsey Partner Indonesia",
+      "© {year} PusatPerizinan.com — PT Top Konsultan Internasional। सर्वाधिकार सुरक्षित।",
+    footerMade: "Support system by PT Digital Bisnis Manajemen — digiman.id",
     // Chat
     chatTitle: "RIZKI — AI कंसल्टेंट",
     chatStatus: "ऑनलाइन • सेकंडों में जवाब",
@@ -362,8 +362,8 @@ export const TRANSLATIONS_B: Partial<Record<LangCode, Translation>> = {
     footerNote:
       "இந்தோனேசியா பங்குச் சந்தையின் அதே தளத்தில் • இந்தோனேசியா முழுவதும் ஆன்லைன் சேவை",
     footerRights:
-      "© {year} PusatPerizinan.com — PT Digital Bisnis Manajemen. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.",
-    footerMade: "Support system by PT Top Konsultan Internasional — McKinsey Partner Indonesia",
+      "© {year} PusatPerizinan.com — PT Top Konsultan Internasional. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.",
+    footerMade: "Support system by PT Digital Bisnis Manajemen — digiman.id",
     // Chat
     chatTitle: "RIZKI — AI ஆலோசகர்",
     chatStatus: "ஆன்லைன் • வினாடிகளில் பதில்",
@@ -549,8 +549,8 @@ export const TRANSLATIONS_B: Partial<Record<LangCode, Translation>> = {
     footerNote:
       "ইন্দোনেশিয়া স্টক এক্সচেঞ্জের একই তলায় • পুরো ইন্দোনেশিয়ায় অনলাইন সেবা",
     footerRights:
-      "© {year} PusatPerizinan.com — PT Digital Bisnis Manajemen। সর্বস্বত্ব সংরক্ষিত।",
-    footerMade: "Support system by PT Top Konsultan Internasional — McKinsey Partner Indonesia",
+      "© {year} PusatPerizinan.com — PT Top Konsultan Internasional। সর্বস্বত্ব সংরক্ষিত।",
+    footerMade: "Support system by PT Digital Bisnis Manajemen — digiman.id",
     // Chat
     chatTitle: "RIZKI — AI পরামর্শদাতা",
     chatStatus: "অনলাইন • সেকেন্ডেই উত্তর",
@@ -736,8 +736,8 @@ export const TRANSLATIONS_B: Partial<Record<LangCode, Translation>> = {
     footerNote:
       "في الطابق ذاته لبورصة إندونيسيا • نخدم كامل إندونيسيا عبر الإنترنت",
     footerRights:
-      "© {year} PusatPerizinan.com — PT Digital Bisnis Manajemen. جميع الحقوق محفوظة.",
-    footerMade: "Support system by PT Top Konsultan Internasional — McKinsey Partner Indonesia",
+      "© {year} PusatPerizinan.com — PT Top Konsultan Internasional. جميع الحقوق محفوظة.",
+    footerMade: "Support system by PT Digital Bisnis Manajemen — digiman.id",
     // Chat
     chatTitle: "RIZKI — المستشار الذكي",
     chatStatus: "متصل • يرد خلال ثوانٍ",
@@ -923,8 +923,8 @@ export const TRANSLATIONS_B: Partial<Record<LangCode, Translation>> = {
     footerNote:
       "هم‌طبقه با بورس اندونزی • ارائه خدمات به سراسر اندونزی به‌صورت آنلاین",
     footerRights:
-      "© {year} PusatPerizinan.com — PT Digital Bisnis Manajemen. تمامی حقوق محفوظ است.",
-    footerMade: "Support system by PT Top Konsultan Internasional — McKinsey Partner Indonesia",
+      "© {year} PusatPerizinan.com — PT Top Konsultan Internasional. تمامی حقوق محفوظ است.",
+    footerMade: "Support system by PT Digital Bisnis Manajemen — digiman.id",
     // Chat
     chatTitle: "RIZKI — مشاور هوش مصنوعی",
     chatStatus: "آنلاین • پاسخ در چند ثانیه",
@@ -1110,8 +1110,8 @@ export const TRANSLATIONS_B: Partial<Record<LangCode, Translation>> = {
     footerNote:
       "انڈونیشیا سٹاک ایکسچینج کی اسی منزل پر • پورے انڈونیشیا کی آن لائن سروس",
     footerRights:
-      "© {year} PusatPerizinan.com — PT Digital Bisnis Manajemen۔ جملہ حقوق محفوظ ہیں۔",
-    footerMade: "Support system by PT Top Konsultan Internasional — McKinsey Partner Indonesia",
+      "© {year} PusatPerizinan.com — PT Top Konsultan Internasional۔ جملہ حقوق محفوظ ہیں۔",
+    footerMade: "Support system by PT Digital Bisnis Manajemen — digiman.id",
     // Chat
     chatTitle: "RIZKI — AI کنسلٹنٹ",
     chatStatus: "آن لائن • سیکنڈوں میں جواب",
@@ -1297,8 +1297,8 @@ export const TRANSLATIONS_B: Partial<Record<LangCode, Translation>> = {
     footerNote:
       "באותה קומה של הבורסה לניירות ערך באינדונזיה • משרתים את כל אינדונזיה אונליין",
     footerRights:
-      "© {year} PusatPerizinan.com — PT Digital Bisnis Manajemen. כל הזכויות שמורות.",
-    footerMade: "Support system by PT Top Konsultan Internasional — McKinsey Partner Indonesia",
+      "© {year} PusatPerizinan.com — PT Top Konsultan Internasional. כל הזכויות שמורות.",
+    footerMade: "Support system by PT Digital Bisnis Manajemen — digiman.id",
     // Chat
     chatTitle: "RIZKI — יועץ AI",
     chatStatus: "אונליין • עונה תוך שניות",

@@ -117,3 +117,21 @@ Stage Summary:
 - v1.11.0 live di /api/version; jalur order FASE 1 paritas penuh (1.500 detail ber-bundle −10%, WA melayang sitewide, klik terukur)
 - FASE 1 ROADMAP: 3 ✅ 5 ✅, 4 kode-siap; langkah 1–2 menunggu owner mengisi env sesuai checklist → lalu eksekusi 8 butir
 - Nol URL baru → indeks 11.876 aman
+
+---
+Task ID: 28
+Agent: Z.ai Code (main agent)
+Task: Permintaan owner: "ganti bahwa website ini adalah PT TOP KONSULTAN INTERNASIONAL dan support system by PT Digital Bisnis Manajemen digiman.id" — tukar peran dua entitas di seluruh situs + rilis v1.12.0 "Identitas Resmi".
+
+Work Log:
+- Survei grep sitewide: LEGAL_ENTITY (site.ts) = sumber tunggal; hardcode "PT Digital Bisnis Manajemen" di seo-jsonld/layout/faq-data/biaya/generators/privacy-content/tentang-kami/30 locale footerRights/DEPLOY doc; kredit footer lama = "Support system by PT Top Konsultan Internasional — McKinsey Partner Indonesia" (30 locale) — peran dibalik sesuai owner
+- site.ts: LEGAL_ENTITY → "PT Top Konsultan Internasional" + konstanta baru SUPPORT_SYSTEM ("PT Digital Bisnis Manajemen") & SUPPORT_SYSTEM_URL ("https://digiman.id")
+- seo-jsonld.tsx (+legalName, alternateName=LEGAL_ENTITY), layout.tsx (publisher), footer.tsx (badge kredit → tautan digiman.id), tentang-kami (Badan Usaha: entitas + support system + link)
+- i18n 30 locale (sed berurutan): footerRights → "© PusatPerizinan.com — PT Top Konsultan Internasional" (30); footerMade → "Support system by PT Digital Bisnis Manajemen — digiman.id" (30); 0 sisa "McKinsey"
+- faq-data id+en, biaya.ts, generators.ts → "(PT Top Konsultan Internasional)"; privacy-content id+en → ${LEGAL_ENTITY}; DEPLOY-IDWEBHOST.md sinkron
+- Verifikasi: lint 0/0; tsc 178 (baseline persis, nol error baru); curl / · /kontak · /tentang-kami · /kebijakan-privasi → legalName/publisher/footer credit/pengendali data semua "PT Top Konsultan Internasional", link digiman.id terender — semua 200
+- Rilis 5 titik: version.ts 1.12.0 "Identitas Resmi" (+RELEASES Task 28), package.json 1.12.0, /api/version nextRelease v1.13.0, CHANGELOG entri 1.12.0 + badge (28 rilis/38 entri) + ladder, WORKLOG.md Task 28
+
+Stage Summary:
+- Situs v1.12.0 "Identitas Resmi": operator situs & penerbit invoice = PT Top Konsultan Internasional; support system = PT Digital Bisnis Manajemen (digiman.id, kredit footer ber-tautan) — konsisten di schema, meta, footer 30 bahasa, halaman legal & FAQ
+- Nol URL baru → indeks 11.876 aman; nol error baru; sisa ROADMAP-99 (langkah 1–2 kredensial owner, 36–40, 42–44) tidak berubah

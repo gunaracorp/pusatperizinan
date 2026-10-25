@@ -5,19 +5,19 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.11.0_Sapa_Langsung-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-11-0)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.12.0_Identitas_Resmi-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-12-0)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-27_(0.1.0_%E2%86%92_1.11.0)-059669?style=flat-square)
-![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-37_ber_versi-059669?style=flat-square)
-![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.12.0_(Unreleased)-f59e0b?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-28_(0.1.0_%E2%86%92_1.12.0)-059669?style=flat-square)
+![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-38_ber_versi-059669?style=flat-square)
+![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.13.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.11.0 — "Sapa Langsung"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.12.0 — "Identitas Resmi"`**
 
 <sub>Versi terlihat hidup di: footer setiap halaman (11.876 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
@@ -37,15 +37,15 @@
 | Sumber kebenaran | [`WORKLOG.md`](./WORKLOG.md) (rekam jejak 1:1) · `src/lib/version.ts` (data mesin) · `package.json` (runtime) |
 | Ritme | **1 task/permintaan user = 1 nomor versi baru** — fitur → `MINOR`, perbaikan → `PATCH`, perombakan arah produk → `MAJOR` |
 | Presisi tanggal | Era `0.x` (Sesi 1–2) direkonstruksi dari metadata file & jejak invoice (`INV-20261021`) → presisi bulan; era `1.x` → presisi hari (terverifikasi) |
-| Rilis berikutnya | **`v1.12.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
+| Rilis berikutnya | **`v1.13.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
 
-> 🔗 Navigasi cepat: **[Tabel Lengkap 27 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+> 🔗 Navigasi cepat: **[Tabel Lengkap 28 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
 
 ---
 
 <a id="unreleased"></a>
 
-## [Unreleased] — akan menjadi `v1.12.0`
+## [Unreleased] — akan menjadi `v1.13.0`
 
 > 📦 **Sisa langkah ROADMAP-99** tetap TERSIMPAN di [`ROADMAP-99.md`](./ROADMAP-99.md) — langkah 23, 24, 25, 26, 27, **3**, **5**, 33, 34, **35**, 41 kini DIEKSEKUSI (dicentang di roadmap); **langkah 4 kode lengkap** (GA4 + Clarity env-gated — menunggu ID produksi). Sisanya menunggu sesi berikutnya.
 
@@ -55,6 +55,27 @@
 - **Langkah 4 eksekusi akhir**: set `NEXT_PUBLIC_GA_ID` + `NEXT_PUBLIC_CLARITY_ID` di env → GA4 & Clarity aktif (kode v1.11.0 sudah siap)
 - Verifikasi token 6 mesin pencari via env → meta tag otomatis (lanjutan `v1.3.0`)
 - Re-ukur PSI mobile setelah deploy v1.5.0–v1.11.0 — target LCP < 4 s & TBT < 500 ms
+
+---
+
+<a id="v1-12-0"></a>
+
+## [1.12.0] — 2026-10-25 — 🏛️ "Identitas Resmi" (Task 28)
+
+Rilis identitas: entitas legal resmi **pusatperizinan.com** kini **PT Top Konsultan Internasional**, dengan kredit **support system by PT Digital Bisnis Manajemen (digiman.id)** — konsisten di schema, metadata, footer 30 bahasa, halaman legal, hingga invoice.
+
+### Changed
+- **Entitas legal sitewide** — `LEGAL_ENTITY` (site.ts, satu sumber): `PT Digital Bisnis Manajemen` → **`PT Top Konsultan Internasional`**; mengalir otomatis ke JSON-LD Organization (`legalName` + `alternateName`), meta `publisher` (layout), `ProfessionalService` /kontak (legalName + catatan "dikelola oleh …"), pengendali data /kebijakan-privasi (id+en), FAQ invoice resmi (id+en), halaman biaya & generator katalog (rekening perusahaan resmi), dokumen deploy publik
+- **Konstanta baru** di `site.ts`: `SUPPORT_SYSTEM = "PT Digital Bisnis Manajemen"` + `SUPPORT_SYSTEM_URL = "https://digiman.id"`
+- **Kredit footer** — `footerMade` 30 locale: "Support system by PT Top Konsultan Internasional — McKinsey Partner Indonesia" → **"Support system by PT Digital Bisnis Manajemen — digiman.id"**; badge footer kini **tautan keluar ke digiman.id** (`target="_blank"`, `rel="noopener noreferrer"`, hover state)
+- **`footerRights` 30 locale**: "© {year} PusatPerizinan.com — PT Top Konsultan Internasional"
+- **/tentang-kami**: kartu Badan Usaha kini menyebut entitas + dukungan sistem dengan tautan digiman.id
+- `version.ts`: `APP_VERSION 1.12.0 "Identitas Resmi"`, `RELEASES` +1 entri (Task 28) — **nol URL publik baru → indeks 11.876 URL tetap**; `package.json` 1.12.0; `/api/version` `nextRelease → v1.13.0`
+
+### Verifikasi
+- `bun run lint` → **0 error, 0 warning**; `tsc --noEmit` → **178 error pre-existing** (baseline v1.11.0 tak berubah — nol error pada berkas/baris sentuhan)
+- curl runtime: `/` (kredit footer baru + `"legalName":"PT Top Konsultan Internasional"` + `"alternateName"` + `<meta name="publisher">` + `<a href="https://digiman.id">`), `/kontak` (legalName + "dikelola oleh …"), `/tentang-kami` (12× Top Konsultan · 2× Digital Bisnis · 4× digiman.id), `/kebijakan-privasi` ("Pengendali data pribadi Anda adalah PT Top Konsultan Internasional") — **semua 200 & sesuai**
+- Sapu grep: nol hardcode "PT Digital Bisnis Manajemen" tersisa di luar konstanta `SUPPORT_SYSTEM`, komentar footer, dan 30 locale `footerMade`; nol sisa "McKinsey"
 
 ---
 
@@ -423,11 +444,12 @@ Rilis pertama dengan **identitas versi resmi**. Seluruh proyek kini punya nomor 
 
 <a id="ladder"></a>
 
-## 🪜 Tabel Lengkap 27 Rilis
+## 🪜 Tabel Lengkap 28 Rilis
 
 | # | Versi | Tanggal (WIB) | Tipe | Nama Rilis | Task WORKLOG | Status |
 |---|---|---|---|---|---|---|
-| 27 | **v1.11.0** ⭐ | **2026-10-25** | minor | **Sapa Langsung** | Task 27 | **🟢 AKTIF — versi berjalan** |
+| 28 | **v1.12.0** ⭐ | **2026-10-25** | minor | **Identitas Resmi** | Task 28 | **🟢 AKTIF — versi berjalan** |
+| 27 | v1.11.0 | 2026-10-25 | minor | Sapa Langsung | Task 27 | ✅ Rilis |
 | 26 | v1.10.0 | 2026-10-25 | minor | Mesin Redaksi | Task 26 | ✅ Rilis |
 | 25 | v1.9.0 | 2026-10-25 | minor | Kamus Raja | Task 25 | ✅ Rilis |
 | 24 | v1.8.0 | 2026-10-25 | minor | Arena Banding | Task 24 | ✅ Rilis |

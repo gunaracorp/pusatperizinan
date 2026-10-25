@@ -48,7 +48,7 @@ const SECTIONS_ID: PrivacySection[] = [
     blocks: [
       {
         type: "p",
-        text: "Kebijakan ini menjelaskan dalam bahasa sederhana bagaimana PusatPerizinan.com (PT Digital Bisnis Manajemen) menangani data pribadi Anda: apa yang kami kumpulkan, untuk apa, dibagikan kepada siapa, berapa lama disimpan, dan hak-hak Anda. Intinya:",
+        text: `Kebijakan ini menjelaskan dalam bahasa sederhana bagaimana PusatPerizinan.com (${LEGAL_ENTITY}) menangani data pribadi Anda: apa yang kami kumpulkan, untuk apa, dibagikan kepada siapa, berapa lama disimpan, dan hak-hak Anda. Intinya:`,
       },
       {
         type: "bullets",
@@ -394,7 +394,7 @@ const SECTIONS_EN: PrivacySection[] = [
     blocks: [
       {
         type: "p",
-        text: "This policy explains in plain language how PusatPerizinan.com (PT Digital Bisnis Manajemen) handles your personal data: what we collect, why, with whom it is shared, how long we keep it, and your rights. In short:",
+        text: `This policy explains in plain language how PusatPerizinan.com (${LEGAL_ENTITY}) handles your personal data: what we collect, why, with whom it is shared, how long we keep it, and your rights. In short:`,
       },
       {
         type: "bullets",

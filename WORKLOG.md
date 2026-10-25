@@ -183,3 +183,24 @@ Stage Summary:
 - Saluran closing favorit pasar Indonesia (WA) kini selalu 1 klik jauhnya di halaman traffic SEO; klik terukur (whatsapp_click) begitu GA4 diaktifkan
 - Langkah 4 tinggal eksekusi akhir: pasang NEXT_PUBLIC_GA_ID + NEXT_PUBLIC_CLARITY_ID di env — nol deploy ulang kode
 - Nol URL publik baru → indeks 11.876 URL aman; ROADMAP-99 FASE 1: 3 ✅ 5 ✅ (4 kode-siap) — sisa P0: langkah 1–2 menunggu kredensial owner (checklist: docs/CHECKLIST-KREDENSIAL-LANGKAH-1-2.md), langkah 6–8 menyusul
+
+---
+Task ID: 28
+Agent: Z.ai Code (main agent)
+Task: Ganti identitas resmi situs atas permintaan owner — website adalah milik/operasi **PT Top Konsultan Internasional**, dengan kredit **support system by PT Digital Bisnis Manajemen (digiman.id)** — rilis v1.12.0 "Identitas Resmi".
+
+Work Log:
+- Survei identitas (grep sitewide): `LEGAL_ENTITY` di `src/lib/site.ts` = sumber tunggal (dipakai JSON-LD kontak, pengendali privasi, catatan "dikelola oleh" /kontak); hardcode "PT Digital Bisnis Manajemen" ditemukan di seo-jsonld (alternateName), layout.tsx (meta publisher), faq-data (id+en), seo-pages/biaya.ts, catalog/generators.ts, privacy-content (id+en), tentang-kami, 30 locale `footerRights`, public/download/DEPLOY-IDWEBHOST.md; kredit footer lama "Support system by PT Top Konsultan Internasional — McKinsey Partner Indonesia" di 30 locale `footerMade` — peran dua entitas DIBALIK sesuai permintaan owner
+- `site.ts`: `LEGAL_ENTITY` → "PT Top Konsultan Internasional"; konstanta baru `SUPPORT_SYSTEM = "PT Digital Bisnis Manajemen"` + `SUPPORT_SYSTEM_URL = "https://digiman.id"`
+- `seo-jsonld.tsx`: Organization kini `legalName: LEGAL_ENTITY` + `alternateName: LEGAL_ENTITY` (impor dari site.ts — hapus hardcode)
+- `layout.tsx`: meta `publisher: LEGAL_ENTITY` (impor)
+- `footer.tsx`: badge kredit jadi `<a href={SUPPORT_SYSTEM_URL} target="_blank" rel="noopener noreferrer">` (span menggantikan p, hover state ditambah); komentar seksi diperbarui
+- i18n 30 locale / 6 file (sed berurutan — urutan penting): `footerRights` "— PT Digital Bisnis Manajemen" → "— PT Top Konsultan Internasional" (30), lalu `footerMade` → "Support system by PT Digital Bisnis Manajemen — digiman.id" (30); verifikasi grep: 0 sisa "McKinsey"
+- Konten hardcoded: faq-data.ts id+en + seo-pages/biaya.ts + catalog/generators.ts "(PT Digital Bisnis Manajemen)" → "(PT Top Konsultan Internasional)" (invoice/rekening perusahaan resmi); privacy-content.ts id+en ringkasan → template `${LEGAL_ENTITY}`; tentang-kami kartu Badan Usaha → entitas + dukungan sistem + tautan digiman.id; DEPLOY-IDWEBHOST.md disinkronkan
+- Verifikasi: `bun run lint` 0 error 0 warning; `tsc --noEmit` **178 error pre-existing** (baseline v1.11.0 persis — nol error file/baris sentuhan); sapu grep: "Digital Bisnis" tersisa HANYA di konstanta SUPPORT_SYSTEM, komentar footer, 30 locale footerMade (semua disengaja)
+- curl runtime (dev server): `/` → footer "Support system by PT Digital Bisnis Manajemen — digiman.id" + `"legalName":"PT Top Konsultan Internasional"` + `"alternateName"` + `<meta name="publisher" content="PT Top Konsultan Internasional">` + `<a href="https://digiman.id">`; `/kontak` → legalName benar + "dikelola oleh …"; `/tentang-kami` → 12× Top Konsultan · 2× Digital Bisnis · 4× digiman.id; `/kebijakan-privasi` → "Pengendali data pribadi Anda adalah PT Top Konsultan Internasional" — semua 200
+- Versioning: version.ts (1.12.0 "Identitas Resmi" + RELEASES Task 28), package.json 1.12.0, api/version nextRelease → v1.13.0, CHANGELOG.md entri 1.12.0 + badge (Total Rilis 28, Entri Worklog 38, Berikutnya v1.13.0) + ladder baris 28
+
+Stage Summary:
+- Situs v1.12.0 "Identitas Resmi": identitas legal konsisten satu sumber di site.ts — **PT Top Konsultan Internasional** (operator situs & penerbit invoice) + **PT Digital Bisnis Manajemen / digiman.id** (support system, kredit footer ber-tautan) — mengalir ke schema JSON-LD, meta publisher, footer 30 bahasa, halaman legal (privasi/kontak/tentang-kami), FAQ, halaman biaya & generator katalog, dokumen deploy
+- Nol URL publik baru → indeks 11.876 URL aman; nol perubahan layout/performa; 5 titik sinkronisasi versioning terpenuhi (WORKLOG, CHANGELOG, version.ts, package.json, footer/JSON-LD otomatis)

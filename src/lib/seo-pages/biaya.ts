@@ -114,7 +114,7 @@ function buildBiayaPage(base: ServicePage): SeoPage | null {
     {
       heading: "Kapan Bayar & Bagaimana Skemanya?",
       paras: [
-        `Pembayaran ke rekening perusahaan resmi (PT Digital Bisnis Manajemen) dengan invoice & perjanjian tertulis — bukan rekening pribadi. Untuk pengurusan bernilai besar, pembayaran bisa bertahap: bagian awal saat mulai, sisanya setelah dokumen terbit. Estimasi total ${b.duration} sejak dokumen lengkap, dengan ${b.steps.length} tahapan yang bisa Anda pantau real-time.`,
+        `Pembayaran ke rekening perusahaan resmi (PT Top Konsultan Internasional) dengan invoice & perjanjian tertulis — bukan rekening pribadi. Untuk pengurusan bernilai besar, pembayaran bisa bertahap: bagian awal saat mulai, sisanya setelah dokumen terbit. Estimasi total ${b.duration} sejak dokumen lengkap, dengan ${b.steps.length} tahapan yang bisa Anda pantau real-time.`,
       ],
       bullets: b.steps.slice(0, 3),
     },

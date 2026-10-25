@@ -17,9 +17,9 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.11.0";
+export const APP_VERSION = "1.12.0";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Sapa Langsung";
+export const RELEASE_NAME = "Identitas Resmi";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
 export const RELEASE_DATE = "2026-10-25";
 /** Channel rilis: stable | beta | alpha. */
@@ -46,6 +46,18 @@ export interface ReleaseEntry {
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.12.0",
+    date: "2026-10-25",
+    type: "minor",
+    name: "Identitas Resmi",
+    taskId: "28",
+    highlights: [
+      "Entitas legal resmi situs → PT Top Konsultan Internasional: satu sumber LEGAL_ENTITY (site.ts) mengalir ke JSON-LD legalName/alternateName, meta publisher, /kontak, /kebijakan-privasi (id+en), FAQ invoice, halaman biaya & generator katalog, dokumen deploy publik",
+      "Kredit support system → \"Support system by PT Digital Bisnis Manajemen — digiman.id\" di 30 locale footer + badge footer jadi tautan digiman.id; © footer kini atas nama PT Top Konsultan Internasional",
+      "/tentang-kami: kartu Badan Usaha memuat entitas + dukungan sistem (tautan digiman.id); konstanta baru SUPPORT_SYSTEM + SUPPORT_SYSTEM_URL di site.ts",
+    ],
+  },
   {
     version: "1.11.0",
     date: "2026-10-25",

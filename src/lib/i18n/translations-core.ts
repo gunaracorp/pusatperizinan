@@ -211,8 +211,8 @@ const id: Translation = {
   footerNote:
     "Satu lantai dengan Bursa Efek Indonesia • Melayani seluruh Indonesia online",
   footerRights:
-    "© {year} PusatPerizinan.com — PT Digital Bisnis Manajemen. Seluruh hak cipta dilindungi.",
-  footerMade: "Support system by PT Top Konsultan Internasional — McKinsey Partner Indonesia",
+    "© {year} PusatPerizinan.com — PT Top Konsultan Internasional. Seluruh hak cipta dilindungi.",
+  footerMade: "Support system by PT Digital Bisnis Manajemen — digiman.id",
   // Chat
   chatTitle: "RIZKI — Konsultan AI",
   chatStatus: "Online • Balas dalam hitungan detik",
@@ -436,8 +436,8 @@ const en: Translation = {
   footerNote:
     "Same floor as the Indonesia Stock Exchange • Serving all of Indonesia online",
   footerRights:
-    "© {year} PusatPerizinan.com — PT Digital Bisnis Manajemen. All rights reserved.",
-  footerMade: "Support system by PT Top Konsultan Internasional — McKinsey Partner Indonesia",
+    "© {year} PusatPerizinan.com — PT Top Konsultan Internasional. All rights reserved.",
+  footerMade: "Support system by PT Digital Bisnis Manajemen — digiman.id",
   // Chat
   chatTitle: "RIZKI — AI Consultant",
   chatStatus: "Online • Replies in seconds",

@@ -5,7 +5,7 @@ import { ArrowRight, Award, Building2, Camera, CheckCircle2, Globe2, MapPin, Shi
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { FOUNDER, TEAM } from "@/lib/team-data";
-import { CONTACT, SITE_NAME, TRUST_METRICS } from "@/lib/site";
+import { CONTACT, SITE_NAME, TRUST_METRICS, LEGAL_ENTITY, SUPPORT_SYSTEM, SUPPORT_SYSTEM_URL } from "@/lib/site";
 
 // ============================================================
 // PUSATPERIZINAN.COM — /tentang-kami (E-E-A-T, PHASE 6)
@@ -64,7 +64,17 @@ export default function TentangKamiPage() {
             <p className="mt-2 text-sm font-bold">Badan Usaha</p>
             <p className="mt-1 text-xs text-muted-foreground">
               Jasa dioperasikan oleh jaringan konsultan di bawah entitas{" "}
-              <strong>PT Digital Bisnis Manajemen</strong>.
+              <strong>{LEGAL_ENTITY}</strong>, dengan dukungan sistem oleh{" "}
+              <strong>{SUPPORT_SYSTEM}</strong> (
+              <a
+                href={SUPPORT_SYSTEM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline decoration-dotted hover:text-primary"
+              >
+                digiman.id
+              </a>
+              ).
             </p>
           </div>
           <div className="rounded-2xl border border-border/70 bg-secondary/40 p-5">

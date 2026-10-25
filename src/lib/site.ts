@@ -27,7 +27,11 @@ export const CURRENT_YEAR: number = new Date().getFullYear();
 // ------------------------------------------------------------
 
 export const SITE_NAME = "PusatPerizinan.com";
-export const LEGAL_ENTITY = "PT Digital Bisnis Manajemen";
+export const LEGAL_ENTITY = "PT Top Konsultan Internasional";
+
+/** Entitas penyedia support system (platform) — kredit footer & halaman legal. */
+export const SUPPORT_SYSTEM = "PT Digital Bisnis Manajemen";
+export const SUPPORT_SYSTEM_URL = "https://digiman.id";
 
 export const CONTACT = {
   phoneIntl: "+62-812-6999-9910",

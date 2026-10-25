@@ -8,7 +8,7 @@ import { FloatingWhatsApp } from "@/components/landing/floating-whatsapp";
 import { MotionProvider } from "@/components/motion/motion-provider";
 import VitalsReporter from "@/components/seo/vitals-reporter";
 import { LanguageProvider } from "@/lib/i18n/language-provider";
-import { SITE_URL } from "@/lib/site";
+import { SITE_URL, LEGAL_ENTITY } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "PusatPerizinan.com", url: SITE_URL }],
   creator: "PusatPerizinan.com",
-  publisher: "PT Digital Bisnis Manajemen",
+  publisher: LEGAL_ENTITY,
   alternates: {
     canonical: "/",
     // M04 (audit): hreflang id-ID + x-default — situs satu bahasa (i18n via

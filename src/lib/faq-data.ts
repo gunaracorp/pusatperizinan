@@ -105,7 +105,7 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       {
         qid: "kontrak-invoice-resmi",
         q: "Apakah saya menerima kontrak dan invoice resmi?",
-        a: "Selalu. Setiap kerja sama dibingkai kontrak tertulis yang memuat lingkup, timeline, biaya, dan garansi. Pembayaran disertai invoice resmi atas nama badan hukum kami (PT Digital Bisnis Manajemen), sehingga aman untuk pembukuan dan pelaporan pajak perusahaan Anda.",
+        a: "Selalu. Setiap kerja sama dibingkai kontrak tertulis yang memuat lingkup, timeline, biaya, dan garansi. Pembayaran disertai invoice resmi atas nama badan hukum kami (PT Top Konsultan Internasional), sehingga aman untuk pembukuan dan pelaporan pajak perusahaan Anda.",
       },
       {
         qid: "apakah-data-aman",
@@ -1379,7 +1379,7 @@ export const FAQ_CONTENT: Partial<
     },
     "kontrak-invoice-resmi": {
       q: "Will I receive a proper contract and invoice?",
-      a: "Always. Every engagement is framed by a written cooperation contract covering scope, timeline, cost, and guarantees. Payments come with an official invoice issued under our legal entity (PT Digital Bisnis Manajemen), so it is safe for your company's bookkeeping and tax reporting.",
+      a: "Always. Every engagement is framed by a written cooperation contract covering scope, timeline, cost, and guarantees. Payments come with an official invoice issued under our legal entity (PT Top Konsultan Internasional), so it is safe for your company's bookkeeping and tax reporting.",
     },
     "apakah-data-aman": {
       q: "Are my personal data and company documents safe?",
