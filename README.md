@@ -5,12 +5,12 @@
 
 <img src="public/logo.png" alt="Logo PusatPerizinan.com" width="130"/>
 
-<sup>🏛️ PT Digital Bisnis Manajemen · Indonesia Stock Exchange Building Tower 2, Lt. 5, SCBD Lot 13, Jakarta Selatan · Bandung</sup>
+<sup>🏛️ PT Top Konsultan Internasional · Indonesia Stock Exchange Building Tower 2, Lt. 5, SCBD Lot 13, Jakarta Selatan · Bandung</sup>
 
 ### ⚡ Urus Semua Izin Usaha, Tinggal Terima Beres ⚡
 
-<a href="https://readme-typing-svg.demolab.com?font=Fira+Code:wght@500;700&size=22&duration=2800&pause=900&color=059669&center=true&vCenter=true&multiline=true&repeat=true&width=920&height=120&lines=11.207+URL+terindeks+SEO+%C2%B7+1.500+layanan+orderable+%C2%B7+30+bahasa+%C2%B7+5+alat+AI;NIB+1+hari+%C2%B7+PT+3+hari+%C2%B7+Halal+%C2%B7+BPOM+%C2%B7+PBG%2FSLF+%C2%B7+AMDAL+%C2%B7+PMA+%C2%B7+PPIU%2FPPIH+%C2%B7+MISA+Arab+Saudi;KepatuhanPRO+MRR+%C2%B7+Instant+Order+Checkout+%C2%B7+Bundle+Hemat+10%25+%C2%B7+Static+Export+siap+cPanel;11%2C207+SEO-indexed+URLs+%C2%B7+1%2C500+orderable+services+%C2%B7+30+languages+%C2%B7+5+AI+tools;One+codebase+%E2%86%92+Dev+%2B+Standalone+%2B+Static+Export+for+shared+hosting">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code:wght@500;700&size=22&duration=2800&pause=900&color=059669&center=true&vCenter=true&multiline=true&repeat=true&width=920&height=120&lines=11.207+URL+terindeks+SEO+%C2%B7+1.500+layanan+orderable+%C2%B7+30+bahasa+%C2%B7+5+alat+AI;NIB+1+hari+%C2%B7+PT+3+hari+%C2%B7+Halal+%C2%B7+BPOM+%C2%B7+PBG%2FSLF+%C2%B7+AMDAL+%C2%B7+PMA+%C2%B7+PPIU%2FPPIH+%C2%B7+MISA+Arab+Saudi;KepatuhanPRO+MRR+%C2%B7+Instant+Order+Checkout+%C2%B7+Bundle+Hemat+10%25+%C2%B7+Static+Export+siap+cPanel;11%2C207+SEO-indexed+URLs+%C2%B7+1%2C500+orderable+services+%C2%B7+30+languages+%C2%B7+5+AI+tools;One+codebase+%E2%86%92+Dev+%2B+Standalone+%2B+Static+Export+for+shared+hosting" alt="Animasi mengetik — fitur utama"/>
+<a href="https://readme-typing-svg.demolab.com?font=Fira+Code:wght@500;700&size=22&duration=2800&pause=900&color=059669&center=true&vCenter=true&multiline=true&repeat=true&width=920&height=120&lines=11.876+URL+terindeks+SEO+%C2%B7+1.500+layanan+orderable+%C2%B7+30+bahasa+%C2%B7+5+alat+AI;NIB+1+hari+%C2%B7+PT+3+hari+%C2%B7+Halal+%C2%B7+BPOM+%C2%B7+PBG%2FSLF+%C2%B7+AMDAL+%C2%B7+PMA+%C2%B7+PPIU%2FPPIH+%C2%B7+MISA+Arab+Saudi;GA4+Full-Funnel+G-KMZRQJQXCB+%C2%B7+KepatuhanPRO+MRR+%C2%B7+Instant+Order+%C2%B7+Bundle+Hemat+10%25+%C2%B7+cPanel;11%2C876+SEO-indexed+URLs+%C2%B7+1%2C500+services+%C2%B7+30+languages+%C2%B7+5+AI+tools+%C2%B7+GA4;One+codebase+%E2%86%92+Dev+%2B+Standalone+%2B+Static+Export+for+shared+hosting">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code:wght@500;700&size=22&duration=2800&pause=900&color=059669&center=true&vCenter=true&multiline=true&repeat=true&width=920&height=120&lines=11.876+URL+terindeks+SEO+%C2%B7+1.500+layanan+orderable+%C2%B7+30+bahasa+%C2%B7+5+alat+AI;NIB+1+hari+%C2%B7+PT+3+hari+%C2%B7+Halal+%C2%B7+BPOM+%C2%B7+PBG%2FSLF+%C2%B7+AMDAL+%C2%B7+PMA+%C2%B7+PPIU%2FPPIH+%C2%B7+MISA+Arab+Saudi;GA4+Full-Funnel+G-KMZRQJQXCB+%C2%B7+KepatuhanPRO+MRR+%C2%B7+Instant+Order+%C2%B7+Bundle+Hemat+10%25+%C2%B7+cPanel;11%2C876+SEO-indexed+URLs+%C2%B7+1%2C500+services+%C2%B7+30+languages+%C2%B7+5+AI+tools+%C2%B7+GA4;One+codebase+%E2%86%92+Dev+%2B+Standalone+%2B+Static+Export+for+shared+hosting" alt="Animasi mengetik — fitur utama"/>
 </a>
 
 [![Next.js 16](https://img.shields.io/badge/Next.js-16.x_App_Router-000000?style=for-the-badge&logo=next.js&logoColor=white)](#3-tech-stack--teknologi)
@@ -18,16 +18,17 @@
 [![React 19](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](#3-tech-stack--teknologi)
 [![Tailwind CSS 4](https://img.shields.io/badge/Tailwind_CSS-4-38BDF8?style=for-the-badge&logo=tailwindcss&logoColor=white)](#3-tech-stack--teknologi)
 [![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-New_York_48_komponen-000000?style=for-the-badge&logo=shadcnui&logoColor=white)](#3-tech-stack--teknologi)
-[![Prisma 6](https://img.shields.io/badge/Prisma-6_%2B_SQLite-2D3748?style=for-the-badge&logo=prisma&logoColor=white)](#9-database--12-model-prisma)
+[![Prisma 6](https://img.shields.io/badge/Prisma-6_%2B_SQLite-2D3748?style=for-the-badge&logo=prisma&logoColor=white)](#9-database--13-model-prisma)
 [![Bun](https://img.shields.io/badge/Bun-runtime_(_dev_)-F9F1F1?style=for-the-badge&logo=bun&logoColor=black)](#4-quick-start--mulai-cepat)
-[![Versi](https://img.shields.io/badge/Versi-v1.4.0_Version_Master-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](./CHANGELOG.md)
+[![Versi](https://img.shields.io/badge/Versi-v1.13.4_Dokumen_Hidup_II-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](./CHANGELOG.md)
 
-![Versioning](https://img.shields.io/badge/Versi-v1.4.0_%C2%B7_SemVer_2.0.0_%C2%B7_20_rilis-8B5CF6?style=flat-square&logo=semver&logoColor=white)
-![Sitemap](https://img.shields.io/badge/URL_Sitemap-11.207-059669?style=flat-square&logo=google&logoColor=white)
+![Versioning](https://img.shields.io/badge/Versi-v1.13.4_%C2%B7_SemVer_2.0.0_%C2%B7_33_rilis-8B5CF6?style=flat-square&logo=semver&logoColor=white)
+![Sitemap](https://img.shields.io/badge/URL_Sitemap-11.876_%C2%B7_15_seksi-059669?style=flat-square&logo=google&logoColor=white)
 ![Layanan](https://img.shields.io/badge/Layanan_Orderable-1.500_in_3_katalog-059669?style=flat-square)
 ![MRR](https://img.shields.io/badge/KepatuhanPRO-MRR_6_SKU-f59e0b?style=flat-square)
 ![Bahasa](https://img.shields.io/badge/UI-30_Bahasa_%2B_RTL-059669?style=flat-square&logo=crowdin&logoColor=white)
 ![AI](https://img.shields.io/badge/Alat_AI-5_aktif-8B5CF6?style=flat-square&logo=openai&logoColor=white)
+![GA4](https://img.shields.io/badge/GA4-G--KMZRQJQXCB_full--funnel-f59e0b?style=flat-square&logo=googleanalytics&logoColor=white)
 ![Deploy](https://img.shields.io/badge/Deploy-3_Mode-059669?style=flat-square&logo=docker&logoColor=white)
 ![Rating](https://img.shields.io/badge/Rating-4.9%2F5_(890_ulasan)-f59e0b?style=flat-square&logo=trustedshops&logoColor=white)
 ![Garansi](https://img.shields.io/badge/Garansi-100%25_Uang_Kembali-059669?style=flat-square&logo=shieldcheck&logoColor=white)
@@ -47,7 +48,7 @@
 
 # 🇮🇩 — Bahasa Indonesia
 
-> 📌 **Dokumen ini bilingual & penuh navigasi.** Klik daftar isi mana pun untuk melompat. Sumber kebenaran kode: `src/lib/site.ts` (NAP, trust metrics) & `src/lib/pricing.ts` (harga). Log pengembangan 100% transparan & **ber-versi SemVer**: [`WORKLOG.md`](./WORKLOG.md) · riwayat rilis: [`CHANGELOG.md`](./CHANGELOG.md) · **Versi saat ini: `v1.4.0 "Version Master"` (2026-10-22)** — cek live: `GET /api/version`.
+> 📌 **Dokumen ini bilingual & penuh navigasi.** Klik daftar isi mana pun untuk melompat. Sumber kebenaran kode: `src/lib/site.ts` (NAP, trust metrics) & `src/lib/pricing.ts` (harga). Log pengembangan 100% transparan & **ber-versi SemVer**: [`WORKLOG.md`](./WORKLOG.md) · riwayat rilis: [`CHANGELOG.md`](./CHANGELOG.md) · **Versi saat ini: `v1.13.4 "Dokumen Hidup II"` (2026-10-26)** — cek live: `GET /api/version`.
 
 ## 📑 Daftar Isi (ID)
 
@@ -59,7 +60,7 @@
 - [6. Arsitektur & 3 Mode Deployment](#6-arsitektur--3-mode-deployment)
 - [7. Peta Rute Lengkap](#7-peta-rute-lengkap)
 - [8. API Reference](#8-api-reference)
-- [9. Database — 12 Model Prisma](#9-database--12-model-prisma)
+- [9. Database — 13 Model Prisma](#9-database--13-model-prisma)
 - [10. Internasionalisasi — 30 Bahasa](#10-internasionalisasi--30-bahasa)
 - [11. Mesin SEO & GEO](#11-mesin-seo--geo)
 - [12. 💰 Mesin Revenue — Menuju Rp 5 M/Bulan](#12--mesin-revenue--menuju-rp-5-mbulan)
@@ -71,7 +72,7 @@
 - [18. Scripts & Perintah](#18-scripts--perintah)
 - [19. Kualitas, Testing & Verifikasi](#19-kualitas-testing--verifikasi)
 - [20. Troubleshooting — Pelajaran Lapangan](#20-troubleshooting--pelajaran-lapangan)
-- [21. Riwayat Pengembangan (Task 1–16)](#21-riwayat-pengembangan-task-116)
+- [21. Riwayat Pengembangan (Task 1–34)](#21-riwayat-pengembangan-task-134)
 - [22. Roadmap](#22-roadmap)
 - [23. FAQ Developer](#23-faq-developer)
 - [24. Kontribusi](#24-kontribusi)
@@ -88,9 +89,10 @@
 | Dimensi | Isi |
 |---|---|
 | 🎯 **Bisnis** | NIB, pendirian PT/CV/PMA, sertifikasi halal, izin BPOM/PIRT, PBG/SLF, AMDAL, izin umroh (PPIU/PPIH), registrasi IATA, MISA Arab Saudi, RKAB tambang, pajak & kepatuhan |
-| 📄 **Konten** | **11.207 URL** terindeks (14 seksi sitemap): 500 halaman layanan v1, 500 Katalog Premium `PP-XXX`, 500 Katalog Pro `PP3-XXX`, 36 KBLI, blog, matriks industri, 16 panduan, 4 halaman dedikasi CTA, **KepatuhanPRO**, hub `/wilayah` |
+| 📄 **Konten** | **11.876 URL** terindeks (15 seksi sitemap): 500 layanan v1, 500 Katalog Premium `PP-XXX`, 500 Katalog Pro `PP3-XXX`, 148 KBLI, 214 glosarium, 559 hub, 78 matriks bandingkan, blog, 16 panduan, 4 halaman dedikasi CTA, **KepatuhanPRO**, hub `/wilayah` |
 | 🛒 **E-commerce jasa** | Setiap layanan & langganan bisa **dibayar langsung**: `/checkout?paket=<kode>` — harga dikunci server-side (anti-manipulasi) |
 | 🤖 **AI** | 5 tool aktif: Cek Izin AI, Konsultan AI "RIZKI" 24/7, Cek Dokumen (vision), AI Roadmap 12 bulan, Kalkulator Pajak |
+| 📈 **Analitik** | **GA4 `G-KMZRQJQXCB` sitewide** — tracking konversi full-funnel 7 titik + `whatsapp_click` + preconnect Core Web Vitals (v1.13.3) |
 | 🌍 **Internasional** | UI **30 bahasa** (RTL penuh: Arab, Farsi, Urdu, Ibrani) + `llms.txt` siap GEO/AI-search |
 | 💰 **Monetisasi** | Midtrans (Snap) · Tripay (QRIS/VA/e-wallet) · Mode Demo · KepatuhanPRO MRR (Rp 499rb–39,9jt) |
 | 🛠️ **Operasional** | Admin "Mission Control": leads, orders, CMS blog, konsultasi, notifikasi Telegram/WA |
@@ -99,7 +101,7 @@
 ### Mengapa proyek ini unik
 
 1. **1.500 halaman layanan programatik** dari dataset terstruktur — masing-masing dengan metadata SEO unik, JSON-LD `Product/Offer/AggregateRating`, harga bertingkat, FAQ spesifik, dan **tombol beli langsung**.
-2. **SEO-first sampai ke tulang**: sitemap index 14 seksi dengan `lastmod` deterministik, `robots.txt` GEO-ready, RSS, HTML sitemap, JSON-LD di hampir setiap halaman, `llms.txt` + `llms-full.txt` untuk AI crawler.
+2. **SEO-first sampai ke tulang**: sitemap index 15 seksi dengan `lastmod` deterministik, `robots.txt` GEO-ready, RSS, HTML sitemap, JSON-LD di hampir setiap halaman, `llms.txt` + `llms-full.txt` untuk AI crawler.
 3. **Kontrak harga server-side**: harga *tidak pernah* dikirim dari client — `/api/payment/create` selalu menghitung dari `pricing.ts` / resolver katalog di server.
 4. **Bisa jalan di hosting shared murah**: pipeline export khusus menghasilkan HTML murni (tanpa Node.js), lengkap dengan panel download yang menjamin artefak selalu versi terbaru.
 
@@ -135,7 +137,7 @@
 | 22 | `Comparison` | Perbandingan vs urus sendiri |
 | 23 | `Faq` → `FinalCta` → `HtmlSitemap` | FAQ + CTA akhir + peta situs HTML |
 
-Plus global: `Header` (mega menu 5 grup), `Footer` (credit "Support system by PT Top Konsultan Internasional — McKinsey Partner Indonesia"), `ChatWidget` (RIZKI), `AdminDeploy` (privat, `/?admin=1`).
+Plus global: `Header` (mega menu 5 grup), `Footer` (credit "Support system by PT Digital Bisnis Manajemen — digiman.id", © PT Top Konsultan Internasional), `ChatWidget` (RIZKI), `AdminDeploy` (privat, `/?admin=1`).
 
 ### 🤖 5 Alat AI (backend `z-ai-web-dev-sdk` — **hanya server-side**)
 
@@ -157,6 +159,27 @@ Plus global: `Header` (mega menu 5 grup), `Footer` (credit "Support system by PT
 - **FAQ 51 Q&A** — 10 kategori, pencarian lintas bahasa, deep-link `#qid` shareable.
 - **Editor CMS** admin dengan skor SEO live (metaTitle/metaDescription/focusKeyword/noindex).
 
+### 📈 Analytics & Conversion Tracking — GA4 Full-Funnel (v1.13.3)
+
+**Google Analytics 4 `G-KMZRQJQXCB` aktif di SETIAP halaman** — gtag.js dirender langsung di `<head>` root layout (`src/app/layout.tsx`), satu pintu untuk semua rute (nol halaman terlewat) dan tercetak literal di HTML SSR sehingga tahan semua mode build. ID dibaca dari `NEXT_PUBLIC_GA_ID` dengan **fallback hardcode** — GA tetap aktif bahkan tanpa file `.env`.
+
+- **Resource hints**: `preconnect`/`dns-prefetch` ke `googletagmanager.com`, `clarity.ms`, `wa.me` — koneksi early, Core Web Vitals terjaga.
+- **Helper `trackEvent()`** (`src/components/landing/analytics.tsx`) — no-op aman bila GA nonaktif; semua titik konversi memakai helper ini.
+- **Microsoft Clarity** (heatmap + session recording) env-gated: set `NEXT_PUBLIC_CLARITY_ID` → aktif tanpa deploy ulang kode.
+- **Verifikasi cepat**: `curl -s http://localhost:3000/ | grep -F "G-KMZRQJQXCB"` — tag harus muncul di HTML.
+
+| Event GA4 | Pemicu | Param | File |
+|---|---|---|---|
+| `generate_lead` | Form Konsultasi Gratis (hero) | `source: "hero"` | `landing/hero.tsx` |
+| `generate_lead` | Form lead reusable (bumdes, mitra, korporat, PMA, kalender) | `source` dinamis | `lead-form.tsx` |
+| `generate_lead` | CTA akhir beranda | `source: "final-cta"` | `landing/final-cta.tsx` |
+| `generate_lead` | Kalkulator biaya | `source: "kalkulator"` + `value_estimate` | `landing/cost-calculator.tsx` |
+| `generate_lead` | Form kontak | `source: "kontak"` | `kontak/contact-form.tsx` |
+| `sign_up` | Pendaftar kursus email 7 hari | `method: "email-course"` | `landing/email-course.tsx` |
+| `chat_message` | Chat AI RIZKI 24/7 | `language` | `landing/chat-widget.tsx` |
+| `whatsapp_click` | Tombol WhatsApp melayang sitewide (v1.11.0) | `page` | `landing/floating-whatsapp.tsx` |
+| RUM vitals | Core Web Vitals (LCP/CLS/INP) | — | `/api/vitals` → panel admin |
+
 ---
 
 ## 3. Tech Stack / Teknologi
@@ -172,6 +195,7 @@ Plus global: `Header` (mega menu 5 grup), `Footer` (credit "Support system by PT
 | Form | react-hook-form + zod 4 | Validasi dua sisi |
 | AI SDK | **z-ai-web-dev-sdk** | **WAJIB hanya di backend** (API routes) |
 | Payment SDK | Midtrans Snap · Tripay REST | Mode demo via `PAYMENT_DEMO_MODE` |
+| Analitik | **GA4 gtag.js** · Clarity (env-gated) · RUM Vitals | ID via `NEXT_PUBLIC_GA_ID` / fallback hardcode; helper `trackEvent()` |
 | Runtime | **Bun** (dev & tooling) | `bun run dev` di port **3000** |
 | Gateway | **Caddy** (`:81`) | Routing `XTransformPort` → layanan internal |
 
@@ -189,6 +213,7 @@ DATABASE_URL=file:./db/custom.db
 ADMIN_PASSWORD=<password-admin-anda>
 ADMIN_SECRET=<secret-acak-min-32-karakter>
 PAYMENT_DEMO_MODE=true
+NEXT_PUBLIC_GA_ID=G-KMZRQJQXCB   # opsional — GA4 aktif juga tanpa env (fallback hardcode)
 EOF
 
 # 3. Push schema ke database
@@ -211,6 +236,7 @@ NODE_OPTIONS="--max-old-space-size=2560" bun run dev > dev.log 2>&1 &
 curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/            # 200
 curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/sitemap.xml # 200 (XML index)
 curl -s http://localhost:3000/api/stats                                  # JSON statistik
+curl -s http://localhost:3000/ | grep -c "G-KMZRQJQXCB"                # ≥1 = tag GA4 live di HTML
 curl -s "http://localhost:3000/api/payment/service-resolve?code=PP-BU-001"  # resolver katalog
 bun run lint                                                             # 0 error
 tail -f dev.log                                                          # pantau runtime
@@ -225,7 +251,7 @@ pusatperizinan/
 ├── src/
 │   ├── app/                        # App Router — 35+ route
 │   │   ├── page.tsx                # Beranda (23 section)
-│   │   ├── layout.tsx              # Metadata SEO + MotionProvider + LanguageProvider
+│   │   ├── layout.tsx              # Metadata SEO + GA4 gtag.js + preconnect + MotionProvider + LanguageProvider
 │   │   ├── [slug]/                 # ★ 500 halaman layanan v1 (BU-XX-NNN)
 │   │   ├── layanan/                # Hub + [...slug] detail v2 PP & v3 PP3 (1.000 hal)
 │   │   ├── wilayah/                # ★ Hub navigasi 38 provinsi (local SEO)
@@ -238,7 +264,7 @@ pusatperizinan/
 │   │   ├── industri/ · biaya/ · bandingkan/ · paket/ · syarat/
 │   │   ├── checkout/ · payment/[orderNo]/   # Funnel pembayaran
 │   │   ├── admin/                  # ★ Mission Control (HMAC cookie)
-│   │   ├── sitemap/[id]/route.ts   # 14 seksi sitemap XML
+│   │   ├── sitemap/[id]/route.ts   # 15 seksi sitemap XML
 │   │   ├── feed.xml/ · llms-full.txt/       # RSS · GEO AI crawler
 │   │   └── api/                    # ★ 30+ endpoint (§8)
 │   ├── components/
@@ -247,6 +273,7 @@ pusatperizinan/
 │   │   ├── ui/                     # 48 shadcn/ui (New York)
 │   │   ├── catalog/                # Browser katalog v2/v3
 │   │   ├── payment/ · seo/ · motion/ · program/
+│   │   ├── landing/analytics.tsx   # ★ Helper trackEvent GA4 + Clarity (no-op aman)
 │   │   └── lead-form.tsx           # Form lead reusable (anti-400)
 │   ├── lib/
 │   │   ├── site.ts                 # ★ SINGLE SOURCE OF TRUTH (URL, NAP, trust)
@@ -258,7 +285,7 @@ pusatperizinan/
 │   │   ├── payment/ · seo/ (seo.ts, sitemap-sections.ts) · geo.ts
 │   │   └── db.ts · admin-auth.ts · notify.ts · kbli-*.ts · …
 │   └── hooks/                      # use-toast, use-mobile
-├── prisma/schema.prisma            # 12 model (§9)
+├── prisma/schema.prisma            # 13 model (§9)
 ├── db/custom.db                    # SQLite (seeded)
 ├── public/
 │   ├── kantor/                     # 5 foto kantor resmi (sharp q82)
@@ -271,9 +298,9 @@ pusatperizinan/
 │   └── seo-audit.ts · postbuild.mjs · remote-setup.sh · process-logo.mjs
 ├── docs/ · examples/websocket/     # Panduan GSC · demo socket.io
 ├── DEPLOY-IDWEBHOST.md · .htaccess # Deploy cPanel
-├── WORKLOG.md                      # ★ Log 30 entri task ber-versi SemVer (aditif)
-├── CHANGELOG.md                    # ★ Riwayat 20 rilis (Keep a Changelog + SemVer 2.0.0)
-├── ROADMAP-99.md                   # ★ 99 langkah penyempurnaan (TERSIMPAN, belum dieksekusi)
+├── WORKLOG.md                      # ★ Log 34 entri task ber-versi SemVer (aditif)
+├── CHANGELOG.md                    # ★ Riwayat 33 rilis (Keep a Changelog + SemVer 2.0.0)
+├── ROADMAP-99.md                   # ★ 99 langkah penyempurnaan (eksekusi berjalan — 14 selesai)
 └── README.md                       # ← file ini
 ```
 
@@ -291,6 +318,7 @@ flowchart LR
     F --> G["📣 Telegram Bot<br/>Fonnte / Wablas"]
     C["🛒 Midtrans / Tripay"] --> B
     F --> H["📈 Mission Control<br/>/admin (HMAC)"]
+    B -.-> I["📊 GA4 + Clarity<br/>event full-funnel (SSR head)"]
 ```
 
 ### Tiga mode output (satu codebase)
@@ -307,6 +335,7 @@ Poin arsitektur penting:
 2. **Patch sementara saat export**: `build-static.mjs` mem-patch `dynamicParams: false` pada 5 file route, lalu **dipulihkan otomatis** di `finally`.
 3. **Canonical host**: `https://pusatperizinan.com` (apex HTTPS) — didefinisikan sekali di `src/lib/site.ts`.
 4. **Kontrak harga**: client mengirim **kode** (bukan angka); server menghitung harga via `pricing.ts` atau `service-order.ts` → `resolveAnyService()`.
+5. **Analitik SSR**: GA4 dirender di `<head>` root layout — satu pintu untuk semua rute; konversi via `trackEvent()` (no-op aman).
 
 ---
 
@@ -342,7 +371,7 @@ Poin arsitektur penting:
 |---|---|
 | `/admin` | Mission Control (login → cookie HMAC 12 jam) |
 | `/?admin=1` | Panel AdminDeploy (unduh paket hosting) |
-| `/sitemap.xml` + `/sitemap/[id].xml` | Index + 14 seksi |
+| `/sitemap.xml` + `/sitemap/[id].xml` | Index + 15 seksi |
 | `/feed.xml` · `/llms-full.txt` · `/robots.txt` | RSS · GEO AI · crawler rules |
 
 ---
@@ -359,7 +388,7 @@ Semua endpoint di `src/app/api/**/route.ts`. Endpoint AI **wajib server-side**.
 | `POST` | `/api/leads` | Simpan lead (WA → `62xxx`, deteksi `source`) · Validasi ketat: `businessType` ∈ SECTORS, `package` ∈ PACKAGES |
 | `POST` | `/api/subscribe` | Pendaftar kursus email 7 hari |
 | `GET` | `/api/stats` | Statistik agregat (social proof) |
-| `GET` | `/api/version` | Metadata rilis & riwayat SemVer lengkap (20 rilis) — sumber tunggal `src/lib/version.ts` |
+| `GET` | `/api/version` | Metadata rilis & riwayat SemVer lengkap (33 rilis) — sumber tunggal `src/lib/version.ts` |
 | `POST`/`GET` | `/api/vitals` | RUM Core Web Vitals (LCP/CLS/INP) |
 | `POST` | `/api/chat` | Chatbot RIZKI — bahasa dinamis 30 bahasa |
 | `POST` | `/api/license-checker` | Deskripsi usaha → rekomendasi izin |
@@ -393,7 +422,7 @@ Semua endpoint di `src/app/api/**/route.ts`. Endpoint AI **wajib server-side**.
 
 ---
 
-## 9. Database — 12 Model Prisma
+## 9. Database — 13 Model Prisma
 
 ```mermaid
 erDiagram
@@ -417,6 +446,7 @@ erDiagram
 | 10 | `Order` | Order checkout (`amount` snapshot server, `status`, `expiresAt`) |
 | 11 | `Post` | Artikel blog CMS (metaTitle/focusKeyword/noindex) |
 | 12 | `NotificationLog` | Audit semua notifikasi terkirim |
+| 13 | `EditorialSlot` | Penjadwalan redaksi konten (Mesin Redaksi, v1.10.0) |
 
 > ⚙️ Field kompleks disimpan sebagai **string JSON** (primitif SQLite tidak mendukung list) — di-parse saat render.
 
@@ -442,16 +472,25 @@ Perintah: `bun run db:push` · `db:generate` · `db:migrate` · `db:reset`
 
 ## 11. Mesin SEO & GEO
 
-### Sitemap — 14 seksi · 11.207 URL
+### Sitemap — 15 seksi · 11.876 URL
 
 | Seksi | Konten | URL |
 |---|---|---|
-| `static` | Halaman inti + CTA + KepatuhanPRO + wilayah | ±50 |
 | `layanan` | Long-tail layanan + geo | 8.873 |
 | `layanan500` | Detail v1 (BU) | 500 |
 | `layanan-pp` | Katalog Premium v2 (PP) | 500 |
 | `layanan-pp3` | Katalog Pro v3 (PP3) | 500 |
-| `katalog` · `kbli` · `blog` · `panduan` · `testimoni` · `hubs` · `jobs` · `bandingkan` | Kategori, KBLI, blog, panduan, testimoni, hub, lowongan, matriks | 16+137+15+389+12+31+148+32 |
+| `hubs` | Hub panduan & wilayah | 559 |
+| `seo-expansion` | Ekspansi SEO (matriks industri, dll.) | 389 |
+| `glosarium` | Kamus istilah bisnis (v1.7.0) | 214 |
+| `kbli` | KBLI 2020 | 148 |
+| `bandingkan` | Matriks perbandingan (v1.8.0) | 78 |
+| `static` | Halaman inti + CTA + KepatuhanPRO + wilayah | 35 |
+| `katalog` | Browser 3 katalog | 31 |
+| `panduan` | Panduan | 16 |
+| `blog` | Artikel | 13 |
+| `jobs` | Lowongan | 12 |
+| `testimoni` | Testimoni | 8 |
 
 ### Structured data (JSON-LD)
 
@@ -463,7 +502,8 @@ Perintah: `bun run db:push` · `db:generate` · `db:migrate` · `db:reset`
 ### GEO (Generative Engine Optimization)
 
 - `robots.txt` GEO-ready · `llms.txt` (ringkas) · `llms-full.txt` (konten penuh + seksi katalog 3 edisi + KepatuhanPRO).
-- Angka trust dari satu sumber (`TRUST_METRICS`), harga via `priceToIdr()` — konsisten lintas 11.207 halaman.
+- Angka trust dari satu sumber (`TRUST_METRICS`), harga via `priceToIdr()` — konsisten lintas 11.876 halaman.
+- **Pengukuran**: GA4 `G-KMZRQJQXCB` sitewide (SSR) + RUM Vitals + Clarity siap — funnel SEO → lead terukur penuh (v1.13.3).
 
 ---
 
@@ -511,6 +551,8 @@ Di **1.000 halaman detail v2/v3**: 2 layanan pelengkap lintas kategori dipilih *
 
 - Badge "±N perusahaan memilih layanan sejenis" (deterministik per kode) + trust 4,9/890/3.890 di sidebar.
 - Hub `/wilayah`: ItemList 38 provinsi → mengalirkan authority ke 200+ halaman `/layanan/wilayah/{prov}` yang sudah terindeks (keputusan **anti-kanibalisasi**: tidak membuat halaman provinsi baru).
+
+> 📊 **Semua lever terukur di GA4** — setiap lead membawa atribusi `source` (hero, kalkulator, kontak, halaman layanan) via event `generate_lead`; `whatsapp_click` melacak jalur WA sitewide (v1.13.3).
 
 ---
 
@@ -569,6 +611,11 @@ PAYMENT_DEMO_MODE=true               # simulasi tanpa uang nyata
 
 # ── SEO ──────────────────────────────────────────────────
 # NEXT_PUBLIC_GSC_VERIFICATION=...  # meta verifikasi Search Console otomatis
+
+# ── Analitik (opsional — fallback hardcode di layout) ────
+NEXT_PUBLIC_GA_ID=G-KMZRQJQXCB      # GA4 tetap aktif walau tanpa env
+# NEXT_PUBLIC_CLARITY_ID=...        # Microsoft Clarity (kode siap sejak v1.11.0)
+# INDEXNOW_KEY=...                  # kunci IndexNow (file kunci public/<key>.txt)
 ```
 
 > 🔐 Keamanan: `ADMIN_SECRET` wajib kuat & rahasia; token auth = HMAC-SHA256 expiry, dibandingkan timing-safe. Semua key payment hanya pernah dipakai server-side.
@@ -626,9 +673,9 @@ Bonus pitfall: anchor relatif `#xxx` mati di non-beranda → selalu `/#xxx` · r
 
 ---
 
-## 21. Riwayat Pengembangan (Task 1–16)
+## 21. Riwayat Pengembangan (Task 1–34)
 
-Log penuh & transparan: [`WORKLOG.md`](./WORKLOG.md) — **30 entri terverifikasi, setiap entri ber-tag rilis SemVer**. Riwayat naratif 20 rilis: [`CHANGELOG.md`](./CHANGELOG.md) · peta versi ↔ task: [`WORKLOG.md § Peta Versi`](./WORKLOG.md#peta-versi).
+Log penuh & transparan: [`WORKLOG.md`](./WORKLOG.md) — **34 entri terverifikasi, setiap entri ber-tag rilis SemVer**. Riwayat naratif 33 rilis: [`CHANGELOG.md`](./CHANGELOG.md) · peta versi ↔ task: [`WORKLOG.md § Peta Versi`](./WORKLOG.md#peta-versi).
 
 | Task | Ringkasan | Hasil utama |
 |---|---|---|
@@ -649,16 +696,23 @@ Log penuh & transparan: [`WORKLOG.md`](./WORKLOG.md) — **30 entri terverifikas
 | **1R/4/5** | Reinstall + **Katalog Pro v3** | 500 layanan PP3 (6 kategori baru, lifecycle) → 11.206 URL |
 | **16** | 💰 **Mesin Revenue** | KepatuhanPRO MRR 6 SKU; Instant Order 1.500 layanan; bundle 10%; social proof; hub `/wilayah` → **11.207 URL** |
 | **fix** | Ops — preview mati | Dev server restart + verifikasi E2E penuh |
+| **17–21** | Dokumen · Blueprint · Search · Versi · SEO Titan | README 1.427 baris; ROADMAP-99; /webmaster 26 mesin pencari; sistem SemVer; FAQPage/HowTo + E-E-A-T blog |
+| **22–25** | Peta Nusantara · Konten Raja · Arena Banding · Kamus Raja | Hub wilayah diperluas; glosarium 214; bandingkan 78; → **11.876 URL / 15 seksi** |
+| **26–28** | Mesin Redaksi · Sapa Langsung · Identitas Resmi | Model DB ke-13 `EditorialSlot`; FloatingWhatsApp + bundle v1 + Clarity env-gated; entitas legal PT TKI |
+| **29–32** | Peta Provinsi · Logo Resmi · Peta Live | Service schema 38 provinsi/516 kota; logo template Z dihapus; paket deploy 266 hal; fix sitemap GSC |
+| **33** | 📊 **Analitik Penuh** | **GA4 `G-KMZRQJQXCB` sitewide** + 7 titik konversi + preconnect (v1.13.3) |
+| **34** | 📚 **Dokumen Hidup II** | README full refresh (dokumen ini) + sinkron versi 5 titik (v1.13.4) |
 
 ---
 
 ## 22. Roadmap
 
-> 🎯 **Roadmap besar 99 langkah** menuju nomor #1 dunia tersimpan di **[`ROADMAP-99.md`](./ROADMAP-99.md)** — status: *TERSIMPAN, belum dieksekusi*. Dokumen itu berisi 12 fase, tag dampak/effort/prioritas, Top-10 Quick Wins, dan milestone kuartalan. Daftar di bawah adalah ringkasan eksekusi teknis harian.
+> 🎯 **Roadmap besar 99 langkah** menuju nomor #1 dunia tersimpan di **[`ROADMAP-99.md`](./ROADMAP-99.md)** — status: *eksekusi berjalan — 14 langkah selesai (terbaru: langkah 4 GA4 via v1.13.3)*. Dokumen itu berisi 12 fase, tag dampak/effort/prioritas, Top-10 Quick Wins, dan milestone kuartalan. Daftar di bawah adalah ringkasan eksekusi teknis harian.
 
 ### Kelompok A — butuh akses produksi
 
-- [ ] Submit 14 seksi sitemap ke Google Search Console + Bing Webmaster
+- [x] ✅ **GA4 `G-KMZRQJQXCB` aktif sitewide + tracking konversi full-funnel** (v1.13.3 — langkah 4 selesai)
+- [ ] Submit 15 sitemap (11.876 URL) ke Google Search Console + Bing Webmaster
 - [ ] Konfigurasi payment produksi (Midtrans/Tripay keys) & matikan `PAYMENT_DEMO_MODE`
 - [ ] Verifikasi GSC via `NEXT_PUBLIC_GSC_VERIFICATION` di hosting
 - [ ] Strategi backlink & content marketing (kalender konten, `docs/SCRIPT-60-DETIK.md`)
@@ -712,11 +766,16 @@ Tambahkan ke dataset katalog yang relevan (v1/v2/v3) dengan kode & harga valid �
 <code>BUILD_STATIC=1 PACK_LIGHT=1 node scripts/build-static.mjs</code> lalu <code>node scripts/deploy-pack.mjs</code>. Verifikasi via <code>/?admin=1</code>: badge harus <code>TERBARU</code>.
 </details>
 
+<details>
+<summary><b>Di mana GA4 dipasang & bagaimana memverifikasinya?</b></summary>
+Di <code>src/app/layout.tsx</code> — gtag.js dirender langsung di <code>&lt;head&gt;</code> (SSR), satu pintu untuk semua rute. Verifikasi: <code>curl -s http://localhost:3000/ | grep -F "G-KMZRQJQXCB"</code>. ID via env <code>NEXT_PUBLIC_GA_ID</code> atau fallback hardcode — aktif tanpa .env.
+</details>
+
 ---
 
 ## 24. Kontribusi
 
-1. **Baca dulu**: [`WORKLOG.md`](./WORKLOG.md) (30 entri konteks ber-versi) & `src/lib/site.ts` (aturan single-source-of-truth).
+1. **Baca dulu**: [`WORKLOG.md`](./WORKLOG.md) (34 entri konteks ber-versi) & `src/lib/site.ts` (aturan single-source-of-truth).
 2. **Larangan keras**: tidak hardcode `https://pusatperizinan.com` (pakai `SITE_URL`/`absUrl()`); tidak hardcode angka trust (pakai `TRUST_METRICS`); tidak mengirim harga dari client; tidak menyentuh sitasi regulasi dengan pola "freshness year".
 3. **Gaya kode**: TypeScript strict, ES modules, shadcn/ui dulu sebelum custom, `'use client'` seperlunya, animasi compositor-only.
 4. **Setelah selesai**: catat ke `WORKLOG.md` (format `Task ID / Agent / Task / Work Log / Stage Summary` + tag `🏷️ Rilis vX.Y.Z`) dan jalankan **checklist rilis**: `CHANGELOG.md` · `src/lib/version.ts` · `package.json` — footer, JSON-LD & `/api/version` mengikuti otomatis.
@@ -728,13 +787,13 @@ Tambahkan ke dataset katalog yang relevan (v1/v2/v3) dengan kode & harga valid �
 
 <div align="center">
 
-**PusatPerizinan.com** — PT Digital Bisnis Manajemen
+**PusatPerizinan.com** — PT Top Konsultan Internasional (entitas legal resmi)
 
 🏛️ Indonesia Stock Exchange Building, Tower 2, Lt. 5, SCBD Lot 13, Jl. Jend. Sudirman Kav. 52-53, Jakarta Selatan 12190 · Bandung
 
 📞 0812-6999-9910 · ✉️ halo@pusatperizinan.com · 🔐 privacy@pusatperizinan.com (DPO)
 
-Support system by **PT Top Konsultan Internasional — McKinsey Partner Indonesia**
+Support system by **PT Digital Bisnis Manajemen — [digiman.id](https://digiman.id)**
 
 Dibangun dengan ❤️ untuk kemajuan UMKM Indonesia.
 
@@ -748,7 +807,7 @@ Dibangun dengan ❤️ untuk kemajuan UMKM Indonesia.
 
 # 🇬🇧 — English
 
-> 📌 **This document is bilingual & fully navigable.** Code source-of-truth: `src/lib/site.ts` (NAP, trust metrics) & `src/lib/pricing.ts` (prices). 100% transparent, **SemVer-versioned** dev log: [`WORKLOG.md`](./WORKLOG.md) · release history: [`CHANGELOG.md`](./CHANGELOG.md) · **Current version: `v1.4.0 "Version Master"` (2026-10-22)** — live check: `GET /api/version`.
+> 📌 **This document is bilingual & fully navigable.** Code source-of-truth: `src/lib/site.ts` (NAP, trust metrics) & `src/lib/pricing.ts` (prices). 100% transparent, **SemVer-versioned** dev log: [`WORKLOG.md`](./WORKLOG.md) · release history: [`CHANGELOG.md`](./CHANGELOG.md) · **Current version: `v1.13.4 "Dokumen Hidup II"` (2026-10-26)** — live check: `GET /api/version`.
 
 ## 📑 Table of Contents (EN)
 
@@ -760,7 +819,7 @@ Dibangun dengan ❤️ untuk kemajuan UMKM Indonesia.
 - [6. Architecture & 3 Deployment Modes](#6-architecture--3-deployment-modes)
 - [7. Complete Route Map](#7-complete-route-map)
 - [8. API Reference](#8-api-reference-1)
-- [9. Database — 12 Prisma Models](#9-database--12-prisma-models)
+- [9. Database — 13 Prisma Models](#9-database--13-prisma-models)
 - [10. Internationalization — 30 Languages](#10-internationalization--30-languages)
 - [11. SEO & GEO Engine](#11-seo--geo-engine)
 - [12. 💰 Revenue Engine — Toward Rp 5B/Month](#12--revenue-engine--toward-rp-5bmonth)
@@ -772,7 +831,7 @@ Dibangun dengan ❤️ untuk kemajuan UMKM Indonesia.
 - [18. Scripts & Commands](#18-scripts--commands)
 - [19. Quality, Testing & Verification](#19-quality-testing--verification)
 - [20. Troubleshooting — Field Lessons](#20-troubleshooting--field-lessons)
-- [21. Development History (Tasks 1–16)](#21-development-history-tasks-116)
+- [21. Development History (Tasks 1–34)](#21-development-history-tasks-134)
 - [22. Roadmap](#22-roadmap-1)
 - [23. Developer FAQ](#23-developer-faq)
 - [24. Contributing](#24-contributing)
@@ -789,9 +848,10 @@ Dibangun dengan ❤️ untuk kemajuan UMKM Indonesia.
 | Dimension | Content |
 |---|---|
 | 🎯 **Business** | NIB, PT/CV/PMA incorporation, Halal certification, BPOM/PIRT permits, PBG/SLF, AMDAL, Umrah permits (PPIU/PPIH), IATA registration, Saudi MISA, mining RKAB, tax & compliance |
-| 📄 **Content** | **11,207 SEO-indexed URLs** (14 sitemap sections): 500 v1 service pages, 500 Premium Catalog `PP-XXX`, 500 Pro Catalog `PP3-XXX`, 36 KBLI, blog, industry matrix, 16 guides, 4 dedicated CTA pages, **KepatuhanPRO**, `/wilayah` hub |
+| 📄 **Content** | **11,876 SEO-indexed URLs** (15 sitemap sections): 500 v1 service pages, 500 Premium Catalog `PP-XXX`, 500 Pro Catalog `PP3-XXX`, 148 KBLI, 214 glossary, 559 hubs, 78 comparison pages, blog, 16 guides, 4 dedicated CTA pages, **KepatuhanPRO**, `/wilayah` hub |
 | 🛒 **Service commerce** | Every service & subscription is **directly purchasable**: `/checkout?paket=<code>` — prices locked server-side (tamper-proof) |
 | 🤖 **AI** | 5 active tools: AI License Checker, "RIZKI" AI Consultant 24/7, Document Checker (vision), 12-Month AI Roadmap, Tax Calculator |
+| 📈 **Analytics** | **GA4 `G-KMZRQJQXCB` sitewide** — full-funnel conversion tracking (7 touchpoints) + `whatsapp_click` + Core Web Vitals preconnect (v1.13.3) |
 | 🌍 **International** | UI in **30 languages** (full RTL: Arabic, Farsi, Urdu, Hebrew) + `llms.txt` ready for GEO/AI-search |
 | 💰 **Monetization** | Midtrans (Snap) · Tripay (QRIS/VA/e-wallet) · Demo mode · KepatuhanPRO MRR (Rp 499k–39.9M) |
 | 🛠️ **Operations** | "Mission Control" admin: leads, orders, blog CMS, consultations, Telegram/WA notifications |
@@ -800,7 +860,7 @@ Dibangun dengan ❤️ untuk kemajuan UMKM Indonesia.
 ### What makes it unique
 
 1. **1,500 programmatic service pages** from structured datasets — each with unique SEO metadata, `Product/Offer/AggregateRating` JSON-LD, tiered pricing, specific FAQs, and a **direct buy button**.
-2. **SEO-first to the bone**: 14-section sitemap index with deterministic `lastmod`, GEO-ready `robots.txt`, RSS, HTML sitemap, JSON-LD on nearly every page, `llms.txt` + `llms-full.txt` for AI crawlers.
+2. **SEO-first to the bone**: 15-section sitemap index with deterministic `lastmod`, GEO-ready `robots.txt`, RSS, HTML sitemap, JSON-LD on nearly every page, `llms.txt` + `llms-full.txt` for AI crawlers.
 3. **Server-side price contract**: prices are *never* sent from the client — `/api/payment/create` always resolves them from `pricing.ts` / catalog resolvers on the server.
 4. **Runs on cheap shared hosting**: a dedicated export pipeline produces pure HTML (no Node.js), complete with a download panel that guarantees artifacts are always the latest build.
 
@@ -836,7 +896,7 @@ Dibangun dengan ❤️ untuk kemajuan UMKM Indonesia.
 | 22 | `Comparison` | DIY vs. using us |
 | 23 | `Faq` → `FinalCta` → `HtmlSitemap` | FAQ + final CTA + HTML sitemap |
 
-Global extras: `Header` (5-group mega menu), `Footer` ("Support system by PT Top Konsultan Internasional — McKinsey Partner Indonesia"), `ChatWidget` (RIZKI), `AdminDeploy` (private, `/?admin=1`).
+Global extras: `Header` (5-group mega menu), `Footer` ("Support system by PT Digital Bisnis Manajemen — digiman.id", © PT Top Konsultan Internasional), `ChatWidget` (RIZKI), `AdminDeploy` (private, `/?admin=1`).
 
 ### 🤖 5 AI Tools (backend `z-ai-web-dev-sdk` — **server-side only**)
 
@@ -858,6 +918,27 @@ Global extras: `Header` (5-group mega menu), `Footer` ("Support system by PT Top
 - **51-Q&A FAQ** — 10 categories, multilingual search, shareable `#qid` deep-links.
 - **Admin CMS editor** with live SEO score (metaTitle/metaDescription/focusKeyword/noindex).
 
+### 📈 Analytics & Conversion Tracking — GA4 Full-Funnel (v1.13.3)
+
+**Google Analytics 4 `G-KMZRQJQXCB` is live on EVERY page** — gtag.js is rendered directly in the root layout `<head>` (`src/app/layout.tsx`), one entry point for all routes (zero pages missed), printed literally in the SSR HTML so it survives every build mode. The ID is read from `NEXT_PUBLIC_GA_ID` with a **hardcoded fallback** — GA stays active even without a `.env` file.
+
+- **Resource hints**: `preconnect`/`dns-prefetch` to `googletagmanager.com`, `clarity.ms`, `wa.me` — early connection, Core Web Vitals protected.
+- **`trackEvent()` helper** (`src/components/landing/analytics.tsx`) — no-op safe when GA is off; every conversion touchpoint uses it.
+- **Microsoft Clarity** (heatmaps + session recording) is env-gated: set `NEXT_PUBLIC_CLARITY_ID` → active without redeploying.
+- **Quick verify**: `curl -s http://localhost:3000/ | grep -F "G-KMZRQJQXCB"` — the tag must appear in the HTML.
+
+| GA4 event | Trigger | Params | File |
+|---|---|---|---|
+| `generate_lead` | Free Consultation form (hero) | `source: "hero"` | `landing/hero.tsx` |
+| `generate_lead` | Reusable lead form (bumdes, mitra, korporat, PMA, calendar) | dynamic `source` | `lead-form.tsx` |
+| `generate_lead` | Home final CTA | `source: "final-cta"` | `landing/final-cta.tsx` |
+| `generate_lead` | Cost calculator | `source: "kalkulator"` + `value_estimate` | `landing/cost-calculator.tsx` |
+| `generate_lead` | Contact form | `source: "kontak"` | `kontak/contact-form.tsx` |
+| `sign_up` | 7-day email course signup | `method: "email-course"` | `landing/email-course.tsx` |
+| `chat_message` | AI RIZKI chat 24/7 | `language` | `landing/chat-widget.tsx` |
+| `whatsapp_click` | Sitewide floating WhatsApp button (v1.11.0) | `page` | `landing/floating-whatsapp.tsx` |
+| RUM vitals | Core Web Vitals (LCP/CLS/INP) | — | `/api/vitals` → admin panel |
+
 ---
 
 ## 3. Tech Stack
@@ -873,6 +954,7 @@ Global extras: `Header` (5-group mega menu), `Footer` ("Support system by PT Top
 | Forms | react-hook-form + zod 4 | Two-sided validation |
 | AI SDK | **z-ai-web-dev-sdk** | **Backend-only** (API routes) |
 | Payment SDK | Midtrans Snap · Tripay REST | Demo mode via `PAYMENT_DEMO_MODE` |
+| Analytics | **GA4 gtag.js** · Clarity (env-gated) · RUM Vitals | ID via `NEXT_PUBLIC_GA_ID` / hardcoded fallback; `trackEvent()` helper |
 | Runtime | **Bun** (dev & tooling) | `bun run dev` on port **3000** |
 | Gateway | **Caddy** (`:81`) | `XTransformPort` routing to internal services |
 
@@ -890,6 +972,7 @@ DATABASE_URL=file:./db/custom.db
 ADMIN_PASSWORD=<your-admin-password>
 ADMIN_SECRET=<random-32-char-secret>
 PAYMENT_DEMO_MODE=true
+NEXT_PUBLIC_GA_ID=G-KMZRQJQXCB   # optional — GA4 works even without env (hardcoded fallback)
 EOF
 
 # 3. Push schema to database
@@ -912,6 +995,7 @@ NODE_OPTIONS="--max-old-space-size=2560" bun run dev > dev.log 2>&1 &
 curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/            # 200
 curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/sitemap.xml # 200 (XML index)
 curl -s http://localhost:3000/api/stats                                  # stats JSON
+curl -s http://localhost:3000/ | grep -c "G-KMZRQJQXCB"                # ≥1 = GA4 tag live in HTML
 curl -s "http://localhost:3000/api/payment/service-resolve?code=PP-BU-001"  # catalog resolver
 bun run lint                                                             # 0 errors
 tail -f dev.log                                                          # watch runtime
@@ -926,7 +1010,7 @@ pusatperizinan/
 ├── src/
 │   ├── app/                        # App Router — 35+ routes
 │   │   ├── page.tsx                # Home (23 sections)
-│   │   ├── layout.tsx              # SEO metadata + MotionProvider + LanguageProvider
+│   │   ├── layout.tsx              # SEO metadata + GA4 gtag.js + preconnect + MotionProvider + LanguageProvider
 │   │   ├── [slug]/                 # ★ 500 v1 service pages (BU-XX-NNN)
 │   │   ├── layanan/                # Hub + [...slug] v2 PP & v3 PP3 details (1,000 pages)
 │   │   ├── wilayah/                # ★ 38-province navigation hub (local SEO)
@@ -939,7 +1023,7 @@ pusatperizinan/
 │   │   ├── industri/ · biaya/ · bandingkan/ · paket/ · syarat/
 │   │   ├── checkout/ · payment/[orderNo]/   # Payment funnel
 │   │   ├── admin/                  # ★ Mission Control (HMAC cookie)
-│   │   ├── sitemap/[id]/route.ts   # 14 sitemap sections
+│   │   ├── sitemap/[id]/route.ts   # 15 sitemap sections
 │   │   ├── feed.xml/ · llms-full.txt/       # RSS · GEO for AI crawlers
 │   │   └── api/                    # ★ 30+ endpoints (§8)
 │   ├── components/
@@ -947,6 +1031,7 @@ pusatperizinan/
 │   │   ├── admin/                  # 13 Mission Control modules
 │   │   ├── ui/                     # 48 shadcn/ui (New York)
 │   │   ├── catalog/ · payment/ · seo/ · motion/ · program/
+│   │   ├── landing/analytics.tsx   # ★ trackEvent GA4 + Clarity helper (no-op safe)
 │   │   └── lead-form.tsx           # Reusable lead form (anti-400 contract)
 │   ├── lib/
 │   │   ├── site.ts                 # ★ SINGLE SOURCE OF TRUTH (URL, NAP, trust)
@@ -958,7 +1043,7 @@ pusatperizinan/
 │   │   ├── payment/ · seo.ts · sitemap-sections.ts · geo.ts
 │   │   └── db.ts · admin-auth.ts · notify.ts · kbli-*.ts · …
 │   └── hooks/                      # use-toast, use-mobile
-├── prisma/schema.prisma            # 12 models (§9)
+├── prisma/schema.prisma            # 13 models (§9)
 ├── db/custom.db                    # SQLite (seeded)
 ├── public/
 │   ├── kantor/                     # 5 official office photos (sharp q82)
@@ -970,9 +1055,9 @@ pusatperizinan/
 │   └── seo-audit.ts · postbuild.mjs · remote-setup.sh · process-logo.mjs
 ├── docs/ · examples/websocket/     # GSC guides · socket.io demo
 ├── DEPLOY-IDWEBHOST.md · .htaccess # cPanel deployment
-├── WORKLOG.md                      # ★ 30 versioned task entries (SemVer-tagged)
-├── CHANGELOG.md                    # ★ 20-release history (Keep a Changelog + SemVer 2.0.0)
-├── ROADMAP-99.md                   # ★ 99-step enhancement blueprint (SAVED, not executed)
+├── WORKLOG.md                      # ★ 34 versioned task entries (SemVer-tagged)
+├── CHANGELOG.md                    # ★ 33-release history (Keep a Changelog + SemVer 2.0.0)
+├── ROADMAP-99.md                   # ★ 99-step enhancement blueprint (execution in progress — 14 done)
 └── README.md                       # ← this file
 ```
 
@@ -990,6 +1075,7 @@ flowchart LR
     F --> G["📣 Telegram Bot<br/>Fonnte / Wablas"]
     C["🛒 Midtrans / Tripay"] --> B
     F --> H["📈 Mission Control<br/>/admin (HMAC)"]
+    B -.-> I["📊 GA4 + Clarity<br/>event full-funnel (SSR head)"]
 ```
 
 ### Three output modes (one codebase)
@@ -1006,6 +1092,7 @@ Key architecture points:
 2. **Temporary export patching**: `build-static.mjs` patches `dynamicParams: false` in 5 route files, then **auto-restores** them in `finally`.
 3. **Canonical host**: `https://pusatperizinan.com` (HTTPS apex) — defined once in `src/lib/site.ts`.
 4. **Price contract**: clients send **codes** (never numbers); the server computes prices via `pricing.ts` or `service-order.ts` → `resolveAnyService()`.
+5. **SSR analytics**: GA4 is rendered in the root layout `<head>` — one entry point for every route; conversions via `trackEvent()` (no-op safe).
 
 ---
 
@@ -1040,7 +1127,7 @@ Key architecture points:
 |---|---|
 | `/admin` | Mission Control (login → 12-hour HMAC cookie) |
 | `/?admin=1` | AdminDeploy panel (download hosting pack) |
-| `/sitemap.xml` + `/sitemap/[id].xml` | Index + 14 sections |
+| `/sitemap.xml` + `/sitemap/[id].xml` | Index + 15 sections |
 | `/feed.xml` · `/llms-full.txt` · `/robots.txt` | RSS · GEO AI · crawler rules |
 
 ---
@@ -1057,7 +1144,7 @@ All endpoints live in `src/app/api/**/route.ts`. AI endpoints are **server-side 
 | `POST` | `/api/leads` | Save lead (WA normalized to `62xxx`, `source` detection) · Strict validation: `businessType` ∈ SECTORS, `package` ∈ PACKAGES |
 | `POST` | `/api/subscribe` | 7-day email course signup |
 | `GET` | `/api/stats` | Aggregate stats (social proof) |
-| `GET` | `/api/version` | Release metadata & full SemVer history (20 releases) — single source `src/lib/version.ts` |
+| `GET` | `/api/version` | Release metadata & full SemVer history (33 releases) — single source `src/lib/version.ts` |
 | `POST`/`GET` | `/api/vitals` | RUM Core Web Vitals (LCP/CLS/INP) |
 | `POST` | `/api/chat` | RIZKI chatbot — dynamic language across 30 locales |
 | `POST` | `/api/license-checker` | Business description → permit recommendations |
@@ -1091,7 +1178,7 @@ All endpoints live in `src/app/api/**/route.ts`. AI endpoints are **server-side 
 
 ---
 
-## 9. Database — 12 Prisma Models
+## 9. Database — 13 Prisma Models
 
 | # | Model | Key purpose |
 |---|---|---|
@@ -1107,6 +1194,7 @@ All endpoints live in `src/app/api/**/route.ts`. AI endpoints are **server-side 
 | 10 | `Order` | Checkout orders (server `amount` snapshot, `status`, `expiresAt`) |
 | 11 | `Post` | CMS blog articles (metaTitle/focusKeyword/noindex) |
 | 12 | `NotificationLog` | Audit trail of all sent notifications |
+| 13 | `EditorialSlot` | Content editorial scheduling (Mesin Redaksi, v1.10.0) |
 
 > ⚙️ Complex fields are stored as **JSON strings** (SQLite primitives don't support lists) — parsed at render time.
 
@@ -1131,16 +1219,25 @@ Commands: `bun run db:push` · `db:generate` · `db:migrate` · `db:reset`
 
 ## 11. SEO & GEO Engine
 
-### Sitemap — 14 sections · 11,207 URLs
+### Sitemap — 15 sections · 11,876 URLs
 
 | Section | Content | URLs |
 |---|---|---|
-| `static` | Core pages + CTA pages + KepatuhanPRO + wilayah | ±50 |
-| `layanan` | Long-tail services + geo pages | 8,873 |
+| `layanan` | Long-tail services + geo | 8,873 |
 | `layanan500` | v1 details (BU) | 500 |
 | `layanan-pp` | Premium Catalog v2 (PP) | 500 |
 | `layanan-pp3` | Pro Catalog v3 (PP3) | 500 |
-| `katalog` · `kbli` · `blog` · `panduan` · `testimoni` · `hubs` · `jobs` · `bandingkan` | Categories, KBLI, blog, guides, testimonials, hubs, jobs, industry matrix | 16+137+15+389+12+31+148+32 |
+| `hubs` | Guides & regional hubs | 559 |
+| `seo-expansion` | SEO expansion (industry matrix, etc.) | 389 |
+| `glosarium` | Business glossary (v1.7.0) | 214 |
+| `kbli` | KBLI 2020 | 148 |
+| `bandingkan` | Comparison matrix (v1.8.0) | 78 |
+| `static` | Core pages + CTA + KepatuhanPRO + wilayah | 35 |
+| `katalog` | 3-catalog browser | 31 |
+| `panduan` | Guides | 16 |
+| `blog` | Articles | 13 |
+| `jobs` | Job openings | 12 |
+| `testimoni` | Testimonials | 8 |
 
 ### Structured data (JSON-LD)
 
@@ -1152,7 +1249,8 @@ Commands: `bun run db:push` · `db:generate` · `db:migrate` · `db:reset`
 ### GEO (Generative Engine Optimization)
 
 - GEO-ready `robots.txt` · `llms.txt` (concise) · `llms-full.txt` (full content + 3-edition catalog sections + KepatuhanPRO).
-- Trust numbers from a single source (`TRUST_METRICS`), prices via `priceToIdr()` — consistent across 11,207 pages.
+- Trust numbers from a single source (`TRUST_METRICS`), prices via `priceToIdr()` — consistent across 11,876 pages.
+- **Measurement**: GA4 `G-KMZRQJQXCB` sitewide (SSR) + RUM Vitals + Clarity ready — the SEO → lead funnel is fully measurable (v1.13.3).
 
 ---
 
@@ -1200,6 +1298,8 @@ On **1,000 v2/v3 detail pages**: 2 cross-category complements chosen **determini
 
 - "±N companies chose similar services" badge (deterministic per code) + trust 4.9/890/3,890 in the sidebar.
 - `/wilayah` hub: ItemList of 38 provinces → channels authority into 200+ already-indexed `/layanan/wilayah/{prov}` pages (**anti-cannibalization** decision: no new province pages).
+
+> 📊 **Every lever is measured in GA4** — each lead carries a `source` attribution (hero, calculator, contact, service pages) via the `generate_lead` event; `whatsapp_click` tracks the sitewide WA path (v1.13.3).
 
 ---
 
@@ -1258,6 +1358,11 @@ PAYMENT_DEMO_MODE=true               # simulate without real money
 
 # ── SEO ──────────────────────────────────────────────────
 # NEXT_PUBLIC_GSC_VERIFICATION=...  # auto Search Console meta tag
+
+# ── Analytics (optional — hardcoded fallback in layout) ──
+NEXT_PUBLIC_GA_ID=G-KMZRQJQXCB      # GA4 stays active even without env
+# NEXT_PUBLIC_CLARITY_ID=...        # Microsoft Clarity (code ready since v1.11.0)
+# INDEXNOW_KEY=...                  # IndexNow key (key file at public/<key>.txt)
 ```
 
 > 🔐 Security: `ADMIN_SECRET` must be strong & secret; auth token = HMAC-SHA256 of expiry, timing-safe compared. Payment keys are used server-side only.
@@ -1315,9 +1420,9 @@ Bonus pitfalls: relative `#xxx` anchors die on non-home pages → always `/#xxx`
 
 ---
 
-## 21. Development History (Tasks 1–16)
+## 21. Development History (Tasks 1–34)
 
-Full transparent log: [`WORKLOG.md`](./WORKLOG.md) — **30 verified entries, every entry SemVer-tagged**. Narrative history of 20 releases: [`CHANGELOG.md`](./CHANGELOG.md) · version ↔ task map: [`WORKLOG.md § Peta Versi`](./WORKLOG.md#peta-versi).
+Full transparent log: [`WORKLOG.md`](./WORKLOG.md) — **34 verified entries, every entry SemVer-tagged**. Narrative history of 33 releases: [`CHANGELOG.md`](./CHANGELOG.md) · version ↔ task map: [`WORKLOG.md § Peta Versi`](./WORKLOG.md#peta-versi).
 
 | Task | Summary | Key outcome |
 |---|---|---|
@@ -1338,16 +1443,23 @@ Full transparent log: [`WORKLOG.md`](./WORKLOG.md) — **30 verified entries, ev
 | **1R/4/5** | Reinstall + **Pro Catalog v3** | 500 PP3 services (6 new verticals, lifecycle) → 11,206 URLs |
 | **16** | 💰 **Revenue Engine** | KepatuhanPRO MRR 6 SKUs; Instant Order 1,500 services; 10% bundles; social proof; `/wilayah` hub → **11,207 URLs** |
 | **fix** | Ops — dead preview | Dev server restart + full E2E verification |
+| **17–21** | Docs · Blueprint · Search · Versioning · SEO Titan | 1,427-line README; ROADMAP-99; /webmaster 26 engines; SemVer system; FAQPage/HowTo + blog E-E-A-T |
+| **22–25** | Peta Nusantara · Konten Raja · Arena Banding · Kamus Raja | Expanded regional hubs; 214-entry glossary; 78 comparison pages; → **11,876 URLs / 15 sections** |
+| **26–28** | Mesin Redaksi · Sapa Langsung · Identitas Resmi | 13th DB model `EditorialSlot`; FloatingWhatsApp + v1 bundle + Clarity env-gated; legal entity PT TKI |
+| **29–32** | Peta Provinsi · Logo Resmi · Peta Live | Service schema 38 provinces/516 cities; template Z logo removed; 266-page deploy pack; GSC sitemap fix |
+| **33** | 📊 **Analitik Penuh** | **GA4 `G-KMZRQJQXCB` sitewide** + 7 conversion touchpoints + preconnect (v1.13.3) |
+| **34** | 📚 **Dokumen Hidup II** | Full README refresh (this document) + 5-point version sync (v1.13.4) |
 
 ---
 
 ## 22. Roadmap
 
-> 🎯 **The grand 99-step roadmap** toward world #1 lives in **[`ROADMAP-99.md`](./ROADMAP-99.md)** — status: *SAVED, not yet executed*. It contains 12 phases, impact/effort/priority tags, a Top-10 Quick Wins table, and quarterly milestones. The list below is the day-to-day technical-execution summary.
+> 🎯 **The grand 99-step roadmap** toward world #1 lives in **[`ROADMAP-99.md`](./ROADMAP-99.md)** — status: *execution in progress — 14 steps done (latest: step 4 GA4 via v1.13.3)*. It contains 12 phases, impact/effort/priority tags, a Top-10 Quick Wins table, and quarterly milestones. The list below is the day-to-day technical-execution summary.
 
 ### Group A — needs production access
 
-- [ ] Submit 14 sitemap sections to Google Search Console + Bing Webmaster
+- [x] ✅ **GA4 `G-KMZRQJQXCB` sitewide + full-funnel conversion tracking** (v1.13.3 — step 4 done)
+- [ ] Submit 15 sitemaps (11,876 URLs) to Google Search Console + Bing Webmaster
 - [ ] Configure production payments (Midtrans/Tripay keys) & disable `PAYMENT_DEMO_MODE`
 - [ ] Verify GSC via `NEXT_PUBLIC_GSC_VERIFICATION` on hosting
 - [ ] Backlink & content-marketing strategy (content calendar, `docs/SCRIPT-60-DETIK.md`)
@@ -1401,11 +1513,16 @@ Add it to the relevant catalog dataset (v1/v2/v3) with a valid code & price — 
 <code>BUILD_STATIC=1 PACK_LIGHT=1 node scripts/build-static.mjs</code> then <code>node scripts/deploy-pack.mjs</code>. Verify via <code>/?admin=1</code>: badge must show <code>FRESH</code>.
 </details>
 
+<details>
+<summary><b>Where is GA4 installed & how do I verify it?</b></summary>
+In <code>src/app/layout.tsx</code> — gtag.js is rendered directly in the <code>&lt;head&gt;</code> (SSR), one entry point for all routes. Verify: <code>curl -s http://localhost:3000/ | grep -F "G-KMZRQJQXCB"</code>. ID via <code>NEXT_PUBLIC_GA_ID</code> env or hardcoded fallback — works without .env.
+</details>
+
 ---
 
 ## 24. Contributing
 
-1. **Read first**: [`WORKLOG.md`](./WORKLOG.md) (30 versioned context entries) & `src/lib/site.ts` (single-source-of-truth rules).
+1. **Read first**: [`WORKLOG.md`](./WORKLOG.md) (34 versioned context entries) & `src/lib/site.ts` (single-source-of-truth rules).
 2. **Hard prohibitions**: no hardcoding `https://pusatperizinan.com` (use `SITE_URL`/`absUrl()`); no hardcoding trust numbers (use `TRUST_METRICS`); no client-side prices; no touching regulation citations with "freshness year" patterns.
 3. **Code style**: strict TypeScript, ES modules, shadcn/ui before custom, `'use client'` sparingly, compositor-only animation.
 4. **When done**: log to `WORKLOG.md` (format `Task ID / Agent / Task / Work Log / Stage Summary` + tag `🏷️ Rilis vX.Y.Z`) and run the **release checklist**: `CHANGELOG.md` · `src/lib/version.ts` · `package.json` — footer, JSON-LD & `/api/version` follow automatically.
@@ -1417,13 +1534,13 @@ Add it to the relevant catalog dataset (v1/v2/v3) with a valid code & price — 
 
 <div align="center">
 
-**PusatPerizinan.com** — PT Digital Bisnis Manajemen
+**PusatPerizinan.com** — PT Top Konsultan Internasional (official legal entity)
 
 🏛️ Indonesia Stock Exchange Building, Tower 2, Lt. 5, SCBD Lot 13, Jl. Jend. Sudirman Kav. 52-53, South Jakarta 12190 · Bandung
 
 📞 +62 812-6999-9910 · ✉️ halo@pusatperizinan.com · 🔐 privacy@pusatperizinan.com (DPO)
 
-Support system by **PT Top Konsultan Internasional — McKinsey Partner Indonesia**
+Support system by **PT Digital Bisnis Manajemen — [digiman.id](https://digiman.id)**
 
 Built with ❤️ for the advancement of Indonesian MSMEs.
 
@@ -1437,7 +1554,7 @@ Built with ❤️ for the advancement of Indonesian MSMEs.
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:f59e0b,100:059669&height=110&section=footer&animation=fadeIn" width="100%" alt="Footer animasi"/>
 
-<sub>⭐ Developed with Z.ai Code — 26 verified tasks · 11,207 SEO URLs · 1,500 orderable services · 30 languages · 5 AI tools ⭐</sub>
-<sub>README last updated: Revenue Engine cycle (Task 16) · This document reflects actual code — when in doubt, the code is the truth. 🟢</sub>
+<sub>⭐ Developed with Z.ai Code — 34 verified tasks · 11,876 SEO URLs · 1,500 orderable services · 30 languages · 5 AI tools · GA4 full-funnel ⭐</sub>
+<sub>README last updated: v1.13.4 "Dokumen Hidup II" (Task 34, 2026-10-26) · This document reflects actual code — when in doubt, the code is the truth. 🟢</sub>
 
 </div>

@@ -5,19 +5,19 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.13.2_Peta_Live-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-13-2)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.13.4_Dokumen_Hidup_II-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-13-4)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-31_(0.1.0_%E2%86%92_1.13.2)-059669?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-33_(0.1.0_%E2%86%92_1.13.4)-059669?style=flat-square)
 ![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-41_ber_versi-059669?style=flat-square)
 ![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.14.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.13.2 — "Peta Live"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.13.4 — "Dokumen Hidup II"`**
 
 <sub>Versi terlihat hidup di: footer setiap halaman (11.876 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
@@ -39,7 +39,7 @@
 | Presisi tanggal | Era `0.x` (Sesi 1–2) direkonstruksi dari metadata file & jejak invoice (`INV-20261021`) → presisi bulan; era `1.x` → presisi hari (terverifikasi) |
 | Rilis berikutnya | **`v1.14.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
 
-> 🔗 Navigasi cepat: **[Tabel Lengkap 31 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+> 🔗 Navigasi cepat: **[Tabel Lengkap 33 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
 
 ---
 
@@ -47,16 +47,42 @@
 
 ## [Unreleased] — akan menjadi `v1.14.0`
 
-> 📦 **Sisa langkah ROADMAP-99** tetap TERSIMPAN di [`ROADMAP-99.md`](./ROADMAP-99.md) — langkah **7**, 23, 24, 25, 26, 27, **3**, **5**, 33, 34, **35**, 41 kini DIEKSEKUSI (dicentang di roadmap); **langkah 4 kode lengkap** (GA4 + Clarity env-gated — menunggu ID produksi). Sisanya menunggu sesi berikutnya.
+> 📦 **Sisa langkah ROADMAP-99** tetap TERSIMPAN di [`ROADMAP-99.md`](./ROADMAP-99.md) — langkah **7**, 23, 24, 25, 26, 27, **3**, **5**, 33, 34, **35**, 41, **4** kini DIEKSEKUSI (dicentang di roadmap); **langkah 4 (GA4) SELESAI penuh via `v1.13.3`** — Clarity tinggal set `NEXT_PUBLIC_CLARITY_ID`. Sisanya menunggu sesi berikutnya.
 
 ### Planned — Quick Wins P0 teratas (dari ROADMAP-99 Tabel A, sisa)
 - **Aktifkan pembayaran produksi** Midtrans/Tripay — matikan `PAYMENT_DEMO_MODE` (langkah 1) — *checklist kredensial: `docs/CHECKLIST-KREDENSIAL-LANGKAH-1-2.md`*
 - **Submit 15 sitemap** (11.876 URL) ke Google Search Console + Bing Webmaster (langkah 2) — *checklist kredensial: `docs/CHECKLIST-KREDENSIAL-LANGKAH-1-2.md`*
-- **Langkah 4 eksekusi akhir**: set `NEXT_PUBLIC_GA_ID` + `NEXT_PUBLIC_CLARITY_ID` di env → GA4 & Clarity aktif (kode v1.11.0 sudah siap)
+- ~~Langkah 4 eksekusi akhir~~ ✅ **SELESAI di v1.13.3** — GA4 `G-KMZRQJQXCB` aktif sitewide (fallback hardcode, tanpa env); Clarity tinggal set `NEXT_PUBLIC_CLARITY_ID`
 - Verifikasi token 6 mesin pencari via env → meta tag otomatis (lanjutan `v1.3.0`)
 - Re-ukur PSI mobile setelah deploy v1.5.0–v1.11.0 — target LCP < 4 s & TBT < 500 ms
 
 ---
+
+<a id="v1-13-4"></a>
+
+## [1.13.4] — 2026-10-26 — 📚 "Dokumen Hidup II" (Task 34)
+
+Rilis dokumentasi: `README.md` di-refresh penuh agar 1:1 dengan kondisi kode terbaru (terakhir disentuh era v1.4.0 — tertinggal 29 rilis).
+
+### Docs
+- **README bilingual ID/EN**: semua angka disinkronkan — **11.876 URL / 15 seksi sitemap** (tabel per-seksi dihitung dari server hidup), **13 model Prisma** (+`EditorialSlot`), **33 rilis**, riwayat diperluas Task 1–34
+- **Seksi baru "📈 Analytics & Conversion Tracking — GA4 Full-Funnel"** (ID+EN): tabel 9 event konversi, arsitektur SSR `<head>` + fallback hardcode, preconnect CWV
+- Badge header diperbarui (v1.13.4 · 11.876 · GA4); §21 diperluas Task 17–34; §22 roadmap: GA4 ditandai selesai; footer & kredit disesuaikan entitas resmi v1.12.0 (LEGAL_ENTITY = PT Top Konsultan Internasional · SUPPORT_SYSTEM = PT Digital Bisnis Manajemen — digiman.id)
+- Sinkron `scripts/ver.json` (stagnan di v1.5.0) → v1.13.4 + stats 11.876/15/13
+
+<a id="v1-13-3"></a>
+
+## [1.13.3] — 2026-10-26 — 📊 "Analitik Penuh" (Task 33)
+
+Eksekusi penuh **langkah 4 ROADMAP-99**: GA4 produksi aktif di seluruh 11.876 halaman.
+
+### Added
+- **GA4 `G-KMZRQJQXCB` sitewide**: gtag.js dirender langsung di `<head>` root layout (SSR — tercetak di HTML semua rute, satu pintu nol terlewat); ID via `NEXT_PUBLIC_GA_ID` atau **fallback hardcode** — aktif tanpa `.env` di semua mode build (dev/standalone/static export cPanel)
+- **Tracking konversi full-funnel via `trackEvent()`** (no-op aman bila GA off): `generate_lead` ×5 (hero, lead-form reusable bumdes/mitra/korporat/PMA/kalender, final-cta, kalkulator biaya +`value_estimate`, /kontak) · `sign_up` (kursus email 7 hari) · `chat_message` (AI RIZKI)
+- **Resource hints Core Web Vitals**: `preconnect` + `dns-prefetch` ke `googletagmanager.com`, `clarity.ms`, `wa.me` di `<head>`
+
+### Changed
+- `.env`: `NEXT_PUBLIC_GA_ID=G-KMZRQJQXCB` (dokumentatif — kode tetap aktif tanpa env)
 
 <a id="v1-13-2"></a>
 
@@ -502,11 +528,13 @@ Rilis pertama dengan **identitas versi resmi**. Seluruh proyek kini punya nomor 
 
 <a id="ladder"></a>
 
-## 🪜 Tabel Lengkap 31 Rilis
+## 🪜 Tabel Lengkap 33 Rilis
 
 | # | Versi | Tanggal (WIB) | Tipe | Nama Rilis | Task WORKLOG | Status |
 |---|---|---|---|---|---|---|
-| 31 | **v1.13.2** ⭐ | **2026-10-25** | patch | **Peta Live** | Task 32 | **🟢 AKTIF — versi berjalan** |
+| 33 | **v1.13.4** ⭐ | **2026-10-26** | patch | **Dokumen Hidup II** | Task 34 | **🟢 AKTIF — versi berjalan** |
+| 32 | v1.13.3 | 2026-10-26 | patch | Analitik Penuh | Task 33 | ✅ Rilis |
+| 31 | v1.13.2 | 2026-10-25 | patch | Peta Live | Task 32 | ✅ Rilis |
 | 30 | v1.13.1 | 2026-10-25 | patch | Logo Resmi | Task 31 | ✅ Rilis |
 | 29 | v1.13.0 | 2026-10-25 | minor | Peta Provinsi | Task 29 | ✅ Rilis |
 | 28 | v1.12.0 | 2026-10-25 | minor | Identitas Resmi | Task 28 | ✅ Rilis |

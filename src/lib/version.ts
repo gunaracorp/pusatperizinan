@@ -17,11 +17,11 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.13.2";
+export const APP_VERSION = "1.13.4";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Peta Live";
+export const RELEASE_NAME = "Dokumen Hidup II";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
-export const RELEASE_DATE = "2026-10-25";
+export const RELEASE_DATE = "2026-10-26";
 /** Channel rilis: stable | beta | alpha. */
 export const RELEASE_CHANNEL = "stable" as const;
 
@@ -42,10 +42,34 @@ export interface ReleaseEntry {
 }
 
 /**
- * Riwayat lengkap 20 rilis — urut TERBARU lebih dulu.
+ * Riwayat lengkap 33 rilis — urut TERBARU lebih dulu.
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.13.4",
+    date: "2026-10-26",
+    type: "patch",
+    name: "Dokumen Hidup II",
+    taskId: "34",
+    highlights: [
+      "README.md di-refresh penuh (ID+EN) agar 1:1 dengan kode: 11.876 URL / 15 seksi sitemap, 13 model Prisma, 33 rilis, riwayat Task 1–34 — plus seksi baru 'Analytics & Conversion Tracking GA4'",
+      "Semua angka basi era v1.4.0 dikoreksi berdasarkan server hidup; badge header + roadmap + footer + kredit entitas resmi (v1.12.0) disesuaikan",
+      "Sinkron scripts/ver.json (stagnan di v1.5.0) → v1.13.4 dengan stats terkini",
+    ],
+  },
+  {
+    version: "1.13.3",
+    date: "2026-10-26",
+    type: "patch",
+    name: "Analitik Penuh",
+    taskId: "33",
+    highlights: [
+      "GA4 G-KMZRQJQXCB aktif di SELURUH halaman: gtag.js dirender SSR di <head> root layout — satu pintu, nol rute terlewat, tahan semua mode build berkat fallback hardcode (tanpa .env)",
+      "Tracking konversi full-funnel via trackEvent(): generate_lead (hero, lead-form, final-cta, kalkulator +value_estimate, kontak), sign_up (kursus email), chat_message (AI RIZKI)",
+      "Preconnect/dns-prefetch googletagmanager.com · clarity.ms · wa.me — Core Web Vitals terjaga; menuntaskan langkah 4 ROADMAP-99",
+    ],
+  },
   {
     version: "1.13.2",
     date: "2026-10-25",

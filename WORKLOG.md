@@ -199,3 +199,37 @@ Work Log:
 Stage Summary:
 - Paket baru siap di public/download/ untuk di-upload user ke public_html → lalu GSC resubmit
 - Sitemap ↔ robots.txt ↔ file fisik konsisten otomatis; risiko WAF terhadap Googlebot dicatat sebagai tindak lanjut owner
+
+---
+Task ID: 33
+Agent: main
+Task: 📊 "Analitik Penuh" — pasang GA4 G-KMZRQJQXCB sitewide + tracking konversi full-funnel (permintaan user: "keluarkan semua super idea brilliantmu dan bantu aku fullkan semua seo") 🏷️ Rilis v1.13.3
+
+Work Log:
+- GA4 gtag.js dirender langsung di <head> root layout (src/app/layout.tsx) — tercetak literal di HTML SSR semua rute (satu pintu, nol halaman terlewat); ID dari NEXT_PUBLIC_GA_ID + fallback hardcode → aktif di semua mode build tanpa .env
+- Preconnect/dns-prefetch googletagmanager.com · clarity.ms · wa.me di <head> (Core Web Vitals)
+- Wiring trackEvent() di 7 titik konversi: hero (generate_lead), lead-form reusable (bumdes/mitra/korporat/PMA/kalender), final-cta, cost-calculator (+value_estimate), contact-form /kontak, email-course (sign_up), chat-widget RIZKI (chat_message); whatsapp_click sudah ada dari FloatingWhatsApp v1.11.0
+- Verifikasi: 4 halaman kunci 200; tag G-KMZRQJQXCB ✓ di homepage (1 elemen + mirror RSC); nol double-load
+- Catatan: percobaan GA v1 sempat di-rollback penuh atas laporan "situs error" — diagnosis akhir: OOM sandbox (dev-server RSS ~3,5GB), bukan kode GA; v2 dipasang ulang dengan verifikasi ringan RAM-aman
+
+Stage Summary:
+- GA4 produksi aktif di seluruh 11.876 URL; funnel lead→GA terukur penuh dengan atribusi source
+- Menuntaskan langkah 4 ROADMAP-99 (Clarity tinggal set NEXT_PUBLIC_CLARITY_ID)
+- Commit 3a7dc92 + fa44509; push ke GitHub main (dee8929..fa44509)
+
+---
+Task ID: 34
+Agent: main
+Task: 📚 "Dokumen Hidup II" — refresh README.md penuh sesuai konten terbaru + sinkron versi (permintaan user: "update readme dengan full fitur dan full power full design") 🏷️ Rilis v1.13.4
+
+Work Log:
+- Audit README lama: terakhir disentuh era v1.4.0 (tertinggal 29 rilis) — angka 11.207 URL/14 seksi, 12 model, 20 rilis, Task 1–16 semua basi
+- Verifikasi data dari server hidup: sitemap 15 seksi · 11.876 URL (hitung per-seksi via curl); schema.prisma 13 model (+EditorialSlot); PLATFORM_STATS 11.876/15/13
+- README ID+EN diperbarui menyeluruh: badge (v1.13.4 · 11.876/15 · GA4 G-KMZRQJQXCB), seksi baru "📈 Analytics & Conversion Tracking — GA4 Full-Funnel" dengan tabel 9 event, tabel sitemap per-seksi akurat, §9 → 13 Model Prisma, §21 diperluas Task 17–34, §22 roadmap GA4 dicentang, §17 env + NEXT_PUBLIC_GA_ID/CLARITY_ID/INDEXNOW_KEY, FAQ GA4, mermaid +node GA4, footer 34 task
+- Fix kredit entitas (mengikuti v1.12.0): LEGAL_ENTITY = PT Top Konsultan Internasional; SUPPORT_SYSTEM = PT Digital Bisnis Manajemen (digiman.id) — sebelumnya terbalik
+- Sinkron versi 5 titik: version.ts (APP_VERSION 1.13.4 + RELEASES +2), package.json, CHANGELOG (entri v1.13.3 & v1.13.4 + badge + ladder 33 rilis), scripts/ver.json (stagnan v1.5.0 → v1.13.4), README
+- Fix case-mismatch: worklog.md → git mv WORKLOG.md (link README/CHANGELOG kini valid)
+
+Stage Summary:
+- README 1:1 dengan kode (±1.560 baris, bilingual penuh); semua angka terverifikasi dari server hidup
+- Versi konsisten 5 titik; ladder 33 rilis; Task 33–34 tercatat di WORKLOG ini
