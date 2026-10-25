@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { trackEvent } from "@/components/landing/analytics";
 import { EASE, STAGGER } from "@/components/motion/reveal";
 import {
   ShieldCheck,
@@ -65,6 +66,8 @@ export function Hero() {
       });
       const json = await res.json();
       if (json.success) {
+        // GA4 conversion — lead dari form hero (recommended event).
+        trackEvent("generate_lead", { source: "hero" });
         setDone(true);
         toast({
           title: t("toastSuccess"),

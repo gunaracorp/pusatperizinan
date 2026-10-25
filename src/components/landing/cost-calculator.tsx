@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
+import { trackEvent } from "@/components/landing/analytics";
 import {
   Calculator,
   Clock,
@@ -124,6 +125,8 @@ export function CostCalculator() {
           source: "kalkulator",
         }),
       }).catch(() => null);
+      // GA4 conversion — estimasi biaya dikirim + buka WhatsApp.
+      trackEvent("generate_lead", { source: "kalkulator", value_estimate: estimate.low });
       window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${waMessage}`, "_blank", "noopener,noreferrer");
       toast({
         title: "Estimasi dikirim ke WhatsApp ✅",

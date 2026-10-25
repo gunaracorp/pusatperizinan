@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { trackEvent } from "@/components/landing/analytics";
 import { MessageCircle, X, Send, Sparkles, Bot, Loader2, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -78,6 +79,8 @@ export function ChatWidget() {
     setInput("");
     setMessages((prev) => [...prev, { role: "user", content: message }]);
     setSending(true);
+    // GA4 event — interaksi dengan AI chat RIZKI (sinyal engagement).
+    trackEvent("chat_message", { language: lang });
 
     try {
       const res = await fetch("/api/chat", {

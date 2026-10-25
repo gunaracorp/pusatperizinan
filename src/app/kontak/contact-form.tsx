@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { trackEvent } from "@/components/landing/analytics";
 import {
   AlertCircle,
   CheckCircle2,
@@ -112,6 +113,8 @@ export function ContactForm() {
         );
       }
       // Sukses: panel inline TAMPIL (form tidak diganti) + reset isian.
+      // GA4 conversion — lead ujung funnel dari halaman /kontak.
+      trackEvent("generate_lead", { source: "kontak" });
       setStatus("success");
       setNama("");
       setWhatsapp("");

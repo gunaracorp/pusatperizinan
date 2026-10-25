@@ -21,6 +21,20 @@ const geistMono = Geist_Mono({
 });
 
 // ============================================================
+// GOOGLE ANALYTICS 4 — G-KMZRQJQXCB (AKTIF DI SETIAP HALAMAN)
+// Ditulis langsung di <head> root layout → tercetak di HTML semua
+// halaman (satu pintu, nol terlewat). NEXT_PUBLIC_GA_ID bisa menimpa
+// bila kelak ganti properti; fallback hardcode menjamin GA tetap
+// aktif walau .env tidak ikut saat deploy statis cPanel.
+// Event konversi yang mengalir otomatis dari komponen situs:
+//   generate_lead  (hero, lead-form, final-cta, kalkulator, kontak)
+//   sign_up        (kursus email)
+//   chat_message   (AI chat RIZKI)
+//   whatsapp_click (tombol WhatsApp mengambang)
+// ============================================================
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-KMZRQJQXCB";
+
+// ============================================================
 // PUSATPERIZINAN.COM — Metadata SEO Supercharged
 // Dibangun untuk mendominasi pencarian perizinan Indonesia
 // ============================================================
@@ -157,6 +171,13 @@ export default function RootLayout({
   return (
     <html lang="id" suppressHydrationWarning>
       <head>
+        {/* RESOURCE HINTS — preconnect ke origin pihak ketiga kritis
+            (analytics + WhatsApp CTA): hemat DNS+TLS ~100-300ms,
+            menyehatkan Core Web Vitals → sinyal ranking. */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.clarity.ms" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://wa.me" />
         {/* CATATAN AUDIT: canonical hardcode DIHAPUS — sebelumnya menyebabkan
             canonical GANDA di semua 2.830 halaman (hardcode homepage vs canonical
             per-halaman dari generateMetadata). Homepage kini memakai canonical
@@ -183,6 +204,20 @@ export default function RootLayout({
         <meta name="geo.placename" content="Jakarta Selatan" />
         <meta name="geo.position" content="-6.2249;106.809" />
         <meta name="ICBM" content="-6.2249, 106.809" />
+        {/* GOOGLE TAG (gtag.js) — GA4, dirender di <head> SETIAP halaman.
+            React 19 hoist & dedupe <script async> berdasarkan src. */}
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '${GA_ID}');`,
+          }}
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}

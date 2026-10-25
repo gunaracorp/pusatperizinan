@@ -8,6 +8,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { trackEvent } from "@/components/landing/analytics";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -61,6 +62,9 @@ export function LeadForm({ source, needs, cta = "Kirim — Respons < 15 Menit", 
       });
       const json = await res.json();
       if (json.success) {
+        // GA4 conversion — lead dari LeadForm (bumdes, mitra, korporat,
+        // PMA, kalender-kepatuhan, dll).
+        trackEvent("generate_lead", { source });
         setDone(true);
         toast({ title: "Berhasil! 🎉", description: json.message });
       } else {

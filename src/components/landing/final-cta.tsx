@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { trackEvent } from "@/components/landing/analytics";
 import {
   PhoneCall,
   MessageCircle,
@@ -52,6 +53,8 @@ export function FinalCta() {
       });
       const json = await res.json();
       if (json.success) {
+        // GA4 conversion — lead dari CTA penutup landing.
+        trackEvent("generate_lead", { source: "final-cta" });
         setDone(true);
         toast({ title: "Berhasil! 🎉", description: json.message });
       } else {

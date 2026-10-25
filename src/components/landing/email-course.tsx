@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { trackEvent } from "@/components/landing/analytics";
 import {
   GraduationCap,
   Gift,
@@ -94,6 +95,8 @@ export function EmailCourse() {
       });
       const data = await res.json();
       if (data.ok) {
+        // GA4 conversion — pendaftar kursus email perizinan gratis.
+        trackEvent("sign_up", { method: "email-course" });
         setDone(true);
         toast({ title: "Berhasil bergabung!", description: data.message });
       } else {
