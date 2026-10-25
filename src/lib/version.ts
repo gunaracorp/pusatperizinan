@@ -17,9 +17,9 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.12.0";
+export const APP_VERSION = "1.13.0";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Identitas Resmi";
+export const RELEASE_NAME = "Peta Provinsi";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
 export const RELEASE_DATE = "2026-10-25";
 /** Channel rilis: stable | beta | alpha. */
@@ -46,6 +46,18 @@ export interface ReleaseEntry {
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.13.0",
+    date: "2026-10-25",
+    type: "minor",
+    name: "Peta Provinsi",
+    taskId: "29",
+    highlights: [
+      "ROADMAP-99 langkah 7 — schema Service + OfferCatalog/Offer per wilayah: seluruh 38 hub provinsi /layanan/wilayah/{prov} & 516 hub kota kini membawa node Service dengan areaServed State/City (kode ISO 3166-2:ID + GeoCoordinates ibu kota) dan katalog Offer IDR dari harga nyata layanan anggota",
+      "Bug laten geo: PROVINCE_GEO kehilangan Banten → /layanan/wilayah/banten* tanpa meta geo.region; kini lengkap 38/38 (ID-BT, Serang)",
+      "Fix JSON-LD laten: setiap node schema di hub kini membawa @context sendiri (pola lama hanya node pertama) — QA verify-wilayah-schema.ts PASS 38 provinsi + 3 kota + regresi kategori",
+    ],
+  },
   {
     version: "1.12.0",
     date: "2026-10-25",

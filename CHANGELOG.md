@@ -5,19 +5,19 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.12.0_Identitas_Resmi-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-12-0)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.13.0_Peta_Provinsi-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-13-0)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-28_(0.1.0_%E2%86%92_1.12.0)-059669?style=flat-square)
-![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-38_ber_versi-059669?style=flat-square)
-![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.13.0_(Unreleased)-f59e0b?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-29_(0.1.0_%E2%86%92_1.13.0)-059669?style=flat-square)
+![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-39_ber_versi-059669?style=flat-square)
+![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.14.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.12.0 — "Identitas Resmi"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.13.0 — "Peta Provinsi"`**
 
 <sub>Versi terlihat hidup di: footer setiap halaman (11.876 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
@@ -37,17 +37,17 @@
 | Sumber kebenaran | [`WORKLOG.md`](./WORKLOG.md) (rekam jejak 1:1) · `src/lib/version.ts` (data mesin) · `package.json` (runtime) |
 | Ritme | **1 task/permintaan user = 1 nomor versi baru** — fitur → `MINOR`, perbaikan → `PATCH`, perombakan arah produk → `MAJOR` |
 | Presisi tanggal | Era `0.x` (Sesi 1–2) direkonstruksi dari metadata file & jejak invoice (`INV-20261021`) → presisi bulan; era `1.x` → presisi hari (terverifikasi) |
-| Rilis berikutnya | **`v1.13.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
+| Rilis berikutnya | **`v1.14.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
 
-> 🔗 Navigasi cepat: **[Tabel Lengkap 28 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+> 🔗 Navigasi cepat: **[Tabel Lengkap 29 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
 
 ---
 
 <a id="unreleased"></a>
 
-## [Unreleased] — akan menjadi `v1.13.0`
+## [Unreleased] — akan menjadi `v1.14.0`
 
-> 📦 **Sisa langkah ROADMAP-99** tetap TERSIMPAN di [`ROADMAP-99.md`](./ROADMAP-99.md) — langkah 23, 24, 25, 26, 27, **3**, **5**, 33, 34, **35**, 41 kini DIEKSEKUSI (dicentang di roadmap); **langkah 4 kode lengkap** (GA4 + Clarity env-gated — menunggu ID produksi). Sisanya menunggu sesi berikutnya.
+> 📦 **Sisa langkah ROADMAP-99** tetap TERSIMPAN di [`ROADMAP-99.md`](./ROADMAP-99.md) — langkah **7**, 23, 24, 25, 26, 27, **3**, **5**, 33, 34, **35**, 41 kini DIEKSEKUSI (dicentang di roadmap); **langkah 4 kode lengkap** (GA4 + Clarity env-gated — menunggu ID produksi). Sisanya menunggu sesi berikutnya.
 
 ### Planned — Quick Wins P0 teratas (dari ROADMAP-99 Tabel A, sisa)
 - **Aktifkan pembayaran produksi** Midtrans/Tripay — matikan `PAYMENT_DEMO_MODE` (langkah 1) — *checklist kredensial: `docs/CHECKLIST-KREDENSIAL-LANGKAH-1-2.md`*
@@ -55,6 +55,28 @@
 - **Langkah 4 eksekusi akhir**: set `NEXT_PUBLIC_GA_ID` + `NEXT_PUBLIC_CLARITY_ID` di env → GA4 & Clarity aktif (kode v1.11.0 sudah siap)
 - Verifikasi token 6 mesin pencari via env → meta tag otomatis (lanjutan `v1.3.0`)
 - Re-ukur PSI mobile setelah deploy v1.5.0–v1.11.0 — target LCP < 4 s & TBT < 500 ms
+
+---
+
+<a id="v1-13-0"></a>
+
+## [1.13.0] — 2026-10-25 — 🗺️ "Peta Provinsi" (Task 29)
+
+Rilis local-SEO schema: **ROADMAP-99 langkah 7** — 38 hub provinsi + 516 hub kota kini membawa schema **Service + OfferCatalog/Offer** dengan `areaServed` State/City (kode ISO 3166-2:ID + koordinat ibu kota) — lapisan sinyal lokal yang sebelumnya belum ada pada lapisan halaman wilayah. Nol URL baru — indeks 11.876 aman.
+
+### Added
+- **Schema `Service` + `OfferCatalog` per wilayah** (hub-page.tsx `HubJsonLd`): node `Service` dengan `provider` → `LEGAL_ENTITY` (PT Top Konsultan Internasional), `areaServed` `State` (hub provinsi: nama + `identifier` ISO 3166-2:ID + `GeoCoordinates` ibu kota dari `PROVINCE_GEO`) atau `City` ⊂ `State` (hub kota), dan `hasOfferCatalog` berisi `Offer` per layanan anggota (`priceNumeric` IDR nyata + `itemOffered Service`) — langkah 7 "schema Service + Offer per wilayah" penuh
+- **QA `scripts/verify-wilayah-schema.ts`**: sapu 38 hub provinsi + spot-check 3 kota (Denpasar/Bandung/Serang) + regresi hub kategori — semua PASS
+
+### Fixed
+- **Bug laten geo**: `PROVINCE_GEO` (geo.ts) kehilangan entri **Banten** → seluruh halaman `/layanan/wilayah/banten*` terkirim tanpa meta `geo.region` dan tanpa koordinat; kini lengkap **38/38** (ID-BT, ibu kota Serang)
+- **Bug laten JSON-LD**: pola lama hanya menaruh `@context` pada node pertama array top-level — node ke-2+ (FAQPage/ItemList) berada di luar konteks schema.org saat diparse; kini **setiap node membawa `@context` sendiri**
+
+### Verifikasi
+- `bun run lint` → **0 error, 0 warning**; `tsc --noEmit` → **178 error pre-existing** (baseline v1.11.0 persis — nol error pada berkas sentuhan)
+- QA `verify-wilayah-schema.ts` → **PASS**: 38/38 provinsi (Service + Offer + areaServed + ISO), 3/3 kota (City ⊂ State), regresi non-wilayah bersih
+- curl: `/layanan/wilayah/banten` → `"@type":"Service"` + `hasOfferCatalog` + `ID-BT` + `geo.region` ✓; `/layanan/wilayah/jawa-barat` → State + GeoCoordinates ✓; `/layanan/wilayah/bali/denpasar` → City + containedInPlace ✓; `/layanan/kategori/pajak` → tanpa `#service` (tak berubah) ✓
+- `version.ts`: `APP_VERSION 1.13.0 "Peta Provinsi"`, `RELEASES` +1 entri (Task 29) — **nol URL publik baru → indeks 11.876 URL tetap**; `package.json` 1.13.0; `/api/version` `nextRelease → v1.14.0`
 
 ---
 
@@ -444,11 +466,12 @@ Rilis pertama dengan **identitas versi resmi**. Seluruh proyek kini punya nomor 
 
 <a id="ladder"></a>
 
-## 🪜 Tabel Lengkap 28 Rilis
+## 🪜 Tabel Lengkap 29 Rilis
 
 | # | Versi | Tanggal (WIB) | Tipe | Nama Rilis | Task WORKLOG | Status |
 |---|---|---|---|---|---|---|
-| 28 | **v1.12.0** ⭐ | **2026-10-25** | minor | **Identitas Resmi** | Task 28 | **🟢 AKTIF — versi berjalan** |
+| 29 | **v1.13.0** ⭐ | **2026-10-25** | minor | **Peta Provinsi** | Task 29 | **🟢 AKTIF — versi berjalan** |
+| 28 | v1.12.0 | 2026-10-25 | minor | Identitas Resmi | Task 28 | ✅ Rilis |
 | 27 | v1.11.0 | 2026-10-25 | minor | Sapa Langsung | Task 27 | ✅ Rilis |
 | 26 | v1.10.0 | 2026-10-25 | minor | Mesin Redaksi | Task 26 | ✅ Rilis |
 | 25 | v1.9.0 | 2026-10-25 | minor | Kamus Raja | Task 25 | ✅ Rilis |

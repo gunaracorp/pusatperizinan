@@ -42,6 +42,9 @@ function slugify(text: string): string {
 export const PROVINCE_GEO: Record<string, ProvinceGeo> = {
   "aceh": { region: "ID-AC", name: "Aceh", lat: 5.5483, lng: 95.3238 },
   "bali": { region: "ID-BA", name: "Bali", lat: -8.6705, lng: 115.2126 },
+  // v1.13.0 (langkah 7): Banten sebelumnya hilang → halaman /layanan/wilayah/banten*
+  // tanpa meta geo & tanpa koordinat di schema Service. Ibu kota: Serang.
+  "banten": { region: "ID-BT", name: "Banten", lat: -6.1206, lng: 106.1506 },
   "bengkulu": { region: "ID-BE", name: "Bengkulu", lat: -3.8004, lng: 102.2655 },
   "di-yogyakarta": { region: "ID-YO", name: "DI Yogyakarta", lat: -7.7956, lng: 110.3695 },
   "dki-jakarta": { region: "ID-JK", name: "DKI Jakarta", lat: -6.2088, lng: 106.8456 },

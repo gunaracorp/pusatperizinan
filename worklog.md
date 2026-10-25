@@ -135,3 +135,20 @@ Work Log:
 Stage Summary:
 - Situs v1.12.0 "Identitas Resmi": operator situs & penerbit invoice = PT Top Konsultan Internasional; support system = PT Digital Bisnis Manajemen (digiman.id, kredit footer ber-tautan) — konsisten di schema, meta, footer 30 bahasa, halaman legal & FAQ
 - Nol URL baru → indeks 11.876 aman; nol error baru; sisa ROADMAP-99 (langkah 1–2 kredensial owner, 36–40, 42–44) tidak berubah
+
+---
+Task ID: 29
+Agent: Z.ai Code (main agent)
+Task: ROADMAP-99 langkah 7 — schema Service + Offer per wilayah (38 provinsi + 516 kota) + geo lengkap — rilis v1.13.0 "Peta Provinsi"
+
+Work Log:
+- Gap audit: hub wilayah live sejak v1.6.0 (BreadcrumbList/FAQPage/ItemList) TANPA Service/Offer; PROVINCE_GEO kehilangan Banten (37/38)
+- geo.ts: +banten (ID-BT, Serang) → 38/38; halaman /layanan/wilayah/banten* kini kirim meta geo.region
+- hub-page.tsx HubJsonLd: node Service per hub wilayah — provider LEGAL_ENTITY (PT Top Konsultan Internasional), areaServed State (ISO 3166-2:ID + GeoCoordinates ibu kota) / City ⊂ State, hasOfferCatalog → Offer IDR priceNumeric per layanan anggota (cap 40); fix laten: @context kini di SETIAP node JSON-LD
+- QA scripts/verify-wilayah-schema.ts: 38 provinsi + 3 kota spot-check + regresi kategori — PASS
+- Verifikasi: lint 0/0; tsc 178 (baseline persis; 1 error baru langsung dimitigasi via ?? ""); curl banten/jawa-barat/denpasar sesuai ekspektasi
+- Rilis 5 titik: version.ts 1.13.0 "Peta Provinsi" (RELEASES Task 29), package.json 1.13.0, /api/version nextRelease v1.14.0, CHANGELOG entri 1.13.0 + badge + ladder, ROADMAP centang langkah 7, WORKLOG.md Task 29
+
+Stage Summary:
+- 554 hub wilayah membawa schema Service + Offer (harga IDR nyata) + geo 38 provinsi utuh — lapisan local-SEO lengkap, nol URL baru (indeks 11.876 aman)
+- FASE 1: 3 ✅ 5 ✅ 7 ✅, 4 kode-siap; sisa: 1–2 (kredensial owner), 6, 8; FASE 4 (28–32), FASE 5 (36–40, 42–44)

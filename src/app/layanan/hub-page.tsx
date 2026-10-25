@@ -9,15 +9,68 @@ import {
   slugify,
 } from "@/lib/catalog";
 import { PROVINCES } from "@/lib/coverage-data";
+import { PROVINCE_GEO } from "@/lib/geo";
 import { WHATSAPP_NUMBER } from "@/lib/landing-data";
-import { SITE_URL } from "@/lib/site";
+import { LEGAL_ENTITY, SITE_URL } from "@/lib/site";
 
 
 
 /**
  * JSON-LD untuk halaman hub: BreadcrumbList + FAQPage + ItemList anggota.
  * Berlaku untuk semua hub (kategori, wilayah, kota, sertifikasi per provinsi).
+ *
+ * v1.13.0 (ROADMAP-99 langkah 7):
+ *  - Setiap node kini membawa `@context` sendiri — pola lama (satu @context
+ *    di node pertama dari array top-level) membuat node ke-2+ di luar
+ *    konteks schema.org saat diparse mesin pencari (bug laten JSON-LD).
+ *  - Hub WILAYAH (provinsi & kota) mendapat node `Service` dengan
+ *    `areaServed` (State/City + GeoCoordinates dari PROVINCE_GEO) dan
+ *    `hasOfferCatalog` berisi `Offer` per layanan anggota (IDR, harga nyata).
  */
+const SCHEMA_CONTEXT = "https://schema.org";
+
+function areaServedForWilayah(page: NonNullable<ReturnType<typeof getAnyPage>>) {
+  if (page.province) {
+    // Hub kota: City di dalam State-nya. Koordinat kota tidak ada di data —
+    // koordinat ibu kota provinsi dipasang pada State-nya saja.
+    const provGeo = PROVINCE_GEO[slugify(page.province ?? "")];
+    return {
+      "@type": "City",
+      name: page.region,
+      containedInPlace: {
+        "@type": "State",
+        name: page.province,
+        ...(provGeo
+          ? {
+              identifier: provGeo.region,
+              geo: {
+                "@type": "GeoCoordinates",
+                latitude: provGeo.lat,
+                longitude: provGeo.lng,
+              },
+            }
+          : {}),
+      },
+    };
+  }
+  // Hub provinsi: State + kode ISO 3166-2:ID + koordinat ibu kota.
+  const geo = PROVINCE_GEO[slugify(page.region ?? "")];
+  return {
+    "@type": "State",
+    name: page.region,
+    ...(geo
+      ? {
+          identifier: geo.region,
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: geo.lat,
+            longitude: geo.lng,
+          },
+        }
+      : {}),
+  };
+}
+
 function HubJsonLd({
   page,
   members,
@@ -28,7 +81,7 @@ function HubJsonLd({
   const jsonLd: Record<string, unknown>[] = [];
 
   jsonLd.push({
-    "@context": "https://schema.org",
+    "@context": SCHEMA_CONTEXT,
     "@type": "BreadcrumbList",
     itemListElement: page.breadcrumbs.map((b, i) => ({
       "@type": "ListItem",
@@ -40,7 +93,7 @@ function HubJsonLd({
 
   if (page.faq.length > 0) {
     jsonLd.push({
-      "@context": "https://schema.org",
+      "@context": SCHEMA_CONTEXT,
       "@type": "FAQPage",
       mainEntity: page.faq.map((f) => ({
         "@type": "Question",
@@ -52,7 +105,7 @@ function HubJsonLd({
 
   if (members.length > 0) {
     jsonLd.push({
-      "@context": "https://schema.org",
+      "@context": SCHEMA_CONTEXT,
       "@type": "ItemList",
       name: page.h1,
       numberOfItems: members.length,
@@ -62,6 +115,44 @@ function HubJsonLd({
         name: m.h1,
         url: `${SITE_URL}/layanan/${m.slug}`,
       })),
+    });
+  }
+
+  // Langkah 7 — Service + OfferCatalog/Offer per wilayah (provinsi & kota).
+  if (page.slug.startsWith("wilayah/")) {
+    jsonLd.push({
+      "@context": SCHEMA_CONTEXT,
+      "@type": "Service",
+      "@id": `${SITE_URL}/layanan/${page.slug}#service`,
+      name: page.h1,
+      serviceType: "Pengurusan perizinan usaha & konsultan legalitas",
+      description: page.metaDesc,
+      provider: {
+        "@type": "Organization",
+        name: LEGAL_ENTITY,
+        url: `${SITE_URL}/`,
+      },
+      areaServed: areaServedForWilayah(page),
+      url: `${SITE_URL}/layanan/${page.slug}`,
+      ...(members.length > 0
+        ? {
+            hasOfferCatalog: {
+              "@type": "OfferCatalog",
+              name: `Paket layanan perizinan — ${page.h1}`,
+              itemListElement: members.slice(0, 40).map((m) => ({
+                "@type": "Offer",
+                price: m.priceNumeric,
+                priceCurrency: "IDR",
+                url: `${SITE_URL}/layanan/${m.slug}`,
+                itemOffered: {
+                  "@type": "Service",
+                  name: m.h1,
+                  url: `${SITE_URL}/layanan/${m.slug}`,
+                },
+              })),
+            },
+          }
+        : {}),
     });
   }
 

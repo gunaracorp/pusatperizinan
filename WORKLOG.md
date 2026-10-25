@@ -204,3 +204,24 @@ Work Log:
 Stage Summary:
 - Situs v1.12.0 "Identitas Resmi": identitas legal konsisten satu sumber di site.ts — **PT Top Konsultan Internasional** (operator situs & penerbit invoice) + **PT Digital Bisnis Manajemen / digiman.id** (support system, kredit footer ber-tautan) — mengalir ke schema JSON-LD, meta publisher, footer 30 bahasa, halaman legal (privasi/kontak/tentang-kami), FAQ, halaman biaya & generator katalog, dokumen deploy
 - Nol URL publik baru → indeks 11.876 URL aman; nol perubahan layout/performa; 5 titik sinkronisasi versioning terpenuhi (WORKLOG, CHANGELOG, version.ts, package.json, footer/JSON-LD otomatis)
+
+## Task 29 — Schema Service + Offer per Wilayah 38 Provinsi (ROADMAP-99 langkah 7)
+
+> 🏷️ Rilis v1.13.0 — "Peta Provinsi" · type: minor
+> Tanggal: 2026-10-25 (WIB) · Agent: Z.ai Code (main agent)
+
+**Task:** Eksekusi langkah ROADMAP-99 berikutnya — langkah 7 FASE 1: halaman wilayah provinsi (programmatic SEO lokal) dengan data `geo.ts` + `coverage-data.ts` dan schema `Service` + `Offer` per wilayah — menghormati arsitektur existing (halaman lokal ASLI di `/layanan/wilayah/{prov}` & `/layanan/wilayah/{prov}/{kota}` dari generators.ts; `/wilayah` = hub navigasi) → nol URL baru.
+
+**Work Log:**
+- Survei gap: 38 hub provinsi + 516 hub kota sudah live (v1.6.0) dengan JSON-LD BreadcrumbList + FAQPage + ItemList — tetapi TANPA `Service`/`Offer` (inti langkah 7); audit `PROVINCE_GEO` menemukan **Banten hilang** (37/38) → seluruh halaman `/layanan/wilayah/banten*` tanpa meta geo.region
+- `src/lib/geo.ts`: +entri `banten` (ID-BT, ibu kota Serang, koordinat resmi) → PROVINCE_GEO lengkap 38/38
+- `src/app/layanan/hub-page.tsx` (`HubJsonLd`): node `Service` baru khusus hub `wilayah/` — `provider` → `LEGAL_ENTITY`, `areaServed` = `State` (nama + `identifier` ISO 3166-2:ID + `GeoCoordinates` ibu kota) untuk hub provinsi, atau `City` ⊂ `State` (containedInPlace) untuk hub kota; `hasOfferCatalog` → `Offer` per layanan anggota (`priceNumeric` IDR nyata + `itemOffered Service`, cap 40 sejajar ItemList); berlaku untuk 554 hub wilayah tanpa menyentuh hub kategori/sertifikasi
+- **Fix bug laten JSON-LD**: pola lama hanya menaruh `@context` di node pertama array top-level → FAQPage/ItemList di luar konteks schema.org saat diparse; kini setiap node membawa `@context` sendiri
+- QA baru `scripts/verify-wilayah-schema.ts`: data-check 38 provinsi ↔ PROVINCE_GEO, sapu HTTP 38 hub provinsi (Service #service + Offer + hasOfferCatalog + areaServed + kode ISO), spot-check 3 kota (Denpasar/Bandung/Serang — City ⊂ State), regresi `/layanan/kategori/pajak` (non-wilayah bersih)
+- Verifikasi: QA **PASS** (38/38 + 3/3 + regresi bersih); curl `/layanan/wilayah/banten` → `"@type":"Service"` + `ID-BT` + `geo.region` ✓, `/layanan/wilayah/jawa-barat` → State + GeoCoordinates ✓, `/layanan/wilayah/bali/denpasar` → City + containedInPlace ✓; `bun run lint` 0 error 0 warning; `tsc --noEmit` **178 error pre-existing** (baseline v1.11.0 persis — 1 error baru ditemukan & dimitigasi: narrowing `page.province`/`page.region` → pola `?? ""`)
+- Versioning: `version.ts` (1.13.0 "Peta Provinsi" + entri RELEASES taskId 29), `package.json` 1.13.0, `/api/version` nextRelease → v1.14.0, `CHANGELOG.md` (entri 1.13.0 + badge 29 rilis/39 entri + ladder baris 29), ROADMAP-99 centang langkah 7, WORKLOG.md + worklog.md Task 29
+
+**Stage Summary:**
+- v1.13.0 "Peta Provinsi": lapisan sinyal lokal lengkap — 554 hub wilayah membawa schema Service + Offer (harga IDR nyata) + geo meta 38 provinsi utuh → target featured snippet & local pack SEO
+- Nol URL baru → indeks 11.876 URL aman; FASE 1 kini 3 ✅ 5 ✅ 7 ✅ (4 kode-siap; 1–2 kredensial owner; 6 & 8 antre)
+- Sisa ROADMAP-99: FASE 1 (1–2, 4 eksekusi-akhir, 6, 8), FASE 4 (28–32), FASE 5 (36–40, 42–44), FASE 6 dst.
