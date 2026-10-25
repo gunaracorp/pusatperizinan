@@ -152,3 +152,19 @@ Work Log:
 Stage Summary:
 - 554 hub wilayah membawa schema Service + Offer (harga IDR nyata) + geo 38 provinsi utuh — lapisan local-SEO lengkap, nol URL baru (indeks 11.876 aman)
 - FASE 1: 3 ✅ 5 ✅ 7 ✅, 4 kode-siap; sisa: 1–2 (kredensial owner), 6, 8; FASE 4 (28–32), FASE 5 (36–40, 42–44)
+
+---
+Task ID: 30 (dikoreksi)
+Agent: main
+Task: Koreksi salah paham instruksi "tolong disini logo z" — user sebenarnya minta hapus logo Z di antarmuka chat (platform Z.ai), BUKAN ganti logo website. Sebaliknya, sebelumnya dibuatkan & dipasang logo Z baru ke website (commit d26ad5b, v1.14.0 "Identitas Visual").
+
+Work Log:
+- Investigasi: git show HEAD --stat menunjukkan commit d26ad5b memasang logo Z baru ke public/logo.png, logo.svg, logo-icon.png, logo-icon-white.png, favicon.svg, layout.tsx + bump versi 1.14.0
+- git revert --no-edit HEAD → commit eab4f49, 23 file dikembalikan (44 insertions, 224 deletions)
+- download/logo/* (10 file kandidat) & scripts/make-logo-assets.py terhapus otomatis
+- Verifikasi: package.json 1.13.0, APP_VERSION 1.13.0, favicon.svg kembali perisai+centang, layout.tsx icon kembali /logo-icon.png, working tree bersih
+
+Stage Summary:
+- Website kembali persis ke kondisi v1.13.0 "Peta Provinsi" — logo lama PP (perisai emerald + centang) utuh, tidak ada jejak logo Z
+- Klarisasi ke user: logo Z di samping chat = UI platform Z.ai (bukan bagian website), tidak dapat diubah dari kode website
+- Versi berjalan tetap v1.13.0; antrean rilis berikutnya v1.14.0 (tidak dipakai untuk logo)
