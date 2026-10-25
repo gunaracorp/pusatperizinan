@@ -17,9 +17,9 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.14.0";
+export const APP_VERSION = "1.13.0";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Identitas Visual";
+export const RELEASE_NAME = "Peta Provinsi";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
 export const RELEASE_DATE = "2026-10-25";
 /** Channel rilis: stable | beta | alpha. */
@@ -46,18 +46,6 @@ export interface ReleaseEntry {
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
-  {
-    version: "1.14.0",
-    date: "2026-10-25",
-    type: "minor",
-    name: "Identitas Visual",
-    taskId: "30",
-    highlights: [
-      "Logo utama baru PusatPerizinan.com (permintaan owner \"logo z\"): monogram Z dalam perisai emerald + wreath emas + bintang emas — flat modern, ganti logo lama PP wreath di seluruh situs",
-      "Aset tertukar penuh dengan nama file sama (nol perubahan kode komponen): logo-icon.png (512, warna), logo-icon-white.png (512, shield frost + Z/wreath/star putih untuk footer gelap), logo.png (800 lockup wordmark), favicon.svg & logo.svg digambar ulang konsisten (logo.svg = sisa template Z lama kini jadi logo resmi)",
-      "Favicon SVG jadi preferensi di layout metadata (PNG fallback); QA visual 2 kandidat AI + composite dark-bg + render cairosvg — master & preview tersimpan di download/logo/",
-    ],
-  },
   {
     version: "1.13.0",
     date: "2026-10-25",
