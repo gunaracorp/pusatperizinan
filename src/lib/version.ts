@@ -17,9 +17,9 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.10.0";
+export const APP_VERSION = "1.11.0";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Mesin Redaksi";
+export const RELEASE_NAME = "Sapa Langsung";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
 export const RELEASE_DATE = "2026-10-25";
 /** Channel rilis: stable | beta | alpha. */
@@ -46,6 +46,18 @@ export interface ReleaseEntry {
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.11.0",
+    date: "2026-10-25",
+    type: "minor",
+    name: "Sapa Langsung",
+    taskId: "27",
+    highlights: [
+      "Floating WhatsApp CTA sitewide (langkah 5): tombol WA melayang di seluruh halaman publik dengan pesan kontekstual berisi URL halaman aktif + event GA4 whatsapp_click — sembunyi otomatis di /, /admin, /webmaster, /checkout; nomor tunggal dari landing-data.ts",
+      "Langkah 3 tuntas: blok bundle \"Sering Diambil Bersama — Paket Hemat 10%\" kini juga di 500 halaman detail v1 (sebelumnya hanya v2/v3) — 2 pelengkap lintas kategori deterministik FNV-1a, CTA WA bundle + checkout tunggal",
+      "Microsoft Clarity env-gated (langkah 4, kode siap): pasang NEXT_PUBLIC_CLARITY_ID di env → heatmap & session recording aktif tanpa deploy ulang kode; QA verify-order-cta.ts PASS",
+    ],
+  },
   {
     version: "1.10.0",
     date: "2026-10-25",

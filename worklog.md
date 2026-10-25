@@ -97,3 +97,23 @@ Work Log:
 Stage Summary:
 - Kalender editorial 12 minggu hidup di Mission Control: klik "Tulis draft" → editor CMS ter-prefill → terbit via alur lama (sitemap/RSS/IndexNow otomatis)
 - Nol URL publik baru (indeks 11.876 aman); FASE 5: 35 ✅ 41 ✅; sisa 36–40, 42–44 menunggu sesi berikutnya
+
+---
+Task ID: 27
+Agent: Z.ai Code (main agent — Master Polymath mode)
+Task: "Lanjutkan langkah selanjutnya" — eksekusi Quick Wins FASE 1 yang bisa dikerjakan murni kode: menuntaskan langkah 3 (bundle −10% di detail v1) + langkah 5 (Floating WhatsApp sitewide) + kode lengkap langkah 4 (Clarity env-gated) + checklist kredensial langkah 1–2 — rilis v1.11.0 "Sapa Langsung".
+
+Work Log:
+- Survei state (Explore agent): CTA Pesan Sekarang sudah ada di 1.500 detail; bundle −10% hanya v2/v3; floating WA belum ada; Clarity belum ada; GA4 env-gated menunggu ID
+- src/components/landing/floating-whatsapp.tsx (baru): WA bottom-right sitewide, kontekstual saat klik, GA4 event whatsapp_click, sembunyi di / · /admin · /webmaster · /checkout, nomor tunggal landing-data.ts; mount di layout.tsx
+- src/app/[slug]/page.tsx: blok "Sering Diambil Bersama — Paket Hemat 10%" (2 pelengkap lintas kategori FNV-1a, CTA WA + checkout) → paritas bundle v1 = v2/v3
+- src/components/landing/analytics.tsx: refactor GA4 + Microsoft Clarity independen env-gated
+- scripts/verify-order-cta.ts PASS (6 seksi: determinisme bundle 500/500, marker, aturan sembunyi, paritas WA, env-gating)
+- Verifikasi: lint 0/0; tsc 178 (baseline, nol error baru); curl 7 halaman sesuai ekspektasi; agent-browser: snapshot + konsol bersih + homepage WA=0; screenshot bukti download/verifikasi-v1-*.png
+- Rilis: version.ts/package.json/api-version 1.11.0 "Sapa Langsung" (nextRelease v1.12.0), CHANGELOG entri 1.11.0 + ladder 21–27 dilengkapi, WORKLOG.md Task 27, ROADMAP-99 centang 3 & 5 + catatan kode-siap 4
+- docs/CHECKLIST-KREDENSIAL-LANGKAH-1-2.md: panduan kredensial Midtrans/Tripay (webhook /api/payment/webhook/*), GSC/Bing (env tag), GA4/Clarity, template .env produksi, checklist eksekusi 8 butir
+
+Stage Summary:
+- v1.11.0 live di /api/version; jalur order FASE 1 paritas penuh (1.500 detail ber-bundle −10%, WA melayang sitewide, klik terukur)
+- FASE 1 ROADMAP: 3 ✅ 5 ✅, 4 kode-siap; langkah 1–2 menunggu owner mengisi env sesuai checklist → lalu eksekusi 8 butir
+- Nol URL baru → indeks 11.876 aman

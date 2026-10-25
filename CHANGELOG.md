@@ -5,19 +5,19 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.10.0_Mesin_Redaksi-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-10-0)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.11.0_Sapa_Langsung-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-11-0)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-26_(0.1.0_%E2%86%92_1.10.0)-059669?style=flat-square)
-![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-36_ber_versi-059669?style=flat-square)
-![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.11.0_(Unreleased)-f59e0b?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-27_(0.1.0_%E2%86%92_1.11.0)-059669?style=flat-square)
+![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-37_ber_versi-059669?style=flat-square)
+![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.12.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.10.0 — "Mesin Redaksi"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.11.0 — "Sapa Langsung"`**
 
 <sub>Versi terlihat hidup di: footer setiap halaman (11.876 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
@@ -37,23 +37,54 @@
 | Sumber kebenaran | [`WORKLOG.md`](./WORKLOG.md) (rekam jejak 1:1) · `src/lib/version.ts` (data mesin) · `package.json` (runtime) |
 | Ritme | **1 task/permintaan user = 1 nomor versi baru** — fitur → `MINOR`, perbaikan → `PATCH`, perombakan arah produk → `MAJOR` |
 | Presisi tanggal | Era `0.x` (Sesi 1–2) direkonstruksi dari metadata file & jejak invoice (`INV-20261021`) → presisi bulan; era `1.x` → presisi hari (terverifikasi) |
-| Rilis berikutnya | **`v1.11.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
+| Rilis berikutnya | **`v1.12.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
 
-> 🔗 Navigasi cepat: **[Tabel Lengkap 20 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+> 🔗 Navigasi cepat: **[Tabel Lengkap 27 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
 
 ---
 
 <a id="unreleased"></a>
 
-## [Unreleased] — akan menjadi `v1.11.0`
+## [Unreleased] — akan menjadi `v1.12.0`
 
-> 📦 **Sisa langkah ROADMAP-99** tetap TERSIMPAN di [`ROADMAP-99.md`](./ROADMAP-99.md) — langkah 23, 24, 25, 26, 27, 33, 34, **35**, 41 kini DIEKSEKUSI (dicentang di roadmap). Sisanya menunggu sesi berikutnya.
+> 📦 **Sisa langkah ROADMAP-99** tetap TERSIMPAN di [`ROADMAP-99.md`](./ROADMAP-99.md) — langkah 23, 24, 25, 26, 27, **3**, **5**, 33, 34, **35**, 41 kini DIEKSEKUSI (dicentang di roadmap); **langkah 4 kode lengkap** (GA4 + Clarity env-gated — menunggu ID produksi). Sisanya menunggu sesi berikutnya.
 
 ### Planned — Quick Wins P0 teratas (dari ROADMAP-99 Tabel A, sisa)
-- **Aktifkan pembayaran produksi** Midtrans/Tripay — matikan `PAYMENT_DEMO_MODE` (langkah 1)
-- **Submit 15 sitemap** (11.876 URL) ke Google Search Console + Bing Webmaster (langkah 2)
+- **Aktifkan pembayaran produksi** Midtrans/Tripay — matikan `PAYMENT_DEMO_MODE` (langkah 1) — *checklist kredensial: `docs/CHECKLIST-KREDENSIAL-LANGKAH-1-2.md`*
+- **Submit 15 sitemap** (11.876 URL) ke Google Search Console + Bing Webmaster (langkah 2) — *checklist kredensial: `docs/CHECKLIST-KREDENSIAL-LANGKAH-1-2.md`*
+- **Langkah 4 eksekusi akhir**: set `NEXT_PUBLIC_GA_ID` + `NEXT_PUBLIC_CLARITY_ID` di env → GA4 & Clarity aktif (kode v1.11.0 sudah siap)
 - Verifikasi token 6 mesin pencari via env → meta tag otomatis (lanjutan `v1.3.0`)
-- Re-ukur PSI mobile setelah deploy v1.5.0–v1.9.0 — target LCP < 4 s & TBT < 500 ms
+- Re-ukur PSI mobile setelah deploy v1.5.0–v1.11.0 — target LCP < 4 s & TBT < 500 ms
+
+---
+
+<a id="v1-11-0"></a>
+
+## [1.11.0] — 2026-10-25 — 📣 "Sapa Langsung" (Task 27)
+
+Rilis jalur order & jangkauan — menuntaskan **langkah 3 (paritas bundle di v1)** dan **langkah 5 (Floating WhatsApp CTA)** dari FASE 1 Quick Wins ROADMAP-99, sekaligus melengkapi kode **langkah 4 (GA4 + Microsoft Clarity)** — tinggal pasang ID di env.
+
+### Added
+- **Komponen `FloatingWhatsApp`** (langkah 5, 🔥 · 🟢 · P0): tombol WhatsApp melayang bottom-right di **seluruh halaman publik** — ikon WA resmi inline SVG (nol dependensi baru), ikon-saja di mobile → pil **"Konsultasi WhatsApp"** di layar ≥sm, cincin denyut compositor-only yang hilang pada `prefers-reduced-motion` (WCAG 2.2), `aria-label` eksplisit, `rel="noopener noreferrer"`
+  - **Kontekstual per halaman**: pesan chat menyertakan URL aktif ("saya sedang membuka: …") — dibangun **saat klik** (nol state/effect → bebas hydration mismatch & lint `set-state-in-effect`); tanpa JS, fallback `wa.me` polos tetap berfungsi
+  - **Event GA4 `whatsapp_click`** (params `page`) via `trackEvent()` — no-op aman saat GA belum aktif
+  - **Sembunyi otomatis** di `/` (sudah ada chat AI RIZKI fixed bottom-right), `/admin*`, `/webmaster*`, `/checkout*` — dipasang sekali di root layout (z-40, di bawah widget chat z-[60])
+  - Nomor tunggal `WHATSAPP_NUMBER` dari `landing-data.ts` (paritas dengan `CONTACT.whatsapp` site.ts terverifikasi QA)
+- **Blok bundle "Sering Diambil Bersama — Paket Hemat 10%" di 500 halaman detail v1** (menuntaskan langkah 3 — sebelumnya hanya di 1.000 halaman v2/v3): 2 layanan pelengkap **lintas kategori** dipilih deterministik FNV-1a per kode (500/500 kombinasi unik, stabil antar build), daftar 3 layanan ber-harga dengan tautan internal, total kupon dicoret → harga bundle ×0,9 + chip hemat, CTA ganda: **WA "Ambil Paket Hemat 3 Layanan"** (pesan ter-prefill berisi 3 kode + total katalog) + **checkout "Ambil <kode> saja"**
+- **Microsoft Clarity env-gated** di `analytics.tsx` (langkah 4, kode siap): set `NEXT_PUBLIC_CLARITY_ID` (10 karakter alfanumerik) → snippet resmi clarity.ms aktif dengan `strategy=afterInteractive` (tidak menggeser LCP) — heatmap & session recording tanpa deploy ulang kode; GA4 kini koeksisten secara independen
+- **QA `scripts/verify-order-cta.ts`**: 6 seksi — determinisme & matematika bundle 500/500, marker blok bundle v1, aturan sembunyi floating WA + mount layout, paritas nomor WA, env-gating analitik — **PASS**
+
+### Changed
+- `layout.tsx`: mount `<FloatingWhatsApp />` setelah `<Toaster />` — sitewide, sekali pasang
+- `analytics.tsx`: refactor — GA4 & Clarity kini independen; tanpa keduanya komponen tetap `null` (nol script pihak ketiga, performa bersih)
+- `version.ts`: `APP_VERSION 1.11.0 "Sapa Langsung"`, `RELEASES` +1 entri (Task 27) — **nol URL publik baru → indeks 11.876 URL tetap**; `package.json` 1.11.0; `/api/version` `nextRelease → v1.12.0`
+- CHANGELOG: ladder dilengkapi baris 21–27 (v1.5.0–v1.11.0 yang sebelumnya tertinggal)
+
+### Verifikasi (definisi selesai ROADMAP-99)
+- `bun run lint` → **0 error, 0 warning** (1 temuan `react-hooks/set-state-in-effect` pada implementasi awal dihapus lewat refactor klik-saat-ini); `tsc --noEmit` → **178 error pre-existing** (baseline v1.10.0 tak berubah — nol error pada file sentuhan)
+- QA script `verify-order-cta.ts`: **PASS** — 500/500 bundle deterministik lintas kategori & hemat −10% valid · 500/500 kombinasi unik (tanpa kolapsi hash) · marker blok lengkap · aturan sembunyi `"/", /admin, /webmaster, /checkout` · paritas WA `6281269999910`
+- curl runtime: v1 `/jasa-pendirian-pt-lokal` **200** (floating WA + bundle + 2 CTA + checkout href) · v2 `/layanan/pendaftaran-nib-umkm-perorangan-pp-bu-001` **200** (WA + bundle) · v3 detail **200** (WA) · `/blog`, `/glosarium`, `/katalog` **200** (WA) · `/` **tanpa WA** ✓ · `/checkout` **tanpa WA** ✓
+- Verifikasi browser (agent-browser): snapshot v1 menampilkan link **"Chat WhatsApp — konsultasi perizinan gratis"** + label "Konsultasi WhatsApp", blok bundle ter-render (total Rp 16.760.000 → **Rp 15.084.000**, hemat Rp 1.676.000), konsol **bersih**, homepage count WA = **0**; bukti: `download/verifikasi-v1-*.png`
 
 ---
 
@@ -392,11 +423,18 @@ Rilis pertama dengan **identitas versi resmi**. Seluruh proyek kini punya nomor 
 
 <a id="ladder"></a>
 
-## 🪜 Tabel Lengkap 20 Rilis
+## 🪜 Tabel Lengkap 27 Rilis
 
 | # | Versi | Tanggal (WIB) | Tipe | Nama Rilis | Task WORKLOG | Status |
 |---|---|---|---|---|---|---|
-| 20 | **v1.4.0** ⭐ | **2026-10-22** | minor | **Version Master** | Task 20 | **🟢 AKTIF — versi berjalan** |
+| 27 | **v1.11.0** ⭐ | **2026-10-25** | minor | **Sapa Langsung** | Task 27 | **🟢 AKTIF — versi berjalan** |
+| 26 | v1.10.0 | 2026-10-25 | minor | Mesin Redaksi | Task 26 | ✅ Rilis |
+| 25 | v1.9.0 | 2026-10-25 | minor | Kamus Raja | Task 25 | ✅ Rilis |
+| 24 | v1.8.0 | 2026-10-25 | minor | Arena Banding | Task 24 | ✅ Rilis |
+| 23 | v1.7.0 | 2026-10-25 | minor | Konten Raja | Task 23 | ✅ Rilis |
+| 22 | v1.6.0 | 2026-10-25 | minor | Peta Nusantara | Task 22 | ✅ Rilis |
+| 21 | v1.5.0 | 2026-10-24 | minor | SEO Titan | Task 21 | ✅ Rilis |
+| 20 | v1.4.0 ⭐ | **2026-10-22** | minor | **Version Master** | Task 20 | ✅ Rilis |
 | 19 | v1.3.0 | 2026-10-21 | minor | Search Master | Task 19 | ✅ Rilis |
 | 18 | v1.2.0 | 2026-10-21 | minor | Blueprint 99 | Task 18 | ✅ Rilis |
 | 17 | v1.1.0 | 2026-10-21 | minor | Emerald Docs | Task 17 | ✅ Rilis |

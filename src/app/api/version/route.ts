@@ -47,7 +47,7 @@ export async function GET() {
       changelog: "/CHANGELOG.md",
       worklog: "/WORKLOG.md",
       roadmap: "/ROADMAP-99.md",
-      nextRelease: "v1.11.0 (Unreleased — antrean ROADMAP-99)",
+      nextRelease: "v1.12.0 (Unreleased — antrean ROADMAP-99)",
     },
     releases: {
       total: RELEASES.length,

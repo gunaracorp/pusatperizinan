@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { SeoJsonLd } from "@/components/landing/seo-jsonld";
 import { Analytics } from "@/components/landing/analytics";
+import { FloatingWhatsApp } from "@/components/landing/floating-whatsapp";
 import { MotionProvider } from "@/components/motion/motion-provider";
 import VitalsReporter from "@/components/seo/vitals-reporter";
 import { LanguageProvider } from "@/lib/i18n/language-provider";
@@ -196,6 +197,10 @@ export default function RootLayout({
             <Analytics />
             <VitalsReporter />
             <Toaster />
+            {/* ROADMAP-99 langkah 5: Floating WhatsApp CTA sitewide —
+                komponen menyembunyikan dirinya di /, /admin, /webmaster,
+                /checkout (lihat floating-whatsapp.tsx). */}
+            <FloatingWhatsApp />
           </LanguageProvider>
         </MotionProvider>
       </body>

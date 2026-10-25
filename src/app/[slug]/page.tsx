@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ShoppingCart, Users } from "lucide-react";
+import { ShoppingCart, Users, MessageCircle } from "lucide-react";
 import {
   LAYANAN_500,
   ALL_LAYANAN_SLUGS,
@@ -18,6 +18,7 @@ import {
   waTextOf,
   LAYANAN_KATEGORI,
   LAYANAN_STATS,
+  type Layanan500,
 } from "@/lib/layanan-500";
 import { SITE_URL, SITE_NAME, CONTACT } from "@/lib/site";
 import { langAlternates, stableLastmod, formatLastmodId } from "@/lib/seo";
@@ -71,6 +72,29 @@ export async function generateMetadata({
   };
 }
 
+/** FNV-1a — deterministik: bundle konsisten per kode (stabil antar build). */
+function hashU32(seed: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < seed.length; i++) {
+    h ^= seed.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+/** 2 layanan pelengkap lintas kategori — deterministik per kode.
+ *  ROADMAP-99 langkah 3: blok bundle "Sering Diambil Bersama" −10%
+ *  di halaman detail v1 (paritas dgn Katalog v2/v3). */
+function pickBundleV1(code: string, kategoriKode: string): Layanan500[] {
+  const pool = LAYANAN_500.filter((x) => x.kategori_kode !== kategoriKode);
+  if (pool.length === 0) return [];
+  const h = hashU32(code);
+  const i1 = h % pool.length;
+  let i2 = (i1 + 1 + ((h >>> 8) % Math.max(1, pool.length - 1))) % pool.length;
+  if (i2 === i1) i2 = (i1 + 1) % pool.length;
+  return [pool[i1], pool[i2]];
+}
+
 const ALUR = [
   {
     step: "1",
@@ -108,6 +132,17 @@ export default async function LayananDetailPage({
   const related = relatedOf(s, 6);
   const badge = nilaiBadge(s);
   const waHref = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(waTextOf(s))}`;
+
+  // BUNDLE (langkah 3) — 2 pelengkap lintas kategori + hemat 10% (deterministik)
+  const bundle = pickBundleV1(s.kode, s.kategori_kode);
+  const bundleTotal = bundle.reduce((acc, b) => acc + b.harga_diskon, s.harga_diskon);
+  const bundlePrice = Math.round(bundleTotal * 0.9);
+  const bundleHemat = bundleTotal - bundlePrice;
+  const bundleWa = encodeURIComponent(
+    `Halo ${SITE_NAME}, saya mau PAKET HEMAT bundle:\n1. ${s.nama} (${s.kode})\n${bundle
+      .map((b, i) => `${i + 2}. ${b.nama} (${b.kode})`)
+      .join("\n")}\nTotal katalog ${fmtIdr(bundleTotal)} — mohon harga bundle & invoice pembayaran.`
+  );
 
   const jsonLd = [
     {
@@ -357,6 +392,85 @@ export default async function LayananDetailPage({
               <Link href="/katalog" className="font-semibold text-emerald-700 hover:underline">semua →</Link>
             </p>
           )}
+        </section>
+      )}
+
+      {/* BUNDLE — Sering Diambil Bersama (ROADMAP-99 langkah 3): 3 layanan
+          lintas kategori dengan hemat 10%, deterministik per kode — CTA via
+          WhatsApp (invoice bundle) atau checkout tunggal layanan ini. */}
+      {bundle.length === 2 && (
+        <section className="mx-auto max-w-6xl px-4 pb-14" aria-labelledby="bundle">
+          <div className="rounded-3xl border border-emerald-200 bg-gradient-to-br from-emerald-50 to-white p-6 md:p-8">
+            <h2 id="bundle" className="text-2xl font-bold text-stone-900 md:text-3xl">
+              Sering Diambil Bersama — Paket Hemat 10%
+            </h2>
+            <p className="mt-2 max-w-2xl text-stone-600">
+              Klien {s.kategori} biasanya menyelesaikan 3 urusan ini sekaligus supaya
+              operasional langsung legal penuh.
+            </p>
+            <ul className="mt-6 space-y-2">
+              {[s, ...bundle].map((item, i) => {
+                const self = item.kode === s.kode;
+                return (
+                  <li
+                    key={item.kode}
+                    className="flex items-center justify-between gap-3 rounded-xl border border-stone-200 bg-white px-4 py-3"
+                  >
+                    <div className="min-w-0">
+                      <p className="text-[11px] font-bold text-emerald-700">
+                        {i + 1}. {item.kode}
+                        {self ? " — layanan ini" : ""}
+                      </p>
+                      {self ? (
+                        <p className="truncate text-sm font-semibold text-stone-900">{item.nama}</p>
+                      ) : (
+                        <Link
+                          href={`/${slugOf(item)}`}
+                          className="block w-full truncate text-sm font-semibold text-stone-900 hover:text-emerald-800 hover:underline"
+                        >
+                          {item.nama}
+                        </Link>
+                      )}
+                    </div>
+                    <p className="shrink-0 text-sm font-bold text-emerald-800">
+                      {fmtIdr(item.harga_diskon)}
+                    </p>
+                  </li>
+                );
+              })}
+            </ul>
+            <div className="mt-4 flex flex-wrap items-end justify-between gap-3 rounded-xl bg-emerald-600/10 px-4 py-3">
+              <div>
+                <p className="text-xs text-stone-500">
+                  Total bundle <span className="line-through">{fmtIdr(bundleTotal)}</span>
+                </p>
+                <p className="text-2xl font-extrabold text-emerald-800">{fmtIdr(bundlePrice)}</p>
+              </div>
+              <span className="rounded-lg bg-emerald-700 px-3 py-1.5 text-sm font-bold text-white">
+                Hemat {fmtIdr(bundleHemat)}
+              </span>
+            </div>
+            <div className="mt-4 flex flex-col gap-2 sm:flex-row">
+              <a
+                href={`https://wa.me/${CONTACT.whatsapp}?text=${bundleWa}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex min-h-11 flex-1 items-center justify-center gap-2 rounded-xl bg-emerald-700 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-emerald-600"
+              >
+                <MessageCircle className="h-4 w-4" aria-hidden /> Ambil Paket Hemat 3 Layanan
+              </a>
+              <Link
+                href={`/checkout?paket=${encodeURIComponent(s.kode)}`}
+                className="flex min-h-11 items-center justify-center gap-2 rounded-xl border border-stone-300 bg-white px-4 py-2.5 text-sm font-bold text-stone-800 transition hover:bg-stone-50"
+              >
+                <ShoppingCart className="h-4 w-4" aria-hidden /> Ambil {s.kode} saja
+              </Link>
+            </div>
+            <p className="mt-3 text-xs leading-relaxed text-stone-500">
+              * Harga bundle = total kupon 3 layanan dikurangi 10% — dikunci di penawaran
+              resmi sebelum pembayaran.
+            </p>
+          </div>
         </section>
       )}
 

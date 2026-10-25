@@ -160,3 +160,26 @@ Stage Summary:
 - Mesin konten kini ujung-ke-ujung: perencanaan (kalender 12 minggu otomatis) → penulisan (editor + skor SEO live) → publikasi (sitemap/RSS/IndexNow otomatis yang sudah ada) — mendukung langkah 36 (newsroom) di kemudian hari
 - Nol URL publik baru → indeks 11.876 URL aman; PLATFORM_STATS hanya prismaModels 12→13; bank topik business-real (tanpa angka trust/harga spesifik) sesuai seo-policy
 - ROADMAP-99 FASE 5: 35 ✅ 41 ✅ — sisa 36–40, 42–44 menunggu sesi berikutnya; langkah 1–2 (pembayaran produksi + submit sitemap GSC/Bing) tetap menunggu kredensial owner
+
+---
+Task ID: 27
+Agent: Z.ai Code (main agent — Master Polymath mode)
+Task: Eksekusi langkah ROADMAP-99 FASE 1 Quick Wins: menuntaskan langkah 3 (paritas bundle "Sering Diambil Bersama" −10% di detail v1) + langkah 5 (Floating WhatsApp CTA sitewide) + melengkapi kode langkah 4 (Microsoft Clarity env-gated) — rilis v1.11.0 "Sapa Langsung".
+
+Work Log:
+- Seleksi langkah: user minta "lanjutkan langkah selanjutnya"; survei Explore menyatakan CTA "Pesan Sekarang" SUDAH ada di semua detail v1/v2/v3, bundle −10% baru ada di v2/v3 (v1 hanya narasi), floating WA BELUM ada (hanya chat AI di homepage), Clarity belum ada → celah P0 paling bernilai yang bisa dieksekusi murni kode
+- **Komponen baru `src/components/landing/floating-whatsapp.tsx`** (langkah 5, client component): tombol WA bottom-right sitewide — ikon WA inline SVG (nol dependensi), ikon-saja di mobile → pil "Konsultasi WhatsApp" ≥sm, cincin ping compositor-only `motion-reduce:hidden` (WCAG), aria-label eksplisit, rel noopener noreferrer; URL kontekstual (menyertakan halaman aktif) dibangun SAAT KLIK → nol state/effect (bebas hydration mismatch; lint `react-hooks/set-state-in-effect` yang muncul pada implementasi useState+useEffect awal tereliminasi) + fallback href wa.me polos untuk no-JS; event GA4 `whatsapp_click` via trackEvent (no-op aman); sembunyi otomatis di `/` (bentrok chat AI RIZKI fixed bottom-5 right-5), `/admin*`, `/webmaster*`, `/checkout*`; nomor tunggal WHATSAPP_NUMBER dari landing-data.ts
+- **Mount di `src/app/layout.tsx`** setelah <Toaster /> — z-40 (di bawah chat widget z-[60])
+- **Blok bundle v1** di `src/app/[slug]/page.tsx` (menuntaskan langkah 3): hashU32 FNV-1a + pickBundleV1 (2 pelengkap LINTAS kategori, deterministik per kode — paritas pola v2), section "Sering Diambil Bersama — Paket Hemat 10%" antara Layanan Terkait & FAQ: daftar 3 layanan ber-harga (self + 2 tautan internal truncate block — pelajaran overflow mobile v1.7.0), total dicoret → ×0,9 + chip Hemat, CTA ganda WA (pesan ter-prefill 3 kode + total) + checkout "Ambil <kode> saja"
+- **`analytics.tsx` refactor** (langkah 4 kode siap): GA4 & Microsoft Clarity kini independen env-gated — NEXT_PUBLIC_CLARITY_ID (regex 10-12 alfanumerik) → snippet resmi clarity.ms afterInteractive (tidak menggeser LCP); tanpa keduanya → null (nol script pihak ketiga)
+- **QA `scripts/verify-order-cta.ts`**: 6 seksi PASS — 500/500 bundle deterministik lintas kategori & matematika −10% valid, 500/500 kombinasi unik (tanpa kolapsi hash), marker blok v1 lengkap, aturan sembunyi + mount layout, paritas WA site.ts === landing-data.ts (6281269999910), env-gating analitik
+- Verifikasi runtime curl: v1 /jasa-pendirian-pt-lokal 200 (floating WA + bundle + 2 CTA + checkout href), v2 /layanan/pendaftaran-nib-umkm-perorangan-pp-bu-001 200 (WA + bundle + ping + pill), v3 detail 200 (WA), /blog /glosarium /katalog 200 (WA), / TANPA WA, /checkout TANPA WA; dev.log bersih (server di-restart setsid — mati antar sesi)
+- Verifikasi browser (agent-browser): snapshot v1 menampilkan link "Chat WhatsApp — konsultasi perizinan gratis" + StaticText "Konsultasi WhatsApp", bundle ter-render (BU-PT-001 Rp 3.380.000 + LH-AM-002 Rp 10.000.000 + SK-AG-006 Rp 3.380.000 → total Rp 16.760.000 → Rp 15.084.000, hemat Rp 1.676.000), konsol bersih, homepage count 'a[aria-label^="Chat WhatsApp"]' = 0; bukti screenshot download/verifikasi-v1-sapa-langsung.png + verifikasi-v1-bundle.png
+- `bun run lint` 0 error 0 warning; `tsc --noEmit` 178 error pre-existing (baseline v1.10.0 tak berubah — nol error file sentuhan)
+- Versioning: version.ts (1.11.0 "Sapa Langsung" + RELEASES Task 27, indexedUrls 11.876 tetap), package.json 1.11.0, api/version nextRelease → v1.12.0, CHANGELOG.md entri 1.11.0 + badge (Total Rilis 27, Berikutnya v1.12.0) + ladder dilengkapi baris 21–27 yang tertinggal, ROADMAP-99 centang langkah 3 & 5
+
+Stage Summary:
+- Situs v1.11.0 "Sapa Langsung": jalur order FASE 1 kini paritas penuh — 1.500 halaman detail (500 v1 + 1.000 v2/v3) semuanya membawa blok bundle "Sering Diambil Bersama" −10%, dan satu tombol WhatsApp mengapung di seluruh halaman publik dengan konteks halaman otomatis
+- Saluran closing favorit pasar Indonesia (WA) kini selalu 1 klik jauhnya di halaman traffic SEO; klik terukur (whatsapp_click) begitu GA4 diaktifkan
+- Langkah 4 tinggal eksekusi akhir: pasang NEXT_PUBLIC_GA_ID + NEXT_PUBLIC_CLARITY_ID di env — nol deploy ulang kode
+- Nol URL publik baru → indeks 11.876 URL aman; ROADMAP-99 FASE 1: 3 ✅ 5 ✅ (4 kode-siap) — sisa P0: langkah 1–2 menunggu kredensial owner (checklist: docs/CHECKLIST-KREDENSIAL-LANGKAH-1-2.md), langkah 6–8 menyusul
