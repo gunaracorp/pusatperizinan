@@ -106,7 +106,11 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/logo-icon.png",
+    // v1.14.0: SVG favicon (perisai + monogram Z) jadi preferensi, PNG fallback
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/logo-icon.png", sizes: "512x512", type: "image/png" },
+    ],
     shortcut: "/logo-icon.png",
     apple: "/logo-icon.png",
   },

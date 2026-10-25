@@ -5,19 +5,19 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.13.0_Peta_Provinsi-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-13-0)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.14.0_Identitas_Visual-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-14-0)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-29_(0.1.0_%E2%86%92_1.13.0)-059669?style=flat-square)
-![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-39_ber_versi-059669?style=flat-square)
-![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.14.0_(Unreleased)-f59e0b?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-30_(0.1.0_%E2%86%92_1.14.0)-059669?style=flat-square)
+![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-40_ber_versi-059669?style=flat-square)
+![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.15.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.13.0 — "Peta Provinsi"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.14.0 — "Identitas Visual"`**
 
 <sub>Versi terlihat hidup di: footer setiap halaman (11.876 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
@@ -37,15 +37,15 @@
 | Sumber kebenaran | [`WORKLOG.md`](./WORKLOG.md) (rekam jejak 1:1) · `src/lib/version.ts` (data mesin) · `package.json` (runtime) |
 | Ritme | **1 task/permintaan user = 1 nomor versi baru** — fitur → `MINOR`, perbaikan → `PATCH`, perombakan arah produk → `MAJOR` |
 | Presisi tanggal | Era `0.x` (Sesi 1–2) direkonstruksi dari metadata file & jejak invoice (`INV-20261021`) → presisi bulan; era `1.x` → presisi hari (terverifikasi) |
-| Rilis berikutnya | **`v1.14.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
+| Rilis berikutnya | **`v1.15.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
 
-> 🔗 Navigasi cepat: **[Tabel Lengkap 29 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+> 🔗 Navigasi cepat: **[Tabel Lengkap 30 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
 
 ---
 
 <a id="unreleased"></a>
 
-## [Unreleased] — akan menjadi `v1.14.0`
+## [Unreleased] — akan menjadi `v1.15.0`
 
 > 📦 **Sisa langkah ROADMAP-99** tetap TERSIMPAN di [`ROADMAP-99.md`](./ROADMAP-99.md) — langkah **7**, 23, 24, 25, 26, 27, **3**, **5**, 33, 34, **35**, 41 kini DIEKSEKUSI (dicentang di roadmap); **langkah 4 kode lengkap** (GA4 + Clarity env-gated — menunggu ID produksi). Sisanya menunggu sesi berikutnya.
 
@@ -55,6 +55,28 @@
 - **Langkah 4 eksekusi akhir**: set `NEXT_PUBLIC_GA_ID` + `NEXT_PUBLIC_CLARITY_ID` di env → GA4 & Clarity aktif (kode v1.11.0 sudah siap)
 - Verifikasi token 6 mesin pencari via env → meta tag otomatis (lanjutan `v1.3.0`)
 - Re-ukur PSI mobile setelah deploy v1.5.0–v1.11.0 — target LCP < 4 s & TBT < 500 ms
+
+---
+
+<a id="v1-14-0"></a>
+
+## [1.14.0] — 2026-10-25 — 🎨 "Identitas Visual" (Task 30)
+
+Rilis branding: **logo utama baru PusatPerizinan.com** atas permintaan owner ("logo z") — **monogram Z dalam perisai emerald + wreath emas + bintang emas**, flat modern — menggantikan logo lama (monogram PP dalam wreath hijau) di seluruh situs.
+
+### Changed
+- **Aset logo ditukar penuh, nama file tetap** → nol perubahan kode komponen (14+ pemakaian otomatis ikut baru): `logo-icon.png` (512×512 varian warna), `logo-icon-white.png` (512×512, treatment dark-bg: perisai frost putih semi-transparan + Z/wreath/bintang putih solid), `logo.png` (800×800 lockup ikon + wordmark "PUSATPERIZINAN.COM" + tagline)
+- **`favicon.svg` & `logo.svg` digambar ulang konsisten** (perisai + Z + bintang emas, gradien emerald #10B981→#047857) — `logo.svg` yang sebelumnya sisa logo Z template kini menjadi logo resmi yang sama
+- **Favicon SVG jadi preferensi** di `layout.tsx` metadata (`icon: [{svg}, {png fallback}]` — apple & shortcut tetap PNG)
+
+### Added
+- **Master & QA visual**: 2 kandidat AI (shield-Z vs roundel-Z) di `download/logo/` + skrip `scripts/make-logo-assets.py` (flood-fill background removal → crop/pad square → varian warna/siluet/lockup) + composite dark-bg check + render cairosvg preview
+
+### Verifikasi
+- Sampling piksel `logo-icon-white.png`: Z/wreath/star alpha 255 (solid putih), perisai alpha 64 (frost), background transparan — tampil benar di footer gelap (composite preview PASS)
+- Nama file & dimensi identik dengan aset lama (512/512/800) → header, footer, favicon, manifest, 14+ halaman tanpa perubahan kode; nol URL halaman baru
+- `bun run lint` → 0 error 0 warning; `tsc --noEmit` → 178 error pre-existing (baseline)
+- `version.ts`: `APP_VERSION 1.14.0 "Identitas Visual"`, `RELEASES` +1 entri (Task 30); `package.json` 1.14.0; `/api/version` `nextRelease → v1.15.0`
 
 ---
 
@@ -466,11 +488,12 @@ Rilis pertama dengan **identitas versi resmi**. Seluruh proyek kini punya nomor 
 
 <a id="ladder"></a>
 
-## 🪜 Tabel Lengkap 29 Rilis
+## 🪜 Tabel Lengkap 30 Rilis
 
 | # | Versi | Tanggal (WIB) | Tipe | Nama Rilis | Task WORKLOG | Status |
 |---|---|---|---|---|---|---|
-| 29 | **v1.13.0** ⭐ | **2026-10-25** | minor | **Peta Provinsi** | Task 29 | **🟢 AKTIF — versi berjalan** |
+| 30 | **v1.14.0** ⭐ | **2026-10-25** | minor | **Identitas Visual** | Task 30 | **🟢 AKTIF — versi berjalan** |
+| 29 | v1.13.0 | 2026-10-25 | minor | Peta Provinsi | Task 29 | ✅ Rilis |
 | 28 | v1.12.0 | 2026-10-25 | minor | Identitas Resmi | Task 28 | ✅ Rilis |
 | 27 | v1.11.0 | 2026-10-25 | minor | Sapa Langsung | Task 27 | ✅ Rilis |
 | 26 | v1.10.0 | 2026-10-25 | minor | Mesin Redaksi | Task 26 | ✅ Rilis |

@@ -152,3 +152,18 @@ Work Log:
 Stage Summary:
 - 554 hub wilayah membawa schema Service + Offer (harga IDR nyata) + geo 38 provinsi utuh — lapisan local-SEO lengkap, nol URL baru (indeks 11.876 aman)
 - FASE 1: 3 ✅ 5 ✅ 7 ✅, 4 kode-siap; sisa: 1–2 (kredensial owner), 6, 8; FASE 4 (28–32), FASE 5 (36–40, 42–44)
+
+---
+Task ID: 30
+Agent: Z.ai Code (main agent)
+Task: Permintaan owner "logo z" — ganti logo utama situs dengan desain Z baru (konfirmasi quick-question: brand PusatPerizinan, emerald+emas flat modern) — rilis v1.14.0 "Identitas Visual"
+
+Work Log:
+- 2 kandidat AI (shield-Z vs roundel-Z); kandidat A dipilih (perisai+wreath emas+Z+bintang — setia DNA brand lama)
+- scripts/make-logo-assets.py: flood-fill bg removal → logo-icon.png 512 warna, logo-icon-white.png 512 (shield frost alpha 64 + Z/wreath/star putih solid — treatment dark-bg, siluet solid gagal karena wreath overlap shield), logo.png 800 lockup wordmark
+- favicon.svg + logo.svg digambar ulang konsisten (logo.svg sisa template Z kini logo resmi); layout.tsx favicon.svg jadi icon preferensi
+- Verifikasi: pixel sampling ✓, composite dark-bg ✓, cairosvg render ✓, dimensi identik (nol perubahan kode), lint 0/0, tsc 178 baseline
+- Rilis 5 titik: version.ts 1.14.0 + RELEASES Task 30, package.json, api/version v1.15.0, CHANGELOG + badge + ladder (fix row 28), WORKLOG.md + worklog.md
+
+Stage Summary:
+- v1.14.0 "Identitas Visual": monogram Z resmi di header/footer/favicon/manifest/lockup seluruh situs; master & preview di download/logo/; nol URL baru
