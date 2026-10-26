@@ -28,13 +28,13 @@ import { LANG_MAP } from "@/lib/i18n/languages";
 import type { LangCode } from "@/lib/i18n/types";
 import {
   FAQ_CATEGORIES,
-  FAQ_UI,
   faqUiT,
   faqCategoryLabelT,
   faqItemT,
   faqContentCoverage,
   type FaqCategory,
   type FaqItem,
+  type FaqUi,
 } from "@/lib/faq-data";
 import { CONTACT } from "@/lib/site";
 
@@ -73,7 +73,7 @@ export function FaqBrowser() {
 
   // --- String UI (dengan fallback lang → en → id) ----------------
   const t = useMemo(
-    () => (key: keyof typeof FAQ_UI) => faqUiT(lang, key),
+    () => (key: keyof FaqUi) => faqUiT(lang, key),
     [lang],
   );
 
