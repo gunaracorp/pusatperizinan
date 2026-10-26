@@ -108,7 +108,8 @@ async function main() {
 
       const flush = async () => {
         if (!batch.length) return;
-        inserted += Number(await target.createCount(batch));
+        await target.createAll(batch);
+        inserted += batch.length;
         totalImported += batch.length;
         batch = [];
       };
