@@ -25,6 +25,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import type { BlogArticle } from "@/lib/blog-content";
 import {
   BLOG_ARTICLES,
   getArticle,
