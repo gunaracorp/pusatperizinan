@@ -229,7 +229,7 @@ export async function getEditorialBoard(now: Date = new Date()): Promise<Editori
   const byWeek = new Map<string, EditorialSlotView[]>();
   for (const r of rows) {
     const list = byWeek.get(r.weekStart) ?? [];
-    list.push(slotToView(r, r.weekStart, r.postId ? postMap.get(r.postId) ?? null : null));
+    list.push(slotToView(r as Parameters<typeof slotToView>[0], r.weekStart, r.postId ? postMap.get(r.postId) ?? null : null));
     byWeek.set(r.weekStart, list);
   }
 
