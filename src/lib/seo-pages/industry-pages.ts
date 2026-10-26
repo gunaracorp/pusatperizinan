@@ -4,7 +4,7 @@
 // ============================================================
 
 import { CURRENT_YEAR } from "@/lib/site";
-import { BASE_SERVICES } from "@/lib/catalog/generators";
+import { BASE_SERVICES, parsePrice } from "@/lib/catalog/generators";
 import { INDUSTRIES } from "./industries";
 import type { SeoPage, SeoIndexPage, SeoBreadcrumb } from "./types";
 
@@ -35,7 +35,7 @@ function buildIndustryPage(industrySlug: string): SeoPage | null {
 
   const cheapest = services.reduce(
     (min, x) => {
-      const n = x.base.priceNumeric;
+      const n = parsePrice(x.base.price);
       return n > 0 && (min === 0 || n < min) ? n : min;
     },
     0
