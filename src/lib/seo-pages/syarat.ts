@@ -161,9 +161,9 @@ function buildSyaratPage(base: ServicePage): SeoPage | null {
       { name: b.h1, href: `/syarat/${b.slug}` },
     ],
     relatedLinks: [
-      { label: `Jasa ${b.h1} — halaman layanan lengkap`, href: `/layanan/${b.slug}` },
-      { label: `Biaya ${b.h1} — rincian & cara hemat`, href: `/biaya/${b.slug}` },
-      { label: `Kategori ${catMeta.label}`, href: `/layanan/kategori/${catMeta.slug}` },
+      { name: `Jasa ${b.h1} — halaman layanan lengkap`, href: `/layanan/${b.slug}` },
+      { name: `Biaya ${b.h1} — rincian & cara hemat`, href: `/biaya/${b.slug}` },
+      { name: `Kategori ${catMeta.label}`, href: `/layanan/kategori/${catMeta.slug}` },
     ],
   };
 }
