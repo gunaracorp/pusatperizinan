@@ -59,3 +59,7 @@ server.log
 
 # Prisma 7: client digenerate ke src/generated/prisma (jangan di-commit)
 /src/generated/
+
+# Local/production SQLite databases must never be committed
+/db/*.db
+/db/*.db-*
