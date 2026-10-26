@@ -313,7 +313,7 @@ export function AdminDashboard() {
               <SheetTitle className="mb-4 flex items-center gap-2 text-stone-100">
                 <ShieldCheck aria-hidden className="h-5 w-5 text-emerald-400" /> Mission Control
               </SheetTitle>
-              {navItems(() => {})}
+              {navItems()}
               <div className="mt-4 space-y-2 border-t border-stone-800 pt-4">
                 <Button variant="outline" size="sm" onClick={seed} disabled={seedBusy} className="w-full justify-start border-stone-700 text-stone-300">
                   <Database aria-hidden className="mr-2 h-4 w-4" /> Isi Data Demo
