@@ -167,9 +167,9 @@ function buildBiayaPage(base: ServicePage): SeoPage | null {
       { name: b.h1, href: `/biaya/${b.slug}` },
     ],
     relatedLinks: [
-      { label: `Jasa ${b.h1} — halaman layanan lengkap`, href: `/layanan/${b.slug}` },
-      { label: `Syarat ${b.h1} — checklist dokumen`, href: `/syarat/${b.slug}` },
-      { label: `Kategori ${catMeta.label}`, href: `/layanan/kategori/${catMeta.slug}` },
+      { name: `Jasa ${b.h1} — halaman layanan lengkap`, href: `/layanan/${b.slug}` },
+      { name: `Syarat ${b.h1} — checklist dokumen`, href: `/syarat/${b.slug}` },
+      { name: `Kategori ${catMeta.label}`, href: `/layanan/kategori/${catMeta.slug}` },
     ],
   };
 }
