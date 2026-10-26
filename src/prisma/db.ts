@@ -2,6 +2,7 @@
 // Every application database operation is served by this runtime.
 // "contract.json" and its generated type are emitted by "prisma contract emit".
 
+import "server-only";
 import "temporal-polyfill/global";
 import postgres from "@prisma/orm-postgres/runtime";
 import { contractFromJson } from "@prisma/orm-postgres/static";
