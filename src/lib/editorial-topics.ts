@@ -1,7 +1,8 @@
 // Browser-safe editorial topic data.
 // Keep database imports out of this module: it is used by a "use client" admin component.
 
-export type EditorialPillar = "PANDUAN" | "REGULASI" | "PAJAK";
+import type { EditorialPillar } from "./editorial-types";
+export type { EditorialPillar } from "./editorial-types";
 
 export interface TopicSeed {
   title: string;
