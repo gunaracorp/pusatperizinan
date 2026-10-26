@@ -6,19 +6,8 @@
 // application's established call contract while individual modules
 // are migrated. No Prisma ORM 7 runtime/client is imported here.
 
-import "temporal-polyfill/global";
-import postgres from "@prisma/orm-postgres/runtime";
-import { contractFromJson } from "@prisma/orm-postgres/static";
 import { all, and, not, or } from "@prisma/orm-postgres/orm-client";
-import type { Contract } from "../../generated/prisma8/contract";
-import contractJson from "../../generated/prisma8/contract.json" with { type: "json" };
-
-const DATABASE_URL = process.env.DATABASE_URL;
-const BUILD_FALLBACK_URL = "postgresql://build:build@127.0.0.1:5432/pusatperizinan_build";
-const runtime = postgres({
-  url: DATABASE_URL || BUILD_FALLBACK_URL,
-  contract: contractFromJson<Contract>(contractJson),
-});
+import { prisma8 as runtime } from "@/prisma/db";
 
 type AnyRecord = Record<string, any>;
 type AnyCollection = any;
