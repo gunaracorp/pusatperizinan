@@ -222,7 +222,7 @@ export function AdminDashboard() {
     }
   }
 
-  const navItems = (onClick: () => void) => (
+  const navItems = () => (
     <nav aria-label="Navigasi admin" className="flex-1 space-y-1">
       {NAV.map((item) => {
         const Icon = item.icon;
@@ -230,7 +230,7 @@ export function AdminDashboard() {
         return (
           <button
             key={item.id}
-            onClick={onClick && (() => go(item.id))}
+            onClick={() => go(item.id)}
             aria-current={active ? "page" : undefined}
             className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
               active
@@ -261,7 +261,7 @@ export function AdminDashboard() {
           </div>
         </div>
 
-        {navItems(() => {})}
+        {navItems()}
 
         <div className="mt-6 space-y-2 border-t border-stone-800/80 pt-4">
           <p className="px-1 text-[11px] font-semibold uppercase tracking-wider text-stone-600">Alat Data</p>
