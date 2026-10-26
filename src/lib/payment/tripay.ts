@@ -10,7 +10,7 @@
 // Bila valid WAJIB membalas HTTP 200 {"success": true}.
 // ============================================================
 
-import { createHmac } from "crypto";
+import { createHmac, timingSafeEqual } from "crypto";
 import { getTripayKeys } from "./config";
 
 export function tripayBase(isProduction: boolean): string {
@@ -105,7 +105,7 @@ export function verifyTripayWebhook(merchantRef: string, status: string, signatu
     .update(merchantRef + status)
     .digest("hex");
   try {
-    return crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(signature || ""));
+    return timingSafeEqual(Buffer.from(expected), Buffer.from(signature || ""));
   } catch {
     return false;
   }

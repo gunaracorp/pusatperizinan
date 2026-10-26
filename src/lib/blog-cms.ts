@@ -146,7 +146,7 @@ export function cmsPostToArticle(p: CmsPost): BlogArticle {
 /** Semua post CMS (untuk admin) — termasuk draft */
 export async function getAllCmsPosts(): Promise<CmsPost[]> {
   const rows = await db.post.findMany({ orderBy: { updatedAt: "desc" } });
-  return rows.map(rowToCmsPost);
+  return rows.map((row) => rowToCmsPost(row as PostRow));
 }
 
 /** Post CMS berstatus PUBLISHED (untuk blog publik & sitemap) */

@@ -127,15 +127,15 @@ function buildMatrixPage(industrySlug: string, serviceId: string): SeoPage | nul
 
   // Tautan silang: layanan induk, industri induk, halaman seindustri, seservis
   const related: SeoBreadcrumb[] = [
-    { label: `Halaman layanan ${b.h1}`, href: `/layanan/${serviceId}` },
-    { label: `Biaya ${b.h1}`, href: `/biaya/${serviceId}` },
-    { label: `Syarat ${b.h1}`, href: `/syarat/${serviceId}` },
-    { label: `Semua layanan untuk ${industry.name}`, href: `/industri/${industry.slug}` },
+    { name: `Halaman layanan ${b.h1}`, href: `/layanan/${serviceId}` },
+    { name: `Biaya ${b.h1}`, href: `/biaya/${serviceId}` },
+    { name: `Syarat ${b.h1}`, href: `/syarat/${serviceId}` },
+    { name: `Semua layanan untuk ${industry.name}`, href: `/industri/${industry.slug}` },
   ];
   const siblings = industry.services.filter((s) => s.id !== serviceId).slice(0, 2);
   for (const s of siblings) {
     const sb = BASE_MAP.get(s.id);
-    if (sb) related.push({ label: `${sb.h1} untuk ${industry.shortName}`, href: `/industri/${industry.slug}/${s.id}` });
+    if (sb) related.push({ name: `${sb.h1} untuk ${industry.shortName}`, href: `/industri/${industry.slug}/${s.id}` });
   }
 
   return {

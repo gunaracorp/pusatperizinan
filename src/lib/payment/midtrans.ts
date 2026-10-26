@@ -10,7 +10,7 @@
 //   signature_key = sha512(order_id + status_code + gross_amount + serverKey)
 // ============================================================
 
-import { createHash } from "crypto";
+import { createHash, timingSafeEqual } from "crypto";
 import { getMidtransKeys } from "./config";
 
 export function midtransBase(isProduction: boolean): string {
@@ -108,7 +108,7 @@ export function verifyMidtransSignature(payload: {
     .update(payload.order_id + payload.status_code + payload.gross_amount + serverKey)
     .digest("hex");
   try {
-    return crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(payload.signature_key || ""));
+    return timingSafeEqual(Buffer.from(expected), Buffer.from(payload.signature_key || ""));
   } catch {
     return false;
   }

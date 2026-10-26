@@ -73,7 +73,7 @@ export function FaqBrowser() {
 
   // --- String UI (dengan fallback lang → en → id) ----------------
   const t = useMemo(
-    () => (key: keyof typeof FAQ_UI) => faqUiT(lang, key),
+    () => (key: keyof typeof FAQ_UI.id) => faqUiT(lang, key),
     [lang],
   );
 

@@ -100,6 +100,7 @@ interface BaseServiceRecord {
   title: string;
   desc: string;
   price: string;
+  priceNumeric: number;
   duration: string;
   features: string[];
   long: string;
@@ -157,6 +158,7 @@ function buildBaseServices(): Map<string, BaseServiceRecord> {
       title: s.title,
       desc: s.desc,
       price: s.price,
+      priceNumeric: parsePrice(s.price),
       duration: s.duration,
       features: s.features,
       long,
@@ -179,6 +181,7 @@ function buildBaseServices(): Map<string, BaseServiceRecord> {
       title: s.title,
       desc: s.desc,
       price: s.price,
+      priceNumeric: parsePrice(s.price),
       duration: s.duration,
       features: s.features,
       long: d?.long ?? s.desc,
@@ -215,6 +218,7 @@ function buildBaseServices(): Map<string, BaseServiceRecord> {
       title: s.title,
       desc: s.desc,
       price: s.price,
+      priceNumeric: parsePrice(s.price),
       duration: s.duration,
       features: s.features,
       long: d?.long ?? s.desc,
@@ -1318,7 +1322,7 @@ export function getAnyPage(slugOrPath: string): ServicePage | undefined {
     if (parts.length === 2) {
       // ROADMAP-99 langkah 25: lookup ke seluruh 514 kab/kota, bukan majors saja
       const city = allCityNames(provIdx).find((c) => slugify(c) === parts[1]) ?? "";
-      return buildCityHubPage(provIdx, city);
+      return buildCityHubPage(provIdx, city) ?? undefined;
     }
   }
   return undefined;

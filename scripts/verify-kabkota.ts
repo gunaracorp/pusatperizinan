@@ -1,11 +1,5 @@
-// Verifikasi data kabkota: total, per provinsi, duplikat slug
-const ts = await Bun.file("/home/z/my-project/src/lib/kabkota-data.ts").text();
-// Ekstrak konten Record via eval sederhana: ganti export const jadi const
-const code = ts.replace("export const KABKOTA_PER_PROVINSI", "const KABKOTA_PER_PROVINSI");
-const mod = code + "\nexport { KABKOTA_PER_PROVINSI };\n";
-const tmp = "/home/z/my-project/scripts/_kabkota_check.ts";
-await Bun.write(tmp, mod);
-const { KABKOTA_PER_PROVINSI } = await import(tmp);
+// Verifikasi data kabkota tanpa path lokal atau runtime khusus Bun.
+import { KABKOTA_PER_PROVINSI } from "../src/lib/kabkota-data";
 
 const slugify = (t: string) =>
   t.toLowerCase().trim().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");

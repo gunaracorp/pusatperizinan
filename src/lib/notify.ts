@@ -83,7 +83,7 @@ const CACHE_MS = 10_000;
 async function loadSettingsRow(force = false): Promise<DbSettings | null> {
   if (!force && Date.now() - settingsCache.at < CACHE_MS) return settingsCache.row;
   const rows = await db.notificationSetting.findMany({ take: 1, orderBy: { updatedAt: "desc" } });
-  settingsCache = { at: Date.now(), row: rows[0] ?? null };
+  settingsCache = { at: Date.now(), row: (rows[0] as DbSettings | undefined) ?? null };
   return settingsCache.row;
 }
 
@@ -513,7 +513,7 @@ export async function detectTelegramChats(
     for (const upd of json.result ?? []) {
       const u = upd as {
         message?: { chat?: { id: number; title?: string; username?: string; first_name?: string; type?: string } };
-        channel_post?: { chat?: { id: number; title?: string; type?: string } };
+        channel_post?: { chat?: { id: number; title?: string; username?: string; first_name?: string; type?: string } };
       };
       const chat = u.message?.chat ?? u.channel_post?.chat;
       if (!chat) continue;

@@ -113,7 +113,7 @@ for (const c of KBLI_CATEGORY_PAGES) {
   rows.push({ url: `https://pusatperizinan.com/kbli/${c.slug}`, title: c.title ?? "", h1: "", metaDesc: c.metaDesc ?? "", slug: c.slug, source: "kbli-kategori" });
 }
 for (const j of JOBS) {
-  rows.push({ url: `https://pusatperizinan.com/lowongan-kerja/${j.slug}`, title: j.title ?? "", h1: "", metaDesc: j.desc ?? "", slug: j.slug, source: "jobs" });
+  rows.push({ url: `https://pusatperizinan.com/lowongan-kerja/${j.slug}`, title: j.title ?? "", h1: "", metaDesc: j.description.join(" "), slug: j.slug, source: "jobs" });
 }
 for (const c of COMPARISONS) {
   rows.push({ url: `https://pusatperizinan.com/bandingkan/${c.slug}`, title: c.title ?? "", h1: "", metaDesc: c.metaDesc ?? "", slug: c.slug, source: "comparisons" });
@@ -157,7 +157,16 @@ const tierByKind: Record<string, Record<QualityTier, number>> = {};
 const noindexList: PageRow[] = [];
 
 for (const p of ALL_SERVICE_PAGES) {
-  const d = classifyPage(p);
+  const d = classifyPage({
+    slug: p.slug,
+    kind: p.kind,
+    intro: p.intro,
+    longDesc: p.longDesc.join(" "),
+    faq: p.faq,
+    features: p.features,
+    requirements: p.requirements,
+    steps: p.steps,
+  });
   tierCount[d.tier]++;
   const kind = p.kind;
   tierByKind[kind] ??= { A: 0, B: 0, C: 0, D: 0, E: 0 };

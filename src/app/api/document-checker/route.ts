@@ -239,6 +239,7 @@ export async function POST(req: NextRequest) {
           : `Konteks dari user: ${contextLabel}. Periksa foto dokumen berikut sesuai format — konfirmasi atau koreksi jenis dokumennya.`;
 
       const completion = await zai.chat.completions.createVision({
+        model: process.env.ZAI_VISION_MODEL || "glm-4.6v",
         messages: [
           { role: "assistant", content: SYSTEM_PROMPT },
           {
