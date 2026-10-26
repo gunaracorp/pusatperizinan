@@ -19,7 +19,7 @@
 [![Tailwind CSS 4](https://img.shields.io/badge/Tailwind_CSS-4-38BDF8?style=for-the-badge&logo=tailwindcss&logoColor=white)](#3-tech-stack--teknologi)
 [![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-New_York_48_komponen-000000?style=for-the-badge&logo=shadcnui&logoColor=white)](#3-tech-stack--teknologi)
 [![Prisma 8 RC](https://img.shields.io/badge/Prisma-8_RC_%2B_PostgreSQL-2D3748?style=for-the-badge&logo=prisma&logoColor=white)](#9-database--14-model-prisma)
-[![Bun](https://img.shields.io/badge/Bun-runtime_(_dev_)-F9F1F1?style=for-the-badge&logo=bun&logoColor=black)](#4-quick-start--mulai-cepat)
+[![Node.js](https://img.shields.io/badge/Node.js-22.18%2B-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](#4-quick-start--mulai-cepat)
 [![Versi](https://img.shields.io/badge/Versi-v1.14.2_Fondasi_Baru-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](./CHANGELOG.md)
 
 ![Versioning](https://img.shields.io/badge/Versi-v1.14.2_%C2%B7_SemVer_2.0.0_%C2%B7_37_rilis-8B5CF6?style=flat-square&logo=semver&logoColor=white)
@@ -198,7 +198,7 @@ Plus global: `Header` (mega menu 5 grup), `Footer` (credit "Support system by PT
 | AI SDK | **z-ai-web-dev-sdk** | **WAJIB hanya di backend** (API routes) |
 | Payment SDK | Midtrans Snap · Tripay REST | Mode demo via `PAYMENT_DEMO_MODE` |
 | Analitik | **GA4 gtag.js** · Clarity (env-gated) · RUM Vitals | ID via `NEXT_PUBLIC_GA_ID` / fallback hardcode; helper `trackEvent()` |
-| Runtime | **Bun** (dev & tooling) | `bun run dev` di port **3000** |
+| Runtime | **Node.js 22.18+** + npm | `npm run dev` di port **3000** |
 | Gateway | **Caddy** (`:81`) | Routing `XTransformPort` → layanan internal |
 
 ---
@@ -207,7 +207,7 @@ Plus global: `Header` (mega menu 5 grup), `Footer` (credit "Support system by PT
 
 ```bash
 # 1. Install dependency
-bun install
+npm install --no-audit --no-fund
 
 # 2. Siapkan environment (daftar lengkap di §17)
 cat > .env <<'EOF'
@@ -223,7 +223,7 @@ npm run db:init
 npm run db:verify
 
 # 4. Jalankan dev server (OOM-safe — lihat §20)
-NODE_OPTIONS="--max-old-space-size=2560" bun run dev > dev.log 2>&1 &
+NODE_OPTIONS="--max-old-space-size=2560" npm run dev > dev.log 2>&1 &
 
 # 5. Buka
 #    Situs → http://localhost:3000
@@ -241,7 +241,7 @@ curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/sitemap.xml # 200 (
 curl -s http://localhost:3000/api/stats                                  # JSON statistik
 curl -s http://localhost:3000/ | grep -c "G-KMZRQJQXCB"                # ≥1 = tag GA4 live di HTML
 curl -s "http://localhost:3000/api/payment/service-resolve?code=PP-BU-001"  # resolver katalog
-bun run lint                                                             # 0 error
+npm run lint                                                             # 0 error
 tail -f dev.log                                                          # pantau runtime
 ```
 
@@ -329,8 +329,8 @@ flowchart LR
 
 | Mode | Trigger | Output | Dipakai untuk |
 |---|---|---|---|
-| **Dev** | `bun run dev` | Turbopack + HMR | Pengembangan sandbox (port 3000) |
-| **Standalone** | `bun run build` → `bun start` | `.next/standalone/server.js` | VPS / Passenger cPanel |
+| **Dev** | `npm run dev` | Turbopack + HMR | Pengembangan sandbox (port 3000) |
+| **Standalone** | `npm run build` → `npm run start` | `.next/standalone/server.js` | VPS / Passenger cPanel |
 | **Static Export** | `BUILD_STATIC=1` + `scripts/build-static.mjs` | Folder `out/` — HTML murni | **Shared hosting (cPanel)** |
 
 Poin arsitektur penting:
@@ -637,10 +637,10 @@ NEXT_PUBLIC_GA_ID=G-KMZRQJQXCB      # GA4 tetap aktif walau tanpa env
 
 | Perintah | Fungsi |
 |---|---|
-| `bun run dev` | Dev server Turbopack port 3000 (log tee ke `dev.log`) |
-| `bun run build` | Build standalone + salin `static` & `public` |
-| `bun start` | Production standalone |
-| `bun run lint` | ESLint (0 error wajib) |
+| `npm run dev` | Dev server Turbopack port 3000 (log tee ke `dev.log`) |
+| `npm run build` | Build standalone + salin `static` & `public` |
+| `npm run start` | Production standalone |
+| `npm run lint` | ESLint (0 error wajib) |
 | `npm run prisma8:emit` / `npm run db:init` / `npm run db:verify` | Contract and PostgreSQL schema lifecycle |
 
 | Script khusus | Fungsi |
@@ -657,7 +657,7 @@ NEXT_PUBLIC_GA_ID=G-KMZRQJQXCB      # GA4 tetap aktif walau tanpa env
 
 **Gate kualitas tiap perubahan:**
 
-1. `bun run lint` → 0 error
+1. `npm run lint` → 0 error
 2. `bunx tsc --noEmit` per file deliverable
 3. `dev.log` — nol error runtime
 4. **E2E agent-browser**: render + golden path (form → DB → admin), dropdown/breakpoint, i18n & RTL, mobile 390×844 tanpa horizontal scroll, console bersih, footer sticky alami
@@ -674,7 +674,7 @@ Insiden nyata yang pernah terjadi & solusi permanennya:
 | # | Gejala | Akar masalah | Solusi permanen |
 |---|---|---|---|
 | 1 | **Situs 500 SITEWIDE saat restart dingin** | Bentrok route-tree metadata sitemap (`[__metadata_id__]` vs `[id]`) + sisa `app/sitemap.ts` | Hapus `sitemap.ts`; index → `/api/sitemap-index`; rewrite di `next.config.ts` hanya non-export |
-| 2 | **Dev server mati mendadak (connection refused / hanya logo Z di preview)** | OOM atau proses mati antar sesi shell | Restart OOM-safe: `NODE_OPTIONS="--max-old-space-size=2560" bun run dev > dev.log 2>&1 &` |
+| 2 | **Dev server mati mendadak (connection refused / hanya logo Z di preview)** | OOM atau proses mati antar sesi shell | Restart OOM-safe: `NODE_OPTIONS="--max-old-space-size=2560" npm run dev > dev.log 2>&1 &` |
 | 3 | **Menu hilang di 1024–1280px** | `hidden xl:flex` vs hamburger `lg:hidden` (celah breakpoint) | Samakan: keduanya `xl:hidden` |
 | 4 | **Preferensi bahasa hilang tiap reload** | `LanguageProvider` menulis storage sebelum deteksi (race) | Flag `ready` — tulis hanya setelah deteksi selesai |
 | 5 | **Form lead 400 "Jenis usaha tidak valid"** (6 halaman) | Kontrak `businessType`/`package` tidak dikirim dari nilai resmi | Fix satu titik di `lead-form.tsx`: whitelist SECTORS/PACKAGES |
@@ -794,7 +794,7 @@ Di <code>src/app/layout.tsx</code> — gtag.js dirender langsung di <code>&lt;he
 2. **Larangan keras**: tidak hardcode `https://pusatperizinan.com` (pakai `SITE_URL`/`absUrl()`); tidak hardcode angka trust (pakai `TRUST_METRICS`); tidak mengirim harga dari client; tidak menyentuh sitasi regulasi dengan pola "freshness year".
 3. **Gaya kode**: TypeScript strict, ES modules, shadcn/ui dulu sebelum custom, `'use client'` seperlunya, animasi compositor-only.
 4. **Setelah selesai**: catat ke `WORKLOG.md` (format `Task ID / Agent / Task / Work Log / Stage Summary` + tag `🏷️ Rilis vX.Y.Z`) dan jalankan **checklist rilis**: `CHANGELOG.md` · `src/lib/version.ts` · `package.json` — footer, JSON-LD & `/api/version` mengikuti otomatis.
-5. `bun run lint` wajib 0 error.
+5. `npm run lint` wajib 0 error.
 
 ---
 
@@ -970,7 +970,7 @@ Global extras: `Header` (5-group mega menu), `Footer` ("Support system by PT Dig
 | AI SDK | **z-ai-web-dev-sdk** | **Backend-only** (API routes) |
 | Payment SDK | Midtrans Snap · Tripay REST | Demo mode via `PAYMENT_DEMO_MODE` |
 | Analytics | **GA4 gtag.js** · Clarity (env-gated) · RUM Vitals | ID via `NEXT_PUBLIC_GA_ID` / hardcoded fallback; `trackEvent()` helper |
-| Runtime | **Bun** (dev & tooling) | `bun run dev` on port **3000** |
+| Runtime | **Node.js 22.18+** + npm | `npm run dev` on port **3000** |
 | Gateway | **Caddy** (`:81`) | `XTransformPort` routing to internal services |
 
 ---
@@ -979,7 +979,7 @@ Global extras: `Header` (5-group mega menu), `Footer` ("Support system by PT Dig
 
 ```bash
 # 1. Install dependencies
-bun install
+npm install --no-audit --no-fund
 
 # 2. Set up environment (full list in §17)
 cat > .env <<'EOF'
@@ -996,7 +996,7 @@ npm run db:init
 npm run db:verify
 
 # 4. Run dev server (OOM-safe — see §20)
-NODE_OPTIONS="--max-old-space-size=2560" bun run dev > dev.log 2>&1 &
+NODE_OPTIONS="--max-old-space-size=2560" npm run dev > dev.log 2>&1 &
 
 # 5. Open
 #    Site  → http://localhost:3000
@@ -1014,7 +1014,7 @@ curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/sitemap.xml # 200 (
 curl -s http://localhost:3000/api/stats                                  # stats JSON
 curl -s http://localhost:3000/ | grep -c "G-KMZRQJQXCB"                # ≥1 = GA4 tag live in HTML
 curl -s "http://localhost:3000/api/payment/service-resolve?code=PP-BU-001"  # catalog resolver
-bun run lint                                                             # 0 errors
+npm run lint                                                             # 0 errors
 tail -f dev.log                                                          # watch runtime
 ```
 
@@ -1099,8 +1099,8 @@ flowchart LR
 
 | Mode | Trigger | Output | Used for |
 |---|---|---|---|
-| **Dev** | `bun run dev` | Turbopack + HMR | Sandbox development (port 3000) |
-| **Standalone** | `bun run build` → `bun start` | `.next/standalone/server.js` | VPS / cPanel Passenger |
+| **Dev** | `npm run dev` | Turbopack + HMR | Sandbox development (port 3000) |
+| **Standalone** | `npm run build` → `npm run start` | `.next/standalone/server.js` | VPS / cPanel Passenger |
 | **Static Export** | `BUILD_STATIC=1` + `scripts/build-static.mjs` | `out/` folder — pure HTML | **Shared hosting (cPanel)** |
 
 Key architecture points:
@@ -1392,10 +1392,10 @@ NEXT_PUBLIC_GA_ID=G-KMZRQJQXCB      # GA4 stays active even without env
 
 | Command | Purpose |
 |---|---|
-| `bun run dev` | Turbopack dev server on port 3000 (tee log to `dev.log`) |
-| `bun run build` | Standalone build + copy `static` & `public` |
-| `bun start` | Production standalone |
-| `bun run lint` | ESLint (must be 0 errors) |
+| `npm run dev` | Turbopack dev server on port 3000 (tee log to `dev.log`) |
+| `npm run build` | Standalone build + copy `static` & `public` |
+| `npm run start` | Production standalone |
+| `npm run lint` | ESLint (must be 0 errors) |
 | `npm run prisma8:emit` / `npm run db:init` / `npm run db:verify` | Contract and PostgreSQL schema lifecycle |
 
 | Custom script | Purpose |
@@ -1412,7 +1412,7 @@ NEXT_PUBLIC_GA_ID=G-KMZRQJQXCB      # GA4 stays active even without env
 
 **Quality gate for every change:**
 
-1. `bun run lint` → 0 errors
+1. `npm run lint` → 0 errors
 2. `bunx tsc --noEmit` per deliverable file
 3. `dev.log` — zero runtime errors
 4. **E2E via agent-browser**: render + golden path (form → DB → admin), dropdowns/breakpoints, i18n & RTL, mobile 390×844 without horizontal scroll, clean console, natural sticky footer
@@ -1429,7 +1429,7 @@ Real incidents that occurred & their permanent fixes:
 | # | Symptom | Root cause | Permanent fix |
 |---|---|---|---|
 | 1 | **Site-wide 500 on cold restart** | Sitemap metadata-route conflict (`[__metadata_id__]` vs `[id]`) + leftover `app/sitemap.ts` | Delete `sitemap.ts`; index → `/api/sitemap-index`; rewrite in `next.config.ts` non-export only |
-| 2 | **Dev server dies suddenly (connection refused / only Z logo in preview)** | OOM or process killed between shell sessions | OOM-safe restart: `NODE_OPTIONS="--max-old-space-size=2560" bun run dev > dev.log 2>&1 &` |
+| 2 | **Dev server dies suddenly (connection refused / only Z logo in preview)** | OOM or process killed between shell sessions | OOM-safe restart: `NODE_OPTIONS="--max-old-space-size=2560" npm run dev > dev.log 2>&1 &` |
 | 3 | **Menu missing at 1024–1280px** | `hidden xl:flex` vs hamburger `lg:hidden` (breakpoint gap) | Align both to `xl:hidden` |
 | 4 | **Language preference lost on reload** | `LanguageProvider` writes storage before detection (race) | `ready` flag — write only after detection completes |
 | 5 | **Lead form 400 "invalid business type"** (6 pages) | `businessType`/`package` contract not sent as official values | Single-point fix in `lead-form.tsx`: SECTORS/PACKAGES whitelist |
@@ -1549,7 +1549,7 @@ In <code>src/app/layout.tsx</code> — gtag.js is rendered directly in the <code
 2. **Hard prohibitions**: no hardcoding `https://pusatperizinan.com` (use `SITE_URL`/`absUrl()`); no hardcoding trust numbers (use `TRUST_METRICS`); no client-side prices; no touching regulation citations with "freshness year" patterns.
 3. **Code style**: strict TypeScript, ES modules, shadcn/ui before custom, `'use client'` sparingly, compositor-only animation.
 4. **When done**: log to `WORKLOG.md` (format `Task ID / Agent / Task / Work Log / Stage Summary` + tag `🏷️ Rilis vX.Y.Z`) and run the **release checklist**: `CHANGELOG.md` · `src/lib/version.ts` · `package.json` — footer, JSON-LD & `/api/version` follow automatically.
-5. `bun run lint` must be 0 errors.
+5. `npm run lint` must be 0 errors.
 
 ---
 
