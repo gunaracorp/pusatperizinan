@@ -10,7 +10,7 @@
 
 import type { LangCode, Translation } from "./types";
 
-export const TRANSLATIONS_D: Partial<Record<LangCode, Translation>> = {
+export const TRANSLATIONS_D: Partial<Record<LangCode, Partial<Translation>>> = {
   // ============================================================
   // RU — Russian (Русский)
   // ============================================================
