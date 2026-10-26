@@ -85,7 +85,8 @@
     "z-ai-web-dev-sdk": "^0.0.18",
     "zod": "^4.0.2",
     "zustand": "^5.0.6",
-    "@prisma/orm-sqlite": "8.0.0-rc.20"
+    "@prisma/orm-sqlite": "8.0.0-rc.20",
+    "temporal-polyfill": "^1.0.6"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
