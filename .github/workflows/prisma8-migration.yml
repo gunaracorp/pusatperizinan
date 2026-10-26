@@ -1,0 +1,38 @@
+name: Prisma 8 compatibility and production build
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches:
+      - fix/hostinger-turbopack-build-20261027
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      DATABASE_URL: file:./db/custom.db
+      ADMIN_PASSWORD: ci-only-not-a-production-secret
+      ADMIN_SECRET: ci-only-secret-0123456789abcdef0123456789abcdef
+      CRON_SECRET: ci-only-cron-secret-0123456789abcdef0123456789
+      PAYMENT_DEMO_MODE: "false"
+      FOLLOWUP_SWEEP_MINUTES: "0"
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js 22.18
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.18.0"
+      - name: Install dependencies and emit Prisma clients
+        run: npm install --no-audit --no-fund
+      - name: Confirm Prisma CLI versions
+        run: |
+          npx prisma --version
+          npx prisma7 --version
+      - name: Validate Prisma 8 contract emission
+        run: npm run prisma8:emit
+      - name: Run production build
+        run: npm run build
