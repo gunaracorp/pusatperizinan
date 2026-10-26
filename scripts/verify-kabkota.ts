@@ -1,14 +1,9 @@
-// Verifikasi data kabkota: total, per provinsi, duplikat slug
-const ts = await Bun.file("/home/z/my-project/src/lib/kabkota-data.ts").text();
-// Ekstrak konten Record via eval sederhana: ganti export const jadi const
-const code = ts.replace("export const KABKOTA_PER_PROVINSI", "const KABKOTA_PER_PROVINSI");
-const mod = code + "\nexport { KABKOTA_PER_PROVINSI };\n";
-const tmp = "/home/z/my-project/scripts/_kabkota_check.ts";
-await Bun.write(tmp, mod);
-const { KABKOTA_PER_PROVINSI } = await import(tmp);
+// Verifikasi data kabupaten/kota: jumlah, alias, dan duplikat slug.
+// Dijalankan lintas platform melalui tsx/Node.js (tanpa Bun atau path lokal khusus).
+import { KABKOTA_PER_PROVINSI } from "../src/lib/kabkota-data";
 
-const slugify = (t: string) =>
-  t.toLowerCase().trim().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+const slugify = (value: string): string =>
+  value.toLowerCase().trim().replace(/\\s+/g, "-").replace(/[^a-z0-9-]/g, "");
 
 const RESMI: Record<string, number> = {
   Aceh: 23, "Sumatera Utara": 33, "Sumatera Barat": 19, Riau: 12, Jambi: 11,
@@ -26,25 +21,39 @@ const RESMI: Record<string, number> = {
 
 let total = 0;
 let ok = true;
-const allSlugs = new Map<string, string>(); // provSlug/citySlug → name
-for (const [prov, list] of Object.entries(KABKOTA_PER_PROVINSI)) {
-  const resmi = RESMI[prov];
-  const extra = list.length - resmi; // +1 = alias yang dipertahankan (Luwuk/Sorong)
+const allSlugs = new Map<string, string>();
+const provinces = Object.entries(KABKOTA_PER_PROVINSI) as [string, readonly string[]][];
+
+for (const [province, list] of provinces) {
+  const resmi = RESMI[province];
+  if (resmi === undefined) {
+    console.error(`❌ Provinsi tidak terdaftar pada pembanding resmi: ${province}`);
+    ok = false;
+    continue;
+  }
+  const extra = list.length - resmi;
   if (extra < 0 || extra > 1) {
-    console.log(`❌ ${prov}: ${list.length} (resmi ${resmi}) — selisih ${extra}`);
+    console.error(`❌ ${province}: ${list.length} (resmi ${resmi}) — selisih ${extra}`);
     ok = false;
   }
-  // duplikat slug dalam provinsi
   const seen = new Set<string>();
-  for (const k of list) {
-    const s = slugify(k);
-    if (seen.has(s)) { console.log(`❌ DUP ${prov}: ${k}`); ok = false; }
-    seen.add(s);
-    const url = `${slugify(prov)}/${s}`;
-    if (allSlugs.has(url)) { console.log(`❌ DUP URL ${url}: ${allSlugs.get(url)} vs ${k}`); ok = false; }
-    allSlugs.set(url, k);
+  for (const city of list) {
+    const citySlug = slugify(city);
+    if (seen.has(citySlug)) {
+      console.error(`❌ DUP ${province}: ${city}`);
+      ok = false;
+    }
+    seen.add(citySlug);
+    const url = `${slugify(province)}/${citySlug}`;
+    if (allSlugs.has(url)) {
+      console.error(`❌ DUP URL ${url}: ${allSlugs.get(url)} vs ${city}`);
+      ok = false;
+    }
+    allSlugs.set(url, city);
   }
   total += list.length;
 }
-console.log(`\nTotal entri: ${total} (resmi 514 + ${total - 514} alias existing)`);
+
+console.log(`\\nTotal entri: ${total} (resmi 514 + ${total - 514} alias existing)`);
 console.log(ok ? "✅ Semua jumlah cocok & tidak ada duplikat slug" : "⚠️ Ada masalah di atas");
+if (!ok) process.exitCode = 1;
