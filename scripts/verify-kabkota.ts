@@ -3,7 +3,7 @@
 import { KABKOTA_PER_PROVINSI } from "../src/lib/kabkota-data";
 
 const slugify = (value: string): string =>
-  value.toLowerCase().trim().replace(/\\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+  value.toLowerCase().trim().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
 
 const RESMI: Record<string, number> = {
   Aceh: 23, "Sumatera Utara": 33, "Sumatera Barat": 19, Riau: 12, Jambi: 11,
