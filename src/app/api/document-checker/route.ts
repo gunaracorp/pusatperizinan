@@ -249,6 +249,7 @@ export async function POST(req: NextRequest) {
             ],
           },
         ],
+        model: "glm-4v-plus",
         thinking: { type: "disabled" },
       });
 
