@@ -188,7 +188,7 @@ function buildQuery(model: AnyCollection, options: AnyRecord = {}): AnyCollectio
     query = isEqualityFilter(options.where)
       ? query.where(normalizeInput(options.where))
       : query.where((fields: AnyRecord) => filterExpression(options.where, fields));
-    if (typeof query.take !== "function") {
+    if (typeof query.limit !== "function") {
       throw new Error(`Prisma ORM 8 where() did not return a chainable collection. Methods: ${availableMethods(query)}`);
     }
   }
@@ -203,17 +203,17 @@ function buildQuery(model: AnyCollection, options: AnyRecord = {}): AnyCollectio
       return accessor[direction === "asc" ? "asc" : "desc"]();
     });
     query = query.orderBy(orderCallbacks.length === 1 ? orderCallbacks[0] : orderCallbacks);
-    if (typeof query.take !== "function") {
+    if (typeof query.limit !== "function") {
       throw new Error(`Prisma ORM 8 orderBy() did not return a chainable collection. Methods: ${availableMethods(query)}`);
     }
   }
 
-  if (Number.isFinite(options.skip) && options.skip > 0) query = query.skip(options.skip);
+  if (Number.isFinite(options.skip) && options.skip > 0) query = query.offset(options.skip);
   if (Number.isFinite(options.take) && options.take >= 0) {
-    if (typeof query.take !== "function") {
-      throw new Error(`Prisma ORM 8 collection.take() unavailable before pagination. Methods: ${availableMethods(query)}`);
+    if (typeof query.limit !== "function") {
+      throw new Error(`Prisma ORM 8 collection.limit() unavailable before pagination. Methods: ${availableMethods(query)}`);
     }
-    query = query.take(options.take);
+    query = query.limit(options.take);
   }
 
   // Keep projections/includes as the final collection refinements. This makes
@@ -241,6 +241,21 @@ function applyDistinct(rows: AnyRecord[], distinct?: string[]): AnyRecord[] {
     seen.add(key);
     return true;
   });
+}
+
+function extractMutationCount(result: any): number {
+  if (typeof result === "number") return result;
+  if (typeof result?.count === "number") return result.count;
+  if (typeof result?.affectedRows === "number") return result.affectedRows;
+  if (typeof result?.rowsAffected === "number") return result.rowsAffected;
+  if (Array.isArray(result)) {
+    const number = result.find((item) => typeof item === "number");
+    if (typeof number === "number") return number;
+    const countObject = result.find((item) => item && typeof item.count === "number");
+    if (countObject) return countObject.count;
+  }
+  if (Array.isArray(result?.rows)) return result.rows.length;
+  throw new Error("Prisma ORM 8 mutation count response shape is not recognized.");
 }
 
 function rowCountResult(count: number) {
@@ -279,8 +294,8 @@ function makeDelegate(name: ModelName) {
       ensureDatabaseConfigured();
       const rows = Array.isArray(options.data) ? options.data : [];
       if (!rows.length) return rowCountResult(0);
-      const count = await collection().createCount(rows.map(normalizeInput));
-      return rowCountResult(Number(count));
+      await collection().createAll(rows.map(normalizeInput));
+      return rowCountResult(rows.length);
     },
     async update(options: AnyRecord) {
       ensureDatabaseConfigured();
@@ -292,9 +307,9 @@ function makeDelegate(name: ModelName) {
     },
     async updateMany(options: AnyRecord) {
       ensureDatabaseConfigured();
-      const count = await collection().where((fields: AnyRecord) => filterExpression(options.where ?? {}, fields))
-        .updateCount(normalizeInput(options.data ?? {}));
-      return rowCountResult(Number(count));
+      const result = await collection().where((fields: AnyRecord) => filterExpression(options.where ?? {}, fields))
+        .updateAndCount(normalizeInput(options.data ?? {}));
+      return rowCountResult(extractMutationCount(result));
     },
     async upsert(options: AnyRecord) {
       ensureDatabaseConfigured();
@@ -318,8 +333,8 @@ function makeDelegate(name: ModelName) {
     },
     async deleteMany(options: AnyRecord) {
       ensureDatabaseConfigured();
-      const count = await collection().where((fields: AnyRecord) => filterExpression(options.where ?? {}, fields)).deleteCount();
-      return rowCountResult(Number(count));
+      const result = await collection().where((fields: AnyRecord) => filterExpression(options.where ?? {}, fields)).deleteAndCount();
+      return rowCountResult(extractMutationCount(result));
     },
     async aggregate(options: AnyRecord = {}) {
       ensureDatabaseConfigured();
