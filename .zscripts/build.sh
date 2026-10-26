@@ -140,10 +140,8 @@ fi
 PROJECT_DIR="$NEXTJS_PROJECT_DIR" BUILD_DIR="$BUILD_DIR" \
     bash "$SCRIPT_DIR/python-runtime-build.sh"
 
-# 有 Preview 数据库时复制现有数据；没有时直接在部署产物中初始化空库。
-# 模板源码不携带 db/custom.db，不能依赖 dev.sh 必须在 Deploy 前成功运行过。
-PROJECT_DIR="$NEXTJS_PROJECT_DIR" BUILD_DIR="$BUILD_DIR" \
-    bash "$SCRIPT_DIR/database-runtime-build.sh"
+# Prisma ORM 8 使用外部 PostgreSQL；绝不把 SQLite/生产数据复制进构建产物。
+echo "🗄️  Prisma ORM 8: 数据库为外部 PostgreSQL，构建包不携带数据库文件。"
 
 # 复制 Caddyfile（如果存在）
 if [ -f "Caddyfile" ]; then
