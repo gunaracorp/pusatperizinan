@@ -38,7 +38,7 @@ function ensureDatabaseConfigured(): void {
 }
 
 function normalizeInput(value: any): any {
-  if (value instanceof Date) return value.toISOString();
+  if (value instanceof Date) return value;
   if (Array.isArray(value)) return value.map(normalizeInput);
   if (value && typeof value === "object") {
     const out: AnyRecord = {};
@@ -159,10 +159,25 @@ function filterExpression(filter: AnyRecord, fields: AnyRecord): any {
   return clauses.length === 1 ? clauses[0] : and(...clauses);
 }
 
+function isEqualityFilter(filter: AnyRecord): boolean {
+  if (!filter || typeof filter !== "object" || Array.isArray(filter)) return false;
+  for (const [key, value] of Object.entries(filter)) {
+    if (["OR", "AND", "NOT"].includes(key)) return false;
+    if (value === undefined) continue;
+    if (value === null || value instanceof Date || ["string", "number", "boolean"].includes(typeof value)) continue;
+    return false;
+  }
+  return true;
+}
+
 function buildQuery(model: AnyCollection, options: AnyRecord = {}): AnyCollection {
   let query = model;
   if (options.where && Object.keys(options.where).length) {
-    query = query.where((fields: AnyRecord) => filterExpression(options.where, fields));
+    // Prisma 8's object filter is both simpler and safer for equality-only
+    // predicates. Use expression callbacks only for the Prisma 7 operators.
+    query = isEqualityFilter(options.where)
+      ? query.where(normalizeInput(options.where))
+      : query.where((fields: AnyRecord) => filterExpression(options.where, fields));
   }
 
   if (options.orderBy) {
