@@ -18,7 +18,7 @@
 [![React 19](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](#3-tech-stack--teknologi)
 [![Tailwind CSS 4](https://img.shields.io/badge/Tailwind_CSS-4-38BDF8?style=for-the-badge&logo=tailwindcss&logoColor=white)](#3-tech-stack--teknologi)
 [![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-New_York_48_komponen-000000?style=for-the-badge&logo=shadcnui&logoColor=white)](#3-tech-stack--teknologi)
-[![Prisma 7](https://img.shields.io/badge/Prisma-7.10.1_%2B_SQLite-2D3748?style=for-the-badge&logo=prisma&logoColor=white)](#9-database--14-model-prisma)
+[![Prisma 8 RC](https://img.shields.io/badge/Prisma-8_RC_%2B_PostgreSQL-2D3748?style=for-the-badge&logo=prisma&logoColor=white)](#9-database--14-model-prisma)
 [![Bun](https://img.shields.io/badge/Bun-runtime_(_dev_)-F9F1F1?style=for-the-badge&logo=bun&logoColor=black)](#4-quick-start--mulai-cepat)
 [![Versi](https://img.shields.io/badge/Versi-v1.14.2_Fondasi_Baru-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](./CHANGELOG.md)
 
@@ -49,6 +49,8 @@
 # 🇮🇩 — Bahasa Indonesia
 
 > 📌 **Dokumen ini bilingual & penuh navigasi.** Klik daftar isi mana pun untuk melompat. Sumber kebenaran kode: `src/lib/site.ts` (NAP, trust metrics) & `src/lib/pricing.ts` (harga). Log pengembangan 100% transparan & **ber-versi SemVer**: [`WORKLOG.md`](./WORKLOG.md) · riwayat rilis: [`CHANGELOG.md`](./CHANGELOG.md) · **Versi saat ini: `v1.14.2 "Fondasi Baru"` (2026-10-27)** — cek live: `GET /api/version`.
+
+> **Production database architecture update (Prisma ORM 8):** the active migration branch uses the Prisma 8 contract in `src/prisma/contract.prisma` and PostgreSQL through `@prisma/orm-postgres`. The legacy SQLite file is only a private one-time import source, not the production database. See [the Hostinger + Prisma 8 deployment guide](docs/HOSTINGER-NODEJS-DEPLOY.md) and [migration status](docs/PRISMA8-MIGRATION-STATUS.md). Prisma 8 is currently a release candidate; the production switch requires a verified database import and passing CI.
 
 ## 📑 Daftar Isi (ID)
 
@@ -190,7 +192,7 @@ Plus global: `Header` (mega menu 5 grup), `Footer` (credit "Support system by PT
 | Bahasa | **TypeScript 5** (strict) | Path alias `@/*` → `src/*` |
 | UI | **React 19** + **Tailwind CSS 4** + **shadcn/ui** (New York) | 48 komponen UI di `src/components/ui`; ikon **Lucide** |
 | Animasi | **framer-motion 12** + CSS compositor-only | `MotionProvider` global (`reducedMotion="user"`) |
-| Database | **Prisma 7.10.1** + **SQLite** (`db/custom.db`) | `prisma db push` alur utama |
+| Database | **Prisma ORM 8 RC** + **PostgreSQL** (`DATABASE_URL`) | Contract-driven, verified schema; see `docs/PRISMA8-MIGRATION-STATUS.md` |
 | State | Zustand (client) · TanStack Query (server state) | Terpasang, dipakai selektif |
 | Form | react-hook-form + zod 4 | Validasi dua sisi |
 | AI SDK | **z-ai-web-dev-sdk** | **WAJIB hanya di backend** (API routes) |
@@ -209,15 +211,16 @@ bun install
 
 # 2. Siapkan environment (daftar lengkap di §17)
 cat > .env <<'EOF'
-DATABASE_URL=file:./db/custom.db
+DATABASE_URL=postgresql://USER:PASSWORD@HOST:5432/DATABASE?sslmode=require
 ADMIN_PASSWORD=<password-admin-anda>
 ADMIN_SECRET=<secret-acak-min-32-karakter>
 PAYMENT_DEMO_MODE=true
 NEXT_PUBLIC_GA_ID=G-KMZRQJQXCB   # opsional — GA4 aktif juga tanpa env (fallback hardcode)
 EOF
 
-# 3. Push schema ke database
-bun run db:push
+# 3. Initialize skema ke database PostgreSQL BARU yang masih kosong (gunakan secret DATABASE_URL yang benar)
+npm run db:init
+npm run db:verify
 
 # 4. Jalankan dev server (OOM-safe — lihat §20)
 NODE_OPTIONS="--max-old-space-size=2560" bun run dev > dev.log 2>&1 &
@@ -285,8 +288,9 @@ pusatperizinan/
 │   │   ├── payment/ · seo/ (seo.ts, sitemap-sections.ts) · geo.ts
 │   │   └── db.ts · admin-auth.ts · notify.ts · kbli-*.ts · …
 │   └── hooks/                      # use-toast, use-mobile
-├── prisma/schema.prisma            # 14 model (§9)
-├── db/custom.db                    # SQLite (seeded)
+├── src/prisma/contract.prisma      # 14 model contract Prisma ORM 8
+├── generated/prisma8/              # contract JSON/types, emitted at install/build
+├── scripts/migrate-sqlite-to-postgres.mjs # one-time private source-data import
 ├── public/
 │   ├── kantor/                     # 5 foto kantor resmi (sharp q82)
 │   ├── download/                   # ★ Artefak unduhan (pack + pack-info.json)
@@ -314,7 +318,7 @@ pusatperizinan/
 flowchart LR
     A["🧑‍💼 Pengunjung<br/>Landing · Tool AI · Katalog · Checkout"] --> B["⚡ Next.js API Routes<br/>/api/leads · /api/chat · /api/payment/* · /api/admin/*"]
     B --> E["🤖 z-ai-web-dev-sdk<br/>LLM · Vision (server-only)"]
-    B --> F[("🗄️ Prisma 7<br/>SQLite custom.db")]
+    B --> F[("🗄️ Prisma 8<br/>PostgreSQL")]
     F --> G["📣 Telegram Bot<br/>Fonnte / Wablas"]
     C["🛒 Midtrans / Tripay"] --> B
     F --> H["📈 Mission Control<br/>/admin (HMAC)"]
@@ -450,9 +454,9 @@ erDiagram
 | 13 | `EditorialSlot` | Penjadwalan redaksi konten (Mesin Redaksi, v1.10.0) |
 | 14 | `FollowUpLog` | Riwayat follow-up otomatis lead (24/48/72 jam, lane admin/lead — v1.14.0) |
 
-> ⚙️ Field kompleks disimpan sebagai **string JSON** (primitif SQLite tidak mendukung list) — di-parse saat render.
+> ⚙️ Field kompleks tertentu tetap disimpan sebagai **string JSON** sesuai kontrak aplikasi; aplikasi mengurai JSON saat render.
 
-Perintah: `bun run db:push` · `db:generate` · `db:migrate` · `db:reset`
+Perintah Prisma 8: `npm run prisma8:emit` · `npm run db:init` (DB baru) · `npm run db:verify` · `npm run db:plan` · `npm run db:backup` · `npm run db:import-sqlite`
 
 ---
 
@@ -595,7 +599,7 @@ Di **1.000 halaman detail v2/v3**: 2 layanan pelengkap lintas kategori dipilih *
 
 ```bash
 # ── Wajib ────────────────────────────────────────────────
-DATABASE_URL=file:./db/custom.db     # SQLite
+DATABASE_URL=postgresql://USER:PASSWORD@HOST:5432/DATABASE?sslmode=require     # SQLite
 
 # ── Admin Mission Control ────────────────────────────────
 ADMIN_PASSWORD=<password-anda>       # fallback kode: admin2026 (UBAH di produksi!)
@@ -636,7 +640,7 @@ NEXT_PUBLIC_GA_ID=G-KMZRQJQXCB      # GA4 tetap aktif walau tanpa env
 | `bun run build` | Build standalone + salin `static` & `public` |
 | `bun start` | Production standalone |
 | `bun run lint` | ESLint (0 error wajib) |
-| `bun run db:push/generate/migrate/reset` | Siklus hidup database |
+| `npm run prisma8:emit` / `npm run db:init` / `npm run db:verify` | Contract and PostgreSQL schema lifecycle |
 
 | Script khusus | Fungsi |
 |---|---|
@@ -711,7 +715,7 @@ Log penuh & transparan: [`WORKLOG.md`](./WORKLOG.md) — **34 entri terverifikas
 | **35** | 🛡️ **Jaring Pengaman** | Backup DB harian teruji-restore + Sentry env-gated server+client (v1.13.5) |
 | **36** | 🏃 **Kejar Order** | Follow-up otomatis lead 24/48/72 jam + lane admin/lead + panel Mission Control (v1.14.0) |
 | **37** | 🫀 **Detak Jantung** | Sweep follow-up berdenyut sendiri dari dalam server tiap 15 menit — tanpa cron eksternal (v1.14.1) |
-| **38** | 🧱 **Fondasi Baru** | Upgrade ORM Prisma 6 → 7.10.1: generator `prisma-client` + driver adapter better-sqlite3 + `prisma.config.ts`; mesin follow-up QA 23/23 PASS (v1.14.2) |
+| **38** | 🧱 **Fondasi Baru** | Historical release: ORM Prisma 6 → 7.10.1 + SQLite. Replaced by Prisma ORM 8/PostgreSQL migration branch documented in `docs/PRISMA8-MIGRATION-STATUS.md`. |
 
 ---
 
@@ -959,7 +963,7 @@ Global extras: `Header` (5-group mega menu), `Footer` ("Support system by PT Dig
 | Language | **TypeScript 5** (strict) | Path alias `@/*` → `src/*` |
 | UI | **React 19** + **Tailwind CSS 4** + **shadcn/ui** (New York) | 48 UI components in `src/components/ui`; **Lucide** icons |
 | Animation | **framer-motion 12** + compositor-only CSS | Global `MotionProvider` (`reducedMotion="user"`) |
-| Database | **Prisma 7.10.1** + **SQLite** (`db/custom.db`) | `prisma db push` as main flow |
+| Database | **Prisma ORM 8 RC** + **PostgreSQL** (`DATABASE_URL`) | Contract-driven, verified schema; see `docs/PRISMA8-MIGRATION-STATUS.md` |
 | State | Zustand (client) · TanStack Query (server state) | Installed, used selectively |
 | Forms | react-hook-form + zod 4 | Two-sided validation |
 | AI SDK | **z-ai-web-dev-sdk** | **Backend-only** (API routes) |
@@ -978,7 +982,7 @@ bun install
 
 # 2. Set up environment (full list in §17)
 cat > .env <<'EOF'
-DATABASE_URL=file:./db/custom.db
+DATABASE_URL=postgresql://USER:PASSWORD@HOST:5432/DATABASE?sslmode=require
 ADMIN_PASSWORD=<your-admin-password>
 ADMIN_SECRET=<random-32-char-secret>
 PAYMENT_DEMO_MODE=true
@@ -1081,7 +1085,7 @@ pusatperizinan/
 flowchart LR
     A["🧑‍💼 Visitor<br/>Landing · AI Tools · Catalog · Checkout"] --> B["⚡ Next.js API Routes<br/>/api/leads · /api/chat · /api/payment/* · /api/admin/*"]
     B --> E["🤖 z-ai-web-dev-sdk<br/>LLM · Vision (server-only)"]
-    B --> F[("🗄️ Prisma 7<br/>SQLite custom.db")]
+    B --> F[("🗄️ Prisma 8<br/>PostgreSQL")]
     F --> G["📣 Telegram Bot<br/>Fonnte / Wablas"]
     C["🛒 Midtrans / Tripay"] --> B
     F --> H["📈 Mission Control<br/>/admin (HMAC)"]
@@ -1209,7 +1213,7 @@ All endpoints live in `src/app/api/**/route.ts`. AI endpoints are **server-side 
 
 > ⚙️ Complex fields are stored as **JSON strings** (SQLite primitives don't support lists) — parsed at render time.
 
-Commands: `bun run db:push` · `db:generate` · `db:migrate` · `db:reset`
+Prisma 8 commands: `npm run prisma8:emit` · `npm run db:init` (new DB) · `npm run db:verify` · `npm run db:plan` · `npm run db:backup` · `npm run db:import-sqlite`
 
 ---
 
@@ -1351,7 +1355,7 @@ On **1,000 v2/v3 detail pages**: 2 cross-category complements chosen **determini
 
 ```bash
 # ── Required ─────────────────────────────────────────────
-DATABASE_URL=file:./db/custom.db     # SQLite
+DATABASE_URL=postgresql://USER:PASSWORD@HOST:5432/DATABASE?sslmode=require     # SQLite
 
 # ── Admin Mission Control ────────────────────────────────
 ADMIN_PASSWORD=<your-password>       # code fallback: admin2026 (CHANGE in production!)
@@ -1388,7 +1392,7 @@ NEXT_PUBLIC_GA_ID=G-KMZRQJQXCB      # GA4 stays active even without env
 | `bun run build` | Standalone build + copy `static` & `public` |
 | `bun start` | Production standalone |
 | `bun run lint` | ESLint (must be 0 errors) |
-| `bun run db:push/generate/migrate/reset` | Database lifecycle |
+| `npm run prisma8:emit` / `npm run db:init` / `npm run db:verify` | Contract and PostgreSQL schema lifecycle |
 
 | Custom script | Purpose |
 |---|---|
@@ -1463,7 +1467,7 @@ Full transparent log: [`WORKLOG.md`](./WORKLOG.md) — **34 verified entries, ev
 | **35** | 🛡️ **Jaring Pengaman** | Tested daily DB backup + env-gated Sentry server+client (v1.13.5) |
 | **36** | 🏃 **Kejar Order** | Automated 24/48/72h lead follow-up + admin/lead lanes + Mission Control panel (v1.14.0) |
 | **37** | 🫀 **Heartbeat** | In-server automated follow-up sweep every 15 min — no external cron needed (v1.14.1) |
-| **38** | 🧱 **New Foundation** | ORM upgrade Prisma 6 → 7.10.1: `prisma-client` generator + better-sqlite3 driver adapter + `prisma.config.ts`; follow-up engine QA 23/23 PASS (v1.14.2) |
+| **38** | 🧱 **New Foundation** | Historical release: ORM Prisma 6 → 7.10.1 + SQLite. Replaced by the Prisma ORM 8/PostgreSQL migration documented in `docs/PRISMA8-MIGRATION-STATUS.md`. |
 
 ---
 
