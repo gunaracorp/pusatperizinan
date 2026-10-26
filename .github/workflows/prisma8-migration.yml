@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
-      DATABASE_URL: file:./db/custom.db
+      DATABASE_URL: postgresql://build:build@127.0.0.1:5432/pusatperizinan_build
       ADMIN_PASSWORD: ci-only-not-a-production-secret
       ADMIN_SECRET: ci-only-secret-0123456789abcdef0123456789abcdef
       CRON_SECRET: ci-only-cron-secret-0123456789abcdef0123456789
