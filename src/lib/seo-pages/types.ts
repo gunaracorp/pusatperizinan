@@ -20,6 +20,12 @@ export interface SeoBreadcrumb {
   href: string;
 }
 
+/** Link internal berlabel untuk related-links; berbeda dari breadcrumb. */
+export interface SeoInternalLink {
+  label: string;
+  href: string;
+}
+
 export type SeoPageKind = "biaya" | "syarat" | "industri" | "svc-industry";
 
 export interface SeoPage {
@@ -39,7 +45,7 @@ export interface SeoPage {
   keywords: string[];
   breadcrumbs: SeoBreadcrumb[];
   /** tautan internal terstruktur (crawl depth) */
-  relatedLinks: SeoBreadcrumb[];
+  relatedLinks: SeoInternalLink[];
 }
 
 /** Halaman daftar (hub) untuk tiap famili */
