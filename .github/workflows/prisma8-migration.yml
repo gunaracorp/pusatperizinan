@@ -51,7 +51,7 @@ jobs:
         run: npm run db:init
       - name: Verify the Prisma 8 database contract
         run: npm run db:verify
-      - name: Exercise CRUD and query compatibility across all 14 models
-        run: npm run db:smoke
       - name: Run production build
         run: npm run build
+      - name: Exercise CRUD and query compatibility across all 14 models
+        run: npm run db:smoke
