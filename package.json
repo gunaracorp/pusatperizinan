@@ -4,14 +4,16 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000 2>&1 | tee dev.log",
-    "build": "prisma generate && next build --webpack && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/",
-    "postinstall": "prisma generate",
+    "build": "prisma7 generate && next build --webpack && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/",
+    "postinstall": "prisma7 generate",
     "start": "node .next/standalone/server.js",
     "lint": "eslint .",
-    "db:push": "prisma db push --accept-data-loss",
-    "db:generate": "prisma generate",
-    "db:migrate": "prisma migrate dev",
-    "db:reset": "prisma migrate reset"
+    "db:push": "prisma7 db push --accept-data-loss",
+    "db:generate": "prisma7 generate",
+    "db:migrate": "prisma7 migrate dev",
+    "db:reset": "prisma7 migrate reset",
+    "prisma8:emit": "prisma contract emit",
+    "prisma8:verify": "prisma db verify"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -83,7 +85,8 @@
     "web-vitals": "^6.2.3",
     "z-ai-web-dev-sdk": "^0.0.18",
     "zod": "^4.0.2",
-    "zustand": "^5.0.6"
+    "zustand": "^5.0.6",
+    "@prisma/orm-sqlite": "8.0.0-rc.20"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -94,6 +97,8 @@
     "eslint-config-next": "^16.1.1",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.3.5",
-    "typescript": "^5"
+    "typescript": "^5",
+    "@prisma/prisma7": "7.10.1",
+    "prisma": "8.0.0-rc.27"
   }
 }
