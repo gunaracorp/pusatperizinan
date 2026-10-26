@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000 2>&1 | tee dev.log",
-    "build": "prisma contract emit && next build --webpack && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/",
+    "build": "prisma contract emit && next build --webpack && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/ && cp -r generated .next/standalone/",
     "postinstall": "prisma contract emit",
     "start": "node .next/standalone/server.js",
     "lint": "eslint .",
@@ -14,7 +14,11 @@
     "db:init": "prisma db init",
     "db:sign": "prisma db sign",
     "db:verify": "prisma db verify",
-    "db:plan": "prisma migration plan"
+    "db:plan": "prisma migration plan",
+    "db:verify:strict": "prisma db verify --strict",
+    "db:migrate:preview": "prisma db migrate --show",
+    "db:backup": "node scripts/backup-db.mjs",
+    "db:import-sqlite": "node scripts/migrate-sqlite-to-postgres.mjs"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
