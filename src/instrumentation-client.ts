@@ -18,7 +18,7 @@ if (dsn) {
       environment: process.env.NODE_ENV ?? "development",
       release: `v${APP_VERSION}`,
       tracesSampleRate: 0,
-      sendDefaultPii: false, // UU PDP: jangan kirim data pribadi
+      // Sentry does not send default PII unless explicitly enabled.
     });
   });
 }
