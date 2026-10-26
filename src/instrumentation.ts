@@ -12,6 +12,7 @@
 // ============================================================
 
 import { APP_VERSION } from "@/lib/version";
+import type { Instrumentation } from "next";
 
 export async function register() {
   // Detak jantung & Sentry hanya runtime Node.js — bukan edge.
@@ -34,12 +35,13 @@ export async function register() {
   });
 }
 
-// Hook error server-side Next.js (route handler, RSC, server action)
-export async function onRequestError(
-  error: unknown,
-  request: { path: string; method: string; headers: Record<string, string | string[] | undefined> },
-  context: unknown,
-) {
+// Hook error server-side Next.js (route handler, RSC, server action).
+// Use Next's contract so Sentry receives the correctly typed request context.
+export const onRequestError: Instrumentation.onRequestError = async (
+  error,
+  request,
+  context,
+) => {
   const Sentry = await import("@sentry/nextjs");
   await Sentry.captureRequestError(error, request, context);
-}
+};
