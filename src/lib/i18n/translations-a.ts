@@ -11,7 +11,7 @@
 
 import type { LangCode, Translation } from "./types";
 
-export const TRANSLATIONS_A: Partial<Record<LangCode, Translation>> = {
+export const TRANSLATIONS_A: Partial<Record<LangCode, Partial<Translation>>> = {
   // ============================================================
   // zh — 中文（简体） Chinese Simplified
   // ============================================================
