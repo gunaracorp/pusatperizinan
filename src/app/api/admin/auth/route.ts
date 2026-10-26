@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
     res.cookies.set(ADMIN_COOKIE, token, {
       httpOnly: true,
       sameSite: "lax",
-      secure: false, // sandbox/dev; saat produksi HTTPS aktifkan secure
+      secure: process.env.NODE_ENV === "production", // HTTPS-only cookie in production
       path: "/",
       maxAge,
     });
