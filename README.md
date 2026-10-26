@@ -599,14 +599,15 @@ Di **1.000 halaman detail v2/v3**: 2 layanan pelengkap lintas kategori dipilih *
 
 ```bash
 # ── Wajib ────────────────────────────────────────────────
-DATABASE_URL=postgresql://USER:PASSWORD@HOST:5432/DATABASE?sslmode=require     # SQLite
+DATABASE_URL=postgresql://USER:PASSWORD@HOST:5432/DATABASE?sslmode=require # PostgreSQL placeholder
 
 # ── Admin Mission Control ────────────────────────────────
-ADMIN_PASSWORD=<password-anda>       # fallback kode: admin2026 (UBAH di produksi!)
-ADMIN_SECRET=<secret-acak-32-char>   # kunci HMAC token cookie
+ADMIN_PASSWORD=<password-admin-kuat> # wajib disetel di produksi
+ADMIN_SECRET=<secret-acak-32-char>   # wajib di production, minimal 32 karakter
+CRON_SECRET=<secret-lain-yang-acak>  # kunci endpoint follow-up
 
 # ── Pembayaran ───────────────────────────────────────────
-PAYMENT_DEMO_MODE=true               # simulasi tanpa uang nyata
+PAYMENT_DEMO_MODE=false              # production: no simulated payments
 # MIDTRANS_SERVER_KEY / MIDTRANS_CLIENT_KEY   (produksi)
 # TRIPAY_API_KEY / TRIPAY_PRIVATE_CODE        (produksi)
 
@@ -990,7 +991,9 @@ NEXT_PUBLIC_GA_ID=G-KMZRQJQXCB   # optional — GA4 works even without env (hard
 EOF
 
 # 3. Push schema to database
-bun run db:push
+# Initialize a NEW, EMPTY PostgreSQL database with Prisma ORM 8
+npm run db:init
+npm run db:verify
 
 # 4. Run dev server (OOM-safe — see §20)
 NODE_OPTIONS="--max-old-space-size=2560" bun run dev > dev.log 2>&1 &
@@ -1057,8 +1060,8 @@ pusatperizinan/
 │   │   ├── payment/ · seo.ts · sitemap-sections.ts · geo.ts
 │   │   └── db.ts · admin-auth.ts · notify.ts · kbli-*.ts · …
 │   └── hooks/                      # use-toast, use-mobile
-├── prisma/schema.prisma            # 14 models (§9)
-├── db/custom.db                    # SQLite (seeded)
+├── src/prisma/contract.prisma      # 14-model Prisma ORM 8 contract
+├── generated/prisma8/              # generated JSON/type artifacts
 ├── public/
 │   ├── kantor/                     # 5 official office photos (sharp q82)
 │   ├── download/                   # ★ Download artifacts (pack + pack-info.json)
@@ -1355,14 +1358,15 @@ On **1,000 v2/v3 detail pages**: 2 cross-category complements chosen **determini
 
 ```bash
 # ── Required ─────────────────────────────────────────────
-DATABASE_URL=postgresql://USER:PASSWORD@HOST:5432/DATABASE?sslmode=require     # SQLite
+DATABASE_URL=postgresql://USER:PASSWORD@HOST:5432/DATABASE?sslmode=require # PostgreSQL placeholder
 
 # ── Admin Mission Control ────────────────────────────────
-ADMIN_PASSWORD=<your-password>       # code fallback: admin2026 (CHANGE in production!)
-ADMIN_SECRET=<random-32-char>        # HMAC cookie token key
+ADMIN_PASSWORD=<strong-admin-password> # required in production
+ADMIN_SECRET=<random-32-char>        # required in production, at least 32 chars
+CRON_SECRET=<different-random-secret> # protects follow-up endpoint
 
 # ── Payments ─────────────────────────────────────────────
-PAYMENT_DEMO_MODE=true               # simulate without real money
+PAYMENT_DEMO_MODE=false              # production: no simulated payments
 # MIDTRANS_SERVER_KEY / MIDTRANS_CLIENT_KEY   (production)
 # TRIPAY_API_KEY / TRIPAY_PRIVATE_CODE        (production)
 
