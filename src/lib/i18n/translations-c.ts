@@ -5,7 +5,7 @@
 
 import type { LangCode, Translation } from "./types";
 
-export const TRANSLATIONS_C: Partial<Record<LangCode, Translation>> = {
+export const TRANSLATIONS_C: Partial<Record<LangCode, Partial<Translation>>> = {
   es: {
     // Header
     navServices: "Servicios",
