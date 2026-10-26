@@ -31,14 +31,14 @@ export async function register() {
     environment: process.env.NODE_ENV ?? "development",
     release: `v${APP_VERSION}`,
     tracesSampleRate: 0, // performa dulu; tracing off
-    sendDefaultPii: false, // UU PDP: jangan kirim data pribadi
+    // Sentry does not send default PII unless explicitly enabled.
   });
 }
 
 // Hook error server-side Next.js (route handler, RSC, server action)
 export async function onRequestError(
   error: unknown,
-  request: { path: string; method: string; headers: unknown },
+  request: { path: string; method: string; headers: Record<string, string | string[] | undefined> },
   context: unknown,
 ) {
   const Sentry = await import("@sentry/nextjs");
