@@ -4,16 +4,17 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000 2>&1 | tee dev.log",
-    "build": "prisma7 generate && prisma contract emit && next build --webpack && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/",
-    "postinstall": "prisma7 generate && prisma contract emit",
+    "build": "prisma contract emit && next build --webpack && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/",
+    "postinstall": "prisma contract emit",
     "start": "node .next/standalone/server.js",
     "lint": "eslint .",
-    "db:push": "prisma7 db push --accept-data-loss",
-    "db:generate": "prisma7 generate",
-    "db:migrate": "prisma7 migrate dev",
-    "db:reset": "prisma7 migrate reset",
+    "db:migrate": "prisma db migrate --advance-ref db",
     "prisma8:emit": "prisma contract emit",
-    "prisma8:verify": "prisma db verify"
+    "prisma8:verify": "prisma db verify",
+    "db:init": "prisma db init",
+    "db:sign": "prisma db sign",
+    "db:verify": "prisma db verify",
+    "db:plan": "prisma migration plan"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -21,8 +22,7 @@
     "@dnd-kit/utilities": "^3.2.2",
     "@hookform/resolvers": "^5.1.1",
     "@mdxeditor/editor": "^3.39.1",
-    "@prisma/adapter-better-sqlite3": "^7.10.1",
-    "@prisma/client": "^7.10.1",
+    "@prisma/orm-postgres": "8.0.0-rc.20",
     "@radix-ui/react-accordion": "^1.2.11",
     "@radix-ui/react-alert-dialog": "^1.1.14",
     "@radix-ui/react-aspect-ratio": "^1.1.7",
@@ -79,14 +79,13 @@
     "sonner": "^2.0.6",
     "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7",
+    "temporal-polyfill": "^1.0.6",
     "uuid": "^11.1.0",
     "vaul": "^1.1.2",
     "web-vitals": "^6.2.3",
     "z-ai-web-dev-sdk": "^0.0.18",
     "zod": "^4.0.2",
-    "zustand": "^5.0.6",
-    "@prisma/orm-sqlite": "8.0.0-rc.20",
-    "temporal-polyfill": "^1.0.6"
+    "zustand": "^5.0.6"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -95,11 +94,10 @@
     "bun-types": "^1.3.4",
     "eslint": "^9",
     "eslint-config-next": "^16.1.1",
+    "prisma": "8.0.0-rc.27",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.3.5",
-    "typescript": "^5",
-    "@prisma/prisma7": "7.10.1",
-    "prisma": "8.0.0-rc.27"
+    "typescript": "^5.9.3"
   },
   "engines": {
     "node": ">=22.18.0"
