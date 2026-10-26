@@ -25,7 +25,7 @@ import type { LangCode, Translation } from "./types";
 
 const STORAGE_KEY = "pp-lang";
 
-interface LanguageContextValue {
+export interface LanguageContextValue {
   lang: LangCode;
   setLang: (code: LangCode) => void;
   /** Terjemahan dengan fallback: bahasa aktif -> id -> key */
