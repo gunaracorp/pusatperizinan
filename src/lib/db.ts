@@ -6,7 +6,6 @@
 // application's established call contract while individual modules
 // are migrated. No Prisma ORM 7 runtime/client is imported here.
 
-import "server-only";
 import { all, and, not, or } from "@prisma/orm-postgres/orm-client";
 import { prisma8 as runtime } from "@/prisma/db";
 
