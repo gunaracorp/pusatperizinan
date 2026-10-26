@@ -16,7 +16,7 @@ export interface CatalogService {
   code: string;
   name: string;
   priceFrom: number | null;
-  priceTo: number | null;
+  priceTo?: number | null;
   desc: string;
   /** Checklist paket (untuk layanan flagship). */
   includes?: string[];
