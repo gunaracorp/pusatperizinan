@@ -27,6 +27,7 @@ import {
 } from "@/components/ui/accordion";
 import {
   BLOG_ARTICLES,
+  type BlogArticle,
   getArticle,
   getRelatedArticles,
 } from "@/lib/blog-content";
