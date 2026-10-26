@@ -87,10 +87,10 @@ function buildIndustryPage(industrySlug: string): SeoPage | null {
   ];
 
   const related: SeoBreadcrumb[] = services.slice(0, 8).map((s) => ({
-    label: `${s.base.title} untuk ${industry.shortName}`,
+    name: `${s.base.title} untuk ${industry.shortName}`,
     href: `/industri/${industry.slug}/${s.entry.id}`,
   }));
-  related.push({ label: "Semua sektor industri", href: "/industri" });
+  related.push({ name: "Semua sektor industri", href: "/industri" });
 
   return {
     slug: industry.slug,
