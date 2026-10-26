@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000 2>&1 | tee dev.log",
-    "build": "prisma7 generate && next build --webpack && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/",
-    "postinstall": "prisma7 generate",
+    "build": "prisma7 generate && prisma contract emit && next build --webpack && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/",
+    "postinstall": "prisma7 generate && prisma contract emit",
     "start": "node .next/standalone/server.js",
     "lint": "eslint .",
     "db:push": "prisma7 db push --accept-data-loss",
@@ -67,7 +67,6 @@
     "next-auth": "^4.24.11",
     "next-intl": "^4.3.4",
     "next-themes": "^0.4.6",
-    "prisma": "^7.10.1",
     "react": "^19.0.0",
     "react-day-picker": "^9.8.0",
     "react-dom": "^19.0.0",
@@ -100,5 +99,8 @@
     "typescript": "^5",
     "@prisma/prisma7": "7.10.1",
     "prisma": "8.0.0-rc.27"
+  },
+  "engines": {
+    "node": ">=22.18.0"
   }
 }
