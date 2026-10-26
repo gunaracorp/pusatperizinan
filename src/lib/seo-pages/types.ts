@@ -17,6 +17,7 @@ export interface SeoFaq {
 
 export interface SeoBreadcrumb {
   name: string;
+  label?: string;
   href: string;
 }
 
