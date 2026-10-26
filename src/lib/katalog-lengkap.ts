@@ -16,7 +16,7 @@ export interface CatalogService {
   code: string;
   name: string;
   priceFrom: number | null;
-  priceTo: number | null;
+  priceTo?: number | null;
   desc: string;
   /** Checklist paket (untuk layanan flagship). */
   includes?: string[];
@@ -63,7 +63,7 @@ export function fmtIdr(n: number): string {
 }
 
 /** Rentang harga rapi: "Rp 5–15 juta", "Rp 450 ribu", "Rp 500 juta". */
-export function fmtRange(from: number | null, to: number | null): string {
+export function fmtRange(from?: number | null, to?: number | null): string {
   const unit = (v: number): string => {
     if (v >= 1_000_000_000) {
       const m = v / 1_000_000_000;
