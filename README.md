@@ -1214,7 +1214,7 @@ All endpoints live in `src/app/api/**/route.ts`. AI endpoints are **server-side 
 | 13 | `EditorialSlot` | Content editorial scheduling (Mesin Redaksi, v1.10.0) |
 | 14 | `FollowUpLog` | Automated lead follow-up history (24/48/72h, admin/lead lanes — v1.14.0) |
 
-> ⚙️ Complex fields are stored as **JSON strings** (SQLite primitives don't support lists) — parsed at render time.
+> ⚙️ Some complex fields are deliberately stored as **JSON strings** for the application contract and parsed when rendered.
 
 Prisma 8 commands: `npm run prisma8:emit` · `npm run db:init` (new DB) · `npm run db:verify` · `npm run db:plan` · `npm run db:backup` · `npm run db:import-sqlite`
 
