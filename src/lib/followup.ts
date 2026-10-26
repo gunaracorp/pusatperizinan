@@ -177,8 +177,10 @@ async function loadCandidates(limit: number): Promise<FollowUpCandidate[]> {
   const out: FollowUpCandidate[] = [];
   for (const l of leads) {
     const sentSteps = [
-      ...new Set(
-        l.followUps.filter((f) => f.status === "sent").map((f) => f.step)
+      ...new Set<number>(
+        l.followUps
+          .filter((f) => f.status === "sent")
+          .map((f) => f.step as number)
       ),
     ].sort((a, b) => a - b);
     const ageH = ageHoursOf(l.createdAt);
