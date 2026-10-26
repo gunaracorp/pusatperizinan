@@ -54,3 +54,22 @@ jobs:
         run: npm run db:smoke
       - name: Run production build
         run: npm run build
+      - name: Start standalone production server and smoke-test follow-up API
+        run: |
+          PORT=3000 HOSTNAME=127.0.0.1 npm run start > /tmp/pusatperizinan-next.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          ready=0
+          for attempt in $(seq 1 45); do
+            if curl --fail --silent http://127.0.0.1:3000/api/version >/dev/null; then
+              ready=1
+              break
+            fi
+            sleep 2
+          done
+          if [ "$ready" -ne 1 ]; then
+            cat /tmp/pusatperizinan-next.log
+            echo "Standalone server did not become ready" >&2
+            exit 1
+          fi
+          npm run test:followup
