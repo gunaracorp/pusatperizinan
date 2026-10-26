@@ -125,10 +125,14 @@ echo "[BUN] Installing dependencies..."
 bun install
 log_step_end "bun install"
 
-log_step_start "bun run db:push"
-echo "[BUN] Setting up database..."
-bun run db:push
-log_step_end "bun run db:push"
+log_step_start "Check Prisma ORM 8 PostgreSQL"
+if [[ "${DATABASE_URL:-}" != postgresql://* && "${DATABASE_URL:-}" != postgres://* ]]; then
+  echo "ERROR: Set DATABASE_URL to the PostgreSQL database in your private environment before starting development."
+  echo "The dev script will not create or fall back to a bundled SQLite database."
+  exit 1
+fi
+echo "[PRISMA 8] Using externally configured PostgreSQL; schema changes must be planned/reviewed explicitly."
+log_step_end "Check Prisma ORM 8 PostgreSQL"
 
 log_step_start "Starting Next.js dev server"
 echo "[BUN] Starting development server..."
