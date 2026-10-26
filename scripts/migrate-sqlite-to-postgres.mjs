@@ -20,7 +20,7 @@ import postgres from "@prisma/orm-postgres/runtime";
 import { contractFromJson } from "@prisma/orm-postgres/static";
 
 const root = process.cwd();
-const sourcePath = path.resolve(process.argv[2] || path.join(root, "db", "custom.db"));
+const sourcePath = process.argv[2] ? path.resolve(process.argv[2]) : "";
 const url = process.env.DATABASE_URL;
 const contractPath = path.join(root, "generated", "prisma8", "contract.json");
 
@@ -66,8 +66,11 @@ async function main() {
   if (!url || !url.startsWith("postgres")) {
     throw new Error("DATABASE_URL wajib berisi URL PostgreSQL tujuan dari dashboard database.");
   }
+  if (!sourcePath) {
+    throw new Error("Path file SQLite sumber wajib diberikan sebagai argumen. Gunakan salinan privat/backup, bukan file database dari repo publik.");
+  }
   if (!fs.existsSync(sourcePath)) {
-    throw new Error(`Database SQLite sumber tidak ditemukan: ${sourcePath}. Beri path backup lokal sebagai argumen.`);
+    throw new Error(`Database SQLite sumber tidak ditemukan: ${sourcePath}. Periksa path backup privat lokal.`);
   }
   if (!fs.existsSync(contractPath)) {
     throw new Error("Contract Prisma 8 belum di-emit. Jalankan npm install atau npm run prisma8:emit terlebih dahulu.");
