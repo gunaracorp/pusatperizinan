@@ -155,7 +155,7 @@ export async function getPublishedCmsPosts(): Promise<CmsPost[]> {
     where: { status: "PUBLISHED" },
     orderBy: { updatedAt: "desc" },
   });
-  return rows.map(rowToCmsPost);
+  return rows.map((row) => rowToCmsPost(row as PostRow));
 }
 
 /** Satu post CMS berdasar slug (status apa pun — validasi status di pemanggil) */
