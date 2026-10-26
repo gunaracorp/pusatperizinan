@@ -6,7 +6,7 @@
 import { CURRENT_YEAR } from "@/lib/site";
 import { BASE_SERVICES, parsePrice } from "@/lib/catalog/generators";
 import { INDUSTRIES } from "./industries";
-import type { SeoPage, SeoIndexPage, SeoBreadcrumb } from "./types";
+import type { SeoPage, SeoIndexPage, SeoBreadcrumb, SeoInternalLink } from "./types";
 
 function hashStr(s: string): number {
   let h = 2166136261;
@@ -86,7 +86,7 @@ function buildIndustryPage(industrySlug: string): SeoPage | null {
     },
   ];
 
-  const related: SeoBreadcrumb[] = services.slice(0, 8).map((s) => ({
+  const related: SeoInternalLink[] = services.slice(0, 8).map((s) => ({
     label: `${s.base.title} untuk ${industry.shortName}`,
     href: `/industri/${industry.slug}/${s.entry.id}`,
   }));
