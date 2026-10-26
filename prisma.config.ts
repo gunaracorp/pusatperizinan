@@ -1,17 +1,19 @@
-// ============================================================
-// PUSATPERIZINAN.COM — Prisma Config (wajib sejak Prisma 7)
-// Menggantikan konfigurasi via package.json. Prisma 7 TIDAK lagi
-// memuat .env secara otomatis di CLI → dotenv dimuat eksplisit di
-// sini. Bun otomatis memuat .env, tapi config ini membuat perintah
-// (db push/generate) tetap aman dijalankan via npm/npx/CI.
-// ============================================================
+// PUSATPERIZINAN.COM — Prisma ORM 8 config (SQLite, experimental).
+// Prisma 8 contract/client are generated separately from the Prisma 7 runtime.
+// The current live app still uses Prisma 7 until routes are migrated and tested.
 
 import "dotenv/config";
-import { defineConfig, env } from "prisma/config";
+import { definePrismaConfig } from "prisma/config";
+import { defineConfig as defineSqliteConfig } from "@prisma/orm-sqlite/config";
 
-export default defineConfig({
-  schema: "prisma/schema.prisma",
-  datasource: {
-    url: env("DATABASE_URL"),
-  },
+const databasePath = (process.env.DATABASE_URL || "file:./db/custom.db").replace(/^file:/, "");
+
+export default definePrismaConfig({
+  orm: defineSqliteConfig({
+    contract: "src/prisma/contract.prisma",
+    output: "generated/prisma8",
+    db: {
+      connection: databasePath,
+    },
+  }),
 });
