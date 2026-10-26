@@ -165,31 +165,34 @@ function buildQuery(model: AnyCollection, options: AnyRecord = {}): AnyCollectio
     query = query.where((fields: AnyRecord) => filterExpression(options.where, fields));
   }
 
-  if (options.select && typeof options.select === "object") {
-    const selected = Object.entries(options.select)
-      .filter(([, enabled]) => enabled === true)
-      .map(([field]) => field);
-    if (selected.length) query = query.select(...selected);
-  }
-
-  if (options.include && typeof options.include === "object") {
-    for (const [relation, enabled] of Object.entries(options.include)) {
-      if (enabled === true) query = query.include(relation);
-    }
-  }
-
   if (options.orderBy) {
     const clauses = Array.isArray(options.orderBy) ? options.orderBy : [options.orderBy];
     const orderCallbacks = clauses.map((clause: AnyRecord) => (fields: AnyRecord) => {
       const [field, direction] = Object.entries(clause)[0] ?? [];
-      if (!field) return all();
-      return fields[field][direction === "asc" ? "asc" : "desc"]();
+      if (!field) throw new Error("OrderBy Prisma ORM 8 tidak memiliki field.");
+      const accessor = fields[field];
+      if (!accessor) throw new Error(`Field orderBy tidak ditemukan: ${field}`);
+      return accessor[direction === "asc" ? "asc" : "desc"]();
     });
     query = query.orderBy(orderCallbacks.length === 1 ? orderCallbacks[0] : orderCallbacks);
   }
 
   if (Number.isFinite(options.skip) && options.skip > 0) query = query.skip(options.skip);
   if (Number.isFinite(options.take) && options.take >= 0) query = query.take(options.take);
+
+  // Keep projections/includes as the final collection refinements. This makes
+  // pagination modifiers run against the base collection before shape narrowing.
+  if (options.select && typeof options.select === "object") {
+    const selected = Object.entries(options.select)
+      .filter(([, enabled]) => enabled === true)
+      .map(([field]) => field);
+    if (selected.length) query = query.select(...selected);
+  }
+  if (options.include && typeof options.include === "object") {
+    for (const [relation, enabled] of Object.entries(options.include)) {
+      if (enabled === true) query = query.include(relation);
+    }
+  }
   return query;
 }
 
