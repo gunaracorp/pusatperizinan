@@ -7,11 +7,11 @@
 // ============================================================
 
 import "dotenv/config";
-import { defineConfig, env } from "@prisma/prisma7/config";
+import { defineConfig } from "@prisma/prisma7/config";
 
 export default defineConfig({
   schema: "prisma/schema.prisma",
   datasource: {
-    url: env("DATABASE_URL"),
+    url: process.env.DATABASE_URL ?? "file:./db/custom.db",
   },
 });
