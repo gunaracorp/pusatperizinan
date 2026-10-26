@@ -184,7 +184,7 @@ function buildQuery(model: AnyCollection, options: AnyRecord = {}): AnyCollectio
   let query = model;
   if (options.where && Object.keys(options.where).length) {
     // Prisma 8's object filter is both simpler and safer for equality-only
-    // predicates. Use expression callbacks only for the Prisma 7 operators.
+    // predicates. Use expression callbacks only for legacy query-shape operators.
     query = isEqualityFilter(options.where)
       ? query.where(normalizeInput(options.where))
       : query.where((fields: AnyRecord) => filterExpression(options.where, fields));
