@@ -1,9 +1,22 @@
-import "server-only";
 import { db } from "@/lib/db";
 import type { CmsPost } from "@/lib/blog-cms";
-import { TOPIC_BANK, type EditorialPillar, type TopicSeed } from "@/lib/editorial-topics";
+import { TOPIC_BANK, type TopicSeed } from "@/lib/editorial-topics";
+import type {
+  EditorialPillar,
+  EditorialSlotStatus,
+  EditorialSlotView,
+  EditorialWeekView,
+  EditorialBoard,
+} from "@/lib/editorial-types";
 export { TOPIC_BANK } from "@/lib/editorial-topics";
-export type { EditorialPillar, TopicSeed } from "@/lib/editorial-topics";
+export type { TopicSeed } from "@/lib/editorial-topics";
+export type {
+  EditorialPillar,
+  EditorialSlotStatus,
+  EditorialSlotView,
+  EditorialWeekView,
+  EditorialBoard,
+} from "@/lib/editorial-types";
 
 // ============================================================
 // PUSATPERIZINAN.COM — Kalender Editorial Blog (langkah 35)
@@ -15,7 +28,6 @@ export type { EditorialPillar, TopicSeed } from "@/lib/editorial-topics";
 
 export const EDITORIAL_HORIZON_WEEKS = 12;
 
-export type EditorialSlotStatus = "PLANNED" | "DRAFTED" | "PUBLISHED" | "SKIPPED";
 
 /** Pemetaan pilar → label tampilan + kategori blog CMS */
 export const PILLAR_META: Record<
@@ -158,45 +170,6 @@ export async function ensureUpcomingWeeks(now: Date = new Date()): Promise<void>
       });
     }
   }
-}
-
-export interface EditorialSlotView {
-  id: string;
-  slotIndex: number;
-  day: string;
-  date: string; // tanggal terbit rencana (YYYY-MM-DD)
-  pillar: EditorialPillar;
-  pillarLabel: string;
-  category: string;
-  title: string;
-  focusKeyword: string | null;
-  keywords: string | null;
-  notes: string | null;
-  status: EditorialSlotStatus;
-  post: { id: string; slug: string; status: string } | null;
-  updatedAt: string;
-}
-
-export interface EditorialWeekView {
-  weekStart: string;
-  label: string;
-  isCurrent: boolean;
-  isPast: boolean;
-  slots: EditorialSlotView[];
-}
-
-export interface EditorialBoard {
-  currentWeekStart: string;
-  weeks: EditorialWeekView[];
-  stats: {
-    total: number;
-    planned: number;
-    drafted: number;
-    published: number;
-    skipped: number;
-    /** topik bank per pilar — untuk penampil "ganti topik" */
-    bankSize: { PANDUAN: number; REGULASI: number; PAJAK: number };
-  };
 }
 
 /** Slot DB → bentuk tampilan (defensif: data rusak tidak boleh mematikan panel) */
