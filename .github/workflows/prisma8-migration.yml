@@ -3,9 +3,6 @@ name: Prisma 8 PostgreSQL production validation
 on:
   pull_request:
     branches: [main]
-  push:
-    branches:
-      - fix/hostinger-turbopack-build-20261027
 
 jobs:
   validate:
