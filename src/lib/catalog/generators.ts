@@ -1318,7 +1318,7 @@ export function getAnyPage(slugOrPath: string): ServicePage | undefined {
     if (parts.length === 2) {
       // ROADMAP-99 langkah 25: lookup ke seluruh 514 kab/kota, bukan majors saja
       const city = allCityNames(provIdx).find((c) => slugify(c) === parts[1]) ?? "";
-      return buildCityHubPage(provIdx, city);
+      return buildCityHubPage(provIdx, city) ?? undefined;
     }
   }
   return undefined;
