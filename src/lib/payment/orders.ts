@@ -10,7 +10,27 @@
 
 import { db } from "@/lib/db";
 import { notifyOrder } from "@/lib/notify";
-import type { Order } from "@/generated/prisma/client";
+export interface Order {
+  id: string;
+  orderNo: string;
+  serviceId: string;
+  serviceName: string;
+  amount: number;
+  customerName: string;
+  customerPhone: string;
+  customerEmail: string | null;
+  notes: string | null;
+  provider: string;
+  paymentMethod: string | null;
+  paymentRef: string | null;
+  checkoutUrl: string | null;
+  status: string;
+  rawPayload: string | null;
+  paidAt: Date | null;
+  expiresAt: Date | null;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
 const FINAL_SUCCESS = "PAID";
 

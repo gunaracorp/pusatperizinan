@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { db } from "@/lib/db";
-import { Prisma } from "@/generated/prisma/client";
 import { ADMIN_COOKIE, verifyToken } from "@/lib/admin-auth";
 
 // ============================================================
@@ -33,13 +32,20 @@ function fillDays(rows: Array<{ d: string; c: number }>, days: number) {
 
 async function daySeries(model: "lead" | "licenseCheck" | "subscriber" | "documentCheck", days: number) {
   const since = new Date(Date.now() - days * DAY);
-  const table = Prisma.sql`"${Prisma.raw(
-    model === "lead" ? "Lead" : model === "licenseCheck" ? "LicenseCheck" : model === "subscriber" ? "Subscriber" : "DocumentCheck"
-  )}"`;
-  const rows = (await db.$queryRaw(
-    Prisma.sql`SELECT strftime('%Y-%m-%d', "createdAt") as d, COUNT(*) as c FROM ${table} WHERE "createdAt" >= ${since.toISOString()} GROUP BY d ORDER BY d`
-  )) as unknown as Array<{ d: string; c: bigint }>;
-  return fillDays(rows.map((r) => ({ d: r.d, c: Number(r.c) })), days);
+  // Prisma ORM 8 date fields are represented as strings by the contract.
+  // Read only the indexed timestamp column and aggregate in application code;
+  // this keeps the query portable and removes SQLite-specific strftime SQL.
+  const rows = await db[model].findMany({
+    where: { createdAt: { gte: since } },
+    select: { createdAt: true },
+    orderBy: { createdAt: "asc" },
+  }) as Array<{ createdAt: Date }>;
+  const counts = new Map<string, number>();
+  for (const row of rows) {
+    const key = new Date(row.createdAt).toISOString().slice(0, 10);
+    counts.set(key, (counts.get(key) ?? 0) + 1);
+  }
+  return fillDays([...counts].map(([d, c]) => ({ d, c })), days);
 }
 
 export async function GET() {

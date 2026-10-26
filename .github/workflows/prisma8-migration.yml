@@ -1,0 +1,56 @@
+name: Prisma 8 PostgreSQL production validation
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches:
+      - fix/hostinger-turbopack-build-20261027
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: pusatperizinan_test
+          POSTGRES_USER: pp_test
+          POSTGRES_PASSWORD: pp_test_only
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U pp_test -d pusatperizinan_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+    env:
+      DATABASE_URL: "postgresql://pp_test:pp_test_only@127.0.0.1:5432/pusatperizinan_test"
+      ADMIN_PASSWORD: ci-only-not-a-production-secret
+      ADMIN_SECRET: ci-only-secret-0123456789abcdef0123456789abcdef
+      CRON_SECRET: ci-only-cron-secret-0123456789abcdef0123456789
+      PAYMENT_DEMO_MODE: "false"
+      FOLLOWUP_SWEEP_MINUTES: "0"
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js 22.18
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.18.0"
+      - name: Install dependencies and emit Prisma 8 contract
+        run: npm install --no-audit --no-fund
+      - name: Confirm Prisma ORM version
+        run: npx prisma --version
+      - name: Validate Prisma 8 contract emission
+        run: npm run prisma8:emit
+      - name: Initialize the CI PostgreSQL schema
+        run: npm run db:init
+      - name: Verify the Prisma 8 database contract
+        run: npm run db:verify
+      - name: Exercise CRUD and query compatibility across all 14 models
+        run: npm run db:smoke
+      - name: Run production build
+        run: npm run build

@@ -1,132 +1,97 @@
 #!/usr/bin/env node
-// ============================================================
-// PUSATPERIZINAN.COM — BACKUP DB HARIAN (Langkah 68 Roadmap-99)
-// ------------------------------------------------------------
-// - Snapshot konsisten SQLite via `VACUUM INTO` (tanpa sqlite3 CLI)
-// - Integrity check snapshot sebelum dianggap valid
-// - Kompresi gzip + retensi 14 file terakhir
-// - Log ke backups/backup.log; exit code sesuai hasil
-// - Flag --if-stale: hanya backup bila backup terakhir > 24 jam
-//   (dipanggil npm predev/prestart → self-healing tanpa cron daemon)
-// Cron produksi (opsional, bila daemon tersedia):
-//   0 22 * * * cd <repo> && node scripts/backup-db.mjs   (= 03:00 WIB)
-// ============================================================
-import { DatabaseSync } from "node:sqlite";
-import { gzipSync } from "node:zlib";
+// Daily PostgreSQL snapshot using Prisma ORM 8, saved as compressed NDJSON.
+// Output is private (0600), retained for the 14 most recent successful backups.
+// Restore requires the same emitted contract and a target database initialized
+// with that contract. Never commit the backups directory.
+
+import "dotenv/config";
 import fs from "node:fs";
 import path from "node:path";
+import { once } from "node:events";
+import { createGzip } from "node:zlib";
+import { createWriteStream } from "node:fs";
+import { finished } from "node:stream/promises";
+import postgres from "@prisma/orm-postgres/runtime";
+import { contractFromJson } from "@prisma/orm-postgres/static";
 
-const ROOT = path.resolve(import.meta.dirname, "..");
+const ROOT = process.cwd();
+const BACKUP_DIR = path.join(ROOT, "backups");
 const RETAIN = 14;
-const IF_STALE = process.argv.includes("--if-stale");
-const STALE_MS = 24 * 60 * 60 * 1000;
+const MODELS = [
+  "Lead", "Consultation", "ChatMessage", "LicenseCheck", "Subscriber",
+  "Testimonial", "DocumentCheck", "RoadmapRequest", "NotificationSetting",
+  "Order", "Post", "NotificationLog", "EditorialSlot", "FollowUpLog",
+];
 
-function newestBackupAge() {
-  const dir = path.join(ROOT, "backups");
-  if (!fs.existsSync(dir)) return Infinity;
-  const times = fs
-    .readdirSync(dir)
-    .filter((f) => f.startsWith("pp-") && f.endsWith(".db.gz"))
-    .map((f) => fs.statSync(path.join(dir, f)).mtimeMs);
-  return times.length ? Date.now() - Math.max(...times) : Infinity;
+function timestamp() {
+  return new Date().toISOString().replace(/[:.]/g, "-");
 }
 
-if (IF_STALE && newestBackupAge() < STALE_MS) {
-  console.log("[backup-db] SKIP — backup terakhir masih segar (< 24 jam)");
-  process.exit(0);
+async function writeLine(stream, text) {
+  if (!stream.write(text + "\n")) await once(stream, "drain");
 }
 
-// --- Resolusi path DB dari .env (DATABASE_URL=file:...) atau argumen ---
-function resolveDbPath() {
-  if (process.argv[2] && !process.argv[2].startsWith("--")) {
-    return path.resolve(process.argv[2]);
+async function main() {
+  if (!process.env.DATABASE_URL?.startsWith("postgres")) {
+    throw new Error("DATABASE_URL belum diatur ke database PostgreSQL produksi.");
   }
-  const envFile = path.join(ROOT, ".env");
-  if (fs.existsSync(envFile)) {
-    const m = fs
-      .readFileSync(envFile, "utf8")
-      .match(/^DATABASE_URL=file:(.+)$/m);
-    if (m) return path.resolve(m[1].trim());
+  const contractFile = path.join(ROOT, "generated", "prisma8", "contract.json");
+  if (!fs.existsSync(contractFile)) {
+    throw new Error("Kontrak Prisma 8 belum di-emit. Jalankan npm run prisma8:emit.");
   }
-  return path.join(ROOT, "db", "custom.db");
-}
+  fs.mkdirSync(BACKUP_DIR, { recursive: true, mode: 0o700 });
+  const destination = path.join(BACKUP_DIR, `pp-postgres-${timestamp()}.ndjson.gz`);
+  const contractJson = JSON.parse(fs.readFileSync(contractFile, "utf8"));
+  const db = postgres({
+    url: process.env.DATABASE_URL,
+    contract: contractFromJson(contractJson),
+  });
+  const gzip = createGzip({ level: 9 });
+  const output = createWriteStream(destination, { flags: "wx", mode: 0o600 });
+  gzip.pipe(output);
+  const finishedOutput = finished(output);
+  let total = 0;
 
-function log(msg) {
-  const line = `[${new Date().toISOString()}] ${msg}`;
-  console.log(line);
   try {
-    fs.appendFileSync(path.join(ROOT, "backups", "backup.log"), line + "\n");
-  } catch {
-    /* log opsional */
+    await writeLine(gzip, JSON.stringify({
+      type: "backup",
+      format: 1,
+      createdAt: new Date().toISOString(),
+      models: MODELS,
+    }));
+
+    for (const model of MODELS) {
+      let count = 0;
+      for await (const row of db.orm.public[model].all()) {
+        await writeLine(gzip, JSON.stringify({ type: "row", model, data: row }));
+        count++;
+        total++;
+      }
+      await writeLine(gzip, JSON.stringify({ type: "end-model", model, count }));
+      console.log(`[backup-db] ${model}: ${count} rows`);
+    }
+
+    gzip.end();
+    await finishedOutput;
+
+    const backups = fs.readdirSync(BACKUP_DIR)
+      .filter((file) => file.startsWith("pp-postgres-") && file.endsWith(".ndjson.gz"))
+      .sort();
+    while (backups.length > RETAIN) {
+      fs.rmSync(path.join(BACKUP_DIR, backups.shift()), { force: true });
+    }
+
+    const size = (fs.statSync(destination).size / 1024).toFixed(1);
+    console.log(`[backup-db] OK: ${path.basename(destination)} (${size} KB compressed, ${total} rows)`);
+  } catch (error) {
+    gzip.destroy(error instanceof Error ? error : new Error(String(error)));
+    output.destroy();
+    fs.rmSync(destination, { force: true });
+    throw error;
   }
 }
 
-function fail(msg) {
-  log(`BACKUP GAGAL: ${msg}`);
-  process.exit(1);
-}
-
-// --- Main ---
-const dbPath = resolveDbPath();
-if (!fs.existsSync(dbPath)) fail(`DB tidak ditemukan: ${dbPath}`);
-
-const backupDir = path.join(ROOT, "backups");
-fs.mkdirSync(backupDir, { recursive: true });
-
-const now = new Date();
-const stamp = [
-  now.getUTCFullYear(),
-  String(now.getUTCMonth() + 1).padStart(2, "0"),
-  String(now.getUTCDate()).padStart(2, "0"),
-  "-",
-  String(now.getUTCHours()).padStart(2, "0"),
-  String(now.getUTCMinutes()).padStart(2, "0"),
-  String(now.getUTCSeconds()).padStart(2, "0"),
-].join("");
-const rawPath = path.join(backupDir, `pp-${stamp}.db`);
-
-// 1) Snapshot konsisten (VACUUM INTO menulis salinan bersih & terdefragmentasi)
-const db = new DatabaseSync(dbPath, { readOnly: true });
-try {
-  db.exec(`VACUUM INTO '${rawPath.replace(/'/g, "''")}'`);
-} catch (e) {
-  fail(`VACUUM INTO error: ${e.message}`);
-} finally {
-  db.close();
-}
-
-// 2) Integrity check snapshot
-const snap = new DatabaseSync(rawPath, { readOnly: true });
-let check;
-try {
-  check = snap.prepare("PRAGMA integrity_check").get();
-} finally {
-  snap.close();
-}
-if (!check || check.integrity_check !== "ok") {
-  fs.rmSync(rawPath, { force: true });
-  fail(`integrity_check snapshot: ${JSON.stringify(check)}`);
-}
-
-// 3) Kompresi + hapus mentah
-const gzPath = `${rawPath}.gz`;
-fs.writeFileSync(gzPath, gzipSync(fs.readFileSync(rawPath)));
-fs.rmSync(rawPath, { force: true });
-
-// 4) Retensi: sisakan RETAIN file .db.gz terbaru
-const all = fs
-  .readdirSync(backupDir)
-  .filter((f) => f.startsWith("pp-") && f.endsWith(".db.gz"))
-  .sort();
-let purged = 0;
-while (all.length > RETAIN) {
-  fs.rmSync(path.join(backupDir, all.shift()), { force: true });
-  purged += 1;
-}
-
-const sizeKb = (fs.statSync(gzPath).size / 1024).toFixed(1);
-log(
-  `BACKUP OK: ${path.basename(gzPath)} (${sizeKb} KB, integrity ok` +
-    (purged ? `, retensi -${purged}` : "") +
-    ")",
-);
+main().catch((error) => {
+  console.error("[backup-db] FAILED:", error instanceof Error ? error.message : String(error));
+  process.exitCode = 1;
+});

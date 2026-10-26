@@ -57,8 +57,9 @@ server.log
 # backup database lokal (Langkah 68)
 /backups
 
-# Prisma 7: client digenerate ke src/generated/prisma (jangan di-commit)
+# Prisma generated artifacts must not be committed
 /src/generated/
+/generated/
 
 # Local/production SQLite databases must never be committed
 /db/*.db

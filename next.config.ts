@@ -1,52 +1,26 @@
-import type { NextConfig } from "next";
-
 // ============================================================
 // PUSATPERIZINAN.COM — Next Config
-// DEV  : output "standalone" (sandbox, bun run dev)
-// BUILD: BUILD_STATIC=1 → output "export" → folder out/ berisi
-//        HTML + CSS + JavaScript MURNI (tanpa Node.js runtime),
-//        siap di-upload ke shared hosting idwebhost (cPanel).
+// DEV/PRODUCTION: Next.js standalone output for Node.js hosting.
+// Use Webpack for production builds to avoid the Hostinger Turbopack
+// CSS worker process failure observed in the deployment logs.
 // ============================================================
 
-const isStaticExport = process.env.BUILD_STATIC === "1";
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Prisma 7 (driver adapter better-sqlite3 = modul native):
-  // WAJIB dikecualikan dari bundling server agar prebuild .node
-  // tidak dibongkar oleh webpack/turbopack.
-  serverExternalPackages: ["better-sqlite3", "@prisma/adapter-better-sqlite3"],
-  ...(isStaticExport
-    ? {
-        // Mode hosting statis: prerender semua halaman jadi file HTML
-        output: "export" as const,
-        // next/image dioptimalkan server → di hosting statis pakai mode unoptimized
-        images: { unoptimized: true },
-      }
-    : {
-        output: "standalone" as const,
-        // SITEMAP INDEX: /sitemap.xml disajikan dari /api/sitemap-index
-        // (handler biasa). Alasan: folder app/sitemap.xml/route.ts adalah
-        // metadata route Next.js yang menghasilkan segmen internal
-        // [__metadata_id__] dan bertabrakan dengan app/sitemap/[id]/route.ts
-        // → 500 sitewide. Rewrite hanya untuk mode non-export (fitur
-        // rewrites tidak didukung output:"export").
-        async rewrites() {
-          return {
-            beforeFiles: [
-              { source: "/sitemap.xml", destination: "/api/sitemap-index" },
-              // CATATAN INDEXNOW: file kunci /<key>.txt disajikan sebagai
-              // FILE STATIS dari public/<key>.txt — bukan rewrite. Alasan:
-              // path-to-regexp Next.js 16 tidak lagi mendukung regex param
-              // inline di rewrites. Pendekatan file statis bekerja di
-              // ketiga mode: dev, standalone, DAN static export (out/).
-            ],
-            afterFiles: [],
-            fallback: [],
-          };
-        },
-      }),
+  serverExternalPackages: ["@prisma/orm-postgres"],
+  output: "standalone",
+  async rewrites() {
+    return {
+      beforeFiles: [
+        { source: "/sitemap.xml", destination: "/api/sitemap-index" },
+      ],
+      afterFiles: [],
+      fallback: [],
+    };
+  },
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
   reactStrictMode: false,
 };
