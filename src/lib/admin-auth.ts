@@ -10,18 +10,29 @@ export const ADMIN_COOKIE = "pp_admin_token";
 const TTL_MS = 12 * 60 * 60 * 1000; // sesi 12 jam
 
 function secret(): string {
-  return process.env.ADMIN_SECRET || "pusatperizinan-mission-control-secret";
+  // Kredensial fallback hanya boleh dipakai saat development lokal.
+  // Di production, admin wajib mengisi secret di environment hosting.
+  return process.env.ADMIN_SECRET || (process.env.NODE_ENV === "production" ? "" : "pusatperizinan-mission-control-secret");
 }
 
 export function adminPassword(): string {
-  return process.env.ADMIN_PASSWORD || "admin2026";
+  // Jangan pernah menerima password bawaan admin2026 di production.
+  return process.env.ADMIN_PASSWORD || (process.env.NODE_ENV === "production" ? "" : "admin2026");
 }
 
 function sign(payload: string): string {
-  return crypto.createHmac("sha256", secret()).update(payload).digest("hex");
+  const key = secret();
+  if (!key) throw new Error("ADMIN_SECRET wajib diatur di environment production.");
+  return crypto.createHmac("sha256", key).update(payload).digest("hex");
 }
 
 export function createToken(): { token: string; maxAge: number } {
+  if (
+    process.env.NODE_ENV === "production" &&
+    (!process.env.ADMIN_PASSWORD || !process.env.ADMIN_SECRET || process.env.ADMIN_SECRET.length < 32)
+  ) {
+    throw new Error("ADMIN_PASSWORD dan ADMIN_SECRET (minimal 32 karakter) wajib diatur di production.");
+  }
   const expiry = Date.now() + TTL_MS;
   const payload = String(expiry);
   const token = `${payload}.${sign(payload)}`;
@@ -30,6 +41,10 @@ export function createToken(): { token: string; maxAge: number } {
 
 export function verifyToken(token: string | undefined | null): boolean {
   if (!token) return false;
+  if (
+    process.env.NODE_ENV === "production" &&
+    (!process.env.ADMIN_PASSWORD || !process.env.ADMIN_SECRET || process.env.ADMIN_SECRET.length < 32)
+  ) return false;
   const [payload, sig] = token.split(".");
   if (!payload || !sig) return false;
   const expiry = Number(payload);
