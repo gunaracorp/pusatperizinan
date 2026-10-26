@@ -93,14 +93,14 @@ function filterExpression(filter: AnyRecord, fields: AnyRecord): any {
     }
 
     const field = fields[key];
-    if (!field) continue;
+    if (!field) throw new Error(`Unknown field in Prisma ORM 8 filter: ${key}`);
 
     if (rawValue === null) {
       clauses.push(field.isNull());
       continue;
     }
     if (rawValue instanceof Date) {
-      clauses.push(field.eq(rawValue.toISOString()));
+      clauses.push(field.eq(Temporal.Instant.from(rawValue.toISOString())));
       continue;
     }
     if (Array.isArray(rawValue)) {
@@ -244,16 +244,25 @@ function applyDistinct(rows: AnyRecord[], distinct?: string[]): AnyRecord[] {
   });
 }
 
+function countValue(value: any): number | undefined {
+  if (typeof value === "number" || typeof value === "bigint") return Number(value);
+  return undefined;
+}
+
 function extractMutationCount(result: any): number {
-  if (typeof result === "number") return result;
-  if (typeof result?.count === "number") return result.count;
-  if (typeof result?.affectedRows === "number") return result.affectedRows;
-  if (typeof result?.rowsAffected === "number") return result.rowsAffected;
+  const direct = countValue(result);
+  if (direct !== undefined) return direct;
+
+  for (const key of ["count", "affectedRows", "rowsAffected", "rowCount", "numRows"]) {
+    const count = countValue(result?.[key]);
+    if (count !== undefined) return count;
+  }
+
   if (Array.isArray(result)) {
-    const number = result.find((item) => typeof item === "number");
-    if (typeof number === "number") return number;
-    const countObject = result.find((item) => item && typeof item.count === "number");
-    if (countObject) return countObject.count;
+    const count = result.map(countValue).find((value) => value !== undefined);
+    if (count !== undefined) return count;
+    const countObject = result.find((item) => item && countValue(item.count) !== undefined);
+    if (countObject) return countValue(countObject.count)!;
   }
   if (Array.isArray(result?.rows)) return result.rows.length;
   throw new Error("Prisma ORM 8 mutation count response shape is not recognized.");
