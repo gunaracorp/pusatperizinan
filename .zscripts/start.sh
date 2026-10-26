@@ -53,9 +53,6 @@ cd "$BUILD_DIR" || exit 1
 
 ls -lah
 
-DEFAULT_PACKAGED_DB_PATH="/app/db/custom.db"
-DEFAULT_PACKAGED_DATABASE_URL="file:$DEFAULT_PACKAGED_DB_PATH"
-
 # Python 依赖在构建阶段安装进部署产物，不复用 Sandbox 的 /home/z/.venv。
 # Next.js 及其启动的子进程都会继承这组路径。
 if [ -d "/app/python-runtime/site-packages" ]; then
@@ -75,22 +72,15 @@ if [ -f "./next-service-dist/server.js" ]; then
     export NODE_ENV=production
     export PORT="${PORT:-3000}"
     export HOSTNAME="${HOSTNAME:-0.0.0.0}"
-    export DATABASE_URL="${DATABASE_URL:-$DEFAULT_PACKAGED_DATABASE_URL}"
-
-    if [ "$DATABASE_URL" = "$DEFAULT_PACKAGED_DATABASE_URL" ]; then
-        if [ ! -f "$DEFAULT_PACKAGED_DB_PATH" ]; then
-            echo "❌ 未找到打包后的数据库文件 $DEFAULT_PACKAGED_DB_PATH"
-            echo "   为避免生产环境启动到空数据库，启动已终止"
-            exit 1
-        fi
-
-        echo "🗄️  当前使用打包数据库: $DEFAULT_PACKAGED_DB_PATH"
-    else
-        echo "🗄️  当前使用外部指定数据库: $DATABASE_URL"
+    if [ -z "${DATABASE_URL:-}" ] || { [ "${DATABASE_URL#postgresql://}" = "$DATABASE_URL" ] && [ "${DATABASE_URL#postgres://}" = "$DATABASE_URL" ]; }; then
+        echo "❌ Prisma ORM 8 membutuhkan DATABASE_URL PostgreSQL dari environment hosting."
+        echo "   Jangan gunakan database SQLite yang dibundel dalam artefak."
+        exit 1
     fi
-    
-    # 后台启动 Next.js
-    bun server.js &
+    echo "🗄️  Prisma ORM 8: memakai PostgreSQL eksternal (connection string disembunyikan)."
+
+    # Jalankan server Next.js menggunakan Node.js (tidak membutuhkan Bun saat runtime).
+    node server.js &
     NEXT_PID=$!
     pids="$NEXT_PID"
     

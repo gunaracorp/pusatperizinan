@@ -7,6 +7,7 @@
 // are migrated. No Prisma ORM 7 runtime/client is imported here.
 
 import { all, and, not, or } from "@prisma/orm-postgres/orm-client";
+import { Temporal } from "temporal-polyfill";
 import { prisma8 as runtime } from "@/prisma/db";
 
 type AnyRecord = Record<string, any>;
@@ -38,7 +39,7 @@ function ensureDatabaseConfigured(): void {
 }
 
 function normalizeInput(value: any): any {
-  if (value instanceof Date) return value;
+  if (value instanceof Date) return Temporal.Instant.from(value.toISOString());
   if (Array.isArray(value)) return value.map(normalizeInput);
   if (value && typeof value === "object") {
     const out: AnyRecord = {};
@@ -92,14 +93,14 @@ function filterExpression(filter: AnyRecord, fields: AnyRecord): any {
     }
 
     const field = fields[key];
-    if (!field) continue;
+    if (!field) throw new Error(`Unknown field in Prisma ORM 8 filter: ${key}`);
 
     if (rawValue === null) {
       clauses.push(field.isNull());
       continue;
     }
     if (rawValue instanceof Date) {
-      clauses.push(field.eq(rawValue.toISOString()));
+      clauses.push(field.eq(Temporal.Instant.from(rawValue.toISOString())));
       continue;
     }
     if (Array.isArray(rawValue)) {
@@ -170,14 +171,27 @@ function isEqualityFilter(filter: AnyRecord): boolean {
   return true;
 }
 
+function availableMethods(value: AnyCollection): string {
+  if (value === null || value === undefined) return String(value);
+  const names = new Set<string>();
+  let proto = value;
+  for (let i = 0; proto && i < 3; i++, proto = Object.getPrototypeOf(proto)) {
+    for (const name of Object.getOwnPropertyNames(proto)) names.add(name);
+  }
+  return [...names].filter((name) => !name.startsWith("_")).sort().join(",");
+}
+
 function buildQuery(model: AnyCollection, options: AnyRecord = {}): AnyCollection {
   let query = model;
   if (options.where && Object.keys(options.where).length) {
     // Prisma 8's object filter is both simpler and safer for equality-only
-    // predicates. Use expression callbacks only for the Prisma 7 operators.
+    // predicates. Use expression callbacks only for legacy query-shape operators.
     query = isEqualityFilter(options.where)
       ? query.where(normalizeInput(options.where))
       : query.where((fields: AnyRecord) => filterExpression(options.where, fields));
+    if (typeof query.limit !== "function") {
+      throw new Error(`Prisma ORM 8 where() did not return a chainable collection. Methods: ${availableMethods(query)}`);
+    }
   }
 
   if (options.orderBy) {
@@ -190,10 +204,18 @@ function buildQuery(model: AnyCollection, options: AnyRecord = {}): AnyCollectio
       return accessor[direction === "asc" ? "asc" : "desc"]();
     });
     query = query.orderBy(orderCallbacks.length === 1 ? orderCallbacks[0] : orderCallbacks);
+    if (typeof query.limit !== "function") {
+      throw new Error(`Prisma ORM 8 orderBy() did not return a chainable collection. Methods: ${availableMethods(query)}`);
+    }
   }
 
-  if (Number.isFinite(options.skip) && options.skip > 0) query = query.skip(options.skip);
-  if (Number.isFinite(options.take) && options.take >= 0) query = query.take(options.take);
+  if (Number.isFinite(options.skip) && options.skip > 0) query = query.offset(options.skip);
+  if (Number.isFinite(options.take) && options.take >= 0) {
+    if (typeof query.limit !== "function") {
+      throw new Error(`Prisma ORM 8 collection.limit() unavailable before pagination. Methods: ${availableMethods(query)}`);
+    }
+    query = query.limit(options.take);
+  }
 
   // Keep projections/includes as the final collection refinements. This makes
   // pagination modifiers run against the base collection before shape narrowing.
@@ -220,6 +242,30 @@ function applyDistinct(rows: AnyRecord[], distinct?: string[]): AnyRecord[] {
     seen.add(key);
     return true;
   });
+}
+
+function countValue(value: any): number | undefined {
+  if (typeof value === "number" || typeof value === "bigint") return Number(value);
+  return undefined;
+}
+
+function extractMutationCount(result: any): number {
+  const direct = countValue(result);
+  if (direct !== undefined) return direct;
+
+  for (const key of ["count", "affectedRows", "rowsAffected", "rowCount", "numRows"]) {
+    const count = countValue(result?.[key]);
+    if (count !== undefined) return count;
+  }
+
+  if (Array.isArray(result)) {
+    const count = result.map(countValue).find((value) => value !== undefined);
+    if (count !== undefined) return count;
+    const countObject = result.find((item) => item && countValue(item.count) !== undefined);
+    if (countObject) return countValue(countObject.count)!;
+  }
+  if (Array.isArray(result?.rows)) return result.rows.length;
+  throw new Error("Prisma ORM 8 mutation count response shape is not recognized.");
 }
 
 function rowCountResult(count: number) {
@@ -258,8 +304,8 @@ function makeDelegate(name: ModelName) {
       ensureDatabaseConfigured();
       const rows = Array.isArray(options.data) ? options.data : [];
       if (!rows.length) return rowCountResult(0);
-      const count = await collection().createCount(rows.map(normalizeInput));
-      return rowCountResult(Number(count));
+      await collection().createAll(rows.map(normalizeInput));
+      return rowCountResult(rows.length);
     },
     async update(options: AnyRecord) {
       ensureDatabaseConfigured();
@@ -271,9 +317,9 @@ function makeDelegate(name: ModelName) {
     },
     async updateMany(options: AnyRecord) {
       ensureDatabaseConfigured();
-      const count = await collection().where((fields: AnyRecord) => filterExpression(options.where ?? {}, fields))
-        .updateCount(normalizeInput(options.data ?? {}));
-      return rowCountResult(Number(count));
+      const result = await collection().where((fields: AnyRecord) => filterExpression(options.where ?? {}, fields))
+        .updateAndCount(normalizeInput(options.data ?? {}));
+      return rowCountResult(extractMutationCount(result));
     },
     async upsert(options: AnyRecord) {
       ensureDatabaseConfigured();
@@ -297,8 +343,8 @@ function makeDelegate(name: ModelName) {
     },
     async deleteMany(options: AnyRecord) {
       ensureDatabaseConfigured();
-      const count = await collection().where((fields: AnyRecord) => filterExpression(options.where ?? {}, fields)).deleteCount();
-      return rowCountResult(Number(count));
+      const result = await collection().where((fields: AnyRecord) => filterExpression(options.where ?? {}, fields)).deleteAndCount();
+      return rowCountResult(extractMutationCount(result));
     },
     async aggregate(options: AnyRecord = {}) {
       ensureDatabaseConfigured();

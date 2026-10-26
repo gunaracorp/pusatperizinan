@@ -33,6 +33,11 @@ start_mini_services() {
 	local started_count=0
 
 	log_step_start "Starting mini-services"
+	if [ -d "$mini_services_dir" ] && ! command -v bun >/dev/null 2>&1; then
+		echo "Bun is unavailable; skipping optional mini-services. The main Next.js app uses Node.js/npm."
+		log_step_end "Starting mini-services"
+		return 0
+	fi
 	if [ ! -d "$mini_services_dir" ]; then
 		echo "Mini-services directory not found, skipping..."
 		log_step_end "Starting mini-services"
@@ -64,9 +69,9 @@ start_mini_services() {
 		(
 			cd "$service_dir"
 			echo "[$service_name] Installing dependencies..."
-			bun install
-			echo "[$service_name] Running bun run dev..."
-			exec bun run dev
+			npm install --no-audit --no-fund
+			echo "[$service_name] Running npm run dev..."
+			exec npm run dev
 		) >"$PROJECT_DIR/.zscripts/mini-service-${service_name}.log" 2>&1 &
 
 		local service_pid=$!
@@ -115,24 +120,28 @@ trap cleanup EXIT INT TERM
 
 cd "$PROJECT_DIR"
 
-if ! command -v bun >/dev/null 2>&1; then
-	echo "ERROR: bun is not installed or not in PATH"
+if ! command -v npm >/dev/null 2>&1; then
+	echo "ERROR: npm is not installed or not in PATH"
 	exit 1
 fi
 
-log_step_start "bun install"
+log_step_start "npm install --no-audit --no-fund"
 echo "[BUN] Installing dependencies..."
-bun install
-log_step_end "bun install"
+npm install --no-audit --no-fund
+log_step_end "npm install --no-audit --no-fund"
 
-log_step_start "bun run db:push"
-echo "[BUN] Setting up database..."
-bun run db:push
-log_step_end "bun run db:push"
+log_step_start "Check Prisma ORM 8 PostgreSQL"
+if [[ "${DATABASE_URL:-}" != postgresql://* && "${DATABASE_URL:-}" != postgres://* ]]; then
+  echo "ERROR: Set DATABASE_URL to the PostgreSQL database in your private environment before starting development."
+  echo "The dev script will not create or fall back to a bundled SQLite database."
+  exit 1
+fi
+echo "[PRISMA 8] Using externally configured PostgreSQL; schema changes must be planned/reviewed explicitly."
+log_step_end "Check Prisma ORM 8 PostgreSQL"
 
 log_step_start "Starting Next.js dev server"
 echo "[BUN] Starting development server..."
-bun run dev &
+npm run dev &
 DEV_PID=$!
 log_step_end "Starting Next.js dev server"
 
