@@ -12,7 +12,7 @@
     "noEmit": true,
     "noImplicitAny": false,
     "esModuleInterop": true,
-    "module": "esnext",
+    "module": "preserve",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -34,7 +34,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts"
+    ".next/dev/types/**/*.ts",
+    "generated/prisma8/**/*.d.ts"
   ],
   "exclude": [
     "node_modules"
