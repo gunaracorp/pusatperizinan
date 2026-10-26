@@ -54,7 +54,7 @@ async function main() {
 
   const flush = async () => {
     if (!batch.length) return;
-    await db.orm.public[batchModel].createCount(batch);
+    await db.orm.public[batchModel].createAll(batch);
     counts.set(batchModel, (counts.get(batchModel) ?? 0) + batch.length);
     batch = [];
   };
