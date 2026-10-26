@@ -232,7 +232,7 @@ export function SeoLandingView({ page }: { page: SeoPage }) {
               className="group rounded-2xl border bg-card p-4 hover:shadow-md transition-shadow"
             >
               <span className="font-semibold text-sm leading-snug group-hover:text-primary transition-colors">
-                {l.label}
+                {l.label ?? l.name}
               </span>
               <span className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-primary">
                 Buka <ArrowRight className="h-3.5 w-3.5" aria-hidden />
