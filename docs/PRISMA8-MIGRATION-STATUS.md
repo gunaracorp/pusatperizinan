@@ -1,36 +1,49 @@
-# Prisma 8 compatibility stage — PusatPerizinan.com
+# Prisma ORM 8 — PusatPerizinan.com production target
 
-## Why this change exists
+This branch removes Prisma ORM 7 and the SQLite runtime package from the app's runtime dependencies. Application query traffic now runs through the Prisma ORM 8 PostgreSQL runtime in `src/prisma/db.ts`. `src/lib/db.ts` is a compatibility-shaped application facade that translates the existing route layer's established query patterns into Prisma ORM 8 calls; it does **not** import `@prisma/client`, Prisma 7, or a SQLite adapter.
 
-Prisma's deployment integration now expects repositories to use the Prisma ORM 8 CLI. The old application was written with Prisma ORM 7, its `@prisma/client`, and a SQLite driver adapter. A numeric version bump alone would break the application, so this branch introduces Prisma 8 alongside the existing Prisma 7 runtime.
+## Runtime design
 
-## What this stage changes
+- CLI: `prisma@8.0.0-rc.27` (pin to the Prisma 8 version supported by the deployment integration).
+- Runtime: `@prisma/orm-postgres@8.0.0-rc.20`.
+- Contract: `src/prisma/contract.prisma`.
+- Emitted artifacts: `generated/prisma8/contract.json` and `generated/prisma8/contract.d.ts`.
+- Runtime client: `src/prisma/db.ts`.
+- App facade: `src/lib/db.ts`, backed by the Prisma ORM 8 client only.
+- Database: PostgreSQL. The previous SQLite DB is only a source file for a one-time import.
 
-- `prisma` is pinned to the Prisma ORM 8 release candidate available for this migration (`8.0.0-rc.27`).
-- Prisma 7 tooling is namespaced as `@prisma/prisma7`, with the CLI `prisma7` and configuration `prisma7.config.ts`.
-- `@prisma/orm-sqlite` and a Prisma ORM 8 contract are added in `src/prisma/contract.prisma`.
-- The build emits the Prisma 8 contract artifacts and generates the existing Prisma 7 client.
-- `src/prisma/db.ts` defines the new Prisma 8 SQLite runtime, separate from `src/lib/db.ts`.
+## Current migration status
 
-## Important limitations
+- [x] Prisma ORM 8 CLI and PostgreSQL runtime configured.
+- [x] Remove Prisma 7 CLI/client and SQLite adapter from runtime/package dependencies.
+- [x] Centralize all app database requests behind the Prisma ORM 8 runtime.
+- [x] Remove SQLite-specific raw SQL from the admin overview; date series is calculated from filtered timestamp rows.
+- [x] Replace SQLite backup with compressed PostgreSQL/Prisma ORM 8 NDJSON backup.
+- [x] Add resumable SQLite-to-PostgreSQL data importer.
+- [x] Add backup restore tool for an initialized, empty PostgreSQL target.
+- [x] Add GitHub Actions PostgreSQL integration environment and smoke test for the 14 models.
+- [ ] Confirm the latest GitHub Actions run is green after the last commit.
+- [ ] Run the staging import against a verified copy of the actual production SQLite DB, compare row counts and sample records.
+- [ ] Set the real PostgreSQL connection string privately in Hostinger and test live app flows before routing production traffic.
 
-**This is a staged compatibility upgrade, not a completed migration of every database query.** Existing API routes still import `@/lib/db` and continue to use Prisma 7 until they can be moved and tested one by one.
+The source-code/configuration change can be prepared in GitHub, but production data cannot be safely moved or production credentials populated without access to the actual database/provider. Do not point the live application at an empty PostgreSQL database and assume the old leads/orders have been migrated.
 
-Prisma ORM 8's SQLite package is marked experimental by Prisma. For a production deployment on Prisma Compute, PostgreSQL / Prisma Postgres is the preferred target. Moving the current SQLite data and changing every route to Prisma ORM 8 are separate migration tasks; do not change `DATABASE_URL` to a PostgreSQL URL before that work is complete.
+## One-time SQLite → PostgreSQL import
 
-The live database file `db/custom.db` has historically been committed to the public repository. This branch intentionally does not delete that tracked file without a verified backup and migration plan. Check it for real customer records privately and remove it from Git history / rotate any exposed secrets as needed before production.
+1. Preserve a private backup of the actual source database.
+2. Set `DATABASE_URL` to a fresh staging PostgreSQL database.
+3. Run `npm install`, then `npm run db:init`.
+4. Run `npm run db:import-sqlite -- /secure/path/to/custom.db`.
+5. Run `npm run db:verify` and compare per-model counts/critical records.
+6. Exercise lead capture, admin dashboard, consultation, CMS, follow-up, orders, payment webhooks and notifications.
+7. Snapshot PostgreSQL with `npm run db:backup` before any production switch.
 
-## Commands
+The importer intentionally does not drop tables or overwrite rows. It preserves identifiers, converts SQLite's integer booleans, imports the Lead table before FollowUpLog because of its foreign key, and skips IDs already present so a partially interrupted import can resume. If the source DB is missing any expected model table, it fails instead of silently omitting data.
 
-- `npm run prisma8:emit` — emit Prisma ORM 8 contract files.
-- `npm run prisma8:verify` — verify that a database has been signed and matches the contract; this is for after database setup, not an initial build check.
-- `npm run db:generate` — regenerate the legacy Prisma 7 client.
-- `npm run db:migrate` — run the legacy Prisma 7 migration command until ownership is explicitly migrated.
+## ORM 8 query facade
 
-## Requirements and checks before production
+The current route files use a facade with methods such as `db.lead.findMany` for compatibility. The facade translates query builders/filters to Prisma ORM 8's `where`, `orderBy`, `select`, `include`, `create`, `update`, `upsert`, `aggregate`, and `groupBy` API. This avoids a risky one-shot rewrite across every endpoint while eliminating Prisma 7 from the running process. The compatibility facade must remain under integration tests before production release; unsupported filter operators fail visibly rather than broadening the query.
 
-- Node.js 22.18+ (Prisma ORM 8 minimum; Node.js 24 is recommended in its docs).
-- Run npm install and the production build in a clean environment. This assistant session could not run the repository's build because outbound network access for cloning / npm install was unavailable.
-- Confirm the emitted contract is accepted by the current Prisma ORM 8 CLI.
-- Test lead creation, consultations, admin lists, orders, CMS, and follow-up.
-- Before Prisma ORM 8 handles production writes, sign / verify the actual database and make a tested backup.
+## CI
+
+`/.github/workflows/prisma8-migration.yml` provisions disposable PostgreSQL 16, emits the contract, initializes the schema, verifies it, exercises create/read/update/count/groupBy/aggregate/upsert/include paths across all 14 models, and runs the production build. No production credentials are stored in GitHub Actions.
