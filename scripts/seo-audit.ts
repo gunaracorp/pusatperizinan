@@ -113,7 +113,7 @@ for (const c of KBLI_CATEGORY_PAGES) {
   rows.push({ url: `https://pusatperizinan.com/kbli/${c.slug}`, title: c.title ?? "", h1: "", metaDesc: c.metaDesc ?? "", slug: c.slug, source: "kbli-kategori" });
 }
 for (const j of JOBS) {
-  rows.push({ url: `https://pusatperizinan.com/lowongan-kerja/${j.slug}`, title: j.title ?? "", h1: "", metaDesc: j.desc ?? "", slug: j.slug, source: "jobs" });
+  rows.push({ url: `https://pusatperizinan.com/lowongan-kerja/${j.slug}`, title: j.title ?? "", h1: "", metaDesc: j.description.join(" "), slug: j.slug, source: "jobs" });
 }
 for (const c of COMPARISONS) {
   rows.push({ url: `https://pusatperizinan.com/bandingkan/${c.slug}`, title: c.title ?? "", h1: "", metaDesc: c.metaDesc ?? "", slug: c.slug, source: "comparisons" });
