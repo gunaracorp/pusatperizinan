@@ -10,7 +10,7 @@ import { CATEGORY_META } from "@/lib/catalog/types";
 import type { ServicePage } from "@/lib/catalog/types";
 import { CURRENT_YEAR } from "@/lib/site";
 import { INDUSTRIES } from "./industries";
-import type { SeoPage, SeoFaq, SeoBreadcrumb } from "./types";
+import type { SeoPage, SeoFaq, SeoBreadcrumb, SeoInternalLink } from "./types";
 
 /** Semua halaman induk layanan (110) — dipetakan by slug */
 const BASE_MAP = new Map<string, ServicePage>(
@@ -126,7 +126,7 @@ function buildMatrixPage(industrySlug: string, serviceId: string): SeoPage | nul
   ];
 
   // Tautan silang: layanan induk, industri induk, halaman seindustri, seservis
-  const related: SeoBreadcrumb[] = [
+  const related: SeoInternalLink[] = [
     { label: `Halaman layanan ${b.h1}`, href: `/layanan/${serviceId}` },
     { label: `Biaya ${b.h1}`, href: `/biaya/${serviceId}` },
     { label: `Syarat ${b.h1}`, href: `/syarat/${serviceId}` },
