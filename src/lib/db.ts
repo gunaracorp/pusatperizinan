@@ -170,6 +170,16 @@ function isEqualityFilter(filter: AnyRecord): boolean {
   return true;
 }
 
+function availableMethods(value: AnyCollection): string {
+  if (value === null || value === undefined) return String(value);
+  const names = new Set<string>();
+  let proto = value;
+  for (let i = 0; proto && i < 3; i++, proto = Object.getPrototypeOf(proto)) {
+    for (const name of Object.getOwnPropertyNames(proto)) names.add(name);
+  }
+  return [...names].filter((name) => !name.startsWith("_")).sort().join(",");
+}
+
 function buildQuery(model: AnyCollection, options: AnyRecord = {}): AnyCollection {
   let query = model;
   if (options.where && Object.keys(options.where).length) {
@@ -178,6 +188,9 @@ function buildQuery(model: AnyCollection, options: AnyRecord = {}): AnyCollectio
     query = isEqualityFilter(options.where)
       ? query.where(normalizeInput(options.where))
       : query.where((fields: AnyRecord) => filterExpression(options.where, fields));
+    if (typeof query.take !== "function") {
+      throw new Error(`Prisma ORM 8 where() did not return a chainable collection. Methods: ${availableMethods(query)}`);
+    }
   }
 
   if (options.orderBy) {
@@ -190,10 +203,18 @@ function buildQuery(model: AnyCollection, options: AnyRecord = {}): AnyCollectio
       return accessor[direction === "asc" ? "asc" : "desc"]();
     });
     query = query.orderBy(orderCallbacks.length === 1 ? orderCallbacks[0] : orderCallbacks);
+    if (typeof query.take !== "function") {
+      throw new Error(`Prisma ORM 8 orderBy() did not return a chainable collection. Methods: ${availableMethods(query)}`);
+    }
   }
 
   if (Number.isFinite(options.skip) && options.skip > 0) query = query.skip(options.skip);
-  if (Number.isFinite(options.take) && options.take >= 0) query = query.take(options.take);
+  if (Number.isFinite(options.take) && options.take >= 0) {
+    if (typeof query.take !== "function") {
+      throw new Error(`Prisma ORM 8 collection.take() unavailable before pagination. Methods: ${availableMethods(query)}`);
+    }
+    query = query.take(options.take);
+  }
 
   // Keep projections/includes as the final collection refinements. This makes
   // pagination modifiers run against the base collection before shape narrowing.
