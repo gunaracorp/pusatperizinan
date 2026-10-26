@@ -100,6 +100,7 @@ interface BaseServiceRecord {
   title: string;
   desc: string;
   price: string;
+  priceNumeric: number;
   duration: string;
   features: string[];
   long: string;
@@ -157,6 +158,7 @@ function buildBaseServices(): Map<string, BaseServiceRecord> {
       title: s.title,
       desc: s.desc,
       price: s.price,
+      priceNumeric: parsePrice(s.price),
       duration: s.duration,
       features: s.features,
       long,
@@ -179,6 +181,7 @@ function buildBaseServices(): Map<string, BaseServiceRecord> {
       title: s.title,
       desc: s.desc,
       price: s.price,
+      priceNumeric: parsePrice(s.price),
       duration: s.duration,
       features: s.features,
       long: d?.long ?? s.desc,
@@ -215,6 +218,7 @@ function buildBaseServices(): Map<string, BaseServiceRecord> {
       title: s.title,
       desc: s.desc,
       price: s.price,
+      priceNumeric: parsePrice(s.price),
       duration: s.duration,
       features: s.features,
       long: d?.long ?? s.desc,
