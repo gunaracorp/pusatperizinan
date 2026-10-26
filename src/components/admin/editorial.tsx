@@ -14,8 +14,8 @@ import { useToast } from "@/hooks/use-toast";
 import { apiPatch, useAdminData } from "@/components/admin/shared";
 import { triggerRefresh } from "@/components/admin/shared";
 import type { CmsPost } from "@/lib/blog-cms";
-import { TOPIC_BANK } from "@/lib/editorial";
-import type { EditorialBoard, EditorialSlotView, EditorialPillar } from "@/lib/editorial";
+import { TOPIC_BANK } from "@/lib/editorial-topics";
+import type { EditorialBoard, EditorialSlotView, EditorialPillar } from "@/lib/editorial-types";
 
 // ============================================================
 // MISSION CONTROL — Kalender Editorial (langkah 35)

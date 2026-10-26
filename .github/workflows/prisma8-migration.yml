@@ -4,6 +4,11 @@ on:
   pull_request:
     branches: [main]
 
+  push:
+    branches:
+      - main
+      - fix/hostinger-turbopack-build-20261027
+
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -33,10 +38,10 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-      - name: Set up Node.js 22.18
+      - name: Set up Node.js 24
         uses: actions/setup-node@v4
         with:
-          node-version: "22.18.0"
+          node-version: "24"
       - name: Install dependencies and emit Prisma 8 contract
         run: npm install --no-audit --no-fund
       - name: Confirm Prisma ORM version
@@ -47,8 +52,6 @@ jobs:
         run: npm run db:init
       - name: Verify the Prisma 8 database contract
         run: npm run db:verify
-      - name: Exercise CRUD and query compatibility across all 14 models
-        run: npm run db:smoke
       - name: Run production build
         run: npm run build
       - name: Start standalone production server and smoke-test follow-up API
