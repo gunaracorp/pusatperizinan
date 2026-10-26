@@ -56,3 +56,6 @@ server.log
 
 # backup database lokal (Langkah 68)
 /backups
+
+# Prisma 7: client digenerate ke src/generated/prisma (jangan di-commit)
+/src/generated/

@@ -11,6 +11,10 @@ import type { NextConfig } from "next";
 const isStaticExport = process.env.BUILD_STATIC === "1";
 
 const nextConfig: NextConfig = {
+  // Prisma 7 (driver adapter better-sqlite3 = modul native):
+  // WAJIB dikecualikan dari bundling server agar prebuild .node
+  // tidak dibongkar oleh webpack/turbopack.
+  serverExternalPackages: ["better-sqlite3", "@prisma/adapter-better-sqlite3"],
   ...(isStaticExport
     ? {
         // Mode hosting statis: prerender semua halaman jadi file HTML

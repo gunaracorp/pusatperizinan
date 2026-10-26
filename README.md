@@ -18,11 +18,11 @@
 [![React 19](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](#3-tech-stack--teknologi)
 [![Tailwind CSS 4](https://img.shields.io/badge/Tailwind_CSS-4-38BDF8?style=for-the-badge&logo=tailwindcss&logoColor=white)](#3-tech-stack--teknologi)
 [![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-New_York_48_komponen-000000?style=for-the-badge&logo=shadcnui&logoColor=white)](#3-tech-stack--teknologi)
-[![Prisma 6](https://img.shields.io/badge/Prisma-6_%2B_SQLite-2D3748?style=for-the-badge&logo=prisma&logoColor=white)](#9-database--14-model-prisma)
+[![Prisma 7](https://img.shields.io/badge/Prisma-7.10.1_%2B_SQLite-2D3748?style=for-the-badge&logo=prisma&logoColor=white)](#9-database--14-model-prisma)
 [![Bun](https://img.shields.io/badge/Bun-runtime_(_dev_)-F9F1F1?style=for-the-badge&logo=bun&logoColor=black)](#4-quick-start--mulai-cepat)
-[![Versi](https://img.shields.io/badge/Versi-v1.14.1_Detak_Jantung-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](./CHANGELOG.md)
+[![Versi](https://img.shields.io/badge/Versi-v1.14.2_Fondasi_Baru-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](./CHANGELOG.md)
 
-![Versioning](https://img.shields.io/badge/Versi-v1.14.1_%C2%B7_SemVer_2.0.0_%C2%B7_36_rilis-8B5CF6?style=flat-square&logo=semver&logoColor=white)
+![Versioning](https://img.shields.io/badge/Versi-v1.14.2_%C2%B7_SemVer_2.0.0_%C2%B7_37_rilis-8B5CF6?style=flat-square&logo=semver&logoColor=white)
 ![Sitemap](https://img.shields.io/badge/URL_Sitemap-11.876_%C2%B7_15_seksi-059669?style=flat-square&logo=google&logoColor=white)
 ![Layanan](https://img.shields.io/badge/Layanan_Orderable-1.500_in_3_katalog-059669?style=flat-square)
 ![MRR](https://img.shields.io/badge/KepatuhanPRO-MRR_6_SKU-f59e0b?style=flat-square)
@@ -48,7 +48,7 @@
 
 # 🇮🇩 — Bahasa Indonesia
 
-> 📌 **Dokumen ini bilingual & penuh navigasi.** Klik daftar isi mana pun untuk melompat. Sumber kebenaran kode: `src/lib/site.ts` (NAP, trust metrics) & `src/lib/pricing.ts` (harga). Log pengembangan 100% transparan & **ber-versi SemVer**: [`WORKLOG.md`](./WORKLOG.md) · riwayat rilis: [`CHANGELOG.md`](./CHANGELOG.md) · **Versi saat ini: `v1.14.1 "Detak Jantung"` (2026-10-26)** — cek live: `GET /api/version`.
+> 📌 **Dokumen ini bilingual & penuh navigasi.** Klik daftar isi mana pun untuk melompat. Sumber kebenaran kode: `src/lib/site.ts` (NAP, trust metrics) & `src/lib/pricing.ts` (harga). Log pengembangan 100% transparan & **ber-versi SemVer**: [`WORKLOG.md`](./WORKLOG.md) · riwayat rilis: [`CHANGELOG.md`](./CHANGELOG.md) · **Versi saat ini: `v1.14.2 "Fondasi Baru"` (2026-10-27)** — cek live: `GET /api/version`.
 
 ## 📑 Daftar Isi (ID)
 
@@ -190,7 +190,7 @@ Plus global: `Header` (mega menu 5 grup), `Footer` (credit "Support system by PT
 | Bahasa | **TypeScript 5** (strict) | Path alias `@/*` → `src/*` |
 | UI | **React 19** + **Tailwind CSS 4** + **shadcn/ui** (New York) | 48 komponen UI di `src/components/ui`; ikon **Lucide** |
 | Animasi | **framer-motion 12** + CSS compositor-only | `MotionProvider` global (`reducedMotion="user"`) |
-| Database | **Prisma 6.11** + **SQLite** (`db/custom.db`) | `prisma db push` alur utama |
+| Database | **Prisma 7.10.1** + **SQLite** (`db/custom.db`) | `prisma db push` alur utama |
 | State | Zustand (client) · TanStack Query (server state) | Terpasang, dipakai selektif |
 | Form | react-hook-form + zod 4 | Validasi dua sisi |
 | AI SDK | **z-ai-web-dev-sdk** | **WAJIB hanya di backend** (API routes) |
@@ -314,7 +314,7 @@ pusatperizinan/
 flowchart LR
     A["🧑‍💼 Pengunjung<br/>Landing · Tool AI · Katalog · Checkout"] --> B["⚡ Next.js API Routes<br/>/api/leads · /api/chat · /api/payment/* · /api/admin/*"]
     B --> E["🤖 z-ai-web-dev-sdk<br/>LLM · Vision (server-only)"]
-    B --> F[("🗄️ Prisma 6<br/>SQLite custom.db")]
+    B --> F[("🗄️ Prisma 7<br/>SQLite custom.db")]
     F --> G["📣 Telegram Bot<br/>Fonnte / Wablas"]
     C["🛒 Midtrans / Tripay"] --> B
     F --> H["📈 Mission Control<br/>/admin (HMAC)"]
@@ -711,6 +711,7 @@ Log penuh & transparan: [`WORKLOG.md`](./WORKLOG.md) — **34 entri terverifikas
 | **35** | 🛡️ **Jaring Pengaman** | Backup DB harian teruji-restore + Sentry env-gated server+client (v1.13.5) |
 | **36** | 🏃 **Kejar Order** | Follow-up otomatis lead 24/48/72 jam + lane admin/lead + panel Mission Control (v1.14.0) |
 | **37** | 🫀 **Detak Jantung** | Sweep follow-up berdenyut sendiri dari dalam server tiap 15 menit — tanpa cron eksternal (v1.14.1) |
+| **38** | 🧱 **Fondasi Baru** | Upgrade ORM Prisma 6 → 7.10.1: generator `prisma-client` + driver adapter better-sqlite3 + `prisma.config.ts`; mesin follow-up QA 23/23 PASS (v1.14.2) |
 
 ---
 
@@ -816,7 +817,7 @@ Dibangun dengan ❤️ untuk kemajuan UMKM Indonesia.
 
 # 🇬🇧 — English
 
-> 📌 **This document is bilingual & fully navigable.** Code source-of-truth: `src/lib/site.ts` (NAP, trust metrics) & `src/lib/pricing.ts` (prices). 100% transparent, **SemVer-versioned** dev log: [`WORKLOG.md`](./WORKLOG.md) · release history: [`CHANGELOG.md`](./CHANGELOG.md) · **Current version: `v1.14.1 "Detak Jantung"` (2026-10-26)** — live check: `GET /api/version`.
+> 📌 **This document is bilingual & fully navigable.** Code source-of-truth: `src/lib/site.ts` (NAP, trust metrics) & `src/lib/pricing.ts` (prices). 100% transparent, **SemVer-versioned** dev log: [`WORKLOG.md`](./WORKLOG.md) · release history: [`CHANGELOG.md`](./CHANGELOG.md) · **Current version: `v1.14.2 "Fondasi Baru"` (2026-10-27)** — live check: `GET /api/version`.
 
 ## 📑 Table of Contents (EN)
 
@@ -958,7 +959,7 @@ Global extras: `Header` (5-group mega menu), `Footer` ("Support system by PT Dig
 | Language | **TypeScript 5** (strict) | Path alias `@/*` → `src/*` |
 | UI | **React 19** + **Tailwind CSS 4** + **shadcn/ui** (New York) | 48 UI components in `src/components/ui`; **Lucide** icons |
 | Animation | **framer-motion 12** + compositor-only CSS | Global `MotionProvider` (`reducedMotion="user"`) |
-| Database | **Prisma 6.11** + **SQLite** (`db/custom.db`) | `prisma db push` as main flow |
+| Database | **Prisma 7.10.1** + **SQLite** (`db/custom.db`) | `prisma db push` as main flow |
 | State | Zustand (client) · TanStack Query (server state) | Installed, used selectively |
 | Forms | react-hook-form + zod 4 | Two-sided validation |
 | AI SDK | **z-ai-web-dev-sdk** | **Backend-only** (API routes) |
@@ -1080,7 +1081,7 @@ pusatperizinan/
 flowchart LR
     A["🧑‍💼 Visitor<br/>Landing · AI Tools · Catalog · Checkout"] --> B["⚡ Next.js API Routes<br/>/api/leads · /api/chat · /api/payment/* · /api/admin/*"]
     B --> E["🤖 z-ai-web-dev-sdk<br/>LLM · Vision (server-only)"]
-    B --> F[("🗄️ Prisma 6<br/>SQLite custom.db")]
+    B --> F[("🗄️ Prisma 7<br/>SQLite custom.db")]
     F --> G["📣 Telegram Bot<br/>Fonnte / Wablas"]
     C["🛒 Midtrans / Tripay"] --> B
     F --> H["📈 Mission Control<br/>/admin (HMAC)"]
@@ -1462,6 +1463,7 @@ Full transparent log: [`WORKLOG.md`](./WORKLOG.md) — **34 verified entries, ev
 | **35** | 🛡️ **Jaring Pengaman** | Tested daily DB backup + env-gated Sentry server+client (v1.13.5) |
 | **36** | 🏃 **Kejar Order** | Automated 24/48/72h lead follow-up + admin/lead lanes + Mission Control panel (v1.14.0) |
 | **37** | 🫀 **Heartbeat** | In-server automated follow-up sweep every 15 min — no external cron needed (v1.14.1) |
+| **38** | 🧱 **New Foundation** | ORM upgrade Prisma 6 → 7.10.1: `prisma-client` generator + better-sqlite3 driver adapter + `prisma.config.ts`; follow-up engine QA 23/23 PASS (v1.14.2) |
 
 ---
 

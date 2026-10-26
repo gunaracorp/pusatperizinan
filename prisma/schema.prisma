@@ -1,10 +1,24 @@
+// ============================================================
+// PUSATPERIZINAN.COM — Database Schema
+// Lead Generation Engine untuk Konsultan Perizinan
+// Prisma 7: generator "prisma-client" (bukan "prisma-client-js"
+// yang usang) + output eksplisit wajib — client digenerate ke
+// src/generated/prisma dan di-import via alias "@/generated/prisma/client".
+// Runtime memakai driver adapter @prisma/adapter-better-sqlite3
+// (Prisma 7 tanpa Rust engine — adapter wajib). Lihat src/lib/db.ts
+// dan prisma.config.ts.
+// ============================================================
+
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
 }
 
+// Prisma 7: datasource hanya deklarasi provider — URL koneksi
+// dipindah ke prisma.config.ts (untuk CLI/migrate) dan ke adapter
+// di src/lib/db.ts (untuk runtime PrismaClient).
 datasource db {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
 }
 
 // ============================================================

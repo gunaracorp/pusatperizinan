@@ -10,7 +10,7 @@
 
 import { db } from "@/lib/db";
 import { notifyOrder } from "@/lib/notify";
-import type { Order } from "@prisma/client";
+import type { Order } from "@/generated/prisma/client";
 
 const FINAL_SUCCESS = "PAID";
 

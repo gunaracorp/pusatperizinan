@@ -4,8 +4,15 @@
 // Jalankan: node scripts/verify-followup.mjs   (dev server di :3000)
 // ============================================================
 import { DatabaseSync } from "node:sqlite";
+import { existsSync } from "node:fs";
 
-const DB_PATH = "/home/z/my-project/db/custom.db";
+// Path DB dicari di beberapa lokasi kandidat (tahan relokasi repo).
+// Kandidat pertama = path kanonik dari .env repo (dipakai server).
+const DB_CANDIDATES = [
+  "/home/z/my-project/db/custom.db",
+  "/home/z/my-project/pusatperizinan/db/custom.db",
+];
+const DB_PATH = DB_CANDIDATES.find(existsSync) ?? DB_CANDIDATES[0];
 const BASE = "http://localhost:3000";
 const PASS = [];
 const FAIL = [];
@@ -29,14 +36,17 @@ const dueNow = db
     `SELECT COUNT(*) c FROM Lead WHERE status='NEW'
      AND createdAt <= ? AND createdAt >= ?`
   )
-  .get(now - 24 * H, now - 30 * 24 * H).c;
+  // Prisma 7 menyimpan DateTime SQLite sebagai teks ISO-8601 (bukan
+  // integer ms seperti v6) → param pembanding wajib ISO string agar
+  // komparasi teks↔teks konsisten dengan binding mesin.
+  .get(new Date(now - 24 * H).toISOString(), new Date(now - 30 * 24 * H).toISOString()).c;
 
 // ---------- 1. Seed: 4 lead QA + fake kanal Telegram ----------
 const ins = db.prepare(
   `INSERT INTO Lead (id, name, whatsapp, businessType, package, source, status, estimatedValue, notes, createdAt, updatedAt)
    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
 );
-const t = (h) => now - h * H;
+const t = (h) => new Date(now - h * H).toISOString();
 const leads = [
   { id: "qafuA0000000000000000000A", name: "QA-FU-Andi-25h", wa: "081111000001", ageH: 25, status: "NEW", val: 2_500_000 },
   { id: "qafuB0000000000000000000B", name: "QA-FU-Budi-50h", wa: "6281111000002", ageH: 50, status: "NEW", val: 7_500_000 },
@@ -49,7 +59,7 @@ for (const l of leads) {
 db.prepare(
   `INSERT INTO NotificationSetting (id, telegramEnabled, telegramBotToken, telegramChatId, whatsappEnabled, whatsappProvider, updatedAt)
    VALUES ('qafusetting0000000000000', 1, '123456:FAKE-QA-TOKEN', '-100999', 0, 'fonnte', ?)`
-).run(now);
+).run(new Date(now).toISOString());
 console.log(`Seed: 4 lead QA + fake Telegram (lead due pre-existing: ${dueNow})`);
 
 // ---------- 2. Login admin ----------

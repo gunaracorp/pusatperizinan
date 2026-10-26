@@ -5,19 +5,19 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.14.1_Detak_Jantung-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-14-1)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.14.2_Fondasi_Baru-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-14-2)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-36_(0.1.0_%E2%86%92_1.14.1)-059669?style=flat-square)
-![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-44_ber_versi-059669?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-37_(0.1.0_%E2%86%92_1.14.2)-059669?style=flat-square)
+![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-45_ber_versi-059669?style=flat-square)
 ![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.15.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.14.1 — "Detak Jantung"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.14.2 — "Fondasi Baru"`**
 
 <sub>Versi terlihat hidup di: footer setiap halaman (11.876 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
@@ -57,6 +57,39 @@
 - ~~Langkah 68 keandalan~~ ✅ **SELESAI di v1.13.5** — backup harian otomatis + uji restore + Sentry env-gated
 - Verifikasi token 6 mesin pencari via env → meta tag otomatis (lanjutan `v1.3.0`)
 - Re-ukur PSI mobile setelah deploy v1.5.0–v1.11.0 — target LCP < 4 s & TBT < 500 ms
+
+---
+
+<a id="v1-14-2"></a>
+
+## [1.14.2] — 2026-10-27 — 🧱 "Fondasi Baru" (Task 38)
+
+Rilis infrastruktur data: ORM naik dari Prisma 6.11.1 → **7.10.1** (stabil terbaru). Mesin follow-up v1.14.0–v1.14.1 terbukti lulus QA penuh di atas fondasi baru — perilaku aplikasi tak berubah, mesin tetap berdenyut.
+
+> ℹ️ Catatan permintaan user "Prisma 8": per Oktober 2026 Prisma 8 masih **RC** (`8.0.0-rc.27`) dengan CLI yang telah berubah total menjadi "Prisma Developer Platform" (perintah cloud), `@prisma/client` v8 stabil belum ada, dan jalur upgrade resmi v8 belum mencakup SQLite. Keputusan teknis: naik ke **7.10.1** agar mesin uang tetap nyala aman; hop ke 8 dieksekusi saat stabil + dukungan SQLite tersedia.
+
+### 🧱 Changed — Upgrade Prisma 7
+- **Dependensi**: `prisma` + `@prisma/client` 6.11.1 → **7.10.1**; tambah **`@prisma/adapter-better-sqlite3`** (Prisma 7 tanpa Rust query engine → driver adapter wajib) dan `dotenv`.
+- **Generator**: `prisma-client-js` (usang) → **`prisma-client`** dengan output eksplisit wajib → client digenerate ke `src/generated/prisma` (di-gitignore), import via `@/generated/prisma/client` — 3 berkas terdampak: `src/lib/db.ts`, `src/lib/payment/orders.ts`, `src/app/api/admin/overview/route.ts`.
+- **Datasource**: properti `url` TIDAK lagi didukung di `schema.prisma` → URL koneksi pindah ke **`prisma.config.ts`** (baru, untuk CLI: `dotenv/config` + `defineConfig`) dan ke adapter di `src/lib/db.ts` (runtime).
+- **`PrismaClient`**: kini diinstansiasi dengan `{ adapter }` (PrismaBetterSqlite3, fallback `file:./db/custom.db`); singleton & cache dev-global perilaku lama dipertahankan.
+- **Build**: `postinstall: prisma generate` + `build` diawali `prisma generate` — client selalu ada di clone mesin apa pun; `next.config.ts` tambah `serverExternalPackages` (better-sqlite3 = modul native, wajib di luar bundel).
+- **Format data**: DateTime SQLite kini **teks ISO-8601** (v6: integer milidetik) — `scripts/verify-followup.mjs` disesuaikan (seed & pre-check pakai `toISOString()`); seluruh tulisan produksi lewat Prisma otomatis format baru, tanpa migrasi data manual.
+
+### 🛠 Fixed
+- `scripts/verify-followup.mjs`: path DB hardcode lama `/home/z/my-project/db/custom.db` → kandidat multi-lokasi (tahan relokasi repo).
+- Sinkronisasi schema 14 model ke SQLite via `prisma db push` (dengan `prisma.config.ts`) — DB dev kini memuat tabel `FollowUpLog` dll.
+
+### 🧪 QA
+- `tsc --noEmit`: **nol error** pada seluruh berkas baru/tersentuh (166 error pra-ada di berkas lain terbukti via baseline — di luar cakupan patch ini)
+- ESLint 5 berkas tersentuh: **nol temuan**
+- Boot test nyata: `bun run dev` → `✓ Ready in 4.5s` + log `[detak-jantung] ON` (scheduler hidup di atas Prisma 7)
+- Smoke engine: `GET /api/version` 200 + homepage 200
+- QA E2E `node scripts/verify-followup.mjs`: **23 PASS · 0 FAIL** 🎉 (idempoten, antrean admin, prefill wa.me, bebas PII — semua hijau)
+- Diagnostik tulis-baca lintas format (better-sqlite3 ↔ Prisma 7) terbukti konsisten sebelum QA dieksekusi
+
+### 📚 Docs
+- `scripts/ver.json` + `src/lib/version.ts` + README (ID/EN) + ROADMAP-99 + WORKLOG tersinkron v1.14.2
 
 ---
 

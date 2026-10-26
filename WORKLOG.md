@@ -290,3 +290,25 @@ Stage Summary:
 - v1.14.1 "Detak Jantung" rilis: mesin follow-up kini MANDIRI PENUH — pasang token Telegram (gratis 2 menit via @BotFather) di Mission Control → Notifikasi → mesin langsung mengejar 14 lead jatuh tempo (Rp 52,5 jt mengendap) tanpa cron, tanpa setup tambahan
 - Roadmap-99 tetap 16/99 selesai (patch aktivasi, bukan langkah baru) — jalur uang berikutnya siap: lane WA gateway penuh (Fonnte), langkah 9 abandoned checkout recovery (engine reusable), langkah 1 pembayaran produksi (menunggu kredensial)
 - Sesi ini juga memulihkan sandbox dari clone GitHub + merintis ulang worklog eksternal /home/z/my-project/worklog.md
+
+Task ID: 38
+Agent: main
+Task: 🧱 "Fondasi Baru" — upgrade ORM Prisma 6.11.1 → 7.10.1 (permintaan user: "install prisma versi 8" → dieksekusi sebagai hop stabil tertinggi yang aman) + push GitHub 🏷️ Rilis v1.14.2
+
+Work Log:
+- Verifikasi npm registry: Prisma 8 = RC saja (latest 8.0.0-rc.27; @prisma/client v8 stabil belum ada) — CLI v8 uji empiris: sudah berubah total jadi "Prisma Developer Platform" (auth/project/deploy), perintah klasik validate/generate hilang → pasang RC = mesin uang rusak
+- Keputusan: naik ke 7.10.1 (stabil terbaru) — hop ke 8 ditunda sampai stabil + jalur SQLite resmi; catatan lengkap di CHANGELOG v1.14.2
+- schema.prisma: generator prisma-client-js → prisma-client + output ../src/generated/prisma; properti datasource.url DIHAPUS (tidak didukung Prisma 7 — error P1012 terbukti saat generate)
+- prisma.config.ts BARU: dotenv/config + defineConfig (schema path + datasource url env) — konfigurasi CLI era Prisma 7
+- src/lib/db.ts: PrismaClient dari @/generated/prisma/client + adapter PrismaBetterSqlite3 (fallback file:./db/custom.db); 2 import lain disesuaikan (orders.ts, admin/overview) — total 3 berkas terdampak
+- package.json: prisma & @prisma/client ^7.10.1, + @prisma/adapter-better-sqlite3 ^7.10.1, + dotenv ^17; scripts: postinstall=prisma generate, build diawali prisma generate; next.config.ts += serverExternalPackages (better-sqlite3 native); .gitignore += /src/generated/
+- PEMBELIAN PENGETAHUAN (bun issue #4290): better-sqlite3 TIDAK bisa di runtime bun — tapi bun run dev hanya spawn Next.js via node asli (shebang), jadi server aman; diagnostik internal dijalankan via bunx tsx (node runtime)
+- TEMUAN KUNCI: Prisma 7 menyimpan DateTime SQLite sebagai TEKS ISO-8601 (bukan integer ms v6) — verify-followup.mjs masih seed integer → komparasi lintas-tipe SQLite → scanned=0 (13 PASS/10 FAIL); diag tsx membuktikan format tulis-baca Prisma 7 konsisten → seed & pre-check script diganti toISOString()
+- FIX juga: verify-followup.mjs DB_PATH hardcode → kandidat multi-lokasi; prisma db push sinkron 14 model ke DB dev (sebelumnya stale tanpa FollowUpLog)
+- QA FINAL: tsc --noEmit nol error di seluruh berkas tersentuh (166 error pra-ada berkas lain, baseline); eslint 5 berkas nol temuan; boot test bun run dev → Ready 4.5s + [detak-jantung] ON; /api/version + homepage 200; node verify-followup.mjs → 23 PASS · 0 FAIL 🎉
+- Sinkron versi 8 titik: version.ts (1.14.2 "Fondasi Baru" + RELEASES 37 entri), package.json, scripts/ver.json (total 37 + history), CHANGELOG.md (entri v1.14.2 + catatan keputusan "Prisma 8" + badge 37 rilis/worklog 45), README ID+EN (badge Prisma 7, badge versi ×2, "versi saat ini" ×2, task row 38 ×2, tabel stack Prisma 7 ×2, diagram mermaid ×2), ROADMAP-99.md (catatan v1.14.2 di langkah 6), WORKLOG.md (entri ini)
+
+Stage Summary:
+- v1.14.2 "Fondasi Baru" rilis: fondasi ORM modern tanpa Rust engine — mesin follow-up (v1.14.0/v1.14.1) terbukti utuh di atasnya (QA 23/23)
+- Catatan permanen utk masa depan: (1) Prisma 8 = produk baru (cloud platform CLI), hop saat stabil+SQLite; (2) DateTime SQLite = teks ISO-8601 di Prisma 7 — script QA eksternal wajib seed ISO string; (3) better-sqlite3 tak jalan di bun runtime murni — selalu via node/Next.js server
+- Roadmap-99 tetap 16/99 (patch infrastruktur, bukan langkah baru); next uang: token Telegram @BotFather → mesin follow-up menyala penuh
