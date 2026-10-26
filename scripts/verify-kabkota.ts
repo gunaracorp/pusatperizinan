@@ -54,6 +54,6 @@ for (const [province, list] of provinces) {
   total += list.length;
 }
 
-console.log(`\\nTotal entri: ${total} (resmi 514 + ${total - 514} alias existing)`);
+console.log(`\nTotal entri: ${total} (resmi 514 + ${total - 514} alias existing)`);
 console.log(ok ? "✅ Semua jumlah cocok & tidak ada duplikat slug" : "⚠️ Ada masalah di atas");
 if (!ok) process.exitCode = 1;
