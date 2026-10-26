@@ -1,84 +1,101 @@
-# Deploy PusatPerizinan.com di Hostinger (Node.js Web App)
+# Deploy PusatPerizinan.com — Hostinger + Prisma ORM 8 + PostgreSQL
 
-Panduan ini mengikuti konfigurasi repository saat ini: Next.js 16, output `standalone`, Node.js, Prisma ORM 7, dan SQLite. Ini **belum** merupakan migrasi ke PostgreSQL.
+This branch's production database runtime is Prisma ORM 8 with PostgreSQL. SQLite is only used as a **source** during the one-time data import. Do not configure `DATABASE_URL=file:./db/custom.db` for the application runtime.
 
-## 1. Pengaturan Hostinger
+## Runtime requirements
 
-Pakai **Node.js Web App**, bukan upload source code ke `public_html` sebagai situs PHP/statis. Pilih Node.js 22 seperti build yang dipakai saat ini.
+- Node.js 22.18+ (Node.js 24.11+ is also supported; Node.js 24 is recommended by Prisma).
+- TypeScript 5.9+.
+- Hostinger's Node.js Web App environment, not static export or PHP-only `public_html` hosting.
+- A PostgreSQL database reachable from Hostinger. The connection string must be supplied privately from your database provider's dashboard.
 
-- Repository: `gunaracorp/pusatperizinan`
-- Branch: gunakan branch perbaikan untuk menguji; setelah lolos baru arahkan produksi ke perubahan yang disetujui
+## Hostinger deployment settings
+
+- Git repository: `gunaracorp/pusatperizinan`
+- Branch: use the reviewed Prisma 8 branch for staging first; change production only after CI succeeds and the migration plan below is completed.
 - Build command: `npm run build`
-- Start command: `npm run start` (atau biarkan Hostinger memakai script `start` dari package.json)
-- Framework: Next.js bila terdeteksi otomatis
-- Output: `.next` bila form meminta output directory
+- Start command: `npm run start`
+- Node version: 22.18+ (or a supported newer version)
+- Next.js output: `.next/standalone` if Hostinger asks for the output setting.
 
-Script build memakai `next build --webpack`. Ini adalah fallback yang sesuai untuk error Turbopack Hostinger yang muncul saat memproses `src/app/globals.css`.
+The build uses `next build --webpack` because Hostinger's previous Turbopack build failed while spawning the CSS worker for `src/app/globals.css`. The build copies `public`, `.next/static`, and generated Prisma 8 contract artifacts into the standalone output.
 
-## 2. Variabel yang wajib disiapkan sebelum build
+## Required environment variables
 
-Prisma 7 membaca `DATABASE_URL` melalui `prisma.config.ts`; jadi variabel ini harus tersedia pada tahap install/build juga, bukan hanya setelah aplikasi hidup.
-
-Untuk konfigurasi repository saat ini (SQLite), nilai awal yang diharapkan kode adalah:
+Add these under Hostinger → Node.js Web App → Environment Variables. Do not commit real values or paste them in chat.
 
 ```env
-DATABASE_URL=file:./db/custom.db
-ADMIN_PASSWORD=<buat-password-admin-yang-kuat>
-ADMIN_SECRET=<minimal-32-karakter-acak>
-CRON_SECRET=<secret-acak-berbeda>
+DATABASE_URL=postgresql://USER:PASSWORD@HOST:5432/DATABASE?sslmode=require
+ADMIN_PASSWORD=<your-unique-admin-password>
+ADMIN_SECRET=<at-least-32-random-characters>
+CRON_SECRET=<a-different-long-random-secret>
 PAYMENT_DEMO_MODE=false
 FOLLOWUP_SWEEP_MINUTES=15
 ```
 
-Jangan menyalin tanda kurung sudut dari contoh. Buat secret yang berbeda satu sama lain. Jangan gunakan contoh placeholder sebagai nilai produksi.
+Replace placeholders using real values; do not include angle brackets. `DATABASE_URL` is a real PostgreSQL URL, not the SQLite path from old configuration. The sample connection string in `.env.example` is a placeholder and will not connect.
 
-**Peringatan SQLite:** konfigurasi ini hanya layak bila lokasi database benar, dapat ditulis oleh proses Node, dan file tidak terhapus saat redeploy. Pastikan backup terlebih dulu. Shared/publish runtime yang tidak menjamin penyimpanan persisten dapat kehilangan perubahan database. Untuk data lead dan order produksi, rencanakan migrasi teruji ke PostgreSQL terkelola.
+Optional values, only for features you actually enable:
 
-## 3. Environment variables opsional
-
-Isi hanya jika fiturnya digunakan.
-
-### Pembayaran
 - Midtrans: `MIDTRANS_SERVER_KEY`, `MIDTRANS_CLIENT_KEY`, `MIDTRANS_IS_PRODUCTION`
-- Tripay: `TRIPAY_API_KEY`, `TRIPAY_PRIVATE_KEY`, `TRIPAY_MERCHANT_CODE`, `TRIPAY_IS_PRODUCTION`; opsional `TRIPAY_METHODS`
-- Transfer manual: `BANK_TRANSFER_INFO`
+- Tripay: `TRIPAY_API_KEY`, `TRIPAY_PRIVATE_KEY`, `TRIPAY_MERCHANT_CODE`, `TRIPAY_IS_PRODUCTION`, optionally `TRIPAY_METHODS`
+- Manual transfer details: `BANK_TRANSFER_INFO`
+- Telegram notifications: `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`
+- WhatsApp gateway: `FONNTE_TOKEN`
+- Search Console/analytics: `NEXT_PUBLIC_GSC_VERIFICATION`, `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_CLARITY_ID`
+- Error monitoring: `SENTRY_DSN`, `NEXT_PUBLIC_SENTRY_DSN`
 
-Untuk produksi, jangan set `PAYMENT_DEMO_MODE=true`. Kalau belum ada gateway, mode manual lebih aman daripada menganggap transaksi demo sebagai pembayaran sungguhan.
+All variables must be present before the build if the bundler or Prisma configuration reads them during build. Keep secrets server-side: never prefix database URLs, admin secrets, payment keys, or notification tokens with `NEXT_PUBLIC_`.
 
-### Notifikasi
-- Telegram: `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`
-- Gateway WhatsApp Fonnte: `FONNTE_TOKEN`
+## Database setup: new/empty PostgreSQL
 
-### Analitik dan pemantauan
-- Search Console: `NEXT_PUBLIC_GSC_VERIFICATION`
-- Google Analytics: `NEXT_PUBLIC_GA_ID` (kode fallback tersedia di aplikasi)
-- Microsoft Clarity: `NEXT_PUBLIC_CLARITY_ID`
-- Sentry: `SENTRY_DSN`, `NEXT_PUBLIC_SENTRY_DSN`
-- Opsional IndexNow: `INDEXNOW_KEY`
+Run commands only against the intended PostgreSQL database.
 
-Variabel dengan awalan `NEXT_PUBLIC_` masuk ke bundle browser saat build; isi sebelum build/redeploy agar nilainya terpasang. Jangan pernah memberi awalan tersebut kepada database password, secret, atau kunci payment gateway.
+1. Set `DATABASE_URL` securely in your Hostinger environment or local secure shell.
+2. Install dependencies and emit the contract: `npm install` (the postinstall also emits it).
+3. Initialize the tables once: `npm run db:init`.
+4. Check the contract: `npm run db:verify`.
+5. Before accepting leads/orders, open the website and verify admin, lead creation, consultation, checkout, payment status, and notification routes.
 
-## 4. Prisma Postgres (opsi database gratis) — jangan langsung tempel URL-nya
+`db:init` is an initialization operation for a new/empty database. Do not repeat it as a generic deployment command.
 
-Prisma ORM adalah library, sedangkan Prisma Postgres adalah layanan database. Plan gratis Prisma Postgres saat panduan ini ditulis mencakup 200.000 operasi dan 500 MB penyimpanan per bulan/plan; jika batas operasi habis, database dapat berhenti menerima query sampai kuota reset. Cek kembali harga/kuota resmi sebelum mengandalkannya.
+## Move the existing SQLite data
 
-Repository ini saat ini menggunakan `provider = "sqlite"` dan `@prisma/adapter-better-sqlite3`. Karena itu, URL PostgreSQL **tidak akan bekerja hanya dengan mengganti `DATABASE_URL`**. Migrasi juga perlu mengganti provider Prisma, adapter runtime, dependensi, membuat tabel di database baru, dan memindahkan/mengecek data SQLite yang ada. Lakukan sebagai perubahan terpisah dan uji sebelum mengalihkan produksi.
+Do not change the production website's database URL until a backup and a successful staging import have been verified.
 
-## 5. Sebelum membuka akses produksi
+1. Keep a private copy of the existing SQLite file. The historical repository file is not guaranteed to match the latest live Hostinger database.
+2. Create a new PostgreSQL database and use a separate staging `DATABASE_URL`.
+3. In a staging checkout, emit the contract and run `npm run db:init`.
+4. Run `npm run db:import-sqlite -- /secure/path/to/custom.db`. The importer opens SQLite read-only, checks for the expected 14 model tables, preserves existing IDs, converts SQLite Boolean fields, batches inserts, skips IDs already imported, and can resume after an interrupted batch.
+5. Run `npm run db:verify`, then check counts and sample records from leads, orders, articles, subscribers, consultations, and follow-up logs. Test the complete lead → admin → order → webhook path against staging.
+6. Back up the new PostgreSQL database with `npm run db:backup`. The resulting compressed NDJSON files include business/customer data and must remain private.
+7. Only after successful comparison, switch the production app to the PostgreSQL `DATABASE_URL`, deploy, and repeat the golden-path test. Keep the old SQLite backup private until the new site has been verified.
 
-- [ ] Ganti password admin dan buat `ADMIN_SECRET` serta `CRON_SECRET` yang unik.
-- [ ] Pastikan `.env` tidak dilacak Git; jangan commit token atau password.
-- [ ] Database backup disimpan privat, bukan di repository publik.
-- [ ] Pastikan database memiliki tabel Prisma dan uji form lead, login admin, order, serta webhook.
-- [ ] Tes domain HTTPS, log runtime, dan proses redeploy sebelum mengalihkan trafik.
-- [ ] Jangan aktifkan gateway pembayaran produksi sampai credential dan URL webhook diverifikasi.
+If the SQLite database contains real client records, handle it as confidential personal data. Do not upload it to chat or commit it to Git.
 
-## 6. Jika build masih gagal
+## Backups and restore
 
-Buka Hostinger → Website Dashboard → Deployments → detail build → Build logs. Catat perintah terakhir yang gagal dan pesan error paling bawah. Hilangkan password, token, URL database, serta data pelanggan sebelum membagikan log.
+- `npm run db:backup` — exports all 14 model tables as compressed NDJSON under `backups/`, mode 0600, retains the latest 14 files.
+- `npm run db:restore -- /secure/path/to/backup.ndjson.gz` — restores the backup into an already initialized, empty PostgreSQL target. Use a new staging database for restore tests; the script refuses a non-empty target.
+- Keep off-host copies as well. A backup on the same hosting account is not a complete disaster-recovery plan.
 
-Rujukan resmi:
-- Hostinger: https://www.hostinger.com/support/how-to-fix-next-js-16-turbopack-build-errors-on-hostinger/
+## Prisma ORM 8 migration workflow
+
+- `npm run prisma8:emit` — emit the contract artifacts.
+- `npm run db:init` — initialize a new database once.
+- `npm run db:sign` — sign an already-existing database only after its schema matches the contract.
+- `npm run db:verify` — verify the database against the emitted contract.
+- `npm run db:plan` — plan a schema change for review.
+- `npm run db:migrate:preview` — preview pending migration operations.
+- `npm run db:migrate` — development command that applies the planned change and advances the local `db` ref. Production migrations should use a committed and reviewed migration plan and must not advance repository refs from the deployment job.
+
+## CI verification
+
+The GitHub Actions workflow provisions a disposable PostgreSQL 16 service and runs contract emission, initializes a blank schema, verifies it, runs a CRUD/query smoke test against all 14 models, and performs the Next.js production build. CI success is necessary but is not proof that the Hostinger environment variables or production data migration are correct.
+
+## Official references
+
+- Prisma ORM 8 release status: https://www.prisma.io/docs/orm/release-status
+- Prisma ORM 7 → 8 PostgreSQL migration: https://www.prisma.io/docs/guides/upgrade-prisma-orm/postgresql
+- Prisma ORM 8 database migrations: https://www.prisma.io/docs/orm/migrations/how-migrations-work
 - Hostinger environment variables: https://www.hostinger.com/support/how-to-add-environment-variables-during-node-js-application-deployment/
-- Prisma Postgres pricing: https://www.prisma.io/pricing
-- Prisma ORM 7 PostgreSQL: https://www.prisma.io/docs/orm/v7/core-concepts/supported-databases/postgresql
