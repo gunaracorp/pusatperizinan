@@ -13,7 +13,7 @@ model Lead {
   estimatedValue Int    @default(0) // estimasi nilai kontrak (Rupiah)
   notes        String?
   createdAt    DateTime @default(now())
-  updatedAt    DateTime temporal.updatedAt()
+  updatedAt    temporal.updatedAt()
   followUps    FollowUpLog[]
 
   @@index([status])
@@ -32,7 +32,7 @@ model Consultation {
   method     String   @default("WA") // WA, Zoom, Meet, Kantor
   status     String   @default("PENDING") // PENDING, CONFIRMED, DONE, CANCELLED
   createdAt  DateTime @default(now())
-  updatedAt  DateTime temporal.updatedAt()
+  updatedAt  temporal.updatedAt()
 
   @@index([status])
 }
@@ -134,7 +134,7 @@ model NotificationSetting {
   whatsappApiToken String?  // token API gateway WA
   whatsappTarget   String?  // nomor HP tujuan (62xxx)
   templateNewLead  String?  // template pesan dengan placeholder {{nama}} dst
-  updatedAt        DateTime temporal.updatedAt()
+  updatedAt        temporal.updatedAt()
 }
 
 // Order: pesanan langsung bayar (checkout otomatis via gateway)
@@ -158,7 +158,7 @@ model Order {
   paidAt        DateTime?
   expiresAt     DateTime?
   createdAt     DateTime  @default(now())
-  updatedAt     DateTime  temporal.updatedAt()
+  updatedAt     temporal.updatedAt()
 
   @@index([status])
   @@index([createdAt])
@@ -190,7 +190,7 @@ model Post {
   noindex         Boolean  @default(false) // true = robots noindex (halaman tetap bisa diakses)
   publishedAt     DateTime @default(now())
   createdAt       DateTime @default(now())
-  updatedAt       DateTime temporal.updatedAt()
+  updatedAt       temporal.updatedAt()
 
   @@index([status])
   @@index([updatedAt])
@@ -249,7 +249,7 @@ model EditorialSlot {
   status       String   @default("PLANNED") // PLANNED | DRAFTED | PUBLISHED | SKIPPED
   postId       String?  // tautan ke Post CMS saat draft dibuat / terbit
   createdAt    DateTime @default(now())
-  updatedAt    DateTime temporal.updatedAt()
+  updatedAt    temporal.updatedAt()
 
   @@unique([weekStart, slotIndex])
   @@index([weekStart])
