@@ -7,6 +7,7 @@
 // are migrated. No Prisma ORM 7 runtime/client is imported here.
 
 import { all, and, not, or } from "@prisma/orm-postgres/orm-client";
+import { Temporal } from "temporal-polyfill";
 import { prisma8 as runtime } from "@/prisma/db";
 
 type AnyRecord = Record<string, any>;
@@ -38,7 +39,7 @@ function ensureDatabaseConfigured(): void {
 }
 
 function normalizeInput(value: any): any {
-  if (value instanceof Date) return value;
+  if (value instanceof Date) return Temporal.Instant.from(value.toISOString());
   if (Array.isArray(value)) return value.map(normalizeInput);
   if (value && typeof value === "object") {
     const out: AnyRecord = {};

@@ -16,6 +16,7 @@ import "dotenv/config";
 import fs from "node:fs";
 import path from "node:path";
 import { DatabaseSync } from "node:sqlite";
+import { Temporal } from "temporal-polyfill";
 import postgres from "@prisma/orm-postgres/runtime";
 import { contractFromJson } from "@prisma/orm-postgres/static";
 
@@ -48,6 +49,7 @@ const BOOLEAN_FIELDS = {
   NotificationSetting: ["telegramEnabled", "whatsappEnabled"],
   Post: ["noindex"],
 };
+const DATETIME_FIELDS = ["createdAt", "updatedAt", "paidAt", "expiresAt"];
 
 function stop(message) {
   console.error(`[sqlite-import] ERROR: ${message}`);
@@ -58,6 +60,11 @@ function normalizeRow(model, raw) {
   const row = { ...raw };
   for (const key of BOOLEAN_FIELDS[model] || []) {
     if (row[key] !== null && row[key] !== undefined) row[key] = Boolean(row[key]);
+  }
+  for (const key of DATETIME_FIELDS) {
+    if (row[key] !== null && row[key] !== undefined) {
+      row[key] = Temporal.Instant.from(new Date(row[key]).toISOString());
+    }
   }
   return row;
 }

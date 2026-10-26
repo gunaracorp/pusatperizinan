@@ -10,6 +10,7 @@ import { createGunzip } from "node:zlib";
 import { createReadStream } from "node:fs";
 import { createInterface } from "node:readline";
 import postgres from "@prisma/orm-postgres/runtime";
+import { Temporal } from "temporal-polyfill";
 import { contractFromJson } from "@prisma/orm-postgres/static";
 
 const MODELS = [
@@ -80,7 +81,13 @@ async function main() {
         }
         if (batchModel && batchModel !== entry.model) await flush();
         batchModel = entry.model;
-        batch.push(entry.data);
+        const data = { ...entry.data };
+        for (const key of ["createdAt", "updatedAt", "paidAt", "expiresAt"]) {
+          if (data[key] !== null && data[key] !== undefined && typeof data[key] === "string") {
+            data[key] = Temporal.Instant.from(new Date(data[key]).toISOString());
+          }
+        }
+        batch.push(data);
         if (batch.length >= 100) await flush();
       } else if (entry.type === "end-model") {
         await flush();
