@@ -335,6 +335,45 @@ Panel Admin ──────────────┘
 
 ---
 
+<a id="design-motion"></a>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:064e3b,50:059669,100:f59e0b&height=110&section=header&text=DESIGN%20SYSTEM%20%2B%20MOTION&fontSize=28&fontColor=ffffff&fontAlignY=45&animation=twinkling" width="100%" alt="Banner animasi Design System dan Motion"/>
+
+## 🎬 Sistem Desain & Animasi Futuristik
+
+Identitas visual README dan antarmuka aplikasi dibuat lebih hidup tanpa menjadikan animasi sebagai penghalang aksesibilitas. Banner dan efek animasi Markdown berada di dokumentasi; animasi produk yang sesungguhnya berada di komponen frontend.
+
+### Bahasa visual README
+
+- **Banner gelombang animasi** dari Capsule Render sebagai identitas pembuka dan penutup.
+- **Typing animation** untuk menonjolkan teknologi, kapabilitas, dan ROADMAP-99.
+- **Badge berlapis**: badge teknologi utama, versi, database, CI, serta tautan langsung ke roadmap.
+- **Pemisah warna emerald → hijau → amber** di antara area penting supaya dokumen panjang tetap memiliki ritme visual.
+- **Banner ROADMAP-99 terpisah** agar roadmap tampak sebagai pilar strategis, bukan catatan kaki.
+- Konten inti tetap berupa Markdown/HTML biasa sehingga informasi bisa dibaca saat layanan gambar eksternal tidak tersedia.
+
+### Sistem motion di aplikasi
+
+| Bagian | Implementasi | Tujuan |
+|---|---|---|
+| Provider global | <code>src/components/motion/motion-provider.tsx</code> | Menghormati preferensi reduced-motion pengguna |
+| Reveal | <code>src/components/motion/reveal.tsx</code> | Fade + rise saat elemen masuk viewport |
+| RevealScale | <code>RevealScale</code> di file yang sama | Zoom lembut kartu tanpa mengubah alur layout |
+| Bahasa gerak | Durasi 0,6 detik; easing <code>[0.22, 1, 0.36, 1]</code>; stagger 0,08 detik | Ritme animasi konsisten |
+| CSS ambient | <code>src/app/globals.css</code> | Efek float, marquee, pulse-ring, shimmer, fade-up, aurora drift, dan shine sweep |
+| Beranda | <code>src/app/page.tsx</code> serta <code>src/components/landing/</code> | Hero, statistik, katalog, kalkulator, galeri, pricing, testimonial, dan CTA |
+
+### Prinsip desain dan aksesibilitas
+
+1. **Gerakan halus, bukan ramai tanpa tujuan.** Komponen Reveal memakai perubahan opacity dan transform/posisi untuk menghindari animasi ukuran layout yang tidak perlu.
+2. **Hormati reduced motion.** <code>MotionProvider</code> menggunakan <code>reducedMotion="user"</code>; komponen Reveal juga memeriksa preferensi pengguna dan bisa dirender statis.
+3. **Warna identitas.** Emerald/hijau sebagai warna utama dengan amber sebagai aksen; badge dan divider README mengikuti palet itu.
+4. **Responsif sejak awal.** Konten harus tetap terbaca di layar ponsel, tabel mempunyai label yang jelas, dan tautan tidak hanya dibedakan dengan warna.
+5. **Animasi tidak menggantikan informasi.** Status, instruksi, dan roadmap tetap disediakan sebagai teks yang dapat dibaca.
+6. **Eksternal dengan fallback.** Capsule Render, Readme Typing SVG, dan Shields.io memerlukan akses ke layanan eksternal. Bila gambar gagal dimuat, judul, daftar fitur, dan tautan tetap tersedia.
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:064e3b,50:059669,100:f59e0b&height=4&section=footer&animation=twinkling" width="100%" alt="Pemisah animasi"/>
+
 ## 06. Peta Struktur Repository
 
 <pre>
