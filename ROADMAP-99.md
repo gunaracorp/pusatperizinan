@@ -38,6 +38,8 @@
 
 ---
 
+<a id="quick-wins"></a>
+
 ## 🚀 Tabel A — Quick Wins Top-10 (mulai dari sini)
 
 | # | Langkah | Fase | Kenapa dulu |
@@ -54,6 +56,8 @@
 | 10 | Review & testimoni asli + widget live | 6 | Trust = konversi; tanpa bukti sosial, harga premium sulit |
 
 ---
+
+<a id="strategi-3-horison"></a>
 
 ## 🌅 Strategi 3 Horison
 
@@ -202,6 +206,8 @@
 
 ---
 
+<a id="milestone-kuartalan"></a>
+
 ## 🗓️ Tabel B — Milestone Kuartalan
 
 | Kuartal | Target | Langkah | Indikator Sukses |
@@ -212,6 +218,8 @@
 | **Q4** | World-class & imperium | 74, 80, 83–84, 88, 93–99 | Laporan transparansi rilis · DR drill lulus · 10 kota · brand refresh |
 
 ---
+
+<a id="aturan-eksekusi"></a>
 
 ## 📏 Aturan Main Saat Eksekusi (nanti)
 

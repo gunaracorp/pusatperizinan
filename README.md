@@ -11,8 +11,19 @@
   <a href="https://pusatperizinan.com">🌐 Situs</a> ·
   <a href="https://github.com/gunaracorp/pusatperizinan">💻 Repository</a> ·
   <a href="./docs/HOSTINGER-NODEJS-DEPLOY.md">🚀 Panduan Deploy</a> ·
-  <a href="./CHANGELOG.md">📦 Riwayat Versi</a>
+  <a href="./CHANGELOG.md">📦 Riwayat Versi</a> ·
+  <a href="./ROADMAP-99.md">🏆 ROADMAP 99 PERFECT</a>
 </p>
+
+<img src="public/logo.png" width="124" alt="Logo PusatPerizinan.com"/>
+
+<p><sup>🏛️ PT Top Konsultan Internasional · SCBD Jakarta Selatan · Bandung</sup></p>
+
+### ⚡ Urus Legalitas dan Kepatuhan Usaha dengan Lebih Terarah ⚡
+
+<a href="https://readme-typing-svg.demolab.com?font=Fira+Code:wght@500;700&size=20&duration=2800&pause=850&color=059669&center=true&vCenter=true&multiline=true&repeat=true&width=940&height=125&lines=30+bahasa+%C2%B7+3+katalog+layanan+%C2%B7+alat+bantu+AI;Next.js+16+%2B+React+19+%2B+TypeScript;ROADMAP+99+PERFECT+%C2%B7+12+FASE+%C2%B7+99+LANGKAH;Satu+codebase+%E2%86%92+Standalone+Node.js+%2B+Static+Export">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code:wght@500;700&size=20&duration=2800&pause=850&color=059669&center=true&vCenter=true&multiline=true&repeat=true&width=940&height=125&lines=30+bahasa+%C2%B7+3+katalog+layanan+%C2%B7+alat+bantu+AI;Next.js+16+%2B+React+19+%2B+TypeScript;ROADMAP+99+PERFECT+%C2%B7+12+FASE+%C2%B7+99+LANGKAH;Satu+codebase+%E2%86%92+Standalone+Node.js+%2B+Static+Export" alt="Animasi mengetik fitur PusatPerizinan.com"/>
+</a>
 
 [![Next.js](https://img.shields.io/badge/Next.js-16.x-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19-149ECA?style=for-the-badge&logo=react&logoColor=white)](https://react.dev/)
@@ -20,14 +31,18 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![Node.js](https://img.shields.io/badge/Node.js-24_direkomendasikan-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
 [![Prisma](https://img.shields.io/badge/Prisma_ORM-8_RC-2D3748?style=for-the-badge&logo=prisma&logoColor=white)](https://www.prisma.io/)
+[![ROADMAP 99](https://img.shields.io/badge/ROADMAP-99_PERFECT-7C3AED?style=for-the-badge&logo=github&logoColor=white)](./ROADMAP-99.md)
+[![Motion](https://img.shields.io/badge/Design-Motion_%2B_Reduced_Motion-059669?style=for-the-badge&logo=framer&logoColor=white)](#design-motion)
 
 [![Versi](https://img.shields.io/badge/Versi-aplikasi_1.14.2-059669?style=flat-square)](./src/lib/version.ts)
 [![Bahasa](https://img.shields.io/badge/Antarmuka-30_bahasa-0F766E?style=flat-square)](./src/lib/i18n/languages.ts)
 [![Model Data](https://img.shields.io/badge/Model_Data-14-7C3AED?style=flat-square)](./src/prisma/contract.prisma)
 [![CI](https://img.shields.io/badge/CI-GitHub_Actions-2563EB?style=flat-square&logo=githubactions&logoColor=white)](./.github/workflows/prisma8-migration.yml)
+![Roadmap](https://img.shields.io/badge/Roadmap-12_Fase_%C2%B7_99_Langkah-7C3AED?style=flat-square)
+![Animasi](https://img.shields.io/badge/Motion-Reduced_Motion_Siap-059669?style=flat-square)
 
 <br/>
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:064e3b,100:f59e0b&height=4&section=footer" width="100%" alt=""/>
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:064e3b,50:059669,100:f59e0b&height=5&section=footer&animation=twinkling" width="100%" alt="Pemisah visual animasi"/>
 </div>
 
 > **Catatan akurasi:** dokumentasi ini diselaraskan dengan struktur kode, konfigurasi, dan perintah yang terdapat di repository. Data bisnis, kredensial integrasi, kesiapan database produksi, dan status layanan pihak ketiga tetap harus diverifikasi pada lingkungan masing-masing.
@@ -54,6 +69,11 @@
 | [14. Troubleshooting](#14-pemecahan-masalah) | Gejala umum dan tindakan |
 | [15. Keamanan](#15-keamanan-dan-data-produksi) | Rahasia, pembayaran, data klien |
 | [16. Dokumentasi](#16-dokumen-pendukung) | Panduan dan kontribusi |
+| [🎬 Sistem Desain & Animasi](#design-motion) | Banner animasi, motion UI, aksesibilitas, dan identitas visual |
+| [🏆 ROADMAP 99 PERFECT](#roadmap-99) | 99 langkah, 12 fase, Quick Wins, dan milestone |
+| [FAQ Developer](#faq-developer) | Jawaban singkat untuk pengembangan |
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:059669,50:10b981,100:f59e0b&height=4&section=footer&animation=twinkling" width="100%" alt="Pemisah animasi"/>
 
 ---
 
@@ -314,6 +334,45 @@ Panel Admin ──────────────┘
 > Versi dependensi yang benar selalu ditentukan oleh <code>package.json</code> dan lockfile yang digunakan proses build. Jika versi berubah, perbarui README melalui pemeriksaan ulang terhadap konfigurasi aktual.
 
 ---
+
+<a id="design-motion"></a>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:064e3b,50:059669,100:f59e0b&height=110&section=header&text=DESIGN%20SYSTEM%20%2B%20MOTION&fontSize=28&fontColor=ffffff&fontAlignY=45&animation=twinkling" width="100%" alt="Banner animasi Design System dan Motion"/>
+
+## 🎬 Sistem Desain & Animasi Futuristik
+
+Identitas visual README dan antarmuka aplikasi dibuat lebih hidup tanpa menjadikan animasi sebagai penghalang aksesibilitas. Banner dan efek animasi Markdown berada di dokumentasi; animasi produk yang sesungguhnya berada di komponen frontend.
+
+### Bahasa visual README
+
+- **Banner gelombang animasi** dari Capsule Render sebagai identitas pembuka dan penutup.
+- **Typing animation** untuk menonjolkan teknologi, kapabilitas, dan ROADMAP-99.
+- **Badge berlapis**: badge teknologi utama, versi, database, CI, serta tautan langsung ke roadmap.
+- **Pemisah warna emerald → hijau → amber** di antara area penting supaya dokumen panjang tetap memiliki ritme visual.
+- **Banner ROADMAP-99 terpisah** agar roadmap tampak sebagai pilar strategis, bukan catatan kaki.
+- Konten inti tetap berupa Markdown/HTML biasa sehingga informasi bisa dibaca saat layanan gambar eksternal tidak tersedia.
+
+### Sistem motion di aplikasi
+
+| Bagian | Implementasi | Tujuan |
+|---|---|---|
+| Provider global | <code>src/components/motion/motion-provider.tsx</code> | Menghormati preferensi reduced-motion pengguna |
+| Reveal | <code>src/components/motion/reveal.tsx</code> | Fade + rise saat elemen masuk viewport |
+| RevealScale | <code>RevealScale</code> di file yang sama | Zoom lembut kartu tanpa mengubah alur layout |
+| Bahasa gerak | Durasi 0,6 detik; easing <code>[0.22, 1, 0.36, 1]</code>; stagger 0,08 detik | Ritme animasi konsisten |
+| CSS ambient | <code>src/app/globals.css</code> | Efek float, marquee, pulse-ring, shimmer, fade-up, aurora drift, dan shine sweep |
+| Beranda | <code>src/app/page.tsx</code> serta <code>src/components/landing/</code> | Hero, statistik, katalog, kalkulator, galeri, pricing, testimonial, dan CTA |
+
+### Prinsip desain dan aksesibilitas
+
+1. **Gerakan halus, bukan ramai tanpa tujuan.** Komponen Reveal memakai perubahan opacity dan transform/posisi untuk menghindari animasi ukuran layout yang tidak perlu.
+2. **Hormati reduced motion.** <code>MotionProvider</code> menggunakan <code>reducedMotion="user"</code>; komponen Reveal juga memeriksa preferensi pengguna dan bisa dirender statis.
+3. **Warna identitas.** Emerald/hijau sebagai warna utama dengan amber sebagai aksen; badge dan divider README mengikuti palet itu.
+4. **Responsif sejak awal.** Konten harus tetap terbaca di layar ponsel, tabel mempunyai label yang jelas, dan tautan tidak hanya dibedakan dengan warna.
+5. **Animasi tidak menggantikan informasi.** Status, instruksi, dan roadmap tetap disediakan sebagai teks yang dapat dibaca.
+6. **Eksternal dengan fallback.** Capsule Render, Readme Typing SVG, dan Shields.io memerlukan akses ke layanan eksternal. Bila gambar gagal dimuat, judul, daftar fitur, dan tautan tetap tersedia.
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:064e3b,50:059669,100:f59e0b&height=4&section=footer&animation=twinkling" width="100%" alt="Pemisah animasi"/>
 
 ## 06. Peta Struktur Repository
 
@@ -762,6 +821,109 @@ Saat melaporkan masalah, sertakan:
 
 ---
 
+<a id="roadmap-99"></a>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:064e3b,30:059669,65:10b981,100:7c3aed&height=155&section=header&text=ROADMAP%2099%20PERFECT&fontSize=40&fontColor=ffffff&fontAlignY=35&desc=12%20Fase%20%7C%2099%20Langkah%20%7C%20Eksekusi%20Terukur&descSize=16&descAlignY=60&animation=twinkling" width="100%" alt="Roadmap 99 Perfect — banner animasi 12 fase dan 99 langkah"/>
+
+<div align="center">
+
+[![99 Langkah](https://img.shields.io/badge/TOTAL-99_LANGKAH-059669?style=for-the-badge)](./ROADMAP-99.md)
+[![12 Fase](https://img.shields.io/badge/STRATEGI-12_FASE-7C3AED?style=for-the-badge)](./ROADMAP-99.md)
+[![Quick Wins](https://img.shields.io/badge/PRIORITAS-QUICK_WINS-f59e0b?style=for-the-badge)](./ROADMAP-99.md)
+[![Sumber Resmi](https://img.shields.io/badge/SUMBER_UTAMA-ROADMAP--99.md-0f172a?style=for-the-badge)](./ROADMAP-99.md)
+
+</div>
+
+## 🏆 ROADMAP 99 PERFECT — Peta Strategi Proyek
+
+**ROADMAP-99 bukan dihapus dan bukan sekadar hiasan.** Dokumen lengkapnya berada di [ROADMAP-99.md](./ROADMAP-99.md). Bagian ini adalah peta navigasi agar roadmap kembali terlihat jelas dari README. Status checklist setiap langkah tetap dikelola di file roadmap resmi untuk menghindari status ganda yang tidak sinkron.
+
+> **Aturan eksekusi:** roadmap merupakan peta rencana, bukan instruksi untuk menjalankan seluruh pekerjaan sekaligus. Pilih satu item prioritas, implementasikan, jalankan pengujian yang relevan, lalu sinkronkan <code>WORKLOG.md</code>, <code>CHANGELOG.md</code>, <code>package.json</code>, dan <code>src/lib/version.ts</code> sesuai standar proyek.
+
+### 12 fase — seluruh 99 langkah
+
+| Fase | Fokus strategis | Cakupan langkah | Hasil yang dikejar |
+|---|---|---:|---|
+| **01** | Monetisasi Langsung | **1–8** | Pembayaran, analitik, CTA, follow-up, dan fondasi revenue |
+| **02** | Konversi & Checkout Kelas Dunia | **9–16** | Alur checkout yang lebih cepat, keranjang, recovery, dan status order |
+| **03** | MRR KepatuhanPRO Scale-Up | **17–22** | Retensi langganan, onboarding, kepatuhan rutin, dan metrik MRR |
+| **04** | SEO Dominasi Nasional | **23–34** | Pengayaan halaman layanan, struktur wilayah, dan SEO programatik |
+| **05** | Konten & Authority | **35–44** | Mesin editorial, konten ahli, dan otoritas topik |
+| **06** | Trust & Social Proof | **45–50** | Bukti sosial, kepercayaan, serta kualitas informasi bisnis |
+| **07** | Produk & UX Kelas Dunia | **51–60** | Penyempurnaan pengalaman pengguna dan perjalanan pelanggan |
+| **08** | Ops, CRM & Automasi Internal | **61–68** | Operasional, follow-up, otomasi, dan keandalan proses |
+| **09** | Infrastruktur, Keamanan & Kepatuhan Diri | **69–76** | Hardening, pembatasan penyalahgunaan, pemulihan, privasi, dan performa |
+| **10** | Growth & Ekspansi Pasar | **77–84** | Kemitraan, referral, pasar baru, dan ekspansi layanan |
+| **11** | AI Advantage | **85–92** | Alat bantu AI untuk dokumen, regulasi, layanan, dan operasi internal |
+| **12** | World-Class Finishing | **93–99** | Transparansi, kesiapan enterprise, disaster recovery, komunitas, dan brand |
+
+### Quick Wins dan navigasi roadmap
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:059669,100:f59e0b&height=3&section=footer&animation=twinkling" width="100%" alt="Pemisah warna roadmap"/>
+
+| Jalur | Isi |
+|---|---|
+| 🚀 **Quick Wins Top-10** | [Buka Tabel A di ROADMAP-99.md](./ROADMAP-99.md#quick-wins) |
+| 🌅 **Strategi 3 Horison** | [Uang Masuk → Dominasi → Imperium](./ROADMAP-99.md#strategi-3-horison) |
+| 🗓️ **Milestone kuartalan** | [Tabel B — Milestone Kuartalan](./ROADMAP-99.md#milestone-kuartalan) |
+| 📏 **Aturan eksekusi** | [Definisi selesai dan tata cara mencentang](./ROADMAP-99.md#aturan-eksekusi) |
+| 📒 **Riwayat implementasi** | [WORKLOG.md](./WORKLOG.md) |
+| 📦 **Versi dan rilis** | [CHANGELOG.md](./CHANGELOG.md) |
+
+### Siklus kerja yang menjaga roadmap tetap sinkron
+
+<pre>
+Pilih 1 langkah prioritas di ROADMAP-99.md
+                  ↓
+Implementasikan perubahan di branch terpisah
+                  ↓
+Jalankan lint, build, dan pengujian sesuai dampak
+                  ↓
+Catat bukti dan hasil di WORKLOG.md
+                  ↓
+Sinkronkan CHANGELOG.md + versi aplikasi bila diperlukan
+                  ↓
+Perbarui checkbox roadmap setelah definisi selesai terpenuhi
+</pre>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:7c3aed,35:059669,70:10b981,100:f59e0b&height=105&section=footer&animation=twinkling" width="100%" alt="Penutup animasi Roadmap 99"/>
+
+<a id="faq-developer"></a>
+
+## FAQ Developer
+
+<details>
+<summary><strong>Kenapa harga tidak boleh dikirim dari browser?</strong></summary>
+
+API order harus mengambil harga dari <code>src/lib/pricing.ts</code> atau resolver katalog server-side. Browser mengirim identitas/kode paket, bukan nominal yang dipercaya.
+</details>
+
+<details>
+<summary><strong>Di mana status 99 langkah disimpan?</strong></summary>
+
+File tunggal yang menjadi sumber status checklist adalah [ROADMAP-99.md](./ROADMAP-99.md). README memberi ringkasan fase dan navigasi, sedangkan status detail tidak boleh dipelihara dalam dua tabel berbeda.
+</details>
+
+<details>
+<summary><strong>Bagaimana menambah artikel blog?</strong></summary>
+
+Artikel dapat dikelola melalui CMS di admin atau dari dataset statis di <code>src/lib/blog-content.ts</code>. Periksa <code>src/lib/blog-cms.ts</code> untuk aturan penggabungan data dan sitemap.
+</details>
+
+<details>
+<summary><strong>Apakah SDK AI boleh dipanggil dari komponen client?</strong></summary>
+
+Tidak. Simpan penggunaan SDK dan kredensial di backend/API route; client meminta hasil melalui endpoint aplikasi.
+</details>
+
+<details>
+<summary><strong>Bagaimana rebuild paket hosting statis?</strong></summary>
+
+Periksa prosedur terbaru di [DEPLOY-IDWEBHOST.md](./DEPLOY-IDWEBHOST.md), lalu jalankan skrip ekspor dan packaging sesuai mode yang dibutuhkan.
+</details>
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:064e3b,50:059669,100:f59e0b&height=4&section=footer&animation=twinkling" width="100%" alt="Pemisah animasi dokumentasi"/>
+
 ## 16. Dokumen Pendukung
 
 | Dokumen | Kapan dibaca |
@@ -801,10 +963,13 @@ README ini menggunakan Bahasa Indonesia sebagai bahasa utama agar onboarding dan
 
 <div align="center">
 
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:064e3b,35:059669,70:10b981,100:f59e0b&height=145&section=footer&text=PUSATPERIZINAN.COM&fontSize=30&fontColor=ffffff&fontAlignY=66&animation=twinkling" width="100%" alt="Footer gelombang animasi PusatPerizinan.com"/>
+
 ### Dibangun untuk membantu proses legalitas dan kepatuhan bisnis menjadi lebih terstruktur.
 
-**PusatPerizinan.com** · [Situs](https://pusatperizinan.com) · [Repository](https://github.com/gunaracorp/pusatperizinan) · [Kembali ke atas ↑](#top)
+**PusatPerizinan.com** · [Situs](https://pusatperizinan.com) · [Repository](https://github.com/gunaracorp/pusatperizinan) · [🏆 ROADMAP 99](./ROADMAP-99.md) · [Kembali ke atas ↑](#top)
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:064e3b,45:059669,75:10b981,100:f59e0b&height=110&section=footer" width="100%" alt=""/>
+[![Versi](https://img.shields.io/badge/Versi-1.14.2-059669?style=flat-square)](./CHANGELOG.md)
+[![ROADMAP](https://img.shields.io/badge/ROADMAP-99_PERFECT-7C3AED?style=flat-square)](./ROADMAP-99.md)
 
 </div>
