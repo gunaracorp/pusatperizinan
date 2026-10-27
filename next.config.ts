@@ -10,6 +10,11 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   serverExternalPackages: ["@prisma/orm-postgres"],
   output: "standalone",
+  // Shared hosting can report dozens of CPUs despite a much smaller thread quota.
+  // Limiting Next's build worker pool avoids SIGABRT/EAGAIN during page-data collection.
+  experimental: {
+    cpus: 2,
+  },
   async rewrites() {
     return {
       beforeFiles: [
