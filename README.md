@@ -863,10 +863,10 @@ Saat melaporkan masalah, sertakan:
 
 | Jalur | Isi |
 |---|---|
-| 🚀 **Quick Wins Top-10** | [Buka Tabel A di ROADMAP-99.md](./ROADMAP-99.md#-tabel-a--quick-wins-top-10-mulai-dari-sini) |
-| 🌅 **Strategi 3 Horison** | [Uang Masuk → Dominasi → Imperium](./ROADMAP-99.md#-strategi-3-horison) |
-| 🗓️ **Milestone kuartalan** | [Tabel B — Milestone Kuartalan](./ROADMAP-99.md#-tabel-b--milestone-kuartalan) |
-| 📏 **Aturan eksekusi** | [Definisi selesai dan tata cara mencentang](./ROADMAP-99.md#-aturan-main-saat-eksekusi-nanti) |
+| 🚀 **Quick Wins Top-10** | [Buka Tabel A di ROADMAP-99.md](./ROADMAP-99.md#quick-wins) |
+| 🌅 **Strategi 3 Horison** | [Uang Masuk → Dominasi → Imperium](./ROADMAP-99.md#strategi-3-horison) |
+| 🗓️ **Milestone kuartalan** | [Tabel B — Milestone Kuartalan](./ROADMAP-99.md#milestone-kuartalan) |
+| 📏 **Aturan eksekusi** | [Definisi selesai dan tata cara mencentang](./ROADMAP-99.md#aturan-eksekusi) |
 | 📒 **Riwayat implementasi** | [WORKLOG.md](./WORKLOG.md) |
 | 📦 **Versi dan rilis** | [CHANGELOG.md](./CHANGELOG.md) |
 
