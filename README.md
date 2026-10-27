@@ -11,8 +11,19 @@
   <a href="https://pusatperizinan.com">🌐 Situs</a> ·
   <a href="https://github.com/gunaracorp/pusatperizinan">💻 Repository</a> ·
   <a href="./docs/HOSTINGER-NODEJS-DEPLOY.md">🚀 Panduan Deploy</a> ·
-  <a href="./CHANGELOG.md">📦 Riwayat Versi</a>
+  <a href="./CHANGELOG.md">📦 Riwayat Versi</a> ·
+  <a href="./ROADMAP-99.md">🏆 ROADMAP 99 PERFECT</a>
 </p>
+
+<img src="public/logo.png" width="124" alt="Logo PusatPerizinan.com"/>
+
+<p><sup>🏛️ PT Top Konsultan Internasional · SCBD Jakarta Selatan · Bandung</sup></p>
+
+### ⚡ Urus Legalitas dan Kepatuhan Usaha dengan Lebih Terarah ⚡
+
+<a href="https://readme-typing-svg.demolab.com?font=Fira+Code:wght@500;700&size=20&duration=2800&pause=850&color=059669&center=true&vCenter=true&multiline=true&repeat=true&width=940&height=125&lines=30+bahasa+%C2%B7+3+katalog+layanan+%C2%B7+alat+bantu+AI;Next.js+16+%2B+React+19+%2B+TypeScript;ROADMAP+99+PERFECT+%C2%B7+12+FASE+%C2%B7+99+LANGKAH;Satu+codebase+%E2%86%92+Standalone+Node.js+%2B+Static+Export">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code:wght@500;700&size=20&duration=2800&pause=850&color=059669&center=true&vCenter=true&multiline=true&repeat=true&width=940&height=125&lines=30+bahasa+%C2%B7+3+katalog+layanan+%C2%B7+alat+bantu+AI;Next.js+16+%2B+React+19+%2B+TypeScript;ROADMAP+99+PERFECT+%C2%B7+12+FASE+%C2%B7+99+LANGKAH;Satu+codebase+%E2%86%92+Standalone+Node.js+%2B+Static+Export" alt="Animasi mengetik fitur PusatPerizinan.com"/>
+</a>
 
 [![Next.js](https://img.shields.io/badge/Next.js-16.x-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19-149ECA?style=for-the-badge&logo=react&logoColor=white)](https://react.dev/)
@@ -20,14 +31,18 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![Node.js](https://img.shields.io/badge/Node.js-24_direkomendasikan-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
 [![Prisma](https://img.shields.io/badge/Prisma_ORM-8_RC-2D3748?style=for-the-badge&logo=prisma&logoColor=white)](https://www.prisma.io/)
+[![ROADMAP 99](https://img.shields.io/badge/ROADMAP-99_PERFECT-7C3AED?style=for-the-badge&logo=github&logoColor=white)](./ROADMAP-99.md)
+[![Motion](https://img.shields.io/badge/Design-Motion_%2B_Reduced_Motion-059669?style=for-the-badge&logo=framer&logoColor=white)](#design-motion)
 
 [![Versi](https://img.shields.io/badge/Versi-aplikasi_1.14.2-059669?style=flat-square)](./src/lib/version.ts)
 [![Bahasa](https://img.shields.io/badge/Antarmuka-30_bahasa-0F766E?style=flat-square)](./src/lib/i18n/languages.ts)
 [![Model Data](https://img.shields.io/badge/Model_Data-14-7C3AED?style=flat-square)](./src/prisma/contract.prisma)
 [![CI](https://img.shields.io/badge/CI-GitHub_Actions-2563EB?style=flat-square&logo=githubactions&logoColor=white)](./.github/workflows/prisma8-migration.yml)
+![Roadmap](https://img.shields.io/badge/Roadmap-12_Fase_%C2%B7_99_Langkah-7C3AED?style=flat-square)
+![Animasi](https://img.shields.io/badge/Motion-Reduced_Motion_Siap-059669?style=flat-square)
 
 <br/>
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:064e3b,100:f59e0b&height=4&section=footer" width="100%" alt=""/>
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:064e3b,50:059669,100:f59e0b&height=5&section=footer&animation=twinkling" width="100%" alt="Pemisah visual animasi"/>
 </div>
 
 > **Catatan akurasi:** dokumentasi ini diselaraskan dengan struktur kode, konfigurasi, dan perintah yang terdapat di repository. Data bisnis, kredensial integrasi, kesiapan database produksi, dan status layanan pihak ketiga tetap harus diverifikasi pada lingkungan masing-masing.
@@ -54,6 +69,11 @@
 | [14. Troubleshooting](#14-pemecahan-masalah) | Gejala umum dan tindakan |
 | [15. Keamanan](#15-keamanan-dan-data-produksi) | Rahasia, pembayaran, data klien |
 | [16. Dokumentasi](#16-dokumen-pendukung) | Panduan dan kontribusi |
+| [🎬 Sistem Desain & Animasi](#design-motion) | Banner animasi, motion UI, aksesibilitas, dan identitas visual |
+| [🏆 ROADMAP 99 PERFECT](#roadmap-99) | 99 langkah, 12 fase, Quick Wins, dan milestone |
+| [FAQ Developer](#faq-developer) | Jawaban singkat untuk pengembangan |
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:059669,50:10b981,100:f59e0b&height=4&section=footer&animation=twinkling" width="100%" alt="Pemisah animasi"/>
 
 ---
 
