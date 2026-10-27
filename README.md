@@ -821,6 +821,109 @@ Saat melaporkan masalah, sertakan:
 
 ---
 
+<a id="roadmap-99"></a>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:064e3b,30:059669,65:10b981,100:7c3aed&height=155&section=header&text=ROADMAP%2099%20PERFECT&fontSize=40&fontColor=ffffff&fontAlignY=35&desc=12%20Fase%20%7C%2099%20Langkah%20%7C%20Eksekusi%20Terukur&descSize=16&descAlignY=60&animation=twinkling" width="100%" alt="Roadmap 99 Perfect — banner animasi 12 fase dan 99 langkah"/>
+
+<div align="center">
+
+[![99 Langkah](https://img.shields.io/badge/TOTAL-99_LANGKAH-059669?style=for-the-badge)](./ROADMAP-99.md)
+[![12 Fase](https://img.shields.io/badge/STRATEGI-12_FASE-7C3AED?style=for-the-badge)](./ROADMAP-99.md)
+[![Quick Wins](https://img.shields.io/badge/PRIORITAS-QUICK_WINS-f59e0b?style=for-the-badge)](./ROADMAP-99.md)
+[![Sumber Resmi](https://img.shields.io/badge/SUMBER_UTAMA-ROADMAP--99.md-0f172a?style=for-the-badge)](./ROADMAP-99.md)
+
+</div>
+
+## 🏆 ROADMAP 99 PERFECT — Peta Strategi Proyek
+
+**ROADMAP-99 bukan dihapus dan bukan sekadar hiasan.** Dokumen lengkapnya berada di [ROADMAP-99.md](./ROADMAP-99.md). Bagian ini adalah peta navigasi agar roadmap kembali terlihat jelas dari README. Status checklist setiap langkah tetap dikelola di file roadmap resmi untuk menghindari status ganda yang tidak sinkron.
+
+> **Aturan eksekusi:** roadmap merupakan peta rencana, bukan instruksi untuk menjalankan seluruh pekerjaan sekaligus. Pilih satu item prioritas, implementasikan, jalankan pengujian yang relevan, lalu sinkronkan <code>WORKLOG.md</code>, <code>CHANGELOG.md</code>, <code>package.json</code>, dan <code>src/lib/version.ts</code> sesuai standar proyek.
+
+### 12 fase — seluruh 99 langkah
+
+| Fase | Fokus strategis | Cakupan langkah | Hasil yang dikejar |
+|---|---|---:|---|
+| **01** | Monetisasi Langsung | **1–8** | Pembayaran, analitik, CTA, follow-up, dan fondasi revenue |
+| **02** | Konversi & Checkout Kelas Dunia | **9–16** | Alur checkout yang lebih cepat, keranjang, recovery, dan status order |
+| **03** | MRR KepatuhanPRO Scale-Up | **17–22** | Retensi langganan, onboarding, kepatuhan rutin, dan metrik MRR |
+| **04** | SEO Dominasi Nasional | **23–34** | Pengayaan halaman layanan, struktur wilayah, dan SEO programatik |
+| **05** | Konten & Authority | **35–44** | Mesin editorial, konten ahli, dan otoritas topik |
+| **06** | Trust & Social Proof | **45–50** | Bukti sosial, kepercayaan, serta kualitas informasi bisnis |
+| **07** | Produk & UX Kelas Dunia | **51–60** | Penyempurnaan pengalaman pengguna dan perjalanan pelanggan |
+| **08** | Ops, CRM & Automasi Internal | **61–68** | Operasional, follow-up, otomasi, dan keandalan proses |
+| **09** | Infrastruktur, Keamanan & Kepatuhan Diri | **69–76** | Hardening, pembatasan penyalahgunaan, pemulihan, privasi, dan performa |
+| **10** | Growth & Ekspansi Pasar | **77–84** | Kemitraan, referral, pasar baru, dan ekspansi layanan |
+| **11** | AI Advantage | **85–92** | Alat bantu AI untuk dokumen, regulasi, layanan, dan operasi internal |
+| **12** | World-Class Finishing | **93–99** | Transparansi, kesiapan enterprise, disaster recovery, komunitas, dan brand |
+
+### Quick Wins dan navigasi roadmap
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:059669,100:f59e0b&height=3&section=footer&animation=twinkling" width="100%" alt="Pemisah warna roadmap"/>
+
+| Jalur | Isi |
+|---|---|
+| 🚀 **Quick Wins Top-10** | [Buka Tabel A di ROADMAP-99.md](./ROADMAP-99.md#-tabel-a--quick-wins-top-10-mulai-dari-sini) |
+| 🌅 **Strategi 3 Horison** | [Uang Masuk → Dominasi → Imperium](./ROADMAP-99.md#-strategi-3-horison) |
+| 🗓️ **Milestone kuartalan** | [Tabel B — Milestone Kuartalan](./ROADMAP-99.md#-tabel-b--milestone-kuartalan) |
+| 📏 **Aturan eksekusi** | [Definisi selesai dan tata cara mencentang](./ROADMAP-99.md#-aturan-main-saat-eksekusi-nanti) |
+| 📒 **Riwayat implementasi** | [WORKLOG.md](./WORKLOG.md) |
+| 📦 **Versi dan rilis** | [CHANGELOG.md](./CHANGELOG.md) |
+
+### Siklus kerja yang menjaga roadmap tetap sinkron
+
+<pre>
+Pilih 1 langkah prioritas di ROADMAP-99.md
+                  ↓
+Implementasikan perubahan di branch terpisah
+                  ↓
+Jalankan lint, build, dan pengujian sesuai dampak
+                  ↓
+Catat bukti dan hasil di WORKLOG.md
+                  ↓
+Sinkronkan CHANGELOG.md + versi aplikasi bila diperlukan
+                  ↓
+Perbarui checkbox roadmap setelah definisi selesai terpenuhi
+</pre>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:7c3aed,35:059669,70:10b981,100:f59e0b&height=105&section=footer&animation=twinkling" width="100%" alt="Penutup animasi Roadmap 99"/>
+
+<a id="faq-developer"></a>
+
+## FAQ Developer
+
+<details>
+<summary><strong>Kenapa harga tidak boleh dikirim dari browser?</strong></summary>
+
+API order harus mengambil harga dari <code>src/lib/pricing.ts</code> atau resolver katalog server-side. Browser mengirim identitas/kode paket, bukan nominal yang dipercaya.
+</details>
+
+<details>
+<summary><strong>Di mana status 99 langkah disimpan?</strong></summary>
+
+File tunggal yang menjadi sumber status checklist adalah [ROADMAP-99.md](./ROADMAP-99.md). README memberi ringkasan fase dan navigasi, sedangkan status detail tidak boleh dipelihara dalam dua tabel berbeda.
+</details>
+
+<details>
+<summary><strong>Bagaimana menambah artikel blog?</strong></summary>
+
+Artikel dapat dikelola melalui CMS di admin atau dari dataset statis di <code>src/lib/blog-content.ts</code>. Periksa <code>src/lib/blog-cms.ts</code> untuk aturan penggabungan data dan sitemap.
+</details>
+
+<details>
+<summary><strong>Apakah SDK AI boleh dipanggil dari komponen client?</strong></summary>
+
+Tidak. Simpan penggunaan SDK dan kredensial di backend/API route; client meminta hasil melalui endpoint aplikasi.
+</details>
+
+<details>
+<summary><strong>Bagaimana rebuild paket hosting statis?</strong></summary>
+
+Periksa prosedur terbaru di [DEPLOY-IDWEBHOST.md](./DEPLOY-IDWEBHOST.md), lalu jalankan skrip ekspor dan packaging sesuai mode yang dibutuhkan.
+</details>
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:064e3b,50:059669,100:f59e0b&height=4&section=footer&animation=twinkling" width="100%" alt="Pemisah animasi dokumentasi"/>
+
 ## 16. Dokumen Pendukung
 
 | Dokumen | Kapan dibaca |
