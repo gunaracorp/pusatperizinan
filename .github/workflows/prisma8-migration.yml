@@ -53,6 +53,8 @@ jobs:
       - name: Verify the Prisma 8 database contract
         run: npm run db:verify
       - name: Run production build
+        env:
+          NEXT_CPU_COUNT: "2"
         run: npm run build
       - name: Start standalone production server and smoke-test follow-up API
         run: |
