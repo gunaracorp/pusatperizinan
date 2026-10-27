@@ -963,10 +963,13 @@ README ini menggunakan Bahasa Indonesia sebagai bahasa utama agar onboarding dan
 
 <div align="center">
 
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:064e3b,35:059669,70:10b981,100:f59e0b&height=145&section=footer&text=PUSATPERIZINAN.COM&fontSize=30&fontColor=ffffff&fontAlignY=66&animation=twinkling" width="100%" alt="Footer gelombang animasi PusatPerizinan.com"/>
+
 ### Dibangun untuk membantu proses legalitas dan kepatuhan bisnis menjadi lebih terstruktur.
 
-**PusatPerizinan.com** · [Situs](https://pusatperizinan.com) · [Repository](https://github.com/gunaracorp/pusatperizinan) · [Kembali ke atas ↑](#top)
+**PusatPerizinan.com** · [Situs](https://pusatperizinan.com) · [Repository](https://github.com/gunaracorp/pusatperizinan) · [🏆 ROADMAP 99](./ROADMAP-99.md) · [Kembali ke atas ↑](#top)
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:064e3b,45:059669,75:10b981,100:f59e0b&height=110&section=footer" width="100%" alt=""/>
+[![Versi](https://img.shields.io/badge/Versi-1.14.2-059669?style=flat-square)](./CHANGELOG.md)
+[![ROADMAP](https://img.shields.io/badge/ROADMAP-99_PERFECT-7C3AED?style=flat-square)](./ROADMAP-99.md)
 
 </div>
