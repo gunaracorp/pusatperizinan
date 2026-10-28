@@ -26,6 +26,20 @@ interface ActivityItem {
   minutesAgo: number;
 }
 
+// src/lib/db exposes compatibility delegates as generic records. These row
+// types describe the exact fields requested by each select below.
+type ActivityOrderRow = {
+  customerName: string;
+  serviceName: string;
+  createdAt: Date;
+};
+
+type ActivityLeadRow = {
+  name: string;
+  package: string | null;
+  createdAt: Date;
+};
+
 function anonymize(name: string): string {
   const first = (name || "?").trim().split(/\s+/)[0] || "?";
   return `${(first[0] || "?").toUpperCase()}***`;
@@ -46,13 +60,17 @@ export async function GET() {
         select: { customerName: true, serviceName: true, createdAt: true, status: true },
         orderBy: { createdAt: "desc" },
         take: 12,
-      }).catch(() => [] as never[]),
+      })
+        .then((rows) => rows as unknown as ActivityOrderRow[])
+        .catch(() => [] as ActivityOrderRow[]),
       db.lead.findMany({
         where: { createdAt: { gte: since } },
         select: { name: true, package: true, createdAt: true },
         orderBy: { createdAt: "desc" },
         take: 12,
-      }).catch(() => [] as never[]),
+      })
+        .then((rows) => rows as unknown as ActivityLeadRow[])
+        .catch(() => [] as ActivityLeadRow[]),
     ]);
 
     const items: ActivityItem[] = [
