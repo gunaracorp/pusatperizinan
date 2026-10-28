@@ -19,3 +19,19 @@ Stage Summary (FINAL — Task 39):
 - Bukti visual: download/v115-checkout-social-proof-garansi.png, v115-checkout-badge-area.png, v115-halaman-garansi.png
 - Commit lokal 0fb180e (32 file, +1.459/-71) — push GitHub menunggu kredensial (token tidak tersedia di sandbox sesi ini)
 - SEO kajian: robots 200 · sitemap 15 seksi · JSON-LD Service/Offer/FAQPage/HowTo/BreadcrumbList terverifikasi · verify scripts PASS · /garansi masuk sitemap static → indeks 11.877
+
+---
+Task ID: 40
+Agent: main
+Task: Revisi seluruh halaman lowongan kerja menjadi KHUSUS WANITA (perintah owner): tim perempuan unggul yang menguasai IT & perizinan dari hulu ke hilir — konsultan pajak wanita, programmer full-stack, SEO specialist, konsultan perizinan senior.
+
+Work Log:
+- jobs-data.ts: field baru `femaleOnly` (interface + 16/16 lowongan), kategori baru "IT & Teknologi" & "Pajak & Keuangan", konstanta FEMALE_ONLY_LABEL; semua judul diberi akhiran "— Khusus Wanita"; kualifikasi tiap lowongan dibuka baris "Wanita — posisi ini diperuntukkan khusus bagi perempuan"; deskripsi 4 posisi kunci diperkuat pesan hulu-hilir
+- 4 POSISI BARU (semua featured, khusus wanita): Konsultan Pajak (Coretax & Kepatuhan) Rp9-15jt · Programmer Full-Stack Next.js Rp9-16jt · SEO Specialist (Technical & Content) Rp7-12jt remote · Konsultan Senior Perizinan Hulu ke Hilir Rp10-15jt — total 12 → 16 lowongan
+- /lowongan-kerja: metadata+keywords SEO wanita (lowongan kerja khusus wanita, konsultan pajak wanita, programmer wanita, seo specialist wanita, dst), badge rose "Khusus Wanita — Seluruh Rekrutmen", H1 baru, kotak info "Seluruh Lowongan Khusus untuk Perempuan (lamaran laki-laki tidak diproses)", badge Khusus Wanita di 16 kartu, teks WA khusus wanita
+- /lowongan-kerja/[slug]: badge + kotak "Posisi Khusus Wanita", JSON-LD JobPosting diberi paragraf "Khusus Wanita", FAQ baru "Apakah posisi ini hanya untuk wanita?", template lamaran WA "saya perempuan...", metadata "Lowongan khusus wanita:", hapus import ShieldCheck tak terpakai
+- header.tsx (Karier → "Lowongan khusus wanita — IT & perizinan") + footer.tsx ("Lowongan Kerja Khusus Wanita")
+- QA: tsc 0 error pada file lowongan (4 error lama file lain, pre-existing); semua 16 slug render 200; badge terhitung 16/16; JSON-LD JobPosting terverifikasi; screenshot download/verifikasi-lowongan-khusus-wanita-list.png & verifikasi-lowongan-konsultan-pajak-wanita.png
+
+Stage Summary:
+- Seluruh mesin lowongan kini eksklusif wanita sesuai perintah owner: 16 posisi (4 prioritas rekrutmen baru), halaman daftar + 16 halaman detail + JSON-LD siap Google Jobs dengan pesan khusus wanita konsisten dari metadata sampai template lamaran

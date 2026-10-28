@@ -1,5 +1,6 @@
 // ============================================================
 // DATA LOWONGAN KERJA — PusatPerizinan.com & Mitra
+// KEBIJAKAN REKRUTMEN: SEMUA lowongan di halaman ini KHUSUS WANITA.
 // Spesifikasi mengikuti Google Jobs (schema.org/JobPosting):
 // tanggal posting dinamis saat build, validThrough +90 hari.
 // ============================================================
@@ -12,7 +13,8 @@ export interface Job {
   title: string;
   organization: string; // hiring organization (utama atau mitra)
   isPartner: boolean;
-  category: "Penjualan & Marketing" | "Operasional & Legal" | "Konten & Kreatif" | "PMI & Ketenagakerjaan";
+  category: "Penjualan & Marketing" | "Operasional & Legal" | "Konten & Kreatif" | "PMI & Ketenagakerjaan" | "IT & Teknologi" | "Pajak & Keuangan";
+  femaleOnly: boolean; // true = posisi khusus perempuan
   employmentType: EmploymentType;
   workType: "onsite" | "hybrid" | "remote";
   city: string;
@@ -38,8 +40,9 @@ const ORG_LPK = "LPK Mitra Kerja Luar Negeri (jaringan PusatPerizinan.com)";
 export const JOBS: Job[] = [
   {
     id: "job-mkt-perizinan",
+    femaleOnly: true,
     slug: "marketing-consultant-perizinan",
-    title: "Marketing Consultant Perizinan (B2B Sales)",
+    title: "Marketing Consultant Perizinan (B2B Sales) — Khusus Wanita",
     organization: ORG_MAIN,
     isPartner: false,
     category: "Penjualan & Marketing",
@@ -50,7 +53,7 @@ export const JOBS: Job[] = [
     address: "Gedung perkantoran area Mampang, Jakarta Selatan",
     description: [
       "PusatPerizinan.com membantu ribuan UMKM dan korporasi mengurus legalitas usaha dari hulu ke hilir — NIB, PT/PMA, izin sektoral, sertifikasi, hingga kepatuhan pajak. Tim marketing adalah ujung tombak kami.",
-      "Anda akan menangani prospek yang datang sendiri dari website (1.000+ halaman SEO, alat AI gratis) dan campaign digital — bukan cold calling tanpa arah. Target jelas, pipeline jelas, komisi transparan.",
+      "Anda akan menangani prospek yang datang sendiri dari website (1.000+ halaman SEO, alat AI gratis) dan campaign digital — bukan cold calling tanpa arah. Target jelas, pipeline jelas, komisi transparan. Tim ini khusus perempuan: wanita yang paham perizinan dari hulu ke hilir dan menjualnya dengan elegan.",
     ],
     responsibilities: [
       "Menangani lead inbound dari website, WhatsApp, dan campaign digital",
@@ -60,6 +63,7 @@ export const JOBS: Job[] = [
       "Mencapai target penjualan bulanan bersama tim",
     ],
     qualifications: [
+      "Wanita — posisi ini diperuntukkan khusus bagi perempuan",
       "Pendidikan minimal D3 semua jurusan",
       "Pengalaman sales/B2B minimal 2 tahun (fresh graduate berpotensi kuat dipertimbangkan)",
       "Komunikasi persuasif via WhatsApp & telepon",
@@ -84,8 +88,9 @@ export const JOBS: Job[] = [
   },
   {
     id: "job-admin-legal",
+    femaleOnly: true,
     slug: "staf-administrasi-legalitas",
-    title: "Staf Administrasi Legalitas (OSS & Sektoral)",
+    title: "Staf Administrasi Legalitas (OSS & Sektoral) — Khusus Wanita",
     organization: ORG_MAIN,
     isPartner: false,
     category: "Operasional & Legal",
@@ -106,6 +111,7 @@ export const JOBS: Job[] = [
       "Melaporkan progres pengurusan ke konsultan penanggung jawab",
     ],
     qualifications: [
+      "Wanita — posisi ini diperuntukkan khusus bagi perempuan",
       "Pendidikan minimal SMA/SMK/D3 (semua jurusan)",
       "Teliti, rapi, dan disiplin tenggat",
       "Mahir spreadsheet (Excel/Google Sheets) dan belajar sistem cepat",
@@ -128,8 +134,9 @@ export const JOBS: Job[] = [
   },
   {
     id: "job-konsultan-junior",
+    femaleOnly: true,
     slug: "konsultan-junior-perizinan-umkm",
-    title: "Konsultan Junior Perizinan UMKM",
+    title: "Konsultan Junior Perizinan UMKM — Khusus Wanita",
     organization: ORG_MAIN,
     isPartner: false,
     category: "Operasional & Legal",
@@ -140,7 +147,7 @@ export const JOBS: Job[] = [
     address: "Kantor area Mampang + kunjungan klien se-Jabodetabek",
     description: [
       "Kami sedang membentuk generasi baru konsultan perizinan yang dekat dengan UMKM. Anda akan menangani klien usaha kecil-menengah dari konsultasi pertama sampai izin terbit — didampingi konsultan senior.",
-      "Ini adalah peran learning-intensive: dalam 6 bulan Anda akan menguasai alur NIB → sertifikat standar → izin sektoral → sertifikasi halal/PIRT → kepatuhan pajak dasar.",
+      "Ini adalah peran learning-intensive: dalam 6 bulan Anda akan menguasai alur NIB → sertifikat standar → izin sektoral → sertifikasi halal/PIRT → kepatuhan pajak dasar. Tim konsultan kami khusus perempuan — wanita yang paham perizinan dari hulu ke hilir.",
     ],
     responsibilities: [
       "Melakukan konsultasi kebutuhan izin untuk klien UMKM (online & kunjungan)",
@@ -150,6 +157,7 @@ export const JOBS: Job[] = [
       "Menjaga kepuasan klien agar merekomendasikan kami",
     ],
     qualifications: [
+      "Wanita — posisi ini diperuntukkan khusus bagi perempuan",
       "S1 semua jurusan (hukum/ekonomi/manajemen jadi nilai plus)",
       "Fresh graduate dipersilakan — yang penting komunikasi hangat",
       "Suka menjelaskan hal rumit dengan cara sederhana",
@@ -172,8 +180,9 @@ export const JOBS: Job[] = [
   },
   {
     id: "job-content-writer",
+    femaleOnly: true,
     slug: "content-writer-seo",
-    title: "Content Writer SEO (Perizinan & Pajak)",
+    title: "Content Writer SEO (Perizinan & Pajak) — Khusus Wanita",
     organization: ORG_MAIN,
     isPartner: false,
     category: "Konten & Kreatif",
@@ -184,7 +193,7 @@ export const JOBS: Job[] = [
     address: "Bekerja penuh dari rumah, meeting online harian",
     description: [
       "Website kami melayani jutaan pencari informasi perizinan lewat 1.000+ halaman SEO dan alat AI gratis. Kami butuh penulis yang bisa mengubah regulasi yang berat menjadi konten yang ringan, akurat, dan menang di Google.",
-      "Anda akan menulis artikel panduan, FAQ, dan halaman layanan — dari riset kata kunci sampai struktur heading. Konten diuji nyata di SERP, bukan sekadar ditumpuk.",
+      "Anda akan menulis artikel panduan, FAQ, dan halaman layanan — dari riset kata kunci sampai struktur heading. Konten diuji nyata di SERP, bukan sekadar ditumpuk. Posisi ini khusus wanita yang menguasai SEO dari hulu (riset & teknis) ke hilir (konten yang menang di Google).",
     ],
     responsibilities: [
       "Menulis artikel SEO seputar perizinan, pajak, dan kerja luar negeri",
@@ -194,6 +203,7 @@ export const JOBS: Job[] = [
       "Evaluasi performa via Google Search Console & revisi berkala",
     ],
     qualifications: [
+      "Wanita — posisi ini diperuntukkan khusus bagi perempuan",
       "Pengalaman menulis SEO minimal 1 tahun (portofolio wajib)",
       "Penulisan bahasa Indonesia rapi + kemampuan membaca regulasi",
       "Paham dasar on-page SEO (heading, internal link, search intent)",
@@ -216,8 +226,9 @@ export const JOBS: Job[] = [
   },
   {
     id: "job-telemarketing",
+    femaleOnly: true,
     slug: "telemarketing-inside-sales",
-    title: "Telemarketing / Inside Sales (Perizinan)",
+    title: "Telemarketing / Inside Sales (Perizinan) — Khusus Wanita",
     organization: ORG_MAIN,
     isPartner: false,
     category: "Penjualan & Marketing",
@@ -238,6 +249,7 @@ export const JOBS: Job[] = [
       "Follow-up ulang lead yang tertarik tapi belum siap",
     ],
     qualifications: [
+      "Wanita — posisi ini diperuntukkan khusus bagi perempuan",
       "Pendidikan minimal SMA/SMK sederajat",
       "Nyaman berbicara via telepon sepanjang hari",
       "Bicara bahasa Indonesia sopan dan jelas",
@@ -261,8 +273,9 @@ export const JOBS: Job[] = [
   },
   {
     id: "job-legal-officer",
+    femaleOnly: true,
     slug: "legal-officer",
-    title: "Legal Officer (Perizinan & Kontrak)",
+    title: "Legal Officer (Perizinan & Kontrak) — Khusus Wanita",
     organization: ORG_MAIN,
     isPartner: false,
     category: "Operasional & Legal",
@@ -283,6 +296,7 @@ export const JOBS: Job[] = [
       "Mendukung penanganan keluhan/klausa sengketa ringan",
     ],
     qualifications: [
+      "Wanita — posisi ini diperuntukkan khusus bagi perempuan",
       "S1 Hukum (IPK minimal 3,00)",
       "Pengalaman legal officer/paralegal minimal 2 tahun",
       "Terbiasa membaca UU/PP/PMK dan merangkumnya jelas",
@@ -305,8 +319,9 @@ export const JOBS: Job[] = [
   },
   {
     id: "job-trainer-jepang",
+    femaleOnly: true,
     slug: "trainer-bahasa-jepang-lpk",
-    title: "Trainer Bahasa Jepang (JFT-Basic / JLPT N4)",
+    title: "Trainer Bahasa Jepang (JFT-Basic / JLPT N4) — Khusus Wanita",
     organization: ORG_LPK,
     isPartner: true,
     category: "PMI & Ketenagakerjaan",
@@ -327,6 +342,7 @@ export const JOBS: Job[] = [
       "Membimbing simulasi wawancara kerja (mensetsu)",
     ],
     qualifications: [
+      "Wanita — posisi ini diperuntukkan khusus bagi perempuan",
       "Kemampuan bahasa Jepang minimal JLPT N3 (N2 diutamakan)",
       "Pengalaman mengajar/les bahasa Jepang minimal 1 tahun",
       "Berbahasa Indonesia jelas untuk menjelaskan gramatika",
@@ -349,8 +365,9 @@ export const JOBS: Job[] = [
   },
   {
     id: "job-coordinator-pmi",
+    femaleOnly: true,
     slug: "coordinator-penempatan-pmi",
-    title: "Coordinator Penempatan PMI (SISKOP2MI)",
+    title: "Coordinator Penempatan PMI (SISKOP2MI) — Khusus Wanita",
     organization: ORG_LPK,
     isPartner: true,
     category: "PMI & Ketenagakerjaan",
@@ -371,6 +388,7 @@ export const JOBS: Job[] = [
       "Menyusun laporan penempatan berkala",
     ],
     qualifications: [
+      "Wanita — posisi ini diperuntukkan khusus bagi perempuan",
       "D3/S1 semua jurusan",
       "Paham alur UU 18/2017 & sistem SISKOP2MI (atau siap belajar cepat)",
       "Pengalaman koordinasi/administrasi 2 tahun",
@@ -393,8 +411,9 @@ export const JOBS: Job[] = [
   },
   {
     id: "job-digital-marketing",
+    femaleOnly: true,
     slug: "digital-marketing-specialist",
-    title: "Digital Marketing Specialist (Ads & Funnel)",
+    title: "Digital Marketing Specialist (Ads & Funnel) — Khusus Wanita",
     organization: ORG_MAIN,
     isPartner: false,
     category: "Penjualan & Marketing",
@@ -415,6 +434,7 @@ export const JOBS: Job[] = [
       "A/B testing kreatif, copy, dan audiens secara rutin",
     ],
     qualifications: [
+      "Wanita — posisi ini diperuntukkan khusus bagi perempuan",
       "Pengalaman running ads minimal 2 tahun (bukti hasil wajib)",
       "Paham pixel, event, dan pengukuran konversi",
       "Terbiasa bekerja dengan target CPL ketat",
@@ -437,8 +457,9 @@ export const JOBS: Job[] = [
   },
   {
     id: "job-data-entry-oss",
+    femaleOnly: true,
     slug: "data-entry-oss-lkpm",
-    title: "Data Entry OSS & LKPM (Remote)",
+    title: "Data Entry OSS & LKPM (Remote) — Khusus Wanita",
     organization: ORG_MAIN,
     isPartner: false,
     category: "Operasional & Legal",
@@ -458,6 +479,7 @@ export const JOBS: Job[] = [
       "Melaporkan anomali data ke supervisi harian",
     ],
     qualifications: [
+      "Wanita — posisi ini diperuntukkan khusus bagi perempuan",
       "Mahasiswa tingkat akhir / fresh graduate / pekerja sampingan",
       "Ketelitian tinggi dan disiplin deadline (tanggal 1-10 tiap bulan)",
       "Terhubung internet stabil untuk kerja remote",
@@ -480,8 +502,9 @@ export const JOBS: Job[] = [
   },
   {
     id: "job-graphic-designer",
+    femaleOnly: true,
     slug: "graphic-designer",
-    title: "Graphic Designer (Konten Sosial & Iklan)",
+    title: "Graphic Designer (Konten Sosial & Iklan) — Khusus Wanita",
     organization: ORG_MAIN,
     isPartner: false,
     category: "Konten & Kreatif",
@@ -502,6 +525,7 @@ export const JOBS: Job[] = [
       "Iterasi cepat berdasarkan performa iklan",
     ],
     qualifications: [
+      "Wanita — posisi ini diperuntukkan khusus bagi perempuan",
       "Mahir Figma dan/atau Canva Pro + Photoshop",
       "Pengalaman desain sosial/iklan minimal 1 tahun (portofolio wajib)",
       "Memahami hierarki teks dan desain untuk konversi",
@@ -524,8 +548,9 @@ export const JOBS: Job[] = [
   },
   {
     id: "job-ae-pajak",
+    femaleOnly: true,
     slug: "account-executive-pajak",
-    title: "Account Executive Jasa Pajak (Coretax Era)",
+    title: "Account Executive Jasa Pajak (Coretax Era) — Khusus Wanita",
     organization: ORG_MAIN,
     isPartner: false,
     category: "Penjualan & Marketing",
@@ -536,7 +561,7 @@ export const JOBS: Job[] = [
     address: "Kantor area Mampang + kunjungan klien",
     description: [
       "Era Coretax DJP membuat jutaan pelaku usaha butuh bantuan kepatuhan pajak bulanan & tahunan. Tim jasa pajak kami tumbuh cepat dan butuh akuisisi yang agresif namun elegan.",
-      "Anda akan menjual paket kepatuhan pajak (SPT masa, tahunan, PKP, payroll) ke UMKM dan perusahaan — didukung kalkulator online kami yang sudah dikenal pasar.",
+      "Anda akan menjual paket kepatuhan pajak (SPT masa, tahunan, PKP, payroll) ke UMKM dan perusahaan — didukung kalkulator online kami yang sudah dikenal pasar. Divisi pajak kami dibangun konsultan pajak wanita: perempuan yang menguasai perpajakan dari hulu ke hilir.",
     ],
     responsibilities: [
       "Menjual paket layanan jasa pajak ke UMKM & korporasi",
@@ -546,6 +571,7 @@ export const JOBS: Job[] = [
       "Mencapai target revenue layanan pajak bulanan",
     ],
     qualifications: [
+      "Wanita — posisi ini diperuntukkan khusus bagi perempuan",
       "S1 semua jurusan (akuntansi/pajak nilai plus)",
       "Pengalaman sales layanan keuangan/legalitas 2 tahun",
       "Memahami dasar-dasar pajak Indonesia (PPh, PPN, PKP)",
@@ -567,6 +593,200 @@ export const JOBS: Job[] = [
     experienceMonths: 24,
     featured: true,
     postedDaysAgo: 1,
+  },
+  {
+    id: "job-konsultan-pajak",
+    femaleOnly: true,
+    slug: "konsultan-pajak-wanita",
+    title: "Konsultan Pajak (Coretax & Kepatuhan) — Khusus Wanita",
+    organization: ORG_MAIN,
+    isPartner: false,
+    category: "Pajak & Keuangan",
+    employmentType: "FULL_TIME",
+    workType: "hybrid",
+    city: "Jakarta Selatan",
+    province: "DKI Jakarta",
+    address: "Kantor area Mampang, Jakarta Selatan + kunjungan klien",
+    description: [
+      "Kami sedang membutuhkan konsultan pajak wanita untuk memimpin divisi kepatuhan pajak: perempuan yang menguasai perpajakan Indonesia dari hulu ke hilir — registrasi NPWP, PKP, e-Faktur, pemotongan/pemungutan PPh, SPT masa & tahunan, hingga era Coretax DJP.",
+      "Anda akan memegang portofolio klien UMKM & korporasi, menjadi penasihat yang mereka percaya, dan merapikan kepatuhan pajak dari hulu (data & dokumen) ke hilir (SPT terlaporkan, status aman dari sanksi).",
+    ],
+    responsibilities: [
+      "Mengelola kepatuhan pajak klien: SPT masa PPh/PPN, SPT tahunan orang pribadi & badan",
+      "Mengoperasikan Coretax DJP, e-Faktur, dan e-Bupot untuk seluruh klien",
+      "Menganalisis profil pajak klien (omzet, PKP, payroll) dan menyusun rekomendasi",
+      "Riset PMK/PER-1 DJP terbaru dan menerjemahkannya menjadi SOP tim",
+      "Mendampingi klien saat korespondensi dan rekonsiliasi dengan DJP",
+      "Mentoring staf pajak junior dan menjaga kualitas seluruh deliverable",
+    ],
+    qualifications: [
+      "Wanita — posisi ini diperuntukkan khusus bagi perempuan",
+      "S1 Akuntansi/Manajemen Keuangan atau D3 Akuntansi dengan pengalaman kuat",
+      "Pengalaman konsultan pajak/staf pajak minimal 3 tahun",
+      "Menguasai PPh 21/23/25, PPN & PPnBM, e-Faktur, dan Coretax DJP",
+      "Sertifikasi Brevet A & B (USKP nilai plus)",
+      "Komunikasi hangat namun tegas saat menjelaskan pajak ke pemilik usaha",
+    ],
+    benefits: [
+      "Gaji kompetitif + bonus retensi klien",
+      "Tim perempuan yang saling mendukung — tanpa budaya kerja toksik",
+      "Pelatihan Coretax & regulasi pajak terbaru didanai penuh",
+      "BPJS Kesehatan & Ketenagakerjaan",
+      "Jalur karier: Senior Consultant → Tax Manager → Head Divisi Pajak",
+    ],
+    skills: ["PPh", "PPN", "Coretax DJP", "e-Faktur", "SPT Tahunan", "Payroll", "Brevet A/B"],
+    salaryMin: 9000000,
+    salaryMax: 15000000,
+    salaryNote: "Sesuai portofolio klien & sertifikasi",
+    education: "S1 Akuntansi/keuangan atau D3 Akuntansi berpengalaman",
+    experienceMonths: 36,
+    featured: true,
+    postedDaysAgo: 1,
+  },
+  {
+    id: "job-fullstack-dev",
+    femaleOnly: true,
+    slug: "programmer-fullstack-wanita",
+    title: "Programmer Full-Stack (Next.js) — Khusus Wanita",
+    organization: ORG_MAIN,
+    isPartner: false,
+    category: "IT & Teknologi",
+    employmentType: "FULL_TIME",
+    workType: "hybrid",
+    city: "Jakarta Selatan",
+    province: "DKI Jakarta",
+    address: "Kantor area Mampang + WFH 2 hari/minggu",
+    description: [
+      "Kami mencari wanita yang menguasai IT dari hulu ke hilir: merancang arsitektur, menulis kode, membangun integrasi, deploy, sampai monitoring. Website kami (1.000+ halaman, alat AI gratis, payment gateway) adalah laboratorium kerja Anda.",
+      "Anda akan membangun fitur layanan perizinan digital, alat AI (cek dokumen, kalkulator pajak, roadmap bisnis), dan integrasi API — berdampingan dengan tim SEO & konten yang seluruhnya perempuan.",
+    ],
+    responsibilities: [
+      "Mengembangkan fitur web berbasis Next.js/TypeScript secara end-to-end",
+      "Merancang & mengelola database (Prisma/PostgreSQL) dan REST API",
+      "Membangun integrasi: payment gateway, WhatsApp API, dan AI/LLM",
+      "Mengoptimalkan Core Web Vitals, aksesibilitas, dan keamanan dasar",
+      "Menulis dokumentasi teknis dan melakukan code review tim",
+      "Deploy, monitoring, dan menjaga uptime aplikasi produksi",
+    ],
+    qualifications: [
+      "Wanita — posisi ini diperuntukkan khusus bagi perempuan",
+      "Pengalaman React/Next.js minimal 2 tahun (portofolio/GitHub wajib)",
+      "Kuat TypeScript/JavaScript modern dan CSS/Tailwind",
+      "Paham database relasional, REST API, dan Git workflow",
+      "Nilai plus: SEO teknis, AI/LLM API, Docker, atau situs programatik",
+      "Cara kerja mandiri, komunikatif, dan haus belajar teknologi baru",
+    ],
+    benefits: [
+      "Gaji kompetitif sesuai kemampuan — tanpa glass ceiling",
+      "Proyek nyata berskala nasional, bukan sekadar maintenance situs statis",
+      "Hybrid: WFH 2 hari/minggu + jam kerja fleksibel",
+      "BPJS Kesehatan & Ketenagakerjaan",
+      "Anggaran belajar: kursus, konferensi, dan sertifikasi IT",
+    ],
+    skills: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "REST API", "Git", "Deploy & Monitoring"],
+    salaryMin: 9000000,
+    salaryMax: 16000000,
+    education: "S1 Informatika/SI atau pengalaman & portofolio setara",
+    experienceMonths: 24,
+    featured: true,
+    postedDaysAgo: 1,
+  },
+  {
+    id: "job-seo-specialist",
+    femaleOnly: true,
+    slug: "seo-specialist-wanita",
+    title: "SEO Specialist (Technical & Content SEO) — Khusus Wanita",
+    organization: ORG_MAIN,
+    isPartner: false,
+    category: "IT & Teknologi",
+    employmentType: "FULL_TIME",
+    workType: "remote",
+    city: "Remote (WIB)",
+    province: "Nasional",
+    address: "Bekerja penuh dari rumah, meeting online harian",
+    description: [
+      "Kami mencari wanita yang menguasai SEO dari hulu ke hilir: riset kata kunci, audit teknis, arsitektur konten, sampai strategi link & laporan performa. Target kami jelas — peringkat 1 Google untuk kata kunci perizinan, pajak, dan PMI.",
+      "Anda akan memimpin SEO 1.000+ halaman programatik plus blog edukasi, bekerja langsung dengan programmer wanita dan content writer wanita dalam satu tim yang sama.",
+    ],
+    responsibilities: [
+      "Menyusun strategi & roadmap SEO nasional per kategori layanan",
+      "Audit teknis: indexing, sitemap, canonical, schema, Core Web Vitals",
+      "Riset kata kunci dan menyusun content brief untuk penulis",
+      "Membangun internal linking, halaman programatik, dan featured snippet",
+      "Memonitor ranking via GSC/GA4 dan menyusun laporan progres",
+      "Merancang eksperimen SEO (judul, schema, landing page baru)",
+    ],
+    qualifications: [
+      "Wanita — posisi ini diperuntukkan khusus bagi perempuan",
+      "Pengalaman SEO minimal 2 tahun dengan bukti ranking (wajib)",
+      "Menguasai GSC, GA4, dan tools riset (Ahrefs/Semrush/sejenisnya)",
+      "Paham technical SEO: schema markup, sitemap, canonical, CWV",
+      "Nilai plus: bisa membaca kode Next.js dan memakai AI untuk riset",
+      "Terbiasa kerja berbasis target mingguan & laporan berbasis data",
+    ],
+    benefits: [
+      "Full remote + jam fleksibel berbasis deliverable",
+      "Gaji tetap + bonus kata kunci yang menembus top 3 Google",
+      "Akses alat SEO premium & budget eksperimen",
+      "BPJS Kesehatan & Ketenagakerjaan",
+      "Tim SEO-programmer-konten perempuan yang solid dan saling menguatkan",
+    ],
+    skills: ["Technical SEO", "Keyword Research", "Google Search Console", "GA4", "Schema Markup", "Programmatic SEO", "Link Building"],
+    salaryMin: 7000000,
+    salaryMax: 12000000,
+    salaryNote: "Bonus per milestone ranking top 3",
+    education: "Minimal D3 semua jurusan",
+    experienceMonths: 24,
+    featured: true,
+    postedDaysAgo: 2,
+  },
+  {
+    id: "job-konsultan-senior-perizinan",
+    femaleOnly: true,
+    slug: "konsultan-perizinan-senior-wanita",
+    title: "Konsultan Senior Perizinan Hulu ke Hilir — Khusus Wanita",
+    organization: ORG_MAIN,
+    isPartner: false,
+    category: "Operasional & Legal",
+    employmentType: "FULL_TIME",
+    workType: "hybrid",
+    city: "Jakarta Selatan",
+    province: "DKI Jakarta",
+    address: "Kantor area Mampang + kunjungan klien se-Jabodetabek",
+    description: [
+      "Kami mencari wanita yang paham perizinan dari hulu ke hilir: pembentukan badan usaha (PT/PMA/CV), NIB & OSS-RBA, izin sektoral lintas kementerian, sertifikasi (halal, PIRT, ISO), hingga kepatuhan berjalan (LKPM, pajak, ketenagakerjaan).",
+      "Anda akan menjadi penasihat utama klien korporat & UMKM unggulan, memimpin konsultan junior perempuan, dan menjaga kualitas seluruh pengurusan dari konsultasi awal sampai izin terbit dan usaha beroperasi legal.",
+    ],
+    responsibilities: [
+      "Memimpin penanganan klien kompleks: struktur badan usaha & izin lintas sektor",
+      "Menyusun roadmap perizinan hulu ke hilir per industri klien",
+      "Review dan QA pekerjaan konsultan junior serta tim administrasi",
+      "Menjadi pembicara konsultasi korporat dan negosiasi kebutuhan klien",
+      "Memantau perubahan regulasi OSS, KBLI, dan izin sektoral",
+      "Membangun SOP layanan dan melatih generasi konsultan perempuan berikutnya",
+    ],
+    qualifications: [
+      "Wanita — posisi ini diperuntukkan khusus bagi perempuan",
+      "S1 Hukum/Ekonomi/Teknik atau pengalaman setara",
+      "Pengalaman konsultan perizinan/legalitas minimal 4 tahun",
+      "Menguasai OSS-RBA, KBLI 2020, dan izin sektoral lintas K/L",
+      "Terbiasa menangani klien korporat & menyusun dokumen layanan",
+      "Mampu memimpin tim kecil dan menjaga mutu deliverable",
+    ],
+    benefits: [
+      "Gaji senior + bonus performa tim",
+      "Otoritas penuh atas solusi perizinan klien strategis",
+      "Tim perempuan yang didukung penuh oleh manajemen",
+      "BPJS Kesehatan & Ketenagakerjaan",
+      "Jalur partner/head divisi untuk performa terbaik",
+    ],
+    skills: ["OSS-RBA", "KBLI 2020", "Izin Sektoral", "PT/PMA", "Sertifikasi Halal & PIRT", "LKPM", "Team Leadership"],
+    salaryMin: 10000000,
+    salaryMax: 15000000,
+    education: "S1 Hukum/Ekonomi/Teknik",
+    experienceMonths: 48,
+    featured: true,
+    postedDaysAgo: 3,
   },
 ];
 
@@ -595,8 +815,12 @@ export function formatRupiah(n: number): string {
 }
 
 export const JOB_CATEGORIES = [
+  "IT & Teknologi",
+  "Pajak & Keuangan",
   "Penjualan & Marketing",
   "Operasional & Legal",
   "Konten & Kreatif",
   "PMI & Ketenagakerjaan",
 ] as const;
+
+export const FEMALE_ONLY_LABEL = "Khusus Wanita";

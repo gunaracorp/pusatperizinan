@@ -12,7 +12,6 @@ import {
   MapPin,
   PhoneCall,
   Send,
-  ShieldCheck,
   Star,
   UserCheck,
 } from "lucide-react";
@@ -36,15 +35,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const job = getJobBySlug(slug);
   if (!job) return {};
   const title = `${job.title} — ${job.city}`;
-  const desc = `Lowongan ${job.title} di ${job.city}. Gaji ${formatRupiah(job.salaryMin)}–${formatRupiah(job.salaryMax)}/bulan, ${job.employmentType === "FULL_TIME" ? "penuh waktu" : job.employmentType === "PART_TIME" ? "paruh waktu" : "kontrak"}. ${job.description[0].slice(0, 110)}… Lamar via WhatsApp, proses < 7 hari.`;
+  const desc = `Lowongan khusus wanita: ${job.title} di ${job.city}. Gaji ${formatRupiah(job.salaryMin)}–${formatRupiah(job.salaryMax)}/bulan, ${job.employmentType === "FULL_TIME" ? "penuh waktu" : job.employmentType === "PART_TIME" ? "paruh waktu" : "kontrak"}. ${job.description[0].slice(0, 100)}… Lamar via WhatsApp, proses < 7 hari.`;
   return {
     title,
     description: desc,
     keywords: [
       `lowongan ${job.title.toLowerCase()}`,
+      "lowongan khusus wanita",
+      "loker wanita",
       `loker ${job.city.toLowerCase()}`,
       `lowongan kerja ${job.city.toLowerCase()}`,
-      "lowongan perizinan",
+      "lowongan perizinan khusus wanita",
       "loker terbaru 2026",
       ...job.skills.slice(0, 2).map((s) => `lowongan ${s.toLowerCase()}`),
     ],
@@ -67,7 +68,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ slug
     .concat(JOBS.filter((j) => j.slug !== job.slug && j.category !== job.category))
     .slice(0, 3);
 
-  const waText = `Halo, saya ingin melamar posisi "${job.title}" (${job.city}) yang saya lihat di website PusatPerizinan.com.\n\nNama saya: \nPengalaman singkat: \n\nMohon informasi proses selanjutnya. Terima kasih!`;
+  const waText = `Halo, saya perempuan dan ingin melamar posisi "${job.title}" (${job.city}) yang saya lihat di website PusatPerizinan.com.\n\nNama saya: \nPengalaman singkat: \n\nMohon informasi proses selanjutnya. Terima kasih!`;
 
   const employmentLabel =
     job.employmentType === "FULL_TIME"
@@ -85,6 +86,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ slug
     "@type": "JobPosting",
     title: job.title,
     description: [
+      `<p><strong>Khusus Wanita:</strong> Posisi ini diperuntukkan khusus bagi perempuan — bagian dari pembentukan tim perempuan unggul PusatPerizinan.com yang menguasai IT dan perizinan dari hulu ke hilir.</p>`,
       `<p>${job.description.map((p) => escapeHtml(p)).join("</p><p>")}</p>`,
       `<p><strong>Tanggung Jawab:</strong></p><ul>${job.responsibilities.map((r) => `<li>${escapeHtml(r)}</li>`).join("")}</ul>`,
       `<p><strong>Kualifikasi:</strong></p><ul>${job.qualifications.map((q) => `<li>${escapeHtml(q)}</li>`).join("")}</ul>`,
@@ -197,6 +199,11 @@ export default async function JobDetailPage({ params }: { params: Promise<{ slug
               <Building2 className="h-3 w-3 mr-1" aria-hidden /> Dibuka oleh LPK mitra resmi
             </Badge>
           )}
+          {job.femaleOnly && (
+            <Badge className="mb-3 ml-0 sm:ml-2 bg-rose-100 text-rose-700 border border-rose-300">
+              <UserCheck className="h-3 w-3 mr-1" aria-hidden /> Khusus Wanita
+            </Badge>
+          )}
           <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-balance">{job.title}</h1>
           <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4 text-sm">
             <div className="flex items-start gap-2">
@@ -239,9 +246,9 @@ export default async function JobDetailPage({ params }: { params: Promise<{ slug
               <Send className="h-5 w-5" aria-hidden />
               Lamar via WhatsApp — Proses &lt; 7 Hari
             </a>
-            <div className="rounded-xl border bg-background px-4 py-3 text-xs text-muted-foreground flex items-center gap-2 sm:max-w-[220px]">
-              <ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0" aria-hidden />
-              Tanpa biaya lamaran — 100% gratis
+            <div className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-xs text-rose-800 flex items-center gap-2 sm:max-w-[220px]">
+              <UserCheck className="h-4 w-4 text-rose-600 shrink-0" aria-hidden />
+              Posisi ini khusus untuk perempuan
             </div>
           </div>
         </div>
@@ -250,6 +257,20 @@ export default async function JobDetailPage({ params }: { params: Promise<{ slug
       {/* Konten */}
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pb-10 grid gap-8 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-8">
+          {/* Info khusus wanita */}
+          {job.femaleOnly && (
+            <div className="rounded-2xl border border-rose-200 bg-rose-50 p-5">
+              <h2 className="font-bold text-rose-900 flex items-center gap-2 mb-1.5">
+                <UserCheck className="h-5 w-5" aria-hidden /> Posisi Khusus Wanita
+              </h2>
+              <p className="text-sm text-rose-800 leading-relaxed">
+                Rekrutmen ini diperuntukkan khusus bagi perempuan. Kami sedang membentuk tim perempuan unggul yang
+                menguasai IT dan perizinan dari hulu ke hilir — dari konsultan pajak, programmer, spesialis SEO,
+                hingga konsultan perizinan. Lamaran laki-laki tidak diproses.
+              </p>
+            </div>
+          )}
+
           {/* Deskripsi */}
           <section aria-label="Deskripsi pekerjaan">
             <h2 className="font-bold text-xl mb-3 flex items-center gap-2">
@@ -299,6 +320,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ slug
             </h2>
             <div className="space-y-3 text-sm">
               {[
+                { q: "Apakah posisi ini hanya untuk wanita?", a: "Ya. Sesuai kebijakan rekrutmen kami, posisi ini khusus untuk perempuan sebagai bagian dari pembentukan tim perempuan unggul. Lamaran laki-laki tidak diproses." },
                 { q: "Bagaimana cara melamar?", a: "Klik tombol 'Lamar via WhatsApp' di atas, lengkapi template pesan (nama + pengalaman singkat), kirim. Tim HR merespons dalam 1-3 hari kerja." },
                 { q: "Apakah perlu mengirim CV?", a: "Untuk tahap pertama cukup pesan WhatsApp. CV diminta setelah Anda lolos penyaringan awal." },
                 { q: "Apakah ada biaya lamaran?", a: "Tidak ada sama sekali. Rekrutmen kami gratis — jika ada pihak meminta pembayaran, itu bukan kami." },

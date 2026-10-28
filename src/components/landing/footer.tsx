@@ -202,7 +202,7 @@ export function Footer() {
               </li>
               <li>
                 <a href="/lowongan-kerja" className="text-sm text-emerald-100/70 hover:text-emerald-300 transition-colors">
-                  💼 Lowongan Kerja Terbaru
+                  💼 Lowongan Kerja Khusus Wanita
                 </a>
               </li>
               <li>

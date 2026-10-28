@@ -20,23 +20,25 @@ export function generateStaticParams() {
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "Lowongan Kerja Terbaru — Karier di Bidang Perizinan, Pajak & PMI",
+    title: "Lowongan Kerja Khusus Wanita — Karier IT, Perizinan & Pajak",
     description:
-      "Lowongan kerja terbaru PusatPerizinan.com & mitra: marketing, konsultan perizinan, legal officer, trainer bahasa Jepang, coordinator PMI, content writer, dan lainnya. Gaji transparan, BPJS, karier jelas.",
+      "Lowongan kerja KHUSUS WANITA di PusatPerizinan.com & mitra: konsultan pajak wanita, programmer full-stack, spesialis SEO, konsultan perizinan hulu ke hilir, legal officer, dan lainnya. Gaji transparan, BPJS, karier jelas.",
     keywords: [
+      "lowongan kerja khusus wanita",
+      "loker wanita terbaru",
+      "lowongan konsultan pajak wanita",
+      "lowongan programmer wanita",
+      "lowongan seo specialist wanita",
+      "lowongan perizinan khusus wanita",
       "lowongan kerja perizinan",
-      "loker konsultan perizinan",
-      "lowongan marketing jakarta",
-      "loker trainer bahasa jepang",
-      "lowongan coordinator pmi",
-      "lowongan content writer seo remote",
-      "loker legal officer jakarta",
+      "loker IT wanita jakarta",
+      "loker wanita jakarta selatan",
+      "lowongan wanita remote",
     ],
     alternates: { canonical: "/lowongan-kerja" },
     openGraph: {
-      title: "Lowongan Kerja — PusatPerizinan.com",
-      description:
-        "12 posisi aktif: sales, konsultan, legal, konten, PMI. Gaji transparan, remote/hybrid tersedia. Lamar via WhatsApp, respons cepat.",
+      title: "Lowongan Kerja Khusus Wanita — PusatPerizinan.com",
+      description: `${JOBS.length} posisi aktif khusus perempuan: konsultan pajak, programmer full-stack, SEO specialist, konsultan perizinan hulu ke hilir, legal, konten, PMI. Gaji transparan, remote/hybrid tersedia. Lamar via WhatsApp, respons cepat.`,
       url: "/lowongan-kerja",
     },
   };
@@ -69,7 +71,7 @@ export default function LowonganPage() {
             </span>
           </Link>
           <a
-            href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Halo, saya ingin menanyakan lowongan kerja di PusatPerizinan.com")}`}
+            href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Halo, saya perempuan dan ingin menanyakan lowongan kerja khusus wanita di PusatPerizinan.com")}`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition-all hover:shadow-md min-h-[44px]"
@@ -88,20 +90,24 @@ export default function LowonganPage() {
             <span className="mx-1.5">/</span>
             <span className="font-medium text-foreground">Lowongan Kerja</span>
           </nav>
-          <div className="flex items-center gap-2 mb-3">
+          <div className="flex flex-wrap items-center gap-2 mb-3">
+            <Badge className="bg-rose-100 text-rose-700 border border-rose-300">
+              <Sparkles className="h-3 w-3 mr-1" aria-hidden /> Khusus Wanita — Seluruh Rekrutmen
+            </Badge>
             <Badge className="bg-primary/10 text-primary border border-primary/20">
-              <Sparkles className="h-3 w-3 mr-1" aria-hidden /> {JOBS.length} Posisi Aktif — Diperbarui Berkala
+              {JOBS.length} Posisi Aktif — Diperbarui Berkala
             </Badge>
           </div>
           <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-balance">
-            Lowongan Kerja — Tumbuh Bersama Industri Perizinan
+            Lowongan Kerja Khusus Wanita — Tumbuh Bersama Industri Perizinan
           </h1>
           <p className="mt-3 text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed">
-            Kami merekrut tim untuk membantu ribuan pelaku usaha dan pekerja migran Indonesia. Gaji transparan,
-            pelatihan nyata, jalur karier jelas. Lamar langsung via WhatsApp — tanpa biaya apa pun.
+            Kami membentuk tim perempuan unggul: konsultan pajak wanita, programmer full-stack, spesialis SEO, dan
+            wanita yang paham perizinan dari hulu ke hilir. Gaji transparan, pelatihan nyata, jalur karier jelas.
+            Lamar langsung via WhatsApp — tanpa biaya apa pun.
           </p>
           <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
-            <span className="flex items-center gap-1.5"><Briefcase className="h-4 w-4 text-primary" aria-hidden /> {JOBS.length} posisi aktif</span>
+            <span className="flex items-center gap-1.5"><Briefcase className="h-4 w-4 text-primary" aria-hidden /> {JOBS.length} posisi aktif — semua khusus wanita</span>
             <span className="flex items-center gap-1.5"><MapPin className="h-4 w-4 text-primary" aria-hidden /> Jakarta, Bekasi & remote nasional</span>
             <span className="flex items-center gap-1.5"><BadgeDollarSign className="h-4 w-4 text-primary" aria-hidden /> Range gaji tercantum jujur</span>
             <span className="flex items-center gap-1.5"><Users className="h-4 w-4 text-primary" aria-hidden /> Proses lamaran &lt; 7 hari</span>
@@ -111,6 +117,18 @@ export default function LowonganPage() {
 
       {/* Daftar lowongan */}
       <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-10">
+        {/* Info khusus wanita */}
+        <div className="mb-8 rounded-2xl border border-rose-200 bg-rose-50 p-5">
+          <h2 className="font-bold text-rose-900 flex items-center gap-2 mb-1.5">
+            <Users className="h-5 w-5" aria-hidden /> Seluruh Lowongan di Halaman Ini Khusus untuk Perempuan
+          </h2>
+          <p className="text-sm text-rose-800 leading-relaxed">
+            PusatPerizinan.com sedang membangun tim perempuan unggul yang menguasai IT dan perizinan dari hulu ke
+            hilir: konsultan pajak wanita, programmer, spesialis SEO, konsultan perizinan, legal, konten, hingga PMI.
+            Lamaran laki-laki tidak diproses — terima kasih atas pengertiannya.
+          </p>
+        </div>
+
         {/* Posisi prioritas */}
         {featured.length > 0 && (
           <>
@@ -155,7 +173,8 @@ export default function LowonganPage() {
       <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pb-14">
         <div className="rounded-2xl border bg-card p-6 text-center">
           <p className="text-sm text-muted-foreground">
-            Tidak menemukan posisi yang cocok? Kirim CV terbuka ke WhatsApp kami, atau jelajahi{" "}
+            Belum menemukan posisi yang cocok? Perempuan dengan keahlian IT/perizinan bisa kirim CV terbuka ke
+            WhatsApp kami, atau jelajahi{" "}
             <Link href="/layanan" className="font-semibold text-primary hover:underline">layanan perizinan</Link> &{" "}
             <Link href="/roadmap" className="font-semibold text-primary hover:underline">alat AI gratis</Link> kami.
           </p>
@@ -179,6 +198,11 @@ function JobCard({ job, compact = false }: { job: (typeof JOBS)[number]; compact
           {job.title}
         </Link>
       </h3>
+      {job.femaleOnly && (
+        <span className="mt-2 inline-flex items-center gap-1 rounded-full border border-rose-300 bg-rose-100 px-2.5 py-0.5 text-xs font-semibold text-rose-700">
+          <Users className="h-3 w-3" aria-hidden /> Khusus Wanita
+        </span>
+      )}
       <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-sm text-muted-foreground">
         <span className="flex items-center gap-1"><MapPin className="h-3.5 w-3.5" aria-hidden /> {job.city}</span>
         <span className="flex items-center gap-1"><BadgeDollarSign className="h-3.5 w-3.5" aria-hidden /> {formatRupiah(job.salaryMin)}–{formatRupiah(job.salaryMax)}/bln</span>
