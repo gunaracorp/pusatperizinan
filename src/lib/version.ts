@@ -17,9 +17,9 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.15.0";
+export const APP_VERSION = "1.17.1";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Mesin Kepercayaan";
+export const RELEASE_NAME = "Dokumen Terkini";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
 export const RELEASE_DATE = "2026-10-28";
 /** Channel rilis: stable | beta | alpha. */
@@ -42,10 +42,46 @@ export interface ReleaseEntry {
 }
 
 /**
- * Riwayat lengkap 38 rilis — urut TERBARU lebih dulu.
+ * Riwayat lengkap 41 rilis — urut TERBARU lebih dulu.
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.17.1",
+    date: "2026-10-28",
+    type: "patch",
+    name: "Dokumen Terkini",
+    taskId: "42",
+    highlights: [
+      "Sinkronisasi dokumentasi penuh untuk dua rilis rekrutmen: v1.16.0 \"Rekrutmen Khusus Wanita\" & v1.17.0 \"Loker UMR Remote\" kini tercatat resmi di CHANGELOG, ladder, ver.json, dan README (perintah owner: update readme + worklog terbaru)",
+      "README: tabel 'Gambaran kemampuan' + baris 'Karier & rekrutmen' & §2.4 diperluas — 7 posisi aktif khusus wanita (remote, gaji awal UMR + bonus target, jenjang karier Staff→Senior→Lead→Manager)",
+      "PLATFORM_STATS.indexedUrls 11.877 → 11.872 (lowongan aktif 12 → 7, −5 URL); duplikat entri 1.13.5 di history ver.json dibersihkan",
+    ],
+  },
+  {
+    version: "1.17.0",
+    date: "2026-10-28",
+    type: "minor",
+    name: "Loker UMR Remote",
+    taskId: "41",
+    highlights: [
+      "Daftar lowongan ditulis ulang total sesuai brief owner: 16 posisi lama dihapus, diganti 7 posisi aktif — Programmer Full-Stack, Admin Marketing, Admin Melayani Pelanggan, Staf Perpajakan (PPh/PPN/Coretax), Staf Perizinan NIB & OSS-RBA, Admin Customer Service (WA & Chat), Admin Media Sosial",
+      "Gaji awal UMR resmi 2026 terverifikasi riset web: UMP DKI Jakarta Rp5.729.876 (+6,17%, Kegub 33/2026) & UMK Kota Bekasi Rp5.999.422 + bonus bulanan dari target perusahaan; salaryDisplay 'UMR + Bonus Target' + helper salaryText() — baseSalary tetap numerik untuk Google Jobs",
+      "Semua posisi remote penuh + jenjang karier eksplisit Staff→Senior→Lead→Manager; hero 'Remote, Gaji UMR + Bonus Target' + seksi 4 kartu 'Gaji, Bonus & Jenjang Karier' + FAQ gaji/remote/karier",
+    ],
+  },
+  {
+    version: "1.16.0",
+    date: "2026-10-28",
+    type: "minor",
+    name: "Rekrutmen Khusus Wanita",
+    taskId: "40",
+    highlights: [
+      "Seluruh sistem lowongan menjadi khusus wanita (perintah owner 'jangan ada laki2'): field femaleOnly di interface Job + 16/16 lowongan, konstanta FEMALE_ONLY_LABEL, judul '— Khusus Wanita', baris kualifikasi pembuka wanita",
+      "4 posisi prioritas baru: Konsultan Pajak Wanita, Programmer Full-Stack Wanita, SEO Specialist Wanita (remote), Konsultan Senior Perizinan Hulu-Hilir (12 → 16 lowongan)",
+      "SEO konsisten dari metadata sampai template lamaran: badge rose 'Khusus Wanita', kotak info 'Lamaran laki-laki tidak diproses', JSON-LD JobPosting, FAQ 'Apakah posisi ini hanya untuk wanita?', template WA 'saya perempuan...', header & footer sinkron",
+    ],
+  },
   {
     version: "1.15.0",
     date: "2026-10-28",
@@ -470,7 +506,8 @@ export const CURRENT_RELEASE: ReleaseEntry = RELEASES[0];
 
 /** Statistik platform yang dikirim /api/version — singkron dengan site.ts. */
 export const PLATFORM_STATS = {
-  indexedUrls: 11877,
+  // Sinkron Task 42: lowongan aktif 12 → 7 (−5 URL) dari hitungan v1.15.0 (11.877).
+  indexedUrls: 11872,
   sitemapSections: 15,
   orderableServices: 1500,
   subscriptionSkus: 6,

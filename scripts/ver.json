@@ -7,16 +7,16 @@
     "url": "https://pusatperizinan.com"
   },
   "version": {
-    "current": "1.15.0",
-    "label": "v1.15.0 — Mesin Kepercayaan",
-    "releaseName": "Mesin Kepercayaan",
+    "current": "1.17.1",
+    "label": "v1.17.1 — Dokumen Terkini",
+    "releaseName": "Dokumen Terkini",
     "releasedAt": "2026-10-28",
     "channel": "stable",
     "timezone": "Asia/Jakarta (WIB)",
     "semverValid": true
   },
   "stats": {
-    "indexedUrls": 11877,
+    "indexedUrls": 11872,
     "sitemapSections": 15,
     "orderableServices": 1500,
     "subscriptionSkus": 6,
@@ -29,12 +29,48 @@
     "changelog": "/CHANGELOG.md",
     "worklog": "/WORKLOG.md",
     "roadmap": "/ROADMAP-99.md",
-    "nextRelease": "v1.15.0 (Unreleased — antrean ROADMAP-99)"
+    "nextRelease": "v1.18.0 (Unreleased — antrean ROADMAP-99)"
   },
   "releases": {
-    "total": 38,
-    "current": "1.15.0",
+    "total": 41,
+    "current": "1.17.1",
     "history": [
+      {
+        "version": "1.17.1",
+        "date": "2026-10-28",
+        "type": "patch",
+        "name": "Dokumen Terkini",
+        "taskId": "42",
+        "highlights": [
+          "Sinkron README + CHANGELOG + ver.json + version.ts: dua rilis rekrutmen (v1.16.0 & v1.17.0) tercatat resmi",
+          "README: seksi 'Karier & rekrutmen' — 7 posisi khusus wanita (remote, UMR + bonus target, jenjang karier)",
+          "indexedUrls 11.877 → 11.872 (lowongan 12 → 7); duplikat entri 1.13.5 di history dibersihkan"
+        ]
+      },
+      {
+        "version": "1.17.0",
+        "date": "2026-10-28",
+        "type": "minor",
+        "name": "Loker UMR Remote",
+        "taskId": "41",
+        "highlights": [
+          "Daftar lowongan ditulis ulang total: 7 posisi aktif khusus wanita — programmer full-stack, admin marketing, admin melayani pelanggan, staf perpajakan, staf perizinan NIB & OSS, admin customer service, admin media sosial",
+          "Gaji awal UMR resmi 2026 (UMP DKI Jakarta Rp5.729.876 / UMK Kota Bekasi Rp5.999.422) + bonus target perusahaan; remote penuh + jenjang karier",
+          "Hero 'Remote, Gaji UMR + Bonus Target' + seksi Gaji/Bonus/Jenjang + FAQ gaji/remote/karier; JSON-LD Google Jobs tetap valid"
+        ]
+      },
+      {
+        "version": "1.16.0",
+        "date": "2026-10-28",
+        "type": "minor",
+        "name": "Rekrutmen Khusus Wanita",
+        "taskId": "40",
+        "highlights": [
+          "Seluruh sistem lowongan khusus wanita: femaleOnly 16/16, judul '— Khusus Wanita', badge + kotak info, kategori IT & Teknologi / Pajak & Keuangan",
+          "4 posisi prioritas baru: Konsultan Pajak, Programmer Full-Stack, SEO Specialist (remote), Konsultan Senior Perizinan (12 → 16 lowongan)",
+          "SEO konsisten: metadata, JSON-LD JobPosting, FAQ khusus wanita, template WA, header & footer"
+        ]
+      },
       {
         "version": "1.15.0",
         "date": "2026-10-28",
@@ -61,17 +97,6 @@
         "highlights": [
           "Sweep follow-up otomatis dari dalam server tiap 15 menit — tanpa cron eksternal",
           "Guard edge/build + env FOLLOWUP_SWEEP_MINUTES; idempoten berdampingan dengan cron"
-        ]
-      },
-      {
-        "version": "1.13.5",
-        "date": "2026-10-26",
-        "type": "patch",
-        "name": "Jaring Pengaman",
-        "taskId": "35",
-        "highlights": [
-          "Backup harian + uji restore + self-healing predev/prestart (langkah 68)",
-          "Sentry env-gated server+client (@sentry/nextjs), sendDefaultPii=false"
         ]
       },
       {

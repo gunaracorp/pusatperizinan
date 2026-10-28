@@ -332,3 +332,19 @@ Stage Summary:
 - v1.15.0 "Mesin Kepercayaan" rilis: 5 langkah ROADMAP-99 baru selesai → 22/99
 - Quick Wins FASE 1 kini 3/4 anggota besar selesai (3, 5, 6, 7, 8) — tersisa 1–2 & 4-sisa (kredensial owner)
 - Mesin keuangan kini lengkap: kejar lead (v1.14.0) + kejar checkout (v1.15.0) + notifikasi order/bayar + bukti sosial + garansi — semua menunggu hanya kredensial kanal (Telegram token 2 menit, Fonnte token, Midtrans keys)
+
+---
+Task ID: 42
+Agent: main
+Task: Update README & worklog terbaru (perintah owner): sinkronisasi dokumentasi penuh untuk dua rilis rekrutmen (Task 40–41) yang belum tercatat di CHANGELOG/README/versi — merilis v1.16.0 "Rekrutmen Khusus Wanita", v1.17.0 "Loker UMR Remote", dan v1.17.1 "Dokumen Terkini". (Entri Task 40–41 ada di worklog.md — berkas lanjutan sesi; entri ini diduplikasi di sini agar berkas kanonik tetap terkini.)
+
+Work Log:
+- Riset & verifikasi ulang angka UMR 2026 via web: UMP DKI Jakarta 2026 Rp5.729.876 (+6,17%, Kegub 33/2026) & UMK Kota Bekasi 2026 Rp5.999.422 — konsisten dengan jobs-data.ts
+- version.ts: APP_VERSION → 1.17.1 ("Dokumen Terkini"), RELEASES 38 → 41 entri, PLATFORM_STATS.indexedUrls 11.877 → 11.872 (lowongan 12 → 7 = −5 URL)
+- package.json → 1.17.1; scripts/ver.json → 1.17.1, nextRelease v1.18.0, total 41, history +3, duplikat 1.13.5 dihapus (JSON valid)
+- CHANGELOG.md: badge header 4 titik tersinkron, 3 seksi rilis baru (1.17.1 / 1.17.0 / 1.16.0) + anchor, ladder "41 Rilis" + baris #39–41, v1.15.0 lepas dari status ⭐ AKTIF
+- README.md: 3 identitas versi → 1.17.1; baris baru "Karier & rekrutmen" di tabel Gambaran kemampuan; §2.4 seksi "Karier & rekrutmen (khusus wanita)" lengkap (7 posisi, UMP/UMK 2026, jenjang karier, JSON-LD Google Jobs); tabel rute /lowongan-kerja diperbarui
+- QA: tsc nol error file versi/lowongan (4 error lama pre-existing); /api/version 200 → 1.17.1; homepage + /lowongan-kerja + 7 slug 200
+
+Stage Summary:
+- Dokumentasi 1:1 dengan kode: v1.16.0 + v1.17.0 + v1.17.1 tercatat resmi di CHANGELOG/ladder/ver.json/README; README kini memuat 7 posisi khusus wanita (remote, UMR + bonus target, jenjang karier) — repo siap push

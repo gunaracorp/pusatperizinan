@@ -5,21 +5,21 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.15.0_Mesin_Kepercayaan-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-15-0)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.17.1_Dokumen_Terkini-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-17-1)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-38_(0.1.0_%E2%86%92_1.15.0)-059669?style=flat-square)
-![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-46_ber_versi-059669?style=flat-square)
-![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.16.0_(Unreleased)-f59e0b?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-41_(0.1.0_%E2%86%92_1.17.1)-059669?style=flat-square)
+![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-49_ber_versi-059669?style=flat-square)
+![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.18.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.15.0 — "Mesin Kepercayaan"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.17.1 — "Dokumen Terkini"`**
 
-<sub>Versi terlihat hidup di: footer setiap halaman (11.877 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
+<sub>Versi terlihat hidup di: footer setiap halaman (11.872 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=0:059669,100:f59e0b&height=3&section=footer" width="100%" alt=""/>
 
@@ -37,9 +37,66 @@
 | Sumber kebenaran | [`WORKLOG.md`](./WORKLOG.md) (rekam jejak 1:1) · `src/lib/version.ts` (data mesin) · `package.json` (runtime) |
 | Ritme | **1 task/permintaan user = 1 nomor versi baru** — fitur → `MINOR`, perbaikan → `PATCH`, perombakan arah produk → `MAJOR` |
 | Presisi tanggal | Era `0.x` (Sesi 1–2) direkonstruksi dari metadata file & jejak invoice (`INV-20261021`) → presisi bulan; era `1.x` → presisi hari (terverifikasi) |
-| Rilis berikutnya | **`v1.16.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
+| Rilis berikutnya | **`v1.18.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
 
-> 🔗 Navigasi cepat: **[Tabel Lengkap 36 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+> 🔗 Navigasi cepat: **[Tabel Lengkap 41 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+
+---
+
+<a id="v1-17-1"></a>
+
+## [1.17.1] — 2026-10-28 — 📚 "Dokumen Terkini" (Task 42)
+
+Rilis dokumentasi (perintah owner: *"update readme worklog terbaru"*): seluruh dokumen resmi kini 1:1 dengan kode — dua rilis rekrutmen (v1.16.0 & v1.17.0) yang sebelumnya hanya tercatat di WORKLOG kini tercatat penuh di CHANGELOG, ladder, ver.json, dan README.
+
+### 📚 Docs
+- **README.md**: 3 identitas versi (badge atas, "Identitas teknis utama", badge footer) → **1.17.1**; tabel "Gambaran kemampuan" + baris baru **"Karier & rekrutmen"**; §2.4 bullet lowongan diperluas — 7 posisi aktif khusus wanita (programmer full-stack, admin marketing, admin melayani pelanggan, staf perpajakan, staf perizinan NIB & OSS, admin customer service, admin media sosial), remote penuh, gaji awal UMR + bonus target, jenjang karier Staff → Senior → Lead → Manager, sumber data `src/lib/jobs-data.ts` + JSON-LD JobPosting (Google Jobs); tabel rute `/lowongan-kerja` diperbarui.
+- **`src/lib/version.ts`**: APP_VERSION 1.17.1 ("Dokumen Terkini"), RELEASES 38 → 41 entri, PLATFORM_STATS.indexedUrls **11.877 → 11.872** (lowongan aktif 12 → 7 = −5 URL).
+- **`package.json`** & **`scripts/ver.json`**: versi 1.17.1; ver.json history +3 entri, nextRelease v1.18.0, duplikat entri 1.13.5 dibersihkan.
+- **WORKLOG.md + worklog.md**: entri Task 40–42 lengkap (Task 42 ditulis di kedua berkas agar rantai sesi terjaga).
+
+### 🧪 QA
+- `tsc --noEmit`: nol error pada file versi/lowongan (4 error lama di file lain, pre-existing)
+- `GET /api/version` 200 → `1.17.1`; homepage, `/lowongan-kerja` + 7 slug detail 200
+- Grep konsistensi: tidak ada sisa badge "1.15.0" di README; ver.json valid JSON
+
+---
+
+<a id="v1-17-0"></a>
+
+## [1.17.0] — 2026-10-28 — 💼 "Loker UMR Remote" (Task 41)
+
+Revisi penuh daftar lowongan sesuai perintah owner: *"aku hanya butuh 7 posisi … gaji nya umr … ingat umr dulu tapi ada jenjang karir … full revisi"*.
+
+### 💼 Added — 7 Posisi Aktif (khusus wanita · remote penuh · UMR + bonus)
+- **Programmer Full-Stack** (featured) · **Admin Marketing** (featured) · **Admin Melayani Pelanggan** · **Staf Perpajakan PPh/PPN/Coretax** (featured) · **Staf Perizinan NIB & OSS-RBA** (featured) · **Admin Customer Service (WA & Chat)** · **Admin Media Sosial** (semua platform) — tiap posisi dengan jenjang karier eksplisit **Staff → Senior → Lead → Manager**.
+- **Skema gaji UMR**: gaji awal UMR + bonus bulanan dari target yang ditetapkan perusahaan — angka resmi 2026 terverifikasi riset web: **UMP DKI Jakarta Rp5.729.876** (naik 6,17%, Kegub 33/2026) & **UMK Kota Bekasi Rp5.999.422**; field `salaryDisplay` "UMR + Bonus Target" + helper `salaryText()`, konstanta `UMR_NOTE`, `baseSalary` tetap numerik untuk Google Jobs.
+- **Hero daftar baru** "Remote, Gaji UMR + Bonus Target" + seksi 4 kartu "Gaji, Bonus & Jenjang Karier"; FAQ detail baru: "Berapa gaji awalnya?", "Apakah bisa dikerjakan remote?", "Bagaimana jenjang kariernya?".
+
+### 🗑️ Removed
+- 15 lowongan lama dihapus dari `jobs-data.ts` + sitemap (marketing consultant, staf admin legalitas OSS, konsultan junior, content writer SEO, telemarketing, legal officer, trainer Jepang JFT/JLPT, coordinator PMI, digital marketing ads, data entry OSS-LKPM, graphic designer, AE pajak Coretax, konsultan pajak v1, SEO specialist v1, konsultan senior perizinan v1) — slug lama kini 404 dengan benar.
+
+### 🧪 QA
+- tsc 0 error file lowongan; list + 7 slug render 200; slug lama 404 benar; 7/7 kartu berbadge "Khusus Wanita" & "UMR + Bonus Target/bln"; screenshot verifikasi tersimpan di `download/`.
+
+---
+
+<a id="v1-16-0"></a>
+
+## [1.16.0] — 2026-10-28 — 🌸 "Rekrutmen Khusus Wanita" (Task 40)
+
+Perintah owner: *"revisi semua halaman lowongan … khusus wanita yang menguasai IT dari hulu ke hilir … jangan ada laki2 … rubah semuanya"*.
+
+### 🌸 Added
+- Kebijakan rekrutmen khusus wanita di seluruh sistem lowongan: field `femaleOnly` (interface Job + 16/16 lowongan saat itu), konstanta `FEMALE_ONLY_LABEL`, judul "— Khusus Wanita", baris kualifikasi pembuka "Wanita — posisi ini diperuntukkan khusus bagi perempuan"; kategori baru "IT & Teknologi" & "Pajak & Keuangan".
+- 4 posisi prioritas (semua featured): Konsultan Pajak Wanita (Rp9–15jt), Programmer Full-Stack Wanita (Rp9–16jt), SEO Specialist Wanita remote (Rp7–12jt), Konsultan Senior Perizinan Hulu-Hilir (Rp10–15jt) — total 12 → 16 lowongan.
+- Halaman daftar: badge rose "Khusus Wanita — Seluruh Rekrutmen" + kotak info "Lamaran laki-laki tidak diproses"; halaman detail: kotak "Posisi Khusus Wanita" + FAQ "Apakah posisi ini hanya untuk wanita?"; header & footer sinkron.
+
+### 🔄 Changed
+- Metadata + keywords SEO ("lowongan kerja khusus wanita", "konsultan pajak wanita", dst); JSON-LD JobPosting diberi paragraf "Khusus Wanita"; template lamaran WA "saya perempuan dan ingin melamar…".
+
+### 🧪 QA
+- 16 slug render 200; badge 16/16; tsc 0 error file lowongan; screenshot verifikasi tersimpan di `download/`.
 
 ---
 
@@ -628,11 +685,14 @@ Rilis pertama dengan **identitas versi resmi**. Seluruh proyek kini punya nomor 
 
 <a id="ladder"></a>
 
-## 🪜 Tabel Lengkap 38 Rilis
+## 🪜 Tabel Lengkap 41 Rilis
 
 | # | Versi | Tanggal (WIB) | Tipe | Nama Rilis | Task WORKLOG | Status |
 |---|---|---|---|---|---|---|
-| 38 | **v1.15.0** ⭐ | **2026-10-28** | minor | **Mesin Kepercayaan** | Task 39 | **🟢 AKTIF — versi berjalan** |
+| 41 | **v1.17.1** ⭐ | **2026-10-28** | patch | **Dokumen Terkini** | Task 42 | **🟢 AKTIF — versi berjalan** |
+| 40 | v1.17.0 | 2026-10-28 | minor | Loker UMR Remote | Task 41 | ✅ Rilis |
+| 39 | v1.16.0 | 2026-10-28 | minor | Rekrutmen Khusus Wanita | Task 40 | ✅ Rilis |
+| 38 | v1.15.0 | **2026-10-28** | minor | Mesin Kepercayaan | Task 39 | ✅ Rilis |
 | 37 | v1.14.2 | 2026-10-27 | patch | Fondasi Baru | Task 38 | ✅ Rilis |
 | 36 | v1.14.1 | 2026-10-26 | patch | Detak Jantung | Task 37 | ✅ Rilis |
 | 35 | v1.14.0 | 2026-10-26 | minor | Kejar Order | Task 36 | ✅ Rilis |

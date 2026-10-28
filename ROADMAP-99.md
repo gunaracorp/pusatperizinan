@@ -236,7 +236,7 @@
 **Dokumen ini adalah janji strategis, bukan daftar impian.**
 Setiap langkah dibuat spesifik untuk arsitektur yang sudah ada: 1.500 layanan orderable, KepatuhanPRO MRR, CRM Admin 13 modul, 11.629 URL SEO, 30 bahasa, dan jalur static-export ke hosting produksi.
 
-📚 Konteks penuh: [`README.md`](./README.md) · 📒 Rekam jejak ber-versi: [`WORKLOG.md`](./WORKLOG.md) · 📦 Riwayat rilis: [`CHANGELOG.md`](./CHANGELOG.md) — versi saat ini: **v1.15.0 "Mesin Kepercayaan"**
+📚 Konteks penuh: [`README.md`](./README.md) · 📒 Rekam jejak ber-versi: [`WORKLOG.md`](./WORKLOG.md) · 📦 Riwayat rilis: [`CHANGELOG.md`](./CHANGELOG.md) — versi saat ini: **v1.17.1 "Dokumen Terkini"**
 
 | Top | Strategi 3 Horison | Quick Wins |
 |---|---|---|

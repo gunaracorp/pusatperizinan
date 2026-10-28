@@ -51,3 +51,20 @@ Work Log:
 
 Stage Summary:
 - Halaman lowongan kini presisi sesuai brief owner: 7 posisi khusus wanita, remote penuh, gaji awal UMR + bonus target perusahaan, jenjang karier jelas — semua lowongan lama yang tidak relevan sudah dihapus dari data, sitemap, dan Google Jobs schema
+
+---
+Task ID: 42
+Agent: main
+Task: Update README & worklog terbaru (perintah owner): sinkronisasi dokumentasi penuh untuk dua rilis rekrutmen (Task 40–41) yang belum tercatat di CHANGELOG/README/versi — merilis v1.16.0 "Rekrutmen Khusus Wanita", v1.17.0 "Loker UMR Remote", dan v1.17.1 "Dokumen Terkini".
+
+Work Log:
+- Riset & verifikasi ulang angka UMR 2026 via web (beritajakarta.id, idnfinancials, Kompas): UMP DKI Jakarta 2026 Rp5.729.876 (+6,17%, Kegub 33/2026, berlaku 1 Jan 2026) & UMK Kota Bekasi 2026 Rp5.999.422 (+Rp308.670) — konsisten dengan data yang sudah dipakai jobs-data.ts
+- version.ts: APP_VERSION 1.15.0 → 1.17.1 ("Dokumen Terkini"), RELEASES +3 entri (38 → 41 rilis, comment diperbarui), PLATFORM_STATS.indexedUrls 11.877 → 11.872 (lowongan aktif 12 → 7 = −5 URL, dengan komentar sinkron)
+- package.json → 1.17.1; scripts/ver.json → current 1.17.1, label "v1.17.1 — Dokumen Terkini", nextRelease v1.18.0, stats.indexedUrls 11872, releases.total 41, history +3 entri, duplikat entri 1.13.5 di history dihapus (JSON tervalidasi python json.load)
+- CHANGELOG.md: badge header 4 titik (Versi Saat Ini v1.17.1, Total Rilis 41, Entri Worklog 49, Rilis Berikutnya v1.18.0), teks berjalan + footer subline 11.872 URL, konvensi rilis-berikutnya v1.18.0, nav ladder 41 Rilis, 3 seksi rilis baru lengkap (1.17.1 Docs+QA / 1.17.0 Added+Removed+QA / 1.16.0 Added+Changed+QA) dengan anchor v1-17-1, v1-17-0, v1-16-0, ladder +3 baris (#39–41) dan v1.15.0 tidak lagi ⭐ AKTIF
+- README.md: 3 identitas versi → 1.17.1 (badge atas, "Versi aplikasi" + link CHANGELOG, badge footer); tabel "Gambaran kemampuan" + baris "Karier & rekrutmen" (7 posisi khusus wanita, remote, UMR + bonus, jenjang karier); §2.4 bullet "Testimoni dan lowongan" dipecah — Testimoni terpisah + "Karier & rekrutmen (khusus wanita)" lengkap (7 posisi: programmer full-stack, admin marketing, admin melayani pelanggan, staf perpajakan PPh/PPN/Coretax, staf perizinan NIB & OSS-RBA, admin customer service WA & chat, admin media sosial; UMP DKI Jakarta Rp5.729.876 / UMK Kota Bekasi Rp5.999.422; jenjang Staff → Senior → Lead → Manager; JSON-LD JobPosting Google Jobs); tabel rute /lowongan-kerja diperbarui
+- WORKLOG.md (kanonik) + worklog.md (lanjutan sesi): entri Task 42 ini ditulis di kedua berkas agar rantai 40 → 41 → 42 utuh di kedua lokasi
+- QA: tsc --noEmit nol error pada file versi/lowongan (4 error lama file lain, pre-existing); GET /api/version 200 → 1.17.1; / 200; /lowongan-kerja 200; 7 slug detail 200; grep konsistensi versi lulus
+
+Stage Summary:
+- Seluruh sistem dokumentasi kini 1:1 dengan kode: tiga rilis tercatat resmi (v1.16.0 "Rekrutmen Khusus Wanita", v1.17.0 "Loker UMR Remote", v1.17.1 "Dokumen Terkini"), README menampilkan 7 posisi khusus wanita (UMR + bonus target, remote penuh, jenjang karier), angka indeks sitemap tersinkron 11.872 — repo github.com/gunaracorp/pusatperizinan siap push dengan dokumentasi terbaru

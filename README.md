@@ -34,7 +34,7 @@
 [![ROADMAP 99](https://img.shields.io/badge/ROADMAP-99_PERFECT-7C3AED?style=for-the-badge&logo=github&logoColor=white)](./ROADMAP-99.md)
 [![Motion](https://img.shields.io/badge/Design-Motion_%2B_Reduced_Motion-059669?style=for-the-badge&logo=framer&logoColor=white)](#design-motion)
 
-[![Versi](https://img.shields.io/badge/Versi-aplikasi_1.15.0-059669?style=flat-square)](./src/lib/version.ts)
+[![Versi](https://img.shields.io/badge/Versi-aplikasi_1.17.1-059669?style=flat-square)](./src/lib/version.ts)
 [![Bahasa](https://img.shields.io/badge/Antarmuka-30_bahasa-0F766E?style=flat-square)](./src/lib/i18n/languages.ts)
 [![Model Data](https://img.shields.io/badge/Model_Data-14-7C3AED?style=flat-square)](./src/prisma/contract.prisma)
 [![CI](https://img.shields.io/badge/CI-GitHub_Actions-2563EB?style=flat-square&logo=githubactions&logoColor=white)](./.github/workflows/prisma8-migration.yml)
@@ -89,6 +89,7 @@
 | **Katalog & transaksi** | Tiga generasi katalog layanan, resolver harga server-side, checkout, status order, webhook pembayaran |
 | **Asisten digital** | Chat RIZKI, pemeriksaan izin berbantuan AI, pemeriksaan dokumen dengan model vision, roadmap usaha, kalkulator biaya/pajak |
 | **Konten** | Blog statis dan CMS, FAQ, glosarium, panduan, KBLI, testimoni, kalender kepatuhan |
+| **Karier & rekrutmen** | Halaman lowongan **khusus wanita** — 7 posisi aktif (programmer full-stack, admin marketing, admin melayani pelanggan, staf perpajakan, staf perizinan NIB & OSS, admin customer service, admin media sosial), semuanya remote dengan gaji awal UMR + bonus target perusahaan dan jenjang karier jelas |
 | **Operasional** | Panel admin, leads, pipeline, konsultasi, pesanan, percakapan, pemeriksaan AI, notifikasi, editorial, follow-up |
 | **SEO & distribusi** | Metadata, halaman terprogram, sitemap tersegmentasi, JSON-LD, RSS, robots.txt, llms.txt, IndexNow |
 | **Internasionalisasi** | Registry antarmuka 30 bahasa; dukungan arah teks RTL pada bahasa yang ditandai |
@@ -96,7 +97,7 @@
 
 ### Identitas teknis utama
 
-- **Versi aplikasi:** 1.15.0, didefinisikan di <code>src/lib/version.ts</code> dan <code>package.json</code>.
+- **Versi aplikasi:** 1.17.1 ("Dokumen Terkini" — lihat [CHANGELOG](./CHANGELOG.md)), didefinisikan di <code>src/lib/version.ts</code> dan <code>package.json</code>.
 - **Framework:** Next.js App Router dengan TypeScript.
 - **Output Node.js:** <code>output: "standalone"</code> untuk menjalankan <code>node .next/standalone/server.js</code>.
 - **Data aplikasi:** kode saat ini menggunakan Prisma ORM 8 Release Candidate dan adapter PostgreSQL. Konfigurasi database produksi, impor data lama, serta kredensial hosting harus diverifikasi terpisah; jangan mengasumsikan data produksi otomatis telah berpindah.
@@ -158,7 +159,8 @@ Antarmuka katalog mendukung pencarian, filter, pengurutan, navigasi kategori, se
 - **KBLI:** katalog/kategori dan halaman detail yang sumbernya berada di <code>src/lib/kbli-catalog.ts</code> serta <code>src/lib/kbli-database.ts</code>.
 - **Panduan:** daftar panduan dan konten SEO di <code>src/lib/seo-content.ts</code>.
 - **Kalender kepatuhan:** <code>/kalender-kepatuhan</code>.
-- **Testimoni dan lowongan:** halaman kategori dan detail masing-masing.
+- **Testimoni:** halaman kategori dan detail masing-masing.
+- **Karier & rekrutmen (khusus wanita):** daftar + detail di <code>/lowongan-kerja</code>, sumber data tunggal <code>src/lib/jobs-data.ts</code> — 7 posisi aktif (programmer full-stack, admin marketing, admin melayani pelanggan, staf perpajakan PPh/PPN/Coretax, staf perizinan NIB & OSS-RBA, admin customer service WA & chat, admin media sosial). Semua posisi remote penuh, gaji awal UMR (acuan resmi 2026: UMP DKI Jakarta Rp5.729.876 / UMK Kota Bekasi Rp5.999.422) + bonus dari target perusahaan, dengan jenjang karier Staff → Senior → Lead → Manager. Setiap detail lowongan menghasilkan JSON-LD <code>JobPosting</code> siap Google Jobs.
 
 ### 2.5 Panel admin — Mission Control
 
@@ -241,7 +243,7 @@ Berikut rute utama yang terlihat pada App Router. Halaman dinamis menggunakan pa
 | <code>/mitra</code> | Program kemitraan |
 | <code>/solusi-korporat</code> | Solusi korporat |
 | <code>/bumdes</code> | Solusi BUMDes |
-| <code>/lowongan-kerja</code> dan <code>/lowongan-kerja/[slug]</code> | Lowongan |
+| <code>/lowongan-kerja</code> dan <code>/lowongan-kerja/[slug]</code> | Lowongan kerja khusus wanita — 7 posisi (remote, UMR + bonus) |
 | <code>/testimoni</code> dan <code>/testimoni/[kategori]</code> | Testimoni |
 | <code>/kanal-resmi</code> | Kanal institusi resmi |
 | <code>/konsultasi</code>, <code>/kontak</code>, <code>/tentang-kami</code> | Konsultasi, kontak, dan profil |
@@ -969,7 +971,7 @@ README ini menggunakan Bahasa Indonesia sebagai bahasa utama agar onboarding dan
 
 **PusatPerizinan.com** · [Situs](https://pusatperizinan.com) · [Repository](https://github.com/gunaracorp/pusatperizinan) · [🏆 ROADMAP 99](./ROADMAP-99.md) · [Kembali ke atas ↑](#top)
 
-[![Versi](https://img.shields.io/badge/Versi-1.15.0-059669?style=flat-square)](./CHANGELOG.md)
+[![Versi](https://img.shields.io/badge/Versi-1.17.1-059669?style=flat-square)](./CHANGELOG.md)
 [![ROADMAP](https://img.shields.io/badge/ROADMAP-99_PERFECT-7C3AED?style=flat-square)](./ROADMAP-99.md)
 
 </div>
