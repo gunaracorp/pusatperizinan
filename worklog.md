@@ -35,3 +35,19 @@ Work Log:
 
 Stage Summary:
 - Seluruh mesin lowongan kini eksklusif wanita sesuai perintah owner: 16 posisi (4 prioritas rekrutmen baru), halaman daftar + 16 halaman detail + JSON-LD siap Google Jobs dengan pesan khusus wanita konsisten dari metadata sampai template lamaran
+
+---
+Task ID: 41
+Agent: main
+Task: Revisi penuh daftar lowongan sesuai perintah owner: hapus semua 16 lowongan lama, ganti 7 posisi baru (semua remote, gaji awal UMR + bonus target perusahaan, jenjang karier jelas, tetap khusus wanita).
+
+Work Log:
+- Riset & verifikasi angka UMR 2026 via web: UMP DKI Jakarta 2026 Rp5.729.876 (Kegub 33/2026), UMK Kota Bekasi 2026 Rp5.999.422, UMK Kab. Bekasi Rp5.938.885
+- jobs-data.ts REWRITE TOTAL: interface + field baru `salaryDisplay` & helper `salaryText()`, konstanta UMR_NOTE, kategori baru (IT & Teknologi, Pajak & Keuangan, Perizinan & Legal, Administrasi & Layanan, Marketing & Media Sosial); 16 lowongan lama DIHAPUS (marketing consultant, staf admin legalitas, konsultan junior, content writer SEO, telemarketing, legal officer, trainer Jepang LPK, coordinator PMI LPK, digital marketing, data entry OSS, graphic designer, AE pajak, konsultan pajak, SEO specialist, konsultan senior perizinan)
+- 7 POSISI BARU (semua femaleOnly + remote + UMR + bonus): 1) Programmer Full-Stack (featured) 2) Admin Marketing (featured) 3) Admin Melayani Pelanggan 4) Staf Perpajakan PPh/PPN/Coretax (featured) 5) Staf Perizinan NIB & OSS-RBA (featured) 6) Admin Customer Service WA & Chat 7) Admin Media Sosial semua platform — tiap posisi ada jenjang karier eksplisit (Staff→Senior→Lead→Manager)
+- /lowongan-kerja: metadata & keywords baru (loker umr plus bonus, lowongan wanita remote, dst), H1 baru "Remote, Gaji UMR + Bonus Target", seksi 4 kartu "Gaji, Bonus & Jenjang Karier" (UMR / Bonus Target / Jenjang / Remote Penuh), kartu gaji pakai salaryText
+- /lowongan-kerja/[slug]: metadata+JSON-LD pakai salaryText (baseSalary tetap numerik UMR utk Google Jobs), FAQ baru: "Berapa gaji awalnya?" (UMR + bonus target), "Apakah bisa dikerjakan remote?", "Bagaimana jenjang kariernya?"
+- QA: tsc 0 error di file lowongan; list + 7 slug render 200; slug lama 404 benar; 7/7 kartu berbadge Khusus Wanita & "UMR + Bonus Target/bln"; screenshot download/verifikasi-lowongan-umr-remote-list.png & -skema.png
+
+Stage Summary:
+- Halaman lowongan kini presisi sesuai brief owner: 7 posisi khusus wanita, remote penuh, gaji awal UMR + bonus target perusahaan, jenjang karier jelas — semua lowongan lama yang tidak relevan sudah dihapus dari data, sitemap, dan Google Jobs schema

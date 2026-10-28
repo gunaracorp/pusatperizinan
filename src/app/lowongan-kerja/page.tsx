@@ -11,7 +11,7 @@ import {
   Users,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { JOBS, formatRupiah } from "@/lib/jobs-data";
+import { JOBS, salaryText } from "@/lib/jobs-data";
 import { WHATSAPP_NUMBER } from "@/lib/landing-data";
 
 export function generateStaticParams() {
@@ -20,25 +20,25 @@ export function generateStaticParams() {
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "Lowongan Kerja Khusus Wanita — Karier IT, Perizinan & Pajak",
+    title: "Lowongan Kerja Khusus Wanita Remote — Gaji UMR + Bonus Target (7 Posisi)",
     description:
-      "Lowongan kerja KHUSUS WANITA di PusatPerizinan.com & mitra: konsultan pajak wanita, programmer full-stack, spesialis SEO, konsultan perizinan hulu ke hilir, legal officer, dan lainnya. Gaji transparan, BPJS, karier jelas.",
+      "7 lowongan kerja KHUSUS WANITA di PusatPerizinan.com: programmer full-stack, admin marketing, admin melayani pelanggan, staf perpajakan, staf perizinan NIB & OSS, admin customer service, dan admin media sosial. Gaji awal UMR + bonus target perusahaan, bisa remote penuh, jenjang karier jelas.",
     keywords: [
       "lowongan kerja khusus wanita",
-      "loker wanita terbaru",
-      "lowongan konsultan pajak wanita",
-      "lowongan programmer wanita",
-      "lowongan seo specialist wanita",
-      "lowongan perizinan khusus wanita",
-      "lowongan kerja perizinan",
-      "loker IT wanita jakarta",
-      "loker wanita jakarta selatan",
-      "lowongan wanita remote",
+      "loker wanita remote",
+      "lowongan admin marketing wanita",
+      "lowongan customer service wanita remote",
+      "lowongan programmer wanita full stack",
+      "lowongan staf perpajakan remote",
+      "lowongan perizinan nib oss",
+      "lowongan admin media sosial wanita",
+      "loker umr plus bonus",
+      "lowongan kerja remote indonesia",
     ],
     alternates: { canonical: "/lowongan-kerja" },
     openGraph: {
-      title: "Lowongan Kerja Khusus Wanita — PusatPerizinan.com",
-      description: `${JOBS.length} posisi aktif khusus perempuan: konsultan pajak, programmer full-stack, SEO specialist, konsultan perizinan hulu ke hilir, legal, konten, PMI. Gaji transparan, remote/hybrid tersedia. Lamar via WhatsApp, respons cepat.`,
+      title: "Lowongan Kerja Khusus Wanita — Remote, UMR + Bonus Target",
+      description: `${JOBS.length} posisi aktif khusus perempuan: programmer full-stack, admin marketing, admin melayani pelanggan, staf perpajakan, staf perizinan NIB & OSS, admin customer service, admin media sosial. Gaji awal UMR + bonus target, bisa remote penuh. Lamar via WhatsApp.`,
       url: "/lowongan-kerja",
     },
   };
@@ -99,17 +99,18 @@ export default function LowonganPage() {
             </Badge>
           </div>
           <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-balance">
-            Lowongan Kerja Khusus Wanita — Tumbuh Bersama Industri Perizinan
+            Lowongan Kerja Khusus Wanita — Remote, Gaji UMR + Bonus Target
           </h1>
           <p className="mt-3 text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed">
-            Kami membentuk tim perempuan unggul: konsultan pajak wanita, programmer full-stack, spesialis SEO, dan
-            wanita yang paham perizinan dari hulu ke hilir. Gaji transparan, pelatihan nyata, jalur karier jelas.
-            Lamar langsung via WhatsApp — tanpa biaya apa pun.
+            {JOBS.length} posisi aktif khusus perempuan: programmer full-stack, admin marketing, admin melayani
+            pelanggan, staf perpajakan, staf perizinan NIB &amp; OSS, admin customer service, dan admin media sosial.
+            Gaji awal UMR, bonus dari target perusahaan, sepenuhnya bisa remote, dan jenjang karier jelas. Lamar
+            langsung via WhatsApp — tanpa biaya apa pun.
           </p>
           <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
             <span className="flex items-center gap-1.5"><Briefcase className="h-4 w-4 text-primary" aria-hidden /> {JOBS.length} posisi aktif — semua khusus wanita</span>
-            <span className="flex items-center gap-1.5"><MapPin className="h-4 w-4 text-primary" aria-hidden /> Jakarta, Bekasi & remote nasional</span>
-            <span className="flex items-center gap-1.5"><BadgeDollarSign className="h-4 w-4 text-primary" aria-hidden /> Range gaji tercantum jujur</span>
+            <span className="flex items-center gap-1.5"><MapPin className="h-4 w-4 text-primary" aria-hidden /> Remote penuh — dari seluruh Indonesia</span>
+            <span className="flex items-center gap-1.5"><BadgeDollarSign className="h-4 w-4 text-primary" aria-hidden /> Gaji awal UMR + bonus target</span>
             <span className="flex items-center gap-1.5"><Users className="h-4 w-4 text-primary" aria-hidden /> Proses lamaran &lt; 7 hari</span>
           </div>
         </div>
@@ -118,15 +119,51 @@ export default function LowonganPage() {
       {/* Daftar lowongan */}
       <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-10">
         {/* Info khusus wanita */}
-        <div className="mb-8 rounded-2xl border border-rose-200 bg-rose-50 p-5">
+        <div className="mb-6 rounded-2xl border border-rose-200 bg-rose-50 p-5">
           <h2 className="font-bold text-rose-900 flex items-center gap-2 mb-1.5">
             <Users className="h-5 w-5" aria-hidden /> Seluruh Lowongan di Halaman Ini Khusus untuk Perempuan
           </h2>
           <p className="text-sm text-rose-800 leading-relaxed">
             PusatPerizinan.com sedang membangun tim perempuan unggul yang menguasai IT dan perizinan dari hulu ke
-            hilir: konsultan pajak wanita, programmer, spesialis SEO, konsultan perizinan, legal, konten, hingga PMI.
-            Lamaran laki-laki tidak diproses — terima kasih atas pengertiannya.
+            hilir. Lamaran laki-laki tidak diproses — terima kasih atas pengertiannya.
           </p>
+        </div>
+
+        {/* Skema gaji, bonus & jenjang karier */}
+        <div className="mb-10 rounded-2xl border bg-card p-5 md:p-6">
+          <h2 className="font-bold text-lg flex items-center gap-2 mb-4">
+            <BadgeDollarSign className="h-5 w-5 text-gold" aria-hidden /> Gaji, Bonus & Jenjang Karier — Sama untuk Semua Posisi
+          </h2>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 text-sm">
+            <div className="rounded-xl border bg-background p-4">
+              <p className="font-bold mb-1">Gaji Awal UMR</p>
+              <p className="text-muted-foreground leading-relaxed">
+                Gaji awal UMR sesuai domisili — acuan UMP DKI Jakarta 2026 Rp5.729.876/bulan. Tanpa potongan
+                aneh-aneh, cair tiap bulan.
+              </p>
+            </div>
+            <div className="rounded-xl border bg-background p-4">
+              <p className="font-bold mb-1">Bonus dari Target</p>
+              <p className="text-muted-foreground leading-relaxed">
+                Bonus bulanan dari target yang ditetapkan perusahaan — angkanya jelas, terukur, dan disepakati di
+                awal. Makin capai target, makin besar bonus.
+              </p>
+            </div>
+            <div className="rounded-xl border bg-background p-4">
+              <p className="font-bold mb-1">Jenjang Karier Jelas</p>
+              <p className="text-muted-foreground leading-relaxed">
+                Staff → Senior → Team Lead → Manager. Evaluasi & kenaikan jenjang tiap 6 bulan berdasarkan
+                performa, bukan senioritas.
+              </p>
+            </div>
+            <div className="rounded-xl border bg-background p-4">
+              <p className="font-bold mb-1">Remote Penuh</p>
+              <p className="text-muted-foreground leading-relaxed">
+                Semua posisi bisa dikerjakan dari rumah di seluruh Indonesia — koordinasi online harian, tanpa
+                biaya transport.
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Posisi prioritas */}
@@ -205,7 +242,7 @@ function JobCard({ job, compact = false }: { job: (typeof JOBS)[number]; compact
       )}
       <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-sm text-muted-foreground">
         <span className="flex items-center gap-1"><MapPin className="h-3.5 w-3.5" aria-hidden /> {job.city}</span>
-        <span className="flex items-center gap-1"><BadgeDollarSign className="h-3.5 w-3.5" aria-hidden /> {formatRupiah(job.salaryMin)}–{formatRupiah(job.salaryMax)}/bln</span>
+        <span className="flex items-center gap-1"><BadgeDollarSign className="h-3.5 w-3.5" aria-hidden /> {salaryText(job)}/bln</span>
         <span className="flex items-center gap-1"><Briefcase className="h-3.5 w-3.5" aria-hidden /> {job.employmentType === "FULL_TIME" ? "Penuh Waktu" : job.employmentType === "PART_TIME" ? "Paruh Waktu" : job.employmentType === "CONTRACT" ? "Kontrak" : "Magang"}</span>
       </div>
       {job.salaryNote && !compact && <p className="mt-2 text-xs text-muted-foreground italic">{job.salaryNote}</p>}

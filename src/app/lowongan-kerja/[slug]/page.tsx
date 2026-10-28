@@ -19,7 +19,7 @@ import { Badge } from "@/components/ui/badge";
 import {
   JOBS,
   getJobBySlug,
-  formatRupiah,
+  salaryText,
   isoDaysAgo,
   isoValidThrough,
 } from "@/lib/jobs-data";
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const job = getJobBySlug(slug);
   if (!job) return {};
   const title = `${job.title} — ${job.city}`;
-  const desc = `Lowongan khusus wanita: ${job.title} di ${job.city}. Gaji ${formatRupiah(job.salaryMin)}–${formatRupiah(job.salaryMax)}/bulan, ${job.employmentType === "FULL_TIME" ? "penuh waktu" : job.employmentType === "PART_TIME" ? "paruh waktu" : "kontrak"}. ${job.description[0].slice(0, 100)}… Lamar via WhatsApp, proses < 7 hari.`;
+  const desc = `Lowongan khusus wanita: ${job.title} di ${job.city}. Gaji ${salaryText(job)}/bulan, ${job.employmentType === "FULL_TIME" ? "penuh waktu" : job.employmentType === "PART_TIME" ? "paruh waktu" : "kontrak"}. ${job.description[0].slice(0, 100)}… Lamar via WhatsApp, proses < 7 hari.`;
   return {
     title,
     description: desc,
@@ -223,7 +223,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ slug
             <div className="flex items-start gap-2">
               <BadgeDollarSign className="h-4 w-4 mt-0.5 text-primary shrink-0" aria-hidden />
               <div>
-                <p className="font-semibold">{formatRupiah(job.salaryMin)}–{formatRupiah(job.salaryMax)}/bulan</p>
+                <p className="font-semibold">{salaryText(job)}/bulan</p>
                 <p className="text-xs text-muted-foreground">{job.salaryNote ?? "Range gaji transparan"}</p>
               </div>
             </div>
@@ -321,10 +321,11 @@ export default async function JobDetailPage({ params }: { params: Promise<{ slug
             <div className="space-y-3 text-sm">
               {[
                 { q: "Apakah posisi ini hanya untuk wanita?", a: "Ya. Sesuai kebijakan rekrutmen kami, posisi ini khusus untuk perempuan sebagai bagian dari pembentukan tim perempuan unggul. Lamaran laki-laki tidak diproses." },
+                { q: "Berapa gaji awalnya?", a: "Gaji awal UMR sesuai domisili pelamar — acuan UMP DKI Jakarta 2026 Rp5.729.876/bulan. Di atasnya ada bonus bulanan dari target yang ditetapkan perusahaan, angkanya jelas dan disepakati di awal." },
+                { q: "Apakah bisa dikerjakan remote?", a: "Ya. Seluruh posisi saat ini remote penuh — dikerjakan dari rumah di seluruh Indonesia dengan koordinasi online harian. Tanpa biaya transport." },
+                { q: "Bagaimana jenjang kariernya?", a: "Jenjang jelas: Staff → Senior → Team Lead → Manager, dengan evaluasi kenaikan tiap 6 bulan berdasarkan performa." },
                 { q: "Bagaimana cara melamar?", a: "Klik tombol 'Lamar via WhatsApp' di atas, lengkapi template pesan (nama + pengalaman singkat), kirim. Tim HR merespons dalam 1-3 hari kerja." },
-                { q: "Apakah perlu mengirim CV?", a: "Untuk tahap pertama cukup pesan WhatsApp. CV diminta setelah Anda lolos penyaringan awal." },
                 { q: "Apakah ada biaya lamaran?", a: "Tidak ada sama sekali. Rekrutmen kami gratis — jika ada pihak meminta pembayaran, itu bukan kami." },
-                { q: "Berapa lama prosesnya?", a: "Rata-rata kurang dari 7 hari kerja: penyaringan → wawancara HR → wawancara user → penawaran." },
               ].map((f, i) => (
                 <div key={i} className="rounded-xl border bg-card p-4">
                   <p className="font-semibold">{f.q}</p>
@@ -360,7 +361,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ slug
               </div>
               <div>
                 <dt className="text-xs text-muted-foreground">Gaji</dt>
-                <dd className="font-semibold">{formatRupiah(job.salaryMin)}–{formatRupiah(job.salaryMax)}/bln</dd>
+                <dd className="font-semibold">{salaryText(job)}/bln</dd>
               </div>
               <div>
                 <dt className="text-xs text-muted-foreground">Pendidikan</dt>
@@ -415,7 +416,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ slug
             >
               <p className="text-xs text-muted-foreground mb-1">{rj.city}</p>
               <h3 className="font-semibold leading-snug">{rj.title}</h3>
-              <p className="text-sm text-primary font-semibold mt-2">{formatRupiah(rj.salaryMin)}–{formatRupiah(rj.salaryMax)}/bln</p>
+              <p className="text-sm text-primary font-semibold mt-2">{salaryText(rj)}/bln</p>
             </Link>
           ))}
         </div>
