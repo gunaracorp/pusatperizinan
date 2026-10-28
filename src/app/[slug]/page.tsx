@@ -21,6 +21,7 @@ import {
   type Layanan500,
 } from "@/lib/layanan-500";
 import { SITE_URL, SITE_NAME, CONTACT } from "@/lib/site";
+import { socialProofFor } from "@/lib/social-proof";
 import { langAlternates, stableLastmod, formatLastmodId } from "@/lib/seo";
 import { geoMetaForSlug } from "@/lib/geo";
 
@@ -132,6 +133,8 @@ export default async function LayananDetailPage({
   const related = relatedOf(s, 6);
   const badge = nilaiBadge(s);
   const waHref = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(waTextOf(s))}`;
+  // ROADMAP-99 langkah 8 — social proof per layanan (konsisten dgn checkout)
+  const proof = socialProofFor(s.kode);
 
   // BUNDLE (langkah 3) — 2 pelengkap lintas kategori + hemat 10% (deterministik)
   const bundle = pickBundleV1(s.kode, s.kategori_kode);
@@ -253,6 +256,10 @@ export default async function LayananDetailPage({
             </p>
             <p className="mt-3 rounded-xl bg-emerald-400/10 px-3 py-2 text-xs leading-relaxed text-emerald-100/90">
               Estimasi proses: {timelineOf(s)}
+            </p>
+            {/* ROADMAP-99 langkah 8 — social proof per layanan */}
+            <p className="mt-2 flex items-center gap-1.5 rounded-xl bg-emerald-400/10 px-3 py-2 text-xs font-semibold text-emerald-100">
+              <Users className="h-3.5 w-3.5 shrink-0" aria-hidden /> ±{proof.label}
             </p>
             <a
               href={waHref}

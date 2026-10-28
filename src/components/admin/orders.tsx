@@ -13,11 +13,144 @@ import { useToast } from "@/hooks/use-toast";
 import {
   EmptyState, SkeletonRows, useAdminData, apiPatch, formatRp, relativeTime, waLink, triggerRefresh,
 } from "@/components/admin/shared";
-import { ChevronLeft, ChevronRight, Phone, Search, Wallet } from "lucide-react";
+import { ChevronLeft, ChevronRight, Phone, Search, ShoppingCart, Wallet } from "lucide-react";
+
+// ---------- Panel Pemulihan Checkout (langkah 12 ROADMAP-99) ----------
+
+interface RecoveryCandidateRow {
+  orderNo: string;
+  serviceName: string;
+  amount: number;
+  customerName: string;
+  customerPhone: string;
+  ageHours: number;
+  nextStep: number;
+  stepsSent: number[];
+  prefill: string;
+  payUrl: string;
+}
+interface RecoveryData {
+  candidates: RecoveryCandidateRow[];
+  stats: { due: number; abandonedValue: number; recovered: number; activePending: number };
+  channels: { telegram: boolean; whatsappGateway: boolean; leadAutoSend: boolean };
+}
+
+function RecoveryPanel() {
+  const { toast } = useToast();
+  const { data, loading, reload } = useAdminData<RecoveryData>("/api/admin/recovery", { intervalMs: 60000 });
+  const [sweeping, setSweeping] = useState(false);
+
+  async function runSweep() {
+    setSweeping(true);
+    try {
+      const res = await fetch("/api/cron/recovery", { method: "POST" });
+      const j = await res.json();
+      if (res.ok && j.success) {
+        const d = j.data ?? {};
+        toast({
+          title: `Sweep pemulihan selesai — ${d.scanned ?? 0} order dipindai`,
+          description: `lead: ${d.leadSent ?? 0} terkirim/${d.leadFailed ?? 0} gagal · admin: ${d.adminSent ?? 0}/${d.adminFailed ?? 0}`
+            + (d.skippedNoChannel ? " · kanal belum terpasang (Notifikasi)" : ""),
+          duration: 6000,
+        });
+        reload();
+        triggerRefresh();
+      } else {
+        toast({ title: "Sweep gagal", description: j.error ?? "Coba lagi", variant: "destructive" });
+      }
+    } catch {
+      toast({ title: "Koneksi gagal", description: "Coba jalankan ulang sweep.", variant: "destructive" });
+    } finally {
+      setSweeping(false);
+    }
+  }
+
+  return (
+    <Card className="border-emerald-700/40 bg-emerald-950/30 shadow-none">
+      <CardContent className="p-4 space-y-3">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <p className="flex items-center gap-1.5 text-sm font-bold text-emerald-200">
+            <ShoppingCart aria-hidden className="h-4 w-4" /> Pemulihan Checkout Terbengkalai
+            <Badge variant="outline" className="border-emerald-500/30 bg-emerald-500/10 text-[10px] text-emerald-300">Langkah 12</Badge>
+          </p>
+          <Button
+            size="sm"
+            onClick={runSweep}
+            disabled={sweeping}
+            className="h-8 bg-emerald-600 text-white hover:bg-emerald-500"
+          >
+            {sweeping ? "Menjalankan…" : "Jalankan Sweep"}
+          </Button>
+        </div>
+        <div className="grid grid-cols-2 gap-2 text-xs sm:grid-cols-4">
+          <div className="rounded-lg bg-stone-900/60 p-2.5">
+            <p className="text-stone-400">Jatuh tempo dikejar</p>
+            <p className="mt-0.5 text-lg font-extrabold text-amber-300">{loading ? "—" : data?.stats.due ?? 0}</p>
+          </div>
+          <div className="rounded-lg bg-stone-900/60 p-2.5">
+            <p className="text-stone-400">Nilai mengendap</p>
+            <p className="mt-0.5 text-lg font-extrabold text-emerald-300">{loading ? "—" : formatRp(data?.stats.abandonedValue ?? 0)}</p>
+          </div>
+          <div className="rounded-lg bg-stone-900/60 p-2.5">
+            <p className="text-stone-400">Sequence selesai</p>
+            <p className="mt-0.5 text-lg font-extrabold text-stone-100">{loading ? "—" : data?.stats.recovered ?? 0}</p>
+          </div>
+          <div className="rounded-lg bg-stone-900/60 p-2.5">
+            <p className="text-stone-400">Order PENDING aktif</p>
+            <p className="mt-0.5 text-lg font-extrabold text-stone-100">{loading ? "—" : data?.stats.activePending ?? 0}</p>
+          </div>
+        </div>
+        {data && data.candidates.length > 0 && (
+          <div className="max-h-56 space-y-1.5 overflow-y-auto pr-1">
+            {data.candidates.map((c) => (
+              <div key={c.orderNo} className="flex flex-wrap items-center justify-between gap-2 rounded-lg bg-stone-900/60 px-3 py-2">
+                <div className="min-w-0">
+                  <p className="truncate text-xs font-semibold text-stone-100">
+                    {c.orderNo} · {c.serviceName}
+                  </p>
+                  <p className="text-[10px] text-stone-400">
+                    {c.customerName} · {formatRp(c.amount)} · {c.ageHours} jam · step {c.nextStep}/3
+                  </p>
+                </div>
+                <div className="flex shrink-0 items-center gap-1.5">
+                  <a
+                    href={c.payUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`Buka halaman bayar ${c.orderNo}`}
+                  >
+                    <Button size="sm" variant="outline" className="h-7 border-stone-700 px-2 text-[11px] text-stone-300 hover:bg-stone-800">
+                      Bayar
+                    </Button>
+                  </a>
+                  <a
+                    href={c.prefill}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`Chat ${c.customerName} — step ${c.nextStep}`}
+                  >
+                    <Button size="sm" variant="outline" className="h-7 border-emerald-700 px-2 text-[11px] text-emerald-300 hover:bg-emerald-900/40">
+                      💬 Chat (step {c.nextStep})
+                    </Button>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+        <p className="text-[11px] leading-relaxed text-stone-500">
+          Mesin berdenyut otomatis tiap 15 menit (tanpa cron) — sequence WA 1 jam → 24 jam → 72 jam ke klien + reminder admin, berhenti begitu order lunas/batal. Kanal: {data?.channels.whatsappGateway ? "WA gateway ✓" : "WA gateway ✗"} · {data?.channels.telegram ? "Telegram ✓" : "Telegram ✗"} — isi token di tab Notifikasi.
+        </p>
+      </CardContent>
+    </Card>
+  );}
 
 // ============================================================
 // Tab — PESANAN: pesanan checkout otomatis (bayar langsung)
 // Badge metrik pendapatan + tabel + ubah status manual.
+// Panel "Pemulihan Checkout" (langkah 12 ROADMAP-99) di atas:
+//   antrean order PENDING yang sedang dikejar mesin recovery
+//   (sequence WA 1 jam/24 jam/72 jam + reminder admin) + tombol sweep.
 // ============================================================
 
 interface OrderRow {
@@ -90,6 +223,9 @@ export function OrdersTab() {
 
   return (
     <div className="space-y-4">
+      {/* Pemulihan checkout terbengkalai (langkah 12) */}
+      <RecoveryPanel />
+
       {/* Metrik pendapatan */}
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         <Card className="border-emerald-700/40 bg-emerald-950/40 shadow-none">

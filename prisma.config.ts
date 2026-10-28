@@ -2,7 +2,9 @@
 // DATABASE_URL must be present for install/build commands and for runtime.
 // No localhost fallback is permitted: it could make a build appear healthy
 // while the production app is not connected to the intended database.
-import "dotenv/config";
+import { config as loadEnv } from "dotenv";
+// .env file is authoritative for CLI commands (override inherited shell env).
+loadEnv({ override: true });
 import { definePrismaConfig } from "prisma/config";
 import { defineConfig as definePostgresConfig } from "@prisma/orm-postgres/config";
 

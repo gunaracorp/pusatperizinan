@@ -64,3 +64,15 @@ server.log
 # Local/production SQLite databases must never be committed
 /db/*.db
 /db/*.db-*
+
+# Sandbox/embedded PostgreSQL artifacts (regenerable)
+/db/pgdata/
+/db/icu60/
+/db/pg.log
+/migrations/
+/.zscripts/
+/dev.log
+/bun.lock
+/package-lock.json
+/backups/
+/tool-results/

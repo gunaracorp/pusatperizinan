@@ -78,14 +78,14 @@
 - [x] **5.** **Floating WhatsApp CTA** di semua halaman katalog & detail (nomor dari `landing-data.ts`). `🔥🔥 · 🟢 · P0` — ✅ **v1.11.0 "Sapa Langsung" (2026-10-25): FloatingWhatsApp sitewide via root layout — kontekstual (URL halaman aktif dalam pesan chat), event GA4 whatsapp_click, sembunyi otomatis di /, /admin, /webmaster, /checkout; nomor tunggal WHATSAPP_NUMBER; reduced-motion safe; verifikasi curl + agent-browser PASS**
 - [x] **6.** **Follow-up otomatis lead 24 jam**: sequence WA/email 3 langkah untuk lead CRM yang belum dibalas. `🔥🔥 · 🟡 · P1` — ✅ **v1.14.0 "Kejar Order" (2026-10-26): sequence 3 langkah 24/48/72 jam utk lead status NEW (catch-up ke window terakhir bila ditemukan telat; berhenti saat dihubungi; lead >30 hari tak dikejar) — lane lead via gateway WA (Fonnte/Wablas) + lane admin via Telegram/WA dgn link wa.me 1-klik; idempoten per (lead,step,lane) + retry failed otomatis; panel "Follow-up 24 Jam" di Mission Control + cron `GET /api/cron/followup` (CRON_SECRET); QA verify-followup.mjs 23/23 PASS + verifikasi browser (14 lead due · Rp 52,5 jt mengendap)** — 🫀 **v1.14.1 "Detak Jantung" (2026-10-26)**: sweep kini berdenyut sendiri dari dalam server — 25 dtk setelah hidup, lalu tiap 15 menit (env `FOLLOWUP_SWEEP_MINUTES`, 0 = mati); cron eksternal tak lagi wajib, `/api/cron/followup` tetap tersedia, idempoten berdampingan tanpa dobel kirim — 🧱 **v1.14.2 "Fondasi Baru" (2026-10-27)**: infrastruktur data naik Prisma 6.11.1 → 7.10.1 (generator `prisma-client` + output `src/generated/prisma` + driver adapter `@prisma/adapter-better-sqlite3` + `prisma.config.ts`); mesin follow-up lulus ulang QA 23/23 PASS di Prisma 7 (DateTime SQLite kini teks ISO-8601)
 - [x] **7.** Halaman **`/wilayah/[provinsi]` — 38 provinsi** (programmatic SEO lokal): data `geo.ts` + `coverage-data.ts`, schema `Service` + `Offer` per wilayah. `🔥🔥 · 🔴 · P1` — ✅ **v1.13.0 "Peta Provinsi" (2026-10-25): 38 hub provinsi (/layanan/wilayah/{prov}) + 516 hub kota kini membawa schema Service + OfferCatalog/Offer (areaServed State/City + ISO 3166-2:ID + GeoCoordinates + Offer IDR harga nyata); fix geo Banten hilang (38/38) + fix @context per node JSON-LD; QA verify-wilayah-schema.ts PASS — nol URL baru**
-- [ ] **8.** **Social proof per kode layanan** di halaman detail & checkout ("82 usaha memproses layanan ini bulan ini"). `🔥 · 🟢 · P1`
+- [x] **8.** **Social proof per kode layanan** di halaman detail & checkout ("82 usaha memproses layanan ini bulan ini"). `🔥 · 🟢 · P1` — ✅ **v1.15.0 "Mesin Kepercayaan" (2026-10-28): modul social-proof.ts bersumber TRUST_METRICS (tanpa angka trust baru), deterministik FNV-1a per bulan → angka identik lintas halaman (detail v1 ⇄ v2/v3 ⇄ checkout); ±N usaha memproses bulan ini live di 65 halaman v1 + 1.000 halaman v2/v3 + checkout; klaim kategori lama diganti level-layanan**
 
 ## 📅 FASE 2 — Konversi & Checkout Kelas Dunia — langkah 9–16
 
 - [ ] **9.** **Checkout 1 halaman** + profil tersimpan untuk repeat order (autocomplete data diri & badan usaha). `🔥🔥 · 🔴 · P1`
 - [ ] **10.** **Keranjang multi-layanan** — beli beberapa layanan sekaligus, satu invoice. `🔥🔥 · 🔴 · P1`
 - [ ] **11.** **Kupon & flash sale engine**: countdown, limit kuota, kode promo di `pricing.ts` (server-side, anti-tamper). `🔥 · 🟡 · P2`
-- [ ] **12.** **Abandoned checkout recovery**: capture kontak di langkah 1, lalu WA/email otomatis 3 langkah (1 jam / 24 jam / 72 jam). `🔥🔥 · 🟡 · P1`
+- [x] **12.** **Abandoned checkout recovery**: capture kontak di langkah 1, lalu WA/email otomatis 3 langkah (1 jam / 24 jam / 72 jam). `🔥🔥 · 🟡 · P1` — ✅ **v1.15.0 "Mesin Kepercayaan" (2026-10-28): model RecoveryLog (model Prisma ke-15) idempoten @@unique([orderId,step,lane]); sequence WA 1j/24j/72j ke pemesan (gateway Fonnte/Wablas) + reminder admin berisi link bayar + prefill wa.me 1-klik (Telegram gratis); CATCH-UP window, berhenti otomatis saat status ≠ PENDING (fresh re-check per kandidat), order >72 jam tidak dikejar; denyut bersama detak-jantung (tiap 15 menit, tanpa cron) + /api/cron/recovery (CRON_SECRET) + panel "Pemulihan Checkout" di Mission Control → Pesanan (tombol sweep, chat 1-klik, link bayar); QA scripts/verify-recovery.ts PASS**
 - [ ] **13.** **Upsell cerdas di checkout** — "Klien seperti Anda juga mengambil…" dari data bundle & kategori. `🔥 · 🟡 · P2`
 - [ ] **14.** **E-signature dokumen kuasa online** — tanda tangan digital di browser, tersimpan ke dashboard klien. `🔥🔥 · 🔴 · P2`
 - [ ] **15.** **Progress tracker status order** real-time: dokumen → proses → selesai, notifikasi tiap perubahan. `🔥🔥 · 🔴 · P1`
@@ -131,9 +131,9 @@
 ## 📅 FASE 6 — Trust & Social Proof — langkah 45–50
 
 - [ ] **45.** Kumpulkan **review Google/Trustpilot** + widget live di landing & detail. `🔥🔥 · 🟡 · P1`
-- [ ] **46.** **Live activity feed**: "Budi dari Surabaya baru memproses NIB — 3 menit lalu" (dari data order, anonim). `🔥 · 🟢 · P2`
+- [x] **46.** **Live activity feed**: "Budi dari Surabaya baru memproses NIB — 3 menit lalu" (dari data order, anonim). `🔥 · 🟢 · P2` — ✅ **v1.15.0 "Mesin Kepercayaan" (2026-10-28): widget sitewide bottom-left dari /api/activity — order+lead nyata 24 jam terakhir, ter-anonimkan server-side (huruf pertama + ***, tanpa PII, UU PDP friendly); DB kosong → widget tak tampil (nol aktivitas palsu); idle-fetch + rotasi 7 dtk + auto-hide; sembunyi di /, /admin, /webmaster, /checkout; reduced-motion safe**
 - [ ] **47.** **Halaman tim & redaksi** dengan foto, jabatan, LinkedIn (perkuat EEAT). `🔥 · 🟢 · P1`
-- [ ] **48.** **Garansi 100% uang kembali** bila gagal karena kesalahan kami — halaman khusus + badge di checkout. `🔥🔥 · 🟢 · P1`
+- [x] **48.** **Garansi 100% uang kembali** bila gagal karena kesalahan kami — halaman khusus + badge di checkout. `🔥🔥 · 🟢 · P1` — ✅ **v1.15.0 "Mesin Kepercayaan" (2026-10-28): halaman /garansi (6 janji layanan, cakupan termasuk/di luar, 3 langkah klaim, FAQPage JSON-LD, CTA WA/katalog); badge garansi di checkout + tautan footer + sitemap static (indeks 11.876 → 11.877)**
 - [ ] **49.** **Media kit & halaman pers** (press coverage, logo, statistik publik). `🔥 · 🟢 · P3`
 - [ ] **50.** **Testimoni video** di halaman kategori utama. `🔥 · 🟡 · P2`
 
@@ -153,7 +153,7 @@
 ## 📅 FASE 8 — Ops, CRM & Automasi Internal — langkah 61–68
 
 - [ ] **61.** **CRM pipeline kanban** + auto-assignment lead ke tim (perluas modul admin yang ada). `🔥🔥 · 🟡 · P1`
-- [ ] **62.** **Notifikasi ops real-time** ke grup WhatsApp/Slack internal (order baru, pembayaran masuk). `🔥🔥 · 🟢 · P1`
+- [x] **62.** **Notifikasi ops real-time** ke grup WhatsApp/Slack internal (order baru, pembayaran masuk). `🔥🔥 · 🟢 · P1` — ✅ **Terverifikasi penuh di v1.15.0 (2026-10-28): notifyOrder("PENDING") dari /api/payment/create + notifyOrder("PAID") dari applyOrderStatus (pintu tunggal webhooks Midtrans/Tripay/status-polling/demo-pay) — Telegram (grup-capable via chat_id) + WA gateway (Fonnte/Wablas), NotificationLog + retry + panel uji kirim di Mission Control → Notifikasi; env fallback TELEGRAM_BOT_TOKEN/CHAT_ID, FONNTE_TOKEN/WHATSAPP_TARGET**
 - [ ] **63.** **SOP & SLA terukur per layanan** + checklist QA sebelum serah terima ke klien. `🔥 · 🟡 · P1`
 - [ ] **64.** **Upload dokumen klien yang aman** + OCR (ekstrak nama badan usaha, NIK, NPWP otomatis). `🔥🔥 · 🔴 · P2`
 - [ ] **65.** **Scheduler follow-up otomatis** berbasis perilaku lead (buka email, klik harga, WhatsApp reply). `🔥 · 🟡 · P2`
@@ -236,7 +236,7 @@
 **Dokumen ini adalah janji strategis, bukan daftar impian.**
 Setiap langkah dibuat spesifik untuk arsitektur yang sudah ada: 1.500 layanan orderable, KepatuhanPRO MRR, CRM Admin 13 modul, 11.629 URL SEO, 30 bahasa, dan jalur static-export ke hosting produksi.
 
-📚 Konteks penuh: [`README.md`](./README.md) · 📒 Rekam jejak ber-versi: [`WORKLOG.md`](./WORKLOG.md) · 📦 Riwayat rilis: [`CHANGELOG.md`](./CHANGELOG.md) — versi saat ini: **v1.9.0 "Kamus Raja"**
+📚 Konteks penuh: [`README.md`](./README.md) · 📒 Rekam jejak ber-versi: [`WORKLOG.md`](./WORKLOG.md) · 📦 Riwayat rilis: [`CHANGELOG.md`](./CHANGELOG.md) — versi saat ini: **v1.15.0 "Mesin Kepercayaan"**
 
 | Top | Strategi 3 Horison | Quick Wins |
 |---|---|---|

@@ -26,6 +26,7 @@ const MODEL_NAMES = {
   order: "Order",
   post: "Post",
   followUpLog: "FollowUpLog",
+  recoveryLog: "RecoveryLog",
   notificationLog: "NotificationLog",
   editorialSlot: "EditorialSlot",
 } as const;

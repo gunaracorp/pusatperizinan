@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { SeoJsonLd } from "@/components/landing/seo-jsonld";
 import { Analytics } from "@/components/landing/analytics";
 import { FloatingWhatsApp } from "@/components/landing/floating-whatsapp";
+import { ActivityFeed } from "@/components/landing/activity-feed";
 import { MotionProvider } from "@/components/motion/motion-provider";
 import VitalsReporter from "@/components/seo/vitals-reporter";
 import { LanguageProvider } from "@/lib/i18n/language-provider";
@@ -236,6 +237,9 @@ export default function RootLayout({
                 komponen menyembunyikan dirinya di /, /admin, /webmaster,
                 /checkout (lihat floating-whatsapp.tsx). */}
             <FloatingWhatsApp />
+            {/* ROADMAP-99 langkah 46: Live activity feed (data nyata
+                ter-anonimkan; sembunyi di /, /admin, /webmaster, /checkout). */}
+            <ActivityFeed />
           </LanguageProvider>
         </MotionProvider>
       </body>

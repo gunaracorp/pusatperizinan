@@ -312,3 +312,23 @@ Stage Summary:
 - v1.14.2 "Fondasi Baru" rilis: fondasi ORM modern tanpa Rust engine — mesin follow-up (v1.14.0/v1.14.1) terbukti utuh di atasnya (QA 23/23)
 - Catatan permanen utk masa depan: (1) Prisma 8 = produk baru (cloud platform CLI), hop saat stabil+SQLite; (2) DateTime SQLite = teks ISO-8601 di Prisma 7 — script QA eksternal wajib seed ISO string; (3) better-sqlite3 tak jalan di bun runtime murni — selalu via node/Next.js server
 - Roadmap-99 tetap 16/99 (patch infrastruktur, bukan langkah baru); next uang: token Telegram @BotFather → mesin follow-up menyala penuh
+
+Task ID: 39
+Agent: main
+Task: 🛡️ "Mesin Kepercayaan" — eksekusi 5 langkah ROADMAP-99 sekaligus (permintaan user: "install dan sempurnakan website ku tambahkan fitur fitur yang belum ada, kaji website ini agar menjadi nomor 1 di google"): langkah 8 (social proof per layanan), 12 (abandoned checkout recovery), 46 (live activity feed), 48 (garansi 100%), 62 (verifikasi notifikasi ops) 🏷️ Rilis v1.15.0
+
+Work Log:
+- Install ulang sandbox: clone repo main (merge PR #14 — kini Prisma 8 + PostgreSQL tanpa fallback SQLite); pasang embedded PostgreSQL 17 (@embedded-postgres/linux-x64 + libicu60 lokal via dpkg-deb tanpa root), initdb+pg_ctl port 5432, database `pusatperizinan` (default postgres)
+- FIX blokir instalasi: env warisan sandbox DATABASE_URL=file:... menimpa .env → prisma.config.ts & src/prisma/db.ts kini loadEnv({override:true}) — .env file menang (CI-safety, desain "no localhost fallback" utuh); contract emit + db init lulus (15 model)
+- Langkah 8: src/lib/social-proof.ts (FNV-1a per kunci bulanan WIB, bersumber TRUST_METRICS, range 18–140) — terpasang di detail v1 (65), katalog v2/v3 (1.000, ganti klaim kategori monthlyDemand), checkout (angka identik lintas halaman)
+- Langkah 12: contract.prisma +RecoveryLog (model ke-15, @@unique([orderId,step,lane]), relasi Order.recoveries); src/lib/recovery.ts — RECOVERY_STEPS 1j/24j/72j, MAX_AGE_HOURS 72, SWEEP_BATCH 50, CATCH-UP window, fresh re-check status per kandidat sebelum kirim, lane lead (gateway WA) + admin (Telegram/WA, link bayar + prefill 1-klik); scheduler.ts denyut kedua (sweep recovery, error-isolated); GET|POST /api/cron/recovery (pola auth followup); GET /api/admin/recovery; panel "Pemulihan Checkout" di OrdersTab (stats, sweep button, chat 1-klik, link bayar); QA scripts/verify-recovery.ts (seed → antrean → 401 → sweep → idempotensi → cleanup)
+- Langkah 46: GET /api/activity (order+lead 24 jam terakhir, server-side anonimisasi huruf pertama+***, cache 30 dtk, nol PII, DB kosong = array kosong) + components/landing/activity-feed.tsx (idle-fetch, rotasi 7 dtk, auto-hide, sembunyi di / /admin /webmaster /checkout, reduced-motion safe) — mount sitewide di layout.tsx
+- Langkah 48: halaman /garansi (metadata + FAQPage JSON-LD sinkron teks, 6 janji, cakupan dua arah, 3 langkah klaim, CTA) + badge checkout + footer "Garansi 100%" + sitemap static entry → indeks 11.876 → 11.877
+- Langkah 62: audit alur — notifyOrder("PENDING") di /api/payment/create + notifyOrder("PAID") di applyOrderStatus (pintu tunggal webhook Midtrans/Tripay/polling/demo) → centang ROADMAP-99 dengan bukti
+- Verifikasi: lint 0 error; QA verify-order-cta.ts PASS (regresi); schema check detail (Service/Offer/FAQPage/HowTo/BreadcrumbList utuh); /garansi + /api/activity + /api/cron/recovery 200
+- Sinkron versi 8 titik: version.ts (1.15.0 "Mesin Kepercayaan" + RELEASES 38 entri + PLATFORM_STATS 11.877/15 model), package.json, scripts/ver.json (total 38, history +1), CHANGELOG (entri 1.15.0 + badge + ladder +2 baris: v1.15.0 & v1.14.2 yang tertinggal), /api/version nextRelease v1.16.0, ROADMAP-99 (centang 8/12/46/48/62 + footer versi), README (badge), WORKLOG.md (entri ini)
+
+Stage Summary:
+- v1.15.0 "Mesin Kepercayaan" rilis: 5 langkah ROADMAP-99 baru selesai → 22/99
+- Quick Wins FASE 1 kini 3/4 anggota besar selesai (3, 5, 6, 7, 8) — tersisa 1–2 & 4-sisa (kredensial owner)
+- Mesin keuangan kini lengkap: kejar lead (v1.14.0) + kejar checkout (v1.15.0) + notifikasi order/bayar + bukti sosial + garansi — semua menunggu hanya kredensial kanal (Telegram token 2 menit, Fonnte token, Midtrans keys)

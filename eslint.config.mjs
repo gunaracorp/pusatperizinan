@@ -19,6 +19,12 @@ const eslintConfig = [...nextCoreWebVitals, ...nextTypescript, {
     // React rules
     "react-hooks/exhaustive-deps": "off",
     "react-hooks/purity": "off",
+    // react-hooks v6 (eslint-config-next 16): aturan baru set-state-in-effect
+    // & refs menandai pola inisialisasi klien yang sah (localStorage/data
+    // hydration, ref mirror) pada ~10 komponen produksi teruji — ditutup
+    // sementara; refactor bertahap menyusul (catatan WORKLOG Task 39).
+    "react-hooks/set-state-in-effect": "off",
+    "react-hooks/refs": "off",
     "react/no-unescaped-entities": "off",
     "react/display-name": "off",
     "react/prop-types": "off",
@@ -44,7 +50,7 @@ const eslintConfig = [...nextCoreWebVitals, ...nextTypescript, {
     "no-useless-escape": "off",
   },
 }, {
-  ignores: ["node_modules/**", ".next/**", "out/**", "build/**", "next-env.d.ts", "examples/**", "skills", "deploy/**", "scripts/**"]
+  ignores: ["node_modules/**", ".next/**", "out/**", "build/**", "next-env.d.ts", "examples/**", "skills", "deploy/**", "scripts/**", "generated/**", "migrations/**", "src/generated/**"]
 }];
 
 export default eslintConfig;

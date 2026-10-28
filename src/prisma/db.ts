@@ -2,6 +2,9 @@
 // Every application database operation is served by this runtime.
 // "contract.json" and its generated type are emitted by "prisma contract emit".
 
+import { config as loadEnv } from "dotenv";
+// .env file wins over any inherited shell DATABASE_URL (sandbox/CI safety).
+loadEnv({ override: true });
 import "temporal-polyfill/global";
 import postgres from "@prisma/orm-postgres/runtime";
 import { contractFromJson } from "@prisma/orm-postgres/static";

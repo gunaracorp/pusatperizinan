@@ -163,6 +163,30 @@ model Order {
   @@index([status])
   @@index([createdAt])
   @@index([customerPhone])
+
+  recoveries RecoveryLog[]
+}
+
+// RecoveryLog: satu kirim pemulihan checkout terbengkalai (langkah 12 ROADMAP-99).
+// Sequence 3 langkah utk order status PENDING: 1 jam → 24 jam → 72 jam.
+// lane "lead"  = pesan langsung ke nomor pemesan via gateway WA (bila gateway aktif).
+// lane "admin" = reminder ke admin (Telegram/WA) berisi link halaman bayar 1-klik.
+// Idempoten per (orderId, step, lane) — sweep berulang tak pernah dobel kirim.
+// Sequence berhenti otomatis saat status order ≠ PENDING (lunas/batal/expired).
+model RecoveryLog {
+  id        String   @id @onCreate(cuid(2))
+  orderId   String
+  step      Int      // 1 = 1 jam · 2 = 24 jam · 3 = 72 jam
+  lane      String   // lead | admin
+  channel   String   // whatsapp | telegram
+  status    String   @default("sent") // sent | failed | skipped
+  message   String?  // pesan ter-render / pesan prefill wa.me
+  error     String?
+  createdAt DateTime @default(now())
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@unique([orderId, step, lane])
+  @@index([createdAt])
 }
 
 // Post: artikel blog CMS — dikelola dari admin (Mission Control → Konten & SEO)

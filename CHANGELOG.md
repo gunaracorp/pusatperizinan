@@ -5,21 +5,21 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.14.2_Fondasi_Baru-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-14-2)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.15.0_Mesin_Kepercayaan-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-15-0)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-37_(0.1.0_%E2%86%92_1.14.2)-059669?style=flat-square)
-![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-45_ber_versi-059669?style=flat-square)
-![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.15.0_(Unreleased)-f59e0b?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-38_(0.1.0_%E2%86%92_1.15.0)-059669?style=flat-square)
+![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-46_ber_versi-059669?style=flat-square)
+![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.16.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.14.2 — "Fondasi Baru"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.15.0 — "Mesin Kepercayaan"`**
 
-<sub>Versi terlihat hidup di: footer setiap halaman (11.876 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
+<sub>Versi terlihat hidup di: footer setiap halaman (11.877 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=0:059669,100:f59e0b&height=3&section=footer" width="100%" alt=""/>
 
@@ -37,26 +37,30 @@
 | Sumber kebenaran | [`WORKLOG.md`](./WORKLOG.md) (rekam jejak 1:1) · `src/lib/version.ts` (data mesin) · `package.json` (runtime) |
 | Ritme | **1 task/permintaan user = 1 nomor versi baru** — fitur → `MINOR`, perbaikan → `PATCH`, perombakan arah produk → `MAJOR` |
 | Presisi tanggal | Era `0.x` (Sesi 1–2) direkonstruksi dari metadata file & jejak invoice (`INV-20261021`) → presisi bulan; era `1.x` → presisi hari (terverifikasi) |
-| Rilis berikutnya | **`v1.15.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
+| Rilis berikutnya | **`v1.16.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
 
 > 🔗 Navigasi cepat: **[Tabel Lengkap 36 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
 
 ---
 
-<a id="unreleased"></a>
+<a id="v1-15-0"></a>
 
-## [Unreleased] — akan menjadi `v1.15.0`
+## [1.15.0] — 2026-10-28 — 🛡️ "Mesin Kepercayaan" (Task 39)
 
-> 📦 **Sisa langkah ROADMAP-99** tetap TERSIMPAN di [`ROADMAP-99.md`](./ROADMAP-99.md) — langkah **7**, 23, 24, 25, 26, 27, **3**, **5**, **6**, 33, 34, **35**, 41, **4**, **68** kini DIEKSEKUSI (dicentang di roadmap); **langkah 6 (Follow-up otomatis) SELESAI penuh via `v1.14.0` + detak jantung otomatis via `v1.14.1`** — sequence 24/48/72 jam + lane admin/lead + panel Mission Control + sweep mandiri tanpa cron. Sisanya menunggu sesi berikutnya.
+Rilis lima langkah ROADMAP-99 sekaligus (langkah **8, 12, 46, 48, 62**): mesin kepercayaan & pengejar order — social proof lintas halaman, pemulihan checkout terbengkalai, live activity feed, halaman garansi, dan verifikasi notifikasi ops.
 
-### Planned — Quick Wins P0 teratas (dari ROADMAP-99 Tabel A, sisa)
-- **Aktifkan pembayaran produksi** Midtrans/Tripay — matikan `PAYMENT_DEMO_MODE` (langkah 1) — *checklist kredensial: `docs/CHECKLIST-KREDENSIAL-LANGKAH-1-2.md`*
-- **Submit 15 sitemap** (11.876 URL) ke Google Search Console + Bing Webmaster (langkah 2) — *checklist kredensial: `docs/CHECKLIST-KREDENSIAL-LANGKAH-1-2.md`*
-- ~~Langkah 4 eksekusi akhir~~ ✅ **SELESAI di v1.13.3** — GA4 `G-KMZRQJQXCB` aktif sitewide (fallback hardcode, tanpa env); Clarity tinggal set `NEXT_PUBLIC_CLARITY_ID`
-- ~~Langkah 6 follow-up otomatis~~ ✅ **SELESAI di v1.14.0 + v1.14.1** — sequence 3 langkah + lane admin/lead + detak jantung otomatis (tanpa cron)
-- ~~Langkah 68 keandalan~~ ✅ **SELESAI di v1.13.5** — backup harian otomatis + uji restore + Sentry env-gated
-- Verifikasi token 6 mesin pencari via env → meta tag otomatis (lanjutan `v1.3.0`)
-- Re-ukur PSI mobile setelah deploy v1.5.0–v1.11.0 — target LCP < 4 s & TBT < 500 ms
+> 🗄️ Catatan infrastruktur sandbox: migrasi Prisma 8 + PostgreSQL dari main kini berjalan penuh di lingkungan dev (embedded PostgreSQL 17 + `prisma contract emit` + `db init`); `prisma.config.ts` & `src/prisma/db.ts` memuat `.env` dengan `override: true` agar `.env` file menjadi sumber DATABASE_URL yang menang atas env warisan sandbox.
+
+### 🛡️ Added — FASE 1/2/6/8
+- **Langkah 8 — Social proof per layanan** (`src/lib/social-proof.ts`): "±N usaha memproses layanan ini bulan ini" — bersumber `TRUST_METRICS` (satu-satunya sumber angka trust), deterministik FNV-1a per kunci bulanan WIB → angka identik lintas halaman (detail v1 ⇄ v2/v3 ⇄ checkout). Terpasang di 65 halaman detail v1, 1.000 halaman katalog v2/v3 (klaim kategori lama `monthlyDemand` diganti level-layanan), dan checkout.
+- **Langkah 12 — Pemulihan checkout terbengkalai** (`src/lib/recovery.ts`): model **RecoveryLog** (model Prisma ke-15) dengan `@@unique([orderId, step, lane])` — sequence **1 jam → 24 jam → 72 jam** ke pemesan via gateway WA (Fonnte/Wablas) + reminder admin berisi link halaman bayar + prefill `wa.me` 1-klik via Telegram; CATCH-UP window (order ditemukan telat → langsung di window terakhir), **fresh re-check status per kandidat** sebelum kirim (order lunas detik-terakhir tidak dikejar), berhenti saat status ≠ PENDING, order >72 jam tidak dikejar; denyut bersama detak-jantung (tiap 15 menit tanpa cron) + `GET|POST /api/cron/recovery` (CRON_SECRET/cookie admin) + panel **"Pemulihan Checkout"** di Mission Control → Pesanan (statistik, tombol sweep, chat 1-klik, link bayar).
+- **Langkah 46 — Live activity feed** (`src/components/landing/activity-feed.tsx` + `GET /api/activity`): widget sitewide bottom-left menampilkan aktivitas order/lead **nyata 24 jam terakhir** — ter-anonimkan server-side (huruf pertama + `***`, tanpa PII/telepon/email; UU PDP friendly); **DB kosong → widget tidak tampil** (nol aktivitas palsu); idle-fetch tanpa dampak LCP/CLS, rotasi 7 detik, sembunyi di /, /admin, /webmaster, /checkout, reduced-motion safe.
+- **Langkah 48 — Halaman `/garansi`**: Garansi 100% uang kembali — 6 janji layanan, cakupan termasuk/di luar garansi, 3 langkah klaim (verifikasi ≤3 hari, refund ≤7 hari), FAQPage JSON-LD sinkron dengan teks, CTA WA/katalog; badge garansi di checkout + tautan footer + seksi sitemap static → **indeks 11.876 → 11.877 URL**.
+- **Langkah 62 — Notifikasi ops real-time (verifikasi)**: `notifyOrder("PENDING")` dari `/api/payment/create` + `notifyOrder("PAID")` dari `applyOrderStatus` (pintu tunggal seluruh webhook/polling/demo) terbukti mengalir ke Telegram (grup-capable) + WA gateway — dicentang di ROADMAP-99.
+- **QA baru** `scripts/verify-recovery.ts`: E2E seed order due → antrean admin (prefill + payUrl + step) → 401 tanpa auth → sweep cron → idempotensi log → cleanup.
+
+### 🗄️ Changed — Infrastruktur
+- `prisma.config.ts` + `src/prisma/db.ts`: dotenv `override: true` — `.env` file kini menang atas `DATABASE_URL` warisan shell/sandbox (CI-safety tanpa mengubah desain "no localhost fallback").
 
 ---
 
@@ -624,11 +628,13 @@ Rilis pertama dengan **identitas versi resmi**. Seluruh proyek kini punya nomor 
 
 <a id="ladder"></a>
 
-## 🪜 Tabel Lengkap 36 Rilis
+## 🪜 Tabel Lengkap 38 Rilis
 
 | # | Versi | Tanggal (WIB) | Tipe | Nama Rilis | Task WORKLOG | Status |
 |---|---|---|---|---|---|---|
-| 36 | **v1.14.1** ⭐ | **2026-10-26** | patch | **Detak Jantung** | Task 37 | **🟢 AKTIF — versi berjalan** |
+| 38 | **v1.15.0** ⭐ | **2026-10-28** | minor | **Mesin Kepercayaan** | Task 39 | **🟢 AKTIF — versi berjalan** |
+| 37 | v1.14.2 | 2026-10-27 | patch | Fondasi Baru | Task 38 | ✅ Rilis |
+| 36 | v1.14.1 | 2026-10-26 | patch | Detak Jantung | Task 37 | ✅ Rilis |
 | 35 | v1.14.0 | 2026-10-26 | minor | Kejar Order | Task 36 | ✅ Rilis |
 | 34 | v1.13.5 | 2026-10-26 | patch | Jaring Pengaman | Task 35 | ✅ Rilis |
 | 33 | v1.13.4 | 2026-10-26 | patch | Dokumen Hidup II | Task 34 | ✅ Rilis |

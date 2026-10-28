@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import {
-  ShieldCheck, Clock, BadgeCheck, Loader2, ChevronRight,
+  ShieldCheck, Clock, BadgeCheck, Loader2, ChevronRight, Users,
   Wallet, Landmark, QrCode, Store, Sparkles, Lock,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { PACKAGES, getPackage, fmtRupiah, PAKET_LABEL, type PaketLayanan } from "@/lib/pricing";
+import { socialProofFor } from "@/lib/social-proof";
 
 // ============================================================
 // CHECKOUT CLIENT — pilih paket → isi data → bayar
@@ -124,6 +125,10 @@ export function CheckoutClient({ initialPaket }: { initialPaket: string }) {
     }
     return PACKAGES[0];
   }, [selectedId, catalogSvc]);
+
+  // ROADMAP-99 langkah 8 — social proof per layanan; angka identik dengan
+  // halaman detail (sumber tunggal social-proof.ts, deterministik per bulan)
+  const proof = useMemo(() => socialProofFor(paket.id), [paket.id]);
 
   async function submit() {
     setError(null);
@@ -465,6 +470,21 @@ export function CheckoutClient({ initialPaket }: { initialPaket: string }) {
                   <>Bayar Sekarang — {fmtRupiah(paket.price)}</>
                 )}
               </Button>
+
+              {/* ROADMAP-99 langkah 8 — social proof per layanan (angka sama
+                  dgn halaman detail: sumber social-proof.ts bersumber
+                  TRUST_METRICS, deterministik per bulan) */}
+              <p className="flex items-center justify-center gap-1.5 rounded-lg bg-primary/5 px-3 py-2 text-[11px] font-semibold text-primary">
+                <Users className="h-3.5 w-3.5" aria-hidden /> ±{proof.label}
+              </p>
+
+              {/* ROADMAP-99 langkah 48 — badge Garansi 100% uang kembali */}
+              <Link
+                href="/garansi"
+                className="flex items-center justify-center gap-1.5 rounded-lg border border-primary/30 bg-primary/5 px-3 py-2 text-[11px] font-semibold text-foreground transition hover:bg-primary/10"
+              >
+                <ShieldCheck className="h-3.5 w-3.5 text-primary" aria-hidden /> Garansi 100% uang kembali — bila gagal karena kesalahan kami
+              </Link>
 
               <div className="flex items-center justify-center gap-4 text-[11px] text-muted-foreground">
                 <span className="inline-flex items-center gap-1">

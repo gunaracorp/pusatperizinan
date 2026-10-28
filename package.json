@@ -1,6 +1,6 @@
 {
   "name": "pusatperizinan",
-  "version": "1.14.2",
+  "version": "1.15.0",
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000 2>&1 | tee dev.log",
@@ -95,6 +95,7 @@
     "zustand": "^5.0.6"
   },
   "devDependencies": {
+    "@embedded-postgres/linux-x64": "^18.4.0-beta.17",
     "@tailwindcss/postcss": "^4",
     "@types/react": "^19",
     "@types/react-dom": "^19",

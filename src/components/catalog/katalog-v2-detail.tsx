@@ -47,6 +47,7 @@ import {
 export type CatalogDetailService = Omit<KatalogV2Service, "categoryCode"> & { categoryCode: string };
 import { SITE_NAME, SITE_URL, absUrl, TRUST_METRICS } from "@/lib/site";
 import { WHATSAPP_NUMBER } from "@/lib/landing-data";
+import { socialProofFor } from "@/lib/social-proof";
 
 // ============================================================
 // PUSATPERIZINAN.COM — Halaman Detail Katalog Premium v2 (PP-XXX)
@@ -85,10 +86,9 @@ function pickBundle(code: string, categoryCode: string, isV3: boolean): CatalogD
   return [pool[i1], pool[i2]];
 }
 
-/** Klaim permintaan bulanan kategori — deterministik per kode (konsisten, bukan acak tiap load). */
-function monthlyDemand(code: string): number {
-  return 8 + (hashU32(code) % 14);
-}
+/** Klaim permintaan bulanan — DIGANTI modul bersama social-proof.ts
+ *  (langkah 8 ROADMAP-99): level layanan (bukan kategori), bersumber
+ *  TRUST_METRICS, konsisten antara halaman detail ⇄ checkout. */
 
 // ============================================================
 // ROADMAP-99 langkah 23 — JSON-LD FAQPage + HowTo (1.000 halaman
@@ -196,7 +196,8 @@ export function KatalogV2Detail({ service: s }: { service: CatalogDetailService 
   const bundleWa = encodeURIComponent(
     `Halo ${SITE_NAME}, saya mau PAKET HEMAT bundle:\n1. ${s.name} (${s.code})\n${bundle.map((b, i) => `${i + 2}. ${b.name} (${b.code})`).join("\n")}\nTotal katalog ${fmtIdr(bundleTotal)} — mohon harga bundle & invoice pembayaran.`
   );
-  const demand = monthlyDemand(s.code);
+  // ROADMAP-99 langkah 8 — social proof per layanan (konsisten lintas halaman)
+  const proof = socialProofFor(s.code);
   // ROADMAP-99 langkah 23/24/27 — konten SEO deterministik per kode
   const snippet = snippetAnswer(s);
   const faqs = buildFaqs(s);
@@ -336,7 +337,7 @@ export function KatalogV2Detail({ service: s }: { service: CatalogDetailService 
                 </p>
                 <p className="mt-3 flex items-center gap-2 rounded-lg bg-emerald-50 px-3 py-2 text-xs font-semibold text-emerald-800">
                   <Users className="h-3.5 w-3.5 shrink-0" aria-hidden />
-                  <span className="min-w-0">±{demand} perusahaan memilih layanan sejenis di {s.category} bulan ini</span>
+                  <span className="min-w-0">±{proof.label}</span>
                 </p>
               </section>
 

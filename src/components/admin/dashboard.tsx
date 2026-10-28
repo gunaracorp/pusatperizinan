@@ -90,7 +90,10 @@ export function AdminDashboard() {
   const [soundOn, setSoundOn] = useState(true);
   const lastSeenRef = useRef<string>(new Date().toISOString());
   const toastRef = useRef(toast);
-  toastRef.current = toast;
+  // Ref mirror HARUS di effect (bukan render) — render harus murni.
+  useEffect(() => {
+    toastRef.current = toast;
+  }, [toast]);
 
   useEffect(() => {
     const saved = localStorage.getItem("pp-admin-sound");

@@ -7,23 +7,23 @@
     "url": "https://pusatperizinan.com"
   },
   "version": {
-    "current": "1.14.2",
-    "label": "v1.14.2 — Fondasi Baru",
-    "releaseName": "Fondasi Baru",
-    "releasedAt": "2026-10-27",
+    "current": "1.15.0",
+    "label": "v1.15.0 — Mesin Kepercayaan",
+    "releaseName": "Mesin Kepercayaan",
+    "releasedAt": "2026-10-28",
     "channel": "stable",
     "timezone": "Asia/Jakarta (WIB)",
     "semverValid": true
   },
   "stats": {
-    "indexedUrls": 11876,
+    "indexedUrls": 11877,
     "sitemapSections": 15,
     "orderableServices": 1500,
     "subscriptionSkus": 6,
     "languages": 30,
     "aiTools": 5,
     "provinces": 38,
-    "prismaModels": 14
+    "prismaModels": 15
   },
   "docs": {
     "changelog": "/CHANGELOG.md",
@@ -32,20 +32,15 @@
     "nextRelease": "v1.15.0 (Unreleased — antrean ROADMAP-99)"
   },
   "releases": {
-    "total": 37,
-    "current": {
-      "version": "1.14.2",
-      "date": "2026-10-27",
-      "type": "patch",
-      "name": "Fondasi Baru",
-      "taskId": "38",
-      "highlights": [
-        "Upgrade ORM Prisma 6.11.1 → 7.10.1 (stabil terbaru): generator prisma-client + output eksplisit src/generated/prisma",
-        "Driver adapter @prisma/adapter-better-sqlite3 + prisma.config.ts (URL datasource pindah ke config, sesuai Prisma 7)",
-        "DateTime SQLite kini teks ISO-8601; QA mesin follow-up 23/23 PASS + boot test + tsc/eslint nol temuan"
-      ]
-    },
+    "total": 38,
+    "current": "1.15.0",
     "history": [
+      {
+        "version": "1.15.0",
+        "date": "2026-10-28",
+        "name": "Mesin Kepercayaan",
+        "taskId": "39"
+      },
       {
         "version": "1.14.2",
         "date": "2026-10-27",

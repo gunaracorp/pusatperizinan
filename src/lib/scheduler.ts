@@ -18,6 +18,7 @@
 // ============================================================
 
 import { sweepFollowUps } from "./followup";
+import { sweepAbandonedCheckouts } from "./recovery";
 
 /** Guard proses panjang: interval hanya pernah dipasang sekali. */
 let started = false;
@@ -52,13 +53,36 @@ export function startFollowUpScheduler(): void {
           ? " (kanal belum terpasang — isi token Telegram/WA di Mission Control → Notifikasi)"
           : "";
         console.log(
-          `[detak-jantung] sweep: scan=${r.scanned} admin=${r.adminSent} sukses/${r.adminFailed} gagal · lead=${r.leadSent} sukses/${r.leadFailed} gagal${kanal}`
+          `[detak-jantung] sweep follow-up: scan=${r.scanned} admin=${r.adminSent} sukses/${r.adminFailed} gagal · lead=${r.leadSent} sukses/${r.leadFailed} gagal${kanal}`
         );
       }
       // Tanpa aktivitas = sunyi (normal: tidak ada lead jatuh tempo).
     } catch (e) {
       // Detak jantung TIDAK PERNAH MATI — error satu denyut dilalui saja.
-      console.error("[detak-jantung] sweep gagal (denyut berikutnya lanjut):", e);
+      console.error("[detak-jantung] sweep follow-up gagal (denyut berikutnya lanjut):", e);
+    }
+
+    // ---- Sweep pemulihan checkout terbengkalai (langkah 12) — denyut sama,
+    //      kegagalan tidak pernah mengganggu sweep follow-up maupun denyut
+    //      berikutnya. ----
+    try {
+      const r = await sweepAbandonedCheckouts();
+      const adaAktivitas =
+        r.scanned > 0 ||
+        r.adminSent > 0 ||
+        r.adminFailed > 0 ||
+        r.leadSent > 0 ||
+        r.leadFailed > 0;
+      if (adaAktivitas) {
+        const kanal = r.skippedNoChannel
+          ? " (kanal belum terpasang — isi token Telegram/WA di Mission Control → Notifikasi)"
+          : "";
+        console.log(
+          `[detak-jantung] sweep recovery: scan=${r.scanned} admin=${r.adminSent} sukses/${r.adminFailed} gagal · lead=${r.leadSent} sukses/${r.leadFailed} gagal${kanal}`
+        );
+      }
+    } catch (e) {
+      console.error("[detak-jantung] sweep recovery gagal (denyut berikutnya lanjut):", e);
     }
   };
 
@@ -67,6 +91,6 @@ export function startFollowUpScheduler(): void {
   setInterval(() => void tick(), Math.round(minutes * 60_000));
 
   console.log(
-    `[detak-jantung] ON — sweep follow-up otomatis tiap ${minutes} menit (idempoten, tanpa cron eksternal)`
+    `[detak-jantung] ON — sweep follow-up + pemulihan checkout otomatis tiap ${minutes} menit (idempoten, tanpa cron eksternal)`
   );
 }

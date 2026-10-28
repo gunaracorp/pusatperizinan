@@ -200,6 +200,9 @@ function buildStaticPages(): SitemapEntry[] {
     entry("/faq", "weekly", 0.8),
     entry("/kebijakan-privasi", "yearly", 0.4),
     entry("/syarat-ketentuan", "yearly", 0.4),
+    // Halaman Garansi 100% (langkah 48 ROADMAP-99 — trust/E-E-A-T,
+    // ditaut dari badge checkout & footer)
+    entry("/garansi", "monthly", 0.7),
   ];
 }
 

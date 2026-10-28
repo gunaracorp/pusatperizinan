@@ -17,11 +17,11 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.14.2";
+export const APP_VERSION = "1.15.0";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Fondasi Baru";
+export const RELEASE_NAME = "Mesin Kepercayaan";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
-export const RELEASE_DATE = "2026-10-27";
+export const RELEASE_DATE = "2026-10-28";
 /** Channel rilis: stable | beta | alpha. */
 export const RELEASE_CHANNEL = "stable" as const;
 
@@ -42,10 +42,24 @@ export interface ReleaseEntry {
 }
 
 /**
- * Riwayat lengkap 37 rilis — urut TERBARU lebih dulu.
+ * Riwayat lengkap 38 rilis — urut TERBARU lebih dulu.
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.15.0",
+    date: "2026-10-28",
+    type: "minor",
+    name: "Mesin Kepercayaan",
+    taskId: "39",
+    highlights: [
+      "Langkah 8 — Social proof per layanan ('±N usaha memproses bulan ini') di 1.565 halaman detail v1/v2/v3 + checkout — modul social-proof.ts bersumber TRUST_METRICS, deterministik FNV-1a per bulan, angka identik lintas halaman",
+      "Langkah 12 — Mesin pemulihan checkout terbengkalai: model RecoveryLog (15 model), sequence WA 1 jam/24 jam/72 jam + reminder admin berisi link bayar 1-klik, idempoten, berhenti saat lunas; denyut di scheduler + /api/cron/recovery + panel Mission Control → Pesanan",
+      "Langkah 46 — Live activity feed sitewide dari order/lead nyata 24 jam terakhir (ter-anonimkan UU PDP, tanpa PII; DB kosong = widget tidak tampil) + /api/activity cache 30 dtk",
+      "Langkah 48 — Halaman /garansi (6 janji, cakupan, 3 langkah klaim, FAQPage schema) + badge checkout + footer + sitemap (indeks 11.876 → 11.877)",
+      "Langkah 62 — Terverifikasi penuh: notifikasi Telegram/WA order baru (PENDING) & pembayaran masuk (PAID) via applyOrderStatus pintu tunggal + create route — QA verify-recovery PASS",
+    ],
+  },
   {
     version: "1.14.2",
     date: "2026-10-27",
@@ -456,14 +470,14 @@ export const CURRENT_RELEASE: ReleaseEntry = RELEASES[0];
 
 /** Statistik platform yang dikirim /api/version — singkron dengan site.ts. */
 export const PLATFORM_STATS = {
-  indexedUrls: 11876,
+  indexedUrls: 11877,
   sitemapSections: 15,
   orderableServices: 1500,
   subscriptionSkus: 6,
   languages: 30,
   aiTools: 5,
   provinces: 38,
-  prismaModels: 14,
+  prismaModels: 15,
 } as const;
 
 /** Ringkasan ringkas untuk tampilan footer/chip. */

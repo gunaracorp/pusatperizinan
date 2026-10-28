@@ -344,6 +344,8 @@ export function Footer() {
               <Link href="/kebijakan-privasi" className="text-xs text-emerald-100/50 hover:text-emerald-300 transition-colors">Privasi</Link>
               <span aria-hidden>·</span>
               <Link href="/syarat-ketentuan" className="text-xs text-emerald-100/50 hover:text-emerald-300 transition-colors">Syarat &amp; Ketentuan</Link>
+              <span aria-hidden>·</span>
+              <Link href="/garansi" className="text-xs text-emerald-100/50 hover:text-emerald-300 transition-colors">Garansi 100%</Link>
             </nav>
             {/* 🏷️ Badge versi resmi — sumber tunggal: src/lib/version.ts (v1.4.0+) */}
             <a
