@@ -348,3 +348,8 @@ Work Log:
 
 Stage Summary:
 - Dokumentasi 1:1 dengan kode: v1.16.0 + v1.17.0 + v1.17.1 tercatat resmi di CHANGELOG/ladder/ver.json/README; README kini memuat 7 posisi khusus wanita (remote, UMR + bonus target, jenjang karier) — repo siap push
+
+---
+Task ID: 43
+Agent: main
+Task: Push ke GitHub (perintah owner + PAT): origin/main 1790870 → 92f6724 — backlog 5 commit (v1.15.0 + Task 40/41/42) berhasil didorong; token tidak disimpan di config. Tuntas — catatan lama "push menunggu kredensial" (Task 39) resmi ditutup.
