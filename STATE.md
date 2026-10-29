@@ -70,3 +70,12 @@ Temuan & tindakan terhadap laporan Coverage Google Search Console:
 - **Redirect (7)** = varian trailing-slash 308 (Next default) + URL historis; seluruh 727 URL sitemap ter-crawl = 200.
 - **Alternate 70 / Crawled 28** = normal; kebijakan tier D/E noindex sudah aktif.
 - Skrip audit: `scripts/seo-audit-gsc.sh`, hasil di `download/seo-audit-gsc/`.
+
+## 8. Mesin Internal Linking (2026-10-29, commit ec694a5)
+
+Untuk mempercepat 661 "Discovered — not indexed" (~12 ribu URL programatik; layanan 8.873 + 500×3 + hubs 559 + glosarium 214 + seo-expansion 389):
+- **`src/lib/internal-links.ts`** — satu sumber kebenaran link internal: silo wilayah (induk↔provinsi↔kota↔hub), rotasi deterministik FNV-1a (tiap halaman urutan saudara beda → crawl graph melebar), kurasi glosarium per kategori (slug difilter runtime — anti link mati).
+- **`src/components/seo/internal-link-sections.tsx`** — renderer chips; dipakai 5 template: `/layanan/[...slug]` (SEMUA kind), SeoLandingView (biaya/syarat/industri), `/glosarium/[slug]`, `/bandingkan/[slug]`, `/[slug]` landing 500.
+- **Jebakan tercatat**: halaman kind "city" TIDAK punya field `province` di generator → derivasi via `PROVINCES.majors` (fungsi `resolveProvinceName`); jangan terima slug hub wilayah dari tebakan nama kota (dulu menghasilkan `/layanan/wilayah/makassar` 404).
+- **Verifikasi**: 297/297 href unik dari 14 halaman tipikal = HTTP 200; halaman wilayah 8→55 link, base 15→76, biaya/syarat 10→29. Bukti: `download/bukti-internal-linking-*.png`.
+- **Pantauan lanjutan GSC**: 60 hari (aturan seo-policy.ts); harapan — Discovered berkurang, Crawled/Indexed naik.
