@@ -81,3 +81,6 @@ server.log
 .pgdata
 postgres.log
 dev.log
+
+# SEO auto-ping (state snapshot & kursor rotasi — mesin, bukan kode)
+.seo/

@@ -1,6 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse, after } from "next/server";
 import { cookies } from "next/headers";
 import { db } from "@/lib/db";
+import { SITE_URL } from "@/lib/site";
+import { submitIndexNow, markPinged } from "@/lib/seo-ping-core.mjs";
 import { ADMIN_COOKIE, verifyToken } from "@/lib/admin-auth";
 import {
   getAllCmsPosts,
@@ -111,6 +113,24 @@ export async function PUT(
       await syncSlotForPost({ id: updated.id, status: updated.status === "PUBLISHED" ? "PUBLISHED" : "DRAFT" });
     } catch {
       // kalender gagal sinkron — penyimpanan post tetap sukses
+    }
+
+    // SEO auto-ping: post terbit → ping instan IndexNow (Bing/Yandex/Seznam/...) via after() — non-blocking
+    if (updated.status === "PUBLISHED" && !updated.noindex) {
+      const pingUrls = [`${SITE_URL}/blog/${updated.slug}`, `${SITE_URL}/blog`];
+      after(async () => {
+        try {
+          const key = process.env.INDEXNOW_KEY || "";
+          const res = await submitIndexNow(pingUrls, {
+            key,
+            host: new URL(SITE_URL).host,
+            keyLocation: `${SITE_URL}/${key}.txt`,
+          });
+          if (res.ok) markPinged(process.cwd(), pingUrls);
+        } catch {
+          // ping gagal — terbit tetap sukses; cron harian (auto-ping) mengejar
+        }
+      });
     }
 
     return NextResponse.json({ success: true, data: rowToCmsPost(updated) });

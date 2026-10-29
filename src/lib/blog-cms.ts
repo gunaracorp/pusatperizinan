@@ -114,9 +114,28 @@ export function rowToCmsPost(r: PostRow): CmsPost {
     relatedGuides: safeParse<string[]>(r.relatedGuides, []),
     status: r.status === "PUBLISHED" ? "PUBLISHED" : "DRAFT",
     noindex: r.noindex,
-    publishedAt: r.publishedAt.toISOString(),
-    updatedAt: r.updatedAt.toISOString(),
+    // Era adapter Prisma 7/8: DateTime dari DB bisa Date proper / string ISO /
+    // objek eksotis — toIsoSafe menjamin string ISO tanpa pernah 500.
+    publishedAt: toIsoSafe(r.publishedAt, r.createdAt),
+    updatedAt: toIsoSafe(r.updatedAt, r.createdAt),
   };
+}
+
+/**
+ * Konversi nilai DateTime apa pun → string ISO, tanpa pernah melempar error.
+ * Era adapter Prisma 7/8: kolom timestamptz dengan default DB-side
+ * (publishedAt @default(now())) bisa kembali sebagai objek eksotis kosong
+ * (bukan Date, tanpa toISOString/toJSON) — fallback ke createdAt yang
+ * selalu berupa Date proper, atau Date sekarang sebagai pagar terakhir.
+ */
+function toIsoSafe(v: unknown, fallback?: unknown): string {
+  if (v instanceof Date && !isNaN(v.getTime())) return v.toISOString();
+  if (typeof v === "string" && v.trim()) {
+    const d = new Date(v);
+    if (!isNaN(d.getTime())) return d.toISOString();
+  }
+  if (fallback !== undefined) return toIsoSafe(fallback);
+  return new Date().toISOString();
 }
 
 /** CmsPost → bentuk BlogArticle agar renderer artikel lama bisa dipakai ulang */

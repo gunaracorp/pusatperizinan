@@ -1,0 +1,14 @@
+# GSC request-indexing — 2026-10-29 (rotasi 0.0% dari pool 1101 URL)
+# Tempel satu per satu ke: Search Console → Inspeksi URL → Minta pengindeksan
+https://pusatperizinan.com/
+https://pusatperizinan.com/biaya
+https://pusatperizinan.com/biaya/cv
+https://pusatperizinan.com/biaya/nib
+https://pusatperizinan.com/biaya/pt
+https://pusatperizinan.com/blog
+https://pusatperizinan.com/cek-izin
+https://pusatperizinan.com/glosarium
+https://pusatperizinan.com/glosarium/bpom
+https://pusatperizinan.com/glosarium/coretax
+https://pusatperizinan.com/glosarium/cv
+https://pusatperizinan.com/glosarium/faktur-pajak

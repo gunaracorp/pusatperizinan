@@ -1,4 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse, after } from "next/server";
+import { SITE_URL } from "@/lib/site";
+import { submitIndexNow, markPinged } from "@/lib/seo-ping-core.mjs";
 import { cookies } from "next/headers";
 import { db } from "@/lib/db";
 import { ADMIN_COOKIE, verifyToken } from "@/lib/admin-auth";
@@ -111,6 +113,24 @@ export async function POST(req: NextRequest) {
         noindex: Boolean(body.noindex),
       },
     });
+
+    // SEO auto-ping: post dibuat langsung terbit → ping instan IndexNow via after() — non-blocking
+    if (created.status === "PUBLISHED" && !created.noindex) {
+      const pingUrls = [`${SITE_URL}/blog/${created.slug}`, `${SITE_URL}/blog`];
+      after(async () => {
+        try {
+          const key = process.env.INDEXNOW_KEY || "";
+          const res = await submitIndexNow(pingUrls, {
+            key,
+            host: new URL(SITE_URL).host,
+            keyLocation: `${SITE_URL}/${key}.txt`,
+          });
+          if (res.ok) markPinged(process.cwd(), pingUrls);
+        } catch {
+          // ping gagal — create tetap sukses; cron harian (auto-ping) mengejar
+        }
+      });
+    }
 
     return NextResponse.json({ success: true, data: rowToCmsPost(created) }, { status: 201 });
   } catch (e) {

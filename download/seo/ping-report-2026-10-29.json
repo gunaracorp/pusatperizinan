@@ -1,0 +1,70 @@
+{
+ "date": "2026-10-29",
+ "base": "http://localhost:3000",
+ "generatedAt": "2026-10-29T10:43:40.022Z",
+ "totalSitemapUrls": 11872,
+ "sections": {
+  "static": 36,
+  "blog": 13,
+  "panduan": 16,
+  "testimoni": 8,
+  "layanan": 8873,
+  "kbli": 148,
+  "hubs": 559,
+  "jobs": 7,
+  "bandingkan": 78,
+  "glosarium": 214,
+  "katalog": 31,
+  "layanan500": 500,
+  "layanan-pp": 500,
+  "layanan-pp3": 500,
+  "seo-expansion": 389
+ },
+ "newSinceSnapshot": 0,
+ "indexnow": {
+  "submitted": 0,
+  "httpStatus": 0,
+  "error": null,
+  "skippedPingCount": 0
+ },
+ "rotation": {
+  "poolSize": 1101,
+  "cursorStart": 0,
+  "cursorEnd": 0,
+  "size": 12
+ },
+ "gscList": [
+  "https://pusatperizinan.com/",
+  "https://pusatperizinan.com/biaya",
+  "https://pusatperizinan.com/biaya/cv",
+  "https://pusatperizinan.com/biaya/nib",
+  "https://pusatperizinan.com/biaya/pt",
+  "https://pusatperizinan.com/blog",
+  "https://pusatperizinan.com/cek-izin",
+  "https://pusatperizinan.com/glosarium",
+  "https://pusatperizinan.com/glosarium/bpom",
+  "https://pusatperizinan.com/glosarium/coretax",
+  "https://pusatperizinan.com/glosarium/cv",
+  "https://pusatperizinan.com/glosarium/faktur-pajak"
+ ],
+ "sitemapErrors": [],
+ "durationMs": 0,
+ "log": [
+  "  seksi static: 36 URL",
+  "  seksi blog: 13 URL",
+  "  seksi panduan: 16 URL",
+  "  seksi testimoni: 8 URL",
+  "  seksi layanan: 8873 URL",
+  "  seksi kbli: 148 URL",
+  "  seksi hubs: 559 URL",
+  "  seksi jobs: 7 URL",
+  "  seksi bandingkan: 78 URL",
+  "  seksi glosarium: 214 URL",
+  "  seksi katalog: 31 URL",
+  "  seksi layanan500: 500 URL",
+  "  seksi layanan-pp: 500 URL",
+  "  seksi layanan-pp3: 500 URL",
+  "  seksi seo-expansion: 389 URL",
+  "  IndexNow: tidak ada URL baru sejak snapshot terakhir"
+ ]
+}
