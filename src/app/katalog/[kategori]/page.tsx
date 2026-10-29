@@ -22,7 +22,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { kategori } = await params;
   const cat = getCategory(kategori);
-  if (!cat) return {};
+  if (!cat) {
+    // GSC-hardening: slug tidak dikenal TIDAK boleh mewarisi canonical
+    // homepage dari layout (pemicu "duplikat tanpa kanonis") — paksa noindex
+    // sebelum notFound() merender halaman 404.
+    return { robots: { index: false, follow: false } };
+  }
   const title = `${cat.name} — ${cat.services.length} Layanan, Kisaran Harga & Timeline`;
   const description = `${cat.tagline}. ${cat.desc.slice(0, 140)}… Kisaran harga mulai ${fmtRange(
     Math.min(...cat.services.flatMap((s) => [s.priceFrom, s.priceTo]).filter((v): v is number => typeof v === "number")),

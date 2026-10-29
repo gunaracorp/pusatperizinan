@@ -46,7 +46,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
   const c = getComparison(slug);
-  if (!c) return {};
+  if (!c) {
+    // GSC-hardening: slug tidak dikenal TIDAK boleh mewarisi canonical
+    // homepage dari layout (pemicu "duplikat tanpa kanonis") — paksa noindex
+    // sebelum notFound() merender halaman 404.
+    return { robots: { index: false, follow: false } };
+  }
   return {
     title: c.metaTitle,
     description: c.metaDesc,

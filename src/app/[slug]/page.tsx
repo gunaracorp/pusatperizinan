@@ -50,7 +50,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const s = getLayananBySlug(slug);
-  if (!s) return {};
+  if (!s) {
+    // GSC-hardening: slug tidak dikenal TIDAK boleh mewarisi canonical
+    // homepage dari layout (pemicu "duplikat tanpa kanonis") — paksa noindex
+    // sebelum notFound() merender halaman 404.
+    return { robots: { index: false, follow: false } };
+  }
   const title = `${s.nama} — Harga Kupon ${fmtIdr(s.harga_diskon)} (Hemat ${Math.round(s.diskon * 100)}%)`;
   const description = `${s.nama} (${s.kode}) — ${s.deskripsi.slice(0, 130)}... Harga normal ${fmtIdr(s.harga)}, kupon ${fmtIdr(s.harga_diskon)}. Estimasi ${timelineOf(s).split("(")[0].trim()}. Garansi proses, melayani 38 provinsi.`;
   const geo = geoMetaForSlug(slug);

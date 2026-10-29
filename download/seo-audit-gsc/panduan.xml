@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Seksi "panduan" — lastmod deterministik (stableLastmod); artikel blog memakai tanggal asli -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://pusatperizinan.com/panduan/nib</loc><lastmod>2026-08-09T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pusatperizinan.com/panduan/pt</loc><lastmod>2026-08-16T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pusatperizinan.com/panduan/halal</loc><lastmod>2026-03-25T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pusatperizinan.com/panduan/bpom</loc><lastmod>2026-04-16T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pusatperizinan.com/panduan/oss</loc><lastmod>2026-08-15T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pusatperizinan.com/panduan/pbg</loc><lastmod>2026-06-16T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pusatperizinan.com/panduan/lingkungan</loc><lastmod>2026-05-06T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pusatperizinan.com/panduan/cv</loc><lastmod>2026-09-22T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pusatperizinan.com/panduan/klinik</loc><lastmod>2026-03-01T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pusatperizinan.com/panduan/pma</loc><lastmod>2025-11-09T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pusatperizinan.com/panduan/pajak</loc><lastmod>2026-05-21T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pusatperizinan.com/panduan/ppi-umroh</loc><lastmod>2026-01-17T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pusatperizinan.com/panduan/ppi-haji</loc><lastmod>2026-05-30T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pusatperizinan.com/panduan/iata</loc><lastmod>2026-02-18T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pusatperizinan.com/panduan/saudi-arabia</loc><lastmod>2025-11-12T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pusatperizinan.com/panduan/rkab-tambang</loc><lastmod>2026-02-12T00:00:00.000Z</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+</urlset>

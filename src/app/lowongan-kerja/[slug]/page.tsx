@@ -33,7 +33,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const job = getJobBySlug(slug);
-  if (!job) return {};
+  if (!job) {
+    // GSC-hardening: slug tidak dikenal TIDAK boleh mewarisi canonical
+    // homepage dari layout (pemicu "duplikat tanpa kanonis") — paksa noindex
+    // sebelum notFound() merender halaman 404.
+    return { robots: { index: false, follow: false } };
+  }
   const title = `${job.title} — ${job.city}`;
   const desc = `Lowongan khusus wanita: ${job.title} di ${job.city}. Gaji ${salaryText(job)}/bulan, ${job.employmentType === "FULL_TIME" ? "penuh waktu" : job.employmentType === "PART_TIME" ? "paruh waktu" : "kontrak"}. ${job.description[0].slice(0, 100)}… Lamar via WhatsApp, proses < 7 hari.`;
   return {

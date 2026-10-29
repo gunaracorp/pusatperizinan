@@ -34,6 +34,28 @@ const nextConfig: NextConfig = {
       fallback: [],
     };
   },
+  async redirects() {
+    return [
+      // ========================================================
+      // PULIHAN GSC "Tidak ditemukan (404)": 12 slug lowongan lama
+      // (dihapus saat rekrutmen di-restrukturisasi) masih dikunjungi
+      // Google dari sitemap versi lama. 301/308 ke hub lowongan agar
+      // sinyal lama menyatu, tidak terbuang sebagai 404.
+      // ========================================================
+      { source: "/lowongan-kerja/account-executive-pajak", destination: "/lowongan-kerja", permanent: true },
+      { source: "/lowongan-kerja/content-writer-seo", destination: "/lowongan-kerja", permanent: true },
+      { source: "/lowongan-kerja/coordinator-penempatan-pmi", destination: "/lowongan-kerja", permanent: true },
+      { source: "/lowongan-kerja/data-entry-oss-lkpm", destination: "/lowongan-kerja", permanent: true },
+      { source: "/lowongan-kerja/digital-marketing-specialist", destination: "/lowongan-kerja", permanent: true },
+      { source: "/lowongan-kerja/graphic-designer", destination: "/lowongan-kerja", permanent: true },
+      { source: "/lowongan-kerja/konsultan-junior-perizinan-umkm", destination: "/lowongan-kerja", permanent: true },
+      { source: "/lowongan-kerja/legal-officer", destination: "/lowongan-kerja", permanent: true },
+      { source: "/lowongan-kerja/marketing-consultant-perizinan", destination: "/lowongan-kerja", permanent: true },
+      { source: "/lowongan-kerja/staf-administrasi-legalitas", destination: "/lowongan-kerja", permanent: true },
+      { source: "/lowongan-kerja/telemarketing-inside-sales", destination: "/lowongan-kerja", permanent: true },
+      { source: "/lowongan-kerja/trainer-bahasa-jepang-lpk", destination: "/lowongan-kerja", permanent: true },
+    ];
+  },
   typescript: {
     ignoreBuildErrors: false,
   },

@@ -60,3 +60,13 @@ bun run dev          # atau: npm run dev (dev.sh sistem memakai npm)
 2. Isi kredensial kanal owner di `.env` (WA/Telegram/GA4/payment) untuk mengaktifkan mesin notifikasi & follow-up.
 3. Push ke GitHub: `git push origin main` (PAT owner dipakai sekali pakai, jangan disimpan).
 4. Jangan lupa commit checkpoint setelah tiap sesi kerja agar sinkronisasi cloud sandbox tidak menimpa progres.
+
+## 7. Audit GSC 2026-10-29 (coverage report)
+
+Temuan & tindakan terhadap laporan Coverage Google Search Console:
+- **404 (8)** = 12 slug lowongan lama dari riwayat git → DIPERBAIKI: 308 permanen ke `/lowongan-kerja` di `next.config.ts redirects`.
+- **Duplikat tanpa kanonis (1)** = penguatan: 4 jalur generateMetadata slug-tak-dikenal kini `noindex` (tidak mewarisi canonical homepage) — [slug], bandingkan/[slug], katalog/[kategori], lowongan-kerja/[slug].
+- **Discovered 661** ≈ seksi baru (seo-expansion 381 + glosarium 200+) menunggu crawl — normal; pantau 60 hari (aturan repo sendiri di seo-policy.ts).
+- **Redirect (7)** = varian trailing-slash 308 (Next default) + URL historis; seluruh 727 URL sitemap ter-crawl = 200.
+- **Alternate 70 / Crawled 28** = normal; kebijakan tier D/E noindex sudah aktif.
+- Skrip audit: `scripts/seo-audit-gsc.sh`, hasil di `download/seo-audit-gsc/`.
