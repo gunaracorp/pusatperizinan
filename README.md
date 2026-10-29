@@ -34,7 +34,7 @@
 [![ROADMAP 99](https://img.shields.io/badge/ROADMAP-99_PERFECT-7C3AED?style=for-the-badge&logo=github&logoColor=white)](./ROADMAP-99.md)
 [![Motion](https://img.shields.io/badge/Design-Motion_%2B_Reduced_Motion-059669?style=for-the-badge&logo=framer&logoColor=white)](#design-motion)
 
-[![Versi](https://img.shields.io/badge/Versi-aplikasi_1.18.0-059669?style=flat-square)](./src/lib/version.ts)
+[![Versi](https://img.shields.io/badge/Versi-aplikasi_1.19.0-059669?style=flat-square)](./src/lib/version.ts)
 [![Bahasa](https://img.shields.io/badge/Antarmuka-30_bahasa-0F766E?style=flat-square)](./src/lib/i18n/languages.ts)
 [![Model Data](https://img.shields.io/badge/Model_Data-14-7C3AED?style=flat-square)](./src/prisma/contract.prisma)
 [![CI](https://img.shields.io/badge/CI-GitHub_Actions-2563EB?style=flat-square&logo=githubactions&logoColor=white)](./.github/workflows/prisma8-migration.yml)
@@ -97,7 +97,7 @@
 
 ### Identitas teknis utama
 
-- **Versi aplikasi:** 1.18.0 ("Live Commerce Wanita" — lihat [CHANGELOG](./CHANGELOG.md)), didefinisikan di <code>src/lib/version.ts</code> dan <code>package.json</code>.
+- **Versi aplikasi:** 1.19.0 ("Footer God Mode" — lihat [CHANGELOG](./CHANGELOG.md)), didefinisikan di <code>src/lib/version.ts</code> dan <code>package.json</code>.
 - **Framework:** Next.js App Router dengan TypeScript.
 - **Output Node.js:** <code>output: "standalone"</code> untuk menjalankan <code>node .next/standalone/server.js</code>.
 - **Data aplikasi:** kode saat ini menggunakan Prisma ORM 8 Release Candidate dan adapter PostgreSQL. Konfigurasi database produksi, impor data lama, serta kredensial hosting harus diverifikasi terpisah; jangan mengasumsikan data produksi otomatis telah berpindah.
@@ -971,7 +971,7 @@ README ini menggunakan Bahasa Indonesia sebagai bahasa utama agar onboarding dan
 
 **PusatPerizinan.com** · [Situs](https://pusatperizinan.com) · [Repository](https://github.com/gunaracorp/pusatperizinan) · [🏆 ROADMAP 99](./ROADMAP-99.md) · [Kembali ke atas ↑](#top)
 
-[![Versi](https://img.shields.io/badge/Versi-1.18.0-059669?style=flat-square)](./CHANGELOG.md)
+[![Versi](https://img.shields.io/badge/Versi-1.19.0-059669?style=flat-square)](./CHANGELOG.md)
 [![ROADMAP](https://img.shields.io/badge/ROADMAP-99_PERFECT-7C3AED?style=flat-square)](./ROADMAP-99.md)
 
 </div>

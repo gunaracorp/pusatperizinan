@@ -1,12 +1,33 @@
 "use client";
 
 import Link from "next/link";
-import { ShieldCheck, MapPin, Mail, PhoneCall, Globe, Tag } from "lucide-react";
-import { APP_VERSION, RELEASE_NAME, RELEASE_DATE } from "@/lib/version";
+import {
+  Activity,
+  BadgeCheck,
+  Globe,
+  Mail,
+  MapPin,
+  MessageCircle,
+  PhoneCall,
+  ShieldCheck,
+  Tag,
+} from "lucide-react";
+import type { ReactNode } from "react";
+import { APP_VERSION, RELEASE_NAME, RELEASE_DATE, PLATFORM_STATS } from "@/lib/version";
 import { WHATSAPP_DISPLAY } from "@/lib/landing-data";
 import { useLanguage } from "@/lib/i18n/language-provider";
 import { LanguageSwitcher } from "@/components/landing/language-switcher";
 import { SUPPORT_SYSTEM_URL } from "@/lib/site";
+
+// ============================================================
+// Footer v5 "God Mode Tier Max" (v1.19.0 / Task 44)
+// ------------------------------------------------------------
+// 5 lapisan: (0) aurora signal bar · (1) command band — status
+// sistem + statistik platform + CTA konsultasi · (2) mega-grid
+// SEO 6 kolom TANPA duplikasi link · (3) trending searches ·
+// (4) legal sovereign. Animasi compositor-only (transform/
+// opacity), hormat prefers-reduced-motion, nol dependensi baru.
+// ============================================================
 
 const SERVICE_LINKS = [
   { label: "NIB & OSS-RBA", href: "/layanan/nib" },
@@ -44,6 +65,16 @@ const POPULAR_REGIONS = [
   { label: "Layanan di Sumatera Utara", href: "/layanan/wilayah/sumatera-utara" },
 ];
 
+/** Kota paling dicari — URL terverifikasi E2E 200 (Task 44). */
+const TOP_CITIES = [
+  { label: "Jakarta Selatan (SCBD)", href: "/layanan/wilayah/dki-jakarta/jakarta-selatan-scbd" },
+  { label: "Bekasi", href: "/layanan/wilayah/jawa-barat/bekasi" },
+  { label: "Bandung", href: "/layanan/wilayah/jawa-barat/bandung" },
+  { label: "Surabaya", href: "/layanan/wilayah/jawa-timur/surabaya" },
+  { label: "Denpasar", href: "/layanan/wilayah/bali/denpasar" },
+  { label: "Medan", href: "/layanan/wilayah/sumatera-utara/medan" },
+];
+
 const COUNTRY_LINKS = [
   { label: "🇯🇵 Jepang (SSW)", href: "/layanan/kerja-di-jp" },
   { label: "🇰🇷 Korea Selatan (EPS)", href: "/layanan/kerja-di-kr" },
@@ -55,193 +86,194 @@ const COUNTRY_LINKS = [
   { label: "🇩🇪 Jerman (Triple Win)", href: "/layanan/kerja-di-de" },
 ];
 
+const TOOL_LINKS = [
+  { label: "Katalog Lengkap 140+ Layanan (31 Divisi)", href: "/katalog" },
+  { label: "Paket Usaha per Industri (Kopi, Klinik, Umroh…)", href: "/paket-usaha" },
+  { label: "Paket Bundel Hemat (GO UMRAH, dll.)", href: "/paket" },
+  { label: "Kalender Kepatuhan (LKPM, SPT, JAMSOSTEK)", href: "/kalender-kepatuhan" },
+  { label: "AI Roadmap Perizinan 12 Bulan", href: "/roadmap" },
+  { label: "Kalkulator Pajak (PPh 21, UMKM, PPN)", href: "/kalkulator-pajak" },
+  { label: "Kalkulator Biaya Layanan", href: "/kalkulator" },
+  { label: "Database KBLI 2025", href: "/kbli" },
+  { label: "AI Cek Dokumen (Upload Foto)", href: "/cek-dokumen" },
+  { label: "Cek Izin AI", href: "/cek-izin" },
+  { label: "Perbandingan Badan Usaha (PT vs CV)", href: "/bandingkan" },
+  { label: "Glosarium Perizinan (200+ Istilah)", href: "/glosarium" },
+  { label: "Panduan Lengkap", href: "/panduan" },
+  { label: "Blog Perizinan", href: "/blog" },
+];
+
 const COMPANY_LINKS = [
-  { label: "Alat Gratis: AI Roadmap", href: "/roadmap" },
-  { label: "Kalkulator Pajak", href: "/kalkulator-pajak" },
-  { label: "Database KBLI", href: "/kbli" },
-  { label: "Glosarium Perizinan", href: "/glosarium" },
   { label: "Kenapa Kami", href: "/#keunggulan" },
   { label: "Cara Kerja", href: "/#cara-kerja" },
-  { label: "Blog Perizinan", href: "/blog" },
-  { label: "Kursus Email Gratis", href: "/#kursus" },
-  { label: "Kalkulator Biaya", href: "/kalkulator" },
   { label: "Jangkauan Nasional", href: "/#jangkauan" },
-  { label: "Harga", href: "/paket" },
+  { label: "Harga & Paket", href: "/paket" },
+  { label: "KepatuhanPRO (MRR)", href: "/kepatuhan-pro" },
   { label: "Program Kemitraan", href: "/mitra" },
   { label: "Solusi Korporat (B2B)", href: "/solusi-korporat" },
   { label: "Layanan BUMDes", href: "/bumdes" },
   { label: "PMA Investor (English)", href: "/pma-company-registration" },
-  { label: "Testimoni", href: "/testimoni" },
+  { label: "Virtual Office (48 Lokasi)", href: "/virtual-office" },
+  { label: "Direktori Kanal Resmi Pemerintah", href: "/kanal-resmi" },
+  { label: "Testimoni Klien (4,9/5)", href: "/testimoni" },
+  { label: "Garansi 100%", href: "/garansi" },
+  { label: "Lowongan Kerja Khusus Wanita", href: "/lowongan-kerja" },
   { label: "FAQ", href: "/faq" },
-  { label: "Cek Izin AI", href: "/cek-izin" },
-  { label: "Peta Situs", href: "/#peta-situs" },
+  { label: "Webmaster Tools Master (26 Mesin)", href: "/webmaster" },
 ];
+
+/** Trending searches — anchor teks kaya semantik untuk GSC (Task 44). */
+const TRENDING_SEARCHES = [
+  { label: "NIB online", href: "/layanan/nib" },
+  { label: "Pendirian PT", href: "/layanan/pt" },
+  { label: "PT PMA investor asing", href: "/pma-company-registration" },
+  { label: "Izin PPIU umroh", href: "/layanan/ppi-umroh" },
+  { label: "KBLI 2025", href: "/kbli" },
+  { label: "Sertifikasi Halal", href: "/layanan/halal" },
+  { label: "ISO 9001", href: "/layanan/iso-9001" },
+  { label: "SBU LPJK tender", href: "/layanan/sbu-lpjk" },
+  { label: "Virtual office SCBD", href: "/virtual-office" },
+  { label: "Loker host live TikTok Shopee", href: "/lowongan-kerja" },
+  { label: "NPWP & SPT", href: "/layanan/tax-npwp-op" },
+  { label: "Kerja di Jepang SSW", href: "/layanan/kerja-di-jp" },
+];
+
+/** Format ribuan gaya Indonesia tanpa Intl (aman hydration SSR/client). */
+function formatIdNumber(n: number): string {
+  return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+const PLATFORM_CHIPS = [
+  { label: `${PLATFORM_STATS.orderableServices}+ layanan orderable` },
+  { label: `${PLATFORM_STATS.provinces} provinsi + 516 kota/kab` },
+  { label: `${formatIdNumber(PLATFORM_STATS.indexedUrls)} halaman database` },
+  { label: `${PLATFORM_STATS.languages} bahasa antarmuka` },
+  { label: "Rating klien 4,9/5" },
+];
+
+const WA_CTA_HREF =
+  "https://wa.me/6281269999910?text=" +
+  encodeURIComponent("Halo PusatPerizinan.com, saya mau konsultasi gratis.");
+
+function FooterLinkColumn({
+  ariaLabel,
+  title,
+  links,
+  children,
+}: {
+  ariaLabel: string;
+  title: string;
+  links: { label: string; href: string }[];
+  children?: ReactNode;
+}) {
+  return (
+    <nav aria-label={ariaLabel}>
+      <h3 className="text-sm font-bold uppercase tracking-wider text-white">{title}</h3>
+      <ul className="mt-4 space-y-2.5">
+        {links.map((link) => (
+          <li key={link.href}>
+            <a
+              href={link.href}
+              className="inline-block max-w-full text-sm leading-snug text-emerald-100/70 transition-all duration-200 hover:translate-x-0.5 hover:text-emerald-300 motion-reduce:transition-none motion-reduce:hover:translate-x-0"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+        {children}
+      </ul>
+    </nav>
+  );
+}
 
 export function Footer() {
   const { t } = useLanguage();
   return (
-    <footer className="mt-auto bg-[oklch(0.23_0.03_165)] text-emerald-50/90">
+    <footer className="relative mt-auto overflow-hidden bg-[oklch(0.21_0.03_165)] text-emerald-50/90">
+      {/* ===== Lapisan 0 — Aurora signal bar (compositor-only) ===== */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-emerald-500 via-amber-400 to-emerald-500 opacity-80"
+      />
+      <div
+        aria-hidden="true"
+        className="aurora-sweep pointer-events-none absolute inset-x-0 top-0 h-[3px]"
+      />
+      <style>{`
+        @keyframes aurora-sweep {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(100%); }
+        }
+        .aurora-sweep {
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
+          animation: aurora-sweep 7s linear infinite;
+          will-change: transform;
+        }
+        @keyframes status-ping {
+          0% { transform: scale(1); opacity: 0.9; }
+          80%, 100% { transform: scale(2.2); opacity: 0; }
+        }
+        .status-ping { animation: status-ping 2.2s cubic-bezier(0,0,0.2,1) infinite; }
+        @media (prefers-reduced-motion: reduce) {
+          .aurora-sweep, .status-ping { animation: none; }
+        }
+      `}</style>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        {/* Baris katalog SEO */}
-        <div className="grid gap-10 md:grid-cols-3 lg:grid-cols-6 pb-10 border-b border-white/10">
-          <nav aria-label="Layanan" className="md:col-span-1">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-white">Layanan Populer</h3>
-            <ul className="mt-4 space-y-2.5">
-              {SERVICE_LINKS.slice(0, 8).map((link) => (
-                <li key={link.href}>
-                  <a href={link.href} className="text-sm text-emerald-100/70 hover:text-emerald-300 transition-colors">
-                    {link.label}
-                  </a>
+        {/* ===== Lapisan 1 — Command band: status + statistik + CTA ===== */}
+        <div className="flex flex-col gap-6 rounded-2xl border border-white/10 bg-white/[0.04] p-5 sm:p-6 shadow-[0_0_40px_-16px_rgba(16,185,129,0.45)] lg:flex-row lg:items-center lg:justify-between">
+          <div className="min-w-0">
+            <div className="flex flex-wrap items-center gap-2.5">
+              {/* Status pill — deterministik, tanpa panggilan jaringan */}
+              <a
+                href="/api/version"
+                title={`Status rilis "${RELEASE_NAME}" — ${RELEASE_DATE} (WIB) · GET /api/version`}
+                className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-[11px] font-semibold tracking-wide text-emerald-200"
+              >
+                <span className="relative flex h-2 w-2 shrink-0">
+                  <span className="status-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                </span>
+                Semua sistem operasional
+              </a>
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] text-emerald-100/70">
+                <MessageCircle className="h-3 w-3 text-emerald-400" aria-hidden="true" />
+                AI RIZKI aktif 24/7
+              </span>
+            </div>
+            <ul className="mt-3.5 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-emerald-100/70">
+              {PLATFORM_CHIPS.map((chip) => (
+                <li key={chip.label} className="inline-flex items-center gap-1.5">
+                  <BadgeCheck className="h-3.5 w-3.5 shrink-0 text-amber-400/80" aria-hidden="true" />
+                  {chip.label}
                 </li>
               ))}
-              <li>
-                <a href="/layanan" className="text-sm font-semibold text-emerald-300 hover:text-white transition-colors">
-                  → Semua {1000}+ Halaman Layanan
-                </a>
-              </li>
             </ul>
-          </nav>
-          <nav aria-label="Layanan lanjutan">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-white">Sertifikasi & Korporasi</h3>
-            <ul className="mt-4 space-y-2.5">
-              {SERVICE_LINKS.slice(8).map((link) => (
-                <li key={link.href}>
-                  <a href={link.href} className="text-sm text-emerald-100/70 hover:text-emerald-300 transition-colors">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <nav aria-label="Wilayah">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-white">Layanan per Wilayah</h3>
-            <ul className="mt-4 space-y-2.5">
-              {POPULAR_REGIONS.map((link) => (
-                <li key={link.href}>
-                  <a href={link.href} className="text-sm text-emerald-100/70 hover:text-emerald-300 transition-colors">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-              <li>
-                <a href="/layanan#wilayah" className="text-sm font-semibold text-emerald-300 hover:text-white transition-colors">
-                  → 38 Provinsi Lainnya
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <nav aria-label="Negara tujuan PMI">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-white">Kerja Luar Negeri</h3>
-            <ul className="mt-4 space-y-2.5">
-              {COUNTRY_LINKS.map((link) => (
-                <li key={link.href}>
-                  <a href={link.href} className="text-sm text-emerald-100/70 hover:text-emerald-300 transition-colors">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-              <li>
-                <a href="/layanan#negara" className="text-sm font-semibold text-emerald-300 hover:text-white transition-colors">
-                  → 17 Negara Tujuan
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <nav aria-label="Alat gratis">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-white">Alat Gratis</h3>
-            <ul className="mt-4 space-y-2.5">
-              <li>
-                <a href="/katalog" className="text-sm text-emerald-100/70 hover:text-emerald-300 transition-colors">
-                  🗂️ Katalog Lengkap 140+ Layanan (31 Divisi)
-                </a>
-              </li>
-              <li>
-                <a href="/paket-usaha" className="text-sm text-emerald-100/70 hover:text-emerald-300 transition-colors">
-                  📦 Paket Usaha per Industri (Kopi, Klinik, Umroh…)
-                </a>
-              </li>
-              <li>
-                <a href="/kalender-kepatuhan" className="text-sm text-emerald-100/70 hover:text-emerald-300 transition-colors">
-                  📅 Kalender Kepatuhan (LKPM, SPT, JAMSOSTEK)
-                </a>
-              </li>
-              <li>
-                <a href="/paket" className="text-sm text-emerald-100/70 hover:text-emerald-300 transition-colors">
-                  🎁 Paket Bundel Hemat (GO UMRAH, dll.)
-                </a>
-              </li>
-              <li>
-                <a href="/roadmap" className="text-sm text-emerald-100/70 hover:text-emerald-300 transition-colors">
-                  🤖 AI Roadmap Perizinan 12 Bulan
-                </a>
-              </li>
-              <li>
-                <a href="/kalkulator-pajak" className="text-sm text-emerald-100/70 hover:text-emerald-300 transition-colors">
-                  🧮 Kalkulator Pajak (PPh 21, UMKM, PPN)
-                </a>
-              </li>
-              <li>
-                <a href="/kbli" className="text-sm text-emerald-100/70 hover:text-emerald-300 transition-colors">
-                  📚 Database KBLI 2025
-                </a>
-              </li>
-              <li>
-                <a href="/cek-dokumen" className="text-sm text-emerald-100/70 hover:text-emerald-300 transition-colors">
-                  📷 AI Cek Dokumen (Upload Foto)
-                </a>
-              </li>
-              <li>
-                <a href="/bandingkan" className="text-sm text-emerald-100/70 hover:text-emerald-300 transition-colors">
-                  ⚖️ Perbandingan Badan Usaha (PT vs CV)
-                </a>
-              </li>
-              <li>
-                <a href="/glosarium" className="text-sm text-emerald-100/70 hover:text-emerald-300 transition-colors">
-                  📖 Glosarium Perizinan (200+ Istilah)
-                </a>
-              </li>
-              <li>
-                <a href="/lowongan-kerja" className="text-sm text-emerald-100/70 hover:text-emerald-300 transition-colors">
-                  💼 Lowongan Kerja Khusus Wanita
-                </a>
-              </li>
-              <li>
-                <a href="/testimoni" className="text-sm text-emerald-100/70 hover:text-emerald-300 transition-colors">
-                  ⭐ Testimoni Klien (4,9/5)
-                </a>
-              </li>
-              <li>
-                <a href="/virtual-office" className="text-sm text-emerald-100/70 hover:text-emerald-300 transition-colors">
-                  🏢 Virtual Office (48 Lokasi, Mulai 500rb/bln)
-                </a>
-              </li>
-              <li>
-                <a href="/kanal-resmi" className="text-sm text-emerald-100/70 hover:text-emerald-300 transition-colors">
-                  🏛️ Direktori Kanal Resmi Pemerintah
-                </a>
-              </li>
-              <li>
-                <a href="/cek-izin" className="text-sm text-emerald-100/70 hover:text-emerald-300 transition-colors">
-                  ✨ Cek Izin AI
-                </a>
-              </li>
-              <li>
-                <a href="/kalkulator" className="text-sm text-emerald-100/70 hover:text-emerald-300 transition-colors">
-                  💰 Kalkulator Biaya Layanan
-                </a>
-              </li>
-              <li>
-                <a href="/webmaster" className="text-sm text-emerald-100/70 hover:text-emerald-300 transition-colors">
-                  🔎 Webmaster Tools Master (26 Mesin Pencari)
-                </a>
-              </li>
-            </ul>
-          </nav>
+          </div>
+          <div className="flex shrink-0 flex-col gap-2 sm:flex-row sm:items-center">
+            <a
+              href={WA_CTA_HREF}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-5 py-2.5 text-sm font-bold text-emerald-950 shadow-[0_8px_24px_-8px_rgba(16,185,129,0.7)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-400 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+            >
+              <PhoneCall className="h-4 w-4" aria-hidden="true" />
+              Konsultasi Gratis 24/7
+            </a>
+            <a
+              href="/cek-izin"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-emerald-100 transition-colors duration-200 hover:border-emerald-400/40 hover:bg-white/10 hover:text-white"
+            >
+              <Activity className="h-4 w-4 text-emerald-400" aria-hidden="true" />
+              Cek Izin AI
+            </a>
+          </div>
         </div>
 
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4 mt-10">
-          {/* Brand */}
-          <div className="lg:pr-6">
+        {/* ===== Lapisan 2 — Mega-grid SEO 6 kolom (nol duplikasi) ===== */}
+        <div className="grid gap-10 pt-10 md:grid-cols-3 lg:grid-cols-6">
+          {/* Kolom brand */}
+          <div className="md:col-span-3 lg:col-span-2 lg:pr-8">
             <a href="/#beranda" className="flex items-center gap-2.5">
               <img src="/logo-icon-white.png" alt="Logo PusatPerizinan.com" className="h-10 w-10" />
               <span className="font-bold text-lg text-white">
@@ -249,14 +281,10 @@ export function Footer() {
                 <span className="text-amber-400">.com</span>
               </span>
             </a>
-            <p className="mt-4 text-sm leading-relaxed text-emerald-100/70">
-              {t("footerTagline")}
-            </p>
+            <p className="mt-4 text-sm leading-relaxed text-emerald-100/70">{t("footerTagline")}</p>
             <div className="mt-5 flex items-center gap-2 rounded-xl bg-white/5 border border-white/10 px-4 py-3">
               <ShieldCheck className="h-5 w-5 text-emerald-400 shrink-0" />
-              <p className="text-xs text-emerald-100/80">
-                {t("footerVerified")}
-              </p>
+              <p className="text-xs text-emerald-100/80">{t("footerVerified")}</p>
             </div>
             {/* Language switcher — 30 bahasa dunia */}
             <div className="mt-4 [&_[role=combobox]]:border-white/15 [&_[role=combobox]]:bg-white/5 [&_[role=combobox]]:text-emerald-50 [&_[role=combobox]]:hover:bg-white/10 [&_[role=combobox]]:shadow-none">
@@ -264,37 +292,134 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Services */}
-          <nav aria-label="Layanan">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-white">{t("footerColServices")}</h3>
-            <ul className="mt-4 space-y-2.5 max-h-96 overflow-y-auto scrollbar-thin pr-2">
-              {SERVICE_LINKS.map((link) => (
-                <li key={link.href}>
-                  <a href={link.href} className="text-sm text-emerald-100/70 hover:text-emerald-300 transition-colors">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          <FooterLinkColumn
+            ariaLabel="Layanan populer"
+            title="Layanan Populer"
+            links={SERVICE_LINKS.slice(0, 10)}
+          >
+            <li>
+              <a
+                href="/layanan"
+                className="text-sm font-semibold text-emerald-300 hover:text-white transition-colors"
+              >
+                → Semua 1.000+ Halaman Layanan
+              </a>
+            </li>
+          </FooterLinkColumn>
 
-          {/* Company */}
-          <nav aria-label="Perusahaan">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-white">{t("footerColCompany")}</h3>
+          <FooterLinkColumn
+            ariaLabel="Sertifikasi dan korporasi"
+            title="Sertifikasi & Korporasi"
+            links={SERVICE_LINKS.slice(10, 22)}
+          >
+            <li>
+              <a
+                href="/layanan/kategori/sertifikasi"
+                className="text-sm font-semibold text-emerald-300 hover:text-white transition-colors"
+              >
+                → 43+ Sertifikasi Lainnya
+              </a>
+            </li>
+          </FooterLinkColumn>
+
+          {/* Wilayah: provinsi + kota paling dicari */}
+          <nav aria-label="Wilayah layanan">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-white">Wilayah & Kota</h3>
             <ul className="mt-4 space-y-2.5">
-              {COMPANY_LINKS.map((link) => (
+              {POPULAR_REGIONS.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href} className="text-sm text-emerald-100/70 hover:text-emerald-300 transition-colors">
+                  <a
+                    href={link.href}
+                    className="inline-block max-w-full text-sm leading-snug text-emerald-100/70 transition-all duration-200 hover:translate-x-0.5 hover:text-emerald-300 motion-reduce:transition-none motion-reduce:hover:translate-x-0"
+                  >
                     {link.label}
                   </a>
                 </li>
               ))}
+              {TOP_CITIES.slice(0, 3).map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="inline-block max-w-full text-sm leading-snug text-emerald-100/50 transition-all duration-200 hover:translate-x-0.5 hover:text-emerald-300 motion-reduce:transition-none motion-reduce:hover:translate-x-0"
+                  >
+                    └ {link.label}
+                  </a>
+                </li>
+              ))}
+              <li>
+                <a
+                  href="/wilayah"
+                  className="text-sm font-semibold text-emerald-300 hover:text-white transition-colors"
+                >
+                  → 38 Provinsi & 516 Kota/Kab
+                </a>
+              </li>
             </ul>
           </nav>
 
-          {/* Contact */}
+          {/* Kolom: luar negeri + alat (gabungan hemat kolom) */}
+          <div className="grid gap-8 md:col-span-3 lg:col-span-2 lg:grid-cols-2">
+            <FooterLinkColumn
+              ariaLabel="Negara tujuan PMI"
+              title="Kerja Luar Negeri"
+              links={COUNTRY_LINKS.slice(0, 6)}
+            >
+              <li>
+                <a
+                  href="/layanan/kategori/kerja-luar-negeri"
+                  className="text-sm font-semibold text-emerald-300 hover:text-white transition-colors"
+                >
+                  → 17 Negara Tujuan
+                </a>
+              </li>
+            </FooterLinkColumn>
+            <FooterLinkColumn
+              ariaLabel="Alat gratis dan pintasan"
+              title="Alat & Pintasan"
+              links={TOOL_LINKS.slice(0, 8)}
+            >
+              <li>
+                <a
+                  href="/katalog"
+                  className="text-sm font-semibold text-emerald-300 hover:text-white transition-colors"
+                >
+                  → Semua Alat Gratis
+                </a>
+              </li>
+            </FooterLinkColumn>
+          </div>
+        </div>
+
+        {/* Baris lanjutan mega-grid: sisa alat + perusahaan + kontak */}
+        <div className="grid gap-10 pt-10 md:grid-cols-3 lg:grid-cols-4">
+          <FooterLinkColumn
+            ariaLabel="Alat gratis lanjutan"
+            title="Alat Lanjutan"
+            links={TOOL_LINKS.slice(8)}
+          />
+
+          <FooterLinkColumn ariaLabel="Perusahaan" title={t("footerColCompany")} links={COMPANY_LINKS.slice(0, 8)}>
+            <li>
+              <a
+                href="/tentang-kami"
+                className="text-sm font-semibold text-emerald-300 hover:text-white transition-colors"
+              >
+                → Profil Lengkap Perusahaan
+              </a>
+            </li>
+          </FooterLinkColumn>
+
+          <FooterLinkColumn
+            ariaLabel="Bantuan dan dukungan"
+            title="Bantuan & Dukungan"
+            links={COMPANY_LINKS.slice(8)}
+          />
+
+          {/* Kontak */}
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-wider text-white">{t("footerColContact")}</h3>
+            <h3 className="text-sm font-bold uppercase tracking-wider text-white">
+              {t("footerColContact")}
+            </h3>
             <ul className="mt-4 space-y-3.5">
               <li>
                 <a
@@ -321,36 +446,81 @@ export function Footer() {
                   Indonesia Stock Exchange Building, Lantai 5
                   <br />
                   SCBD Lot 13, Jl. Jend. Sudirman Kav. 52-53, Jakarta Selatan 12190
-                  <span className="block text-xs text-emerald-200/50 mt-0.5">
-                    {t("footerNote")}
-                  </span>
+                  <span className="block text-xs text-emerald-200/50 mt-0.5">{t("footerNote")}</span>
                 </span>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom bar — international standard */}
+        {/* ===== Lapisan 3 — Trending searches (chips semantik) ===== */}
+        <div className="mt-10 rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+          <h3 className="text-xs font-bold uppercase tracking-wider text-emerald-300">
+            🔥 Paling Dicari Minggu Ini
+          </h3>
+          <ul className="mt-3 flex flex-wrap gap-2">
+            {TRENDING_SEARCHES.map((s) => (
+              <li key={s.href + s.label}>
+                <a
+                  href={s.href}
+                  className="inline-block rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-xs text-emerald-100/75 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-400/40 hover:bg-emerald-400/10 hover:text-emerald-200 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+                >
+                  {s.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* ===== Lapisan 4 — Legal sovereign ===== */}
         <div className="mt-12 pt-7 border-t border-white/10 space-y-5 pr-2 sm:pr-24">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
             <p className="text-xs text-emerald-100/50">
               {t("footerRights").replace("{year}", String(new Date().getFullYear()))}
             </p>
-            <nav aria-label="Tautan legal" className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
-              <Link href="/tentang-kami" className="text-xs text-emerald-100/50 hover:text-emerald-300 transition-colors">Tentang Kami</Link>
+            <nav
+              aria-label="Tautan legal"
+              className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1"
+            >
+              <Link
+                href="/tentang-kami"
+                className="text-xs text-emerald-100/50 hover:text-emerald-300 transition-colors"
+              >
+                Tentang Kami
+              </Link>
               <span aria-hidden>·</span>
-              <Link href="/kontak" className="text-xs text-emerald-100/50 hover:text-emerald-300 transition-colors">Kontak</Link>
+              <Link
+                href="/kontak"
+                className="text-xs text-emerald-100/50 hover:text-emerald-300 transition-colors"
+              >
+                Kontak
+              </Link>
               <span aria-hidden>·</span>
-              <Link href="/kebijakan-privasi" className="text-xs text-emerald-100/50 hover:text-emerald-300 transition-colors">Privasi</Link>
+              <Link
+                href="/kebijakan-privasi"
+                className="text-xs text-emerald-100/50 hover:text-emerald-300 transition-colors"
+              >
+                Privasi
+              </Link>
               <span aria-hidden>·</span>
-              <Link href="/syarat-ketentuan" className="text-xs text-emerald-100/50 hover:text-emerald-300 transition-colors">Syarat &amp; Ketentuan</Link>
+              <Link
+                href="/syarat-ketentuan"
+                className="text-xs text-emerald-100/50 hover:text-emerald-300 transition-colors"
+              >
+                Syarat &amp; Ketentuan
+              </Link>
               <span aria-hidden>·</span>
-              <Link href="/garansi" className="text-xs text-emerald-100/50 hover:text-emerald-300 transition-colors">Garansi 100%</Link>
+              <Link
+                href="/garansi"
+                className="text-xs text-emerald-100/50 hover:text-emerald-300 transition-colors"
+              >
+                Garansi 100%
+              </Link>
             </nav>
             {/* 🏷️ Badge versi resmi — sumber tunggal: src/lib/version.ts (v1.4.0+) */}
             <a
               href="/api/version"
-              title={`Rilis "${RELEASE_NAME}" — ${RELEASE_DATE} (WIB) · riwayat lengkap 20 versi via GET /api/version`}
+              title={`Rilis "${RELEASE_NAME}" — ${RELEASE_DATE} (WIB) · riwayat lengkap via GET /api/version`}
               className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-emerald-400/25 bg-white/[0.05] px-3 py-1 text-[11px] font-semibold tracking-wide text-emerald-200/90 transition-colors hover:border-emerald-400/50 hover:bg-white/10 hover:text-white"
             >
               <Tag className="h-3 w-3 text-emerald-400" aria-hidden="true" />

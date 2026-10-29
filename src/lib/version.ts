@@ -17,9 +17,9 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.18.0";
+export const APP_VERSION = "1.19.0";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Live Commerce Wanita";
+export const RELEASE_NAME = "Footer God Mode";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
 export const RELEASE_DATE = "2026-10-29";
 /** Channel rilis: stable | beta | alpha. */
@@ -46,6 +46,18 @@ export interface ReleaseEntry {
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.19.0",
+    date: "2026-10-29",
+    type: "minor",
+    name: "Footer God Mode",
+    taskId: "45",
+    highlights: [
+      "Footer v5 'God Mode Tier Max' — 5 lapisan baru di 11.873 halaman: aurora signal bar (animasi compositor-only, hormat prefers-reduced-motion), command band (pill status 'Semua sistem operasional' + chip AI RIZKI 24/7 + 5 statistik platform + CTA WA 'Konsultasi Gratis' & Cek Izin AI), mega-grid SEO 6 kolom TANPA duplikasi link (duplikasi SERVICE_LINKS era lama dihapus), trending searches 12 chip semantik, legal sovereign",
+      "SEO internal-linking baru: kolom Wilayah & Kota kini membawa 3 hub kota teratas (Jakarta Selatan SCBD, Bekasi, Bandung — URL terverifikasi E2E 200) + hub /wilayah 516 kota; chip 'Loker host live TikTok Shopee' menyambung v1.18.0 dengan pencarian nyata GSC",
+      "Refactor arsitektur: subkomponen FooterLinkColumn (aria-label per nav), format ribuan tanpa Intl (anti hydration mismatch), nol dependensi baru — tsc/eslint nol temuan",
+    ],
+  },
   {
     version: "1.18.0",
     date: "2026-10-29",

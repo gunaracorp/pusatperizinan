@@ -5,19 +5,19 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.18.0_Live_Commerce_Wanita-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-18-0)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.19.0_Footer_God_Mode-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-19-0)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-42_(0.1.0_%E2%86%92_1.18.0)-059669?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-43_(0.1.0_%E2%86%92_1.19.0)-059669?style=flat-square)
 ![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-50_ber_versi-059669?style=flat-square)
-![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.19.0_(Unreleased)-f59e0b?style=flat-square)
+![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.20.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.18.0 — "Live Commerce Wanita"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.19.0 — "Footer God Mode"`**
 
 <sub>Versi terlihat hidup di: footer setiap halaman (11.873 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
@@ -37,9 +37,36 @@
 | Sumber kebenaran | [`WORKLOG.md`](./WORKLOG.md) (rekam jejak 1:1) · `src/lib/version.ts` (data mesin) · `package.json` (runtime) |
 | Ritme | **1 task/permintaan user = 1 nomor versi baru** — fitur → `MINOR`, perbaikan → `PATCH`, perombakan arah produk → `MAJOR` |
 | Presisi tanggal | Era `0.x` (Sesi 1–2) direkonstruksi dari metadata file & jejak invoice (`INV-20261021`) → presisi bulan; era `1.x` → presisi hari (terverifikasi) |
-| Rilis berikutnya | **`v1.19.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
+| Rilis berikutnya | **`v1.20.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
 
-> 🔗 Navigasi cepat: **[Tabel Lengkap 42 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+> 🔗 Navigasi cepat: **[Tabel Lengkap 43 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+
+---
+
+<a id="v1-19-0"></a>
+
+## [1.19.0] — 2026-10-29 — 🏛️ "Footer God Mode" (Task 45)
+
+Upgrade footer ke **v5 "God Mode Tier Max"** (perintah owner: *"tolong upgrade footer ke v.5 god mode tier max"*) — footer 11.873 halaman kini berlapis 5: sinyal aurora, command band, mega-grid SEO, trending searches, legal sovereign. Ditulis oleh mode 46 dewan pakar (design · SEO · perf · a11y · legal).
+
+### 🛍️ Added
+- **Lapisan 0 — Aurora signal bar**: garis gradien emerald→amber + sapuan cahaya `aurora-sweep` (animasi compositor-only `transform`, hormat `prefers-reduced-motion`) di tepi atas footer sitewide.
+- **Lapisan 1 — Command band**: pill status deterministik **"Semua sistem operasional"** (titik ping emerald, taut ke `GET /api/version`), chip **"AI RIZKI aktif 24/7"**, 5 statistik platform dari `PLATFORM_STATS` (1.500+ layanan orderable · 38 provinsi + 516 kota/kab · 11.873 halaman database · 30 bahasa · rating 4,9/5), plus CTA konversi ganda: tombol **"Konsultasi Gratis 24/7"** (wa.me prefill) & **"Cek Izin AI"**.
+- **Lapisan 3 — Trending searches**: 12 chip pencarian semantik ("NIB online", "PT PMA investor asing", **"Loker host live TikTok Shopee"** — menyambung v1.18.0 dengan kueri GSC nyata) — anchor teks kaya variasi untuk mesin pencari.
+- Kolom **Wilayah & Kota** baru: 6 provinsi + 3 hub kota teratas (Jakarta Selatan SCBD, Bekasi, Bandung — semua URL terverifikasi E2E 200) + pintu `/wilayah` (516 kota/kab).
+- Kolom **Bantuan & Dukungan** + **Alat Lanjutan** — cakupan 16 tautan perusahaan tanpa kolom duplikat.
+
+### 🔧 Changed
+- **Duplikasi link era lama DIHAPUS**: `SERVICE_LINKS` (24 tautan) sebelumnya dirender 2× (baris katalog + kolom scrollable) — kini sekali di mega-grid 6 kolom dengan subkomponen `FooterLinkColumn` (aria-label per nav, hover micro-interaction `translate-x` compositor-only).
+- Format angka ribuan pakai regex murni (`formatIdNumber`) tanpa `Intl` — anti hydration mismatch SSR/client.
+- **`src/lib/version.ts`**: APP_VERSION **1.19.0** ("Footer God Mode"), RELEASES 42 → 43 entri (taskId 45).
+- **`package.json`** & **`scripts/ver.json`**: versi 1.19.0; ver.json disegarkan 1:1 dari `GET /api/version` hidup.
+- **`CHANGELOG.md` / `WORKLOG.md` / `README.md`**: badge + ladder + entri Task 45 tersinkron.
+
+### 🧪 QA
+- `tsc --noEmit` & `eslint`: nol temuan pada `footer.tsx`
+- Render HTML beranda: seluruh penanda v5 terverifikasi (aurora-sweep, status pill, command band, trending chips, statistik)
+- 12 URL target footer dicek langsung ke server — semua 200 (termasuk alias `jakarta-selatan-scbd`)
 
 ---
 
@@ -708,11 +735,12 @@ Rilis pertama dengan **identitas versi resmi**. Seluruh proyek kini punya nomor 
 
 <a id="ladder"></a>
 
-## 🪜 Tabel Lengkap 42 Rilis
+## 🪜 Tabel Lengkap 43 Rilis
 
 | # | Versi | Tanggal (WIB) | Tipe | Nama Rilis | Task WORKLOG | Status |
 |---|---|---|---|---|---|---|
-| 42 | **v1.18.0** ⭐ | **2026-10-29** | minor | **Live Commerce Wanita** | Task 44 | **🟢 AKTIF — versi berjalan** |
+| 43 | **v1.19.0** ⭐ | **2026-10-29** | minor | **Footer God Mode** | Task 45 | **🟢 AKTIF — versi berjalan** |
+| 42 | v1.18.0 | 2026-10-29 | minor | Live Commerce Wanita | Task 44 | ✅ Rilis |
 | 41 | v1.17.1 | 2026-10-28 | patch | Dokumen Terkini | Task 42 | ✅ Rilis |
 | 40 | v1.17.0 | 2026-10-28 | minor | Loker UMR Remote | Task 41 | ✅ Rilis |
 | 39 | v1.16.0 | 2026-10-28 | minor | Rekrutmen Khusus Wanita | Task 40 | ✅ Rilis |
