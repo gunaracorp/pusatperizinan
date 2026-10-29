@@ -76,3 +76,7 @@ server.log
 /package-lock.json
 /backups/
 /tool-results/
+
+# embedded postgres data (sandbox)
+.pgdata
+postgres.log
