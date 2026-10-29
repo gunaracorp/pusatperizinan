@@ -5,21 +5,21 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.17.1_Dokumen_Terkini-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-17-1)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.18.0_Live_Commerce_Wanita-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-18-0)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-41_(0.1.0_%E2%86%92_1.17.1)-059669?style=flat-square)
-![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-49_ber_versi-059669?style=flat-square)
-![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.18.0_(Unreleased)-f59e0b?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-42_(0.1.0_%E2%86%92_1.18.0)-059669?style=flat-square)
+![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-50_ber_versi-059669?style=flat-square)
+![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.19.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.17.1 — "Dokumen Terkini"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.18.0 — "Live Commerce Wanita"`**
 
-<sub>Versi terlihat hidup di: footer setiap halaman (11.872 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
+<sub>Versi terlihat hidup di: footer setiap halaman (11.873 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=0:059669,100:f59e0b&height=3&section=footer" width="100%" alt=""/>
 
@@ -37,9 +37,32 @@
 | Sumber kebenaran | [`WORKLOG.md`](./WORKLOG.md) (rekam jejak 1:1) · `src/lib/version.ts` (data mesin) · `package.json` (runtime) |
 | Ritme | **1 task/permintaan user = 1 nomor versi baru** — fitur → `MINOR`, perbaikan → `PATCH`, perombakan arah produk → `MAJOR` |
 | Presisi tanggal | Era `0.x` (Sesi 1–2) direkonstruksi dari metadata file & jejak invoice (`INV-20261021`) → presisi bulan; era `1.x` → presisi hari (terverifikasi) |
-| Rilis berikutnya | **`v1.18.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
+| Rilis berikutnya | **`v1.19.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
 
-> 🔗 Navigasi cepat: **[Tabel Lengkap 41 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+> 🔗 Navigasi cepat: **[Tabel Lengkap 42 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+
+---
+
+<a id="v1-18-0"></a>
+
+## [1.18.0] — 2026-10-29 — 🎥 "Live Commerce Wanita" (Task 44)
+
+Posisi lowongan baru untuk yang siap live di TikTok, Shopee, Facebook & Instagram — khusus wanita, remote penuh (perintah owner: *"tambahkan layanan lowongan untuk yang siap live di tiktok, shopee, fb dan ig khusus untuk wanita"*).
+
+### 🛍️ Added
+- **Posisi baru: Host Live Streaming (TikTok, Shopee, Facebook & Instagram) — Khusus Wanita (Remote)** di `src/lib/jobs-data.ts` (`job-live-streaming`, slug `host-live-streaming-wanita`, prioritas/featured): memandu sesi live rutin di 4 platform, mempresentasikan layanan perizinan & pajak dengan bahasa sederhana, mengubah penonton menjadi lead WhatsApp resmi; syarat HP + ring light + internet stabil — live dari rumah; gaji awal UMR (acuan UMP DKI Jakarta 2026 Rp5.729.876) + bonus dari target penjualan live; jenjang karier Host Live → Senior Host → Live Streaming Supervisor → Live Commerce Manager; detail lowongan menghasilkan JSON-LD `JobPosting` siap Google Jobs.
+- Halaman `/lowongan-kerja`: judul meta kini **dinamis mengikuti `JOBS.length`** (anti-basi saat posisi bertambah), hero + openGraph + meta description menyebut host live streaming, keywords baru ("lowongan host live streaming wanita", "loker live tiktok shopee wanita"). Lowongan aktif 7 → **8**.
+
+### 🔧 Changed
+- **`src/lib/version.ts`**: APP_VERSION **1.18.0** ("Live Commerce Wanita"), RELEASES 41 → 42 entri, PLATFORM_STATS.indexedUrls **11.872 → 11.873** (+1 URL detail lowongan).
+- **`package.json`** & **`scripts/ver.json`**: versi 1.18.0; ver.json nextRelease v1.19.0, releases total 42, history +1 entri.
+- **README.md**: 3 identitas versi → 1.18.0; 3 baris karier & rekrutmen kini 8 posisi + host live streaming.
+- **WORKLOG.md**: entri Task 44 — sekaligus merekam jejak **mesin auto-ping SEO** yang ter-commit tepat sebelum rilis ini (cron IndexNow harian + rotasi 12 URL GSC + endpoint `/api/cron/seo-ping` + hook on-publish + fix bug `publishedAt` era adapter Prisma 7/8).
+
+### 🧪 QA
+- `tsc --noEmit`: nol error pada file lowongan/versi
+- `/lowongan-kerja` 200 → badge "8 Posisi Aktif"; detail `/lowongan-kerja/host-live-streaming-wanita` 200 + JSON-LD JobPosting; sitemap `jobs.xml` 7 → 8 URL
+- Mesin auto-ping mendeteksi URL baru via diff snapshot → IndexNow ter-ping otomatis
 
 ---
 
@@ -685,11 +708,12 @@ Rilis pertama dengan **identitas versi resmi**. Seluruh proyek kini punya nomor 
 
 <a id="ladder"></a>
 
-## 🪜 Tabel Lengkap 41 Rilis
+## 🪜 Tabel Lengkap 42 Rilis
 
 | # | Versi | Tanggal (WIB) | Tipe | Nama Rilis | Task WORKLOG | Status |
 |---|---|---|---|---|---|---|
-| 41 | **v1.17.1** ⭐ | **2026-10-28** | patch | **Dokumen Terkini** | Task 42 | **🟢 AKTIF — versi berjalan** |
+| 42 | **v1.18.0** ⭐ | **2026-10-29** | minor | **Live Commerce Wanita** | Task 44 | **🟢 AKTIF — versi berjalan** |
+| 41 | v1.17.1 | 2026-10-28 | patch | Dokumen Terkini | Task 42 | ✅ Rilis |
 | 40 | v1.17.0 | 2026-10-28 | minor | Loker UMR Remote | Task 41 | ✅ Rilis |
 | 39 | v1.16.0 | 2026-10-28 | minor | Rekrutmen Khusus Wanita | Task 40 | ✅ Rilis |
 | 38 | v1.15.0 | **2026-10-28** | minor | Mesin Kepercayaan | Task 39 | ✅ Rilis |

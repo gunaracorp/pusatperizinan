@@ -1,8 +1,8 @@
 {
  "date": "2026-10-29",
  "base": "http://localhost:3000",
- "generatedAt": "2026-10-29T10:43:40.022Z",
- "totalSitemapUrls": 11872,
+ "generatedAt": "2026-10-29T11:08:02.940Z",
+ "totalSitemapUrls": 11873,
  "sections": {
   "static": 36,
   "blog": 13,
@@ -11,7 +11,7 @@
   "layanan": 8873,
   "kbli": 148,
   "hubs": 559,
-  "jobs": 7,
+  "jobs": 8,
   "bandingkan": 78,
   "glosarium": 214,
   "katalog": 31,
@@ -20,15 +20,15 @@
   "layanan-pp3": 500,
   "seo-expansion": 389
  },
- "newSinceSnapshot": 0,
+ "newSinceSnapshot": 1,
  "indexnow": {
   "submitted": 0,
-  "httpStatus": 0,
-  "error": null,
+  "httpStatus": 403,
+  "error": "HTTP 403 pada batch 1/1",
   "skippedPingCount": 0
  },
  "rotation": {
-  "poolSize": 1101,
+  "poolSize": 1102,
   "cursorStart": 0,
   "cursorEnd": 0,
   "size": 12
@@ -57,7 +57,7 @@
   "  seksi layanan: 8873 URL",
   "  seksi kbli: 148 URL",
   "  seksi hubs: 559 URL",
-  "  seksi jobs: 7 URL",
+  "  seksi jobs: 8 URL",
   "  seksi bandingkan: 78 URL",
   "  seksi glosarium: 214 URL",
   "  seksi katalog: 31 URL",
@@ -65,6 +65,6 @@
   "  seksi layanan-pp: 500 URL",
   "  seksi layanan-pp3: 500 URL",
   "  seksi seo-expansion: 389 URL",
-  "  IndexNow: tidak ada URL baru sejak snapshot terakhir"
+  "  IndexNow: 0/1 URL baru dikirim (HTTP 403) — HTTP 403 pada batch 1/1"
  ]
 }

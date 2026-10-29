@@ -17,11 +17,11 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.17.1";
+export const APP_VERSION = "1.18.0";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Dokumen Terkini";
+export const RELEASE_NAME = "Live Commerce Wanita";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
-export const RELEASE_DATE = "2026-10-28";
+export const RELEASE_DATE = "2026-10-29";
 /** Channel rilis: stable | beta | alpha. */
 export const RELEASE_CHANNEL = "stable" as const;
 
@@ -46,6 +46,18 @@ export interface ReleaseEntry {
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.18.0",
+    date: "2026-10-29",
+    type: "minor",
+    name: "Live Commerce Wanita",
+    taskId: "43",
+    highlights: [
+      "Posisi baru Host Live Streaming (TikTok, Shopee, Facebook & Instagram) — khusus wanita, remote penuh (live dari rumah dengan set HP + ring light), mempresentasikan layanan perizinan & pajak dan mengubah penonton menjadi lead WhatsApp",
+      "Halaman /lowongan-kerja kini 8 posisi aktif: judul meta dinamis mengikuti JOBS.length, hero + openGraph + keywords menyebut host live streaming (live selling, loker live tiktok shopee)",
+      "PLATFORM_STATS.indexedUrls 11.872 → 11.873 (+1 URL detail lowongan); URL baru & perubahan terdeteksi mesin auto-ping — IndexNow ter-ping otomatis + masuk rotasi GSC",
+    ],
+  },
   {
     version: "1.17.1",
     date: "2026-10-28",
@@ -506,8 +518,8 @@ export const CURRENT_RELEASE: ReleaseEntry = RELEASES[0];
 
 /** Statistik platform yang dikirim /api/version — singkron dengan site.ts. */
 export const PLATFORM_STATS = {
-  // Sinkron Task 42: lowongan aktif 12 → 7 (−5 URL) dari hitungan v1.15.0 (11.877).
-  indexedUrls: 11872,
+  // Sinkron Task 43: lowongan aktif 7 → 8 (+1 URL) dari hitungan v1.17.1 (11.872).
+  indexedUrls: 11873,
   sitemapSections: 15,
   orderableServices: 1500,
   subscriptionSkus: 6,

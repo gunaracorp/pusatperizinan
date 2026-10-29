@@ -353,3 +353,17 @@ Stage Summary:
 Task ID: 43
 Agent: main
 Task: Push ke GitHub (perintah owner + PAT): origin/main 1790870 → 92f6724 — backlog 5 commit (v1.15.0 + Task 40/41/42) berhasil didorong; token tidak disimpan di config. Tuntas — catatan lama "push menunggu kredensial" (Task 39) resmi ditutup.
+
+---
+Task ID: 44
+Agent: main
+Task: Tambah posisi lowongan Host Live Streaming (TikTok, Shopee, Facebook & Instagram) khusus wanita (perintah owner: "tambahkan layanan lowongan untuk yang siap live di tiktok, shopee, fb dan ig khusus untuk wanita") + rilis v1.18.0 "Live Commerce Wanita" — sekaligus merekam jejak mesin auto-ping SEO yang ter-commit bersamaan (commit 2700b69 + 24d4087, tanpa bump versi sendiri).
+
+Work Log:
+- jobs-data.ts: posisi baru `job-live-streaming` (slug `host-live-streaming-wanita`, featured, kategori Marketing & Media Sosial, remote penuh, femaleOnly) — memandu live rutin di TikTok Live/Shopee Live/Facebook Live/Instagram Live, mempresentasikan layanan perizinan & pajak, konversi penonton → lead WhatsApp; syarat HP + ring light + internet stabil; gaji UMR (UMP DKI 2026 Rp5.729.876) + bonus target penjualan live; jenjang Host Live → Senior Host → Supervisor → Live Commerce Manager; JSON-LD JobPosting otomatis dari template detail
+- lowongan-kerja/page.tsx: judul meta kini dinamis `${JOBS.length} Posisi` (anti-basi), meta description + OG + hero memasukkan host live streaming, keywords baru (lowongan host live streaming wanita, loker live tiktok shopee wanita) — 7 → 8 posisi
+- Sesi sebelumnya (menumpang Task 44): mesin auto-ping SEO — src/lib/seo-ping-core.mjs (+.d.mts), CLI scripts/seo/auto-ping.mjs, endpoint /api/cron/seo-ping (CRON_SECRET), hook on-publish (after() + markPinged), scripts/seo/google-indexing.mjs (fondasi Indexing API lowongan, JWT RS256 tanpa dep), npm seo:ping/seo:gsc/seo:google/seo:priority, scheduler cron sandbox harian 08:00 WIB (job #483703); bukti 200 URL perdana → HTTP 202 IndexNow; fix bug laten POST /api/admin/posts 500 (publishedAt objek eksotis adapter Prisma 7/8 → toIsoSafe fallback createdAt)
+- Versioning: version.ts 1.18.0 "Live Commerce Wanita" + RELEASES 42 entri + indexedUrls 11.872 → 11.873; package.json + scripts/ver.json (total 42, history +1, nextRelease v1.19.0); CHANGELOG.md (badge header 5 titik + entri v1.18.0 + ladder #42); README.md (3 badge versi + 3 baris karier kini 8 posisi)
+
+Stage Summary:
+- v1.18.0 "Live Commerce Wanita" rilis: /lowongan-kerja kini 8 posisi aktif khusus wanita (host live streaming masuk Prioritas Rekrutmen), sitemap jobs.xml 7 → 8 URL, URL baru otomatis terdeteksi mesin auto-ping → IndexNow + rotasi GSC

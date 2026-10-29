@@ -20,12 +20,14 @@ export function generateStaticParams() {
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "Lowongan Kerja Khusus Wanita Remote — Gaji UMR + Bonus Target (7 Posisi)",
+    title: `Lowongan Kerja Khusus Wanita Remote — Gaji UMR + Bonus Target (${JOBS.length} Posisi)`,
     description:
-      "7 lowongan kerja KHUSUS WANITA di PusatPerizinan.com: programmer full-stack, admin marketing, admin melayani pelanggan, staf perpajakan, staf perizinan NIB & OSS, admin customer service, dan admin media sosial. Gaji awal UMR + bonus target perusahaan, bisa remote penuh, jenjang karier jelas.",
+      "8 lowongan kerja KHUSUS WANITA di PusatPerizinan.com: host live streaming TikTok & Shopee, programmer full-stack, admin marketing, admin melayani pelanggan, staf perpajakan, staf perizinan NIB & OSS, admin customer service, dan admin media sosial. Gaji awal UMR + bonus target perusahaan, bisa remote penuh, jenjang karier jelas.",
     keywords: [
       "lowongan kerja khusus wanita",
       "loker wanita remote",
+      "lowongan host live streaming wanita",
+      "loker live tiktok shopee wanita",
       "lowongan admin marketing wanita",
       "lowongan customer service wanita remote",
       "lowongan programmer wanita full stack",
@@ -38,7 +40,7 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: { canonical: "/lowongan-kerja" },
     openGraph: {
       title: "Lowongan Kerja Khusus Wanita — Remote, UMR + Bonus Target",
-      description: `${JOBS.length} posisi aktif khusus perempuan: programmer full-stack, admin marketing, admin melayani pelanggan, staf perpajakan, staf perizinan NIB & OSS, admin customer service, admin media sosial. Gaji awal UMR + bonus target, bisa remote penuh. Lamar via WhatsApp.`,
+      description: `${JOBS.length} posisi aktif khusus perempuan: host live streaming TikTok & Shopee, programmer full-stack, admin marketing, admin melayani pelanggan, staf perpajakan, staf perizinan NIB & OSS, admin customer service, admin media sosial. Gaji awal UMR + bonus target, bisa remote penuh. Lamar via WhatsApp.`,
       url: "/lowongan-kerja",
     },
   };
@@ -102,10 +104,10 @@ export default function LowonganPage() {
             Lowongan Kerja Khusus Wanita — Remote, Gaji UMR + Bonus Target
           </h1>
           <p className="mt-3 text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed">
-            {JOBS.length} posisi aktif khusus perempuan: programmer full-stack, admin marketing, admin melayani
-            pelanggan, staf perpajakan, staf perizinan NIB &amp; OSS, admin customer service, dan admin media sosial.
-            Gaji awal UMR, bonus dari target perusahaan, sepenuhnya bisa remote, dan jenjang karier jelas. Lamar
-            langsung via WhatsApp — tanpa biaya apa pun.
+            {JOBS.length} posisi aktif khusus perempuan: host live streaming TikTok, Shopee, Facebook &amp; Instagram,
+            programmer full-stack, admin marketing, admin melayani pelanggan, staf perpajakan, staf perizinan NIB
+            &amp; OSS, admin customer service, dan admin media sosial. Gaji awal UMR, bonus dari target perusahaan,
+            sepenuhnya bisa remote, dan jenjang karier jelas. Lamar langsung via WhatsApp — tanpa biaya apa pun.
           </p>
           <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
             <span className="flex items-center gap-1.5"><Briefcase className="h-4 w-4 text-primary" aria-hidden /> {JOBS.length} posisi aktif — semua khusus wanita</span>

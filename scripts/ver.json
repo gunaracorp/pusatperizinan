@@ -7,16 +7,16 @@
     "url": "https://pusatperizinan.com"
   },
   "version": {
-    "current": "1.17.1",
-    "label": "v1.17.1 — Dokumen Terkini",
-    "releaseName": "Dokumen Terkini",
-    "releasedAt": "2026-10-28",
+    "current": "1.18.0",
+    "label": "v1.18.0 — Live Commerce Wanita",
+    "releaseName": "Live Commerce Wanita",
+    "releasedAt": "2026-10-29",
     "channel": "stable",
     "timezone": "Asia/Jakarta (WIB)",
     "semverValid": true
   },
   "stats": {
-    "indexedUrls": 11872,
+    "indexedUrls": 11873,
     "sitemapSections": 15,
     "orderableServices": 1500,
     "subscriptionSkus": 6,
@@ -29,12 +29,24 @@
     "changelog": "/CHANGELOG.md",
     "worklog": "/WORKLOG.md",
     "roadmap": "/ROADMAP-99.md",
-    "nextRelease": "v1.18.0 (Unreleased — antrean ROADMAP-99)"
+    "nextRelease": "v1.19.0 (Unreleased — antrean ROADMAP-99)"
   },
   "releases": {
-    "total": 41,
+    "total": 42,
     "current": "1.17.1",
     "history": [
+      {
+        "version": "1.18.0",
+        "date": "2026-10-29",
+        "type": "minor",
+        "name": "Live Commerce Wanita",
+        "taskId": "44",
+        "highlights": [
+          "Posisi baru Host Live Streaming (TikTok, Shopee, Facebook & Instagram) — khusus wanita, remote penuh, live selling layanan perizinan & pajak dari rumah",
+          "Halaman /lowongan-kerja 8 posisi aktif: judul meta dinamis JOBS.length + hero/OG/keywords live streaming",
+          "PLATFORM_STATS.indexedUrls 11.872 → 11.873 (+1 URL detail lowongan)"
+        ]
+      },
       {
         "version": "1.17.1",
         "date": "2026-10-28",
