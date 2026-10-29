@@ -17,9 +17,9 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.19.0";
+export const APP_VERSION = "1.20.0";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Footer God Mode";
+export const RELEASE_NAME = "Footer Mahkota";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
 export const RELEASE_DATE = "2026-10-29";
 /** Channel rilis: stable | beta | alpha. */
@@ -42,10 +42,22 @@ export interface ReleaseEntry {
 }
 
 /**
- * Riwayat lengkap 41 rilis — urut TERBARU lebih dulu.
+ * Riwayat lengkap 44 rilis — urut TERBARU lebih dulu.
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.20.0",
+    date: "2026-10-29",
+    type: "minor",
+    name: "Footer Mahkota",
+    taskId: "46",
+    highlights: [
+      "Footer v6 'Mahkota' — 7 lapisan di 11.873 halaman: summit deck CTA dengan border-beam conic berputar (transform-only) + aurora internal, command strip dengan jam WIB live per detik (hydration-safe, null di server), marquee ticker layanan unggulan full-bleed (pause saat hover), mega-grid SEO warisan penuh v5 (86 href ter-audit identik — nol link hilang), trending searches, legal sovereign + tombol back-to-top, atmosfer ruang dalam (orb aurora drift + pattern grid + noise grain SVG)",
+      "Desain 'bukan footer biasa' sesuai perintah owner — gabungan dewan pakar: headline gradien 'Dari NIB sampai Sertifikasi Global', badge shimmer emas, CTA WA pulse-ring + Cek Izin AI, mikro-trust 4 item (rating 4,9/5 · garansi 100% · respons <15 menit · AI RIZKI 24/7), statistik platform angka gradient, ikon lucide di tiap kolom (Briefcase/Award/MapPin/Globe/Wrench/Zap/Building2/LifeBuoy)",
+      "Anti-regresi: semua animasi compositor-only + guard prefers-reduced-motion menyeluruh, nol dependensi & gambar baru, verifikasi E2E visual desktop 1440px + mobile 390px (nol scroll horizontal), tsc/eslint nol temuan",
+    ],
+  },
   {
     version: "1.19.0",
     date: "2026-10-29",

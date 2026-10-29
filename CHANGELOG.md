@@ -5,19 +5,19 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.19.0_Footer_God_Mode-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-19-0)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.20.0_Footer_Mahkota-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-20-0)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-43_(0.1.0_%E2%86%92_1.19.0)-059669?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-44_(0.1.0_%E2%86%92_1.20.0)-059669?style=flat-square)
 ![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-50_ber_versi-059669?style=flat-square)
-![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.20.0_(Unreleased)-f59e0b?style=flat-square)
+![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.21.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.19.0 — "Footer God Mode"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.20.0 — "Footer Mahkota"`**
 
 <sub>Versi terlihat hidup di: footer setiap halaman (11.873 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
@@ -37,9 +37,36 @@
 | Sumber kebenaran | [`WORKLOG.md`](./WORKLOG.md) (rekam jejak 1:1) · `src/lib/version.ts` (data mesin) · `package.json` (runtime) |
 | Ritme | **1 task/permintaan user = 1 nomor versi baru** — fitur → `MINOR`, perbaikan → `PATCH`, perombakan arah produk → `MAJOR` |
 | Presisi tanggal | Era `0.x` (Sesi 1–2) direkonstruksi dari metadata file & jejak invoice (`INV-20261021`) → presisi bulan; era `1.x` → presisi hari (terverifikasi) |
-| Rilis berikutnya | **`v1.20.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
+| Rilis berikutnya | **`v1.21.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
 
-> 🔗 Navigasi cepat: **[Tabel Lengkap 43 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+> 🔗 Navigasi cepat: **[Tabel Lengkap 44 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+
+---
+
+<a id="v1-20-0"></a>
+
+## [1.20.0] — 2026-10-29 — 👑 "Footer Mahkota" (Task 46)
+
+Redesain total footer ke **v6 "Mahkota" — God Mode Tier Max** (perintah owner: *"aku kurang puas dengan footernya seperti footer biasa, aku ingin footer dengan full design terbaik gabungan role diatas"*) — footer 11.873 halaman kini 7 lapisan: katedral konversi dengan summit deck ber-border-beam, jam WIB hidup, marquee ticker, dan atmosfer ruang dalam. Digarap mode 46 dewan pakar (master design · polymath · polytech · sage · problem solver).
+
+### 🛍️ Added
+- **Lapisan 0 — Summit deck**: panel CTA hero dengan **border-beam conic yang berputar** (elemen conic-gradient dirotasi via `transform` — compositor-only), aurora internal (orb emerald + amber drift), headline gradien **"Dari NIB sampai Sertifikasi Global — satu pintu, semua terurus."**, badge shimmer emas "Platform Perizinan Terlengkap Indonesia" (menaut `GET /api/version`), CTA ganda (WA `pulse-ring` + Cek Izin AI), dan baris mikro-trust 4 item (rating 4,9/5 · Garansi 100% · Respons WA < 15 menit · AI RIZKI online 24/7).
+- **Lapisan 1 — Command strip**: pill status "Semua sistem operasional" + **jam WIB live berdetak per detik** (hook `useWibClock` — null di server, anti hydration mismatch) + chip AI RIZKI + 5 statistik platform ber-angka gradient (`StatChip`).
+- **Lapisan 2 — Marquee ticker full-bleed**: 14 layanan unggulan berjalan tanpa henti dengan pemisah ✦ emas (keyframes `ticker-move` 46 dtk, `animation-play-state: paused` saat hover, konten diduplikasi dengan `aria-hidden`), edge-fade gradien dua sisi.
+- **Lapisan 6 — Atmosfer ruang dalam**: orb aurora emerald/amber drift (`orb-drift` 22/28 dtk), glow radial atas, pattern grid halus, **noise grain SVG feTurbulence** (data-URI, opacity 4%) — kedalaman visual tanpa satu pun gambar baru.
+- **Tombol back-to-top** di bar legal (`scrollToTop()` sadar `prefers-reduced-motion`).
+
+### 🔧 Changed
+- **Warisan SEO v5 dijaga penuh**: audit diff `href` v5 → v6 = **86 entri identik** — nol link hilang, nol duplikasi baru; mega-grid + trending searches + legal dipertahankan 1:1, hanya dihias ulang (ikon lucide per kolom: Briefcase/Award/MapPin/Globe/Wrench/Zap/Building2/LifeBuoy + underline gradient).
+- Latar footer dipertajam `oklch(0.21) → oklch(0.175)` (deep-space emerald) + sinyal aurora puncak 3px → 4px dengan glow.
+- **`src/lib/version.ts`**: APP_VERSION **1.20.0** ("Footer Mahkota"), RELEASES 43 → 44 entri (taskId 46).
+- **`package.json`** & **`scripts/ver.json`**: versi 1.20.0; ver.json disegarkan 1:1 dari `GET /api/version` hidup.
+- **`CHANGELOG.md` / `WORKLOG.md` / `README.md`**: badge + ladder + entri Task 46 tersinkron.
+
+### 🧪 QA
+- `tsc --noEmit` & `eslint`: nol temuan pada `footer.tsx` & `version.ts`
+- E2E visual desktop 1440px (3 screenshot lapisan) + mobile 390px — **nol scroll horizontal**, jam WIB hidup (19:51:35 WIB terbaca di tangkapan layar), ticker & beam beranimasi
+- Render SSR: 11× orb-drift, 5× status-ping, 4× ticker-track, beam-host, noise-overlay, grid-lines — semua penanda v6 hadir
 
 ---
 
@@ -735,11 +762,12 @@ Rilis pertama dengan **identitas versi resmi**. Seluruh proyek kini punya nomor 
 
 <a id="ladder"></a>
 
-## 🪜 Tabel Lengkap 43 Rilis
+## 🪜 Tabel Lengkap 44 Rilis
 
 | # | Versi | Tanggal (WIB) | Tipe | Nama Rilis | Task WORKLOG | Status |
 |---|---|---|---|---|---|---|
-| 43 | **v1.19.0** ⭐ | **2026-10-29** | minor | **Footer God Mode** | Task 45 | **🟢 AKTIF — versi berjalan** |
+| 44 | **v1.20.0** ⭐ | **2026-10-29** | minor | **Footer Mahkota** | Task 46 | **🟢 AKTIF — versi berjalan** |
+| 43 | v1.19.0 | 2026-10-29 | minor | Footer God Mode | Task 45 | ✅ Rilis |
 | 42 | v1.18.0 | 2026-10-29 | minor | Live Commerce Wanita | Task 44 | ✅ Rilis |
 | 41 | v1.17.1 | 2026-10-28 | patch | Dokumen Terkini | Task 42 | ✅ Rilis |
 | 40 | v1.17.0 | 2026-10-28 | minor | Loker UMR Remote | Task 41 | ✅ Rilis |

@@ -3,16 +3,26 @@
 import Link from "next/link";
 import {
   Activity,
-  BadgeCheck,
+  ArrowUp,
+  Award,
+  Briefcase,
+  Building2,
+  Clock,
+  Flame,
   Globe,
+  LifeBuoy,
   Mail,
   MapPin,
   MessageCircle,
   PhoneCall,
   ShieldCheck,
+  Sparkles,
+  Star,
   Tag,
+  Wrench,
+  Zap,
 } from "lucide-react";
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { APP_VERSION, RELEASE_NAME, RELEASE_DATE, PLATFORM_STATS } from "@/lib/version";
 import { WHATSAPP_DISPLAY } from "@/lib/landing-data";
 import { useLanguage } from "@/lib/i18n/language-provider";
@@ -20,13 +30,17 @@ import { LanguageSwitcher } from "@/components/landing/language-switcher";
 import { SUPPORT_SYSTEM_URL } from "@/lib/site";
 
 // ============================================================
-// Footer v5 "God Mode Tier Max" (v1.19.0 / Task 44)
+// Footer v6 "Mahkota" — God Mode Tier Max (v1.20.0 / Task 46)
 // ------------------------------------------------------------
-// 5 lapisan: (0) aurora signal bar · (1) command band — status
-// sistem + statistik platform + CTA konsultasi · (2) mega-grid
-// SEO 6 kolom TANPA duplikasi link · (3) trending searches ·
-// (4) legal sovereign. Animasi compositor-only (transform/
-// opacity), hormat prefers-reduced-motion, nol dependensi baru.
+// 7 lapisan: (0) summit deck — panel CTA dengan border-beam
+// conic yang berputar + aurora internal · (1) command strip —
+// status + jam WIB live (hydration-safe) + statistik platform ·
+// (2) marquee ticker layanan unggulan · (3) mega-grid SEO penuh
+// (NOL link hilang dari v5) · (4) trending searches · (5) legal
+// sovereign + back-to-top · (6) atmosfer: aurora orb drift,
+// pattern grid, noise grain.
+// Semua animasi compositor-only (transform/opacity), hormat
+// prefers-reduced-motion, nol dependensi baru, nol gambar baru.
 // ============================================================
 
 const SERVICE_LINKS = [
@@ -138,43 +152,86 @@ const TRENDING_SEARCHES = [
   { label: "Kerja di Jepang SSW", href: "/layanan/kerja-di-jp" },
 ];
 
+/** Marquee ticker — showcase gerak layanan unggulan (Lapisan 2). */
+const TICKER_ITEMS = [
+  "NIB & OSS-RBA",
+  "Pendirian PT & CV",
+  "PT PMA Investor Asing",
+  "Sertifikasi Halal BPJPH",
+  "ISO 9001 · 27001 · SMK3",
+  "SBU LPJK untuk Tender",
+  "PPh 21 · PPN · Coretax",
+  "Virtual Office SCBD",
+  "Kerja Jepang (SSW)",
+  "Korea Selatan (EPS)",
+  "Izin PPIU Umroh",
+  "Pendaftaran Merek DJKI",
+  "KBLI 2025",
+  "API Ekspor Impor",
+];
+
 /** Format ribuan gaya Indonesia tanpa Intl (aman hydration SSR/client). */
 function formatIdNumber(n: number): string {
   return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
-const PLATFORM_CHIPS = [
-  { label: `${PLATFORM_STATS.orderableServices}+ layanan orderable` },
-  { label: `${PLATFORM_STATS.provinces} provinsi + 516 kota/kab` },
-  { label: `${formatIdNumber(PLATFORM_STATS.indexedUrls)} halaman database` },
-  { label: `${PLATFORM_STATS.languages} bahasa antarmuka` },
-  { label: "Rating klien 4,9/5" },
-];
+/** Jam WIB live — null di server (anti hydration mismatch), berdetak 1 dtk di client. */
+function useWibClock(): string | null {
+  const [time, setTime] = useState<string | null>(null);
+  useEffect(() => {
+    const tick = () => {
+      const now = new Date();
+      const wib = new Date(now.getTime() + (now.getTimezoneOffset() + 7 * 60) * 60_000);
+      setTime(
+        `${String(wib.getHours()).padStart(2, "0")}:${String(wib.getMinutes()).padStart(2, "0")}:${String(wib.getSeconds()).padStart(2, "0")}`
+      );
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
+  return time;
+}
 
 const WA_CTA_HREF =
   "https://wa.me/6281269999910?text=" +
   encodeURIComponent("Halo PusatPerizinan.com, saya mau konsultasi gratis.");
 
+/** Back-to-top yang hormat prefers-reduced-motion. */
+function scrollToTop(): void {
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+}
+
 function FooterLinkColumn({
   ariaLabel,
   title,
+  icon: Icon,
   links,
   children,
 }: {
   ariaLabel: string;
   title: string;
+  icon?: typeof Globe;
   links: { label: string; href: string }[];
   children?: ReactNode;
 }) {
   return (
     <nav aria-label={ariaLabel}>
-      <h3 className="text-sm font-bold uppercase tracking-wider text-white">{title}</h3>
+      <div className="flex items-center gap-2">
+        {Icon && <Icon className="h-4 w-4 shrink-0 text-emerald-400/90" aria-hidden="true" />}
+        <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-white">{title}</h3>
+      </div>
+      <div
+        aria-hidden="true"
+        className="mt-2 h-px w-9 rounded-full bg-gradient-to-r from-emerald-400 via-amber-400/70 to-transparent"
+      />
       <ul className="mt-4 space-y-2.5">
         {links.map((link) => (
           <li key={link.href}>
             <a
               href={link.href}
-              className="inline-block max-w-full text-sm leading-snug text-emerald-100/70 transition-all duration-200 hover:translate-x-0.5 hover:text-emerald-300 motion-reduce:transition-none motion-reduce:hover:translate-x-0"
+              className="group inline-block max-w-full text-sm leading-snug text-emerald-100/70 transition-all duration-200 hover:translate-x-0.5 hover:text-emerald-300 motion-reduce:transition-none motion-reduce:hover:translate-x-0"
             >
               {link.label}
             </a>
@@ -186,45 +243,193 @@ function FooterLinkColumn({
   );
 }
 
+/** Chip statistik dengan angka gradient. */
+function StatChip({ value, label }: { value: string; label: string }) {
+  return (
+    <div className="flex items-baseline gap-1.5 whitespace-nowrap">
+      <span className="bg-gradient-to-r from-emerald-300 to-amber-300 bg-clip-text text-sm font-extrabold text-transparent">
+        {value}
+      </span>
+      <span className="text-xs text-emerald-100/60">{label}</span>
+    </div>
+  );
+}
+
+/** Gaya scoped footer — semua animasi transform/opacity (compositor-only). */
+const FOOTER_STYLES = `
+  @keyframes aurora-sweep {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  .aurora-sweep {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
+    animation: aurora-sweep 7s linear infinite;
+    will-change: transform;
+  }
+  @keyframes status-ping {
+    0% { transform: scale(1); opacity: 0.9; }
+    80%, 100% { transform: scale(2.2); opacity: 0; }
+  }
+  .status-ping { animation: status-ping 2.2s cubic-bezier(0,0,0.2,1) infinite; }
+  @keyframes beam-spin {
+    to { transform: rotate(1turn); }
+  }
+  .beam-host { position: relative; overflow: hidden; }
+  .beam-host::before {
+    content: "";
+    position: absolute;
+    inset: -65%;
+    background: conic-gradient(from 0deg,
+      transparent 0deg,
+      rgba(16,185,129,0.75) 42deg,
+      rgba(251,191,36,0.65) 84deg,
+      transparent 132deg,
+      transparent 360deg);
+    animation: beam-spin 8s linear infinite;
+    will-change: transform;
+  }
+  @keyframes orb-drift {
+    0% { transform: translate3d(0,0,0) scale(1); }
+    50% { transform: translate3d(4%,-3%,0) scale(1.08); }
+    100% { transform: translate3d(-3%,3%,0) scale(0.96); }
+  }
+  .orb-drift { animation: orb-drift 22s ease-in-out infinite; will-change: transform; }
+  .orb-drift-alt { animation: orb-drift 28s ease-in-out -9s infinite reverse; will-change: transform; }
+  @keyframes ticker-move {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .ticker-track {
+    display: flex;
+    width: max-content;
+    animation: ticker-move 46s linear infinite;
+    will-change: transform;
+  }
+  .ticker:hover .ticker-track { animation-play-state: paused; }
+  .noise-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .footer-grid-lines {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .aurora-sweep, .status-ping, .orb-drift, .orb-drift-alt { animation: none; }
+    .beam-host::before { animation: none; opacity: 0.5; }
+    .ticker-track { animation: none; }
+  }
+`;
+
 export function Footer() {
   const { t } = useLanguage();
-  return (
-    <footer className="relative mt-auto overflow-hidden bg-[oklch(0.21_0.03_165)] text-emerald-50/90">
-      {/* ===== Lapisan 0 — Aurora signal bar (compositor-only) ===== */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-emerald-500 via-amber-400 to-emerald-500 opacity-80"
-      />
-      <div
-        aria-hidden="true"
-        className="aurora-sweep pointer-events-none absolute inset-x-0 top-0 h-[3px]"
-      />
-      <style>{`
-        @keyframes aurora-sweep {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(100%); }
-        }
-        .aurora-sweep {
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
-          animation: aurora-sweep 7s linear infinite;
-          will-change: transform;
-        }
-        @keyframes status-ping {
-          0% { transform: scale(1); opacity: 0.9; }
-          80%, 100% { transform: scale(2.2); opacity: 0; }
-        }
-        .status-ping { animation: status-ping 2.2s cubic-bezier(0,0,0.2,1) infinite; }
-        @media (prefers-reduced-motion: reduce) {
-          .aurora-sweep, .status-ping { animation: none; }
-        }
-      `}</style>
+  const wibTime = useWibClock();
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        {/* ===== Lapisan 1 — Command band: status + statistik + CTA ===== */}
-        <div className="flex flex-col gap-6 rounded-2xl border border-white/10 bg-white/[0.04] p-5 sm:p-6 shadow-[0_0_40px_-16px_rgba(16,185,129,0.45)] lg:flex-row lg:items-center lg:justify-between">
-          <div className="min-w-0">
-            <div className="flex flex-wrap items-center gap-2.5">
-              {/* Status pill — deterministik, tanpa panggilan jaringan */}
+  return (
+    <footer className="relative mt-auto overflow-hidden bg-[oklch(0.175_0.025_165)] text-emerald-50/90">
+      <style>{FOOTER_STYLES}</style>
+
+      {/* ============================================================ */}
+      {/* LAPISAN 6 — Atmosfer ruang dalam (orb aurora, grid, grain)   */}
+      {/* ============================================================ */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-x-0 top-0 h-[420px] bg-[radial-gradient(ellipse_70%_60%_at_50%_-10%,rgba(16,185,129,0.16),transparent)]" />
+        <div className="orb-drift absolute -top-32 -left-32 h-[420px] w-[420px] rounded-full bg-emerald-500/15 blur-3xl" />
+        <div className="orb-drift-alt absolute -bottom-40 -right-32 h-[460px] w-[460px] rounded-full bg-amber-400/10 blur-3xl" />
+        <div className="footer-grid-lines absolute inset-0" />
+        <div className="noise-overlay absolute inset-0 opacity-[0.04]" />
+      </div>
+
+      {/* LAPISAN 0a — Sinyal aurora puncak */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 z-10 h-1 bg-gradient-to-r from-emerald-500 via-amber-400 to-emerald-500 opacity-90"
+      />
+      <div aria-hidden="true" className="aurora-sweep pointer-events-none absolute inset-x-0 top-0 z-10 h-1" />
+
+      {/* ============================================================ */}
+      {/* KONTAINER A — Summit deck (beam border) + command strip      */}
+      {/* ============================================================ */}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
+        {/* LAPISAN 0 — Summit deck: border-beam conic berputar */}
+        <div className="beam-host rounded-[1.65rem] p-px shadow-[0_24px_80px_-24px_rgba(16,185,129,0.35)]">
+          <div className="relative overflow-hidden rounded-[1.6rem] bg-[oklch(0.205_0.03_165)]">
+            <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+              <div className="orb-drift absolute -top-24 -left-16 h-72 w-72 rounded-full bg-emerald-400/20 blur-3xl" />
+              <div className="orb-drift-alt absolute -bottom-28 -right-10 h-80 w-80 rounded-full bg-amber-300/[0.12] blur-3xl" />
+              <div className="footer-grid-lines absolute inset-0 opacity-60" />
+            </div>
+
+            <div className="relative px-6 py-10 text-center sm:px-10 sm:py-12">
+              <a
+                href="/api/version"
+                title={`Rilis "${RELEASE_NAME}" — ${RELEASE_DATE} (WIB) · GET /api/version`}
+                className="inline-flex items-center gap-2 rounded-full border border-amber-300/25 bg-amber-300/[0.07] px-4 py-1.5 transition-colors hover:border-amber-300/50"
+              >
+                <Sparkles className="h-3.5 w-3.5 text-amber-300" aria-hidden="true" />
+                <span className="animate-shimmer text-[11px] font-bold uppercase tracking-[0.2em]">
+                  Platform Perizinan Terlengkap Indonesia
+                </span>
+              </a>
+
+              <h2 className="mx-auto mt-5 max-w-3xl text-3xl font-extrabold tracking-tight leading-[1.12] text-white sm:text-4xl lg:text-[2.9rem]">
+                Dari NIB sampai Sertifikasi Global —{" "}
+                <span className="bg-gradient-to-r from-emerald-300 via-emerald-400 to-amber-300 bg-clip-text text-transparent">
+                  satu pintu, semua terurus.
+                </span>
+              </h2>
+
+              <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-emerald-100/70 sm:text-base">
+                {formatIdNumber(PLATFORM_STATS.indexedUrls)} halaman database · {PLATFORM_STATS.orderableServices}+ layanan orderable ·
+                tim konsultan siaga 24/7 memandu usaha Anda dari hulu ke hilir — di {PLATFORM_STATS.provinces} provinsi dan 17 negara tujuan.
+              </p>
+
+              <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                <a
+                  href={WA_CTA_HREF}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="animate-pulse-ring inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-7 py-3 text-sm font-bold text-emerald-950 shadow-[0_8px_24px_-8px_rgba(16,185,129,0.7)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-400 motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:animate-none"
+                >
+                  <PhoneCall className="h-4 w-4" aria-hidden="true" />
+                  Konsultasi Gratis Sekarang
+                </a>
+                <a
+                  href="/cek-izin"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-7 py-3 text-sm font-semibold text-emerald-100 transition-colors duration-200 hover:border-emerald-400/40 hover:bg-white/10 hover:text-white"
+                >
+                  <Activity className="h-4 w-4 text-emerald-400" aria-hidden="true" />
+                  Cek Izin AI
+                </a>
+              </div>
+
+              <ul className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-emerald-100/65">
+                <li className="inline-flex items-center gap-1.5">
+                  <Star className="h-3.5 w-3.5 shrink-0 text-amber-400" aria-hidden="true" />
+                  Rating 4,9/5 dari klien
+                </li>
+                <li className="inline-flex items-center gap-1.5">
+                  <ShieldCheck className="h-3.5 w-3.5 shrink-0 text-emerald-400" aria-hidden="true" />
+                  Garansi 100%
+                </li>
+                <li className="inline-flex items-center gap-1.5">
+                  <Zap className="h-3.5 w-3.5 shrink-0 text-amber-400" aria-hidden="true" />
+                  Respons WA &lt; 15 menit
+                </li>
+                <li className="inline-flex items-center gap-1.5">
+                  <Clock className="h-3.5 w-3.5 shrink-0 text-emerald-400" aria-hidden="true" />
+                  AI RIZKI online 24/7
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* LAPISAN 1 — Command strip: status live + statistik platform */}
+        <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-4 backdrop-blur-sm">
+          <div className="flex flex-col gap-3.5 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex flex-wrap items-center gap-2">
               <a
                 href="/api/version"
                 title={`Status rilis "${RELEASE_NAME}" — ${RELEASE_DATE} (WIB) · GET /api/version`}
@@ -236,41 +441,76 @@ export function Footer() {
                 </span>
                 Semua sistem operasional
               </a>
+              <span
+                className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] text-emerald-100/75"
+                title="Waktu Indonesia Barat (UTC+7)"
+              >
+                <Clock className="h-3 w-3 text-amber-400" aria-hidden="true" />
+                <span className="tabular-nums">{wibTime ?? "--:--:--"}</span>
+                WIB
+              </span>
               <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] text-emerald-100/70">
                 <MessageCircle className="h-3 w-3 text-emerald-400" aria-hidden="true" />
                 AI RIZKI aktif 24/7
               </span>
             </div>
-            <ul className="mt-3.5 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-emerald-100/70">
-              {PLATFORM_CHIPS.map((chip) => (
-                <li key={chip.label} className="inline-flex items-center gap-1.5">
-                  <BadgeCheck className="h-3.5 w-3.5 shrink-0 text-amber-400/80" aria-hidden="true" />
-                  {chip.label}
+            <ul className="flex flex-wrap items-center gap-x-5 gap-y-2">
+              <li>
+                <StatChip value={`${PLATFORM_STATS.orderableServices}+`} label="layanan" />
+              </li>
+              <li>
+                <StatChip value={`${PLATFORM_STATS.provinces}`} label="provinsi · 516 kota" />
+              </li>
+              <li>
+                <StatChip value={formatIdNumber(PLATFORM_STATS.indexedUrls)} label="halaman" />
+              </li>
+              <li>
+                <StatChip value={`${PLATFORM_STATS.languages}`} label="bahasa" />
+              </li>
+              <li>
+                <StatChip value="4,9/5" label="rating" />
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* ============================================================ */}
+      {/* LAPISAN 2 — Marquee ticker full-bleed (pause saat hover)     */}
+      {/* ============================================================ */}
+      <div
+        className="ticker relative mt-10 overflow-hidden border-y border-white/[0.07] bg-white/[0.02] py-3.5"
+        role="presentation"
+      >
+        <div className="ticker-track">
+          {[0, 1].map((dup) => (
+            <ul key={dup} aria-hidden={dup === 1} className="flex shrink-0 items-center">
+              {TICKER_ITEMS.map((item) => (
+                <li key={`${dup}-${item}`} className="flex items-center whitespace-nowrap">
+                  <span className="px-4 text-sm font-medium tracking-wide text-emerald-100/75">{item}</span>
+                  <span aria-hidden="true" className="text-[10px] text-amber-400/80">
+                    ✦
+                  </span>
                 </li>
               ))}
             </ul>
-          </div>
-          <div className="flex shrink-0 flex-col gap-2 sm:flex-row sm:items-center">
-            <a
-              href={WA_CTA_HREF}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-5 py-2.5 text-sm font-bold text-emerald-950 shadow-[0_8px_24px_-8px_rgba(16,185,129,0.7)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-400 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
-            >
-              <PhoneCall className="h-4 w-4" aria-hidden="true" />
-              Konsultasi Gratis 24/7
-            </a>
-            <a
-              href="/cek-izin"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-emerald-100 transition-colors duration-200 hover:border-emerald-400/40 hover:bg-white/10 hover:text-white"
-            >
-              <Activity className="h-4 w-4 text-emerald-400" aria-hidden="true" />
-              Cek Izin AI
-            </a>
-          </div>
+          ))}
         </div>
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[oklch(0.175_0.025_165)] to-transparent"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[oklch(0.175_0.025_165)] to-transparent"
+        />
+      </div>
 
-        {/* ===== Lapisan 2 — Mega-grid SEO 6 kolom (nol duplikasi) ===== */}
+      {/* ============================================================ */}
+      {/* KONTAINER B — Mega-grid SEO + trending + legal               */}
+      {/* ============================================================ */}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
+        {/* LAPISAN 3 — Mega-grid SEO (nol duplikasi, warisan penuh v5) */}
         <div className="grid gap-10 pt-10 md:grid-cols-3 lg:grid-cols-6">
           {/* Kolom brand */}
           <div className="md:col-span-3 lg:col-span-2 lg:pr-8">
@@ -295,6 +535,7 @@ export function Footer() {
           <FooterLinkColumn
             ariaLabel="Layanan populer"
             title="Layanan Populer"
+            icon={Briefcase}
             links={SERVICE_LINKS.slice(0, 10)}
           >
             <li>
@@ -310,6 +551,7 @@ export function Footer() {
           <FooterLinkColumn
             ariaLabel="Sertifikasi dan korporasi"
             title="Sertifikasi & Korporasi"
+            icon={Award}
             links={SERVICE_LINKS.slice(10, 22)}
           >
             <li>
@@ -324,7 +566,14 @@ export function Footer() {
 
           {/* Wilayah: provinsi + kota paling dicari */}
           <nav aria-label="Wilayah layanan">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-white">Wilayah & Kota</h3>
+            <div className="flex items-center gap-2">
+              <MapPin className="h-4 w-4 shrink-0 text-emerald-400/90" aria-hidden="true" />
+              <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-white">Wilayah &amp; Kota</h3>
+            </div>
+            <div
+              aria-hidden="true"
+              className="mt-2 h-px w-9 rounded-full bg-gradient-to-r from-emerald-400 via-amber-400/70 to-transparent"
+            />
             <ul className="mt-4 space-y-2.5">
               {POPULAR_REGIONS.map((link) => (
                 <li key={link.href}>
@@ -351,7 +600,7 @@ export function Footer() {
                   href="/wilayah"
                   className="text-sm font-semibold text-emerald-300 hover:text-white transition-colors"
                 >
-                  → 38 Provinsi & 516 Kota/Kab
+                  → 38 Provinsi &amp; 516 Kota/Kab
                 </a>
               </li>
             </ul>
@@ -362,6 +611,7 @@ export function Footer() {
             <FooterLinkColumn
               ariaLabel="Negara tujuan PMI"
               title="Kerja Luar Negeri"
+              icon={Globe}
               links={COUNTRY_LINKS.slice(0, 6)}
             >
               <li>
@@ -376,6 +626,7 @@ export function Footer() {
             <FooterLinkColumn
               ariaLabel="Alat gratis dan pintasan"
               title="Alat & Pintasan"
+              icon={Wrench}
               links={TOOL_LINKS.slice(0, 8)}
             >
               <li>
@@ -395,10 +646,16 @@ export function Footer() {
           <FooterLinkColumn
             ariaLabel="Alat gratis lanjutan"
             title="Alat Lanjutan"
+            icon={Zap}
             links={TOOL_LINKS.slice(8)}
           />
 
-          <FooterLinkColumn ariaLabel="Perusahaan" title={t("footerColCompany")} links={COMPANY_LINKS.slice(0, 8)}>
+          <FooterLinkColumn
+            ariaLabel="Perusahaan"
+            title={t("footerColCompany")}
+            icon={Building2}
+            links={COMPANY_LINKS.slice(0, 8)}
+          >
             <li>
               <a
                 href="/tentang-kami"
@@ -412,14 +669,22 @@ export function Footer() {
           <FooterLinkColumn
             ariaLabel="Bantuan dan dukungan"
             title="Bantuan & Dukungan"
+            icon={LifeBuoy}
             links={COMPANY_LINKS.slice(8)}
           />
 
           {/* Kontak */}
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-wider text-white">
-              {t("footerColContact")}
-            </h3>
+            <div className="flex items-center gap-2">
+              <PhoneCall className="h-4 w-4 shrink-0 text-emerald-400/90" aria-hidden="true" />
+              <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-white">
+                {t("footerColContact")}
+              </h3>
+            </div>
+            <div
+              aria-hidden="true"
+              className="mt-2 h-px w-9 rounded-full bg-gradient-to-r from-emerald-400 via-amber-400/70 to-transparent"
+            />
             <ul className="mt-4 space-y-3.5">
               <li>
                 <a
@@ -453,11 +718,14 @@ export function Footer() {
           </div>
         </div>
 
-        {/* ===== Lapisan 3 — Trending searches (chips semantik) ===== */}
+        {/* LAPISAN 4 — Trending searches (chip semantik GSC) */}
         <div className="mt-10 rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-          <h3 className="text-xs font-bold uppercase tracking-wider text-emerald-300">
-            🔥 Paling Dicari Minggu Ini
-          </h3>
+          <div className="flex items-center gap-2">
+            <Flame className="h-4 w-4 text-amber-400" aria-hidden="true" />
+            <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-amber-200/90">
+              Paling Dicari Minggu Ini
+            </h3>
+          </div>
           <ul className="mt-3 flex flex-wrap gap-2">
             {TRENDING_SEARCHES.map((s) => (
               <li key={s.href + s.label}>
@@ -472,10 +740,10 @@ export function Footer() {
           </ul>
         </div>
 
-        {/* ===== Lapisan 4 — Legal sovereign ===== */}
-        <div className="mt-12 pt-7 border-t border-white/10 space-y-5 pr-2 sm:pr-24">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
-            <p className="text-xs text-emerald-100/50">
+        {/* LAPISAN 5 — Legal sovereign + back-to-top */}
+        <div className="mt-12 pt-7 border-t border-white/10 space-y-5">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <p className="text-xs text-emerald-100/50 text-center lg:text-left">
               {t("footerRights").replace("{year}", String(new Date().getFullYear()))}
             </p>
             <nav
@@ -517,15 +785,26 @@ export function Footer() {
                 Garansi 100%
               </Link>
             </nav>
-            {/* 🏷️ Badge versi resmi — sumber tunggal: src/lib/version.ts (v1.4.0+) */}
-            <a
-              href="/api/version"
-              title={`Rilis "${RELEASE_NAME}" — ${RELEASE_DATE} (WIB) · riwayat lengkap via GET /api/version`}
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-emerald-400/25 bg-white/[0.05] px-3 py-1 text-[11px] font-semibold tracking-wide text-emerald-200/90 transition-colors hover:border-emerald-400/50 hover:bg-white/10 hover:text-white"
-            >
-              <Tag className="h-3 w-3 text-emerald-400" aria-hidden="true" />
-              pusatperizinan.com · v{APP_VERSION}
-            </a>
+            <div className="flex items-center justify-center gap-2">
+              {/* 🏷️ Badge versi resmi — sumber tunggal: src/lib/version.ts (v1.4.0+) */}
+              <a
+                href="/api/version"
+                title={`Rilis "${RELEASE_NAME}" — ${RELEASE_DATE} (WIB) · riwayat lengkap via GET /api/version`}
+                className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-emerald-400/25 bg-white/[0.05] px-3 py-1 text-[11px] font-semibold tracking-wide text-emerald-200/90 transition-colors hover:border-emerald-400/50 hover:bg-white/10 hover:text-white"
+              >
+                <Tag className="h-3 w-3 text-emerald-400" aria-hidden="true" />
+                pusatperizinan.com · v{APP_VERSION}
+              </a>
+              <button
+                type="button"
+                onClick={scrollToTop}
+                aria-label="Kembali ke atas"
+                title="Kembali ke atas"
+                className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/5 text-emerald-100/70 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-400/40 hover:text-white motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+              >
+                <ArrowUp className="h-3.5 w-3.5" aria-hidden="true" />
+              </button>
+            </div>
           </div>
           {/* Support system credit — PT Digital Bisnis Manajemen (digiman.id) */}
           <div className="flex justify-center">
@@ -546,3 +825,4 @@ export function Footer() {
     </footer>
   );
 }
+
