@@ -35,15 +35,15 @@ import {
   getHubSlugs,
   CATEGORY_META,
   ALL_SERVICE_PAGES,
-  slugify,
 } from "@/lib/catalog";
-import { PROVINCES } from "@/lib/coverage-data";
 import { INDUSTRIES } from "@/lib/seo-pages";
 import { WHATSAPP_NUMBER } from "@/lib/landing-data";
 import { pickTestimonialsForCatalogCategory, getAverageRating, getTestimonialsByCategory } from "@/lib/testimonials-data";
 import { CERT_MAP } from "@/lib/catalog/certifications";
 import { TestimonialGrid } from "@/components/testimonials/testimonial-card";
 import { HubPage } from "../hub-page";
+import { InternalLinkSections } from "@/components/seo/internal-link-sections";
+import { buildServicePageLinkGroups } from "@/lib/internal-links";
 import { classifyPage } from "@/lib/seo-policy";
 import { SITE_URL } from "@/lib/site";
 import { langAlternates, pageLikeOf } from "@/lib/seo";
@@ -355,33 +355,11 @@ function LeadForm({ page }: { page: NonNullable<ReturnType<typeof getServicePage
   );
 }
 
-function RegionLinks({ page }: { page: NonNullable<ReturnType<typeof getServicePage>> }) {
-  // Untuk halaman induk perizinan & sertifikasi: tampilkan link × provinsi populer
-  if (page.kind !== "base" || (page.category !== "perizinan" && page.category !== "sertifikasi")) return null;
-  const popularProvinces = ["DKI Jakarta", "Jawa Barat", "Jawa Tengah", "Jawa Timur", "Bali", "Sumatera Utara", "Sulawesi Selatan", "Kalimantan Timur"];
-  const links = PROVINCES.filter((p) => popularProvinces.includes(p.name));
-
-  return (
-    <section className="mt-10" aria-labelledby="region-heading">
-      <h2 id="region-heading" className="flex items-center gap-2 text-lg font-bold mb-4">
-        <MapPin className="h-5 w-5 text-primary" aria-hidden />
-        Tersedia di Provinsi Utama
-      </h2>
-      <div className="flex flex-wrap gap-2">
-        {links.map((p) => (
-          <Link
-            key={p.name}
-            href={`/layanan/${page.slug}-${slugify(p.name)}`}
-            className="group flex items-center gap-1.5 rounded-full border bg-card px-3.5 py-1.5 text-sm font-medium transition-all hover:border-primary hover:bg-primary/5 hover:text-primary"
-          >
-            {p.name}
-            <ArrowRight className="h-3.5 w-3.5 opacity-0 transition-opacity group-hover:opacity-100" aria-hidden />
-          </Link>
-        ))}
-      </div>
-    </section>
-  );
-}
+// RegionLinks lama (8 provinsi, 2 kategori saja) digantikan mesin
+// internal-linking terpusat — lihat ServiceInternalLinks di bawah.
+// GSC 2026-10: ±8.700 halaman wilayah kurang diterima link masuk;
+// mesin baru menghubungkan SEMUA kind (base/region/city) ke silo
+// wilayah, hub, biaya/syarat, dan glosarium.
 
 function RelatedSection({ page }: { page: NonNullable<ReturnType<typeof getServicePage>> }) {
   const related = page.related
@@ -465,6 +443,16 @@ function DeepLinksSection({ page }: { page: NonNullable<ReturnType<typeof getSer
       </div>
     </section>
   );
+}
+
+/**
+ * Mesin internal linking programatik (GSC Discovered-661 fix):
+ * silo vertikal wilayah + hub + deep-link biaya/syarat + jembatan
+ * glosarium/kbli/kalkulator — untuk SEMUA kind (base/region/city).
+ */
+function ServiceInternalLinks({ page }: { page: NonNullable<ReturnType<typeof getServicePage>> }) {
+  const groups = buildServicePageLinkGroups(page);
+  return <InternalLinkSections groups={groups} ariaPrefix="Layanan terkait" />;
 }
 
 /**
@@ -737,7 +725,7 @@ export default async function ServiceDetailPage({
               </section>
             )}
 
-            <RegionLinks page={page} />
+            <ServiceInternalLinks page={page} />
             <ServiceTestimonials page={page} />
             <RelatedSection page={page} />
             <DeepLinksSection page={page} />

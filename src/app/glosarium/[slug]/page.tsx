@@ -19,6 +19,8 @@ import {
 import { WHATSAPP_NUMBER } from "@/lib/landing-data";
 import { SITE_URL } from "@/lib/site";
 import { langAlternates } from "@/lib/seo";
+import { InternalLinkSections } from "@/components/seo/internal-link-sections";
+import { buildGlossaryLinkGroups } from "@/lib/internal-links";
 
 export function generateStaticParams() {
   // Dihasilkan dari sumber data tunggal — selalu sinkron dengan sitemap glosarium.
@@ -232,6 +234,12 @@ export default async function GlossaryDetailPage({
             </div>
           )}
         </div>
+
+        {/* Jembatan layanan & alat — semua istilah (GSC Discovered-661 fix) */}
+        <InternalLinkSections
+          groups={buildGlossaryLinkGroups(term.category, term.services)}
+          ariaPrefix="Layanan terkait istilah"
+        />
 
         {/* Istilah terkait */}
         {related.length > 0 && (

@@ -20,6 +20,8 @@ import { TRIO_COMPARISONS, getTrio } from "@/lib/comparisons-trio";
 import { TrioView } from "@/components/bandingkan/trio-view";
 import { WHATSAPP_NUMBER } from "@/lib/landing-data";
 import { langAlternates } from "@/lib/seo";
+import { InternalLinkSections } from "@/components/seo/internal-link-sections";
+import { buildComparisonLinkGroups } from "@/lib/internal-links";
 
 export function generateStaticParams() {
   return [
@@ -346,6 +348,17 @@ export default async function ComparisonDetailPage({ params }: { params: Promise
             ))}
           </div>
         </div>
+      </div>
+
+      {/* Jembatan glosarium & alat — GSC Discovered-661 fix */}
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pb-4">
+        <InternalLinkSections
+          groups={buildComparisonLinkGroups(
+            SERVICE_SLUG_MAP[c.aId] ?? c.aId,
+            SERVICE_SLUG_MAP[c.bId] ?? c.bId
+          )}
+          ariaPrefix="Referensi terkait"
+        />
       </div>
 
       {/* Related comparisons */}

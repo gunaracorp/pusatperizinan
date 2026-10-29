@@ -28,6 +28,8 @@ import {
 import { WHATSAPP_NUMBER } from "@/lib/landing-data";
 import { SITE_URL } from "@/lib/site";
 import type { SeoPage } from "@/lib/seo-pages";
+import { InternalLinkSections } from "@/components/seo/internal-link-sections";
+import { buildSeoLandingLinkGroups } from "@/lib/internal-links";
 
 const KIND_LABEL: Record<string, string> = {
   biaya: "Biaya & Harga",
@@ -202,6 +204,20 @@ export function SeoLandingView({ page }: { page: SeoPage }) {
             </AccordionItem>
           ))}
         </Accordion>
+      </div>
+
+      {/* Internal linking programatik (GSC Discovered-661 fix):
+          biaya/syarat/industri kini terhubung dua arah ke /layanan,
+          pasangan biaya↔syarat, anak wilayah, dan glosarium. */}
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pb-4">
+        <InternalLinkSections
+          groups={buildSeoLandingLinkGroups(
+            page.kind === "svc-industry" ? "svc" : page.kind,
+            page.serviceId,
+            page.slug
+          )}
+          ariaPrefix="Halaman terkait"
+        />
       </div>
 
       {/* CTA + Related links */}

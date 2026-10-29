@@ -24,6 +24,8 @@ import { SITE_URL, SITE_NAME, CONTACT } from "@/lib/site";
 import { socialProofFor } from "@/lib/social-proof";
 import { langAlternates, stableLastmod, formatLastmodId } from "@/lib/seo";
 import { geoMetaForSlug } from "@/lib/geo";
+import { InternalLinkSections } from "@/components/seo/internal-link-sections";
+import { buildLandingLinkGroups } from "@/lib/internal-links";
 
 // ============================================================
 // PUSATPERIZINAN.COM — HALAMAN DETAIL 500 LAYANAN (root level)
@@ -349,6 +351,14 @@ export default async function LayananDetailPage({
             </p>
           </div>
         </div>
+      </section>
+
+      {/* JEMBATAN KONTEN — glosarium & alat (GSC Discovered-661 fix) */}
+      <section className="mx-auto max-w-6xl px-4 pb-4" aria-label="Referensi dan alat bisnis">
+        <InternalLinkSections
+          groups={buildLandingLinkGroups(s.nama, s.kode)}
+          ariaPrefix="Referensi"
+        />
       </section>
 
       {/* LAYANAN TERKAIT */}
