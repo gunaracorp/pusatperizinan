@@ -80,3 +80,4 @@ server.log
 # embedded postgres data (sandbox)
 .pgdata
 postgres.log
+dev.log

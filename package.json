@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000 2>&1 | tee dev.log",
+    "predev": "bash scripts/ensure-pg.sh",
+    "db:push": "node -e \"console.log('[db:push] No-op — skema Prisma 8 dikelola via db:init/sign/verify (lihat scripts/ensure-pg.sh).')\"",
     "build": "prisma contract emit && node scripts/verify-prisma-contract.mjs && next build --webpack && node scripts/postbuild.mjs",
     "postinstall": "prisma contract emit",
     "start": "node .next/standalone/server.js",
