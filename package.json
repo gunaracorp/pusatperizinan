@@ -118,6 +118,12 @@
     "node": ">=22.18.0"
   },
   "trustedDependencies": [
-    "@embedded-postgres/linux-x64"
+    "@embedded-postgres/linux-x64",
+    "@parcel/watcher",
+    "@swc/core",
+    "es5-ext",
+    "esbuild",
+    "sharp",
+    "workerd"
   ]
 }
