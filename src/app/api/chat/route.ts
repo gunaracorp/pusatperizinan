@@ -3,6 +3,10 @@ import ZAI from "z-ai-web-dev-sdk";
 import { db } from "@/lib/db";
 import { isLangCode, langEnglishName } from "@/lib/i18n/languages";
 import { notifyNewLead } from "@/lib/notify";
+import { PACKAGES } from "@/lib/pricing";
+import { KATALOG_V2 } from "@/lib/katalog-v2";
+import { KATALOG_V3 } from "@/lib/katalog-v3";
+import { resolveAnyService } from "@/lib/service-order";
 
 // ============================================================
 // POST /api/chat — Konsultan AI Perizinan 24/7
@@ -49,7 +53,140 @@ Selalu dorong percakapan ke arah user meninggalkan nama + nomor WhatsApp untuk k
 JANGAN:
 - Jangan mengarang KBLI code secara spesifik jika ragu (boleh menyebut contoh umum)
 - Jangan menjanjikan pasti selesai dalam waktu tertentu tanpa "estimasi"
-- Jangan menjawab topik di luar bisnis/perizinan/pajak usaha — arahkan kembali dengan sopan`;
+- Jangan menjawab topik di luar bisnis/perizinan/pajak usaha — arahkan kembali dengan sopan
+
+MODE AGEN PENJUALAN (AKTIF):
+- Setiap pesan user menyertakan blok "KATALOG TERKINI" berisi paket unggulan + layanan katalog paling relevan dengan kode & harga PERSIS dari sistem (server-side, anti-manipulasi).
+- WAJIB: setiap kali kamu merekomendasikan item yang ada di blok, sertakan link order yang bisa diklik dengan format persis: [Order Nama — Rp harga](/checkout?paket=KODE). Jawaban yang merekomendasikan layanan TANPA link order dianggap gagal.
+- SATU link = SATU kode paket/katalog. Jika kamu merekomendasikan beberapa item, berikan link TERPISAH per item — jangan pernah menggabungkan dua kode dalam satu link.
+- DILARANG mengarang kode, harga, atau link di luar blok. Jika kebutuhan user tidak ada di blok: jelaskan umum, arahkan ke /katalog, dan tawarkan konsultasi gratis.
+- Harga yang dikutip = jasa konsultan; biaya resmi negara/notaris ditagih terpisah — selalu disebutkan saat memberi link order.
+- Jika user bertanya soal rencana/fitur masa depan platform, perkenalkan halaman visi: /masa-depan`;
+
+// ============================================================
+// RIZKI 2.0 — MESIN RETRIEVAL KATALOG (agen bisa MENJUAL)
+// Indeks in-memory seluruh katalog orderable; setiap pesan user
+// din-lokalisasi → 6 layanan paling relevan + paket unggulan
+// disuntikkan ke system prompt dengan harga & link checkout
+// persis dari server (sumber: pricing.ts + katalog v2/v3).
+// ============================================================
+
+interface CatalogEntry {
+  code: string;
+  name: string;
+  search: string;
+  price: number;
+  strike?: number;
+  duration: string;
+  checkoutUrl: string;
+}
+
+const CATALOG_INDEX: CatalogEntry[] = [
+  ...PACKAGES.map((p) => ({
+    code: p.id,
+    name: p.name,
+    search: `${p.name} ${p.tagline} ${p.category}`.toLowerCase(),
+    price: p.price,
+    strike: p.strike,
+    duration: p.duration,
+    checkoutUrl: `/checkout?paket=${p.id}`,
+  })),
+  ...KATALOG_V2.map((s) => ({
+    code: s.code,
+    name: s.name,
+    search: `${s.name} ${s.slug} ${s.category}`.toLowerCase(),
+    price: s.discountPrice,
+    strike: s.normalPrice,
+    duration: s.estimate,
+    checkoutUrl: `/checkout?paket=${s.code}`,
+  })),
+  ...KATALOG_V3.map((s) => ({
+    code: s.code,
+    name: s.name,
+    search: `${s.name} ${s.slug} ${s.category}`.toLowerCase(),
+    price: s.discountPrice,
+    strike: s.normalPrice,
+    duration: s.estimate,
+    checkoutUrl: `/checkout?paket=${s.code}`,
+  })),
+];
+
+const STOPWORDS = new Set([
+  "yang", "dan", "untuk", "dengan", "saya", "kami", "apa", "bagaimana", "kenapa",
+  "bisa", "mau", "ingin", "ada", "sudah", "belum", "kak", "min", "tolong", "dong",
+  "the", "and", "for", "with", "want", "need", "how", "what", "harga", "berapa",
+]);
+
+/**
+ * Pengaman anti-halusinasi: semua link checkout di balasan AI
+ * divalidasi terhadap sumber harga server (PACKAGES + katalog
+ * v1/v2/v3). Kode yang tidak dikenal dilucuti menjadi teks biasa
+ * sehingga pengunjung tidak pernah menerima link checkout rusak.
+ */
+function sanitizeCheckoutLinks(reply: string): string {
+  return reply.replace(
+    /\[([^\]]+)\]\(\/checkout\?paket=([A-Za-z0-9-]+)\)/g,
+    (full: string, label: string, code: string) => {
+      const valid =
+        PACKAGES.some((p) => p.id === code) || !!resolveAnyService(code);
+      return valid ? full : label;
+    }
+  );
+}
+
+function formatRupiah(n: number): string {
+  return `Rp ${n.toLocaleString("id-ID")}`;
+}
+
+const PAKET_PROMO_LINES: string[] = PACKAGES.slice(0, 8).map(
+  (p) => `- ${p.id} | ${p.name} — ${formatRupiah(p.price)} (${p.duration}) | Order: [${p.name} — ${formatRupiah(p.price)}](${`/checkout?paket=${p.id}`})`
+);
+
+function retrieveCatalog(message: string): CatalogEntry[] {
+  const lower = message.toLowerCase();
+  const tokens = lower
+    .split(/[^a-z0-9]+/)
+    .filter((t) => t.length >= 3 && !STOPWORDS.has(t));
+  // token pendek penting domain: pt, cv, npwp, ppn
+  for (const short of ["pt", "cv"]) {
+    if (new RegExp(`\\b${short}\\b`).test(lower)) tokens.push(short);
+  }
+  if (tokens.length === 0) return [];
+  return CATALOG_INDEX.map((e) => {
+    let score = 0;
+    const nameLower = e.name.toLowerCase();
+    for (const t of tokens) {
+      if (nameLower.includes(t)) score += 3;
+      else if (e.search.includes(t)) score += 1;
+    }
+    return { e, score };
+  })
+    .filter((x) => x.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 6)
+    .map((x) => x.e);
+}
+
+function buildCatalogBlock(message: string): string {
+  const relevant = retrieveCatalog(message);
+  const lines: string[] = [
+    "",
+    "",
+    "=== KATALOG TERKINI (data langsung dari sistem — kode, harga, dan link WAJIB dipakai persis) ===",
+    "--- PAKET UNGGULAN (selalu boleh ditawarkan) ---",
+    ...PAKET_PROMO_LINES,
+  ];
+  if (relevant.length > 0) {
+    lines.push("--- LAYANAN KATALOG PALING RELEVAN DENGAN PERCAKAPAN INI ---");
+    for (const e of relevant) {
+      lines.push(
+        `- ${e.code} | ${e.name} — ${formatRupiah(e.price)}${e.strike ? ` (normal ${formatRupiah(e.strike)})` : ""} (${e.duration}) | Order: [${e.name} — ${formatRupiah(e.price)}](${e.checkoutUrl})`
+      );
+    }
+  }
+  lines.push("Saat menawarkan item di atas, gunakan format link persis seperti contoh.");
+  return lines.join("\n");
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -69,14 +206,19 @@ export async function POST(req: NextRequest) {
     const existingLang = sessionLangs.get(sessionId);
     let history = conversations.get(sessionId);
     if (!history) {
-      history = [{ role: "assistant", content: SYSTEM_PROMPT + languageSuffix(langCode) }];
+      history = [{ role: "assistant", content: SYSTEM_PROMPT }];
       conversations.set(sessionId, history);
       sessionLangs.set(sessionId, langCode);
     } else if (existingLang !== langCode) {
-      // Bahasa diganti di tengah sesi -> perbarui instruksi system prompt
-      history[0] = { role: "assistant", content: SYSTEM_PROMPT + languageSuffix(langCode) };
+      // Bahasa diganti di tengah sesi -> perbarui instruksi bahasa
       sessionLangs.set(sessionId, langCode);
     }
+    // RIZKI 2.0: system prompt diperbarui setiap giliran dengan blok
+    // katalog relevan (retrieval) — agen selalu memakai harga server.
+    history[0] = {
+      role: "assistant",
+      content: SYSTEM_PROMPT + languageSuffix(langCode) + buildCatalogBlock(userMessage),
+    };
 
     // Simpan pesan user ke DB
     await db.chatMessage.create({
@@ -107,7 +249,9 @@ export async function POST(req: NextRequest) {
       throw new Error("Empty AI response");
     }
 
-    history.push({ role: "assistant", content: reply });
+    const safeReply = sanitizeCheckoutLinks(reply);
+
+    history.push({ role: "assistant", content: safeReply });
 
     // Deteksi apakah lead tertangkap (user menyebut nomor WA di percakapan)
     const convoText = history.map((m) => m.content).join(" ");
@@ -148,10 +292,10 @@ export async function POST(req: NextRequest) {
 
     // Simpan balasan AI ke DB
     await db.chatMessage.create({
-      data: { sessionId, role: "assistant", content: reply, leadCaptured },
+      data: { sessionId, role: "assistant", content: safeReply, leadCaptured },
     });
 
-    return NextResponse.json({ success: true, reply, leadCaptured });
+    return NextResponse.json({ success: true, reply: safeReply, leadCaptured });
   } catch (error) {
     console.error("[API /chat] Error:", error);
     return NextResponse.json(

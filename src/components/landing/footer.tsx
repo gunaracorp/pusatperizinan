@@ -106,6 +106,7 @@ const TOOL_LINKS = [
   { label: "Paket Bundel Hemat (GO UMRAH, dll.)", href: "/paket" },
   { label: "Kalender Kepatuhan (LKPM, SPT, JAMSOSTEK)", href: "/kalender-kepatuhan" },
   { label: "AI Roadmap Perizinan 12 Bulan", href: "/roadmap" },
+  { label: "Laporan Masa Depan 2126 (Time Traveller)", href: "/masa-depan" },
   { label: "Kalkulator Pajak (PPh 21, UMKM, PPN)", href: "/kalkulator-pajak" },
   { label: "Kalkulator Biaya Layanan", href: "/kalkulator" },
   { label: "Database KBLI 2025", href: "/kbli" },

@@ -125,10 +125,14 @@ if ! command -v npm >/dev/null 2>&1; then
         exit 1
 fi
 
-log_step_start "npm install --no-audit --no-fund"
+log_step_start "install dependencies"
 echo "[BUN] Installing dependencies..."
-npm install --no-audit --no-fund
-log_step_end "npm install --no-audit --no-fund"
+if command -v bun >/dev/null 2>&1; then
+        bun install
+else
+        npm install --no-audit --no-fund
+fi
+log_step_end "install dependencies"
 
 log_step_start "Check Prisma ORM 8 PostgreSQL"
 # Fallback: muat DATABASE_URL dari .env proyek bila tidak ada di environment shell

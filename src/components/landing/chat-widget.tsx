@@ -22,19 +22,39 @@ const WELCOME_FALLBACK: ChatMsg = {
 };
 
 function renderMessage(text: string) {
-  // Render sederhana: **bold** → <strong>, newline → break
-  return text.split("\n").map((line, i) => (
+  // Render sederhana: **bold** → <strong>, [teks](url) → <a>, newline → break
+  const lines = text.split("\n");
+  return lines.map((line, i) => (
     <span key={i}>
-      {line.split(/(\*\*[^*]+\*\*)/g).map((part, j) =>
-        part.startsWith("**") && part.endsWith("**") ? (
-          <strong key={j} className="font-semibold text-foreground">
-            {part.slice(2, -2)}
-          </strong>
-        ) : (
-          part
-        )
-      )}
-      {i < text.split("\n").length - 1 && <br />}
+      {line.split(/(\[[^\]]+\]\([^)\s]+\))/g).map((part, j) => {
+        const linkMatch = part.match(/^\[([^\]]+)\]\(([^)\s]+)\)$/);
+        if (linkMatch) {
+          const [, label, href] = linkMatch;
+          return (
+            <a
+              key={j}
+              href={href}
+              className="inline-flex items-center gap-1 font-semibold text-primary underline decoration-primary/40 underline-offset-2 hover:decoration-primary"
+            >
+              {label} →
+            </a>
+          );
+        }
+        return (
+          <span key={j}>
+            {part.split(/(\*\*[^*]+\*\*)/g).map((sub, k) =>
+              sub.startsWith("**") && sub.endsWith("**") ? (
+                <strong key={k} className="font-semibold text-foreground">
+                  {sub.slice(2, -2)}
+                </strong>
+              ) : (
+                sub
+              )
+            )}
+          </span>
+        );
+      })}
+      {i < lines.length - 1 && <br />}
     </span>
   ));
 }
