@@ -29,6 +29,7 @@ const MODEL_NAMES = {
   recoveryLog: "RecoveryLog",
   notificationLog: "NotificationLog",
   editorialSlot: "EditorialSlot",
+  currencyRate: "CurrencyRate",
 } as const;
 
 type ModelName = keyof typeof MODEL_NAMES;

@@ -279,3 +279,24 @@ model EditorialSlot {
   @@index([weekStart])
   @@index([status])
 }
+
+// CurrencyRate: kurs mata uang Modul Multi-Currency (MODUL 2027 #1).
+// Konvensi: 1 unit `code` = rateToIdr Rupiah (basis IDR, rate selalu 1).
+// Harga & invoice resmi TETAP Rupiah — tabel ini hanya kurs TAMPILAN
+// untuk pengunjung internasional (investor PMA & pembeli lintas negara).
+// Diubah admin via PATCH /api/currency/rates; bila tabel kosong, API
+// fallback ke DEFAULT_CURRENCIES di src/lib/currency.ts.
+model CurrencyRate {
+  id        String   @id @onCreate(cuid(2))
+  code      String   @unique // ISO 4217: USD, SGD, CNY, JPY, ...
+  name      String   // US Dollar, dst
+  symbol    String   // $, S$, ¥, ...
+  locale    String   @default("en-US") // locale Intl.NumberFormat
+  rateToIdr Float    // 1 unit = rateToIdr IDR (kurs indikatif tampilan)
+  flag      String   @default("🏳️") // emoji bendera untuk switcher
+  zeroDecimals Boolean @default(false) // true = tanpa desimal (JPY)
+  isActive  Boolean  @default(true)
+  updatedAt temporal.updatedAt()
+
+  @@index([isActive])
+}
