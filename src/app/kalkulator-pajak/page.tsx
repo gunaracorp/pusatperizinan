@@ -4,6 +4,7 @@ import { ArrowRight, Calculator, PhoneCall, Sparkles, ShieldCheck } from "lucide
 import { Badge } from "@/components/ui/badge";
 import { WHATSAPP_NUMBER } from "@/lib/landing-data";
 import { TaxCalculator } from "./tax-calculator";
+import { ogImageUrl } from "@/lib/og-template";
 
 export function generateStaticParams() {
   return [{}];
@@ -24,6 +25,8 @@ export async function generateMetadata(): Promise<Metadata> {
     ],
     alternates: { canonical: "/kalkulator-pajak" },
     openGraph: {
+    images: [{ url: ogImageUrl({ title: "Kalkulator Pajak Indonesia 2025 — PusatPerizinan.com" }), width: 1200, height: 630, alt: "Kalkulator Pajak Indonesia 2025 — PusatPerizinan.com" }],
+  
       title: "Kalkulator Pajak Indonesia 2025 — PusatPerizinan.com",
       description:
         "Hitung PPh 21, pajak UMKM 0,5%, PPN & pajak properti dengan rumus resmi. Gratis & instan.",

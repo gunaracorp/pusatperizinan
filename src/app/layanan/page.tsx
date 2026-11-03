@@ -18,6 +18,7 @@ import { PMI_COUNTRIES } from "@/lib/pmi-services";
 import { WHATSAPP_NUMBER } from "@/lib/landing-data";
 import { CatalogBrowser } from "./catalog-browser";
 import { langAlternates } from "@/lib/seo";
+import { ogImageUrl } from "@/lib/og-template";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -34,6 +35,8 @@ export async function generateMetadata(): Promise<Metadata> {
     // M04: canonical absolut + hreflang id-ID/x-default
     alternates: langAlternates("/layanan"),
     openGraph: {
+    images: [{ url: ogImageUrl({ title: "Katalog Layanan PusatPerizinan.com" }), width: 1200, height: 630, alt: "Katalog Layanan PusatPerizinan.com" }],
+  
       title: "Katalog Layanan PusatPerizinan.com",
       description:
         "1.000+ halaman layanan: perizinan × 38 provinsi, pajak × 15 kota, PMI × 17 negara. Konsultasi gratis.",

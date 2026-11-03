@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { BLOG_ARTICLES, BLOG_CATEGORIES, type BlogArticle } from "@/lib/blog-content";
 import { safeGetPublishedPosts } from "@/lib/blog-cms";
 import { fmtDateID } from "@/lib/format";
+import { ogImageUrl } from "@/lib/og-template";
 
 // ============================================================
 // PUSATPERIZINAN.COM — /blog (Arsitektur URL Nyata, P0-02)
@@ -23,6 +24,8 @@ export const metadata: Metadata = {
     "Kumpulan artikel mendalam seputar perizinan usaha Indonesia: cara mengurus NIB via OSS-RBA, biaya pendirian PT/CV/PMA, sertifikasi halal SEHATI, izin edar BPOM/PIRT, PBG/SLF, pajak UMKM, hingga izin PPIU/PPIH dan RKAB tambang. Ditulis tim konsultan, diperbarui mengikuti regulasi terbaru.",
   alternates: { canonical: "/blog" },
   openGraph: {
+    images: [{ url: ogImageUrl({ title: "Blog Perizinan Usaha — PusatPerizinan.com" }), width: 1200, height: 630, alt: "Blog Perizinan Usaha — PusatPerizinan.com" }],
+  
     title: "Blog Perizinan Usaha — PusatPerizinan.com",
     description:
       "Panduan mendalam perizinan usaha Indonesia oleh praktisi: NIB, PT, halal, BPOM, PBG/SLF, pajak, PPIU/PPIH, RKAB.",

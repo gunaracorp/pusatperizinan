@@ -3,6 +3,7 @@ import Link from "next/link";
 import { SITE_NAME } from "@/lib/site";
 import { LeadForm } from "@/components/lead-form";
 import { Coffee, ChefHat, Stethoscope, MoonStar, WashingMachine, PartyPopper, Check } from "lucide-react";
+import { ogImageUrl } from "@/lib/og-template";
 
 // ============================================================
 // PUSATPERIZINAN.COM — /paket-usaha (IDE #3: Izin-in-a-Box)
@@ -16,6 +17,8 @@ export const metadata: Metadata = {
     "Izin-in-a-Box: semua legalitas usaha Anda dibundel per industri — kedai kopi, cloud kitchen, klinik gigi, travel umroh, laundry, event organizer. Harga transparan, timeline jelas, garansi tertulis.",
   alternates: { canonical: "/paket-usaha" },
   openGraph: {
+    images: [{ url: ogImageUrl({ title: "Paket Usaha Siap Jalan — Semua Izin Sekali Bener" }), width: 1200, height: 630, alt: "Paket Usaha Siap Jalan — Semua Izin Sekali Bener" }],
+  
     title: "Paket Usaha Siap Jalan — Semua Izin Sekali Bener",
     description: "Bundel legalitas per industri dengan harga transparan & garansi tertulis.",
     url: "/paket-usaha",

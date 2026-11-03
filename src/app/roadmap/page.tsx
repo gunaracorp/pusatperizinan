@@ -4,6 +4,7 @@ import { ArrowRight, PhoneCall, Sparkles, Bot, ShieldCheck, Clock, FileCheck } f
 import { Badge } from "@/components/ui/badge";
 import { WHATSAPP_NUMBER } from "@/lib/landing-data";
 import { RoadmapWizard } from "./roadmap-wizard";
+import { ogImageUrl } from "@/lib/og-template";
 
 export function generateStaticParams() {
   return [{}];
@@ -24,6 +25,8 @@ export async function generateMetadata(): Promise<Metadata> {
     ],
     alternates: { canonical: "/roadmap" },
     openGraph: {
+    images: [{ url: ogImageUrl({ title: "AI Roadmap Perizinan 12 Bulan — PusatPerizinan.com" }), width: 1200, height: 630, alt: "AI Roadmap Perizinan 12 Bulan — PusatPerizinan.com" }],
+  
       title: "AI Roadmap Perizinan 12 Bulan — PusatPerizinan.com",
       description:
         "AI menyusun roadmap perizinan personal 12 bulan untuk usaha Anda. Gratis & instan.",

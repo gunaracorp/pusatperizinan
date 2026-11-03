@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { INDUSTRY_PAGES, getIndustryPage } from "@/lib/seo-pages";
 import { classifyPage } from "@/lib/seo-policy";
 import { SeoLandingView } from "@/components/seo/landing-renderer";
+import { ogImageUrl } from "@/lib/og-template";
 
 export const dynamicParams = false;
 
@@ -33,7 +34,9 @@ export async function generateMetadata({
     description: page.metaDesc,
     keywords: page.keywords,
     alternates: { canonical: `/industri/${page.slug}` },
-    openGraph: { title: page.title, description: page.metaDesc, url: `/industri/${page.slug}`, type: "article", siteName: "PusatPerizinan.com", locale: "id_ID" },
+    openGraph: {
+    images: [{ url: ogImageUrl({ title: page.title }), width: 1200, height: 630, alt: page.title }],
+   title: page.title, description: page.metaDesc, url: `/industri/${page.slug}`, type: "article", siteName: "PusatPerizinan.com", locale: "id_ID" },
     twitter: { card: "summary_large_image", title: page.title, description: page.metaDesc },
     robots: { index, follow: true },
   };

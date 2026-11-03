@@ -19,6 +19,7 @@ import {
 import { TestimonialGrid, Stars, CategoryLinks } from "@/components/testimonials/testimonial-card";
 import { WHATSAPP_NUMBER } from "@/lib/landing-data";
 import { SITE_URL } from "@/lib/site";
+import { ogImageUrl } from "@/lib/og-template";
 
 
 
@@ -43,6 +44,8 @@ export async function generateMetadata({
     keywords: cat.keywords,
     alternates: { canonical: `/testimoni/${cat.slug}` },
     openGraph: {
+    images: [{ url: ogImageUrl({ title: cat.seoTitle }), width: 1200, height: 630, alt: cat.seoTitle }],
+  
       title: cat.seoTitle,
       description: cat.metaDesc,
       url: `/testimoni/${cat.slug}`,

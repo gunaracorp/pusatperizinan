@@ -30,6 +30,7 @@ import type { KbliCategoryPage } from "@/lib/kbli-catalog";
 import { WHATSAPP_NUMBER } from "@/lib/landing-data";
 import { SITE_URL } from "@/lib/site";
 import { langAlternates, stableLastmod, formatLastmodId } from "@/lib/seo";
+import { ogImageUrl } from "@/lib/og-template";
 
 export const dynamicParams = true;
 
@@ -58,7 +59,9 @@ export async function generateMetadata({
       keywords: cat.keywords,
       // M04: canonical absolut + hreflang id-ID/x-default
       alternates: langAlternates(`/kbli/${cat.slug}`),
-      openGraph: { title: cat.title, description: cat.metaDesc, url: `/kbli/${cat.slug}`, type: "article" },
+      openGraph: {
+    images: [{ url: ogImageUrl({ title: cat.title }), width: 1200, height: 630, alt: cat.title }],
+   title: cat.title, description: cat.metaDesc, url: `/kbli/${cat.slug}`, type: "article" },
       robots: { index: true, follow: true },
     };
   }
@@ -71,6 +74,8 @@ export async function generateMetadata({
     // M04: canonical absolut + hreflang id-ID/x-default
     alternates: langAlternates(`/kbli/${page.slug}`),
     openGraph: {
+    images: [{ url: ogImageUrl({ title: page.title }), width: 1200, height: 630, alt: page.title }],
+  
       title: page.title,
       description: page.metaDesc,
       url: `/kbli/${page.slug}`,

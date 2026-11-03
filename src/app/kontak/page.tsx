@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/accordion";
 import { ContactForm } from "./contact-form";
 import { SITE_NAME, SITE_URL, absUrl, CONTACT, LEGAL_ENTITY } from "@/lib/site";
+import { ogImageUrl } from "@/lib/og-template";
 
 // ============================================================
 // PUSATPERIZINAN.COM — /kontak (Conversion & Trust — M17)
@@ -45,6 +46,8 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   openGraph: {
+    images: [{ url: ogImageUrl({ title: META_TITLE }), width: 1200, height: 630, alt: META_TITLE }],
+  
     title: META_TITLE,
     description: META_DESCRIPTION,
     url: PAGE_URL,

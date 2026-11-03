@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { FOUNDER, TEAM } from "@/lib/team-data";
 import { CONTACT, SITE_NAME, TRUST_METRICS, LEGAL_ENTITY, SUPPORT_SYSTEM, SUPPORT_SYSTEM_URL } from "@/lib/site";
+import { ogImageUrl } from "@/lib/og-template";
 
 // ============================================================
 // PUSATPERIZINAN.COM — /tentang-kami (E-E-A-T, PHASE 6)
@@ -18,6 +19,8 @@ export const metadata: Metadata = {
   description: `${SITE_NAME} (${CONTACT.foundingYear}) adalah jaringan konsultan perizinan & perpajakan berbasis di SCBD, Jakarta. Kenali founder, tim konsultan, dan cara kami bekerja untuk klien di ${TRUST_METRICS.provinces} provinsi.`,
   alternates: { canonical: "/tentang-kami" },
   openGraph: {
+    images: [{ url: ogImageUrl({ title: `Tentang ${SITE_NAME}` }), width: 1200, height: 630, alt: `Tentang ${SITE_NAME}` }],
+  
     title: `Tentang ${SITE_NAME}`,
     description: "Tim konsultan perizinan berbasis di SCBD Jakarta — kenali orang-orang yang mengerjakan izin Anda.",
     url: "/tentang-kami",

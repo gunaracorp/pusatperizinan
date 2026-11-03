@@ -7,6 +7,7 @@ import { WILAYAH, WILAYAH_ISLANDS, wilayahByIsland, TOTAL_KABKOTA_HUBS } from "@
 import { TOTAL_KABKOTA, TOTAL_PROVINCES } from "@/lib/coverage-data";
 import { SITE_NAME, SITE_URL, absUrl, TRUST_METRICS } from "@/lib/site";
 import { LAYANAN_STATS } from "@/lib/layanan-500";
+import { ogImageUrl } from "@/lib/og-template";
 
 // ============================================================
 // PUSATPERIZINAN.COM — /wilayah (Hub Navigasi Local SEO)
@@ -23,6 +24,8 @@ export const metadata: Metadata = {
   description: `Layanan pengurusan izin usaha di seluruh Indonesia — ${TOTAL_PROVINCES} provinsi, ${TOTAL_KABKOTA} kabupaten/kota. Pilih wilayah Anda: NIB, PT/CV, Halal, BPOM, PBG/SLF sampai izin sektoral. Tanpa datang ke kantor, garansi proses.`,
   alternates: { canonical: absUrl("/wilayah") },
   openGraph: {
+    images: [{ url: ogImageUrl({ title: "Jasa Pengurusan Perizinan Usaha — 38 Provinsi & 514 Kabupaten/Kota" }), width: 1200, height: 630, alt: "Jasa Pengurusan Perizinan Usaha — 38 Provinsi & 514 Kabupaten/Kota" }],
+  
     title: "Jasa Pengurusan Perizinan Usaha — 38 Provinsi & 514 Kabupaten/Kota",
     description:
       "Pilih provinsi Anda — jadwal proses, estimasi biaya, dan konsultan lokal siap membantu. Melayani 514 kabupaten/kota.",

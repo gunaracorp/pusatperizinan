@@ -14,8 +14,18 @@ EXPECTED_URL='postgresql://postgres@127.0.0.1:5432/pusatperizinan'
 if ! grep -q "$EXPECTED_URL" .env 2>/dev/null; then
   S1=$(openssl rand -hex 24)
   S2=$(openssl rand -hex 24)
-  printf '# PusatPerizinan.com — sandbox lokal (jangan commit)\nDATABASE_URL="%s"\nADMIN_PASSWORD="admin-sandbox-2026"\nADMIN_SECRET="%s"\nCRON_SECRET="%s"\nPAYMENT_DEMO_MODE="true"\nFOLLOWUP_SWEEP_MINUTES="0"\nNEXT_PUBLIC_GA_ID="G-KMZRQJQXCB"\n' "$EXPECTED_URL" "$S1" "$S2" > .env
+  # INDEXNOW_KEY statis = nama file kunci publik public/<key>.txt
+  # (kunci IndexNow memang dirancang publik — bukan rahasia).
+  # Wajib ikut dipulihkan: tanpa ini ping instan Bing/Yandex/Naver
+  # (POST /api/indexnow) gagal 400 setiap kali sandbox direcycle.
+  printf '# PusatPerizinan.com — sandbox lokal (jangan commit)\nDATABASE_URL="%s"\nADMIN_PASSWORD="admin-sandbox-2026"\nADMIN_SECRET="%s"\nCRON_SECRET="%s"\nPAYMENT_DEMO_MODE="true"\nFOLLOWUP_SWEEP_MINUTES="0"\nNEXT_PUBLIC_GA_ID="G-KMZRQJQXCB"\nINDEXNOW_KEY="fc3546a2cb9d002f2e886b3b3dbb159e"\n' "$EXPECTED_URL" "$S1" "$S2" > .env
   echo "[ensure-pg] .env sandbox dipulihkan (DATABASE_URL PostgreSQL)"
+fi
+
+# 1b. .env ada tapi INDEXNOW_KEY hilang (recycle lama) → tambahkan
+if ! grep -q "INDEXNOW_KEY" .env 2>/dev/null; then
+  printf '\nINDEXNOW_KEY="fc3546a2cb9d002f2e886b3b3dbb159e"\n' >> .env
+  echo "[ensure-pg] INDEXNOW_KEY ditambahkan ke .env"
 fi
 
 # 2. Initdb bila cluster hilang (mis. dibersihkan proses restart)

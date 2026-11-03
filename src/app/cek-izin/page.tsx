@@ -7,6 +7,7 @@ import { Footer } from "@/components/landing/footer";
 import { LicenseChecker } from "@/components/landing/license-checker";
 import { SITE_NAME, SITE_URL, absUrl } from "@/lib/site";
 import { APP_VERSION } from "@/lib/version";
+import { ogImageUrl } from "@/lib/og-template";
 
 // ============================================================
 // PUSATPERIZINAN.COM — /cek-izin (server component)
@@ -34,6 +35,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/cek-izin" },
   robots: { index: true, follow: true },
   openGraph: {
+    images: [{ url: ogImageUrl({ title: "Cek Izin Usaha dengan AI — Hasil 60 Detik, Gratis | PusatPerizinan.com" }), width: 1200, height: 630, alt: "Cek Izin Usaha dengan AI — Hasil 60 Detik, Gratis | PusatPerizinan.com" }],
+  
     title: "Cek Izin Usaha dengan AI — Hasil 60 Detik, Gratis | PusatPerizinan.com",
     description:
       "Ketik jenis usaha → AI menyusun peta izin wajib, KBLI teraman, dan estimasi waktu. Gratis, tanpa daftar akun.",

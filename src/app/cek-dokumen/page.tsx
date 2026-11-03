@@ -4,6 +4,7 @@ import { Camera, PhoneCall, ScanSearch, ShieldCheck, Clock, Lock } from "lucide-
 import { Badge } from "@/components/ui/badge";
 import { WHATSAPP_NUMBER } from "@/lib/landing-data";
 import { DocumentChecker } from "./document-checker";
+import { ogImageUrl } from "@/lib/og-template";
 
 export function generateStaticParams() {
   return [{}];
@@ -25,6 +26,8 @@ export async function generateMetadata(): Promise<Metadata> {
     ],
     alternates: { canonical: "/cek-dokumen" },
     openGraph: {
+    images: [{ url: ogImageUrl({ title: "AI Cek Dokumen — PusatPerizinan.com" }), width: 1200, height: 630, alt: "AI Cek Dokumen — PusatPerizinan.com" }],
+  
       title: "AI Cek Dokumen — PusatPerizinan.com",
       description:
         "Foto dokumen Anda diperiksa AI dalam hitungan detik: kelengkapan, keterbacaan, masalah & langkah berikutnya. Gratis & privasi terjaga.",

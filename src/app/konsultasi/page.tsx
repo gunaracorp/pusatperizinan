@@ -18,6 +18,7 @@ import { Footer } from "@/components/landing/footer";
 import { LeadForm } from "@/components/lead-form";
 import { WHATSAPP_NUMBER, WHATSAPP_DISPLAY } from "@/lib/landing-data";
 import { SITE_NAME, SITE_URL, absUrl } from "@/lib/site";
+import { ogImageUrl } from "@/lib/og-template";
 
 // ============================================================
 // PUSATPERIZINAN.COM — /konsultasi (server component)
@@ -44,6 +45,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/konsultasi" },
   robots: { index: true, follow: true },
   openGraph: {
+    images: [{ url: ogImageUrl({ title: "Konsultasi Perizinan Usaha Gratis 30 Menit — PusatPerizinan.com" }), width: 1200, height: 630, alt: "Konsultasi Perizinan Usaha Gratis 30 Menit — PusatPerizinan.com" }],
+  
     title: "Konsultasi Perizinan Usaha Gratis 30 Menit — PusatPerizinan.com",
     description:
       "30 menit bersama konsultan senior: peta izin usaha Anda, KBLI teraman, estimasi biaya & timeline. Dijadwalkan ≤ 24 jam. Gratis & tanpa komitmen.",

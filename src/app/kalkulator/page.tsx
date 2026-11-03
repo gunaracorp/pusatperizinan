@@ -6,6 +6,7 @@ import { Header } from "@/components/landing/header";
 import { Footer } from "@/components/landing/footer";
 import { CostCalculator } from "@/components/landing/cost-calculator";
 import { SITE_NAME, SITE_URL, absUrl } from "@/lib/site";
+import { ogImageUrl } from "@/lib/og-template";
 
 // ============================================================
 // PUSATPERIZINAN.COM — /kalkulator (server component)
@@ -33,6 +34,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/kalkulator" },
   robots: { index: true, follow: true },
   openGraph: {
+    images: [{ url: ogImageUrl({ title: "Kalkulator Biaya Perizinan Usaha — Gratis & Transparan | PusatPerizinan.com" }), width: 1200, height: 630, alt: "Kalkulator Biaya Perizinan Usaha — Gratis & Transparan | PusatPerizinan.com" }],
+  
     title: "Kalkulator Biaya Perizinan Usaha — Gratis & Transparan | PusatPerizinan.com",
     description:
       "Estimasi anggaran izin usaha Anda dalam 1 menit: jasa konsultan + biaya resmi negara, rinci per item. Tanpa biaya tersembunyi.",

@@ -6,6 +6,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { BIAYA_PAGES, buildBiayaIndexPage, BIAYA_TOTAL } from "@/lib/seo-pages";
 import { WHATSAPP_NUMBER } from "@/lib/landing-data";
 import { SITE_URL } from "@/lib/site";
+import { ogImageUrl } from "@/lib/og-template";
 
 export const dynamicParams = false;
 
@@ -17,7 +18,9 @@ export function generateMetadata(): Metadata {
     description: INDEX.metaDesc,
     keywords: INDEX.keywords,
     alternates: { canonical: "/biaya" },
-    openGraph: { title: INDEX.title, description: INDEX.metaDesc, url: "/biaya", type: "website", siteName: "PusatPerizinan.com", locale: "id_ID" },
+    openGraph: {
+    images: [{ url: ogImageUrl({ title: INDEX.title }), width: 1200, height: 630, alt: INDEX.title }],
+   title: INDEX.title, description: INDEX.metaDesc, url: "/biaya", type: "website", siteName: "PusatPerizinan.com", locale: "id_ID" },
   };
 }
 

@@ -21,6 +21,7 @@ import { SITE_URL } from "@/lib/site";
 import { langAlternates } from "@/lib/seo";
 import { InternalLinkSections } from "@/components/seo/internal-link-sections";
 import { buildGlossaryLinkGroups } from "@/lib/internal-links";
+import { ogImageUrl } from "@/lib/og-template";
 
 export function generateStaticParams() {
   // Dihasilkan dari sumber data tunggal — selalu sinkron dengan sitemap glosarium.
@@ -49,6 +50,8 @@ export async function generateMetadata({
     ].filter(Boolean) as string[],
     alternates: langAlternates(`/glosarium/${term.slug}`),
     openGraph: {
+    images: [{ url: ogImageUrl({ title: `${term.term} — Glosarium PusatPerizinan.com` }), width: 1200, height: 630, alt: `${term.term} — Glosarium PusatPerizinan.com` }],
+  
       title: `${term.term} — Glosarium PusatPerizinan.com`,
       description,
       url: `/glosarium/${term.slug}`,

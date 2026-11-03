@@ -28,6 +28,7 @@ import { LeadForm } from "@/components/lead-form";
 import { PartnerProfitSimulator } from "@/components/landing/partner-profit-simulator";
 import { SITE_NAME, SITE_URL, absUrl, TRUST_METRICS } from "@/lib/site";
 import { WHATSAPP_NUMBER } from "@/lib/landing-data";
+import { ogImageUrl } from "@/lib/og-template";
 
 // ============================================================
 // PUSATPERIZINAN.COM — /mitra
@@ -59,6 +60,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/mitra" },
   robots: { index: true, follow: true },
   openGraph: {
+    images: [{ url: ogImageUrl({ title: "Program Kemitraan Cabang Resmi PusatPerizinan.com" }), width: 1200, height: 630, alt: "Program Kemitraan Cabang Resmi PusatPerizinan.com" }],
+  
     title: "Program Kemitraan Cabang Resmi PusatPerizinan.com",
     description:
       "Anda buka kantor, pusat yang mengurus segalanya. Komisi hingga 45% + lead nasional mengalir ke cabang Anda. Kuota wilayah terbatas.",

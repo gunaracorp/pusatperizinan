@@ -3,6 +3,7 @@ import Link from "next/link";
 import { SITE_NAME } from "@/lib/site";
 import { LeadForm } from "@/components/lead-form";
 import { Check, Sprout } from "lucide-react";
+import { ogImageUrl } from "@/lib/og-template";
 
 // ============================================================
 // PUSATPERIZINAN.COM — /bumdes (IDE #10: Desa Formal)
@@ -17,6 +18,8 @@ export const metadata: Metadata = {
     "Program khusus desa: pendirian badan hukum BUMDes (Kemenkop), NIB & izin usaha unit, pembukuan sederhana, pelatihan pengurus. Harga sosial untuk pemerintah desa & dana desa — melayani 38 provinsi.",
   alternates: { canonical: "/bumdes" },
   openGraph: {
+    images: [{ url: ogImageUrl({ title: "Layanan BUMDes & BUMDesa — Legalitas Desa Rapi" }), width: 1200, height: 630, alt: "Layanan BUMDes & BUMDesa — Legalitas Desa Rapi" }],
+  
     title: "Layanan BUMDes & BUMDesa — Legalitas Desa Rapi",
     description: "Pendirian badan hukum, izin usaha unit, pembukuan & pelatihan pengurus. Harga sosial.",
     url: "/bumdes",

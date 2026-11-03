@@ -13,6 +13,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { JOBS, salaryText } from "@/lib/jobs-data";
 import { WHATSAPP_NUMBER } from "@/lib/landing-data";
+import { ogImageUrl } from "@/lib/og-template";
 
 export function generateStaticParams() {
   return [{}];
@@ -39,6 +40,8 @@ export async function generateMetadata(): Promise<Metadata> {
     ],
     alternates: { canonical: "/lowongan-kerja" },
     openGraph: {
+    images: [{ url: ogImageUrl({ title: "Lowongan Kerja Khusus Wanita — Remote, UMR + Bonus Target" }), width: 1200, height: 630, alt: "Lowongan Kerja Khusus Wanita — Remote, UMR + Bonus Target" }],
+  
       title: "Lowongan Kerja Khusus Wanita — Remote, UMR + Bonus Target",
       description: `${JOBS.length} posisi aktif khusus perempuan: host live streaming TikTok & Shopee, programmer full-stack, admin marketing, admin melayani pelanggan, staf perpajakan, staf perizinan NIB & OSS, admin customer service, admin media sosial. Gaji awal UMR + bonus target, bisa remote penuh. Lamar via WhatsApp.`,
       url: "/lowongan-kerja",

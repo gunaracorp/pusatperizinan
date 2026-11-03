@@ -3,6 +3,7 @@ import { Header } from "@/components/landing/header";
 import { Footer } from "@/components/landing/footer";
 import { PrivacyContent } from "./privacy-content";
 import { SITE_NAME, SITE_URL, absUrl } from "@/lib/site";
+import { ogImageUrl } from "@/lib/og-template";
 
 // ============================================================
 // PUSATPERIZINAN.COM — /kebijakan-privasi (server component)
@@ -22,6 +23,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/kebijakan-privasi" },
   robots: { index: true, follow: true },
   openGraph: {
+    images: [{ url: ogImageUrl({ title: META_TITLE }), width: 1200, height: 630, alt: META_TITLE }],
+  
     title: META_TITLE,
     description: META_DESCRIPTION,
     url: "/kebijakan-privasi",

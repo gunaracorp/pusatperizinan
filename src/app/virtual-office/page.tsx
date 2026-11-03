@@ -30,6 +30,7 @@ import {
 } from "@/lib/virtual-office-data";
 import { WHATSAPP_NUMBER } from "@/lib/landing-data";
 import { SITE_URL } from "@/lib/site";
+import { ogImageUrl } from "@/lib/og-template";
 
 // ============================================================
 // PUSATPERIZINAN.COM — Halaman Hub Virtual Office
@@ -62,6 +63,8 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/virtual-office" },
   openGraph: {
+    images: [{ url: ogImageUrl({ title: "Virtual Office SCBD & 48 Lokasi Indonesia — Mulai Rp 500rb/bln" }), width: 1200, height: 630, alt: "Virtual Office SCBD & 48 Lokasi Indonesia — Mulai Rp 500rb/bln" }],
+  
     title: "Virtual Office SCBD & 48 Lokasi Indonesia — Mulai Rp 500rb/bln",
     description:
       "Alamat bisnis resmi di gedung korporat premium: NIB, PKP, bank & marketplace. 6 paket lengkap dengan resepsionis & penerimaan surat.",

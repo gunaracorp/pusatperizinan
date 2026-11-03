@@ -3,6 +3,7 @@ import Link from "next/link";
 import { SITE_NAME } from "@/lib/site";
 import { LeadForm } from "@/components/lead-form";
 import { Building2, FileSearch, Landmark, ShieldCheck } from "lucide-react";
+import { ogImageUrl } from "@/lib/og-template";
 
 // ============================================================
 // PUSATPERIZINAN.COM — /solusi-korporat (IDE #9: B2B Whitelabel)
@@ -16,6 +17,8 @@ export const metadata: Metadata = {
     "Program B2B: cek legalitas instan untuk portofolio debitur/penyewa, remediasi dokumen perizinan, white-label desk legalitas, SLA tertulis. Diproses tim berpengalaman 3.890+ izin di 38 provinsi.",
   alternates: { canonical: "/solusi-korporat" },
   openGraph: {
+    images: [{ url: ogImageUrl({ title: "Solusi Korporat — Legalitas Massal & White-Label" }), width: 1200, height: 630, alt: "Solusi Korporat — Legalitas Massal & White-Label" }],
+  
     title: "Solusi Korporat — Legalitas Massal & White-Label",
     description: "Verifikasi & perbaikan legalitas untuk bank, multifinance, developer & platform.",
     url: "/solusi-korporat",

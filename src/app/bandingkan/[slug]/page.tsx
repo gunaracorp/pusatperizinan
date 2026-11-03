@@ -22,6 +22,7 @@ import { WHATSAPP_NUMBER } from "@/lib/landing-data";
 import { langAlternates } from "@/lib/seo";
 import { InternalLinkSections } from "@/components/seo/internal-link-sections";
 import { buildComparisonLinkGroups } from "@/lib/internal-links";
+import { ogImageUrl } from "@/lib/og-template";
 
 export function generateStaticParams() {
   return [
@@ -40,6 +41,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       keywords: trio.keywords,
       alternates: langAlternates(`/bandingkan/${trio.slug}`),
       openGraph: {
+    images: [{ url: ogImageUrl({ title: trio.metaTitle }), width: 1200, height: 630, alt: trio.metaTitle }],
+  
         title: trio.metaTitle,
         description: trio.metaDesc,
         url: `/bandingkan/${trio.slug}`,
@@ -61,6 +64,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     // M04: canonical absolut + hreflang id-ID/x-default
     alternates: langAlternates(`/bandingkan/${c.slug}`),
     openGraph: {
+    images: [{ url: ogImageUrl({ title: c.metaTitle }), width: 1200, height: 630, alt: c.metaTitle }],
+  
       title: c.metaTitle,
       description: c.metaDesc,
       url: `/bandingkan/${c.slug}`,

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { SITE_NAME } from "@/lib/site";
 import { KepatuhanTool } from "@/components/program/kepatuhan-tool";
 import { LeadForm } from "@/components/lead-form";
+import { ogImageUrl } from "@/lib/og-template";
 
 // ============================================================
 // PUSATPERIZINAN.COM — /kalender-kepatuhan (IDE #1: 46 Council)
@@ -16,6 +17,8 @@ export const metadata: Metadata = {
     "Hitung jadwal kewajiban legal usaha Anda secara gratis: LKPM OSS-RBA (BKPM 5/2024), SPT Tahunan DJP, JAMSOSTEK 2A. Hindari denda & pembekuan NIB — kalender personal + pengingat WhatsApp gratis.",
   alternates: { canonical: "/kalender-kepatuhan" },
   openGraph: {
+    images: [{ url: ogImageUrl({ title: "Kalender Kepatuhan Usaha — Gratis & Otomatis" }), width: 1200, height: 630, alt: "Kalender Kepatuhan Usaha — Gratis & Otomatis" }],
+  
     title: "Kalender Kepatuhan Usaha — Gratis & Otomatis",
     description: "Masukkan data usaha Anda, dapatkan jadwal LKPM, SPT Tahunan, dan JAMSOSTEK 2A untuk 12 bulan ke depan.",
     url: "/kalender-kepatuhan",

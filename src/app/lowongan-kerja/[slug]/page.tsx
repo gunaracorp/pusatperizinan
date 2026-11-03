@@ -25,6 +25,7 @@ import {
 } from "@/lib/jobs-data";
 import { WHATSAPP_NUMBER } from "@/lib/landing-data";
 import { SITE_URL, absUrl } from "@/lib/site";
+import { ogImageUrl } from "@/lib/og-template";
 
 export function generateStaticParams() {
   return JOBS.map((j) => ({ slug: j.slug }));
@@ -56,6 +57,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     ],
     alternates: { canonical: `/lowongan-kerja/${job.slug}` },
     openGraph: {
+    images: [{ url: ogImageUrl({ title: `${title} | PusatPerizinan.com` }), width: 1200, height: 630, alt: `${title} | PusatPerizinan.com` }],
+  
       title: `${title} | PusatPerizinan.com`,
       description: desc,
       url: `/lowongan-kerja/${job.slug}`,

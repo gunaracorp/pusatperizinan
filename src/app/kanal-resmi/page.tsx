@@ -12,6 +12,7 @@ import { INSTITUTIONS } from "@/lib/institutions";
 import { InstitutionSeal } from "@/components/institutions/institution-seal";
 import { WHATSAPP_NUMBER } from "@/lib/landing-data";
 import { SITE_URL } from "@/lib/site";
+import { ogImageUrl } from "@/lib/og-template";
 
 
 const PAGE_TITLE = "Direktori 20 Kanal Resmi Pemerintah — Kementerian & Lembaga Terkait";
@@ -31,6 +32,8 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/kanal-resmi" },
   openGraph: {
+    images: [{ url: ogImageUrl({ title: PAGE_TITLE }), width: 1200, height: 630, alt: PAGE_TITLE }],
+  
     title: PAGE_TITLE,
     description: PAGE_DESC,
     url: "/kanal-resmi",

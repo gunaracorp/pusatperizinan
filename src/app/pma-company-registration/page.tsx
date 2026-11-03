@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SITE_NAME, CONTACT } from "@/lib/site";
 import { LeadForm } from "@/components/lead-form";
+import { ogImageUrl } from "@/lib/og-template";
 
 // ============================================================
 // PUSATPERIZINAN.COM — /pma-company-registration (IDE #4: PMA Inbound)
@@ -16,6 +17,8 @@ export const metadata: Metadata = {
     "Register your PT PMA (foreign investment company) in Indonesia with licensed consultants: OSS-RBA NIB, DGT tax registration, work permits (KITAS), office in SCBD Jakarta. 38 provinces covered, money-back guarantee.",
   alternates: { canonical: "/pma-company-registration" },
   openGraph: {
+    images: [{ url: ogImageUrl({ title: "Company Registration in Indonesia — PT PMA Setup" }), width: 1200, height: 630, alt: "Company Registration in Indonesia — PT PMA Setup" }],
+  
     title: "Company Registration in Indonesia — PT PMA Setup",
     description: "Foreign-owned company (PT PMA) registration by licensed Indonesian consultants. Transparent pricing, written guarantee.",
     url: "/pma-company-registration",

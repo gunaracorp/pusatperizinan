@@ -6,6 +6,7 @@ import { COMPARISONS } from "@/lib/comparisons";
 import { TRIO_COMPARISONS, TRIO_TOTAL } from "@/lib/comparisons-trio";
 import { WHATSAPP_NUMBER } from "@/lib/landing-data";
 import { langAlternates } from "@/lib/seo";
+import { ogImageUrl } from "@/lib/og-template";
 
 export function generateStaticParams() {
   return [{}];
@@ -32,6 +33,8 @@ export async function generateMetadata(): Promise<Metadata> {
     // M04: canonical absolut + hreflang id-ID/x-default
     alternates: langAlternates("/bandingkan"),
     openGraph: {
+    images: [{ url: ogImageUrl({ title: "Perbandingan Badan Usaha — PusatPerizinan.com" }), width: 1200, height: 630, alt: "Perbandingan Badan Usaha — PusatPerizinan.com" }],
+  
       title: "Perbandingan Badan Usaha — PusatPerizinan.com",
       description:
         "Panduan perbandingan badan usaha & layanan: PT, CV, PT Perorangan, PMA, NIB vs SIUP, ISO, pajak, BPOM, PMI. Tabel per aspek, pajak, biaya, verdict siap pakai.",

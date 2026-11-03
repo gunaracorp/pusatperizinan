@@ -6,6 +6,7 @@ import { Footer } from "@/components/landing/footer";
 import { KepatuhanProClient } from "./kepatuhan-client";
 import { KEPATUHAN_META, KEPATUHAN_TIERS } from "@/lib/kepatuhan-pro";
 import { SITE_NAME, SITE_URL, absUrl, TRUST_METRICS } from "@/lib/site";
+import { ogImageUrl } from "@/lib/og-template";
 
 // ============================================================
 // PUSATPERIZINAN.COM — KEPATUHANPRO (/kepatuhan-pro)
@@ -27,6 +28,8 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: absUrl("/kepatuhan-pro") },
   openGraph: {
+    images: [{ url: ogImageUrl({ title: KEPATUHAN_META.title }), width: 1200, height: 630, alt: KEPATUHAN_META.title }],
+  
     title: KEPATUHAN_META.title,
     description: KEPATUHAN_META.description,
     url: absUrl("/kepatuhan-pro"),

@@ -4,6 +4,7 @@ import { Footer } from "@/components/landing/footer";
 import { FaqBrowser } from "./faq-browser";
 import { FAQ_CATEGORIES, FAQ_META } from "@/lib/faq-data";
 import { SITE_NAME, SITE_URL, absUrl } from "@/lib/site";
+import { ogImageUrl } from "@/lib/og-template";
 
 // ============================================================
 // PUSATPERIZINAN.COM — /faq (server component)
@@ -22,6 +23,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/faq" },
   robots: { index: true, follow: true },
   openGraph: {
+    images: [{ url: ogImageUrl({ title: FAQ_META.title }), width: 1200, height: 630, alt: FAQ_META.title }],
+  
     title: FAQ_META.title,
     description: FAQ_META.description,
     url: "/faq",

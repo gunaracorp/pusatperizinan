@@ -10,6 +10,7 @@ import {
 } from "@/lib/katalog-lengkap";
 import { getCatalogServiceLink } from "@/lib/catalog/mapping";
 import { SITE_URL, SITE_NAME } from "@/lib/site";
+import { ogImageUrl } from "@/lib/og-template";
 
 interface PageProps {
   params: Promise<{ kategori: string }>;
@@ -38,6 +39,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description,
     alternates: { canonical: `${SITE_URL}/katalog/${cat.slug}` },
     openGraph: {
+    images: [{ url: ogImageUrl({ title: "PusatPerizinan.com — Konsultan Perizinan Usaha #1 Indonesia" }), width: 1200, height: 630, alt: "PusatPerizinan.com — Konsultan Perizinan Usaha #1 Indonesia" }],
+  
       title,
       description,
       url: `${SITE_URL}/katalog/${cat.slug}`,

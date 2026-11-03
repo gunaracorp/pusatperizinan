@@ -26,6 +26,7 @@ import { langAlternates, stableLastmod, formatLastmodId } from "@/lib/seo";
 import { geoMetaForSlug } from "@/lib/geo";
 import { InternalLinkSections } from "@/components/seo/internal-link-sections";
 import { buildLandingLinkGroups } from "@/lib/internal-links";
+import { ogImageUrl } from "@/lib/og-template";
 
 // ============================================================
 // PUSATPERIZINAN.COM — HALAMAN DETAIL 500 LAYANAN (root level)
@@ -69,6 +70,8 @@ export async function generateMetadata({
     // M05: meta geo dinamis mengikuti provinsi di slug (tanpa lokasi → tidak ada other)
     ...(geo ? { other: geo } : {}),
     openGraph: {
+    images: [{ url: ogImageUrl({ title: "PusatPerizinan.com — Konsultan Perizinan Usaha #1 Indonesia" }), width: 1200, height: 630, alt: "PusatPerizinan.com — Konsultan Perizinan Usaha #1 Indonesia" }],
+  
       title,
       description,
       url: `${SITE_URL}/${slug}`,

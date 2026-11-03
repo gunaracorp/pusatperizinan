@@ -51,6 +51,10 @@ import { geoMetaForSlug } from "@/lib/geo";
 import { resolveKatalogV2, KATALOG_V2_SLUGS } from "@/lib/katalog-v2";
 import { KatalogV2Detail } from "@/components/catalog/katalog-v2-detail";
 import { resolveKatalogV3, KATALOG_V3_SLUGS } from "@/lib/katalog-v3";
+// OG image dinamis via /api/og — file-convention opengraph-image di
+// dalam catch-all ini memicu panic Turbopack 16 (boot mati total),
+// sehingga gambar per-halaman kini disuntik lewat generateMetadata.
+import { ogImageUrl } from "@/lib/og-template";
 
 // ============================================================
 // STATIC EXPORT READY — catch-all [...slug]
@@ -90,7 +94,11 @@ export async function generateMetadata({
       title,
       description,
       alternates: langAlternates(`/layanan/${v2.slug}`),
-      openGraph: { title, description, url: `/layanan/${v2.slug}`, type: "article", siteName: "PusatPerizinan.com", locale: "id_ID" },
+      openGraph: {
+        title, description, url: `/layanan/${v2.slug}`, type: "article", siteName: "PusatPerizinan.com", locale: "id_ID",
+        images: [{ url: ogImageUrl({ title: `${v2.name} (${v2.code})`, subtitle: "Harga transparan, syarat lengkap, garansi 100% uang kembali.", category: "Layanan Perizinan" }), width: 1200, height: 630, alt: v2.name }],
+      },
+      twitter: { card: "summary_large_image", title, description, images: [ogImageUrl({ title: `${v2.name} (${v2.code})`, category: "Layanan Perizinan" })] },
     };
   }
   // Katalog Pro v3 (PP3-XXX): 500 layanan baru — metadata dengan keywords
@@ -111,8 +119,11 @@ export async function generateMetadata({
         `jasa pengurusan ${v3.authority.toLowerCase()}`,
       ],
       alternates: langAlternates(`/layanan/${v3.slug}`),
-      openGraph: { title, description, url: `/layanan/${v3.slug}`, type: "article", siteName: "PusatPerizinan.com", locale: "id_ID" },
-      twitter: { card: "summary_large_image", title, description },
+      openGraph: {
+        title, description, url: `/layanan/${v3.slug}`, type: "article", siteName: "PusatPerizinan.com", locale: "id_ID",
+        images: [{ url: ogImageUrl({ title: `${v3.name} (${v3.code})`, subtitle: `Diterbitkan ${v3.authority} — pendampingan penuh hingga terbit.`, category: "Layanan Perizinan" }), width: 1200, height: 630, alt: v3.name }],
+      },
+      twitter: { card: "summary_large_image", title, description, images: [ogImageUrl({ title: `${v3.name} (${v3.code})`, category: "Layanan Perizinan" })] },
     };
   }
 
@@ -136,11 +147,15 @@ export async function generateMetadata({
       type: "article",
       siteName: "PusatPerizinan.com",
       locale: "id_ID",
+      // Gambar share unik per-halaman (dulunya via file-convention
+      // opengraph-image yang memicu panic Turbopack di catch-all).
+      images: [{ url: ogImageUrl({ title: page.title, subtitle: "Dikerjakan konsultan berpengalaman — resmi, terverifikasi, garansi 100% uang kembali.", category: "Layanan Perizinan" }), width: 1200, height: 630, alt: page.title }],
     },
     twitter: {
       card: "summary_large_image",
       title: page.title,
       description: page.metaDesc,
+      images: [ogImageUrl({ title: page.title, category: "Layanan Perizinan" })],
     },
     // P0-03: halaman tipis (tier D/E) dinilai noindex,follow
     robots: { index: classifyPage(pageLikeOf(page)).index, follow: true },

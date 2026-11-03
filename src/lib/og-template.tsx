@@ -39,6 +39,23 @@ export interface OgInput {
   category?: string;
 }
 
+// ------------------------------------------------------------
+// PENGHUBUNG ROUTE /api/og — pengganti file-convention
+// opengraph-image di dalam segmen catch-all. File-convention di
+// [...slug] memicu PANIC Turbopack 16 ("Invalid segment
+// Static(\"opengraph-image\"), catch all segment must be the last
+// segment") sampai situs tak bisa boot — karenanya semua OG image
+// programatik kini menunjuk URL deterministik /api/og?t=&s=&c=
+// (satu mesin render, aman cache CDN, nol file konvensi berisiko).
+// ------------------------------------------------------------
+export function ogImageUrl(input: OgInput): string {
+  const params = new URLSearchParams();
+  params.set("t", input.title);
+  if (input.subtitle) params.set("s", input.subtitle);
+  if (input.category) params.set("c", input.category);
+  return `/api/og?${params.toString()}`;
+}
+
 /** Render gambar OG branding PusatPerizinan.com. */
 export function makeOgImageResponse({ title, subtitle, category }: OgInput): ImageResponse {
   const safeTitle = clamp(title, 110);

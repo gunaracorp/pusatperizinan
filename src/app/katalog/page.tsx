@@ -18,6 +18,7 @@ import { KatalogV2Browser } from "./katalog-v2-browser";
 import { KatalogV3Browser } from "./katalog-v3-browser";
 import { KATALOG_V2_STATS } from "@/lib/katalog-v2";
 import { KATALOG_V3_STATS, KATALOG_V3_CATEGORIES } from "@/lib/katalog-v3";
+import { ogImageUrl } from "@/lib/og-template";
 
 // ============================================================
 // PUSATPERIZINAN.COM — /katalog (KATALOG 500 LAYANAN)
@@ -35,6 +36,8 @@ export const metadata: Metadata = {
   description: PAGE_DESC,
   alternates: { canonical: `${SITE_URL}/katalog` },
   openGraph: {
+    images: [{ url: ogImageUrl({ title: PAGE_TITLE }), width: 1200, height: 630, alt: PAGE_TITLE }],
+  
     title: PAGE_TITLE,
     description: PAGE_DESC,
     url: `${SITE_URL}/katalog`,

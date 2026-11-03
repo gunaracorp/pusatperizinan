@@ -13,6 +13,7 @@ import {
 import { WHATSAPP_NUMBER } from "@/lib/landing-data";
 import { SITE_URL } from "@/lib/site";
 import { langAlternates } from "@/lib/seo";
+import { ogImageUrl } from "@/lib/og-template";
 
 export function generateStaticParams() {
   return [{}];
@@ -38,6 +39,8 @@ export async function generateMetadata(): Promise<Metadata> {
     ],
     alternates: langAlternates("/glosarium"),
     openGraph: {
+    images: [{ url: ogImageUrl({ title: "Glosarium Perizinan Usaha — PusatPerizinan.com" }), width: 1200, height: 630, alt: "Glosarium Perizinan Usaha — PusatPerizinan.com" }],
+  
       title: "Glosarium Perizinan Usaha — PusatPerizinan.com",
       description,
       url: "/glosarium",

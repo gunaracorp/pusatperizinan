@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BUNDLES, fmtRange, fmtIdr, waLink } from "@/lib/katalog-lengkap";
 import { SITE_URL, SITE_NAME } from "@/lib/site";
 import { PACKAGES, fmtRupiah } from "@/lib/pricing";
+import { ogImageUrl } from "@/lib/og-template";
 
 const PAGE_TITLE = `Paket Bundel Perizinan — GO UMRAH, GO HAJI PLUS & ${BUNDLES.length - 2} Paket Hemat Lainnya`;
 const PAGE_DESC = `${BUNDLES.length} paket bundel layanan perizinan paling populer: kombinasi pendirian PT + izin + pendampingan dengan harga lebih hemat daripada beli satuan — mulai ${fmtRange(Math.min(...BUNDLES.map((b) => b.price)), null)}.`;
@@ -12,6 +13,8 @@ export const metadata: Metadata = {
   description: PAGE_DESC,
   alternates: { canonical: `${SITE_URL}/paket` },
   openGraph: {
+    images: [{ url: ogImageUrl({ title: PAGE_TITLE }), width: 1200, height: 630, alt: PAGE_TITLE }],
+  
     title: PAGE_TITLE,
     description: PAGE_DESC,
     url: `${SITE_URL}/paket`,

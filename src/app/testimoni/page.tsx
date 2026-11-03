@@ -11,6 +11,7 @@ import {
 import { TestimonialGrid, Stars } from "@/components/testimonials/testimonial-card";
 import { WHATSAPP_NUMBER } from "@/lib/landing-data";
 import { SITE_URL } from "@/lib/site";
+import { ogImageUrl } from "@/lib/og-template";
 
 
 const PAGE_TITLE = "Testimoni Klien PusatPerizinan.com — 76 Ulasan Terverifikasi Rating 4,9/5";
@@ -31,6 +32,8 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/testimoni" },
   openGraph: {
+    images: [{ url: ogImageUrl({ title: PAGE_TITLE }), width: 1200, height: 630, alt: PAGE_TITLE }],
+  
     title: PAGE_TITLE,
     description: PAGE_DESC,
     url: "/testimoni",

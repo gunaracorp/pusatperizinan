@@ -6,6 +6,7 @@ import { KBLI_PAGES, KBLI_CATEGORIES, KBLI_TOTAL } from "@/lib/kbli-catalog";
 import { WHATSAPP_NUMBER } from "@/lib/landing-data";
 import { KbliBrowser } from "./kbli-browser";
 import { langAlternates } from "@/lib/seo";
+import { ogImageUrl } from "@/lib/og-template";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -22,6 +23,8 @@ export async function generateMetadata(): Promise<Metadata> {
     // M04: canonical absolut + hreflang id-ID/x-default
     alternates: langAlternates("/kbli"),
     openGraph: {
+    images: [{ url: ogImageUrl({ title: "Database KBLI 2025 — PusatPerizinan.com" }), width: 1200, height: 630, alt: "Database KBLI 2025 — PusatPerizinan.com" }],
+  
       title: "Database KBLI 2025 — PusatPerizinan.com",
       description: `${KBLI_TOTAL}+ KBLI dengan izin, risiko & pajak lengkap per kode. Cari bidang usaha Anda sekarang.`,
       url: "/kbli",

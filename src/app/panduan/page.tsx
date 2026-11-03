@@ -17,6 +17,7 @@ import { Header } from "@/components/landing/header";
 import { Footer } from "@/components/landing/footer";
 import { PERMIT_GUIDES } from "@/lib/seo-content";
 import { SITE_NAME, SITE_URL, absUrl } from "@/lib/site";
+import { ogImageUrl } from "@/lib/og-template";
 
 // ============================================================
 // PUSATPERIZINAN.COM — /panduan (server component)
@@ -45,6 +46,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/panduan" },
   robots: { index: true, follow: true },
   openGraph: {
+    images: [{ url: ogImageUrl({ title: "Panduan Perizinan Usaha Terlengkap — PusatPerizinan.com" }), width: 1200, height: 630, alt: "Panduan Perizinan Usaha Terlengkap — PusatPerizinan.com" }],
+  
     title: "Panduan Perizinan Usaha Terlengkap — PusatPerizinan.com",
     description:
       "16 panduan resmi per jenis izin: syarat, biaya, timeline, langkah resmi, dan tips dari konsultan berpengalaman 10+ tahun.",
