@@ -125,6 +125,15 @@ if ! command -v npm >/dev/null 2>&1; then
         exit 1
 fi
 
+log_step_start "Ensure PostgreSQL & .env sandbox"
+# Harus SEBELUM bun/npm install: postinstall `prisma contract emit`
+# menolak jalan bila .env tidak berisi DATABASE_URL PostgreSQL
+# (CLI.CONFIG_UNREADABLE) — .env di-gitignore sehingga bisa hilang
+# saat sandbox direcycle. ensure-pg.sh idempoten: memulihkan .env,
+# initdb bila perlu, dan menyalakan server 127.0.0.1:5432.
+bash scripts/ensure-pg.sh || echo "[WARN] ensure-pg gagal — predev akan mencoba ulang"
+log_step_end "Ensure PostgreSQL & .env sandbox"
+
 log_step_start "install dependencies"
 echo "[BUN] Installing dependencies..."
 if command -v bun >/dev/null 2>&1; then
