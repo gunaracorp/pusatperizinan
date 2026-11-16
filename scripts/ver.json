@@ -7,10 +7,10 @@
     "url": "https://pusatperizinan.com"
   },
   "version": {
-    "current": "1.20.0",
-    "label": "v1.20.0 — Footer Mahkota",
-    "releaseName": "Footer Mahkota",
-    "releasedAt": "2026-10-29",
+    "current": "1.21.0",
+    "label": "v1.21.0 — Benteng Digital",
+    "releaseName": "Benteng Digital",
+    "releasedAt": "2026-11-16",
     "channel": "stable",
     "timezone": "Asia/Jakarta (WIB)",
     "semverValid": true
@@ -29,23 +29,35 @@
     "changelog": "/CHANGELOG.md",
     "worklog": "/WORKLOG.md",
     "roadmap": "/ROADMAP-99.md",
-    "nextRelease": "v1.16.0 (Unreleased — antrean ROADMAP-99)"
+    "nextRelease": "v1.22.0 (Unreleased — antrean ROADMAP-99)"
   },
   "releases": {
-    "total": 44,
+    "total": 45,
     "current": {
-      "version": "1.20.0",
-      "date": "2026-10-29",
+      "version": "1.21.0",
+      "date": "2026-11-16",
       "type": "minor",
-      "name": "Footer Mahkota",
-      "taskId": "46",
+      "name": "Benteng Digital",
+      "taskId": "47",
       "highlights": [
-        "Footer v6 'Mahkota' — 7 lapisan di 11.873 halaman: summit deck CTA dengan border-beam conic berputar (transform-only) + aurora internal, command strip dengan jam WIB live per detik (hydration-safe, null di server), marquee ticker layanan unggulan full-bleed (pause saat hover), mega-grid SEO warisan penuh v5 (86 href ter-audit identik — nol link hilang), trending searches, legal sovereign + tombol back-to-top, atmosfer ruang dalam (orb aurora drift + pattern grid + noise grain SVG)",
-        "Desain 'bukan footer biasa' sesuai perintah owner — gabungan dewan pakar: headline gradien 'Dari NIB sampai Sertifikasi Global', badge shimmer emas, CTA WA pulse-ring + Cek Izin AI, mikro-trust 4 item (rating 4,9/5 · garansi 100% · respons <15 menit · AI RIZKI 24/7), statistik platform angka gradient, ikon lucide di tiap kolom (Briefcase/Award/MapPin/Globe/Wrench/Zap/Building2/LifeBuoy)",
-        "Anti-regresi: semua animasi compositor-only + guard prefers-reduced-motion menyeluruh, nol dependensi & gambar baru, verifikasi E2E visual desktop 1440px + mobile 390px (nol scroll horizontal), tsc/eslint nol temuan"
+        "Security headers lengkap (ROADMAP-99 langkah 69) di seluruh rute Node standalone via next.config.ts → headers(): CSP granular (default-src 'self', origin integrasi env-gated GA4/Clarity/Sentry/Midtrans Snap hanya untuk yang benar-benar dipakai), X-Frame-Options DENY + frame-ancestors 'none', HSTS 2 tahun includeSubDomains, Permissions-Policy (kamera/mikrofon/geolokasi/payment mati), Referrer-Policy, COOP same-origin-allow-popups (popup Midtrans tetap berfungsi), X-DNS-Prefetch-Control",
+        "Hardening next.config.ts: poweredByHeader false (stack bocor di header tidak lagi terkirim) + mode CSP_REPORT_ONLY env untuk rollout produksi tanpa risiko (laporan pelanggaran dulu, enforce kemudian) + CSP khusus dev (unsafe-eval & ws: HMR hanya saat NODE_ENV development)",
+        "Parity jalur hosting statis: blok security headers identik ditambahkan ke .htaccess (mod_headers) — Node standalone & Apache/LiteSpeed kini sama-sama terbentengi; verifikasi penuh: curl -I 8 header aktif, 7 endpoint kunci tetap 200, browser E2E tanpa satu pun pelanggaran CSP (HMR & Fast Refresh hidup)"
       ]
     },
     "history": [
+      {
+        "version": "1.21.0",
+        "date": "2026-11-16",
+        "type": "minor",
+        "name": "Benteng Digital",
+        "taskId": "47",
+        "highlights": [
+          "Security headers lengkap (ROADMAP-99 langkah 69) di seluruh rute Node standalone via next.config.ts → headers(): CSP granular (default-src 'self', origin integrasi env-gated GA4/Clarity/Sentry/Midtrans Snap hanya untuk yang benar-benar dipakai), X-Frame-Options DENY + frame-ancestors 'none', HSTS 2 tahun includeSubDomains, Permissions-Policy (kamera/mikrofon/geolokasi/payment mati), Referrer-Policy, COOP same-origin-allow-popups (popup Midtrans tetap berfungsi), X-DNS-Prefetch-Control",
+          "Hardening next.config.ts: poweredByHeader false (stack bocor di header tidak lagi terkirim) + mode CSP_REPORT_ONLY env untuk rollout produksi tanpa risiko (laporan pelanggaran dulu, enforce kemudian) + CSP khusus dev (unsafe-eval & ws: HMR hanya saat NODE_ENV development)",
+          "Parity jalur hosting statis: blok security headers identik ditambahkan ke .htaccess (mod_headers) — Node standalone & Apache/LiteSpeed kini sama-sama terbentengi; verifikasi penuh: curl -I 8 header aktif, 7 endpoint kunci tetap 200, browser E2E tanpa satu pun pelanggaran CSP (HMR & Fast Refresh hidup)"
+        ]
+      },
       {
         "version": "1.20.0",
         "date": "2026-10-29",

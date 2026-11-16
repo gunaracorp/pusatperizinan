@@ -65,3 +65,23 @@ ErrorDocument 404 /404.html
 <Files "pack-info.json">
   # manifest paket — boleh dilihat publik (tanpa rahasia)
 </Files>
+
+# ============================================================
+# SECURITY HEADERS — ROADMAP-99 langkah 69 (v1.21.0 "Benteng Digital")
+# Jalur hosting statis (Apache/LiteSpeed). Jalur Node standalone
+# memakai header yang sama via next.config.ts → headers() —
+# ubah KEDUANYA bila daftar origin integrasi berubah.
+# ============================================================
+<IfModule mod_headers.c>
+  Header always set X-Frame-Options "DENY"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), display-capture=(), interest-cohort=()"
+  # Aktifkan setelah SSL jalan (AutoSSL); browser mengabaikan ini di http.
+  Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains"
+  Header always set Cross-Origin-Opener-Policy "same-origin-allow-popups"
+  # CSP sitewide — GA4/Clarity/Sentry/Midtrans Snap (semuanya env-gated di kode).
+  # Untuk rollout aman, ganti nama header menjadi
+  # Content-Security-Policy-Report-Only dulu, pantau laporan, lalu enforce.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms https://app.midtrans.com https://app.sandbox.midtrans.com https://*.sentry.io; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.clarity.ms https://*.ingest.sentry.io https://*.sentry.io; frame-src 'self' https://app.midtrans.com https://app.sandbox.midtrans.com; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
+</IfModule>

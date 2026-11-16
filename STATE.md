@@ -11,11 +11,11 @@
 |---|---|
 | Website | PusatPerizinan.com — konsultan perizinan, pajak & penempatan PMI Indonesia |
 | Repositori | https://github.com/gunaracorp/pusatperizinan (origin utuh, remote terpasang) |
-| Lokasi sandbox | `/home/z/my-project` (= root repositori, `.git` utuh) |
-| Versi aplikasi | v1.17.1 "Dokumen Terkini" (`src/lib/version.ts`, `package.json`) |
+| Lokasi sandbox | `/home/z/my-project/pusatperizinan` (clone ulang penuh Task 47 — `.git` utuh, origin terpasang) |
+| Versi aplikasi | v1.21.0 "Benteng Digital" (`src/lib/version.ts`, `package.json`) |
 | Stack | Next.js 16.4 (Turbopack dev) · React 19 · TypeScript 5 · Tailwind 4 · shadcn/ui · Prisma ORM 8 RC (`@prisma/orm-postgres 8.0.0-rc.20`) · PostgreSQL embedded |
 | Database | Embedded PostgreSQL (`node_modules/@embedded-postgres/linux-x64`), cluster di `.pgdata/`, port 5432, user `postgres` (trust), DB `pusatperizinan` |
-| Model data | 14 model (Lead, Consultation, ChatMessage, LicenseCheck, Subscriber, Testimonial, DocumentCheck, RoadmapRequest, NotificationSetting, Order, Post, FollowUpLog, RecoveryLog, NotificationLog, EditorialSlot) |
+| Model data | 15 model (Lead, Consultation, ChatMessage, LicenseCheck, Subscriber, Testimonial, DocumentCheck, RoadmapRequest, NotificationSetting, Order, Post, FollowUpLog, RecoveryLog, NotificationLog, EditorialSlot) |
 | Kanonik skema | `src/prisma/contract.prisma` → artefak `generated/prisma8/` (jangan edit manual) |
 
 ## 2. Cara Menjalankan (teruji)
@@ -40,11 +40,14 @@ bun run dev          # atau: npm run dev (dev.sh sistem memakai npm)
 5. **Prisma 8 menolak tanpa DATABASE_URL postgres** (`prisma.config.ts` validasi ketat, tidak ada fallback SQLite — by design, jangan dilonggarkan).
 6. Folder `upload/` adalah mount point — jangan `rm -rf`, kosongkan isinya saja.
 7. Token admin cookie = `pp_admin_token` (login via `POST /api/admin/auth`).
+8. **npm ≥11 memblokir postinstall paket DEPENDENSI secara default** (fitur `install-scripts`) meski `trustedDependencies` sudah ada di package.json — gejala: embedded-postgres tanpa `native/bin`, sharp/esbuild/swc bermasalah. Penangkal: `npm install-scripts approve <pkg>` untuk 7 paket (`@embedded-postgres/linux-x64`, `@parcel/watcher`, `@swc/core`, `es5-ext`, `esbuild`, `sharp`, `workerd`) lalu `npm rebuild` — atau jalankan ulang sesi Task 47 di log instalasi.
 
-## 4. Status Saat Ini (2026-10-29)
+## 4. Status Saat Ini (2026-11-16 — Task 47, sesi instalasi + security headers)
 
-- ✅ Instalasi penuh: 1.148 paket, kontrak ter-emisi, DB ter-inisialisasi + ter-sign + ter-verify.
-- ✅ 12 endpoint kritis = 200 (/, /api/version, /api/stats, /sitemap.xml, /katalog, /lowongan-kerja, /admin, /checkout, /garansi, /blog, /glosarium, /kbli, /kalkulator-pajak).
+- ✅ Clone ulang bersih dari GitHub + instalasi penuh: `npm install` exit 0 (745 paket top-level, npm 11), 7 install-script approved, kontrak Prisma ter-emisi, embedded PostgreSQL initdb + db init + sign 15 model.
+- ✅ Dev server hidup via pola nohup §3 — `/api/version` → **v1.21.0 "Benteng Digital"**; 7 endpoint kunci = 200 (/, /api/stats, /sitemap.xml, /katalog, /lowongan-kerja, /checkout, /blog).
+- ✅ **Security headers aktif** (langkah 69): CSP + HSTS + X-Frame-Options DENY + nosniff + Referrer-Policy + Permissions-Policy + COOP di `next.config.ts` (parity `.htaccess`); `poweredByHeader false`; browser E2E nol pelanggaran CSP (HMR hidup). Rollout produksi: `CSP_REPORT_ONLY="true"` dulu.
+- ✅ ROADMAP-99: **22/99 langkah** selesai; CHANGELOG 45 rilis; WORKLOG Task 47.
 - ✅ E2E terverifikasi via browser: form konsultasi hero → lead tersimpan di PostgreSQL (source: hero; normalisasi WA 0812… → 62812… bekerja).
 - ✅ Keamanan: API admin menolak request tanpa `pp_admin_token`.
 - 📸 Bukti: `download/verifikasi-install-sesi-ini.png`.
@@ -52,7 +55,7 @@ bun run dev          # atau: npm run dev (dev.sh sistem memakai npm)
 
 ## 5. Peta Dokumen Resmi Repo
 
-`README.md` (dokumentasi 16 seksi) · `CHANGELOG.md` (41 rilis) · `ROADMAP-99.md` (99 langkah, 12 fase) · `WORKLOG.md` + `worklog.md` (riwayat tugas) · `docs/HOSTINGER-NODEJS-DEPLOY.md` (deploy produksi) · `docs/PRISMA8-MIGRATION-STATUS.md` (aturan migrasi DB).
+`README.md` (dokumentasi 16 seksi) · `CHANGELOG.md` (45 rilis) · `ROADMAP-99.md` (99 langkah, 12 fase) · `WORKLOG.md` + `worklog.md` (riwayat tugas) · `docs/HOSTINGER-NODEJS-DEPLOY.md` (deploy produksi) · `docs/PRISMA8-MIGRATION-STATUS.md` (aturan migrasi DB).
 
 ## 6. Langkah Selanjutnya yang Disarankan
 

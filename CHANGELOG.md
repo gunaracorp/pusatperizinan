@@ -5,19 +5,19 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.20.0_Footer_Mahkota-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-20-0)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.21.0_Benteng_Digital-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-21-0)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-44_(0.1.0_%E2%86%92_1.20.0)-059669?style=flat-square)
-![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-50_ber_versi-059669?style=flat-square)
-![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.21.0_(Unreleased)-f59e0b?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-45_(0.1.0_%E2%86%92_1.21.0)-059669?style=flat-square)
+![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-51_ber_versi-059669?style=flat-square)
+![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.22.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.20.0 — "Footer Mahkota"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.21.0 — "Benteng Digital"`**
 
 <sub>Versi terlihat hidup di: footer setiap halaman (11.873 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
@@ -37,9 +37,31 @@
 | Sumber kebenaran | [`WORKLOG.md`](./WORKLOG.md) (rekam jejak 1:1) · `src/lib/version.ts` (data mesin) · `package.json` (runtime) |
 | Ritme | **1 task/permintaan user = 1 nomor versi baru** — fitur → `MINOR`, perbaikan → `PATCH`, perombakan arah produk → `MAJOR` |
 | Presisi tanggal | Era `0.x` (Sesi 1–2) direkonstruksi dari metadata file & jejak invoice (`INV-20261021`) → presisi bulan; era `1.x` → presisi hari (terverifikasi) |
-| Rilis berikutnya | **`v1.21.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
+| Rilis berikutnya | **`v1.22.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
 
-> 🔗 Navigasi cepat: **[Tabel Lengkap 44 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+> 🔗 Navigasi cepat: **[Tabel Lengkap 45 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+
+---
+
+<a id="v1-21-0"></a>
+
+## [1.21.0] — 2026-11-16 — 🛡️ "Benteng Digital" (Task 47)
+
+Instalasi penuh repo di sandbox baru + **security headers lengkap** (ROADMAP-99 langkah 69, kategori `Security` pertama dalam riwayat proyek): seluruh 11.873 halaman & API kini terbentengi CSP granular, HSTS, X-Frame-Options, Permissions-Policy, dan hardening config — di kedua jalur deployment (Node standalone & hosting statis). Digarap mode Master Polymath + Sage Universal + Ultimate Problem Solver (46 dewan pakar).
+
+### 🛡️ Security
+- **CSP sitewide granular** (`next.config.ts → headers()`, source `/:path*` mencakup `/` dan seluruh API): `default-src 'self'`; `script-src` hanya origin integrasi yang benar-benar dipakai kode (GA4 `googletagmanager.com`, Clarity `clarity.ms`, Sentry `*.sentry.io`, Midtrans Snap `app.midtrans.com`/`app.sandbox.midtrans.com` — semuanya env-gated) + `'unsafe-inline'` minimal untuk bootstrap Next.js; `frame-ancestors 'none'`; `base-uri 'self'`; `form-action 'self'`; `object-src 'none'`; `img-src` ketat `'self' data: blob:` (situs terverifikasi nol gambar eksternal — semua aset self-hosted).
+- **HSTS 2 tahun** `max-age=63072000; includeSubDomains` (tanpa `preload` — komitmen permanen, ditunda sampai seluruh subdomain siap HTTPS); **`X-Frame-Options: DENY`** (kompatibilitas browser lama untuk `frame-ancestors`); **`X-Content-Type-Options: nosniff`**; **`Referrer-Policy: strict-origin-when-cross-origin`**; **`Permissions-Policy`** mematikan kamera/mikrofon/geolokasi/payment/usb/display-capture; **`Cross-Origin-Opener-Policy: same-origin-allow-popups`** (dipilih agar popup Midtrans Snap tetap bisa `postMessage` — COOP `same-origin` ketat akan memutus pembayaran); **`X-DNS-Prefetch-Control: on`**.
+- **Hardening `next.config.ts`**: `poweredByHeader: false` — header `X-Powered-By: Next.js` tidak lagi terkirim (fingerprint stack hilang dari respons semua rute).
+- **Rollout produksi nol-risiko**: env `CSP_REPORT_ONLY="true"` mengirim CSP sebagai `Content-Security-Policy-Report-Only` — pantau pelanggaran di produksi dulu tanpa memblokir apa pun, lalu enforce. CSP dev otomatis longgar (tambah `'unsafe-eval'` + `ws:`/`localhost` di `connect-src` hanya saat `NODE_ENV=development`, tanpa `upgrade-insecure-requests`).
+- **Parity hosting statis**: blok security headers identik di `.htaccess` (`mod_headers`) — jalur Apache/LiteSpeed (idwebhost cPanel) kini setara bentengnya dengan Node standalone; konvensi tercatat: ubah KEDUANYA bila origin integrasi berubah.
+
+### 🧪 QA
+- `curl -I` beranda: 8 header keamanan aktif, `X-Powered-By` hilang, CSP dev membawa `'unsafe-eval'` + `ws:` HMR sesuai rancangan
+- Smoke test 7 endpoint kunci pasca-CSP (`/`, `/api/stats`, `/sitemap.xml`, `/katalog`, `/lowongan-kerja`, `/checkout`, `/blog`) — semua **200**
+- Browser E2E halaman ringan `/kontak`: **nol pelanggaran CSP** di console, HMR websocket tersambung, Fast Refresh hidup — hydration utuh (pola verifikasi OOM-safe warisan Task 46 dipatuhi)
+- Grep console `refused/violat/security` = 0
+- Instalasi bersih diverifikasi: `npm install` exit 0 (745 paket), 7 install-script terpercaya di-approve & rebuild (npm 11 kini memblokir postinstall default — jebakan baru tercatat di STATE.md), `prisma contract emit` ✓, embedded PostgreSQL initdb + db init + sign 15 model ✓
 
 ---
 
@@ -762,11 +784,12 @@ Rilis pertama dengan **identitas versi resmi**. Seluruh proyek kini punya nomor 
 
 <a id="ladder"></a>
 
-## 🪜 Tabel Lengkap 44 Rilis
+## 🪜 Tabel Lengkap 45 Rilis
 
 | # | Versi | Tanggal (WIB) | Tipe | Nama Rilis | Task WORKLOG | Status |
 |---|---|---|---|---|---|---|
-| 44 | **v1.20.0** ⭐ | **2026-10-29** | minor | **Footer Mahkota** | Task 46 | **🟢 AKTIF — versi berjalan** |
+| 45 | **v1.21.0** ⭐ | **2026-11-16** | minor | **Benteng Digital** | Task 47 | **🟢 AKTIF — versi berjalan** |
+| 44 | v1.20.0 | 2026-10-29 | minor | Footer Mahkota | Task 46 | ✅ Rilis |
 | 43 | v1.19.0 | 2026-10-29 | minor | Footer God Mode | Task 45 | ✅ Rilis |
 | 42 | v1.18.0 | 2026-10-29 | minor | Live Commerce Wanita | Task 44 | ✅ Rilis |
 | 41 | v1.17.1 | 2026-10-28 | patch | Dokumen Terkini | Task 42 | ✅ Rilis |

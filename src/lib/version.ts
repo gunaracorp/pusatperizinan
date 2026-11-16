@@ -17,11 +17,11 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.20.0";
+export const APP_VERSION = "1.21.0";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Footer Mahkota";
+export const RELEASE_NAME = "Benteng Digital";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
-export const RELEASE_DATE = "2026-10-29";
+export const RELEASE_DATE = "2026-11-16";
 /** Channel rilis: stable | beta | alpha. */
 export const RELEASE_CHANNEL = "stable" as const;
 
@@ -42,10 +42,22 @@ export interface ReleaseEntry {
 }
 
 /**
- * Riwayat lengkap 44 rilis — urut TERBARU lebih dulu.
+ * Riwayat lengkap 45 rilis — urut TERBARU lebih dulu.
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.21.0",
+    date: "2026-11-16",
+    type: "minor",
+    name: "Benteng Digital",
+    taskId: "47",
+    highlights: [
+      "Security headers lengkap (ROADMAP-99 langkah 69) di seluruh rute Node standalone via next.config.ts → headers(): CSP granular (default-src 'self', origin integrasi env-gated GA4/Clarity/Sentry/Midtrans Snap hanya untuk yang benar-benar dipakai), X-Frame-Options DENY + frame-ancestors 'none', HSTS 2 tahun includeSubDomains, Permissions-Policy (kamera/mikrofon/geolokasi/payment mati), Referrer-Policy, COOP same-origin-allow-popups (popup Midtrans tetap berfungsi), X-DNS-Prefetch-Control",
+      "Hardening next.config.ts: poweredByHeader false (stack bocor di header tidak lagi terkirim) + mode CSP_REPORT_ONLY env untuk rollout produksi tanpa risiko (laporan pelanggaran dulu, enforce kemudian) + CSP khusus dev (unsafe-eval & ws: HMR hanya saat NODE_ENV development)",
+      "Parity jalur hosting statis: blok security headers identik ditambahkan ke .htaccess (mod_headers) — Node standalone & Apache/LiteSpeed kini sama-sama terbentengi; verifikasi penuh: curl -I 8 header aktif, 7 endpoint kunci tetap 200, browser E2E tanpa satu pun pelanggaran CSP (HMR & Fast Refresh hidup)",
+    ],
+  },
   {
     version: "1.20.0",
     date: "2026-10-29",

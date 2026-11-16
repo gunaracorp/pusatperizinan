@@ -163,7 +163,7 @@
 
 ## 📅 FASE 9 — Infrastruktur, Keamanan & Kepatuhan Diri — langkah 69–76
 
-- [ ] **69.** **Security headers lengkap** (CSP, HSTS, X-Frame-Options) + hardening `next.config.ts`. `🔥 · 🟢 · P1`
+- [x] **69.** **Security headers lengkap** (CSP, HSTS, X-Frame-Options) + hardening `next.config.ts`. `🔥 · 🟢 · P1` — ✅ **v1.21.0 "Benteng Digital" (2026-11-16): headers() di next.config.ts untuk seluruh rute Node standalone — CSP granular (origin integrasi env-gated GA4/Clarity/Sentry/Midtrans Snap saja; frame-ancestors 'none'; img-src ketat self+data+blob), HSTS 2 th includeSubDomains, X-Frame-Options DENY, nosniff, Referrer-Policy, Permissions-Policy mati-kamera/mic/geo/payment, COOP same-origin-allow-popups (popup Midtrans aman), poweredByHeader false, mode CSP_REPORT_ONLY untuk rollout produksi nol-risiko, CSP dev otomatis (unsafe-eval + ws: HMR) — parity identik di .htaccess utk jalur statis; QA: curl -I 8 header aktif, 7 endpoint 200, browser nol pelanggaran CSP**
 - [ ] **70.** **Rate limiting** semua `/api/*` (anti-abuse & anti-scraping). `🔥 · 🟡 · P1`
 - [ ] **71.** **Status page publik** + uptime monitoring dengan alert WhatsApp/Telegram. `🔥 · 🟢 · P1`
 - [ ] **72.** **Kepatuhan UU PDP**: cookie consent, kebijakan privasi diperbarui, data retention policy. `🔥 · 🟡 · P1`
