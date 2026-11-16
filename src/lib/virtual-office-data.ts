@@ -97,9 +97,9 @@ export const VO_PACKAGES: VoPackage[] = [
   {
     id: "address",
     name: "Virtual Office Address",
-    priceMonthly: "Rp 500rb/bln",
-    priceYearly: "Rp 4,5jt/thn",
-    priceNumeric: 4500000,
+    priceMonthly: "Mulai Rp 650rb/bln",
+    priceYearly: "Mulai Rp 5,85jt/thn",
+    priceNumeric: 5850000,
     duration: "Aktif 1-2 hari kerja",
     desc: "Alamat bisnis premium di gedung korporat pilihan untuk kartu nama, Google Business, NPWP & legalitas dasar usaha Anda.",
     features: [
@@ -138,9 +138,9 @@ export const VO_PACKAGES: VoPackage[] = [
   {
     id: "plus-pajak",
     name: "VO Plus Pajak (PKP-Ready)",
-    priceMonthly: "Rp 900rb/bln",
-    priceYearly: "Rp 7,5jt/thn",
-    priceNumeric: 7500000,
+    priceMonthly: "Mulai Rp 1,17jt/bln",
+    priceYearly: "Mulai Rp 9,75jt/thn",
+    priceNumeric: 9750000,
     duration: "Aktif 1-2 hari + pendampingan PKP",
     desc: "Paket alamat bisnis lengkap dengan dukungan dokumen domisili untuk pendaftaran PKP, NPWP badan & pengurusan pajak perusahaan.",
     features: [
@@ -180,9 +180,9 @@ export const VO_PACKAGES: VoPackage[] = [
   {
     id: "bundle-pt",
     name: "VO + Pendirian PT Bundle",
-    priceMonthly: "Rp 825rb/bln",
-    priceYearly: "Rp 9,9jt/thn",
-    priceNumeric: 9900000,
+    priceMonthly: "Mulai Rp 1,073jt/bln",
+    priceYearly: "Mulai Rp 12,87jt/thn",
+    priceNumeric: 12870000,
     duration: "PT terbit 3-5 hari kerja + VO aktif 1-2 hari",
     desc: "Paket bundling hemat: pendirian PT lengkap (akta, SK, NIB, NPWP) + Virtual Office Address selama 1 tahun dalam satu harga.",
     features: [
@@ -221,9 +221,9 @@ export const VO_PACKAGES: VoPackage[] = [
   {
     id: "serviced",
     name: "Serviced Office",
-    priceMonthly: "Rp 3,5jt/bln",
-    priceYearly: "Rp 35jt/thn",
-    priceNumeric: 35000000,
+    priceMonthly: "Mulai Rp 4,55jt/bln",
+    priceYearly: "Mulai Rp 45,5jt/thn",
+    priceNumeric: 45500000,
     duration: "Aktif 1-3 hari kerja",
     desc: "Kantor siap pakai penuh furnitur & internet di gedung premium — beroperasi hari itu juga tanpa investasi setup kantor.",
     features: [
@@ -262,9 +262,9 @@ export const VO_PACKAGES: VoPackage[] = [
   {
     id: "meeting-room",
     name: "Meeting Room Hourly",
-    priceMonthly: "Rp 250rb/jam",
+    priceMonthly: "Mulai Rp 325rb/jam",
     priceYearly: "Sesuai pemakaian",
-    priceNumeric: 250000,
+    priceNumeric: 325000,
     duration: "Booking mulai 1 jam (bisa same-day)",
     desc: "Meeting room profesional berkapasitas 4-12 orang di gedung premium — booking per jam untuk presentasi, wawancara, atau rapat klien.",
     features: [
@@ -295,7 +295,7 @@ export const VO_PACKAGES: VoPackage[] = [
       },
       {
         q: "Apakah pengguna meeting room mendapat alamat bisnis juga?",
-        a: "Paket meeting room adalah layanan per-jam tanpa alamat bisnis. Namun jika Anda pelanggan paket Virtual Office Address atau Serviced Office, Anda mendapat jatah jam meeting room gratis tiap bulan (8 jam/bulan) — dan booking tambahan hanya Rp 200rb/jam (harga langganan).",
+        a: "Paket meeting room adalah layanan per-jam tanpa alamat bisnis. Namun jika Anda pelanggan paket Virtual Office Address atau Serviced Office, Anda mendapat jatah jam meeting room gratis tiap bulan (8 jam/bulan) — dan booking tambahan hanya Rp 260rb/jam (harga langganan).",
       },
     ],
     keywords: ["sewa meeting room", "ruang rapat per jam", "sewa ruang meeting jakarta"],
@@ -303,9 +303,9 @@ export const VO_PACKAGES: VoPackage[] = [
   {
     id: "pma",
     name: "VO PPA untuk PT PMA",
-    priceMonthly: "Rp 1jt/bln",
-    priceYearly: "Rp 12jt/thn",
-    priceNumeric: 12000000,
+    priceMonthly: "Mulai Rp 1,3jt/bln",
+    priceYearly: "Mulai Rp 15,6jt/thn",
+    priceNumeric: 15600000,
     duration: "Aktif 2-3 hari kerja",
     desc: "Paket alamat Penggunaan Penunjuk Alamat (PPA) yang dirancang untuk PT PMA — sesuai praktik perizinan BKPM & kebutuhan verifikasi investor asing.",
     features: [
@@ -1609,7 +1609,7 @@ export const VO_GUIDES: VoGuide[] = [
     title: "Virtual Office vs Serviced Office vs Coworking: Mana yang Tepat?",
     desc: "Perbandingan harga, fitur & skenario penggunaan — plus tabel keputusan cepat untuk memilih.",
     long: [
-      "Virtual office memberi Anda alamat + layanan surat tanpa ruang kerja penuh — pilihan paling murah untuk legalitas & citra (mulai Rp 500rb/bulan). Serviced office memberi kantor privat siap pakai dengan kontrak fleksibel (mulai Rp 3,5jt/bulan). Coworking memberi meja di ruang bersama dengan komunitas — bagus untuk jaringan tapi alamatnya tidak selalu bisa dipakai untuk legal perusahaan.",
+      "Virtual office memberi Anda alamat + layanan surat tanpa ruang kerja penuh — pilihan paling murah untuk legalitas & citra (mulai Rp 650rb/bulan). Serviced office memberi kantor privat siap pakai dengan kontrak fleksibel (mulai Rp 4,55jt/bulan). Coworking memberi meja di ruang bersama dengan komunitas — bagus untuk jaringan tapi alamatnya tidak selalu bisa dipakai untuk legal perusahaan.",
       "Aturan praktisnya: kalau kebutuhan utama adalah alamat untuk NIB/PKP/bank/marketplace, ambil virtual office. Kalau tim Anda benar-benar butuh tempat duduk setiap hari (2-10 orang), serviced office lebih efisien daripada menyewa kantor kosong. Coworking cocok sebagai pelengkap — dan di lokasi kami, jatah lounge & meeting room sudah termasuk dalam paket VO.",
       "Yang paling sering disesali klien: mengambil sewa kantor fisik terlalu dini (kontrak 1-3 tahun + setup 3-5x biaya awal) padahal tim masih kecil — atau sebaliknya, memakai alamat rumah untuk perusahaan yang sedang pitch ke investor besar. Mulai dari VO, upgrade ke serviced office di gedung yang sama tanpa mengubah alamat legal adalah jalur paling aman.",
     ],
@@ -1643,7 +1643,7 @@ export const VO_GUIDES: VoGuide[] = [
     faq: [
       {
         q: "Berapa biaya mutasi alamat PT?",
-        a: "Jasa administrasi mutasi mulai Rp 1,5jt (notaris & PNBP terpisah sesuai tarif resmi). Bila dibundel dengan aktivasi virtual office, banyak klien dapat harga paket hemat — tanyakan di konsultasi gratis.",
+        a: "Jasa administrasi mutasi mulai Rp 1,95jt (notaris & PNBP terpisah sesuai tarif resmi). Bila dibundel dengan aktivasi virtual office, banyak klien dapat harga paket hemat — tanyakan di konsultasi gratis.",
       },
     ],
     keywords: ["pindah alamat pt ke virtual office", "mutasi alamat pt", "cara ganti alamat perusahaan", "perubahan alamat pt"],
@@ -1808,12 +1808,12 @@ export const VO_GUIDES: VoGuide[] = [
     desc: "Pertanda usaha Anda butuh alamat bisnis: verifikasi platform, klien korporat & perlindungan privasi.",
     long: [
       "Alamat rumah sah untuk memulai — banyak UMKM memulai dari sana. Tapi ada tiga pertanda saat naik kelas: (1) platform/klien menuntut alamat usaha jelas (verifikasi marketplace, tender, rekening korporat), (2) privasi Anda terganggu (alamat rumah terpapar di Google, dokumen, dan paket datang tak terduga), (3) citra usaha menjadi hambatan kontrak (klien korporat ragu dengan alamat perumahan).",
-      "Virtual office menyelesaikan ketiganya dengan biaya yang sudah jauh lebih ramah daripada sewa kantor: mulai Rp 500rb/bulan atau Rp 4,5jt/tahun — sekitar biaya kopi 150rb/hari. Untuk UMKM yang sedang mengejar sertifikasi halal, BPOM, atau pertama kali membuat PT Perorangan, alamat resmi yang terawat juga mempermudah proses perizinan.",
+      "Virtual office menyelesaikan ketiganya dengan biaya yang sudah jauh lebih ramah daripada sewa kantor: mulai Rp 650rb/bulan atau Rp 5,85jt/tahun — sekitar biaya kopi 195rb/hari. Untuk UMKM yang sedang mengejar sertifikasi halal, BPOM, atau pertama kali membuat PT Perorangan, alamat resmi yang terawat juga mempermudah proses perizinan.",
       "Urutan cerdas untuk UMKM: NIB gratis (alamat rumah boleh) → naikkan ke VO saat mulai mengejar kontrak B2B/verifikasi platform → tambah PKP saat omzet mendekati 4,8 M → serviced office saat tim butuh kantor. Setiap langkahnya kami pendampingi.",
     ],
     takeaways: [
       "3 pertanda butuh VO: verifikasi platform, privasi, kredibilitas kontrak",
-      "Rp 4,5jt/tahun — lebih murah dari risiko kontrak batal",
+      "Rp 5,85jt/tahun — lebih murah dari risiko kontrak batal",
       "Jalur UMKM: NIB → VO → PKP → kantor fisik, semua kami pendampingi",
     ],
     faq: [
@@ -1829,12 +1829,12 @@ export const VO_GUIDES: VoGuide[] = [
     title: "Virtual Office + NIB: Langkah Legalisasi Usaha Termurah 2026",
     desc: "Kombinasi paling efisien: alamat resmi + NIB gratis via OSS-RBA — langkah demi langkah sampai usaha legal.",
     long: [
-      "NIB (Nomor Induk Berusaha) gratis terbit via OSS-RBA — tapi butuh alamat usaha yang jelas. Kombinasi virtual office + NIB adalah legalisasi termurah yang bisa dilakukan usaha baru: alamat resmi gedung korporat (mulai Rp 500rb/bln) + NIB gratis = usaha yang legal, bisa kontrak, bisa daftar marketplace, bisa buka rekening usaha.",
-      "Langkahnya: pilih paket VO → terima perjanjian alamat & SKDU → daftar NIB di OSS-RBA (atau kami buatkan) dengan alamat VO → NIB terbit 1 hari kerja → aktivasi Google Business, marketplace & rekening. Total: 2-3 hari kerja, biaya mulai Rp 500rb.",
+      "NIB (Nomor Induk Berusaha) gratis terbit via OSS-RBA — tapi butuh alamat usaha yang jelas. Kombinasi virtual office + NIB adalah legalisasi termurah yang bisa dilakukan usaha baru: alamat resmi gedung korporat (mulai Rp 650rb/bln) + NIB gratis = usaha yang legal, bisa kontrak, bisa daftar marketplace, bisa buka rekening usaha.",
+      "Langkahnya: pilih paket VO → terima perjanjian alamat & SKDU → daftar NIB di OSS-RBA (atau kami buatkan) dengan alamat VO → NIB terbit 1 hari kerja → aktivasi Google Business, marketplace & rekening. Total: 2-3 hari kerja, biaya mulai Rp 650rb.",
       "Bonus yang sering dilupakan: NIB memuat KBLI yang menjadi dasar semua izin lanjutan (halal, BPOM, merek). Pilih KBLI yang benar sejak awal — konsultasi pemilihan KBLI gratis di paket kami, karena salah KBLI di NIB akan memicu revisi mahal di kemudian hari.",
     ],
     takeaways: [
-      "VO + NIB = legalisasi termurah (mulai Rp 500rb, 2-3 hari)",
+      "VO + NIB = legalisasi termurah (mulai Rp 650rb, 2-3 hari)",
       "NIB gratis via OSS-RBA, alamat VO langsung dipakai",
       "KBLI yang benar sejak awal menghemat revisi mahal nanti",
     ],

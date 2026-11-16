@@ -44,7 +44,7 @@ FORMAT RESPONS: JSON SAJA tanpa teks lain, dengan struktur:
     {
       "phase": "Fondasi Legal",
       "month": "Bulan 1",
-      "items": [{"izin": "NIB via OSS-RBA", "biaya": "Rp350.000", "durasi": "1 hari kerja", "kenapa": "Fondasi semua legalitas — tanpa ini tidak bisa lanjut"}]
+      "items": [{"izin": "NIB via OSS-RBA", "biaya": "Rp455.000", "durasi": "1 hari kerja", "kenapa": "Fondasi semua legalitas — tanpa ini tidak bisa lanjut"}]
     }
   ],
   "totalCostMin": 500000,
@@ -82,9 +82,9 @@ function fallbackRoadmap(businessField: string, province: string, scale: string)
       phase: "Fondasi Legal",
       month: "Bulan 1",
       items: [
-        { izin: badanUsaha, biaya: scale === "perusahaan" ? "Rp3,5-6,5 juta" : "Rp350.000-750.000", durasi: "1-7 hari kerja", kenapa: "Badan usaha resmi adalah tiket masuk semua perizinan berikutnya." },
-        { izin: "NIB + KBLI via OSS-RBA", biaya: "Rp350.000 (jasa; resmi gratis)", durasi: "1 hari kerja", kenapa: "Identitas usaha tunggal — tanpa NIB, tidak bisa izin lain." },
-        { izin: "NPWP & aktivasi Coretax", biaya: "Rp150.000", durasi: "1-3 hari", kenapa: "Wajib untuk pajak, rekening bisnis, dan kerja sama B2B." },
+        { izin: badanUsaha, biaya: scale === "perusahaan" ? "Rp4,55-8,45 juta" : "Rp455.000-975.000", durasi: "1-7 hari kerja", kenapa: "Badan usaha resmi adalah tiket masuk semua perizinan berikutnya." },
+        { izin: "NIB + KBLI via OSS-RBA", biaya: "Rp455.000 (jasa; resmi gratis)", durasi: "1 hari kerja", kenapa: "Identitas usaha tunggal — tanpa NIB, tidak bisa izin lain." },
+        { izin: "NPWP & aktivasi Coretax", biaya: "Rp195.000", durasi: "1-3 hari", kenapa: "Wajib untuk pajak, rekening bisnis, dan kerja sama B2B." },
       ],
     },
     {
@@ -92,14 +92,14 @@ function fallbackRoadmap(businessField: string, province: string, scale: string)
       month: "Bulan 2-3",
       items: isDigital
         ? [
-            { izin: "Sertifikat Standar OSS (sesuai risiko)", biaya: "Rp350.000", durasi: "1-5 hari", kenapa: "Kegiatan usaha Anda menengah rendah — syarat operasional penuh." },
-            { izin: "PSE Komdigi (Tanda Daftar PSE)", biaya: "Rp2,5 juta", durasi: "7-21 hari", kenapa: "Wajib untuk website/aplikasi — hindari pemblokiran & patuhi UU PDP." },
-            { izin: "Pendaftaran Merek (DJKI)", biaya: "Rp900.000", durasi: "6-12 bulan", kenapa: "Amankan brand sejak dini sebelum terkenal." },
+            { izin: "Sertifikat Standar OSS (sesuai risiko)", biaya: "Rp455.000", durasi: "1-5 hari", kenapa: "Kegiatan usaha Anda menengah rendah — syarat operasional penuh." },
+            { izin: "PSE Komdigi (Tanda Daftar PSE)", biaya: "Rp3,25 juta", durasi: "7-21 hari", kenapa: "Wajib untuk website/aplikasi — hindari pemblokiran & patuhi UU PDP." },
+            { izin: "Pendaftaran Merek (DJKI)", biaya: "Rp1.170.000", durasi: "6-12 bulan", kenapa: "Amankan brand sejak dini sebelum terkenal." },
           ]
         : [
-            { izin: "Sertifikat Standar OSS (sesuai risiko)", biaya: "Rp350.000", durasi: "1-5 hari", kenapa: "Syarat operasional untuk kegiatan menengah rendah." },
-            { izin: "PBG & SLF lokasi usaha", biaya: "Rp2 juta", durasi: "14-30 hari", kenapa: "Syarat buka usaha berbasis lokasi fisik." },
-            { izin: isKuliner ? "Sertifikasi Halal (SEHATI)" : "Pendaftaran Merek (DJKI)", biaya: isKuliner ? "Rp1,2 juta (subsidi UMKM tersedia)" : "Rp900.000", durasi: isKuliner ? "14-30 hari" : "6-12 bulan", kenapa: isKuliner ? "Wajib UU JPH + naik kepercayaan pelanggan 40%+" : "Amankan brand sejak dini." },
+            { izin: "Sertifikat Standar OSS (sesuai risiko)", biaya: "Rp455.000", durasi: "1-5 hari", kenapa: "Syarat operasional untuk kegiatan menengah rendah." },
+            { izin: "PBG & SLF lokasi usaha", biaya: "Rp2,6 juta", durasi: "14-30 hari", kenapa: "Syarat buka usaha berbasis lokasi fisik." },
+            { izin: isKuliner ? "Sertifikasi Halal (SEHATI)" : "Pendaftaran Merek (DJKI)", biaya: isKuliner ? "Rp1,56 juta (subsidi UMKM tersedia)" : "Rp1.170.000", durasi: isKuliner ? "14-30 hari" : "6-12 bulan", kenapa: isKuliner ? "Wajib UU JPH + naik kepercayaan pelanggan 40%+" : "Amankan brand sejak dini." },
           ],
     },
     {
@@ -107,20 +107,20 @@ function fallbackRoadmap(businessField: string, province: string, scale: string)
       month: "Bulan 4-6",
       items: isKuliner
         ? [
-            { izin: "PIRT / Izin Edar BPOM", biaya: isKuliner ? "Rp2,5 juta" : "Rp2,5 juta", durasi: "30-60 hari", kenapa: "Legal jual produk kemasan di marketplace & toko modern." },
+            { izin: "PIRT / Izin Edar BPOM", biaya: isKuliner ? "Rp3,25 juta" : "Rp3,25 juta", durasi: "30-60 hari", kenapa: "Legal jual produk kemasan di marketplace & toko modern." },
             { izin: "Kemitraan & pendampingan UMKM", biaya: "Gratis (program daerah)", durasi: "Berkelanjutan", kenapa: `Provinsi ${province} punya program UMKM aktif — kami pandu aksesnya.` },
           ]
         : [
-            { izin: "ISO 9001 / sertifikasi mutu (opsional)", biaya: "Rp12,5 juta", durasi: "60-90 hari", kenapa: "Kredibilitas tender & klien korporat." },
-            { izin: "Kepatuhan pajak bulanan mulai", biaya: "Rp750rb/bln (jasa)", durasi: "Berkelanjutan", kenapa: "PPh final 0,5% / SPT Masa — hindari denda & sanksi." },
+            { izin: "ISO 9001 / sertifikasi mutu (opsional)", biaya: "Rp16,25 juta", durasi: "60-90 hari", kenapa: "Kredibilitas tender & klien korporat." },
+            { izin: "Kepatuhan pajak bulanan mulai", biaya: "Rp975rb/bln (jasa)", durasi: "Berkelanjutan", kenapa: "PPh final 0,5% / SPT Masa — hindari denda & sanksi." },
           ],
     },
     {
       phase: "Kepatuhan & Pertumbuhan",
       month: "Bulan 7-12",
       items: [
-        { izin: "LKPM berkala di OSS", biaya: "Rp1,5 juta/tahun", durasi: "2-5 hari per periode", kenapa: "Wajib — tanpa ini NIB bisa dicabut & RPTKA/tender terhambat." },
-        { izin: "SPT Tahunan pertama", biaya: "Rp250rb-2,5 jt (jasa)", durasi: "1-3 hari kerja", kenapa: "Kepatuhan tahunan yang menentukan profil pajak Anda." },
+        { izin: "LKPM berkala di OSS", biaya: "Rp1,95 juta/tahun", durasi: "2-5 hari per periode", kenapa: "Wajib — tanpa ini NIB bisa dicabut & RPTKA/tender terhambat." },
+        { izin: "SPT Tahunan pertama", biaya: "Rp325rb-3,25 jt (jasa)", durasi: "1-3 hari kerja", kenapa: "Kepatuhan tahunan yang menentukan profil pajak Anda." },
         { izin: "Evaluasi ekspansi (cabang, ekspor, TKA)", biaya: "Konsultasi gratis", durasi: "Sesuai rencana", kenapa: "Dokumen rapi = siap ekspansi kapan pun." },
       ],
     },

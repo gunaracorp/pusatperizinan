@@ -30,7 +30,7 @@ export const PERMIT_GUIDES: PermitGuide[] = [
       "NIB (Nomor Induk Berusaha) adalah nomor identitas resmi yang diberikan kepada setiap pelaku usaha — perseorangan maupun badan hukum — melalui sistem OSS-RBA (Online Single Submission Risk-Based Approach) berdasarkan PP 5/2021 dan UU Cipta Kerja. Sejak dihapuskannya SIUP, NIB kini menjadi dokumen legal utama yang sekaligus berlaku sebagai: (1) identitas penyelenggaraan dan tanggung jawab sosial, (2) NPWP badan usaha, (3) identitas imigrasi (untuk PMA), (4) akses untuk mengurus izin sektoral, dan (5) jaminan kepastian hukum dalam bertransaksi. NIB wajib dimiliki oleh SEMUA bentuk usaha, dari warung online hingga perusahaan besar, dan proses penerbitannya gratis di OSS namun membutuhkan ketelitian dalam pemilihan KBLI dan skala risiko agar tidak salah struktur pajak.",
     authority: "OSS (Online Single Submission) — Kementerian Investasi/BKPM",
     legalBasis: "UU Cipta Kerja, PP 5/2021, Peraturan BKPM No. 3/2021, Perpres 5/2024",
-    cost: "Rp 350rb (jasa kami, termasuk konsultasi KBLI) — resmi pemerintah gratis",
+    cost: "Mulai Rp 455rb (jasa kami, termasuk konsultasi KBLI) — resmi pemerintah gratis",
     timeline: "1 hari kerja",
     requirements: [
       "KTP & NPWP pemilik/pengurus (wajib)",
@@ -113,7 +113,7 @@ export const PERMIT_GUIDES: PermitGuide[] = [
       "Berdasarkan UU No. 33/2014 tentang Jaminan Produk Halal (JPH) dan aturan pelaksanaannya, semua produk yang masuk kategori makanan, minuman, obat, kosmetik, hingga jasa (termasuk hotel & restoran) yang dipergunakan masyarakat Indonesia WAJIB bersertifikat halal. Batas waktu implementasi bertahap hingga Oktober 2024-2026 tergantung kategori (UMKM mendapat prioritas pendampingan). Proses sertifikasi melalui sistem SIHALAL milik BPJPH (Badan Penyelenggara Jaminan Produk Halal) dengan pendampingan PPP (Proses Produk Halal), pemeriksaan oleh LPH (Lembaga Pemeriksa Halal) seperti LPPOM MUI, dan fatwa KKP (Komisi Kaji Fatwa). Kabar baiknya: UMKM dapat mendaftar kuota subsidi 100% GRATIS melalui program SEHATI.",
     authority: "BPJPH (Kemenag) + LPPOM MUI/LPH + KKP",
     legalBasis: "UU 33/2014, PP 39/2021, PP 42/2024",
-    cost: "Rp 1,2jt (jasa pendampingan penuh) — kuota subsidi UMKM tersedia",
+    cost: "Mulai Rp 1,56jt (jasa pendampingan penuh) — kuota subsidi UMKM tersedia",
     timeline: "14-30 hari kerja (UMKM subsidi bisa lebih cepat)",
     requirements: [
       "NIB usaha aktif",
@@ -155,7 +155,7 @@ export const PERMIT_GUIDES: PermitGuide[] = [
       "PIRT (Pengawasan Izin Edar Pangan Olahan) diterbitkan Dinas Kesehatan kabupaten/kota untuk pangan olahan risiko rendah (sambal, keripik, minuman, dll), berlaku 5 tahun & kini diurus melalui sistem OTT BPOM. Sementara itu, Izin Pendaftaran (MD) dari BPOM wajib untuk suplemen kesehatan, obat tradisional, dan kosmetika sebelum diedarkan. Keduanya membutuhkan persyaratan produksi yang layak (CPPOB/CPOH untuk produsen, atau kontrak dengan pabrik yang sudah bersertifikat), hasil uji laboratorium, dan desain label sesuai BPOM RI/MKMI. Tanpa izin edar, produk Anda berisiko diblokir marketplace (Tokopedia, Shopee, TikTok Shop kini menuntut nomor izin), disita pengawas, dan kehilangan kepercayaan konsumen.",
     authority: "BPOM (Badan POM) & Dinas Kesehatan — via sistem OTT/e-Registration",
     legalBasis: "UU 18/2012, PP 86/2019, Peraturan BPOM terkait (RI/MKMI, OTT)",
-    cost: "PIRT mulai Rp 1,5jt • MD BPOM mulai Rp 2,5jt (jasa, uji lab diatur terpisah)",
+    cost: "PIRT mulai Rp 1,95jt • MD BPOM mulai Rp 3,25jt (jasa, uji lab diatur terpisah)",
     timeline: "PIRT 14-21 hari • MD BPOM 30-60 hari",
     requirements: [
       "NIB usaha & KBLI yang sesuai",
@@ -277,7 +277,7 @@ export const PERMIT_GUIDES: PermitGuide[] = [
       "Berdasarkan PP 22/2021, setiap kegiatan usaha berpotensi mencemari lingkungan WAJIB memiliki dokumen lingkungan sebelum izin usaha terbit. Tingkatannya: SPPL (Surat Pernyataan Kesanggupan) untuk kegiatan minim dampak; UKL-UPL (Upaya Pengelolaan & Pemantauan Lingkungan) untuk kegiatan berdampak menengah; dan AMDAL (Analisis Mengenai Dampak Lingkungan) penuh untuk kegiatan besar — pabrik, tambang, PLTU, hotel besar, kawasan industri. AMDAL melibatkan kaandungan (komite andalan dampak), pengumuman publik, konsultasi publik, dan forum teknis yang bisa memakan waktu 3-6 bulan jika tidak dikelola ahli. Kami punya tim penyusun dokumen lingkungan berpengalaman lintas sektor yang terbiasa berkoordinasi dengan DPMPTSP & forum teknis daerah.",
     authority: "DPMPTSP daerah / Kementerian LHK (untuk kegiatan tertentu)",
     legalBasis: "UU Cipta Kerja, PP 22/2021, Permen LHK terkait",
-    cost: "SPPL mulai Rp 750rb • UKL-UPL mulai Rp 3,5jt • AMDAL mulai Rp 25jt",
+    cost: "SPPL mulai Rp 975rb • UKL-UPL mulai Rp 4,55jt • AMDAL mulai Rp 32,5jt",
     timeline: "SPPL 3-7 hari • UKL-UPL 30-45 hari • AMDAL 90-180 hari",
     requirements: [
       "NIB & KBLI kegiatan usaha",
@@ -479,7 +479,7 @@ export const PERMIT_GUIDES: PermitGuide[] = [
       "PPIU (Perusahaan Perjalanan Ibadah Umrah) adalah badan usaha yang telah memenuhi syarat Kementerian Agama untuk menyelenggarakan perjalanan ibadah umrah. Alurnya: pendirian PT (tidak boleh perseorangan), pendaftaran SPPU di Kemenag provinsi tempat kantor, lalu pengurusan SIPU (Surat Izin Perjalanan Umrah) yang diperbarui berkala melalui sistem SIMPONI/e-Katalog Kemenag. PPIU wajib memiliki rekening kolektif jamaah (escrow), kontrak kerja sama dengan maktab/operator Arab Saudi, dan pembimbing ibadah yang bersertifikat. Regulasi berbasis UU 13/2008 tentang Penyelenggaraan Haji beserta peraturan Kemenag terkini — dan pengawasan ketat karena melibatkan dana jamaah. Legalitas PPIU adalah tiket masuk ke e-Katalog & kerja sama resmi, serta pelindung utama Anda dari sanksi pidana penyalahgunaan jamaah.",
     authority: "Kementerian Agama RI — Dirjen Penyelenggaraan Haji & Umrah (Kemenag Provinsi)",
     legalBasis: "UU 13/2008 tentang Penyelenggaraan Haji, PP 61/2015 & peraturan Kemenag terkait PPIU/PPIH (SIMPONI)",
-    cost: "Paket lengkap mulai Rp 12 juta (di luar modal disetor PT)",
+    cost: "Paket lengkap mulai Rp 15,6 juta (di luar modal disetor PT)",
     timeline: "30-45 hari kerja (SPPU dulu, SIPU menyusul)",
     requirements: [
       "Badan hukum PT (akta notaris + SK Kemenkumham + NIB)",
@@ -521,7 +521,7 @@ export const PERMIT_GUIDES: PermitGuide[] = [
       "PPIH (Perusahaan Perjalanan Ibadah Haji) adalah perusahaan yang berizin khusus menyelenggarakan perjalanan ibadah haji — jauh lebih ketat daripada PPIU karena menyangkut gelar wajib haji. Syarat inti: berbadan hukum PT milik penuh WNI, modal disetor signifikan (umumnya hingga Rp 3 miliar dalam bentuk uang tunai/setara kas yang bisa diaudit), tidak boleh menarik dana jamaah sebelum SK terbit, dan wajib lolos masa pembinaan serta uji kelayakan Kemenag. PPIH otomatis berhak menyelenggarakan umrah dan terhubung dengan penempatan PPUMI (Petugas Pemeriksa Umrah & Haji Indonesia) serta kemitraan maktab resmi di Arab Saudi. Dengan kuota haji Indonesia ±200 ribu orang per tahun dan antrean puluhan tahun, izin PPIH adalah aset bernilai sangat tinggi yang diperdagangkan sangat hati-hati — prosesnya wajib didampingi ahli.",
     authority: "Kementerian Agama RI — Dirjen Penyelenggaraan Haji & Umrah",
     legalBasis: "UU 13/2008 jo. UU 8/2019, PP 96/2012 jo. PP 61/2015 & peraturan Kemenag tentang PPIH",
-    cost: "Paket Enterprise mulai Rp 25 juta (di luar modal disetor & audit)",
+    cost: "Paket Enterprise mulai Rp 32,5 juta (di luar modal disetor & audit)",
     timeline: "60-120 hari — termasuk masa administrasi pembinaan Kemenag",
     requirements: [
       "PT murni milik WNI (susunan saham bersih dari asing)",
@@ -603,7 +603,7 @@ export const PERMIT_GUIDES: PermitGuide[] = [
       "Ekspansi ke Arab Saudi sedang emas: Vision 2030 membuka ekonomi terbesar di Timur Tengah dengan reformasi perizinan masif. Alur legalnya: (1) MISA License — lisensi investasi dari Ministry of Investment Saudi Arabia yang mengizinkan kepemilikan asing (di banyak sektor kini 100% tanpa mitra lokal); (2) pendirian entitas + Commercial Registration (CR) dari Ministry of Commerce; (3) registrasi ZATCA untuk pajak & e-invoice; (4) Chamber of Commerce, GOSI (jaminan sosial karyawan), dan Iqama untuk direksi/General Manager; (5) bila memenuhi kriteria, program Regional Headquarters (RHQ) Riyadh memberi insentif pajak hingga 30 tahun. Dokumen Indonesia (akta, SK, NIB) wajib dialihbahasakan & dialegalkan (apostille — Arab Saudi kini sudah menerima jalur apostille). Tim internasional kami menangani end-to-end dari Jakarta, termasuk memilih ISIC codes Saudi yang tepat sesuai KBLI bisnis Anda.",
     authority: "MISA (Ministry of Investment Saudi Arabia) + Ministry of Commerce — Kerajaan Arab Saudi",
     legalBasis: "Saudi Investment Law & regulasi MISA, Companies Law Saudi, kerangka Vision 2030 / RHQ Program",
-    cost: "Paket Internasional mulai Rp 45 juta + biaya resmi pemerintah Saudi (SAR)",
+    cost: "Paket Internasional mulai Rp 58,5 juta + biaya resmi pemerintah Saudi (SAR)",
     timeline: "60-120 hari sampai CR terbit & siap operasional",
     requirements: [
       "Dokumen legalitas usaha Indonesia (akta, SK, NIB) + terjemahan resmi & apostille",

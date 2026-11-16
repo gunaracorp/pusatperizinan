@@ -32,15 +32,15 @@ export const metadata: Metadata = {
 
 const PACKAGES = [
   {
-    name: "Pendirian Badan Hukum BUMDes", price: "Rp 3,5jt", time: "3-6 minggu",
+    name: "Pendirian Badan Hukum BUMDes", price: "Mulai Rp 4,55jt", time: "3-6 minggu",
     items: ["Penyusunan AD/ART sesuai Permendes", "Rekomendasi Kemenkop & RKSM", "Penerbitan Badan Hukum (SK)", "NPWP BUMDes & NIB", "Panduan RAT pertama"],
   },
   {
-    name: "Izin Usaha Unit BUMDes", price: "Rp 1,8jt / unit", time: "1-3 minggu",
+    name: "Izin Usaha Unit BUMDes", price: "Mulai Rp 2,34jt / unit", time: "1-3 minggu",
     items: ["NIB unit usaha via OSS (toko, angkutan, pertanian…)", "Sertifikat Standar sesuai risiko", "Pendampingan izin sektor (dusun wisata, kerupuk, dll.)", "Konsultasi KBLI yang benar untuk dana desa"],
   },
   {
-    name: "Desa Siap Usaha (Terlengkap)", price: "Rp 9,9jt", time: "2-3 bulan",
+    name: "Desa Siap Usaha (Terlengkap)", price: "Mulai Rp 12,87jt", time: "2-3 bulan",
     items: ["Semua di paket 1 & 2 (maks 3 unit usaha)", "Sistem pembukuan sederhana + template jurnal", "Pelatihan pengurus & pengawas (2 sesi, daring)", "Laporan tahunan siap pantau Balai Desa/BPKAD", "Prioritas konsultasi 12 bulan"],
   },
 ];

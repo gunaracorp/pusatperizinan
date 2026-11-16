@@ -80,8 +80,8 @@ export const TRIO_COMPARISONS: TrioComparison[] = [
       {
         aspect: "Biaya pendirian",
         cells: [
-          "Rp3,5–6,5 juta: akta notaris + SK Kemenkumham + NIB",
-          "Rp2,5–4,5 juta: akta notaris + NIB (tanpa SK)",
+          "Rp4,55–8,45 juta: akta notaris + SK Kemenkumham + NIB",
+          "Rp3,25–5,85 juta: akta notaris + NIB (tanpa SK)",
           "Rp0 — didirikan sendiri di OSS, tanpa notaris",
         ],
         best: 2,

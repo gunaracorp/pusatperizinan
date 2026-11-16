@@ -110,7 +110,7 @@ function JsonLd() {
         "@type": "Offer",
         price: 500000,
         priceCurrency: "IDR",
-        description: "Virtual Office Address mulai Rp 500rb/bulan atau Rp 4,5jt/tahun",
+        description: "Virtual Office Address mulai Rp 650rb/bulan atau Rp 5,85jt/tahun",
       },
       aggregateRating: {
         "@type": "AggregateRating",
@@ -241,7 +241,7 @@ export default function VirtualOfficePage() {
           <p className="mt-5 max-w-3xl text-base md:text-lg text-emerald-100/90 leading-relaxed">
             Gedung korporat nyata dengan resepsionis, penerimaan surat & papan nama usaha — dokumen
             resmi untuk <strong className="text-emerald-50">NIB, PKP, rekening bank, BPOM & marketplace</strong>.
-            Mulai <strong className="text-gold">Rp 500rb/bulan</strong>, aktif 1-2 hari kerja, 100% proses daring.
+            Mulai <strong className="text-gold">Rp 650rb/bulan</strong>, aktif 1-2 hari kerja, 100% proses daring.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
@@ -524,7 +524,7 @@ export default function VirtualOfficePage() {
                 Berapa harga paling murah?
               </AccordionTrigger>
               <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
-                Virtual Office Address mulai Rp 500rb/bulan (Rp 4,5jt/tahun) di lokasi smart-ekonomis, dan naik
+                Virtual Office Address mulai Rp 650rb/bulan (Rp 5,85jt/tahun) di lokasi smart-ekonomis, dan naik
                 untuk lokasi premium (SCBD/Sudirman/Thamrin). Semua harga terbuka per lokasi di situs ini — tanpa
                 biaya tersembunyi, dan pembayaran tahunan hemat 15-25%.
               </AccordionContent>

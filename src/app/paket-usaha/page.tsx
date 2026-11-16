@@ -31,32 +31,32 @@ export const metadata: Metadata = {
 
 const VERTICALS = [
   {
-    icon: Coffee, name: "Kedai Kopi & Kafe", price: "Rp 6,9jt", time: "3-5 minggu",
+    icon: Coffee, name: "Kedai Kopi & Kafe", price: "Mulai Rp 8,97jt", time: "3-5 minggu",
     includes: ["NIB + KBLI optimal (OSS-RBA)", "PBG & SLF tempat usaha", "Sertifikat Higiene Sanitasi (Dinkes)", "NIB produk & NPWP", "Pendampingan pendaftaran merek dagang"],
     audience: "Kafe baru, roastery, kedai franchise — siap kunjungan Dinkes & calon investor.",
   },
   {
-    icon: ChefHat, name: "Cloud Kitchen & Katering", price: "Rp 8,5jt", time: "4-6 minggu",
+    icon: ChefHat, name: "Cloud Kitchen & Katering", price: "Mulai Rp 11,05jt", time: "4-6 minggu",
     includes: ["NIB + Sertifikat Standar pangan", "PIRT atau Izin Edar BPOM (sesuai skala)", "Sertifikat Higiene Sanitasi", "Sertifikasi Halal (jalur Sehati/reguler)", "Syarat bergabung GoFood/Grab/Shopee"],
     audience: "Dapur rumahan komersial, ghost kitchen, katering corporate.",
   },
   {
-    icon: Stethoscope, name: "Klinik (Gigi/Umum)", price: "Rp 22jt", time: "2-3 bulan",
+    icon: Stethoscope, name: "Klinik (Gigi/Umum)", price: "Mulai Rp 28,6jt", time: "2-3 bulan",
     includes: ["Badan usaha (PT/Yayasan) + NPWP", "Izin Klinik (Permenkes 43/2019)", "SIP dokter & STR pendampingan", "IPAK apotek/pelayanan farmasi", "Standar sarana & pemeriksaan Kemenkes"],
     audience: "Dokter muda membuka praktik, grup klinik yang ekspansi cabang.",
   },
   {
-    icon: MoonStar, name: "Travel Umroh (PPIU)", price: "Rp 45jt", time: "3-4 bulan",
+    icon: MoonStar, name: "Travel Umroh (PPIU)", price: "Mulai Rp 58,5jt", time: "3-4 bulan",
     includes: ["Pendirian PT + modal dasar sesuai regulasi", "TDUP & KBLI 79120", "PPIU Kemenag (termasuk pra-audit)", "SISKOPATUH & kepatuhan BPK2U", "Training tim + template kontrak jamaah"],
     audience: "Pengasuh/ustaz yang naik kelas jadi travel resmi — jalur flagship kami.",
   },
   {
-    icon: WashingMachine, name: "Laundry & Jasa Bersih", price: "Rp 4,9jt", time: "2-3 minggu",
+    icon: WashingMachine, name: "Laundry & Jasa Bersih", price: "Mulai Rp 6,37jt", time: "2-3 minggu",
     includes: ["NIB + izin lingkungan (SPPL/UKL-UPL)", "Surat pernyataan & pemeriksaan Dinkes", "BPJS karyawan + kontrak kerja template", "NPWP & pengaturan pajak UMKM 0,5%", "Pendampingan sewa tempat & PBG bila perlu"],
     audience: "Laundry satuan, kilat massal, franchise laundry — siap pengajuan kredit usaha.",
   },
   {
-    icon: PartyPopper, name: "Event Organizer & Agensi", price: "Rp 9,8jt", time: "3-4 minggu",
+    icon: PartyPopper, name: "Event Organizer & Agensi", price: "Mulai Rp 12,74jt", time: "3-4 minggu",
     includes: ["Badan usaha PT/CV + NPWP", "Izin keramaian/kegiatan (polsek-polres)", "Izin terbit reklame kampanye", "Sertifikasi BNSP EO (opsional, syarat tender)", "Kontrak vendor & asuransi event template"],
     audience: "EO weddings, konser, corporate gathering — lega saat urusan polisi & klien besar.",
   },

@@ -202,7 +202,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
           "Akta notaris: umumnya Rp 1,5-3 juta sesuai modal dan jumlah pemegang saham",
           "PNBP pengesahan SK Kemenkumham: Rp 300 ribu hingga Rp 1 juta",
           "NPWP badan dan NIB: gratis",
-          "Paket jasa lengkap kami mulai dari Rp 3,5 juta termasuk akta",
+          "Paket jasa lengkap kami mulai dari Rp 4,55 juta termasuk akta",
         ],
       },
       {
@@ -483,7 +483,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
       {
         heading: "Biaya di Luar Kuota dan Kendala yang Paling Sering Terjadi",
         paragraphs: [
-          "Bila kuota SEHATI sudah habis, sertifikasi reguler menanggung biaya pemeriksaan LPH yang bervariasi menurut jumlah produk. Jasa pendampingan penuh seperti milik kami mulai Rp 1,2 juta — mencakup audit bahan, penyusunan PPH, sampai koordinasi audit. Sertifikat yang terbit berlaku empat tahun; sebelum habis, wajib ada recertification dan kami biasanya mengingatkan klien tiga bulan sebelum tenggat agar label halal tidak putus sedetik pun.",
+          "Bila kuota SEHATI sudah habis, sertifikasi reguler menanggung biaya pemeriksaan LPH yang bervariasi menurut jumlah produk. Jasa pendampingan penuh seperti milik kami mulai Rp 1,56 juta — mencakup audit bahan, penyusunan PPH, sampai koordinasi audit. Sertifikat yang terbit berlaku empat tahun; sebelum habis, wajib ada recertification dan kami biasanya mengingatkan klien tiga bulan sebelum tenggat agar label halal tidak putus sedetik pun.",
           "Kendala nomor satu UMKM adalah bahan baku yang belum tercatat halal di sistem. Karena itu audit bahan dilakukan lebih dulu sebelum pengajuan — mengubah urutan ini adalah resep pengajuan macet. Kendala kedua: dokumen PPH yang tertulis asal, sehingga gugur saat pemeriksaan. Auditor menghargai deskripsi proses yang jujur dan realistis jauh lebih dari dokumen yang tampak sempurna tapi tidak mencerminkan dapur Anda.",
         ],
       },
@@ -567,7 +567,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
       {
         heading: "Biaya, Timeline, dan Insentif RHQ Riyadh",
         paragraphs: [
-          "Dari sisi biaya, ada dua komponen: jasa pendampingan (paket internasional kami mulai Rp 45 juta) dan biaya resmi pemerintah Saudi dalam riyal — berbeda-beda menurut jenis entitas dan aktivitas. Seluruh alur MISA sampai CR memakan waktu 60-120 hari sampai perusahaan siap operasional.",
+          "Dari sisi biaya, ada dua komponen: jasa pendampingan (paket internasional kami mulai Rp 58,5 juta) dan biaya resmi pemerintah Saudi dalam riyal — berbeda-beda menurut jenis entitas dan aktivitas. Seluruh alur MISA sampai CR memakan waktu 60-120 hari sampai perusahaan siap operasional.",
           "Satu peluang yang sering luput: program Regional Headquarters (RHQ). Perusahaan yang menempatkan kantor regionalnya di Riyadh bisa menikmati insentif pajak hingga 30 tahun plus akses kontrak pemerintah. Jika rencana ekspansi Anda regional, diskusikan struktur RHQ sejak pengajuan MISA — bukan setelah entitas berdiri.",
         ],
       },
@@ -650,7 +650,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
       {
         heading: "Timeline dan Biaya Realistis 2026",
         paragraphs: [
-          "Dengan dokumen lengkap, proses dari PT sampai SIPU terbit memakan waktu sekitar 30-45 hari kerja. Paket jasa pendampingan lengkap kami mulai Rp 12 juta — di luar modal disetor PT dan biaya operasional kantor yang nilainya tergantung kota. Siapkan keempat syarat teknis di atas sejak hari pertama mempersiapkan PT, karena menyusunnya setelah pengajuan berjalan berarti mengulang antrian verifikasi dari nol.",
+          "Dengan dokumen lengkap, proses dari PT sampai SIPU terbit memakan waktu sekitar 30-45 hari kerja. Paket jasa pendampingan lengkap kami mulai Rp 15,6 juta — di luar modal disetor PT dan biaya operasional kantor yang nilainya tergantung kota. Siapkan keempat syarat teknis di atas sejak hari pertama mempersiapkan PT, karena menyusunnya setelah pengajuan berjalan berarti mengulang antrian verifikasi dari nol.",
           "Aturan emas yang selalu kami tanamkan: jangan pernah menjual satu paket pun sebelum SIPU terbit. Pemasaran pra-izin masih bisa dimaklumi, tapi menerima dana jamaah tanpa izin jelas pidana. Gunakan masa menunggu untuk membangun konten, kemitraan masjid, dan infrastruktur operasional.",
         ],
       },
@@ -833,7 +833,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
         heading: "Timeline 45-90 Hari dan Jalur Bertahap yang Realistis",
         paragraphs: [
           "Proses akreditasi melibatkan biaya registrasi awal IATA, annual fee tahunan, audit dokumen, hingga verifikasi kantor oleh Area Office IATA Singapura yang membawahi Indonesia. Secara realistis siapkan 45-90 hari, tergantung kecepatan penerbitan bank guarantee.",
-          "Paket jasa pendampingan kami mulai Rp 10 juta di luar biaya resmi IATA dan bank guarantee. Bagi travel baru, jalur sub-agent lebih dulu — menjual tiket melalui agen IATA lain — tetap wajar untuk mengumpulkan riwayat penjualan yang nantinya memperkecil bank guarantee Anda.",
+          "Paket jasa pendampingan kami mulai Rp 13 juta di luar biaya resmi IATA dan bank guarantee. Bagi travel baru, jalur sub-agent lebih dulu — menjual tiket melalui agen IATA lain — tetap wajar untuk mengumpulkan riwayat penjualan yang nantinya memperkecil bank guarantee Anda.",
         ],
       },
     ],
@@ -934,7 +934,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
       {
         question: "Berapa lama dan berapa biaya pengurusan PBG dan SLF?",
         answer:
-          "Umumnya 14-30 hari per dokumen sejak dokumen teknis lengkap. Biaya jasa pendampingan kami mulai Rp 2 juta per dokumen, di luar biaya resmi yang diatur pemerintah daerah masing-masing.",
+          "Umumnya 14-30 hari per dokumen sejak dokumen teknis lengkap. Biaya jasa pendampingan kami mulai Rp 2,6 juta per dokumen, di luar biaya resmi yang diatur pemerintah daerah masing-masing.",
       },
     ],
     relatedArticles: ["studi-kasus-kafe-bandung-45-hari", "panduan-nib-oss-rba", "amdal-vs-ukl-upl"],
@@ -994,7 +994,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
         heading: "Hari 40-45: Finalisasi dan Soft Opening",
         paragraphs: [
           "Hari-hari terakhir diisi hal-hal yang sering diremehkan: rekening korporat, kalender kewajiban LKPM dan SPT masa, sampai pemastian dokumen lingkungan yang relevan dengan dapur kafe. Hari ke-45, kafe resmi menyajikan gelas pertama dengan seluruh legalitas terpasang di dinding.",
-          "Total biaya jasa pendampingan masuk paket Bisnis mulai Rp 3,5 juta, ditambah biaya resmi daerah dan pemeriksaan halal. Yang lebih berharga dari itu: keduanya tidak satu hari pun kehilangan penjualan karena masalah izin.",
+          "Total biaya jasa pendampingan masuk paket Bisnis mulai Rp 4,55 juta, ditambah biaya resmi daerah dan pemeriksaan halal. Yang lebih berharga dari itu: keduanya tidak satu hari pun kehilangan penjualan karena masalah izin.",
         ],
       },
       {
@@ -1014,7 +1014,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
       {
         question: "Berapa total biaya perizinan sebuah kafe?",
         answer:
-          "Jasa pendampingan paket Bisnis kami mulai Rp 3,5 juta, di luar biaya resmi daerah untuk PBG/SLF dan pemeriksaan halal. Totalnya jauh lebih murah daripada risiko tutup sementara karena dinas menemukan legalitas kosong.",
+          "Jasa pendampingan paket Bisnis kami mulai Rp 4,55 juta, di luar biaya resmi daerah untuk PBG/SLF dan pemeriksaan halal. Totalnya jauh lebih murah daripada risiko tutup sementara karena dinas menemukan legalitas kosong.",
       },
       {
         question: "Kafe take-away saja, apakah izinnya lebih ringan?",
@@ -1065,13 +1065,13 @@ export const BLOG_ARTICLES: BlogArticle[] = [
         heading: "UKL-UPL: Dokumen Kerja untuk Dampak Menengah",
         paragraphs: [
           "UKL-UPL (Upaya Pengelolaan Lingkungan dan Upaya Pemantauan Lingkungan) adalah dokumen teknis yang merinci bagaimana Anda mengelola emisi, limbah, dan dampak sosial kegiatan, lengkap dengan matriks pemantauannya. Kegiatan yang biasanya menuntut UKL-UPL: pabrik skala kecil-menengah, gudang besar, usaha pengolahan pangan, sampai kafe dengan dapur produksi tertentu.",
-          "Timeline realistisnya 30-45 hari kerja dengan biaya mulai Rp 3,5 juta. Dokumen ini dinilai oleh tim teknis DPMPTSP daerah — kualitas data dasar dan kejujuran deskripsi proses menentukan cepat atau tidaknya persetujuan.",
+          "Timeline realistisnya 30-45 hari kerja dengan biaya mulai Rp 4,55 juta. Dokumen ini dinilai oleh tim teknis DPMPTSP daerah — kualitas data dasar dan kejujuran deskripsi proses menentukan cepat atau tidaknya persetujuan.",
         ],
       },
       {
         heading: "AMDAL: Kajian Penuh untuk Kegiatan Berdampak Besar",
         paragraphs: [
-          "AMDAL (Analisis Mengenai Dampak Lingkungan) adalah kajian paling mendalam: menyertakan penyusunan oleh tim ahli, komite andalan dampak (kaAndal), pengumuman dan konsultasi publik, hingga forum teknis penuh. Realistisnya memakan 90-180 hari kerja dengan biaya mulai Rp 25 juta.",
+          "AMDAL (Analisis Mengenai Dampak Lingkungan) adalah kajian paling mendalam: menyertakan penyusunan oleh tim ahli, komite andalan dampak (kaAndal), pengumuman dan konsultasi publik, hingga forum teknis penuh. Realistisnya memakan 90-180 hari kerja dengan biaya mulai Rp 32,5 juta.",
           "Hasil akhirnya adalah persetujuan lingkungan (PPL) yang menjadi batu bata izin usaha berdampak besar. Setelah operasional, kewajiban Anda berlanjut dalam bentuk pelaporan RKL-RPL berkala — dokumen AMDAL bukan garis finis, melainkan kontrak pengelolaan jangka panjang dengan lingkungan sekitar Anda.",
         ],
       },

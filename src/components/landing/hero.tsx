@@ -274,7 +274,7 @@ export function Hero() {
                     </div>
                     <div className="hidden sm:block text-right shrink-0">
                       <p className="text-2xl font-extrabold text-primary">{t("labelFree")}</p>
-                      <p className="text-[10px] text-muted-foreground line-through">Rp 500rb</p>
+                      <p className="text-[10px] text-muted-foreground line-through">Rp 650rb</p>
                     </div>
                   </div>
 

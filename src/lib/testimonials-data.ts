@@ -580,7 +580,7 @@ export const TESTIMONIALS: Testimonial[] = [
     category: "perizinan-usaha",
     service: "NIB Perseorangan",
     content:
-      "Bisnis hijab online dari rumah, ditagih marketplace biar masuk program seller terpercaya. Butuh NIB dan PIRT tidak sampai Rp 300 ribu semua beres — malah dapat panduan cara naik kelas jadi CV kalau omzet meningkat. Adminnya sabar jawab pertanyaan yang mungkin terdengar bodoh sekalipun. Puas banget.",
+      "Bisnis hijab online dari rumah, ditagih marketplace biar masuk program seller terpercaya. Butuh NIB dan PIRT tidak sampai Rp 390 ribu semua beres — malah dapat panduan cara naik kelas jadi CV kalau omzet meningkat. Adminnya sabar jawab pertanyaan yang mungkin terdengar bodoh sekalipun. Puas banget.",
     verified: true,
     helpful: 39,
   },

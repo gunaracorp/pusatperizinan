@@ -57,7 +57,7 @@ export function CatalogTeaser() {
         <div className="mt-8 flex flex-col items-start gap-4 rounded-2xl border border-emerald-200 bg-emerald-50/60 p-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-stone-700">
             <strong className="text-stone-900">Butuh izin di luar paket?</strong> Lihat seluruh
-            katalog — 31 divisi, mulai Rp 450 ribu.
+            katalog — 31 divisi, mulai Rp 585 ribu.
           </p>
           <div className="flex shrink-0 flex-wrap gap-3">
             <Link

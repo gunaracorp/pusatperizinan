@@ -161,7 +161,7 @@ const TIERS = [
     id: "cabang",
     name: "Cabang Resmi",
     tag: "PALING DIPILIH",
-    fee: "Rp25 juta",
+    fee: "Rp32,5 juta",
     feeNote: "investasi sekali — bukan per tahun",
     rate: "35%",
     color: "border-primary ring-2 ring-primary/20 relative",
@@ -179,7 +179,7 @@ const TIERS = [
     id: "master",
     name: "Master Franchise",
     tag: "PEMERINTAH WILAYAH",
-    fee: "Rp100 juta",
+    fee: "Rp130 juta",
     feeNote: "hak kawasan provinsi",
     rate: "45%",
     color: "border",
@@ -196,14 +196,14 @@ const TIERS = [
 
 /** Komisi transparan per kelompok layanan (rata-rata nilai kontrak). */
 const COMMISSION_TABLE = [
-  { service: "NIB & OSS-RBA", avg: "Rp1,5 – 2,5 jt", note: "paling laris, siklus cepat 1–3 hari" },
-  { service: "Pendirian PT / CV / Firma", avg: "Rp4 – 7 jt", note: "termasuk akta & SK kemenkumham" },
-  { service: "PT PMA (investasi asing)", avg: "Rp15 – 35 jt", note: "nilai kontrak tertinggi" },
-  { service: "Sertifikasi Halal", avg: "Rp3 – 6 jt", note: "push program pemerintah 2026" },
-  { service: "Izin Edar BPOM / PIRT", avg: "Rp5 – 12 jt", note: "UMKM pangan & kosmetik" },
-  { service: "PBG & SLF", avg: "Rp4 – 10 jt", note: "bangunan & properti" },
-  { service: "Virtual Office", avg: "Rp1,2 – 3 jt / thn", note: "komisi RECURRING tiap perpanjangan" },
-  { service: "Pajak & Kepatuhan Bulanan", avg: "Rp500 rb – 3 jt / bln", note: "komisi RECURRING selama klien aktif" },
+  { service: "NIB & OSS-RBA", avg: "Rp1,95 – 3,25 jt", note: "paling laris, siklus cepat 1–3 hari" },
+  { service: "Pendirian PT / CV / Firma", avg: "Rp5,2 – 9,1 jt", note: "termasuk akta & SK kemenkumham" },
+  { service: "PT PMA (investasi asing)", avg: "Rp19,5 – 45,5 jt", note: "nilai kontrak tertinggi" },
+  { service: "Sertifikasi Halal", avg: "Rp3,9 – 7,8 jt", note: "push program pemerintah 2026" },
+  { service: "Izin Edar BPOM / PIRT", avg: "Rp6,5 – 15,6 jt", note: "UMKM pangan & kosmetik" },
+  { service: "PBG & SLF", avg: "Rp5,2 – 13 jt", note: "bangunan & properti" },
+  { service: "Virtual Office", avg: "Rp1,56 – 3,9 jt / thn", note: "komisi RECURRING tiap perpanjangan" },
+  { service: "Pajak & Kepatuhan Bulanan", avg: "Rp650 rb – 3,9 jt / bln", note: "komisi RECURRING selama klien aktif" },
 ];
 
 const STEPS = [
@@ -254,7 +254,7 @@ const FAQS = [
   },
   {
     q: "Berapa modal minimal untuk bergabung?",
-    a: "Tier Gerai Mitra bergabung GRATIS — Anda hanya di-screening. Cabang Resmi berinvestasi Rp25 juta sekali (bukan tahunan) untuk eksklusivitas 1 kota, fasilitas merek, dan pelatihan staf. Master Franchise Rp100 juta untuk hak kawasan 1 provinsi. Tidak ada royalti bulanan tersembunyi — komisi dibayar penuh sesuai tier.",
+    a: "Tier Gerai Mitra bergabung GRATIS — Anda hanya di-screening. Cabang Resmi berinvestasi Rp32,5 juta sekali (bukan tahunan) untuk eksklusivitas 1 kota, fasilitas merek, dan pelatihan staf. Master Franchise Rp100 juta untuk hak kawasan 1 provinsi. Tidak ada royalti bulanan tersembunyi — komisi dibayar penuh sesuai tier.",
   },
   {
     q: "Saya tidak paham perizinan sama sekali, bisa ikut?",

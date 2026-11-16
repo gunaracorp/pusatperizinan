@@ -99,8 +99,8 @@ export const CATEGORIES: CatalogCategory[] = [
       {
         code: "R.1",
         name: "PPIU — Penyelenggara Perjalanan Ibadah Umrah",
-        priceFrom: 15_000_000,
-        priceTo: 25_000_000,
+        priceFrom: 19_500_000,
+        priceTo: 32_500_000,
         badge: "FLAGSHIP",
         timeline: "90–120 hari",
         desc: "Izin dasar yang WAJIB dimiliki sebelum bisa mengajukan PIHK (Haji Khusus). Kami urus dari PT dengan KBLI 79120, SIUP Pariwisata (TDUP) aktif, NIB via OSS, NPWP badan, rekening khusus operasional, registrasi SISKOPATUH, hingga rekomendasi Kanwil Kemenag setempat.",
@@ -122,8 +122,8 @@ export const CATEGORIES: CatalogCategory[] = [
       {
         code: "R.2",
         name: "PIHK — Penyelenggara Ibadah Haji Khusus (Haji Plus)",
-        priceFrom: 25_000_000,
-        priceTo: 40_000_000,
+        priceFrom: 32_500_000,
+        priceTo: 52_000_000,
         badge: "FLAGSHIP",
         timeline: "120–150 hari (setelah PPIU 2 tahun aktif)",
         desc: "Izin paling bernilai untuk travel besar: membuka kuota haji plus di luar kuota reguler dengan harga premium. Syarat intinya PPIU aktif 2 tahun, track record minimal 2.000 jamaah umrah, laporan keuangan auditan 2 tahun, nol keluhan signifikan, dan rekomendasi asosiasi/dewan penasehat.",
@@ -143,8 +143,8 @@ export const CATEGORIES: CatalogCategory[] = [
       {
         code: "R.3",
         name: "Izin Keberangkatan Haji Plus (Kuota Tambahan)",
-        priceFrom: 5_000_000,
-        priceTo: 15_000_000,
+        priceFrom: 6_500_000,
+        priceTo: 19_500_000,
         badge: "RECURRING",
         timeline: "30–60 hari per musim haji",
         desc: "Layanan tahunan untuk travel yang sudah memegang PIHK: pengajuan kuota tambahan tiap musim haji. Proses cepat, permintaan stabil, dan klien kami umumnya repeat order setiap musim.",
@@ -159,8 +159,8 @@ export const CATEGORIES: CatalogCategory[] = [
       {
         code: "R.4",
         name: "Sertifikasi Tour Leader (Pemandu Jamaah Haji-Umrah)",
-        priceFrom: 5_000_000,
-        priceTo: 8_000_000,
+        priceFrom: 6_500_000,
+        priceTo: 10_400_000,
         badge: "NEW",
         timeline: "30–60 hari termasuk training & ujian",
         desc: "Tour leader haji-umrah wajib bersertifikat resmi Kemenag (valid 5 tahun) yang membuktikan kompetensi kepemimpinan jamaah, pengetahuan ibadah, dan manajemen krisis. Syarat: SMA/SMK, pengalaman guide 1–2 tahun, pelatihan 40 jam, ujian teori & praktik.",
@@ -175,8 +175,8 @@ export const CATEGORIES: CatalogCategory[] = [
       {
         code: "R.5",
         name: "Sertifikasi Tour Guide (Kemenpar)",
-        priceFrom: 3_500_000,
-        priceTo: 5_500_000,
+        priceFrom: 4_550_000,
+        priceTo: 7_150_000,
         badge: "NEW",
         timeline: "15–30 hari",
         desc: "Lisensi pemandu wisata resmi Kemenpar (valid 5 tahun) — prasyarat bekerja sebagai guide profesional. Mencakup pelatihan 20 jam, ujian lisan & praktik, hingga sertifikat resmi.",
@@ -185,8 +185,8 @@ export const CATEGORIES: CatalogCategory[] = [
       {
         code: "R.6",
         name: "Paket Legalitas Perusahaan untuk Bisnis Haji-Umrah",
-        priceFrom: 3_000_000,
-        priceTo: 8_000_000,
+        priceFrom: 3_900_000,
+        priceTo: 10_400_000,
         badge: "NEW",
         timeline: "60–90 hari",
         desc: "Paket all-in-one untuk pelaku baru: pendirian PT (akta & SK Kemenkumham), NIB & NPWP, SIUP Pariwisata (TDUP), izin OSS lengkap, virtual office 1 tahun bila diperlukan, dan setup akun SISKOPATUH — langsung siap mengajukan PPIU.",
@@ -202,8 +202,8 @@ export const CATEGORIES: CatalogCategory[] = [
       {
         code: "R.7",
         name: "Perpajakan & Keuangan Bisnis Haji-Umrah",
-        priceFrom: 2_000_000,
-        priceTo: 5_000_000,
+        priceFrom: 2_600_000,
+        priceTo: 6_500_000,
         badge: "NEW",
         desc: "Travel haji-umrah punya regulasi pajak khusus — terutama penempatan dana jamaah (escrow). Kami bantu setup NPWP & PKP, struktur akun escrow yang tax-compliant, laporan SPT tahunan, dan perencanaan keuangan bisnis.",
         includes: [
@@ -217,8 +217,8 @@ export const CATEGORIES: CatalogCategory[] = [
       {
         code: "R.8",
         name: "Perpanjangan PPIU/PIHK (Siklus 5 Tahun)",
-        priceFrom: 8_000_000,
-        priceTo: 15_000_000,
+        priceFrom: 10_400_000,
+        priceTo: 19_500_000,
         badge: "RECURRING",
         timeline: "60–90 hari sebelum izin kedaluwarsa",
         desc: "PPIU & PIHK berlaku 5 tahun. Kami menangani verifikasi dokumen, pembaruan data, persiapan laporan compliance, pengajuan ke Kemenag, dan follow-up hingga izin baru terbit — bisnis tetap legal tanpa jeda.",
@@ -232,8 +232,8 @@ export const CATEGORIES: CatalogCategory[] = [
       {
         code: "R.9",
         name: "Audit Compliance PPIU/PIHK (Persiapan Pra-Audit)",
-        priceFrom: 5_000_000,
-        priceTo: 12_000_000,
+        priceFrom: 6_500_000,
+        priceTo: 15_600_000,
         badge: "NEW",
         desc: "Kemenag rutin mengaudit PPIU/PIHK. Kami bantu travel mempersiapkan diri: review kelengkapan dokumen, pengecekan kesesuaian dengan peraturan terbaru, identifikasi gap, sesi mock audit, dan training staf.",
         includes: [
@@ -252,7 +252,7 @@ export const CATEGORIES: CatalogCategory[] = [
       },
       {
         q: "Berapa modal minimal untuk bisnis travel umrah yang legal?",
-        a: "Untuk legalitas dasar, paket legalitas perusahaan (R.6) mulai Rp 3 juta dan PPIU mulai Rp 15 juta, dengan timeline realistis 90–120 hari. Kementerian Agama juga mensyaratkan kantor operasional tetap yang layak — persiapannya kami bahas di sesi konsultasi kelayakan.",
+        a: "Untuk legalitas dasar, paket legalitas perusahaan (R.6) mulai Rp 3,9 juta dan PPIU mulai Rp 19,5 juta, dengan timeline realistis 90–120 hari. Kementerian Agama juga mensyaratkan kantor operasional tetap yang layak — persiapannya kami bahas di sesi konsultasi kelayakan.",
       },
       {
         q: "Apakah izin PPIU/PIHK bisa hangus saat audit Kemenag?",
@@ -280,39 +280,39 @@ export const CATEGORIES: CatalogCategory[] = [
       {
         code: "D.1",
         name: "Tanda Daftar Usaha Pariwisata (TDUP)",
-        priceFrom: 12_000_000,
+        priceFrom: 15_600_000,
         timeline: "± 30–60 hari",
         desc: "Tanda daftar usaha pariwisata status Efektif untuk travel, restoran, coffee shop, dan event organizer — sekaligus prasyarat pengajuan PPIU.",
       },
       {
         code: "D.2",
         name: "Izin Usaha Hotel",
-        priceFrom: 15_000_000,
+        priceFrom: 19_500_000,
         badge: "NEW",
         desc: "Paket lengkap operasional hotel: NIB dengan KBLI perhotelan, sertifikat standar usaha hotel, Sertifikat Laik Fungsi (SLF), dan izin operasional.",
       },
       {
         code: "D.3",
         name: "Pengurusan MICE (Meeting, Incentive, Conference, Exhibition)",
-        priceFrom: 11_700_000,
+        priceFrom: 15_210_000,
         desc: "Untuk event organizer profesional yang membutuhkan konvensi & licensing ruang acara skala besar.",
       },
       {
         code: "D.4",
         name: "BPW — Biro Perjalanan Wisata (Izin Dasar Travel)",
-        priceFrom: 8_000_000,
+        priceFrom: 10_400_000,
         desc: "Pendaftaran biro perjalanan wisata dalam sistem TDUP Kemenpar — prasyarat sebelum mengajukan PPIU/PIHK. Termasuk dalam paket TDUP.",
       },
       {
         code: "D.5",
         name: "Sertifikasi Laik Hygiene Sanitasi (Restoran/Hotel)",
-        priceFrom: 3_500_000,
+        priceFrom: 4_550_000,
         desc: "Sertifikasi laik hygiene sanitasi untuk jasa boga, katering, dan restoran melalui audit Dinkes setempat.",
       },
       {
         code: "D.6",
         name: "Sertifikasi Halal untuk Produk Hospitality",
-        priceFrom: 4_500_000,
+        priceFrom: 5_850_000,
         desc: "Sertifikat halal BPJPH untuk hotel dengan katering halal — fatwa MUI terintegrasi dalam prosesnya.",
       },
     ],
@@ -348,36 +348,36 @@ export const CATEGORIES: CatalogCategory[] = [
       {
         code: "G.1",
         name: "ISO 9001:2015 — Quality Management System",
-        priceFrom: 9_000_000,
+        priceFrom: 11_700_000,
         desc: "Sistem manajemen mutu: konsultasi, audit internal, dan pembuktian komitmen kualitas kepada pelanggan/mitra.",
       },
       {
         code: "G.2",
         name: "ISO 14001:2015 — Environmental Management",
-        priceFrom: 9_000_000,
+        priceFrom: 11_700_000,
         badge: "NEW",
         desc: "Sistem manajemen lingkungan — kredensial green tourism dan praktik bisnis berkelanjutan.",
       },
       {
         code: "G.3",
         name: "ISO 45001:2018 — Health & Safety Management",
-        priceFrom: 9_000_000,
+        priceFrom: 11_700_000,
         badge: "NEW",
         desc: "Sistem manajemen K3. Kritis untuk travel haji/umrah sebagai bentuk pengelolaan risiko dan komitmen keselamatan jamaah.",
       },
       {
         code: "G.4",
         name: "ISO 27001:2022 — Information Security Management",
-        priceFrom: 12_000_000,
+        priceFrom: 15_600_000,
         badge: "NEW",
         desc: "Keamanan informasi untuk perusahaan dengan sistem digital/booking online: perlindungan data pelanggan dan standar keamanan siber global.",
       },
       {
         code: "G.5",
         name: "Bundel \u201cTravel Excellence Certification\u201d",
-        priceFrom: 30_000_000,
+        priceFrom: 39_000_000,
         badge: "BEST VALUE",
-        desc: "ISO 9001 + ISO 14001 + ISO 45001 dalam satu paket dengan diskon bundel Rp 6 juta — profesional di tiga dimensi sekaligus: mutu, lingkungan, keselamatan.",
+        desc: "ISO 9001 + ISO 14001 + ISO 45001 dalam satu paket dengan diskon bundel Rp 7,8 juta — profesional di tiga dimensi sekaligus: mutu, lingkungan, keselamatan.",
         includes: [
           "ISO 9001 (Quality Management)",
           "ISO 14001 (Environmental)",
@@ -422,75 +422,75 @@ export const CATEGORIES: CatalogCategory[] = [
       {
         code: "A.1",
         name: "Pendirian PT (Perseroan Terbatas) — 6 pilihan paket",
-        priceFrom: 2_000_000,
-        priceTo: 7_900_000,
+        priceFrom: 2_600_000,
+        priceTo: 10_270_000,
         desc: "Dari PT Perorangan yang ringan hingga paket premium all-in-one dengan izin lengkap dan virtual office.",
         variants: [
-          { name: "PT Perorangan", priceFrom: 2_000_000, desc: "Pengecekan nama, SK Menteri, hingga 20 KBLI" },
-          { name: "PT + Izin Lengkap", priceFrom: 4_500_000, desc: "Semua di atas + NPWP, NIB, rekening, stempel" },
-          { name: "PT Sederhana", priceFrom: 3_000_000, desc: "Pengecekan nama, akta, SK Menteri" },
-          { name: "PT + Izin Komprehensif", priceFrom: 5_500_000, desc: "Fitur paket izin lengkap + akses OSS penuh" },
-          { name: "PT + Izin + Virtual Office", priceFrom: 6_000_000, desc: "Semua di atas + virtual office 1 tahun" },
-          { name: "PT + Izin + Virtual Premium", priceFrom: 7_900_000, desc: "All-in-one paling lengkap" },
+          { name: "PT Perorangan", priceFrom: 2_600_000, desc: "Pengecekan nama, SK Menteri, hingga 20 KBLI" },
+          { name: "PT + Izin Lengkap", priceFrom: 5_850_000, desc: "Semua di atas + NPWP, NIB, rekening, stempel" },
+          { name: "PT Sederhana", priceFrom: 3_900_000, desc: "Pengecekan nama, akta, SK Menteri" },
+          { name: "PT + Izin Komprehensif", priceFrom: 7_150_000, desc: "Fitur paket izin lengkap + akses OSS penuh" },
+          { name: "PT + Izin + Virtual Office", priceFrom: 7_800_000, desc: "Semua di atas + virtual office 1 tahun" },
+          { name: "PT + Izin + Virtual Premium", priceFrom: 10_270_000, desc: "All-in-one paling lengkap" },
         ],
       },
       {
         code: "A.2",
         name: "Pendirian CV (Commanditaire Vennootschap) — 3 paket",
-        priceFrom: 2_250_000,
-        priceTo: 6_900_000,
-        desc: "CV Dasar Rp 2,25 juta; CV + Izin Rp 4,5 juta; CV + Izin + Virtual Office Rp 6,9 juta.",
+        priceFrom: 2_925_000,
+        priceTo: 8_970_000,
+        desc: "CV Dasar Rp 2,925 juta; CV + Izin Rp 5,85 juta; CV + Izin + Virtual Office Rp 8,97 juta.",
       },
       {
         code: "A.3",
         name: "Pendirian Firma — 3 paket",
-        priceFrom: 2_250_000,
-        priceTo: 6_900_000,
-        desc: "Untuk kemitraan profesional: Firma Dasar Rp 2,25 juta; Firma + Izin Rp 4,5 juta; Firma + Izin + Virtual Office Rp 6,9 juta.",
+        priceFrom: 2_925_000,
+        priceTo: 8_970_000,
+        desc: "Untuk kemitraan profesional: Firma Dasar Rp 2,925 juta; Firma + Izin Rp 5,85 juta; Firma + Izin + Virtual Office Rp 8,97 juta.",
       },
       {
         code: "A.4",
         name: "Pendirian Persekutuan Perdata — 3 paket",
-        priceFrom: 2_250_000,
-        priceTo: 6_900_000,
-        desc: "Persekutuan Perdata Dasar Rp 2,25 juta; + Izin Rp 4,5 juta; + Izin + Virtual Office Rp 6,9 juta.",
+        priceFrom: 2_925_000,
+        priceTo: 8_970_000,
+        desc: "Persekutuan Perdata Dasar Rp 2,925 juta; + Izin Rp 5,85 juta; + Izin + Virtual Office Rp 8,97 juta.",
       },
       {
         code: "A.5",
         name: "Pendirian Yayasan — 3 paket",
-        priceFrom: 3_000_000,
-        priceTo: 8_400_000,
-        desc: "Yayasan Dasar Rp 3 juta; Yayasan + Izin Rp 6 juta; Yayasan + Izin + Virtual Office Rp 8,4 juta.",
+        priceFrom: 3_900_000,
+        priceTo: 10_920_000,
+        desc: "Yayasan Dasar Rp 3,9 juta; Yayasan + Izin Rp 7,8 juta; Yayasan + Izin + Virtual Office Rp 10,92 juta.",
       },
       {
         code: "A.6",
         name: "Pendirian Perkumpulan",
-        priceFrom: 6_000_000,
+        priceFrom: 7_800_000,
         desc: "Perkumpulan + izin dalam satu paket.",
       },
       {
         code: "A.7",
         name: "Pendirian PMA (Penanaman Modal Asing) — 3 paket",
-        priceFrom: 5_250_000,
-        priceTo: 12_400_000,
-        desc: "PMA Dasar Rp 5,25 juta; PMA + Izin Rp 10,5 juta; PMA + Izin + Virtual Office Rp 12,4 juta.",
+        priceFrom: 6_825_000,
+        priceTo: 16_120_000,
+        desc: "PMA Dasar Rp 6,825 juta; PMA + Izin Rp 13,65 juta; PMA + Izin + Virtual Office Rp 16,12 juta.",
       },
       {
         code: "A.8",
         name: "Pendirian UD (Usaha Dagang)",
-        priceFrom: 5_400_000,
+        priceFrom: 7_020_000,
         desc: "UD lengkap: NIB + NPWP + izin usaha.",
       },
       {
         code: "A.9",
         name: "Pendirian Koperasi",
-        priceFrom: 3_500_000,
+        priceFrom: 4_550_000,
         desc: "Koperasi (KUD/KSU/koperasi simpan pinjam): badan hukum Kemenkop, RAT, pengurus.",
       },
       {
         code: "A.10",
         name: "Kantor Perwakilan Asing (KPPA)",
-        priceFrom: 12_000_000,
+        priceFrom: 15_600_000,
         desc: "Representasi perusahaan asing di Indonesia via BKPM/OSS tanpa badan hukum — jalur validasi pasar.",
       },
     ],
@@ -524,10 +524,10 @@ export const CATEGORIES: CatalogCategory[] = [
     tagline: "Semua kebutuhan registrasi pajak perusahaan",
     desc: "Registrasi dasar pajak yang sering menjadi syarat izin lain: NPWP badan, SKT, pengukuhan PKP, dan EFIN. Proses cepat dengan pendampingan pemenuhan persyaratan di KPP setempat.",
     services: [
-      { code: "B.1", name: "NPWP Badan", priceFrom: 450_000, desc: "Untuk PT, CV, Firma, Yayasan." },
-      { code: "B.2", name: "SKT Badan", priceFrom: 450_000, desc: "Surat Keterangan Terdaftar." },
-      { code: "B.3", name: "Pengukuhan PKP", priceFrom: 1_800_000, desc: "Penetapan sebagai Pengusaha Kena Pajak." },
-      { code: "B.4", name: "EFIN", priceFrom: 500_000, desc: "Electronik Filing Identification Number untuk layanan pajak online." },
+      { code: "B.1", name: "NPWP Badan", priceFrom: 585_000, desc: "Untuk PT, CV, Firma, Yayasan." },
+      { code: "B.2", name: "SKT Badan", priceFrom: 585_000, desc: "Surat Keterangan Terdaftar." },
+      { code: "B.3", name: "Pengukuhan PKP", priceFrom: 2_340_000, desc: "Penetapan sebagai Pengusaha Kena Pajak." },
+      { code: "B.4", name: "EFIN", priceFrom: 650_000, desc: "Electronik Filing Identification Number untuk layanan pajak online." },
     ],
     faq: [
       {
@@ -557,16 +557,16 @@ export const CATEGORIES: CatalogCategory[] = [
     tagline: "Izin-izin esensial untuk menjalankan bisnis",
     desc: "Dari NIB sebagai identitas usaha di OSS sampai izin spesifik perdagangan: impor (API, NIK Bea Cukai), industri (IUI), fasilitas kepabeanan (KITE), sampai waralaba (STPW). Semua dengan penjelasan dampak regulasinya bagi model bisnis Anda.",
     services: [
-      { code: "C.1", name: "NIB di OSS", priceFrom: 1_800_000, desc: "Nomor Induk Berusaha — identitas utama usaha di OSS RBA.", timeline: "3–7 hari kerja" },
-      { code: "C.2", name: "SIUP di OSS", priceFrom: 900_000, desc: "Surat Izin Usaha Perdagangan (Status Efektif)." },
-      { code: "C.3", name: "API (Izin Impor)", priceFrom: 1_000_000, desc: "Angka Pengenal Importir." },
-      { code: "C.4", name: "NIK Bea Cukai", priceFrom: 1_000_000, desc: "Nomor Induk Kepabeanan." },
-      { code: "C.5", name: "IUMK", priceFrom: 1_350_000, desc: "Izin Usaha Mikro Kecil untuk UMKM." },
-      { code: "C.6", name: "IUI (Izin Usaha Industri)", priceFrom: 45_000_000, desc: "Untuk manufaktur berbasis risiko." },
-      { code: "C.7", name: "KITE", priceFrom: 13_500_000, desc: "Kemudahan impor untuk tujuan ekspor." },
-      { code: "C.8", name: "Persetujuan Ekspor (PE)", priceFrom: 8_500_000, desc: "Untuk komoditas tertentu (migas, CPO, dll)." },
-      { code: "C.9", name: "STP Distributor", priceFrom: 3_500_000, desc: "Surat Tanda Pendaftaran Distributor." },
-      { code: "C.10", name: "STPW Waralaba", priceFrom: 12_000_000, desc: "Izin operasi waralaba/franchise." },
+      { code: "C.1", name: "NIB di OSS", priceFrom: 2_340_000, desc: "Nomor Induk Berusaha — identitas utama usaha di OSS RBA.", timeline: "3–7 hari kerja" },
+      { code: "C.2", name: "SIUP di OSS", priceFrom: 1_170_000, desc: "Surat Izin Usaha Perdagangan (Status Efektif)." },
+      { code: "C.3", name: "API (Izin Impor)", priceFrom: 1_300_000, desc: "Angka Pengenal Importir." },
+      { code: "C.4", name: "NIK Bea Cukai", priceFrom: 1_300_000, desc: "Nomor Induk Kepabeanan." },
+      { code: "C.5", name: "IUMK", priceFrom: 1_755_000, desc: "Izin Usaha Mikro Kecil untuk UMKM." },
+      { code: "C.6", name: "IUI (Izin Usaha Industri)", priceFrom: 58_500_000, desc: "Untuk manufaktur berbasis risiko." },
+      { code: "C.7", name: "KITE", priceFrom: 17_550_000, desc: "Kemudahan impor untuk tujuan ekspor." },
+      { code: "C.8", name: "Persetujuan Ekspor (PE)", priceFrom: 11_050_000, desc: "Untuk komoditas tertentu (migas, CPO, dll)." },
+      { code: "C.9", name: "STP Distributor", priceFrom: 4_550_000, desc: "Surat Tanda Pendaftaran Distributor." },
+      { code: "C.10", name: "STPW Waralaba", priceFrom: 15_600_000, desc: "Izin operasi waralaba/franchise." },
     ],
     faq: [
       {
@@ -598,12 +598,12 @@ export const CATEGORIES: CatalogCategory[] = [
     tagline: "Perizinan lengkap untuk proyek konstruksi",
     desc: "Dari kualifikasi SBU/SIUJK untuk tender sampai perizinan bangunan: PBG sebagai pengganti IMB, SLF untuk kelayakan fungsi, dan sertifikat standar. Semua sesuai regulasi terbaru UU Cipta Kerja & PP 16/2021.",
     services: [
-      { code: "E.1", name: "SBU + SIUJK K1", priceFrom: 31_500_000, desc: "Kualifikasi kelas kecil, status Efektif." },
-      { code: "E.2", name: "SBU + SIUJK M1", priceFrom: 40_500_000, desc: "Kualifikasi kelas menengah." },
-      { code: "E.3", name: "SBU + SIUJK B1", priceFrom: 70_200_000, desc: "Kualifikasi kelas besar." },
-      { code: "E.4", name: "IMB (Jabodetabek)", priceFrom: 27_000_000, desc: "Izin Mendirikan Bangunan untuk kasus yang masih berlaku IMB." },
-      { code: "E.5", name: "PBG", priceFrom: 20_000_000, desc: "Persetujuan Bangunan Gedung — pengganti IMB pasca UU Cipta Kerja." },
-      { code: "E.6", name: "SLF", priceFrom: 18_000_000, desc: "Sertifikat Laik Fungsi Bangunan." },
+      { code: "E.1", name: "SBU + SIUJK K1", priceFrom: 40_950_000, desc: "Kualifikasi kelas kecil, status Efektif." },
+      { code: "E.2", name: "SBU + SIUJK M1", priceFrom: 52_650_000, desc: "Kualifikasi kelas menengah." },
+      { code: "E.3", name: "SBU + SIUJK B1", priceFrom: 91_260_000, desc: "Kualifikasi kelas besar." },
+      { code: "E.4", name: "IMB (Jabodetabek)", priceFrom: 35_100_000, desc: "Izin Mendirikan Bangunan untuk kasus yang masih berlaku IMB." },
+      { code: "E.5", name: "PBG", priceFrom: 26_000_000, desc: "Persetujuan Bangunan Gedung — pengganti IMB pasca UU Cipta Kerja." },
+      { code: "E.6", name: "SLF", priceFrom: 23_400_000, desc: "Sertifikat Laik Fungsi Bangunan." },
     ],
     faq: [
       {
@@ -633,9 +633,9 @@ export const CATEGORIES: CatalogCategory[] = [
     tagline: "Kelengkapan dokumen lingkungan untuk beroperasi legal",
     desc: "Tingkat kewajiban lingkungan ditentukan skala risiko usaha: SPPL untuk risiko rendah, UKL-UPL menengah, AMDAL untuk kegiatan besar berdampak penting. Kami bantu penapisan risiko sampai dokumen disetujui.",
     services: [
-      { code: "F.1", name: "AMDAL", priceFrom: 35_000_000, desc: "Analisis Mengenai Dampak Lingkungan untuk kegiatan berdampak penting." },
-      { code: "F.2", name: "UKL-UPL", priceFrom: 15_000_000, desc: "Upaya Pengelolaan & Pemantauan Lingkungan." },
-      { code: "F.3", name: "SPPL", priceFrom: 3_500_000, desc: "Surat Pernyataan Kesanggupan Pengelolaan Lingkungan." },
+      { code: "F.1", name: "AMDAL", priceFrom: 45_500_000, desc: "Analisis Mengenai Dampak Lingkungan untuk kegiatan berdampak penting." },
+      { code: "F.2", name: "UKL-UPL", priceFrom: 19_500_000, desc: "Upaya Pengelolaan & Pemantauan Lingkungan." },
+      { code: "F.3", name: "SPPL", priceFrom: 4_550_000, desc: "Surat Pernyataan Kesanggupan Pengelolaan Lingkungan." },
     ],
     faq: [
       {
@@ -665,19 +665,19 @@ export const CATEGORIES: CatalogCategory[] = [
     tagline: "BPOM, halal, klinik, apotek, dan distribusi farmasi",
     desc: "Divisi paling regulatif: izin edar BPOM, PKRT, obat tradisional, PIRT, sertifikat halal BPJPH, sampai izin klinik, PBF, IPAK, SIA, dan SIPA. Kami menangani jalur registrasi penuh termasuk uji lab dan penunjukan teknis.",
     services: [
-      { code: "H.1", name: "PKRT", priceFrom: 13_500_000, desc: "Izin Perbekalan Kesehatan Rumah Tangga (kosmetik & produk rumah tangga)." },
-      { code: "H.2", name: "TDG Obat Tradisional", priceFrom: 13_500_000, desc: "Tanda Daftar Golongan Obat tradisional." },
-      { code: "H.3", name: "Izin Edar BPOM (MD)", priceFrom: 9_500_000, desc: "Makanan/minuman domestik." },
-      { code: "H.4", name: "Izin Edar BPOM (ML)", priceFrom: 15_000_000, desc: "Makanan/minuman impor." },
-      { code: "H.5", name: "PIRT", priceFrom: 2_500_000, desc: "Produk Industri Rumah Tangga untuk UMKM pangan." },
-      { code: "H.6", name: "Sertifikat Halal BPJPH", priceFrom: 4_500_000, desc: "Sertifikasi halal resmi." },
-      { code: "H.7", name: "Izin Klinik", priceFrom: 16_200_000, desc: "Izin operasional klinik." },
-      { code: "H.8", name: "PBF", priceFrom: 25_000_000, desc: "Izin Pedagang Besar Farmasi." },
-      { code: "H.9", name: "IPAK", priceFrom: 13_500_000, desc: "Izin Penyalur Alat Kesehatan." },
-      { code: "H.10", name: "SIA (Surat Izin Apotek)", priceFrom: 12_000_000, desc: "Izin mendirikan & menjalankan apotek." },
-      { code: "H.11", name: "SIPA", priceFrom: 3_500_000, desc: "Surat Izin Praktik Apoteker." },
-      { code: "H.12", name: "Izin Edar Alat Kesehatan (AKD)", priceFrom: 15_000_000, desc: "Izin edar Kemenkes untuk alat kesehatan & alat kesehatan diagnostik in vitro (AKL)." },
-      { code: "H.13", name: "Sertifikat Higiene Sanitasi", priceFrom: 1_500_000, desc: "Wajib bagi usaha makanan/minuman dari Dinkes — restoran, katering, cloud kitchen." },
+      { code: "H.1", name: "PKRT", priceFrom: 17_550_000, desc: "Izin Perbekalan Kesehatan Rumah Tangga (kosmetik & produk rumah tangga)." },
+      { code: "H.2", name: "TDG Obat Tradisional", priceFrom: 17_550_000, desc: "Tanda Daftar Golongan Obat tradisional." },
+      { code: "H.3", name: "Izin Edar BPOM (MD)", priceFrom: 12_350_000, desc: "Makanan/minuman domestik." },
+      { code: "H.4", name: "Izin Edar BPOM (ML)", priceFrom: 19_500_000, desc: "Makanan/minuman impor." },
+      { code: "H.5", name: "PIRT", priceFrom: 3_250_000, desc: "Produk Industri Rumah Tangga untuk UMKM pangan." },
+      { code: "H.6", name: "Sertifikat Halal BPJPH", priceFrom: 5_850_000, desc: "Sertifikasi halal resmi." },
+      { code: "H.7", name: "Izin Klinik", priceFrom: 21_060_000, desc: "Izin operasional klinik." },
+      { code: "H.8", name: "PBF", priceFrom: 32_500_000, desc: "Izin Pedagang Besar Farmasi." },
+      { code: "H.9", name: "IPAK", priceFrom: 17_550_000, desc: "Izin Penyalur Alat Kesehatan." },
+      { code: "H.10", name: "SIA (Surat Izin Apotek)", priceFrom: 15_600_000, desc: "Izin mendirikan & menjalankan apotek." },
+      { code: "H.11", name: "SIPA", priceFrom: 4_550_000, desc: "Surat Izin Praktik Apoteker." },
+      { code: "H.12", name: "Izin Edar Alat Kesehatan (AKD)", priceFrom: 19_500_000, desc: "Izin edar Kemenkes untuk alat kesehatan & alat kesehatan diagnostik in vitro (AKL)." },
+      { code: "H.13", name: "Sertifikat Higiene Sanitasi", priceFrom: 1_950_000, desc: "Wajib bagi usaha makanan/minuman dari Dinkes — restoran, katering, cloud kitchen." },
     ],
     faq: [
       {
@@ -709,12 +709,12 @@ export const CATEGORIES: CatalogCategory[] = [
     tagline: "Tenaga kerja asing & dokumen perjalanan karyawan",
     desc: "Menghadirkan tenaga kerja asing legal: RPTKA sebagai fondasi, KITAS untuk investor maupun tenaga kerja, KITAP untuk menetap, sampai pengurusan paspor RI elektronik untuk kebutuhan perjalanan bisnis.",
     services: [
-      { code: "I.1", name: "RPTKA", priceFrom: 15_000_000, desc: "Rencana Penggunaan Tenaga Kerja Asing — dasar legal semua TKA." },
-      { code: "I.2", name: "KITAS Investor", priceFrom: 18_000_000, desc: "Kartu Izin Tinggal Sementara untuk investor." },
-      { code: "I.3", name: "KITAS Tenaga Kerja", priceFrom: 16_200_000, desc: "KITAS untuk tenaga kerja asing dengan indeks kerja." },
-      { code: "I.4", name: "KITAP", priceFrom: 23_400_000, desc: "Kartu Izin Tinggal Tetap." },
-      { code: "I.5", name: "Paspor RI (elektronik)", priceFrom: 1_800_000, desc: "Paspor Indonesia dengan chip." },
-      { code: "I.6", name: "BPJS Ketenagakerjaan & Kesehatan", priceFrom: 900_000, desc: "Registrasi & daftar ulang kewajiban ketenagakerjaan untuk seluruh karyawan." },
+      { code: "I.1", name: "RPTKA", priceFrom: 19_500_000, desc: "Rencana Penggunaan Tenaga Kerja Asing — dasar legal semua TKA." },
+      { code: "I.2", name: "KITAS Investor", priceFrom: 23_400_000, desc: "Kartu Izin Tinggal Sementara untuk investor." },
+      { code: "I.3", name: "KITAS Tenaga Kerja", priceFrom: 21_060_000, desc: "KITAS untuk tenaga kerja asing dengan indeks kerja." },
+      { code: "I.4", name: "KITAP", priceFrom: 30_420_000, desc: "Kartu Izin Tinggal Tetap." },
+      { code: "I.5", name: "Paspor RI (elektronik)", priceFrom: 2_340_000, desc: "Paspor Indonesia dengan chip." },
+      { code: "I.6", name: "BPJS Ketenagakerjaan & Kesehatan", priceFrom: 1_170_000, desc: "Registrasi & daftar ulang kewajiban ketenagakerjaan untuk seluruh karyawan." },
     ],
     faq: [
       {
@@ -744,14 +744,14 @@ export const CATEGORIES: CatalogCategory[] = [
     tagline: "Keselamatan kerja adalah prioritas — dan kewajiban hukum",
     desc: "Registrasi K3L, sertifikasi Ahli K3 untuk berbagai spesialisasi (umum, konstruksi, listrik, kimia), pemeriksaan APAR, hingga izin proteksi kebakaran. Semua untuk memenuhi kewajiban P2K3 dan menghindari sanksi Kemnaker.",
     services: [
-      { code: "J.1", name: "Registrasi K3L", priceFrom: 10_000_000, desc: "Uji lab + izin K3L dari OSS." },
-      { code: "J.2", name: "Ahli K3 Umum (Kemnaker)", priceFrom: 6_500_000, desc: "Pelatihan 12 hari + sertifikat resmi." },
-      { code: "J.3", name: "Ahli K3 Umum (BNSP)", priceFrom: 3_500_000, desc: "Pelatihan 4 hari + uji kompetensi." },
-      { code: "J.4", name: "Ahli K3 Konstruksi", priceFrom: 7_500_000, desc: "Sertifikat Kemnaker untuk proyek konstruksi." },
-      { code: "J.5", name: "Ahli K3 Listrik", priceFrom: 8_000_000, desc: "Sertifikat Kemnaker untuk instalasi & pemeliharaan listrik." },
-      { code: "J.6", name: "Ahli K3 Kimia", priceFrom: 8_500_000, desc: "Sertifikat Kemnaker untuk industri kimia." },
-      { code: "J.7", name: "Sertifikasi APAR", priceFrom: 2_500_000, desc: "Pemeriksaan Alat Pemadam Api Ringan." },
-      { code: "J.8", name: "Izin Proteksi Kebakaran", priceFrom: 9_000_000, desc: "Sistem keselamatan kebakaran gedung." },
+      { code: "J.1", name: "Registrasi K3L", priceFrom: 13_000_000, desc: "Uji lab + izin K3L dari OSS." },
+      { code: "J.2", name: "Ahli K3 Umum (Kemnaker)", priceFrom: 8_450_000, desc: "Pelatihan 12 hari + sertifikat resmi." },
+      { code: "J.3", name: "Ahli K3 Umum (BNSP)", priceFrom: 4_550_000, desc: "Pelatihan 4 hari + uji kompetensi." },
+      { code: "J.4", name: "Ahli K3 Konstruksi", priceFrom: 9_750_000, desc: "Sertifikat Kemnaker untuk proyek konstruksi." },
+      { code: "J.5", name: "Ahli K3 Listrik", priceFrom: 10_400_000, desc: "Sertifikat Kemnaker untuk instalasi & pemeliharaan listrik." },
+      { code: "J.6", name: "Ahli K3 Kimia", priceFrom: 11_050_000, desc: "Sertifikat Kemnaker untuk industri kimia." },
+      { code: "J.7", name: "Sertifikasi APAR", priceFrom: 3_250_000, desc: "Pemeriksaan Alat Pemadam Api Ringan." },
+      { code: "J.8", name: "Izin Proteksi Kebakaran", priceFrom: 11_700_000, desc: "Sistem keselamatan kebakaran gedung." },
     ],
     faq: [
       {
@@ -781,9 +781,9 @@ export const CATEGORIES: CatalogCategory[] = [
     tagline: "Izin untuk bisnis transportasi & logistik",
     desc: "SIUJPT untuk perusahaan jasa transportasi, izin angkutan barang dengan izin trayek, dan izin angkutan penumpang. Meliputi pengurusan di Dishub/Hubdat sesuai moda.",
     services: [
-      { code: "K.1", name: "SIUJPT", priceFrom: 22_500_000, desc: "Surat Izin Usaha Perusahaan Jasa Transportasi." },
-      { code: "K.2", name: "Izin Angkutan Barang", priceFrom: 18_000_000, desc: "Izin usaha & izin trayek." },
-      { code: "K.3", name: "Izin Angkutan Penumpang", priceFrom: 20_000_000, desc: "Izin usaha & izin trayek." },
+      { code: "K.1", name: "SIUJPT", priceFrom: 29_250_000, desc: "Surat Izin Usaha Perusahaan Jasa Transportasi." },
+      { code: "K.2", name: "Izin Angkutan Barang", priceFrom: 23_400_000, desc: "Izin usaha & izin trayek." },
+      { code: "K.3", name: "Izin Angkutan Penumpang", priceFrom: 26_000_000, desc: "Izin usaha & izin trayek." },
     ],
     faq: [
       {
@@ -813,9 +813,9 @@ export const CATEGORIES: CatalogCategory[] = [
     tagline: "Perizinan untuk bisnis digital & e-commerce",
     desc: "Untuk startup dan platform: izin e-commerce, PMSE (Kemendag), dan PSE (Kominfo) — prasyarat kepercayaan konsumen, kemitraan payment gateway, dan kepatuhan UU ITE/PDP.",
     services: [
-      { code: "L.1", name: "Izin E-Commerce", priceFrom: 9_000_000, desc: "Izin transaksi elektronik." },
-      { code: "L.2", name: "PMSE", priceFrom: 11_000_000, desc: "Perdagangan Melalui Sistem Elektronik (Kemendag)." },
-      { code: "L.3", name: "PSE", priceFrom: 5_000_000, desc: "Penyelenggara Sistem Elektronik (Kominfo) — pendaftaran TDPSE." },
+      { code: "L.1", name: "Izin E-Commerce", priceFrom: 11_700_000, desc: "Izin transaksi elektronik." },
+      { code: "L.2", name: "PMSE", priceFrom: 14_300_000, desc: "Perdagangan Melalui Sistem Elektronik (Kemendag)." },
+      { code: "L.3", name: "PSE", priceFrom: 6_500_000, desc: "Penyelenggara Sistem Elektronik (Kominfo) — pendaftaran TDPSE." },
     ],
     faq: [
       {
@@ -845,10 +845,10 @@ export const CATEGORIES: CatalogCategory[] = [
     tagline: "Izin khusus bisnis minuman beralkohol",
     desc: "SIUP-MB per golongan kadar alkohol (A: 1–5%, B: 5–20%, C: >20%) dan SITU-MB untuk tempat usaha penjualan. Kita bantu menentukan golongan sesuai produk dan wilayah operasional.",
     services: [
-      { code: "M.1", name: "SIUP-MB Golongan A", priceFrom: 15_000_000, desc: "Kadar 1–5% (bir, minuman ringan beralkohol)." },
-      { code: "M.2", name: "SIUP-MB Golongan B", priceFrom: 18_000_000, desc: "Kadar 5–20% (wine, cider)." },
-      { code: "M.3", name: "SIUP-MB Golongan C", priceFrom: 22_000_000, desc: "Kadar >20% (spirits, minuman keras)." },
-      { code: "M.4", name: "SITU-MB", priceFrom: 8_000_000, desc: "Surat Izin Tempat Usaha penjualan minuman beralkohol." },
+      { code: "M.1", name: "SIUP-MB Golongan A", priceFrom: 19_500_000, desc: "Kadar 1–5% (bir, minuman ringan beralkohol)." },
+      { code: "M.2", name: "SIUP-MB Golongan B", priceFrom: 23_400_000, desc: "Kadar 5–20% (wine, cider)." },
+      { code: "M.3", name: "SIUP-MB Golongan C", priceFrom: 28_600_000, desc: "Kadar >20% (spirits, minuman keras)." },
+      { code: "M.4", name: "SITU-MB", priceFrom: 10_400_000, desc: "Surat Izin Tempat Usaha penjualan minuman beralkohol." },
     ],
     faq: [
       {
@@ -878,10 +878,10 @@ export const CATEGORIES: CatalogCategory[] = [
     tagline: "Sertifikasi produk untuk akses pasar",
     desc: "SNI untuk akses pasar nasional dan retail modern, Sertifikasi Industri Hijau, CPPOB/GMP untuk pangan olahan, dan sertifikasi kompetensi BNSP untuk tenaga kerja profesional.",
     services: [
-      { code: "N.1", name: "Sertifikasi SNI", priceFrom: 12_000_000, desc: "Standar Nasional Indonesia." },
-      { code: "N.2", name: "Sertifikasi Industri Hijau (SIH)", priceFrom: 8_500_000, desc: "Standar industri hijau." },
-      { code: "N.3", name: "Sertifikasi CPPOB/GMP", priceFrom: 7_000_000, desc: "Cara Produksi Pangan Olahan yang Baik." },
-      { code: "N.4", name: "Sertifikasi Kompetensi BNSP", priceFrom: 2_500_000, priceTo: 5_000_000, desc: "Sertifikasi profesi berbagai bidang." },
+      { code: "N.1", name: "Sertifikasi SNI", priceFrom: 15_600_000, desc: "Standar Nasional Indonesia." },
+      { code: "N.2", name: "Sertifikasi Industri Hijau (SIH)", priceFrom: 11_050_000, desc: "Standar industri hijau." },
+      { code: "N.3", name: "Sertifikasi CPPOB/GMP", priceFrom: 9_100_000, desc: "Cara Produksi Pangan Olahan yang Baik." },
+      { code: "N.4", name: "Sertifikasi Kompetensi BNSP", priceFrom: 3_250_000, priceTo: 6_500_000, desc: "Sertifikasi profesi berbagai bidang." },
     ],
     faq: [
       {
@@ -911,11 +911,11 @@ export const CATEGORIES: CatalogCategory[] = [
     tagline: "Perizinan spesifik untuk sektor tertentu",
     desc: "Kumpulan izin yang jarang ditawarkan kompetitor: TDY untuk yayasan, LKP/LPK untuk lembaga pelatihan, izin penyalur BBM, sampai CBAM untuk eksportir yang berhadapan dengan mekanisme karbon Uni Eropa.",
     services: [
-      { code: "O.1", name: "Izin Operasional Yayasan (TDY)", priceFrom: 4_500_000, desc: "Tanda Daftar Yayasan." },
-      { code: "O.2", name: "Izin LKP/LPK", priceFrom: 9_500_000, desc: "Lembaga Kursus & Pelatihan." },
-      { code: "O.3", name: "Sertifikat Laik Hygiene Sanitasi", priceFrom: 3_500_000, desc: "Untuk rumah makan/restoran." },
-      { code: "O.4", name: "Izin Usaha Penyalur BBM", priceFrom: 35_000_000, desc: "Izin usaha niaga BBM." },
-      { code: "O.5", name: "CBAM Registration", priceFrom: 25_000_000, desc: "Carbon Border Adjustment Mechanism (Uni Eropa) untuk eksportir." },
+      { code: "O.1", name: "Izin Operasional Yayasan (TDY)", priceFrom: 5_850_000, desc: "Tanda Daftar Yayasan." },
+      { code: "O.2", name: "Izin LKP/LPK", priceFrom: 12_350_000, desc: "Lembaga Kursus & Pelatihan." },
+      { code: "O.3", name: "Sertifikat Laik Hygiene Sanitasi", priceFrom: 4_550_000, desc: "Untuk rumah makan/restoran." },
+      { code: "O.4", name: "Izin Usaha Penyalur BBM", priceFrom: 45_500_000, desc: "Izin usaha niaga BBM." },
+      { code: "O.5", name: "CBAM Registration", priceFrom: 32_500_000, desc: "Carbon Border Adjustment Mechanism (Uni Eropa) untuk eksportir." },
     ],
     faq: [
       {
@@ -945,9 +945,9 @@ export const CATEGORIES: CatalogCategory[] = [
     tagline: "Layanan berkelanjutan untuk izin Anda",
     desc: "Bisnis bergerak — alamat berubah, pengurus berganti, izin mendekati kedaluwarsa. Kami menangani perubahan data perusahaan, perpanjangan izin, sampai pembubaran perusahaan yang rapi secara hukum.",
     services: [
-      { code: "P.1", name: "Perubahan Data Perusahaan", priceFrom: 3_500_000, desc: "Update alamat, pengurus, modal (akta + NIB + izin turunan)." },
-      { code: "P.2", name: "Perpanjangan Izin Usaha", priceFrom: 2_000_000, desc: "Perpanjangan NIB & izin operasional." },
-      { code: "P.3", name: "Penutupan/Pembubaran Perusahaan", priceFrom: 8_000_000, desc: "Likuidasi & pencabutan izin — agar tidak meninggalkan kewajiban menggantung." },
+      { code: "P.1", name: "Perubahan Data Perusahaan", priceFrom: 4_550_000, desc: "Update alamat, pengurus, modal (akta + NIB + izin turunan)." },
+      { code: "P.2", name: "Perpanjangan Izin Usaha", priceFrom: 2_600_000, desc: "Perpanjangan NIB & izin operasional." },
+      { code: "P.3", name: "Penutupan/Pembubaran Perusahaan", priceFrom: 10_400_000, desc: "Likuidasi & pencabutan izin — agar tidak meninggalkan kewajiban menggantung." },
     ],
     faq: [
       {
@@ -977,8 +977,8 @@ export const CATEGORIES: CatalogCategory[] = [
     tagline: "Izin untuk bisnis penerbangan",
     desc: "Layanan paling premium dalam katalog: Air Operator Certificate untuk operator maskapai dan Sertifikat Standar Angkutan Udara untuk angkutan niaga berjadwal/tidak berjadwal — pengurusan intensif bersama Kemenhub.",
     services: [
-      { code: "Q.1", name: "Air Operator Certificate (AOC)", priceFrom: 50_000_000, priceTo: 150_000_000, desc: "Sertifikat Operator Maskapai." },
-      { code: "Q.2", name: "Sertifikat Standar Angkutan Udara", priceFrom: 25_000_000, priceTo: 75_000_000, desc: "Izin angkutan niaga berjadwal/tidak berjadwal." },
+      { code: "Q.1", name: "Air Operator Certificate (AOC)", priceFrom: 65_000_000, priceTo: 195_000_000, desc: "Sertifikat Operator Maskapai." },
+      { code: "Q.2", name: "Sertifikat Standar Angkutan Udara", priceFrom: 32_500_000, priceTo: 97_500_000, desc: "Izin angkutan niaga berjadwal/tidak berjadwal." },
     ],
     faq: [
       {
@@ -1008,7 +1008,7 @@ export const CATEGORIES: CatalogCategory[] = [
     tagline: "Izin untuk bisnis perikanan & kelautan",
     desc: "SIUP (Surat Izin Usaha Perikanan) untuk kegiatan penangkapan, pengumpulan, budidaya, dan pengolahan ikan — dikalibrasi dengan armada dan lokasi usaha Anda.",
     services: [
-      { code: "S.1", name: "SIUP (Surat Izin Usaha Perikanan)", priceFrom: 5_000_000, priceTo: 20_000_000, desc: "Penangkapan, pengumpulan, budidaya, pengolahan ikan." },
+      { code: "S.1", name: "SIUP (Surat Izin Usaha Perikanan)", priceFrom: 6_500_000, priceTo: 26_000_000, desc: "Penangkapan, pengumpulan, budidaya, pengolahan ikan." },
     ],
     faq: [
       {
@@ -1038,8 +1038,8 @@ export const CATEGORIES: CatalogCategory[] = [
     tagline: "Izin untuk bisnis penambangan",
     desc: "IUP untuk mineral logam/non-logam dari eksplorasi sampai operasi produksi, dan WIUP untuk tahap awal penunjukan wilayah — melalui proses kewilayahan dan kajian yang ketat.",
     services: [
-      { code: "T.1", name: "IUP (Izin Usaha Pertambangan)", priceFrom: 50_000_000, priceTo: 500_000_000, desc: "Mineral logam/non-logam: eksplorasi sampai operasi produksi." },
-      { code: "T.2", name: "WIUP (Wilayah Izin Usaha)", priceFrom: 25_000_000, priceTo: 100_000_000, desc: "Tahap awal penunjukan wilayah." },
+      { code: "T.1", name: "IUP (Izin Usaha Pertambangan)", priceFrom: 65_000_000, priceTo: 650_000_000, desc: "Mineral logam/non-logam: eksplorasi sampai operasi produksi." },
+      { code: "T.2", name: "WIUP (Wilayah Izin Usaha)", priceFrom: 32_500_000, priceTo: 130_000_000, desc: "Tahap awal penunjukan wilayah." },
     ],
     faq: [
       {
@@ -1069,8 +1069,8 @@ export const CATEGORIES: CatalogCategory[] = [
     tagline: "Izin untuk bisnis pertanian & agribisnis",
     desc: "Izin usaha pertanian via portal SIMPEL dan izin usaha perkebunan untuk komoditas sawit, karet, kopi, kakao, dan teh — terhubung dengan kewajiban lingkungan dan sertifikasi pasar.",
     services: [
-      { code: "U.1", name: "Izin Usaha Pertanian", priceFrom: 3_000_000, priceTo: 15_000_000, desc: "Via portal SIMPEL (Sistem Perizinan Pertanian Elektronik)." },
-      { code: "U.2", name: "Izin Usaha Perkebunan", priceFrom: 10_000_000, priceTo: 50_000_000, desc: "Kelapa sawit, karet, kopi, kakao, teh." },
+      { code: "U.1", name: "Izin Usaha Pertanian", priceFrom: 3_900_000, priceTo: 19_500_000, desc: "Via portal SIMPEL (Sistem Perizinan Pertanian Elektronik)." },
+      { code: "U.2", name: "Izin Usaha Perkebunan", priceFrom: 13_000_000, priceTo: 65_000_000, desc: "Kelapa sawit, karet, kopi, kakao, teh." },
     ],
     faq: [
       {
@@ -1100,7 +1100,7 @@ export const CATEGORIES: CatalogCategory[] = [
     tagline: "Izin untuk bisnis gudang & logistik",
     desc: "Tanda Daftar Gudang (TDG) untuk seluruh tipe fasilitas penyimpanan: gudang tertutup, terbuka, silo, dan tangki — fondasi legal untuk bisnis 3PL dan distribusi.",
     services: [
-      { code: "V.1", name: "Tanda Daftar Gudang (TDG)", priceFrom: 2_000_000, priceTo: 8_000_000, desc: "Gudang tertutup, terbuka, silo, tangki." },
+      { code: "V.1", name: "Tanda Daftar Gudang (TDG)", priceFrom: 2_600_000, priceTo: 10_400_000, desc: "Gudang tertutup, terbuka, silo, tangki." },
     ],
     faq: [
       {
@@ -1130,10 +1130,10 @@ export const CATEGORIES: CatalogCategory[] = [
     tagline: "Izin untuk bisnis media & penyiaran",
     desc: "Izin prinsip radio dengan hak frekuensi, izin televisi swasta, sampai izin penyiaran streaming untuk media online & konten — mengikuti regulasi Kominfo/Komisi Penyiaran terbaru.",
     services: [
-      { code: "W.1", name: "Izin Prinsip Radio", priceFrom: 10_000_000, priceTo: 30_000_000, desc: "Stasiun radio swasta + hak frekuensi." },
-      { code: "W.2", name: "Izin Televisi", priceFrom: 20_000_000, priceTo: 50_000_000, desc: "Stasiun televisi swasta." },
-      { code: "W.3", name: "Izin Penyiaran Streaming", priceFrom: 5_000_000, priceTo: 15_000_000, desc: "Media online & streaming konten." },
-      { code: "W.4", name: "Izin Terbit Reklame", priceFrom: 2_500_000, priceTo: 12_000_000, desc: "Pemasangan billboard/videotron/spanduk sesuai perda daerah setempat." },
+      { code: "W.1", name: "Izin Prinsip Radio", priceFrom: 13_000_000, priceTo: 39_000_000, desc: "Stasiun radio swasta + hak frekuensi." },
+      { code: "W.2", name: "Izin Televisi", priceFrom: 26_000_000, priceTo: 65_000_000, desc: "Stasiun televisi swasta." },
+      { code: "W.3", name: "Izin Penyiaran Streaming", priceFrom: 6_500_000, priceTo: 19_500_000, desc: "Media online & streaming konten." },
+      { code: "W.4", name: "Izin Terbit Reklame", priceFrom: 3_250_000, priceTo: 15_600_000, desc: "Pemasangan billboard/videotron/spanduk sesuai perda daerah setempat." },
     ],
     faq: [
       {
@@ -1163,10 +1163,10 @@ export const CATEGORIES: CatalogCategory[] = [
     tagline: "Izin untuk kantor jasa profesional",
     desc: "Izin operasional untuk firma konsultan manajemen, kantor hukum, konsultan pajak bersertifikat, dan Kantor Akuntan Publik (KAP) — termasuk pemenuhan kualifikasi personel profesionalnya.",
     services: [
-      { code: "X.1", name: "Izin Konsultan Manajemen", priceFrom: 5_000_000, priceTo: 10_000_000, desc: "Firma konsultan manajemen bisnis." },
-      { code: "X.2", name: "Izin Konsultan Hukum", priceFrom: 6_000_000, priceTo: 12_000_000, desc: "Law firm / kantor hukum." },
-      { code: "X.3", name: "Izin Konsultan Pajak", priceFrom: 4_500_000, priceTo: 9_000_000, desc: "Praktik konsultan pajak bersertifikat." },
-      { code: "X.4", name: "Izin Praktik Akuntan Publik (KAP)", priceFrom: 7_000_000, priceTo: 15_000_000, desc: "Kantor Akuntan Publik." },
+      { code: "X.1", name: "Izin Konsultan Manajemen", priceFrom: 6_500_000, priceTo: 13_000_000, desc: "Firma konsultan manajemen bisnis." },
+      { code: "X.2", name: "Izin Konsultan Hukum", priceFrom: 7_800_000, priceTo: 15_600_000, desc: "Law firm / kantor hukum." },
+      { code: "X.3", name: "Izin Konsultan Pajak", priceFrom: 5_850_000, priceTo: 11_700_000, desc: "Praktik konsultan pajak bersertifikat." },
+      { code: "X.4", name: "Izin Praktik Akuntan Publik (KAP)", priceFrom: 9_100_000, priceTo: 19_500_000, desc: "Kantor Akuntan Publik." },
     ],
     faq: [
       {
@@ -1196,9 +1196,9 @@ export const CATEGORIES: CatalogCategory[] = [
     tagline: "Izin untuk jasa keamanan & perlindungan",
     desc: "Izin BUJP untuk badan usaha jasa pengamanan, sertifikasi satpam per personel, dan izin jasa pemadam kebakaran swasta — termasuk pemenuhan kualifikasi personel dan Gada Pratama.",
     services: [
-      { code: "Y.1", name: "Izin Jasa Pengamanan (BUJP)", priceFrom: 18_000_000, priceTo: 35_000_000, desc: "Badan Usaha Jasa Pengamanan." },
-      { code: "Y.2", name: "Sertifikasi Satpam", priceFrom: 3_500_000, priceTo: 7_000_000, desc: "Sertifikasi Satuan Pengamanan (Gada Pratama)." },
-      { code: "Y.3", name: "Izin Jasa Pemadam Kebakaran", priceFrom: 12_000_000, priceTo: 20_000_000, desc: "Jasa pemadam kebakaran swasta." },
+      { code: "Y.1", name: "Izin Jasa Pengamanan (BUJP)", priceFrom: 23_400_000, priceTo: 45_500_000, desc: "Badan Usaha Jasa Pengamanan." },
+      { code: "Y.2", name: "Sertifikasi Satpam", priceFrom: 4_550_000, priceTo: 9_100_000, desc: "Sertifikasi Satuan Pengamanan (Gada Pratama)." },
+      { code: "Y.3", name: "Izin Jasa Pemadam Kebakaran", priceFrom: 15_600_000, priceTo: 26_000_000, desc: "Jasa pemadam kebakaran swasta." },
     ],
     faq: [
       {
@@ -1228,10 +1228,10 @@ export const CATEGORIES: CatalogCategory[] = [
     tagline: "Izin untuk lembaga pendidikan & pelatihan",
     desc: "Izin operasional sekolah, perizinan kampus/perguruan tinggi, izin LKP, dan sertifikasi BNSP untuk lembaga pelatihan terakreditasi — lengkap dengan pemenuhan kualifikasi pendidik.",
     services: [
-      { code: "Z.1", name: "Izin Operasional Sekolah", priceFrom: 8_000_000, priceTo: 20_000_000, desc: "SD/SMP/SMA." },
-      { code: "Z.2", name: "Izin Kampus (Perguruan Tinggi)", priceFrom: 15_000_000, priceTo: 40_000_000, desc: "Perguruan tinggi/universitas." },
-      { code: "Z.3", name: "Izin LKP (Lembaga Kursus Pelatihan)", priceFrom: 6_000_000, priceTo: 15_000_000, desc: "Lembaga kursus & pelatihan profesi." },
-      { code: "Z.4", name: "Sertifikasi BNSP Lembaga", priceFrom: 5_000_000, priceTo: 12_000_000, desc: "Lembaga pelatihan terakreditasi." },
+      { code: "Z.1", name: "Izin Operasional Sekolah", priceFrom: 10_400_000, priceTo: 26_000_000, desc: "SD/SMP/SMA." },
+      { code: "Z.2", name: "Izin Kampus (Perguruan Tinggi)", priceFrom: 19_500_000, priceTo: 52_000_000, desc: "Perguruan tinggi/universitas." },
+      { code: "Z.3", name: "Izin LKP (Lembaga Kursus Pelatihan)", priceFrom: 7_800_000, priceTo: 19_500_000, desc: "Lembaga kursus & pelatihan profesi." },
+      { code: "Z.4", name: "Sertifikasi BNSP Lembaga", priceFrom: 6_500_000, priceTo: 15_600_000, desc: "Lembaga pelatihan terakreditasi." },
     ],
     faq: [
       {
@@ -1261,11 +1261,11 @@ export const CATEGORIES: CatalogCategory[] = [
     tagline: "Izin untuk bisnis keuangan & asuransi",
     desc: "Divisi dengan ambang kepatuhan tertinggi: izin usaha bank, perusahaan pembiayaan, asuransi/reasuransi, pialang, dan fintech lending P2P — semuanya di bawah pengawasan OJK/BI dengan standar kelayakan ketat.",
     services: [
-      { code: "AA.1", name: "Izin Usaha Bank", priceFrom: 50_000_000, priceTo: 200_000_000, desc: "Bank umum atau BPR (jasa konsultan; modal inti diatur OJK)." },
-      { code: "AA.2", name: "Izin Perusahaan Pembiayaan", priceFrom: 25_000_000, priceTo: 75_000_000, desc: "Leasing / multifinance." },
-      { code: "AA.3", name: "Izin Perusahaan Asuransi", priceFrom: 75_000_000, priceTo: 300_000_000, desc: "Asuransi / reasuransi." },
-      { code: "AA.4", name: "Izin Pialang Asuransi", priceFrom: 15_000_000, priceTo: 40_000_000, desc: "Broker asuransi / reasuransi." },
-      { code: "AA.5", name: "Izin Fintech Lending (P2P)", priceFrom: 20_000_000, priceTo: 60_000_000, desc: "Platform peer-to-peer lending terdaftar OJK." },
+      { code: "AA.1", name: "Izin Usaha Bank", priceFrom: 65_000_000, priceTo: 260_000_000, desc: "Bank umum atau BPR (jasa konsultan; modal inti diatur OJK)." },
+      { code: "AA.2", name: "Izin Perusahaan Pembiayaan", priceFrom: 32_500_000, priceTo: 97_500_000, desc: "Leasing / multifinance." },
+      { code: "AA.3", name: "Izin Perusahaan Asuransi", priceFrom: 97_500_000, priceTo: 390_000_000, desc: "Asuransi / reasuransi." },
+      { code: "AA.4", name: "Izin Pialang Asuransi", priceFrom: 19_500_000, priceTo: 52_000_000, desc: "Broker asuransi / reasuransi." },
+      { code: "AA.5", name: "Izin Fintech Lending (P2P)", priceFrom: 26_000_000, priceTo: 78_000_000, desc: "Platform peer-to-peer lending terdaftar OJK." },
     ],
     faq: [
       {
@@ -1295,10 +1295,10 @@ export const CATEGORIES: CatalogCategory[] = [
     tagline: "Izin untuk event, hiburan & industri kreatif",
     desc: "Izin event organizer, bioskop, production house, dan reklame — meliputi perizinan daerah (reklame, tontonan) dan kekayaan intelektual untuk karya yang diproduksi.",
     services: [
-      { code: "AB.1", name: "Izin Event Organizer (EO)", priceFrom: 8_000_000, priceTo: 15_000_000, desc: "Penyelenggara event & konser." },
-      { code: "AB.2", name: "Izin Bioskop", priceFrom: 12_000_000, priceTo: 25_000_000, desc: "Bioskop & teater." },
-      { code: "AB.3", name: "Izin Production House", priceFrom: 6_000_000, priceTo: 12_000_000, desc: "Studio film / video production." },
-      { code: "AB.4", name: "Izin Reklame", priceFrom: 3_000_000, priceTo: 8_000_000, desc: "Izin pemasangan billboard / iklan." },
+      { code: "AB.1", name: "Izin Event Organizer (EO)", priceFrom: 10_400_000, priceTo: 19_500_000, desc: "Penyelenggara event & konser." },
+      { code: "AB.2", name: "Izin Bioskop", priceFrom: 15_600_000, priceTo: 32_500_000, desc: "Bioskop & teater." },
+      { code: "AB.3", name: "Izin Production House", priceFrom: 7_800_000, priceTo: 15_600_000, desc: "Studio film / video production." },
+      { code: "AB.4", name: "Izin Reklame", priceFrom: 3_900_000, priceTo: 10_400_000, desc: "Izin pemasangan billboard / iklan." },
     ],
     faq: [
       {
@@ -1328,9 +1328,9 @@ export const CATEGORIES: CatalogCategory[] = [
     tagline: "Perlindungan merek, paten & hak cipta",
     desc: "Pendaftaran merek (nasional atau Madrid Protocol), paten standar/sederhana, dan hak cipta karya — aset tak berwujud yang sering lebih bernilai dari aset fisik bisnis Anda.",
     services: [
-      { code: "AC.1", name: "Pendaftaran Merek Dagang", priceFrom: 3_500_000, priceTo: 8_000_000, desc: "Merek nasional atau Madrid Protocol." },
-      { code: "AC.2", name: "Pendaftaran Paten", priceFrom: 5_000_000, priceTo: 15_000_000, desc: "Paten standar atau sederhana." },
-      { code: "AC.3", name: "Pendaftaran Hak Cipta", priceFrom: 2_000_000, priceTo: 5_000_000, desc: "Hak cipta karya (musik, software, dll)." },
+      { code: "AC.1", name: "Pendaftaran Merek Dagang", priceFrom: 4_550_000, priceTo: 10_400_000, desc: "Merek nasional atau Madrid Protocol." },
+      { code: "AC.2", name: "Pendaftaran Paten", priceFrom: 6_500_000, priceTo: 19_500_000, desc: "Paten standar atau sederhana." },
+      { code: "AC.3", name: "Pendaftaran Hak Cipta", priceFrom: 2_600_000, priceTo: 6_500_000, desc: "Hak cipta karya (musik, software, dll)." },
     ],
     faq: [
       {
@@ -1360,9 +1360,9 @@ export const CATEGORIES: CatalogCategory[] = [
     tagline: "Perubahan & restrukturisasi perusahaan",
     desc: "Perubahan akta (nama, maksud tujuan, alamat), perubahan pengurus/direksi, sampai merger & akuisisi — dengan sinkronisasi ke seluruh izin turunan agar tidak ada dokumen yang nyasar.",
     services: [
-      { code: "AD.1", name: "Perubahan Akta Perusahaan", priceFrom: 3_500_000, priceTo: 7_000_000, desc: "Perubahan nama, maksud tujuan, alamat." },
-      { code: "AD.2", name: "Perubahan Pengurus/Direksi", priceFrom: 2_500_000, priceTo: 5_000_000, desc: "Perubahan struktur manajemen." },
-      { code: "AD.3", name: "Merger & Akuisisi", priceFrom: 10_000_000, priceTo: 50_000_000, desc: "Penggabungan/pengambilalihan perusahaan." },
+      { code: "AD.1", name: "Perubahan Akta Perusahaan", priceFrom: 4_550_000, priceTo: 9_100_000, desc: "Perubahan nama, maksud tujuan, alamat." },
+      { code: "AD.2", name: "Perubahan Pengurus/Direksi", priceFrom: 3_250_000, priceTo: 6_500_000, desc: "Perubahan struktur manajemen." },
+      { code: "AD.3", name: "Merger & Akuisisi", priceFrom: 13_000_000, priceTo: 65_000_000, desc: "Penggabungan/pengambilalihan perusahaan." },
     ],
     faq: [
       {
@@ -1392,10 +1392,10 @@ export const CATEGORIES: CatalogCategory[] = [
     tagline: "Pajak, akuntansi & laporan keuangan",
     desc: "Penyusunan SPT tahunan badan/pribadi, laporan keuangan auditan untuk bank/investor/lelang, dan konsultasi insentif pajak (tax holiday, super deduction) — dikerjakan tim yang paham regulasi terbaru.",
     services: [
-      { code: "AE.1", name: "Penyusunan SPT Tahunan", priceFrom: 2_000_000, priceTo: 8_000_000, desc: "SPT Badan/Pribadi + audit keuangan." },
-      { code: "AE.2", name: "Laporan Keuangan Audit", priceFrom: 5_000_000, priceTo: 30_000_000, desc: "Opini auditor & laporan keuangan tahunan." },
-      { code: "AE.3", name: "Konsultasi Pajak & Insentif", priceFrom: 3_000_000, priceTo: 20_000_000, desc: "Tax holiday, PPnBM, super deduction, dll." },
-      { code: "AE.4", name: "LKPM (Laporan Penanaman Modal)", priceFrom: 750_000, desc: "Kewajiban laporan berkala triwulan/semester via OSS — hindari sanksi & pembekuan NIB." },
+      { code: "AE.1", name: "Penyusunan SPT Tahunan", priceFrom: 2_600_000, priceTo: 10_400_000, desc: "SPT Badan/Pribadi + audit keuangan." },
+      { code: "AE.2", name: "Laporan Keuangan Audit", priceFrom: 6_500_000, priceTo: 39_000_000, desc: "Opini auditor & laporan keuangan tahunan." },
+      { code: "AE.3", name: "Konsultasi Pajak & Insentif", priceFrom: 3_900_000, priceTo: 26_000_000, desc: "Tax holiday, PPnBM, super deduction, dll." },
+      { code: "AE.4", name: "LKPM (Laporan Penanaman Modal)", priceFrom: 975_000, desc: "Kewajiban laporan berkala triwulan/semester via OSS — hindari sanksi & pembekuan NIB." },
     ],
     faq: [
       {
@@ -1425,7 +1425,7 @@ export const CATEGORIES: CatalogCategory[] = [
 export const BUNDLES: CatalogBundle[] = [
   {
     name: "GO UMRAH!",
-    price: 45_000_000,
+    price: 58_500_000,
     save: 5_000_000,
     badge: "MOST POPULAR",
     audience: "Untuk startup travel yang ingin langsung operasional umrah",
@@ -1441,7 +1441,7 @@ export const BUNDLES: CatalogBundle[] = [
   },
   {
     name: "GO HAJI PLUS!",
-    price: 80_000_000,
+    price: 104_000_000,
     save: 10_000_000,
     badge: "FLAGSHIP",
     audience: "Untuk travel yang serius menjadi generator revenue haji plus",
@@ -1458,7 +1458,7 @@ export const BUNDLES: CatalogBundle[] = [
   },
   {
     name: "UPGRADE PPIU KE PIHK",
-    price: 30_000_000,
+    price: 39_000_000,
     save: 5_000_000,
     audience: "Untuk travel yang sudah punya PPIU dan ingin naik level",
     includes: [
@@ -1471,7 +1471,7 @@ export const BUNDLES: CatalogBundle[] = [
   },
   {
     name: "SERTIFIKASI ISO LENGKAP",
-    price: 30_000_000,
+    price: 39_000_000,
     save: 5_000_000,
     badge: "BEST VALUE",
     audience: "Untuk upgrade kredibilitas perusahaan travel & korporasi",
@@ -1485,7 +1485,7 @@ export const BUNDLES: CatalogBundle[] = [
   },
   {
     name: "PERIZINAN HOTEL COMPLETE",
-    price: 55_000_000,
+    price: 71_500_000,
     save: 12_000_000,
     audience: "Untuk bisnis hospitality resort/hotel",
     includes: [
@@ -1499,7 +1499,7 @@ export const BUNDLES: CatalogBundle[] = [
   },
   {
     name: "LEGALITAS LENGKAP STARTUP",
-    price: 25_000_000,
+    price: 32_500_000,
     save: 3_500_000,
     audience: "Untuk startup apa pun yang perlu semua izin dasar",
     includes: [

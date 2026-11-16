@@ -14,7 +14,7 @@
 // KONVENSI:
 //   - Token {n} dan {lang} DIPERTAHANKAN apa adanya (disubstitusi UI).
 //   - Fakta brand mengikuti src/lib/site.ts (1.247+ klien, 3.890+ izin,
-//     38 provinsi, 514 kab/kota, 890+ ulasan 4.9, garansi 100%, Rp 350 rb).
+//     38 provinsi, 514 kab/kota, 890+ ulasan 4.9, garansi 100%, Rp 455 rb).
 //   - Jawaban bersifat spesifik, faktual, menenangkan, dan jujur.
 // ============================================================
 
@@ -345,8 +345,8 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       },
       {
         qid: "harga-mulai-350-ribu",
-        q: "Kenapa harga layanan mulai Rp 350 ribu? Itu untuk apa saja?",
-        a: "Rp 350 ribu adalah titik masuk untuk pengurusan paling ringan — misalnya NIB perorangan tanpa izin turunan. Layanan yang menuntut akta notaris, izin teknis, atau sertifikasi (PT, Halal, BPOM) berbeda harganya sesuai kompleksitas. Gunakan kalkulator biaya di situs kami atau tanyakan langsung — kami beri angka pasti, bukan rentang yang menggantung.",
+        q: "Kenapa harga layanan mulai Rp 455 ribu? Itu untuk apa saja?",
+        a: "Rp 455 ribu adalah titik masuk untuk pengurusan paling ringan — misalnya NIB perorangan tanpa izin turunan. Layanan yang menuntut akta notaris, izin teknis, atau sertifikasi (PT, Halal, BPOM) berbeda harganya sesuai kompleksitas. Gunakan kalkulator biaya di situs kami atau tanyakan langsung — kami beri angka pasti, bukan rentang yang menggantung.",
       },
       {
         qid: "kebijakan-refund",
@@ -1526,8 +1526,8 @@ export const FAQ_CONTENT: Partial<
       a: "No. Every cost component — our service fee, official state fees (PNBP), notary, and other technical costs — is clearly listed in the written quotation before you pay. If something outside the scope becomes necessary mid-process, we confirm with you first instead of just invoicing. Our principle: clear price upfront, no surprise fees.",
     },
     "harga-mulai-350-ribu": {
-      q: "Why do services start from Rp 350 thousand — what does that include?",
-      a: "Rp 350 thousand is the entry point for the lightest filings — for example an individual NIB with no downstream permits. Services requiring notarial deeds, technical permits, or certifications (PT, Halal, BPOM) are priced according to complexity. Use the cost calculator on our site or just ask — we give you a firm number, not a vague range.",
+      q: "Why do services start from Rp 455 thousand — what does that include?",
+      a: "Rp 455 thousand is the entry point for the lightest filings — for example an individual NIB with no downstream permits. Services requiring notarial deeds, technical permits, or certifications (PT, Halal, BPOM) are priced according to complexity. Use the cost calculator on our site or just ask — we give you a firm number, not a vague range.",
     },
     "kebijakan-refund": {
       q: "What is your refund policy?",
@@ -1718,8 +1718,8 @@ export const FAQ_CONTENT: Partial<
       a: "Si el permiso no llega a emitirse por un error de nuestro lado, devolvemos el 100% de los honorarios que hayas pagado — quedó escrito en el contrato de colaboración. No está incluido: las tasas oficiales (PNBP) ya ingresadas al Estado y los fallos causados por documentos tuyos incorrectos o engañosos. Todas las condiciones y exclusiones se explican de forma transparente antes de firmar nada.",
     },
     "harga-mulai-350-ribu": {
-      q: "¿Por qué los servicios empiezan en Rp 350 mil? ¿Qué incluye?",
-      a: "Rp 350 mil es el punto de entrada para los trámites más ligeros — por ejemplo, un NIB individual sin permisos derivados. Los servicios que requieren escritura notarial, permisos técnicos o certificaciones (PT, Halal, BPOM) se cotizan según su complejidad. Usa la calculadora de costos de nuestro sitio o pregúntanos directamente — te damos una cifra concreta, no un rango vago.",
+      q: "¿Por qué los servicios empiezan en Rp 455 mil? ¿Qué incluye?",
+      a: "Rp 455 mil es el punto de entrada para los trámites más ligeros — por ejemplo, un NIB individual sin permisos derivados. Los servicios que requieren escritura notarial, permisos técnicos o certificaciones (PT, Halal, BPOM) se cotizan según su complejidad. Usa la calculadora de costos de nuestro sitio o pregúntanos directamente — te damos una cifra concreta, no un rango vago.",
     },
     "skema-termin-50-50": {
       q: "¿Cómo funciona el esquema de pago?",

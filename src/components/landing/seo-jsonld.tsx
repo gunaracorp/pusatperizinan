@@ -93,7 +93,7 @@ export function SeoJsonLd() {
       { "@type": "Country", name: "Indonesia" },
       ...PMI_COUNTRIES.map((c) => ({ "@type": "Country", name: c.name })),
     ],
-    priceRange: "Rp 150.000 - Rp 45.000.000",
+    priceRange: "Rp 195.000 - Rp 58.500.000",
     currenciesAccepted: "IDR",
     paymentAccepted: "Bank Transfer",
     // Founder + tim konsultan (branding Task 19)

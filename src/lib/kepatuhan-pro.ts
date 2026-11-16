@@ -85,7 +85,7 @@ export const KEPATUHAN_RISKS = [
   {
     title: "Denda pajak telat",
     detail: "SPT Masa terlambat: denda Rp 100.000/bulan (PPN) & Rp 100.000 (PPh); bunga per bulan.",
-    cost: "Rp 1,2 juta+ per tahun per kewajiban — bisa dicegah Rp 499rb/bulan",
+    cost: "Rp 1,2 juta+ per tahun per kewajiban — bisa dicegah Rp 648.700/bulan",
   },
   {
     title: "Izin kedaluwarsa diam-diam",

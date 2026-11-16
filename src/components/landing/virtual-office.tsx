@@ -44,7 +44,7 @@ export function VirtualOfficeSection() {
           </h2>
           <p className="mt-4 text-emerald-100/85 leading-relaxed">
             Gedung korporat nyata + resepsionis + penerimaan surat. Dokumen resmi untuk NIB, PKP,
-            rekening bank & marketplace. Mulai <strong className="text-gold">Rp 500rb/bulan</strong> —
+            rekening bank & marketplace. Mulai <strong className="text-gold">Rp 650rb/bulan</strong> —
             aktif 1-2 hari kerja, tanpa datang ke kantor.
           </p>
         </div>

@@ -807,7 +807,7 @@ export function Footer() {
               </button>
             </div>
           </div>
-          {/* Support system credit — PT Digital Bisnis Manajemen (digiman.id) */}
+          {/* Support system credit — PT Top Konsultan Internasional */}
           <div className="flex justify-center">
             <a
               href={SUPPORT_SYSTEM_URL}

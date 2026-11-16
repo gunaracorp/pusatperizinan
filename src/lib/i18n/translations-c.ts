@@ -171,7 +171,7 @@ export const TRANSLATIONS_C: Partial<Record<LangCode, Partial<Translation>>> = {
       "En el mismo piso que la Bolsa de Valores de Indonesia • Atendemos toda Indonesia en línea",
     footerRights:
       "© {year} PusatPerizinan.com — PT Top Konsultan Internasional. Todos los derechos reservados.",
-    footerMade: "Support system by PT Digital Bisnis Manajemen — digiman.id",
+    footerMade: "Support system by PT Top Konsultan Internasional",
     // Chat
     chatTitle: "RIZKI — Consultor IA",
     chatStatus: "En línea • Responde en segundos",
@@ -355,7 +355,7 @@ export const TRANSLATIONS_C: Partial<Record<LangCode, Partial<Translation>>> = {
       "Au même étage que la Bourse d'Indonésie • Nous servons toute l'Indonésie en ligne",
     footerRights:
       "© {year} PusatPerizinan.com — PT Top Konsultan Internasional. Tous droits réservés.",
-    footerMade: "Support system by PT Digital Bisnis Manajemen — digiman.id",
+    footerMade: "Support system by PT Top Konsultan Internasional",
     // Chat
     chatTitle: "RIZKI — Consultant IA",
     chatStatus: "En ligne • Répond en quelques secondes",
@@ -539,7 +539,7 @@ export const TRANSLATIONS_C: Partial<Record<LangCode, Partial<Translation>>> = {
       "Im selben Stockwerk wie die Börse Indonesiens • Wir betreuen ganz Indonesien online",
     footerRights:
       "© {year} PusatPerizinan.com — PT Top Konsultan Internasional. Alle Rechte vorbehalten.",
-    footerMade: "Support system by PT Digital Bisnis Manajemen — digiman.id",
+    footerMade: "Support system by PT Top Konsultan Internasional",
     // Chat
     chatTitle: "RIZKI — KI-Berater",
     chatStatus: "Online • Antwortet in Sekunden",
@@ -723,7 +723,7 @@ export const TRANSLATIONS_C: Partial<Record<LangCode, Partial<Translation>>> = {
       "Allo stesso piano della Borsa Valori Indonesiana • Serviamo tutta l'Indonesia online",
     footerRights:
       "© {year} PusatPerizinan.com — PT Top Konsultan Internasional. Tutti i diritti riservati.",
-    footerMade: "Support system by PT Digital Bisnis Manajemen — digiman.id",
+    footerMade: "Support system by PT Top Konsultan Internasional",
     // Chat
     chatTitle: "RIZKI — Consulente IA",
     chatStatus: "Online • Risponde in pochi secondi",
@@ -907,7 +907,7 @@ export const TRANSLATIONS_C: Partial<Record<LangCode, Partial<Translation>>> = {
       "Op dezelfde verdieping als de Indonesische beurs • We bedienen heel Indonesië online",
     footerRights:
       "© {year} PusatPerizinan.com — PT Top Konsultan Internasional. Alle rechten voorbehouden.",
-    footerMade: "Support system by PT Digital Bisnis Manajemen — digiman.id",
+    footerMade: "Support system by PT Top Konsultan Internasional",
     // Chat
     chatTitle: "RIZKI — AI-Consultant",
     chatStatus: "Online • Antwoord binnen enkele seconden",
@@ -1091,7 +1091,7 @@ export const TRANSLATIONS_C: Partial<Record<LangCode, Partial<Translation>>> = {
       "No mesmo andar da Bolsa de Valores da Indonésia • Atendemos toda a Indonésia online",
     footerRights:
       "© {year} PusatPerizinan.com — PT Top Konsultan Internasional. Todos os direitos reservados.",
-    footerMade: "Support system by PT Digital Bisnis Manajemen — digiman.id",
+    footerMade: "Support system by PT Top Konsultan Internasional",
     // Chat
     chatTitle: "RIZKI — Consultor de IA",
     chatStatus: "Online • Responde em segundos",
@@ -1275,7 +1275,7 @@ export const TRANSLATIONS_C: Partial<Record<LangCode, Partial<Translation>>> = {
       "Στον ίδιο όροφο με το Χρηματιστήριο της Ινδονησίας • Εξυπηρετούμε όλη την Ινδονησία online",
     footerRights:
       "© {year} PusatPerizinan.com — PT Top Konsultan Internasional. Με επιφύλαξη παντός δικαιώματος.",
-    footerMade: "Support system by PT Digital Bisnis Manajemen — digiman.id",
+    footerMade: "Support system by PT Top Konsultan Internasional",
     // Chat
     chatTitle: "RIZKI — AI Σύμβουλος",
     chatStatus: "Σε σύνδεση • Απαντά σε δευτερόλεπτα",

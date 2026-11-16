@@ -124,7 +124,7 @@ export default function KepatuhanProPage() {
             <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
               KepatuhanPRO menjaga LKPM, pajak bulanan, dan masa berlaku seluruh izinmu —
               supaya usaha bebas denda, bebas pembekuan NIB, dan selalu siap dicari bank &amp; investor.
-              Mulai <strong className="text-foreground">Rp 499rb/bulan</strong>.
+              Mulai <strong className="text-foreground">Rp 648.700/bulan</strong>.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Link href="#harga-pro">

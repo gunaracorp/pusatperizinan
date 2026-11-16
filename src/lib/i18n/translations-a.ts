@@ -180,7 +180,7 @@ export const TRANSLATIONS_A: Partial<Record<LangCode, Partial<Translation>>> = {
       "与印尼证券交易所同一楼层 • 在线服务全印尼",
     footerRights:
       "© {year} PusatPerizinan.com — PT Top Konsultan Internasional，保留所有权利。",
-    footerMade: "Support system by PT Digital Bisnis Manajemen — digiman.id",
+    footerMade: "Support system by PT Top Konsultan Internasional",
     // Chat
     chatTitle: "RIZKI — AI 顾问",
     chatStatus: "在线 • 秒级回复",
@@ -367,7 +367,7 @@ export const TRANSLATIONS_A: Partial<Record<LangCode, Partial<Translation>>> = {
       "インドネシア証券取引所と同じフロア • インドネシア全土をオンラインでサポート",
     footerRights:
       "© {year} PusatPerizinan.com — PT Top Konsultan Internasional. All rights reserved.",
-    footerMade: "Support system by PT Digital Bisnis Manajemen — digiman.id",
+    footerMade: "Support system by PT Top Konsultan Internasional",
     // Chat
     chatTitle: "RIZKI — AIコンサルタント",
     chatStatus: "オンライン • 数秒で回答",
@@ -554,7 +554,7 @@ export const TRANSLATIONS_A: Partial<Record<LangCode, Partial<Translation>>> = {
       "인도네시아 증권거래소와 같은 층 • 인도네시아 전역 온라인 서비스",
     footerRights:
       "© {year} PusatPerizinan.com — PT Top Konsultan Internasional. 모든 권리 보유.",
-    footerMade: "Support system by PT Digital Bisnis Manajemen — digiman.id",
+    footerMade: "Support system by PT Top Konsultan Internasional",
     // Chat
     chatTitle: "RIZKI — AI 컨설턴트",
     chatStatus: "온라인 • 몇 초 안에 답변",
@@ -741,7 +741,7 @@ export const TRANSLATIONS_A: Partial<Record<LangCode, Partial<Translation>>> = {
       "Cùng tầng với Sở Giao dịch Chứng khoán Indonesia • Phục vụ toàn Indonesia trực tuyến",
     footerRights:
       "© {year} PusatPerizinan.com — PT Top Konsultan Internasional. Mọi quyền được bảo lưu.",
-    footerMade: "Support system by PT Digital Bisnis Manajemen — digiman.id",
+    footerMade: "Support system by PT Top Konsultan Internasional",
     // Chat
     chatTitle: "RIZKI — Chuyên gia AI",
     chatStatus: "Trực tuyến • Trả lời trong vài giây",
@@ -928,7 +928,7 @@ export const TRANSLATIONS_A: Partial<Record<LangCode, Partial<Translation>>> = {
       "ชั้นเดียวกับตลาดหลักทรัพย์อินโดนีเซีย • บริการออนไลน์ทั่วอินโดนีเซีย",
     footerRights:
       "© {year} PusatPerizinan.com — PT Top Konsultan Internasional สงวนลิขสิทธิ์",
-    footerMade: "Support system by PT Digital Bisnis Manajemen — digiman.id",
+    footerMade: "Support system by PT Top Konsultan Internasional",
     // Chat
     chatTitle: "RIZKI — ที่ปรึกษา AI",
     chatStatus: "ออนไลน์ • ตอบในไม่กี่วินาที",
@@ -969,7 +969,7 @@ export const TRANSLATIONS_A: Partial<Record<LangCode, Partial<Translation>>> = {
     heroTitle2: "kami na ang bahala —",
     heroHigh2: "hintayin mo lang",
     heroSubtitle:
-      "Mula NIB, PT, CV, Halal, BPOM hanggang AMDAL — pinoproseso ng mga eksperto, 100% legal, may money-back guarantee. Mula Rp 350,000, pinakamabilis na 1 working day.",
+      "Mula NIB, PT, CV, Halal, BPOM hanggang AMDAL — pinoproseso ng mga eksperto, 100% legal, may money-back guarantee. Mula Rp 455,000, pinakamabilis na 1 working day.",
     heroBullet1: "NIB 1 araw • PT 3 araw • Walang pila sa mga ahensya ng gobyerno",
     heroBullet2: "Opisyal na daloy ng gobyerno — wasto at beripikadong dokumento",
     heroBullet3: "100% money-back guarantee kung hindi ma-isyu ang permit",
@@ -1115,7 +1115,7 @@ export const TRANSLATIONS_A: Partial<Record<LangCode, Partial<Translation>>> = {
       "Kaparehong palapag ng Indonesia Stock Exchange • Naglilingkod sa buong Indonesia online",
     footerRights:
       "© {year} PusatPerizinan.com — PT Top Konsultan Internasional. Lahat ng karapatan ay nakalaan.",
-    footerMade: "Support system by PT Digital Bisnis Manajemen — digiman.id",
+    footerMade: "Support system by PT Top Konsultan Internasional",
     // Chat
     chatTitle: "RIZKI — AI Consultant",
     chatStatus: "Online • Sumasagot sa loob ng ilang segundo",
@@ -1156,7 +1156,7 @@ export const TRANSLATIONS_A: Partial<Record<LangCode, Partial<Translation>>> = {
     heroTitle2: "Kami Uruskan, Anda Tinggal Terima —",
     heroHigh2: "Habis Cerita",
     heroSubtitle:
-      "NIB, PT, CV, Halal, BPOM hinggalah AMDAL — diproses pasukan pakar, sah 100%, dengan jaminan wang dikembalikan. Bermula Rp 350 ribu, paling pantas 1 hari bekerja.",
+      "NIB, PT, CV, Halal, BPOM hinggalah AMDAL — diproses pasukan pakar, sah 100%, dengan jaminan wang dikembalikan. Bermula Rp 455 ribu, paling pantas 1 hari bekerja.",
     heroBullet1: "NIB 1 hari • PT 3 hari • Tak perlu beratur di jabatan kerajaan",
     heroBullet2: "Saluran rasmi kerajaan — dokumen sah & disahkan",
     heroBullet3: "Jaminan 100% wang dikembalikan sekiranya lesen gagal dikeluarkan",
@@ -1302,7 +1302,7 @@ export const TRANSLATIONS_A: Partial<Record<LangCode, Partial<Translation>>> = {
       "Setingkat dengan Bursa Saham Indonesia • Berkhidmat ke seluruh Indonesia secara atas talian",
     footerRights:
       "© {year} PusatPerizinan.com — PT Top Konsultan Internasional. Hak cipta terpelihara.",
-    footerMade: "Support system by PT Digital Bisnis Manajemen — digiman.id",
+    footerMade: "Support system by PT Top Konsultan Internasional",
     // Chat
     chatTitle: "RIZKI — Perunding AI",
     chatStatus: "Dalam talian • Balas dalam beberapa saat",
