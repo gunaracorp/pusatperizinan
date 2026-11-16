@@ -115,7 +115,7 @@ export function fmtIdr(n: number): string {
   return `Rp ${new Intl.NumberFormat("id-ID").format(n)}`;
 }
 
-/** Rentang harga katalog: "Rp 210 ribu – Rp 130,5 juta". */
+/** Rentang harga katalog: "Rp 182 ribu – Rp 188,5 juta". */
 export function fmtRentang(min: number, max: number): string {
   const unit = (v: number): string => {
     if (v >= 1_000_000_000) {
