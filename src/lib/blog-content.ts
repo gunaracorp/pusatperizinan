@@ -61,6 +61,149 @@ export interface BlogArticle {
 
 export const BLOG_ARTICLES: BlogArticle[] = [
   {
+    slug: "oss-rba-password-reset-account-recovery",
+    title: "How to Reset Your OSS RBA Password and Recover Account Access in Indonesia",
+    category: "Panduan",
+    excerpt:
+      "A practical, security-first guide to recovering access to an OSS RBA account in Indonesia, including the official Forgot Password flow, email or WhatsApp recovery links, account-ownership verification, selfie verification when specifically requested, and what to do when login still fails.",
+    readMinutes: 12,
+    publishedAt: "2026-11-18",
+    updatedAt: "2026-11-18",
+    author: "PusatPerizinan.com Editorial Team",
+    authorRole: "Business Licensing Guidance",
+    keywords: [
+      "OSS RBA password reset",
+      "how to reset OSS password",
+      "OSS account recovery Indonesia",
+      "OSS RBA login problem",
+      "OSS forgot password",
+      "swafoto OSS account verification",
+      "OSS account owner verification",
+      "recover OSS RBA access",
+      "Online Single Submission Indonesia",
+    ],
+    sections: [
+      {
+        heading: "Before You Start: Protect the Account and Confirm Who Owns It",
+        paragraphs: [
+          "The OSS RBA account is used to access business licensing information and services. Start by confirming that you are the business owner or an individual formally authorized to manage the account. If the account was previously handled by an agent, consultant, employee, or another representative, coordinate with the account owner before changing credentials.",
+          "Never send your password, one-time password (OTP), recovery link, identity document, or selfie-verification image to a consultant or an unrelated person through a chat group. The account owner should complete identity checks directly on the official OSS website or official OSS application. A consultant may explain the steps and help interpret non-sensitive error messages, but should not impersonate the owner or collect authentication secrets.",
+          "Use only the official portal: https://oss.go.id/. Check the domain carefully before entering credentials. Do not follow password-reset links from unsolicited messages, sponsored search results, or unknown senders. If a reset link arrives by email or WhatsApp, verify that it is an expected OSS message and that the destination is an official OSS domain before proceeding."
+        ],
+      },
+      {
+        heading: "Password Reset: The Official Forgot Password Route",
+        paragraphs: [
+          "If you still know the account's registered phone number, email address, or username but no longer know the password, use the official Forgot Password route. The current OSS guidance places the recovery option under the login assistance menu. The exact wording or screen arrangement may change as the portal is updated, so follow the instructions shown on the official OSS page.",
+        ],
+        bullets: [
+          "Open https://oss.go.id/ and select Masuk (Log In).",
+          "On the login page, select Butuh Bantuan? (Need Help?).",
+          "Choose Lupa Kata Sandi (Forgot Password).",
+          "Enter the registered mobile number, email address, or username requested by the page, complete the CAPTCHA, and continue.",
+          "Check the registered email inbox or WhatsApp account for the password-reset instruction or link. Also check Spam/Junk when using email.",
+          "Open the verified reset link and create a new, unique password that meets the requirements displayed by OSS.",
+          "Return to the official login page and sign in with the registered identifier and the new password."
+        ],
+      },
+      {
+        heading: "Does a Password Reset Always Require a Selfie?",
+        paragraphs: [
+          "No. Do not assume that every ordinary password reset requires a selfie. The official password-recovery guide describes a reset flow through the registered account contact channel. Selfie or face-verification steps may appear in a separate identity-verification process, for example when the account owner must update an inaccessible registered phone number or email address, or when OSS specifically requests additional identity checks.",
+          "If the portal displays a selfie-verification instruction, the account owner must complete it personally and follow the exact on-screen requirements. Do not use another person's face, reuse an old image, edit the verification image, or ask a consultant to submit the verification on the owner's behalf. If no selfie step is shown, do not invent one or search for an unofficial workaround."
+        ],
+      },
+      {
+        heading: "If You Cannot Access the Registered Email or Phone Number",
+        paragraphs: [
+          "A forgotten password and an inaccessible registered contact channel are different problems. If you cannot receive the reset link because the registered email or phone number is no longer available, stop repeating the ordinary password-reset process. Use the relevant account/contact recovery instructions published in the OSS Help or Guidance section, or contact official OSS support and explain which registered channel is inaccessible.",
+          "OSS may provide a separate identity-verification procedure for changing registered contact information. Follow the current official workflow, which may request identity details and a selfie with a verification code. The requirements can differ by account type and the specific change requested; use the instructions shown in your own OSS account rather than relying on an old tutorial."
+        ],
+      },
+      {
+        heading: "Troubleshooting: 'The Account and Password Combination Does Not Match'",
+        paragraphs: [
+          "If OSS reports that the account and password combination does not match, first check for typing errors and confirm that you are using the correct registered identifier. Do not keep guessing passwords or repeatedly submit credentials. Check the keyboard language, Caps Lock, extra spaces, and whether you are using the correct email, phone number, or username.",
+          "If the error continues, use the official Forgot Password flow. If the account owner can log in successfully on another device but your authorized staff member cannot, compare the exact login identifier and the current access arrangement. Do not assume that the account has been hacked or that a particular person changed the password without evidence.",
+          "Record the date and time of the attempt, the exact error text, browser and device used, and a screenshot with all personal information, usernames, phone numbers, email addresses, QR codes, OTPs, and other secrets hidden. Share only the redacted error screenshot with official support or the authorized account administrator."
+        ],
+        bullets: [
+          "Confirm the correct login identifier (registered email, phone number, or username).",
+          "Check that the browser is on https://oss.go.id/ and not a look-alike website.",
+          "Try a current browser and a private/incognito window; disable autofill if it may be inserting an old password.",
+          "Avoid repeated guesses. Start the official reset flow if the password is uncertain.",
+          "If the account owner can sign in but a representative cannot, ask the owner to confirm the authorized access method without sending credentials in a group chat.",
+          "Contact OSS support when the official recovery flow fails or the registered contact channel cannot be accessed."
+        ],
+      },
+      {
+        heading: "After Access Is Restored: Secure the Account and Coordinate Representatives",
+        paragraphs: [
+          "After signing in, the account owner should set a unique password that is not reused on email, banking, social media, or other services. Store it in a reputable password manager. Review the registered email address and phone number and confirm they are controlled by the business owner or the appropriate authorized account holder.",
+          "Where the OSS platform offers formal user, representative, or authorization features for the relevant account type, use those features instead of sharing the owner's personal login. The availability and scope of such features can depend on account type and current OSS functionality. If no formal delegation option is available, agree a secure owner-led procedure with the consultant and do not disclose OTPs or recovery links.",
+          "Keep a simple access log: who performed the recovery, when it was completed, whether the account owner successfully logged in, and which authorized tasks remain. Do not include passwords, OTPs, recovery links, or identity images in the log."
+        ],
+      },
+      {
+        heading: "When to Contact Official OSS Support",
+        paragraphs: [
+          "Contact OSS through the support channels displayed on https://oss.go.id/ when the official reset link does not arrive, the registered contact information is inaccessible, identity verification fails, the account appears locked, or the same error continues after a correctly completed reset. Provide the business name and a concise description of the issue through the official support channel. Do not publish the NIB, NIK, password, OTP, or identity documents in public comments or social media.",
+          "For faster troubleshooting, prepare a redacted screenshot, approximate time of the failed attempt, browser/device information, the login identifier type (email, phone, or username—not the full value in public), and a description of the recovery steps already attempted. Follow the support officer's instructions and keep any ticket or reference number."
+        ],
+      },
+      {
+        heading: "Important Distinction: Password Recovery Is Not the Same as Changing Account Ownership",
+        paragraphs: [
+          "Resetting a password restores access; it does not automatically change the account owner, company administrator, registered phone number, or registered email address. If a business needs to change its administrator or formal account contact, use the separate OSS process that applies to the entity and account type. Do not treat password reset as a substitute for updating corporate authority or account ownership records.",
+          "For a company account, confirm who is legally or formally entitled to act for the business. A consultant or agent may assist with preparation and navigation, but identity verification must remain truthful and must be completed by the person OSS recognizes for that step."
+        ],
+      },
+      {
+        heading: "Quick Checklist",
+        bullets: [
+          "I am the account owner or have confirmed authority to assist.",
+          "I opened the official OSS portal directly.",
+          "I know which registered email, phone number, or username is associated with the account.",
+          "I used the official Need Help? and Forgot Password route.",
+          "I checked the registered inbox or WhatsApp and verified the reset message before opening its link.",
+          "I completed any identity or selfie verification personally, only when OSS requested it.",
+          "I did not share my password, OTP, reset link, NIK, or selfie image with a third party.",
+          "I tested the new password and recorded the recovery outcome without storing secrets in the record."
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Does every OSS RBA password reset require a selfie?",
+        answer: "No. The standard password-reset route may use the registered email or WhatsApp channel. Selfie verification may be required in a separate identity or contact-information recovery process when OSS instructs the account owner to complete it.",
+      },
+      {
+        question: "Can my consultant reset my OSS password for me?",
+        answer: "A consultant can guide you through the process, but the account owner should complete authentication, OTP entry, password creation, and any identity or selfie verification personally. Do not share passwords or OTPs in a chat.",
+      },
+      {
+        question: "What if the reset link does not arrive?",
+        answer: "Check the registered email address, Spam/Junk folder, and registered WhatsApp account. If the message still does not arrive or the registered contact is inaccessible, follow the separate official account/contact recovery instructions or contact OSS support.",
+      },
+      {
+        question: "What should I do if OSS says the account and password do not match?",
+        answer: "Verify the login identifier and typing, avoid repeated guesses, and use the official Forgot Password process. If the problem continues after recovery, contact OSS support with a redacted screenshot and technical details.",
+      },
+      {
+        question: "Should I send my OTP or selfie to my licensing consultant?",
+        answer: "No. Keep passwords, OTPs, recovery links, and identity-verification images private. Complete the process on the official OSS portal yourself and share only a redacted error screenshot when technical assistance is needed.",
+      },
+      {
+        question: "Does resetting the password change the business account owner?",
+        answer: "No. Password recovery restores login access; it does not automatically change the registered account owner, administrator, email, or phone number. Use the applicable official OSS process for those changes.",
+      }
+    ],
+    relatedArticles: ["panduan-nib-oss-rba", "pma-vs-pt-lokal"],
+    relatedGuides: ["oss", "nib"],
+    cta: { text: "Need help with OSS account access? Contact our team", anchor: "#konsultasi" },
+  },
+
+  {
     slug: "panduan-nib-oss-rba",
     title: "Panduan Lengkap NIB via OSS-RBA: Syarat, Biaya, dan Langkah demi Langkah",
     category: "Panduan",
