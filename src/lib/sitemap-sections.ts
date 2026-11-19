@@ -188,6 +188,9 @@ function buildStaticPages(): SitemapEntry[] {
     entry("/mitra", "weekly", 0.9), // Program Kemitraan Cabang — funnel bisnis utama
     entry("/solusi-korporat", "monthly", 0.8),
     entry("/bumdes", "monthly", 0.8),
+    // Paket All-In KBLI 85520 + 2 Website (PP-KBLI85520-ALLIN) —
+    // halaman produk funnel WhatsApp Business & katalog
+    entry("/pengurusan-perizinan-kbli-85520", "monthly", 0.9),
     // KEPATUHANPRO — mesin pendapatan berulang (langganan kepatuhan)
     entry("/kepatuhan-pro", "weekly", 0.95),
     // Hub navigasi wilayah (memperkuat ±654 halaman lokal: 38 hub provinsi

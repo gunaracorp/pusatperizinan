@@ -555,7 +555,8 @@ export const CURRENT_RELEASE: ReleaseEntry = RELEASES[0];
 /** Statistik platform yang dikirim /api/version — singkron dengan site.ts. */
 export const PLATFORM_STATS = {
   // Sinkron Task 43: lowongan aktif 7 → 8 (+1 URL) dari hitungan v1.17.1 (11.872).
-  indexedUrls: 11873,
+  // +1 URL: halaman produk Paket All-In KBLI 85520 + 2 Website (PP-KBLI85520-ALLIN).
+  indexedUrls: 11874,
   sitemapSections: 15,
   orderableServices: 1500,
   subscriptionSkus: 6,
