@@ -127,6 +127,9 @@ const OSS_PASSWORD_GUIDE: BlogArticle = {
     },
     {
       heading: "9. Quick Security Checklist",
+      paragraphs: [
+        "Run through this checklist before, during, and after the recovery attempt. It keeps every step on the official OSS route, prevents accidental exposure of sensitive data, and records the outcome so future recovery or support requests are faster to complete."
+      ],
       bullets: [
         "I am the account owner or have confirmed authority to assist.",
         "I opened the official OSS portal directly.",
