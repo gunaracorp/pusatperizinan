@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import {
   ArrowRight, CalendarDays, CheckCircle2, Clock, ListChecks, MessageCircle,
   Table2,
@@ -13,34 +12,19 @@ import {
   IATA_DISCLAIMER, IATA_SOURCES, IATA_URLS, iataWaLink, IATA_WA_UMUM,
   absIataUrl,
 } from "@/lib/iata";
-import {
-  allIataArticles, getIataArticle, slugOfArticlePath, type IataArticleSection,
-} from "@/lib/iata-articles";
+import { getIataArticle, type IataArticleSection } from "@/lib/iata-articles";
 
 // ============================================================
-// PUSATPERIZINAN.COM — /panduan/[slug] (BAGIAN 8)
-// Renderer artikel edukasi IATA dari data terstruktur:
-// Article + BreadcrumbList + FAQPage JSON-LD, tabel komparasi,
-// checklist, CTA kontekstual per seksi, sumber resmi IATA.
+// PUSATPERIZINAN.COM — IATA ARTICLE RENDERER (BAGIAN 8)
+// Dipakai oleh 8 route STATIS /panduan/<slug> (bukan route dinamis,
+// agar tidak ambigu dengan /panduan/[id] milik sistem panduan izin
+// yang sudah ada). Renderer + metadata + JSON-LD:
+// Article + BreadcrumbList + FAQPage.
 // ============================================================
 
-export function generateStaticParams(): { slug: string }[] {
-  return allIataArticles().map((a) => ({ slug: a.slug }));
-}
-
-const TANGGAL_ID = (iso: string): string =>
-  new Date(`${iso}T00:00:00+07:00`).toLocaleDateString("id-ID", {
-    day: "numeric", month: "long", year: "numeric",
-  });
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
-  const { slug } = await params;
+export function iataArticleMetadata(slug: string): Metadata {
   const a = getIataArticle(slug);
-  if (!a) return { robots: { index: false, follow: false } };
+  if (!a) throw new Error(`Artikel IATA tidak dikenal: ${slug}`);
   const path = `/panduan/${slug}`;
   return {
     title: a.seoTitle,
@@ -69,6 +53,11 @@ export async function generateMetadata({
     robots: { index: true, follow: true },
   };
 }
+
+const TANGGAL_ID = (iso: string): string =>
+  new Date(`${iso}T00:00:00+07:00`).toLocaleDateString("id-ID", {
+    day: "numeric", month: "long", year: "numeric",
+  });
 
 function Section({ s }: { s: IataArticleSection }) {
   return (
@@ -146,16 +135,10 @@ function Section({ s }: { s: IataArticleSection }) {
   );
 }
 
-export default async function PanduanIataArticlePage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
-  const a = getIataArticle(slugOfArticlePath(slug));
-  if (!a) notFound();
-
-  const path = `/panduan/${a.slug}`;
+export function IataArticlePage({ slug }: { slug: string }) {
+  const a = getIataArticle(slug);
+  if (!a) throw new Error(`Artikel IATA tidak dikenal: ${slug}`);
+  const path = `/panduan/${slug}`;
   const wa = iataWaLink(IATA_WA_UMUM);
 
   const jsonLd = [
