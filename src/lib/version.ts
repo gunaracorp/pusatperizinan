@@ -17,9 +17,9 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.23.0";
+export const APP_VERSION = "1.23.1";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Trilogi Travel Ibadah";
+export const RELEASE_NAME = "Master Pricing Haji-Umrah";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
 export const RELEASE_DATE = "2026-11-20";
 /** Channel rilis: stable | beta | alpha. */
@@ -42,10 +42,21 @@ export interface ReleaseEntry {
 }
 
 /**
- * Riwayat lengkap 48 rilis — urut TERBARU lebih dulu.
+ * Riwayat lengkap 49 rilis — urut TERBARU lebih dulu.
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.23.1",
+    date: "2026-11-20",
+    type: "patch",
+    name: "Master Pricing Haji-Umrah",
+    taskId: "51",
+    highlights: [
+      "Repricing bundle travel ibadah atas arahan owner (harga lama terlalu murah — komplain pasar): Paket Pendirian Travel Umrah Lengkap (PT + PPIU) normal Rp200jt → promo 50% = Rp100jt; Upgrade PPIU ke PIHK normal Rp230jt → promo 50% = Rp115jt; GO HAJI PLUS! (gabungan) Rp215jt promo / Rp430jt normal — disinkron di 4 file: katalog sertifikasi (CertEntry), BUNDLES /paket, kartu /paket-usaha, dan knowledge base AI chat (termasuk jasa flagship PPIU mulai Rp20jt & PIHK mulai Rp25jt sesuai trilogi v1.23.0)",
+      "Guardrail audit: 9 file dengan angka 45,5jt/58,5jt/39jt milik produk LAIN (MISA Saudi, virtual office, katalog BPOM/PBG/PKPA/KSP/SNI, PT PMA, ISO Travel Excellence) teridentifikasi dan TIDAK disentuh; harga IATA PusatPerizinan.com (GoLite/GoStandard/GoGlobal) sudah sesuai master pricing dan tidak diubah; harga trilogi sertifikasi (PPIU 20jt/PIHK 25jt/BPW 15jt) tidak berubah",
+    ],
+  },
   {
     version: "1.23.0",
     date: "2026-11-20",

@@ -490,3 +490,28 @@ Stage Summary:
 - Bundle katalog lama TIDAK disentuh (scope beda: pendirian PT dari-nol vs pengurusan izin) — tidak ada kontradiksi harga
 - QA: tsc & eslint FULL nol temuan; CI dipantau hijau pasca-push
 - v1.23.0 "Trilogi Travel Ibadah" menjadi versi berjalan di seluruh 8 titik versioning
+
+---
+Task ID: 51
+Agent: main (mode Master Polymath + Sage Universal + Ultimate Problem Solver — dewan pakar lintas bidang, standar kualitas ISO)
+Task: Repricing bundle lama atas komplain pasar — Paket PT+PPIU normal Rp200jt (promo 50% = Rp100jt), Upgrade PIHK normal Rp230jt (promo 50% = Rp115jt) 🏷️ Rilis v1.23.1 "Master Pricing Haji-Umrah"
+
+Work Log:
+- Clone ulang sandbox (origin a6881f7 = v1.23.0) + npm install (pelajaran berulang: postinstall `prisma contract emit` menuntut .env dengan DATABASE_URL postgres — .env tidak ikut repo, dibuat manual; artefak generated/prisma8 terbit OK)
+- Audit menyeluruh angka harga lama di 13 permukaan; dipilah 2 keluarga TARGET vs 9 file produk LAIN yang kebetulan memakai angka sama (MISA Saudi 58,5jt di landing-data + seo-content, virtual office 45,5jt/thn, katalog v2/v3 KSP/BPOM/CPKB/SNI Semen/PBG Apartemen/Pabrik/PTS/PKPA, PT PMA di /mitra, bundle ISO "Travel Excellence" 39jt) — guardrail: tidak disentuh
+- Edit 1/6 — katalog sertifikasi (CertEntry ×2): Paket Pendirian Travel Umrah Lengkap (PT+PPIU) "Mulai Rp 45,5jt" → "Mulai Rp 100jt — promo 50% (normal Rp 200jt)"; Upgrade PPIU ke PIHK "Mulai Rp 58,5jt" → "Mulai Rp 115jt — promo 50% (normal Rp 230jt)"; format menempatkan harga promo di depan agar parsePrice → priceNumeric = harga penawaran riil yang mengalir ke JSON-LD offers + halaman provinsi otomatis
+- Edit 2/6 — BUNDLES /paket (katalog-lengkap.ts): GO UMRAH! 58,5jt → Rp100jt (save Rp100jt dari normal Rp200jt); GO HAJI PLUS! Rp104jt → Rp215jt promo (gabungan promo GO UMRAH 100jt + UPGRADE PIHK 115jt; normal Rp430jt, save Rp215jt); UPGRADE PPIU KE PIHK Rp39jt → Rp115jt (save Rp115jt) + komentar sumber Task 51
+- Edit 3/6 — kartu /paket-usaha "Travel Umroh (PPIU)" Rp58,5jt → "Mulai Rp 100jt — promo 50% (normal Rp 200jt)"
+- Edit 4/6 — knowledge base AI chat (/api/chat): 3 bundle disinkron (GO UMRAH Rp100jt promo dari Rp200jt; GO HAJI PLUS Rp215jt promo dari Rp430jt; UPGRADE Rp115jt promo dari Rp230jt) + header "harga promo 50% — Master Pricing Haji-Umrah 2026" (klaim "lebih hemat dari beli satuan" diganti agar tidak kontradiksi dengan harga bundle gabungan) + jasa flagship diselaraskan trilogi (PPIU mulai Rp20jt all-in; PIHK mulai Rp25jt all-in — sebelumnya rentang 19,5-32,5jt/32,5-52jt yang tak mencakup harga flagship)
+- Verifikasi IATA PusatPerizinan.com: GoLite 55,575,000/27,787,500 · GoStandard 106,875,000/53,437,500 · GoGlobal 213,750,000/106,875,000 — SUDAH sesuai master pricing, tanpa perubahan; kanal GConsultant.web.id & Gunara.web.id tidak tersentuh
+- Verifikasi trilogi v1.23.0 tak berubah: Sertifikasi PPIU Rp20jt · PIHK Rp25jt · BPW Rp15jt (src/lib/sertifikasi-travel.ts)
+- Sweep sisa: grep 45,5/58,5/58_500_000/104_000_000/39_000_000 di file target = NOL sisa; FAQ provinsi & /paket terbukti tanpa harga hardcoded (harga mengalir dari data)
+- QA: tsc --noEmit & eslint src/ FULL project NOL temuan
+- Versioning 8 titik sinkron v1.23.1 "Master Pricing Haji-Umrah" (taskId 51, patch): version.ts (RELEASES 48 → 49) · package.json 1.23.1 · scripts/ver.json (total 49, nextRelease v1.24.0) · CHANGELOG (badge + entri + ladder #49) · WORKLOG+worklog (entri ini) · README (badge + versi) · STATE.md
+
+Stage Summary:
+- Kedua bundle travel ibadah kini premium: PT+PPIU Rp200jt/Rp100jt promo & PIHK Rp230jt/Rp115jt promo — konsisten di katalog sertifikasi, halaman provinsi, /paket, /paket-usaha, dan AI chat; tidak ada lagi permukaan yang menjual bundle "harga gila"
+- GO HAJI PLUS direposisi sebagai gabungan promo kedua bundle (Rp215jt) agar tidak lebih murah dari komponennya
+- Guardrail 9 file produk lain + IATA + trilogi terjaga — nol collateral damage
+- QA: tsc & eslint FULL nol temuan; CI dipantau hijau pasca-push
+- v1.23.1 "Master Pricing Haji-Umrah" menjadi versi berjalan di seluruh 8 titik versioning

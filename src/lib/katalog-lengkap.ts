@@ -1425,8 +1425,9 @@ export const CATEGORIES: CatalogCategory[] = [
 export const BUNDLES: CatalogBundle[] = [
   {
     name: "GO UMRAH!",
-    price: 58_500_000,
-    save: 5_000_000,
+    // Master Pricing Haji-Umrah (Task 51): normal Rp200jt → promo 50% = Rp100jt.
+    price: 100_000_000,
+    save: 100_000_000,
     badge: "MOST POPULAR",
     audience: "Untuk startup travel yang ingin langsung operasional umrah",
     includes: [
@@ -1441,8 +1442,9 @@ export const BUNDLES: CatalogBundle[] = [
   },
   {
     name: "GO HAJI PLUS!",
-    price: 104_000_000,
-    save: 10_000_000,
+    // Task 51: gabungan promo GO UMRAH (100jt) + UPGRADE PIHK (115jt); normal Rp430jt.
+    price: 215_000_000,
+    save: 215_000_000,
     badge: "FLAGSHIP",
     audience: "Untuk travel yang serius menjadi generator revenue haji plus",
     includes: [
@@ -1458,8 +1460,9 @@ export const BUNDLES: CatalogBundle[] = [
   },
   {
     name: "UPGRADE PPIU KE PIHK",
-    price: 39_000_000,
-    save: 5_000_000,
+    // Master Pricing Haji-Umrah (Task 51): normal Rp230jt → promo 50% = Rp115jt.
+    price: 115_000_000,
+    save: 115_000_000,
     audience: "Untuk travel yang sudah punya PPIU dan ingin naik level",
     includes: [
       "Analisis kelayakan upgrade ke PIHK",

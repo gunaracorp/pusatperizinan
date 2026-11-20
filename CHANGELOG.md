@@ -5,19 +5,19 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.23.0_Trilogi_Travel_Ibadah-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-23-0)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.23.1_Master_Pricing_Haji_Umrah-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-23-1)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-48_(0.1.0_%E2%86%92_1.23.0)-059669?style=flat-square)
-![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-52_ber_versi-059669?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-49_(0.1.0_%E2%86%92_1.23.1)-059669?style=flat-square)
+![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-53_ber_versi-059669?style=flat-square)
 ![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.24.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.23.0 — "Trilogi Travel Ibadah"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.23.1 — "Master Pricing Haji-Umrah"`**
 
 <sub>Versi terlihat hidup di: footer setiap halaman (11.892 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
@@ -39,7 +39,28 @@
 | Presisi tanggal | Era `0.x` (Sesi 1–2) direkonstruksi dari metadata file & jejak invoice (`INV-20261021`) → presisi bulan; era `1.x` → presisi hari (terverifikasi) |
 | Rilis berikutnya | **`v1.23.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
 
-> 🔗 Navigasi cepat: **[Tabel Lengkap 48 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+> 🔗 Navigasi cepat: **[Tabel Lengkap 49 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+
+---
+
+<a id="v1-23-1"></a>
+
+## [1.23.1] — 2026-11-20 — 💰 "Master Pricing Haji-Umrah" (Task 51)
+
+Repricing bundle travel ibadah atas arahan owner: harga lama terlalu murah hingga menimbulkan komplain pasar ("harga gila") — harga normal dinaikkan signifikan dengan skema promo 50% yang konsisten di seluruh permukaan.
+
+### 🔧 Changed
+- **Paket Pendirian Travel Umrah Lengkap (PT + PPIU)**: ~~Mulai Rp 45,5jt~~ → **normal Rp 200jt → promo 50% = Rp 100jt** (`Mulai Rp 100jt — promo 50% (normal Rp 200jt)`) — katalog sertifikasi (CertEntry; halaman detail + 38 halaman provinsi + JSON-LD offer mengikuti otomatis).
+- **Upgrade PPIU ke PIHK — Haji Khusus (ONH Plus)**: ~~Mulai Rp 58,5jt~~ → **normal Rp 230jt → promo 50% = Rp 115jt** (`Mulai Rp 115jt — promo 50% (normal Rp 230jt)`).
+- **BUNDLES /paket**: `GO UMRAH!` Rp 58,5jt → **Rp 100jt** (hemat Rp 100jt dari normal Rp 200jt); `GO HAJI PLUS!` Rp 104jt → **Rp 215jt** (gabungan promo GO UMRAH + UPGRADE PIHK; normal Rp 430jt); `UPGRADE PPIU KE PIHK` Rp 39jt → **Rp 115jt** (normal Rp 230jt).
+- **Kartu /paket-usaha** "Travel Umroh (PPIU)": ~~Rp 58,5jt~~ → **Rp 100jt promo (normal Rp 200jt)**.
+- **Knowledge base AI chat** (`/api/chat`): tiga bundle disinkron ke harga baru + header "harga promo 50% — Master Pricing Haji-Umrah 2026"; jasa flagship diselaraskan trilogi v1.23.0 (PPIU mulai Rp 20jt all-in, PIHK mulai Rp 25jt all-in).
+
+### 🛡️ Guardrail audit (tidak disentuh)
+- 9 file berisi angka 45,5jt / 58,5jt / 39jt milik **produk lain**: Izin Usaha Arab Saudi MISA (landing + seo-content), virtual office tahunan, katalog v2/v3 (KSP, BPOM, CPKB, SNI Semen, PBG Apartemen/Pabrik, PTS, PKPA), PT PMA (mitra), bundle ISO "Travel Excellence" — terverifikasi dan dibiarkan utuh.
+- Harga **IATA PusatPerizinan.com** (GoLite 55,5jt/27,8jt; GoStandard 106,9jt/53,4jt; GoGlobal mulai 213,8jt/106,9jt) sudah sesuai Master Pricing — tidak diubah; kanal GConsultant.web.id & Gunara.web.id tidak tersentuh.
+- Harga **trilogi sertifikasi v1.23.0** tidak berubah: PPIU Rp 20jt · PIHK Rp 25jt · BPW Rp 15jt.
+- Versioning 8 titik sinkron v1.23.1 (taskId 51): `src/lib/version.ts` (RELEASES 48 → 49) · `package.json` · `scripts/ver.json` (total 49) · dokumen ini · `WORKLOG.md` + `worklog.md` (Task 51) · README · STATE.md.
 
 ---
 
@@ -855,11 +876,12 @@ Rilis pertama dengan **identitas versi resmi**. Seluruh proyek kini punya nomor 
 
 <a id="ladder"></a>
 
-## 🪜 Tabel Lengkap 48 Rilis
+## 🪜 Tabel Lengkap 49 Rilis
 
 | # | Versi | Tanggal (WIB) | Tipe | Nama Rilis | Task WORKLOG | Status |
 |---|---|---|---|---|---|---|
-| 48 | **v1.23.0** ⭐ | **2026-11-20** | minor | **Trilogi Travel Ibadah** | Task 50 | **🟢 AKTIF — versi berjalan** |
+| 49 | **v1.23.1** ⭐ | **2026-11-20** | patch | **Master Pricing Haji-Umrah** | Task 51 | **🟢 AKTIF — versi berjalan** |
+| 48 | v1.23.0 | 2026-11-20 | minor | Trilogi Travel Ibadah | Task 50 | ✅ Rilis |
 | 47 | v1.22.1 | 2026-11-20 | patch | God Mode Audit | Task 49 | ✅ Rilis |
 | 46 | v1.22.0 | 2026-11-20 | minor | Premium IATA | Task 48 | ✅ Rilis |
 | 45 | v1.21.0 | 2026-11-16 | minor | Benteng Digital | Task 47 | ✅ Rilis |

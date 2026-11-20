@@ -7,9 +7,9 @@
     "url": "https://pusatperizinan.com"
   },
   "version": {
-    "current": "1.23.0",
-    "label": "v1.23.0 — Trilogi Travel Ibadah",
-    "releaseName": "Trilogi Travel Ibadah",
+    "current": "1.23.1",
+    "label": "v1.23.1 — Master Pricing Haji-Umrah",
+    "releaseName": "Master Pricing Haji-Umrah",
     "releasedAt": "2026-11-20",
     "channel": "stable",
     "timezone": "Asia/Jakarta (WIB)",
@@ -32,20 +32,30 @@
     "nextRelease": "v1.24.0 (Unreleased — antrean ROADMAP-99)"
   },
   "releases": {
-    "total": 48,
+    "total": 49,
     "current": {
-      "version": "1.23.0",
+      "version": "1.23.1",
       "date": "2026-11-20",
-      "type": "minor",
-      "name": "Trilogi Travel Ibadah",
-      "taskId": "50",
+      "type": "patch",
+      "name": "Master Pricing Haji-Umrah",
+      "taskId": "51",
       "highlights": [
-        "Trilogi sertifikasi travel (jasa all-in, master brief owner): Sertifikasi PPIU — izin umrah Rp20.000.000 (Kemenag, KBLI 79122, sertifikasi LSUHK era PMHU 2/2026), Sertifikasi PIHK — haji khusus ONH Plus Rp25.000.000 (prasyarat PPIU aktif), Sertifikasi BPW — TDA Biro Perjalanan Wisata Rp15.000.000 (Baparekraf, KBLI 79120); satu sumber harga src/lib/sertifikasi-travel.ts",
-        "4 halaman premium baru + PPIU halaman utama SEO ('1000 pagar'): /layanan/sertifikasi-ppiu|pihk|bpw (dasar hukum, syarat, ruang lingkup, proses 01-08, tabel perbandingan, kesalahan umum, checklist, FAQ + JSON-LD Service/Offer/FAQPage/BreadcrumbList) + /konsultasi-sertifikasi-travel (POST /api/leads, honeypot+consent, GA4)",
-        "SEO & distribusi: sitemap ×4, llms.txt trilogi, silo dua arah IATA pillar ↔ sertifikasi, 3 entri CertEntry (homepage/kategori/catch-all; CERT_STATS 43 → 46, CERT_REGION 1.634 → 1.748 dinamis), indexedUrls 11.888 → 11.892"
+        "Repricing bundle travel ibadah atas arahan owner (harga lama terlalu murah — komplain pasar): Paket Pendirian Travel Umrah Lengkap (PT + PPIU) normal Rp200jt → promo 50% = Rp100jt; Upgrade PPIU ke PIHK normal Rp230jt → promo 50% = Rp115jt; GO HAJI PLUS! (gabungan) Rp215jt promo / Rp430jt normal — sinkron di 4 file: katalog sertifikasi, BUNDLES /paket, kartu /paket-usaha, knowledge base AI chat (jasa flagship PPIU mulai Rp20jt & PIHK mulai Rp25jt sesuai trilogi)",
+        "Guardrail audit: 9 file dengan angka 45,5jt/58,5jt/39jt milik produk LAIN (MISA Saudi, virtual office, katalog BPOM/PBG/PKPA/KSP/SNI, PT PMA, ISO Travel Excellence) tidak disentuh; harga IATA PusatPerizinan.com sudah sesuai master pricing (tidak diubah); trilogi sertifikasi (PPIU 20jt/PIHK 25jt/BPW 15jt) tidak berubah"
       ]
     },
     "history": [
+      {
+        "version": "1.23.1",
+        "date": "2026-11-20",
+        "type": "patch",
+        "name": "Master Pricing Haji-Umrah",
+        "taskId": "51",
+        "highlights": [
+          "Repricing bundle travel ibadah atas arahan owner (harga lama terlalu murah — komplain pasar): Paket Pendirian Travel Umrah Lengkap (PT + PPIU) normal Rp200jt → promo 50% = Rp100jt; Upgrade PPIU ke PIHK normal Rp230jt → promo 50% = Rp115jt; GO HAJI PLUS! (gabungan) Rp215jt promo / Rp430jt normal — sinkron di 4 file: katalog sertifikasi, BUNDLES /paket, kartu /paket-usaha, knowledge base AI chat (jasa flagship PPIU mulai Rp20jt & PIHK mulai Rp25jt sesuai trilogi)",
+          "Guardrail audit: 9 file dengan angka 45,5jt/58,5jt/39jt milik produk LAIN (MISA Saudi, virtual office, katalog BPOM/PBG/PKPA/KSP/SNI, PT PMA, ISO Travel Excellence) tidak disentuh; harga IATA PusatPerizinan.com sudah sesuai master pricing (tidak diubah); trilogi sertifikasi (PPIU 20jt/PIHK 25jt/BPW 15jt) tidak berubah"
+        ]
+      },
       {
         "version": "1.23.0",
         "date": "2026-11-20",

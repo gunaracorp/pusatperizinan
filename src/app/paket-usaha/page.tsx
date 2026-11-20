@@ -46,7 +46,7 @@ const VERTICALS = [
     audience: "Dokter muda membuka praktik, grup klinik yang ekspansi cabang.",
   },
   {
-    icon: MoonStar, name: "Travel Umroh (PPIU)", price: "Mulai Rp 58,5jt", time: "3-4 bulan",
+    icon: MoonStar, name: "Travel Umroh (PPIU)", price: "Mulai Rp 100jt — promo 50% (normal Rp 200jt)", time: "3-4 bulan",
     includes: ["Pendirian PT + modal dasar sesuai regulasi", "TDUP & KBLI 79120", "PPIU Kemenag (termasuk pra-audit)", "SISKOPATUH & kepatuhan BPK2U", "Training tim + template kontrak jamaah"],
     audience: "Pengasuh/ustaz yang naik kelas jadi travel resmi — jalur flagship kami.",
   },

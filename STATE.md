@@ -11,8 +11,8 @@
 |---|---|
 | Website | PusatPerizinan.com — konsultan perizinan, pajak & penempatan PMI Indonesia |
 | Repositori | https://github.com/gunaracorp/pusatperizinan (origin utuh, remote terpasang) |
-| Lokasi sandbox | `/home/z/my-project/repos/pusatperizinan` (clone ulang penuh Task 50 — `.git` utuh, origin terpasang) |
-| Versi aplikasi | v1.23.0 "Trilogi Travel Ibadah" (`src/lib/version.ts`, `package.json`) |
+| Lokasi sandbox | `/home/z/my-project/repos/pusatperizinan` (clone ulang penuh Task 51 — `.git` utuh, origin terpasang) |
+| Versi aplikasi | v1.23.1 "Master Pricing Haji-Umrah" (`src/lib/version.ts`, `package.json`) |
 | Stack | Next.js 16.4 (Turbopack dev) · React 19 · TypeScript 5 · Tailwind 4 · shadcn/ui · Prisma ORM 8 RC (`@prisma/orm-postgres 8.0.0-rc.20`) · PostgreSQL embedded |
 | Database | Embedded PostgreSQL (`node_modules/@embedded-postgres/linux-x64`), cluster di `.pgdata/`, port 5432, user `postgres` (trust), DB `pusatperizinan` |
 | Model data | **16 model** (Lead, Consultation, ChatMessage, LicenseCheck, Subscriber, Testimonial, DocumentCheck, RoadmapRequest, NotificationSetting, Order, Post, FollowUpLog, RecoveryLog, NotificationLog, EditorialSlot, CurrencyRate) — koreksi Task 49: catatan lama "15 model" meleset, CurrencyRate tak tercantum |
@@ -42,13 +42,13 @@ bun run dev          # atau: npm run dev (dev.sh sistem memakai npm)
 7. Token admin cookie = `pp_admin_token` (login via `POST /api/admin/auth`).
 8. **npm ≥11 memblokir postinstall paket DEPENDENSI secara default** (fitur `install-scripts`) meski `trustedDependencies` sudah ada di package.json — gejala: embedded-postgres tanpa `native/bin`, sharp/esbuild/swc bermasalah. Penangkal: `npm install-scripts approve <pkg>` untuk 7 paket (`@embedded-postgres/linux-x64`, `@parcel/watcher`, `@swc/core`, `es5-ext`, `esbuild`, `sharp`, `workerd`) lalu `npm rebuild` — atau jalankan ulang sesi Task 47 di log instalasi.
 
-## 4. Status Saat Ini (2026-11-20 — Task 50, trilogi sertifikasi travel)
+## 4. Status Saat Ini (2026-11-20 — Task 51, master pricing haji-umrah)
 
-- ✅ Clone ulang bersih dari GitHub (origin di `41c3129` = v1.22.1 "God Mode Audit") + instalasi penuh: `npm install` exit 0; artefak Prisma di-emisi via `prisma contract emit` (Prisma 8 TIDAK punya `generate`; `.env` sandbox dibuat manual — tidak ikut repo).
-- ✅ **Trilogi sertifikasi travel rilis v1.23.0**: Sertifikasi PPIU Rp20 jt (umrah, Kemenag, KBLI 79122, sertifikasi LSUHK), Sertifikasi PIHK Rp25 jt (haji khusus ONH Plus, prasyarat PPIU aktif), Sertifikasi BPW Rp15 jt (TDA Baparekraf, KBLI 79120) — harga all-in master brief owner, satu sumber `src/lib/sertifikasi-travel.ts`.
-- ✅ 4 URL baru: `/layanan/sertifikasi-ppiu|pihk|bpw` (halaman premium + JSON-LD Service/Offer/FAQPage) + `/konsultasi-sertifikasi-travel` (form → POST /api/leads, source `sertifikasi-*`, package BPW→UMKM/PPIU→Bisnis/PIHK→Enterprise sesuai whitelist) — sitemap ×4, llms.txt, silo dua arah dengan IATA pillar, katalog sertifikasi 43 → 46 entri (CERT_REGION 1.748 halaman × 38 provinsi, angka dinamis).
-- ✅ QA: tsc `--noEmit` & eslint **FULL project = NOL temuan**; link check 10 target internal OK; GA4 via CertTrackLink (click_cert_wa/form + submit_cert_travel_lead).
-- ✅ ROADMAP-99: **22/99 langkah**; CHANGELOG 48 rilis; WORKLOG Task 50.
+- ✅ Clone ulang bersih dari GitHub (origin di `a6881f7` = v1.23.0 "Trilogi Travel Ibadah") + instalasi penuh: `npm install` + `prisma contract emit` (`.env` sandbox dibuat manual — tidak ikut repo).
+- ✅ **Repricing bundle (Task 51, rilis v1.23.1)** atas komplain pasar harga terlalu murah: Paket PT+PPIU normal **Rp200jt → promo 50% Rp100jt**; Upgrade PIHK normal **Rp230jt → promo 50% Rp115jt**; GO HAJI PLUS Rp215jt promo (gabungan; normal Rp430jt); GO UMRAH Rp100jt; disinkron 4 file: CertEntry katalog (halaman + provinsi + JSON-LD otomatis), BUNDLES /paket, kartu /paket-usaha, knowledge base AI chat (jasa flagship PPIU mulai Rp20jt & PIHK mulai Rp25jt).
+- ✅ **Guardrail audit**: 9 file produk lain dengan angka sama (MISA Saudi, virtual office, katalog BPOM/PBG/PKPA/KSP/SNI, PT PMA, ISO Travel Excellence) tidak disentuh; IATA PusatPerizinan.com sudah sesuai master pricing (GoLite 55,5jt/27,8jt · GoStandard 106,9jt/53,4jt · GoGlobal mulai 213,8jt/106,9jt) tanpa perubahan; trilogi v1.23.0 (PPIU 20jt/PIHK 25jt/BPW 15jt) tidak berubah.
+- ✅ QA: tsc `--noEmit` & eslint **FULL project = NOL temuan**; sweep sisa harga lama di file target = nol.
+- ✅ ROADMAP-99: **22/99 langkah**; CHANGELOG 49 rilis; WORKLOG Task 51.
 - ⏳ Belum aktif (butuh kredensial owner): GA4 real, Telegram/Fonnte, Midtrans/Tripay produksi, Sentry DSN.
 - 📌 Push tiap rilis via URL token sekali-pakai (pola keamanan Task 43/47); token dari percakapan WAJIB di-rotate owner setelah deploy.
 
