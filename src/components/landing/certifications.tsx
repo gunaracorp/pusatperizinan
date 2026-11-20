@@ -14,7 +14,7 @@ import { CERT_REGION_STATS } from "@/lib/catalog/sertifikasi-provinsi";
 // ============================================================
 
 const GROUPS: { id: CertGroup; icon: typeof Award; blurb: string; href: string }[] = [
-  { id: "travel-ibadah", icon: Plane, blurb: "PPIU, PIHK (ONH Plus), PPMP, pembimbing bersertifikat — sesuai PMHU 2/2026.", href: "/layanan/paket-pendirian-travel-umrah" },
+  { id: "travel-ibadah", icon: Plane, blurb: "PPIU, PIHK (ONH Plus), BPW, PPMP, pembimbing bersertifikat — sesuai standar terkini.", href: "/layanan/sertifikasi-ppiu" },
   { id: "iso-manajemen", icon: Award, blurb: "ISO 9001:2026 edisi terbaru, 27001, 37001:2025, hingga IMS gabungan hemat biaya.", href: "/layanan/iso-9001" },
   { id: "halal", icon: BadgeCheck, blurb: "Halal jasa restoran, hotel & konveksi — sesuai PP 42/2024 via BPJPH.", href: "/layanan/halal-jasa-restoran" },
   { id: "pangan", icon: UtensilsCrossed, blurb: "ISO 22000, HACCP, CPPOB, SPP-IRT — dari UMKM sampai eksportir.", href: "/layanan/iso-22000" },

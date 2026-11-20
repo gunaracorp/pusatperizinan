@@ -464,3 +464,29 @@ Stage Summary:
 - README kini mencatat ekosistem IATA lengkap; STATE.md kembali jadi sumber status yang akurat untuk sesi berikutnya (16 model, lokasi clone baru, status Task 49)
 - QA: tsc & eslint FULL project nol temuan PASCA-fix (bukan hanya file ubah); CI dipantau hijau pasca-push
 - v1.22.1 "God Mode Audit" menjadi versi berjalan di seluruh 8 titik versioning
+
+---
+Task ID: 50
+Agent: main (mode Master Polymath + Sage Universal + Ultimate Problem Solver — 46 dewan pakar lintas bidang, standar kualitas ISO)
+Task: Buat Sertifikasi PPIU (Rp20 jt), PIHK (Rp25 jt), BPW (Rp15 jt) — full all-in; PPIU full SEO ("1000 pagar"); buatkan produk jika belum ada 🏷️ Rilis v1.23.0 "Trilogi Travel Ibadah"
+
+Work Log:
+- Clone ulang sandbox (origin 41c3129 = v1.22.1) + npm install exit 0; `prisma contract emit` untuk artefak generated/prisma8 (pelajaran: Prisma 8 tidak punya command `generate` — command resminya `contract emit`; `.env` sandbox harus dibuat manual karena tidak ikut repo, dan prisma.config.ts mem-override env shell dengan .env)
+- Verifikasi web (anti fakta fiktif): PPIU = izin Kemenag (sistem online; umumnya wajib PT + riwayat izin perjalanan), sertifikasi penyelenggara via LSUHK terakreditasi konsep resmi, KBLI 79122 (umrah & haji khusus — tetap 1:1 di KBLI 2025), BPW = TDA Kemenparekraf/Baparekraf (KBLI 79120) — selaras dengan PMHU 2/2026 yang sudah diadopsi repo sejak katalog sertifikasi
+- Investigasi struktur: katalog `catalog/certifications.ts` (grup travel-ibadah, 43 entri, tanpa standalone PPIU/PIHK/BPW izin) → keputusan produk: 3 sertifikasi = produk BARU (scope "pengurusan izin" murni); bundle lama tidak disentuh karena scope berbeda (paket pendirian PT+PPIU 45,5jt & upgrade PIHK roadmap 58,5jt — tetap valid sebagai paket dari-nol)
+- Satu sumber `src/lib/sertifikasi-travel.ts`: URLS, 3 produk (harga all-in master brief owner — PPIU 20.000.000 / PIHK 25.000.000 / BPW 15.000.000, tanpa skema promo), authority/legalBasis/kbli/durasi per produk, CERT_HARGA_CATATAN (jasa, bukan biaya resmi penerbit), CERT_PROCESS 01-08, CERT_DISCLAIMER, WA helper nomor tunggal CONTACT.whatsapp, certJsonLd builder (Service + Offer IDR + FAQPage + BreadcrumbList)
+- Konten unik `src/lib/sertifikasi-pages-data.ts` (CertPageContent): PPIU terdalam — hero 2 paragraf, intro 3 paragraf, dasar hukum 4, syarat 10, ruang lingkup 12, perbedaan trilogi (tabel 6 aspek), kesalahan umum 5, checklist 10, FAQ 8 (kaya keyword "sertifikasi ppiu"/"biaya"/"syarat"/"SPPU-SIPU"/"CV bisa?"/"berapa lama"); PIHK & BPW struktur sama, FAQ 6 masing-masing, sudut pandang unik (PIHK: piramida prasyarat PPIU→riwayat; BPW: fondasi pintu masuk sektor) — anti doorway-page
+- Renderer `components/sertifikasi/cert-product-page.tsx`: pola IataProductPage (emerald/amber, motion CSS-first reuse iata-motion, hormat reduced-motion) + PriceCard (harga satu sumber + catatan transparansi + KBLI/penerbit/durasi) + tabel perbandingan + FAQ details/summary tanpa JS + JSON-LD script + certProductMetadata (keywords dinamis)
+- 3 route statis `/layanan/sertifikasi-{ppiu,pihk,bpw}` (menang atas catch-all) + `/konsultasi-sertifikasi-travel` (page + form client: produk dropdown → source sertifikasi-ppiu|pihk|bpw|sertifikasi-travel, package BPW→UMKM/PPIU→Bisnis/PIHK→Enterprise sesuai whitelist PACKAGES, businessType dari BIZ_TYPES subset SECTORS — lead valid 100%, honeypot company_website_hp + consent wajib + error handling res.ok/catch)
+- GA4: CertTrackLink (client wrapper pola TrackLink IATA) — click_cert_wa + click_cert_form dengan param product; form submit → submit_cert_travel_lead (ditemukan & diperbaiki: data-track atribut saja TIDAK menembak GA4 — butuh onClick wrapper)
+- 3 entri CertEntry (id = slug halaman premium; static route menang) → homepage CertificationsSection (blurb + href diperbarui ke sertifikasi-ppiu), kategori, catch-all CERT_MAP; CERT_STATS.total 43 → 46 otomatis; CERT_REGION_PAGES 1.634 → 1.748 (46 × 38) — string "43 sertifikasi" di FAQ provinsi dibuat dinamis ${CERTS.length} agar tidak basi lagi
+- SEO "1000 pagar" PPIU: sitemap-sections +4 URL (ppiu weekly 0.95; pihk/bpw/konsultasi 0.9), PLATFORM_STATS.indexedUrls 11.888 → 11.892, llms.txt seksi trilogi dengan 3 harga + URL konsultasi, silo dua arah: IATA pillar dapat seksi "Tapi Legalitas Domestik Travel Anda Sudah Beres?" (3 kartu link) ↔ trilogi punya terkait ke IATA/paket/upgrade/katalog BPW/kategori; FAQPage+Service+Offer schema penuh
+- QA: `tsc --noEmit` & `eslint src/` FULL project NOL temuan pasca-fix (ditemukan & diperbaiki saat QA: import trackEvent salah path → components/landing/analytics; artefak prisma belum di-emisi); link check 10 target internal (5 statis + 1 katalog-v3 + 4 CERT_MAP) semua OK
+- Versioning 8 titik sinkron v1.23.0 "Trilogi Travel Ibadah" (taskId 50, MINOR — 4 URL baru + katalog): version.ts (APP_VERSION + RELEASES 47 → 48) · package.json 1.23.0 · scripts/ver.json (total 48, nextRelease v1.24.0) · CHANGELOG (badge ×3 + entri + ladder #48) · WORKLOG+worklog (entri ini) · README (badge + Peta Halaman + 2.1) · STATE.md
+
+Stage Summary:
+- Trilogi sertifikasi travel hidup: 3 halaman produk premium + 1 halaman konversi + integrasi katalog/homepage/sitemap/llms + GA4 — seluruh harga dari satu sumber, seluruh klaim hukum tervalidasi web & konsisten repo (PMHU 2/2026, KBLI 79122/79120, LSUHK)
+- PPIU jadi halaman utama SEO trilogi (weekly 0.95 + FAQPage schema + silo dua arah) — memenuhi master brief "1000 pagar"
+- Bundle katalog lama TIDAK disentuh (scope beda: pendirian PT dari-nol vs pengurusan izin) — tidak ada kontradiksi harga
+- QA: tsc & eslint FULL nol temuan; CI dipantau hijau pasca-push
+- v1.23.0 "Trilogi Travel Ibadah" menjadi versi berjalan di seluruh 8 titik versioning

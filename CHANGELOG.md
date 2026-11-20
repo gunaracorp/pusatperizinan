@@ -5,21 +5,21 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.22.1_God_Mode_Audit-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-22-1)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.23.0_Trilogi_Travel_Ibadah-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-23-0)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-47_(0.1.0_%E2%86%92_1.22.1)-059669?style=flat-square)
-![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-51_ber_versi-059669?style=flat-square)
-![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.23.0_(Unreleased)-f59e0b?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-48_(0.1.0_%E2%86%92_1.23.0)-059669?style=flat-square)
+![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-52_ber_versi-059669?style=flat-square)
+![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.24.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.22.1 — "God Mode Audit"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.23.0 — "Trilogi Travel Ibadah"`**
 
-<sub>Versi terlihat hidup di: footer setiap halaman (11.888 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
+<sub>Versi terlihat hidup di: footer setiap halaman (11.892 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=0:059669,100:f59e0b&height=3&section=footer" width="100%" alt=""/>
 
@@ -39,7 +39,27 @@
 | Presisi tanggal | Era `0.x` (Sesi 1–2) direkonstruksi dari metadata file & jejak invoice (`INV-20261021`) → presisi bulan; era `1.x` → presisi hari (terverifikasi) |
 | Rilis berikutnya | **`v1.23.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
 
-> 🔗 Navigasi cepat: **[Tabel Lengkap 47 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+> 🔗 Navigasi cepat: **[Tabel Lengkap 48 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+
+---
+
+<a id="v1-23-0"></a>
+
+## [1.23.0] — 2026-11-20 — 🛫 "Trilogi Travel Ibadah" (Task 50)
+
+Tiga produk sertifikasi travel premium dengan harga master brief owner (jasa all-in): **Sertifikasi PPIU Rp20 juta** (izin Penyelenggara Perjalanan Ibadah Umrah), **Sertifikasi PIHK Rp25 juta** (haji khusus ONH Plus), **Sertifikasi BPW Rp15 juta** (Tanda Daftar Usaha Biro Perjalanan Wisata) — plus halaman konversi bersama. Digarap mode Master Polymath + Sage Universal + Ultimate Problem Solver, dewan pakar lintas bidang, standar kualitas ISO.
+
+### 🛍️ Added
+- **3 halaman produk premium** `/layanan/sertifikasi-ppiu` · `/layanan/sertifikasi-pihk` · `/layanan/sertifikasi-bpw` (route statis menang atas catch-all): hero + kartu harga, "Apa Itu", dasar hukum (PMHU 2/2026 era KHU, KBLI 79122/79120, LSUHK), syarat lengkap per produk, ruang lingkup jasa all-in (12/10/9 item), proses kerja 01–08, **tabel perbandingan trilogi PPIU vs PIHK vs BPW**, 5 kesalahan umum + risiko, checklist dokumen, FAQ (8/6/6 — semua di JSON-LD FAQPage), layanan terkait, CTA final, disclaimer kepatuhan.
+- **Halaman konversi** `/konsultasi-sertifikasi-travel`: form pemeriksaan kesiapan awal (produk PPIU/PIHK/BPW/belum tahu, status badan usaha, KBLI, izin dasar, riwayat keberangkatan) → POST `/api/leads` existing (source `sertifikasi-ppiu|pihk|bpw|sertifikasi-travel`, package BPW→UMKM / PPIU→Bisnis / PIHK→Enterprise, honeypot + consent + error handling) — tanpa kolom kredensial.
+- **Satu sumber harga** `src/lib/sertifikasi-travel.ts`: produk, harga (master brief owner — tanpa skema promo), dasar hukum, WA helper (nomor tunggal `CONTACT.whatsapp`), disclaimer, JSON-LD builder `certJsonLd` (Service + Offer IDR + FAQPage + BreadcrumbList).
+- **3 entri CertEntry** di katalog sertifikasi (`catalog/certifications.ts`, grup travel-ibadah): muncul di section homepage + kategori + catch-all CERT_MAP; `CERT_STATS.total` 43 → **46** otomatis; halaman provinsi `CERT_REGION_PAGES` 1.634 → **1.748** (46 × 38, angka kini dinamis `CERTS.length`).
+- **GA4**: `submit_cert_travel_lead` (form), `click_cert_wa` + `click_cert_form` (CTA via `CertTrackLink` — client wrapper pola TrackLink IATA).
+
+### 🔧 Changed
+- **SEO maksimal PPIU ("1000 pagar")**: sitemap ×4 URL (PPIU weekly 0.95 — halaman utama SEO trilogi; PIHK/BPW/konsultasi monthly 0.9), `PLATFORM_STATS.indexedUrls` 11.888 → **11.892**, `llms.txt` seksi trilogi (3 URL berharga + konsultasi), silo internal dua arah: IATA pillar kini punya seksi "Tapi Legalitas Domestik Travel Anda Sudah Beres?" ↔ ketiga halaman trilogi; metadata + keywords + FAQ kaya keyword ("sertifikasi ppiu", "biaya izin ppiu", "syarat ppiu 2026", "tanda daftar usaha bpw", dst.).
+- **Homepage section sertifikasi**: blurb travel-ibadah memuat BPW; href grup mengarah ke `/layanan/sertifikasi-ppiu` (halaman utama SEO baru).
+- **Versioning 8 titik sinkron v1.23.0** (taskId 50): `src/lib/version.ts` (RELEASES 47 → 48) · `package.json` · `scripts/ver.json` (mirror 1:1, nextRelease v1.24.0, total 48) · badge & ladder dokumen ini · `WORKLOG.md` + `worklog.md` (Task 50) · README (badge + seksi baru) · STATE.md.
 
 ---
 
@@ -835,11 +855,12 @@ Rilis pertama dengan **identitas versi resmi**. Seluruh proyek kini punya nomor 
 
 <a id="ladder"></a>
 
-## 🪜 Tabel Lengkap 47 Rilis
+## 🪜 Tabel Lengkap 48 Rilis
 
 | # | Versi | Tanggal (WIB) | Tipe | Nama Rilis | Task WORKLOG | Status |
 |---|---|---|---|---|---|---|
-| 47 | **v1.22.1** ⭐ | **2026-11-20** | patch | **God Mode Audit** | Task 49 | **🟢 AKTIF — versi berjalan** |
+| 48 | **v1.23.0** ⭐ | **2026-11-20** | minor | **Trilogi Travel Ibadah** | Task 50 | **🟢 AKTIF — versi berjalan** |
+| 47 | v1.22.1 | 2026-11-20 | patch | God Mode Audit | Task 49 | ✅ Rilis |
 | 46 | v1.22.0 | 2026-11-20 | minor | Premium IATA | Task 48 | ✅ Rilis |
 | 45 | v1.21.0 | 2026-11-16 | minor | Benteng Digital | Task 47 | ✅ Rilis |
 | 44 | v1.20.0 | 2026-10-29 | minor | Footer Mahkota | Task 46 | ✅ Rilis |

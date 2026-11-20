@@ -228,6 +228,17 @@ function buildStaticPages(): SitemapEntry[] {
     entry("/panduan/financial-security-iata", "monthly", 0.8),
     entry("/panduan/iata-untuk-travel-agent-baru", "monthly", 0.8),
     entry("/panduan/iata-untuk-travel-agent-umrah", "monthly", 0.8),
+
+    // =========================================================
+    // TRILOGI SERTIFIKASI TRAVEL (Task 50) — PPIU/PIHK/BPW +
+    // konversi; harga & konten dari src/lib/sertifikasi-travel.ts
+    // =========================================================
+    // Halaman utama SEO trilogi — PPIU (izin umrah)
+    entry("/layanan/sertifikasi-ppiu", "weekly", 0.95),
+    entry("/layanan/sertifikasi-pihk", "monthly", 0.9),
+    entry("/layanan/sertifikasi-bpw", "monthly", 0.9),
+    // Halaman konversi (lead generation)
+    entry("/konsultasi-sertifikasi-travel", "monthly", 0.9),
   ];
 }
 

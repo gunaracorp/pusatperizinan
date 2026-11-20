@@ -13,6 +13,7 @@ import {
   IATA_SOURCES, IATA_URLS, fmtIdrIata, iataWaLink, IATA_WA_UMUM,
   HARGA_CATATAN_PENDEK, PROMO_LABEL, absIataUrl,
 } from "@/lib/iata";
+import { SERTIFIKASI_URLS } from "@/lib/sertifikasi-travel";
 
 // ============================================================
 // PUSATPERIZINAN.COM — PILLAR PAGE: /layanan/iata-accreditation
@@ -499,6 +500,37 @@ export default function IataAccreditationPillarPage() {
             {IATA_DISCLAIMER}
           </p>
         </Reveal>
+      </section>
+
+      {/* SILO: TRILOGI SERTIFIKASI TRAVEL (Task 50) — legalitas domestik */}
+      <section className="bg-stone-50/70 py-12" aria-labelledby="silo-sertifikasi">
+        <div className="mx-auto max-w-6xl px-4">
+          <Reveal>
+            <h2 id="silo-sertifikasi" className="flex items-center gap-2 text-xl font-bold text-stone-900 md:text-2xl">
+              <ClipboardCheck className="h-5 w-5 text-emerald-700" aria-hidden /> Sebelum IATA: Tapi Legalitas Domestik Travel Anda Sudah Beres?
+            </h2>
+            <p className="mt-3 max-w-3xl leading-relaxed text-stone-600">
+              Akreditasi IATA adalah kelas internasional — fondasinya tetap legalitas nasional.
+              Untuk kegiatan umrah & haji khusus dibutuhkan PPIU/PIHK dari kanal perizinan ibadah;
+              untuk travel umum, TDA BPW dari Kemenparekraf/Baparekraf. Kami mengurus semuanya —
+              satu konsultan untuk seluruh piramida legalitas travel Anda.
+            </p>
+            <div className="mt-6 grid gap-4 md:grid-cols-3">
+              <Link href={SERTIFIKASI_URLS.ppiu} className="group rounded-2xl border border-stone-200 bg-white p-5 transition hover:border-emerald-400 hover:shadow-md">
+                <p className="font-bold text-emerald-900 group-hover:text-emerald-700">Sertifikasi PPIU — Umrah →</p>
+                <p className="mt-1 text-sm text-stone-600">Izin penyelenggara umrah (Kemenag, KBLI 79122) — jasa all-in Rp20 juta.</p>
+              </Link>
+              <Link href={SERTIFIKASI_URLS.pihk} className="group rounded-2xl border border-stone-200 bg-white p-5 transition hover:border-emerald-400 hover:shadow-md">
+                <p className="font-bold text-emerald-900 group-hover:text-emerald-700">Sertifikasi PIHK — Haji Khusus →</p>
+                <p className="mt-1 text-sm text-stone-600">Penetapan PIHK ONH Plus untuk PPIU aktif — jasa all-in Rp25 juta.</p>
+              </Link>
+              <Link href={SERTIFIKASI_URLS.bpw} className="group rounded-2xl border border-stone-200 bg-white p-5 transition hover:border-emerald-400 hover:shadow-md">
+                <p className="font-bold text-emerald-900 group-hover:text-emerald-700">Sertifikasi BPW — Wisata Umum →</p>
+                <p className="mt-1 text-sm text-stone-600">TDA Biro Perjalanan Wisata (Baparekraf, KBLI 79120) — jasa all-in Rp15 juta.</p>
+              </Link>
+            </div>
+          </Reveal>
+        </div>
       </section>
 
       {/* FINAL CTA */}

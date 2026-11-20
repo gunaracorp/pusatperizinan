@@ -17,9 +17,9 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.22.1";
+export const APP_VERSION = "1.23.0";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "God Mode Audit";
+export const RELEASE_NAME = "Trilogi Travel Ibadah";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
 export const RELEASE_DATE = "2026-11-20";
 /** Channel rilis: stable | beta | alpha. */
@@ -42,10 +42,22 @@ export interface ReleaseEntry {
 }
 
 /**
- * Riwayat lengkap 47 rilis — urut TERBARU lebih dulu.
+ * Riwayat lengkap 48 rilis — urut TERBARU lebih dulu.
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.23.0",
+    date: "2026-11-20",
+    type: "minor",
+    name: "Trilogi Travel Ibadah",
+    taskId: "50",
+    highlights: [
+      "Trilogi sertifikasi travel lengkap dengan harga master brief owner (jasa all-in): Sertifikasi PPIU — izin Penyelenggara Perjalanan Ibadah Umrah Rp20.000.000 (Kemenag, KBLI 79122, pendampingan sertifikasi LSUHK era PMHU 2/2026), Sertifikasi PIHK — haji khusus ONH Plus Rp25.000.000 (prasyarat PPIU aktif, jaminan/asuransi/akomodasi), Sertifikasi BPW — Tanda Daftar Usaha Biro Perjalanan Wisata Rp15.000.000 (Kemenparekraf/Baparekraf, KBLI 79120); satu sumber harga src/lib/sertifikasi-travel.ts",
+      "4 halaman premium baru + PPIU halaman utama SEO (master brief '1000 pagar'): /layanan/sertifikasi-ppiu|pihk|bpw (renderer penuh: hero, dasar hukum, syarat 10 item, ruang lingkup 12, proses 01-08, tabel perbandingan trilogi, 5 kesalahan umum, checklist dokumen, FAQ 6-8 + FAQPage/Service/Offer/BreadcrumbList JSON-LD) + /konsultasi-sertifikasi-travel (form pemeriksaan kesiapan → POST /api/leads, honeypot+consent, source sertifikasi-ppiu|pihk|bpw, GA4 submit_cert_travel_lead + click_cert_wa/form via CertTrackLink)",
+      "SEO & distribusi: sitemap ×4 (ppiu weekly 0.95), llms.txt seksi trilogi, silo dua arah IATA pillar ↔ sertifikasi (satu konsultan seluruh piramida legalitas travel), 3 entri CertEntry di katalog sertifikasi (homepage section + kategori + catch-all CERT_MAP; CERT_STATS 43 → 46 otomatis, CERT_REGION 1.634 → 1.748 halaman × 38 provinsi dengan angka kini dinamis), PLATFORM_STATS.indexedUrls 11.888 → 11.892",
+    ],
+  },
   {
     version: "1.22.1",
     date: "2026-11-20",
@@ -581,7 +593,8 @@ export const PLATFORM_STATS = {
   // Sinkron Task 43: lowongan aktif 7 → 8 (+1 URL) dari hitungan v1.17.1 (11.872).
   // +1 URL: halaman produk Paket All-In KBLI 85520 + 2 Website (PP-KBLI85520-ALLIN).
   // +14 URL: ekosistem IATA Accreditation (pillar + 3 produk + 2 konversi + 8 panduan).
-  indexedUrls: 11888,
+  // +4 URL: trilogi sertifikasi travel (PPIU + PIHK + BPW + konsultasi) — Task 50.
+  indexedUrls: 11892,
   sitemapSections: 15,
   orderableServices: 1500,
   subscriptionSkus: 6,

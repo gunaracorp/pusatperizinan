@@ -1,6 +1,6 @@
 // ============================================================
 // PUSATPERIZINAN.COM — SERTIFIKASI × 38 PROVINSI (Task 21)
-// 43 sertifikasi × 38 provinsi = 1.634 halaman kombinasi
+// CERTS.length sertifikasi × 38 provinsi (46 × 38 = 1.748 — otomatis mengikuti CERTS)
 // + 38 hub "Konsultan Sertifikasi di {provinsi}" = 1.672 URL baru
 // Konten per-provinsi UNIK: profil ekonomi × 6 sektor sertifikasi.
 // Murni TS (tanpa DB/AI) → aman static export.
@@ -471,7 +471,7 @@ function buildCertRegionPage(cert: CertEntry, provIdx: number): ServicePage | nu
     },
     {
       q: `Kenapa usaha di ${prov.name} perlu ${certNameLower}?`,
-      a: `Sertifikat yang terbit diakui nasional dan (untuk standar internasional) global — yang membedakan hanya kesiapan dokumen dan pemilihan lembaga yang benar. ${profile[GROUP_FIELD[cert.group]]} Di situlah pengalaman kami menangani 43 sertifikasi di 38 provinsi berguna: antisipasi revisi sejak awal.`,
+      a: `Sertifikat yang terbit diakui nasional dan (untuk standar internasional) global — yang membedakan hanya kesiapan dokumen dan pemilihan lembaga yang benar. ${profile[GROUP_FIELD[cert.group]]} Di situlah pengalaman kami menangani ${CERTS.length} sertifikasi di 38 provinsi berguna: antisipasi revisi sejak awal.`,
     },
     ...cert.faq.slice(0, 2),
   ];
@@ -520,7 +520,7 @@ function buildCertRegionPage(cert: CertEntry, provIdx: number): ServicePage | nu
   };
 }
 
-/** 43 sertifikasi × 38 provinsi = 1.634 halaman */
+/** CERTS.length × 38 provinsi (kini 46 × 38 = 1.748 halaman) */
 export const CERT_REGION_PAGES: ServicePage[] = CERTS.flatMap((cert) =>
   PROVINCES.map((_, i) => buildCertRegionPage(cert, i)).filter(
     (p): p is ServicePage => p !== null

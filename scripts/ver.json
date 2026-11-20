@@ -7,9 +7,9 @@
     "url": "https://pusatperizinan.com"
   },
   "version": {
-    "current": "1.22.1",
-    "label": "v1.22.1 — God Mode Audit",
-    "releaseName": "God Mode Audit",
+    "current": "1.23.0",
+    "label": "v1.23.0 — Trilogi Travel Ibadah",
+    "releaseName": "Trilogi Travel Ibadah",
     "releasedAt": "2026-11-20",
     "channel": "stable",
     "timezone": "Asia/Jakarta (WIB)",
@@ -29,23 +29,35 @@
     "changelog": "/CHANGELOG.md",
     "worklog": "/WORKLOG.md",
     "roadmap": "/ROADMAP-99.md",
-    "nextRelease": "v1.23.0 (Unreleased — antrean ROADMAP-99)"
+    "nextRelease": "v1.24.0 (Unreleased — antrean ROADMAP-99)"
   },
   "releases": {
-    "total": 47,
+    "total": 48,
     "current": {
-      "version": "1.22.1",
+      "version": "1.23.0",
       "date": "2026-11-20",
-      "type": "patch",
-      "name": "God Mode Audit",
-      "taskId": "49",
+      "type": "minor",
+      "name": "Trilogi Travel Ibadah",
+      "taskId": "50",
       "highlights": [
-        "Bug hunt god mode (Master Polymath + Sage Universal + Ultimate Problem Solver): tsc --noEmit & eslint FULL project nol temuan; audit menyeluruh terverifikasi — 15 route IATA ada, 14 entri sitemap utuh, whitelist API lead cocok dengan kedua form, honeypot+consent utuh, mirror WORKLOG identik, nol harga lama",
-        "4 bug diperbaiki: chip kategori OG image tanpa maxWidth (kategori IATA premium 74-char meluber) → adaptive fontSize + maxWidth 760 + clamp 110; /api/og truncate kategori 60 → 110 char; README 3 versi stale + badge Model Data 14 → 16 (aktual 16 model, CurrencyRate); STATE.md versi/lokasi/model stale → refresh Task 49",
-        "README diperluas: seksi 2.1 + Peta Halaman mencatat ekosistem IATA 14 URL; versioning 8 titik sinkron v1.22.1 (version.ts RELEASES 46 → 47, package.json, ver.json, CHANGELOG, WORKLOG+worklog Task 49)"
+        "Trilogi sertifikasi travel (jasa all-in, master brief owner): Sertifikasi PPIU — izin umrah Rp20.000.000 (Kemenag, KBLI 79122, sertifikasi LSUHK era PMHU 2/2026), Sertifikasi PIHK — haji khusus ONH Plus Rp25.000.000 (prasyarat PPIU aktif), Sertifikasi BPW — TDA Biro Perjalanan Wisata Rp15.000.000 (Baparekraf, KBLI 79120); satu sumber harga src/lib/sertifikasi-travel.ts",
+        "4 halaman premium baru + PPIU halaman utama SEO ('1000 pagar'): /layanan/sertifikasi-ppiu|pihk|bpw (dasar hukum, syarat, ruang lingkup, proses 01-08, tabel perbandingan, kesalahan umum, checklist, FAQ + JSON-LD Service/Offer/FAQPage/BreadcrumbList) + /konsultasi-sertifikasi-travel (POST /api/leads, honeypot+consent, GA4)",
+        "SEO & distribusi: sitemap ×4, llms.txt trilogi, silo dua arah IATA pillar ↔ sertifikasi, 3 entri CertEntry (homepage/kategori/catch-all; CERT_STATS 43 → 46, CERT_REGION 1.634 → 1.748 dinamis), indexedUrls 11.888 → 11.892"
       ]
     },
     "history": [
+      {
+        "version": "1.23.0",
+        "date": "2026-11-20",
+        "type": "minor",
+        "name": "Trilogi Travel Ibadah",
+        "taskId": "50",
+        "highlights": [
+          "Trilogi sertifikasi travel (jasa all-in, master brief owner): Sertifikasi PPIU — izin umrah Rp20.000.000 (Kemenag, KBLI 79122, sertifikasi LSUHK era PMHU 2/2026), Sertifikasi PIHK — haji khusus ONH Plus Rp25.000.000 (prasyarat PPIU aktif), Sertifikasi BPW — TDA Biro Perjalanan Wisata Rp15.000.000 (Baparekraf, KBLI 79120); satu sumber harga src/lib/sertifikasi-travel.ts",
+          "4 halaman premium baru + PPIU halaman utama SEO ('1000 pagar'): /layanan/sertifikasi-ppiu|pihk|bpw (dasar hukum, syarat, ruang lingkup, proses 01-08, tabel perbandingan, kesalahan umum, checklist, FAQ + JSON-LD Service/Offer/FAQPage/BreadcrumbList) + /konsultasi-sertifikasi-travel (POST /api/leads, honeypot+consent, GA4)",
+          "SEO & distribusi: sitemap ×4, llms.txt trilogi, silo dua arah IATA pillar ↔ sertifikasi, 3 entri CertEntry (homepage/kategori/catch-all; CERT_STATS 43 → 46, CERT_REGION 1.634 → 1.748 dinamis), indexedUrls 11.888 → 11.892"
+        ]
+      },
       {
         "version": "1.22.1",
         "date": "2026-11-20",

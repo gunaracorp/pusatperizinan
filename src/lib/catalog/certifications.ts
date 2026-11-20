@@ -391,6 +391,193 @@ export const CERTS: CertEntry[] = [
   },
 
   // ==========================================================
+  // TRILOGI SERTIFIKASI TRAVEL (Task 50) — PPIU / PIHK / BPW
+  // Harga jasa all-in dari master brief owner; halaman premium
+  // statis /layanan/sertifikasi-* menang atas catch-all — entri
+  // di sini untuk homepage, kategori, dan konsistensi data.
+  // ==========================================================
+  {
+    id: "sertifikasi-ppiu",
+    name: "Sertifikasi PPIU — Izin Penyelenggara Umrah (All-In)",
+    code: "SPPU/SIPU PPIU + Sertifikasi LSUHK",
+    group: "travel-ibadah",
+    price: "Rp 20jt — all-in",
+    duration: "45-90 hari kerja",
+    desc: "Pengurusan lengkap izin & sertifikasi PPIU (Penyelenggara Perjalanan Ibadah Umrah) di Kemenag: kesiapan PT, KBLI 79122, dokumen, sertifikasi LSUHK, hingga izin terbit — all-in Rp20 juta.",
+    audience: ["Travel umrah baru", "Travel wisata yang naik kelas", "Grup usaha ibadah"],
+    longDesc: [
+      "PPIU adalah legalitas inti untuk menjual paket umrah secara sah — tanpa itu, usaha travel ibadah berisiko pemblokiran keberangkatan jamaah hingga jerat pidana perjalanan ibadah palsu. Layanan all-in kami mencakup pemeriksaan kesiapan badan usaha PT, penyesuaian KBLI 79122 di OSS-RBA, penyusunan seluruh dokumen administratif, dan pendampingan sertifikasi penyelenggara melalui lembaga sertifikasi umrah & haji khusus terakreditasi (LSUHK).",
+      "Sejak PMHU 2/2026 berlaku (menggantikan Permenag 5/2021), standar usaha travel haji-umrah dinaikkan dan sistem perizinan berjalan sepenuhnya online — dokumen template era lama semakin mudah ditolak. Kami membangun berkas Anda di atas standar terbaru: modal, akomodasi, pelindungan jamaah, rekening kolektif, dan identitas jemaah disusun presisi sesuai checklist penerbit.",
+      "Untuk travel CV/perseorangan, jalur kami memandu pendirian PT paralel (merek yang sama) lalu permohonan atas nama PT. Setelah izin terbit, Anda mendapat panduan kewajiban berkelanjutan: laporan berkala, perpanjangan, dan pelaporan keberangkatan rombongan — izin yang tidak mati karena lapor telat.",
+    ],
+    features: [
+      "Konsultasi blueprint legal + gap analysis standar PMHU 2/2026",
+      "Fondasi PT: akta, SK Kemenkumham, AD/ART sesuai kegiatan ibadah",
+      "NIB & penyesuaian KBLI 79122 di OSS-RBA",
+      "Penyusunan dokumen permohonan lengkap (rencana, program, skema biaya)",
+      "Dokumen pelindungan jamaah: asuransi, rekening kolektif, SOP komplain",
+      "Pendampingan sertifikasi LSUHK (persiapan audit & perbaikan temuan)",
+      "Pengajuan online + pemantauan status hingga SK terbit",
+      "Pendampingan klarifikasi verifikasi dalam lingkup kontrak",
+      "Panduan pasca-terbit: laporan berkala, perpanjangan, pelaporan rombongan",
+    ],
+    requirements: [
+      "KTP & NPWP direksi/pemegang saham",
+      "Akta & SK Kemenkumham (bila sudah ber-PT)",
+      "Nama PT (3 alternatif) & alamat kantor",
+      "Data modal & rencana target keberangkatan",
+      "Bukti izin dasar perjalanan (TDA BPW/ketersediaan izin terkait)",
+    ],
+    steps: [
+      "Konsultasi blueprint legal — posisi badan usaha & target usaha",
+      "Gap analysis dokumen vs checklist penerbit terkini",
+      "Perbaikan fondasi: PT/KBLI 79122/dokumen keuangan",
+      "Penyusunan berkas permohonan & pelindungan jamaah",
+      "Pengajuan resmi + pendampingan verifikasi/klarifikasi",
+      "SK terbit — handover + panduan kewajiban berkelanjutan",
+    ],
+    faq: [
+      {
+        q: "Berapa biaya sertifikasi PPIU?",
+        a: "Jasa all-in kami Rp20.000.000 — mencakup konsultasi, dokumen, pengajuan, dan pendampingan verifikasi. Biaya resmi penerbit, LSUHK, notaris, dan pihak ketiga dihitung terpisah dalam quotation.",
+      },
+      {
+        q: "Apakah CV bisa mengajukan PPIU?",
+        a: "Umumnya tidak — penyelenggara umrah wajib berbadan hukum PT. Jalur kami: pendirian PT paralel dengan merek yang sama, lalu permohonan atas nama PT.",
+      },
+      {
+        q: "Berapa lama prosesnya?",
+        a: "Estimasi 45-90 hari kerja sejak dokumen lengkap, tergantung kelengkapan awal dan antrean verifikasi penerbit — kesiapan dokumen menentukan kecepatan.",
+      },
+    ],
+    legalBasis: "PMHU 2/2026 + ketentuan perizinan umrah Kemenag; KBLI 79122 (OSS-RBA)",
+    authority: "Kementerian Agama RI — kanal perizinan ibadah (era Kementerian Haji dan Umrah)",
+    keywords: ["sertifikasi ppiu", "biaya izin ppiu", "syarat ppiu 2026", "izin umrah kemenag", "pengurusan ppiu", "sppu sipu", "kbli 79122"],
+    idealFor: ["Travel umrah baru", "Travel wisata", "Grup usaha ibadah"],
+    synergy: ["paket-pendirian-travel-umrah", "upgrade-ppiu-ke-pihk", "sertifikasi-pihk", "sertifikasi-bpw", "kepatuhan-pmh-2-2026"],
+  },
+  {
+    id: "sertifikasi-pihk",
+    name: "Sertifikasi PIHK — Penyelenggara Ibadah Haji Khusus (All-In)",
+    code: "Penetapan PIHK — Haji Khusus ONH Plus",
+    group: "travel-ibadah",
+    price: "Rp 25jt — all-in",
+    duration: "60-120 hari kerja",
+    desc: "Pengurusan penetapan PIHK untuk menjual paket haji khusus (ONH Plus) secara legal: audit kesiapan PPIU aktif & riwayat jamaah, dokumen jaminan/asuransi/akomodasi, hingga pendampingan verifikasi — all-in Rp25 juta.",
+    audience: ["PPIU aktif", "Grup travel ibadah", "Investor jangka panjang"],
+    longDesc: [
+      "Haji khusus (ONH Plus) hanya boleh dijual oleh PIHK yang terdaftar resmi — jumlahnya sangat terbatas dan setiap penetapan diverifikasi langsung oleh penerbit. Prasyarat pertama yang sering terlewat: perusahaan wajib memiliki izin PPIU aktif dengan riwayat keberangkatan jamaah sesuai ketentuan sebelum dapat mengajukan PIHK.",
+      "Standar PIHK berlapis di atas PPIU: modal lebih besar, jaminan bank, asuransi jemaah, akomodasi Makkah-Madinah yang disetujui, manajemen termin jamaah yang diawasi, dan pelindungan jemaah yang dipertegas era PMHU 2/2026. Layanan kami diawali audit kesiapan — seberapa jauh posisi Anda dari prasyarat — lalu roadmap pemenuhan dan pengurusan berkas hingga pendampingan verifikasi berkas dan fisik.",
+      "Slot verifikasi haji khusus bersifat periodik mengikuti kalender keberangkatan; keterlambatan dokumen bisa berarti menunggu periode berikutnya. Karena itu proses kami menekankan tenggat per periode dan konsistensi SOP pelindungan jemaah dengan operasional nyata — bukan dokumen tempelan yang gugur saat digali penerbit.",
+    ],
+    features: [
+      "Audit kesiapan PIHK: posisi PPIU vs prasyarat penetapan",
+      "Roadmap pemenuhan prasyarat dengan tenggat per periode",
+      "Penyusunan berkas penetapan sesuai format penerbit",
+      "Koordinasi format jaminan bank & skema asuransi jemaah",
+      "Dokumen akomodasi & draf kerja sama maktab/operator",
+      "SOP pelindungan jemaah + manajemen termin/rekening kolektif",
+      "Pengajuan resmi + pendampingan verifikasi berkas & fisik",
+      "Jawaban klarifikasi & perbaikan temuan dalam lingkup kontrak",
+      "Panduan kewajiban pasca-penetapan (pelaporan, kuota, evaluasi)",
+    ],
+    requirements: [
+      "Izin PPIU aktif + rekap riwayat keberangkatan jamaah",
+      "Laporan keuangan & dokumen modal sesuai standar PIHK",
+      "KTP/NPWP direksi & struktur organisasi",
+      "Draf kerja sama akomodasi/maktab (bila ada)",
+      "Rencana keberangkatan & profil pelindungan jemaah",
+    ],
+    steps: [
+      "Audit kesiapan — rekonsiliasi riwayat dengan data penerbitan",
+      "Roadmap pemenuhan prasyarat bertahap",
+      "Penyusunan berkas: jaminan, asuransi, akomodasi, SOP",
+      "Pengajuan resmi ke penerbit",
+      "Pendampingan verifikasi berkas & fisik + klarifikasi",
+      "Penetapan terbit — handover + panduan pasca-penetapan",
+    ],
+    faq: [
+      {
+        q: "Apakah harus PPIU dulu sebelum PIHK?",
+        a: "Ya — berdasarkan aturan yang berlaku, PIHK hanya dapat diajukan perusahaan dengan PPIU aktif ditambah riwayat keberangkatan jamaah sesuai ketentuan. Jalur tercepat: tata PPIU sekarang, bukan menunggu.",
+      },
+      {
+        q: "Berapa biaya sertifikasi PIHK?",
+        a: "Jasa all-in kami Rp25.000.000. Biaya jaminan bank, asuransi, kontrak maktab, dan biaya resmi penerbit dihitung terpisah dalam quotation.",
+      },
+      {
+        q: "Berapa lama proses penetapan?",
+        a: "Estimasi 60-120 hari kerja sejak prasyarat terpenuhi dan berkas lengkap — slot verifikasi bersifat periodik mengikuti kalender keberangkatan haji khusus.",
+      },
+    ],
+    legalBasis: "Ketentuan penyelenggaraan perjalanan ibadah haji khusus (era PMHU 2/2026) + ketentuan penetapan PIHK Kemenag",
+    authority: "Kementerian Agama RI — penetapan syarat, verifikasi berkas & fisik, keputusan penetapan",
+    keywords: ["sertifikasi pihk", "haji khusus onh plus", "izin pihk kemenag", "syarat pihk", "biaya pihk", "jual paket haji legal"],
+    idealFor: ["PPIU aktif", "Grup travel ibadah", "Investor jangka panjang"],
+    synergy: ["sertifikasi-ppiu", "upgrade-ppiu-ke-pihk", "ppmp-pihk", "kepatuhan-pmh-2-2026"],
+  },
+  {
+    id: "sertifikasi-bpw",
+    name: "Sertifikasi BPW — Tanda Daftar Usaha Biro Perjalanan Wisata (All-In)",
+    code: "TDA BPW",
+    group: "travel-ibadah",
+    price: "Rp 15jt — all-in",
+    duration: "30-60 hari kerja",
+    desc: "Pengurusan lengkap Tanda Daftar Usaha BPW di Kemenparekraf/Baparekraf: kesiapan badan usaha, KBLI 79120, rencana usaha, pengajuan TDA, hingga pendampingan verifikasi — fondasi legal biro perjalanan wisata, all-in Rp15 juta.",
+    audience: ["Wirausaha travel baru", "Travel daring yang memformalkan usaha", "Pemula sektor pariwisata"],
+    longDesc: [
+      "TDA BPW adalah registrasi resmi usaha biro perjalanan wisata di Kemenparekraf/Baparekraf — pintu masuk legal sektor travel: prasyarat kontrak agen luar negeri, kepesertaan asosiasi (ASITA), dan sering kali langkah pertama menuju PPIU. Tanpa TDA, usaha travel menanggung risiko kelayakan kontrak dan reputasi.",
+      "Layanan all-in kami menata fondasi dari awal: struktur badan usaha terbaik untuk roadmap Anda (PT disarankan bila rencana naik kelas ke kegiatan ibadah), KBLI 79120 di OSS-RBA, rencana usaha sesuai format penerbit (bukan template generik), hingga pengajuan dan pendampingan verifikasi.",
+      "TDA berlaku tiga tahun dan perpanjangannya menuntut bukti kegiatan aktif — panduan pasca-terbit kami menyiapkan jejak dokumen sejak hari pertama, plus rekomendasi naik kelas: PPIU (KBLI 79122) untuk kegiatan ibadah atau akreditasi IATA untuk terbit tiket internasional.",
+    ],
+    features: [
+      "Konsultasi struktur badan usaha untuk roadmap BPW→PPIU/IATA",
+      "Pendirian PT bila dibutuhkan atau penyesuaian akta eksisting",
+      "NIB & KBLI 79120 di OSS-RBA",
+      "Penyusunan rencana usaha & seluruh dokumen permohonan TDA",
+      "Pengajuan resmi ke Kemenparekraf/Baparekraf + pemantauan",
+      "Pendampingan klarifikasi/verifikasi dalam lingkup kontrak",
+      "Pemantauan hingga TDA terbit + arsip digital",
+      "Panduan perpanjangan tiga tahunan & perubahan data",
+      "Rekomendasi naik kelas: PPIU / IATA",
+    ],
+    requirements: [
+      "KTP & NPWP direksi",
+      "Akta & SK Kemenkumham (bila sudah berbadan usaha)",
+      "Nama badan usaha & alamat kantor operasional",
+      "Gambaran produk tur & pasar sasaran",
+      "Bukti kantor (milik/sewa)",
+    ],
+    steps: [
+      "Konsultasi struktur usaha & roadmap sertifikasi",
+      "Fondasi: badan usaha + KBLI 79120",
+      "Penyusunan rencana usaha & dokumen permohonan",
+      "Pengajuan TDA ke Kemenparekraf/Baparekraf",
+      "Pendampingan verifikasi/klarifikasi",
+      "TDA terbit — handover + panduan perpanjangan",
+    ],
+    faq: [
+      {
+        q: "Apakah BPW bisa untuk menjual paket umrah?",
+        a: "Tidak — kegiatan penyelenggaraan umrah memerlukan PPIU (KBLI 79122). TDA BPW (79120) mencakup usaha perjalanan wisata umum; banyak klien menjadikan BPW fondasi sebelum naik ke PPIU.",
+      },
+      {
+        q: "Berapa biaya sertifikasi BPW?",
+        a: "Jasa all-in kami Rp15.000.000. Biaya resmi penerbit dan pihak ketiga (notaris, OSS) dihitung terpisah dalam quotation.",
+      },
+      {
+        q: "Berapa lama TDA BPW terbit?",
+        a: "Estimasi 30-60 hari kerja sejak dokumen lengkap — proses tercepat di trilogi karena tidak menunggu antrean verifikasi ibadah.",
+      },
+    ],
+    legalBasis: "Ketentuan usaha biro perjalanan wisata (TDA BPW) Kemenparekraf/Baparekraf; KBLI 79120 (OSS-RBA)",
+    authority: "Kemenparekraf/Baparekraf",
+    keywords: ["sertifikasi bpw", "tanda daftar usaha bpw", "izin biro perjalanan wisata", "syarat bpw", "biaya bpw", "kbli 79120"],
+    idealFor: ["Wirausaha travel baru", "Travel daring", "Pemula pariwisata"],
+    synergy: ["sertifikasi-ppiu", "sertifikasi-pihk", "paket-pendirian-travel-umrah", "kepatuhan-pmh-2-2026"],
+  },
+
+  // ==========================================================
   // SERTIFIKASI HALAL — PP 42/2024 (termasuk JASA!)
   // ==========================================================
   {
