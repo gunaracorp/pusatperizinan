@@ -22,7 +22,9 @@ export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const title = searchParams.get("t")?.slice(0, 200) || "PusatPerizinan.com";
   const subtitle = searchParams.get("s")?.slice(0, 220) || undefined;
-  const category = searchParams.get("c")?.slice(0, 60) || undefined;
+  // Kategori positioning panjang (mis. IATA premium 74 char) — jangan
+  // terpotong di 60; clamp visual ditangani makeOgImageResponse (110).
+  const category = searchParams.get("c")?.slice(0, 110) || undefined;
 
   const image = makeOgImageResponse({ title, subtitle, category });
 

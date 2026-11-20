@@ -5,19 +5,19 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.22.0_Premium_IATA-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-22-0)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.22.1_God_Mode_Audit-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-22-1)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-46_(0.1.0_%E2%86%92_1.22.0)-059669?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-47_(0.1.0_%E2%86%92_1.22.1)-059669?style=flat-square)
 ![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-51_ber_versi-059669?style=flat-square)
 ![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.23.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.22.0 — "Premium IATA"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.22.1 — "God Mode Audit"`**
 
 <sub>Versi terlihat hidup di: footer setiap halaman (11.888 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
@@ -39,7 +39,33 @@
 | Presisi tanggal | Era `0.x` (Sesi 1–2) direkonstruksi dari metadata file & jejak invoice (`INV-20261021`) → presisi bulan; era `1.x` → presisi hari (terverifikasi) |
 | Rilis berikutnya | **`v1.23.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
 
-> 🔗 Navigasi cepat: **[Tabel Lengkap 46 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+> 🔗 Navigasi cepat: **[Tabel Lengkap 47 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+
+---
+
+<a id="v1-22-1"></a>
+
+## [1.22.1] — 2026-11-20 — 🔍 "God Mode Audit" (Task 49)
+
+Sesi **bug hunt god mode** (Master Polymath + Sage Universal + Ultimate Problem Solver): audit menyeluruh proyek + perbaikan bug + penyegaran README/WORKLOG/STATE. Kategori `Fixed` pertama sejak v1.7.x dalam era 1.x.
+
+### 🧪 QA — Audit Menyeluruh (semua PASS)
+- `tsc --noEmit` & `eslint src/` **FULL project: NOL temuan**.
+- 15 route IATA (pillar, 3 produk, 2 konversi, 8 panduan + /kontak) **semua ada**; 14 entri sitemap utuh dengan prioritas benar.
+- Whitelist API `/api/leads` cocok dengan kedua form: `businessType` "Travel Ibadah (Haji/Umroh)" & "Pariwisata / Hotel" ✓ di SECTORS; `package` UMKM/Bisnis/Enterprise/Belum tahu ✓ di PACKAGES — lead Umrah tidak mungkin gagal validasi.
+- Form lead: honeypot (`company_website_hp`), consent privasi wajib, error handling lengkap (res.ok + catch), `source: iata-cek-kelayakan` / `iata-konsultasi`.
+- Nomor WA via satu konstanta `CONTACT.whatsapp` (6281269999910) — tanpa hardcode liar.
+- Mirror `WORKLOG.md` = `worklog.md` **identik byte-per-byte**; nol harga IATA lama; nol hydration risk baru (tanggal artikel pakai ISO+WIB eksplisit, deterministik).
+
+### 🛠️ Fixed
+- **OG image chip kategori meluber** (`src/lib/og-template.tsx`): chip dirender tanpa `maxWidth` — kategori positioning IATA premium (74 char) @22px bold uppercase ≈ >1000px melewati kanvas 1200px dan mendorong domain "pusatperizinan.com" keluar padding. Fix: fontSize adaptif (22 → 19 >40 char → 16 >64 char) + `maxWidth: 760` + `lineHeight` + `flexWrap` pada baris atas + clamp kategori 110 char.
+- **`/api/og` memotong kategori ke 60 char** (`src/app/api/og/route.tsx`): kategori 74-char tampil terpotong "…& ACCREDITATI…" di SERP/share. Fix: `slice(0, 110)` — konsisten dengan clamp template.
+- **README stale ×3 + badge model data**: 2 badge versi & 1 baris "Versi aplikasi" masih 1.21.0 "Benteng Digital" (tertinggal sejak Task 48) → 1.22.1; badge `Model_Data-14` meleset — kontrak aktual **16 model** (`grep -c "^model "` = 16) → badge 16 + bullet STATE dikoreksi (CurrencyRate tak pernah tercantum sejak model ditambahkan).
+- **STATE.md basi**: versi/lokasi clone/model/status masih Task 47 (2026-11-16) → refresh penuh Task 49 (versi 1.22.1, lokasi `repos/pusatperizinan`, 16 model, status audit).
+
+### 📝 Docs
+- **README diperluas**: seksi 2.1 (fitur publik) + seksi Peta Halaman kini mencatat **ekosistem akreditasi IATA 14 URL** (pillar, 3 produk GoLite/GoStandard/GoGlobal, 2 halaman konversi, 8 panduan `/panduan/iata-*`) dengan penunjuk satu sumber harga `src/lib/iata.ts`.
+- **Versioning 8 titik sinkron v1.22.1** (taskId 49): `src/lib/version.ts` (RELEASES 46 → 47) · `package.json` · `scripts/ver.json` (mirror 1:1, nextRelease v1.23.0, total 47) · badge & ladder dokumen ini · `WORKLOG.md` + `worklog.md` (Task 49).
 
 ---
 
@@ -809,11 +835,12 @@ Rilis pertama dengan **identitas versi resmi**. Seluruh proyek kini punya nomor 
 
 <a id="ladder"></a>
 
-## 🪜 Tabel Lengkap 46 Rilis
+## 🪜 Tabel Lengkap 47 Rilis
 
 | # | Versi | Tanggal (WIB) | Tipe | Nama Rilis | Task WORKLOG | Status |
 |---|---|---|---|---|---|---|
-| 46 | **v1.22.0** ⭐ | **2026-11-20** | minor | **Premium IATA** | Task 48 | **🟢 AKTIF — versi berjalan** |
+| 47 | **v1.22.1** ⭐ | **2026-11-20** | patch | **God Mode Audit** | Task 49 | **🟢 AKTIF — versi berjalan** |
+| 46 | v1.22.0 | 2026-11-20 | minor | Premium IATA | Task 48 | ✅ Rilis |
 | 45 | v1.21.0 | 2026-11-16 | minor | Benteng Digital | Task 47 | ✅ Rilis |
 | 44 | v1.20.0 | 2026-10-29 | minor | Footer Mahkota | Task 46 | ✅ Rilis |
 | 43 | v1.19.0 | 2026-10-29 | minor | Footer God Mode | Task 45 | ✅ Rilis |

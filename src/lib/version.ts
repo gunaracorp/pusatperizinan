@@ -17,9 +17,9 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.22.0";
+export const APP_VERSION = "1.22.1";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Premium IATA";
+export const RELEASE_NAME = "God Mode Audit";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
 export const RELEASE_DATE = "2026-11-20";
 /** Channel rilis: stable | beta | alpha. */
@@ -42,10 +42,22 @@ export interface ReleaseEntry {
 }
 
 /**
- * Riwayat lengkap 45 rilis — urut TERBARU lebih dulu.
+ * Riwayat lengkap 47 rilis — urut TERBARU lebih dulu.
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.22.1",
+    date: "2026-11-20",
+    type: "patch",
+    name: "God Mode Audit",
+    taskId: "49",
+    highlights: [
+      "Bug hunt god mode (Master Polymath + Sage Universal + Ultimate Problem Solver): tsc --noEmit & eslint FULL project nol temuan; audit menyeluruh terverifikasi — 15 route IATA ada, 14 entri sitemap utuh, whitelist API lead (SECTORS/PACKAGES) cocok dengan kedua form, honeypot+consent+error handling utuh, mirror WORKLOG.md = worklog.md identik, nol harga lama, nol hydration risk baru",
+      "4 bug diperbaiki: (1) chip kategori OG image tanpa maxWidth — kategori IATA premium 74-char meluber melewati kanvas 1200px dan mendorong domain keluar → adaptive fontSize (22/19/16) + maxWidth 760 + flexWrap + clamp 110; (2) /api/og memotong kategori ke 60 char → 110 (posisi positioning tidak terpotong lagi); (3) README 3 identitas versi stale 1.21.0 → 1.22.1 + badge Model Data 14 → 16 (koreksi: kontrak aktual 16 model, CurrencyRate tak tercantum di STATE); (4) STATE.md versi/lokasi/model stale → refresh penuh Task 49",
+      "README diperluas: seksi 2.1 + Peta Halaman kini mencatat ekosistem akreditasi IATA 14 URL (pillar, 3 produk, 2 konversi, 8 panduan, satu sumber harga src/lib/iata.ts); versioning 8 titik sinkron v1.22.1 (version.ts RELEASES 46 → 47, package.json, scripts/ver.json, CHANGELOG badge+entri+ladder #47, WORKLOG+worklog Task 49)",
+    ],
+  },
   {
     version: "1.22.0",
     date: "2026-11-20",

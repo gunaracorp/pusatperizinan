@@ -11,11 +11,11 @@
 |---|---|
 | Website | PusatPerizinan.com — konsultan perizinan, pajak & penempatan PMI Indonesia |
 | Repositori | https://github.com/gunaracorp/pusatperizinan (origin utuh, remote terpasang) |
-| Lokasi sandbox | `/home/z/my-project/pusatperizinan` (clone ulang penuh Task 47 — `.git` utuh, origin terpasang) |
-| Versi aplikasi | v1.21.0 "Benteng Digital" (`src/lib/version.ts`, `package.json`) |
+| Lokasi sandbox | `/home/z/my-project/repos/pusatperizinan` (clone ulang penuh Task 49 — `.git` utuh, origin terpasang) |
+| Versi aplikasi | v1.22.1 "God Mode Audit" (`src/lib/version.ts`, `package.json`) |
 | Stack | Next.js 16.4 (Turbopack dev) · React 19 · TypeScript 5 · Tailwind 4 · shadcn/ui · Prisma ORM 8 RC (`@prisma/orm-postgres 8.0.0-rc.20`) · PostgreSQL embedded |
 | Database | Embedded PostgreSQL (`node_modules/@embedded-postgres/linux-x64`), cluster di `.pgdata/`, port 5432, user `postgres` (trust), DB `pusatperizinan` |
-| Model data | 15 model (Lead, Consultation, ChatMessage, LicenseCheck, Subscriber, Testimonial, DocumentCheck, RoadmapRequest, NotificationSetting, Order, Post, FollowUpLog, RecoveryLog, NotificationLog, EditorialSlot) |
+| Model data | **16 model** (Lead, Consultation, ChatMessage, LicenseCheck, Subscriber, Testimonial, DocumentCheck, RoadmapRequest, NotificationSetting, Order, Post, FollowUpLog, RecoveryLog, NotificationLog, EditorialSlot, CurrencyRate) — koreksi Task 49: catatan lama "15 model" meleset, CurrencyRate tak tercantum |
 | Kanonik skema | `src/prisma/contract.prisma` → artefak `generated/prisma8/` (jangan edit manual) |
 
 ## 2. Cara Menjalankan (teruji)
@@ -42,20 +42,20 @@ bun run dev          # atau: npm run dev (dev.sh sistem memakai npm)
 7. Token admin cookie = `pp_admin_token` (login via `POST /api/admin/auth`).
 8. **npm ≥11 memblokir postinstall paket DEPENDENSI secara default** (fitur `install-scripts`) meski `trustedDependencies` sudah ada di package.json — gejala: embedded-postgres tanpa `native/bin`, sharp/esbuild/swc bermasalah. Penangkal: `npm install-scripts approve <pkg>` untuk 7 paket (`@embedded-postgres/linux-x64`, `@parcel/watcher`, `@swc/core`, `es5-ext`, `esbuild`, `sharp`, `workerd`) lalu `npm rebuild` — atau jalankan ulang sesi Task 47 di log instalasi.
 
-## 4. Status Saat Ini (2026-11-16 — Task 47, sesi instalasi + security headers)
+## 4. Status Saat Ini (2026-11-20 — Task 49, god mode audit + README/WORKLOG)
 
-- ✅ Clone ulang bersih dari GitHub + instalasi penuh: `npm install` exit 0 (745 paket top-level, npm 11), 7 install-script approved, kontrak Prisma ter-emisi, embedded PostgreSQL initdb + db init + sign 15 model.
-- ✅ Dev server hidup via pola nohup §3 — `/api/version` → **v1.21.0 "Benteng Digital"**; 7 endpoint kunci = 200 (/, /api/stats, /sitemap.xml, /katalog, /lowongan-kerja, /checkout, /blog).
-- ✅ **Security headers aktif** (langkah 69): CSP + HSTS + X-Frame-Options DENY + nosniff + Referrer-Policy + Permissions-Policy + COOP di `next.config.ts` (parity `.htaccess`); `poweredByHeader false`; browser E2E nol pelanggaran CSP (HMR hidup). Rollout produksi: `CSP_REPORT_ONLY="true"` dulu.
-- ✅ ROADMAP-99: **22/99 langkah** selesai; CHANGELOG 45 rilis; WORKLOG Task 47.
-- ✅ E2E terverifikasi via browser: form konsultasi hero → lead tersimpan di PostgreSQL (source: hero; normalisasi WA 0812… → 62812… bekerja).
-- ✅ Keamanan: API admin menolak request tanpa `pp_admin_token`.
-- 📸 Bukti: `download/verifikasi-install-sesi-ini.png`.
-- ⏳ Belum aktif (butuh kredensial owner): GA4 real, Telegram/Fonnte, Midtrans/Tripay produksi, Sentry DSN, IndexNow key.
+- ✅ Clone ulang bersih dari GitHub (origin di `068e7b9` = v1.22.0 "Premium IATA") + instalasi penuh: `npm install` exit 0 (1124 paket, 745 top-level).
+- ✅ **Bug hunt god mode**: tsc `--noEmit` & eslint **FULL project = NOL temuan**; 15 route IATA + 14 entri sitemap + whitelist API lead (SECTORS/PACKAGES) + form honeypot/consent + mirror WORKLOG semua terverifikasi OK.
+- ✅ **4 bug diperbaiki** (rilis v1.22.1): OG image chip kategori tanpa maxWidth (kategori IATA premium 74-char meluber), `/api/og` truncate kategori ke 60 char, README versi stale ×3 + badge Model Data 14 → 16, STATE.md versi/lokasi/model stale.
+- ✅ README diperbarui: 3 identitas versi 1.22.1 + badge model data + seksi 2.1 & Peta Halaman kini mencatat ekosistem IATA 14 URL.
+- ✅ Dev server pola nohup §3 terbukti; `/api/version` → **v1.22.1**; 7 endpoint kunci = 200 (/, /api/stats, /sitemap.xml, /katalog, /lowongan-kerja, /checkout, /blog).
+- ✅ ROADMAP-99: **22/99 langkah**; CHANGELOG 47 rilis; WORKLOG Task 49.
+- ⏳ Belum aktif (butuh kredensial owner): GA4 real, Telegram/Fonnte, Midtrans/Tripay produksi, Sentry DSN.
+- 📌 Push tiap rilis via URL token sekali-pakai (pola keamanan Task 43/47); token dari percakapan WAJIB di-rotate owner setelah deploy.
 
 ## 5. Peta Dokumen Resmi Repo
 
-`README.md` (dokumentasi 16 seksi) · `CHANGELOG.md` (45 rilis) · `ROADMAP-99.md` (99 langkah, 12 fase) · `WORKLOG.md` + `worklog.md` (riwayat tugas) · `docs/HOSTINGER-NODEJS-DEPLOY.md` (deploy produksi) · `docs/PRISMA8-MIGRATION-STATUS.md` (aturan migrasi DB).
+`README.md` (dokumentasi 16 seksi) · `CHANGELOG.md` (47 rilis) · `ROADMAP-99.md` (99 langkah, 12 fase) · `WORKLOG.md` + `worklog.md` (riwayat tugas) · `docs/HOSTINGER-NODEJS-DEPLOY.md` (deploy produksi) · `docs/PRISMA8-MIGRATION-STATUS.md` (aturan migrasi DB).
 
 ## 6. Langkah Selanjutnya yang Disarankan
 

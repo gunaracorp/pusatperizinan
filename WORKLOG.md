@@ -442,3 +442,25 @@ Stage Summary:
 - Harga IATA PusatPerizinan.com kini 100% struktur premium baru di semua titik tampil (kartu harga UI, JSON-LD Offer, metadata deskripsi, FAQ, tabel & paragraf artikel) dengan satu sumber kebenaran src/lib/iata.ts — nol harga lama, nol drift antar halaman
 - Kanal GConsultant.web.id & Gunara.web.id tak tersentuh sesuai aturan implementasi; arsitektur brand tiga kanal terdokumentasi di header source of truth
 - Dokumentasi versi kembali 1:1 dengan kode (version.ts/package.json/ver.json/CHANGELOG/WORKLOG) — v1.22.0 "Premium IATA" menjadi versi berjalan
+
+---
+Task ID: 49
+Agent: main (mode Master Polymath + Sage Universal + Ultimate Problem Solver — God Mode Tier Max)
+Task: Audit menyeluruh proyek + check & fix semua bug + update README/WORKLOG (permintaan owner) 🏷️ Rilis v1.22.1 "God Mode Audit"
+
+Work Log:
+- Clone ulang sandbox (origin 068e7b9 = v1.22.0) + npm install exit 0 (1124 paket, 745 top-level) → audit god mode dimulai dari dua jalur paralel: (a) QA mesin, (b) audit statis dokumen & integrasi
+- QA mesin FULL project: `npx tsc --noEmit` → NOL temuan; `npx eslint src/` → NOL temuan (keduanya dijalankan dari cwd repo — pelajaran: perintah background tool memulai dari /home/z/my-project, wajib cd eksplisit; pola diulang setelah percobaan pertama gagal "tsc not found")
+- Audit statis menyeluruh (38+ pemeriksaan): 15 route IATA ada (pillar/3 produk/2 konversi/8 panduan/kontak) · 14 entri sitemap utuh · whitelist API /api/leads cocok dengan kedua form IATA ("Travel Ibadah (Haji/Umroh)" ✓ SECTORS; UMKM/Bisnis/Enterprise/Belum tahu ✓ PACKAGES — lead Umrah aman) · honeypot company_website_hp + consent privasi + res.ok/catch di kedua form · WA via satu konstanta CONTACT.whatsapp (6281269999910, tanpa hardcode) · iata-motion "use client" + IntersectionObserver sekali-jalan · tanggal artikel deterministik (ISO + WIB eksplisit — nol hydration risk) · mirror WORKLOG.md = worklog.md identik · nol harga IATA lama · PLATFORM_STATS.indexedUrls 11888 ✓ · sitemap-sections 14 URL IATA ✓
+- BUG #1+2 (OG image, diperkenalkan Task 48): chip kategori og-template.tsx tanpa maxWidth — kategori premium 74-char @22px bold uppercase >1000px meluber melewati kanvas 1200px & mendorong domain keluar; DAN /api/og/route.tsx slice(0,60) memotong kategori ke "…& ACCREDITATI…". FIX: fontSize adaptif (22/19/16 berdasar panjang) + maxWidth 760 + lineHeight 1.3 + flexWrap baris atas + clamp kategori 110 char; slice 60 → 110
+- BUG #3 (README stale ×3 + model data): 2 badge versi + baris "Versi aplikasi" masih 1.21.0 "Benteng Digital" (tertinggal sejak Task 48) → 1.22.1; badge Model_Data-14 meleset — kontrak aktual 16 model (grep -c "^model " = 16) → badge 16; STATE.md lama mencantumkan 15 nama tanpa CurrencyRate → dikoreksi eksplisit
+- BUG #4 (STATE.md basi): versi/lokasi/status masih Task 47 (2026-11-16, lokasi clone lama) → refresh penuh §1 & §4 Task 49 (v1.22.1, repos/pusatperizinan, 16 model, status audit + 4 bug)
+- README diperluas (permintaan owner): seksi 2.1 + Peta Halaman mencatat ekosistem IATA 14 URL (pillar, 3 produk, 2 konversi, 8 panduan; satu sumber harga src/lib/iata.ts; OG programatik; motion CSS-first)
+- Versioning 8 titik sinkron v1.22.1 "God Mode Audit" (taskId 49, PATCH): src/lib/version.ts (APP_VERSION + RELEASE_NAME + RELEASES 46 → 47 entri) · package.json 1.22.1 · scripts/ver.json (mirror 1:1: label/releasedAt/nextRelease v1.23.0/total 47/history prepend) · CHANGELOG.md (badge 4 titik + entri v1.22.1 kategori QA/Fixed/Docs — Fixed pertama era 1.x + ladder #47 + v1.22.0 tidak lagi ⭐) · WORKLOG.md + worklog.md (entri ini di kedua lokasi — pola Task 42) · README.md (3 identitas + badge model + 2 seksi baru)
+- Kategori Fixed perdana era 1.x: kategori Fixed/Docs dipakai sesuai Keep a Changelog 1.1.0 (konvensi dokumen §Format)
+
+Stage Summary:
+- 4 bug diperbaiki & diverifikasi (2 OG image fungsional-visual, 2 dokumentasi stale); nol bug tersisa yang terdeteksi oleh audit mesin + statis 38 pemeriksaan
+- README kini mencatat ekosistem IATA lengkap; STATE.md kembali jadi sumber status yang akurat untuk sesi berikutnya (16 model, lokasi clone baru, status Task 49)
+- QA: tsc & eslint FULL project nol temuan PASCA-fix (bukan hanya file ubah); CI dipantau hijau pasca-push
+- v1.22.1 "God Mode Audit" menjadi versi berjalan di seluruh 8 titik versioning

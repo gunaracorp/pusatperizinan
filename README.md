@@ -34,9 +34,9 @@
 [![ROADMAP 99](https://img.shields.io/badge/ROADMAP-99_PERFECT-7C3AED?style=for-the-badge&logo=github&logoColor=white)](./ROADMAP-99.md)
 [![Motion](https://img.shields.io/badge/Design-Motion_%2B_Reduced_Motion-059669?style=for-the-badge&logo=framer&logoColor=white)](#design-motion)
 
-[![Versi](https://img.shields.io/badge/Versi-aplikasi_1.21.0-059669?style=flat-square)](./src/lib/version.ts)
+[![Versi](https://img.shields.io/badge/Versi-aplikasi_1.22.1-059669?style=flat-square)](./src/lib/version.ts)
 [![Bahasa](https://img.shields.io/badge/Antarmuka-30_bahasa-0F766E?style=flat-square)](./src/lib/i18n/languages.ts)
-[![Model Data](https://img.shields.io/badge/Model_Data-14-7C3AED?style=flat-square)](./src/prisma/contract.prisma)
+[![Model Data](https://img.shields.io/badge/Model_Data-16-7C3AED?style=flat-square)](./src/prisma/contract.prisma)
 [![CI](https://img.shields.io/badge/CI-GitHub_Actions-2563EB?style=flat-square&logo=githubactions&logoColor=white)](./.github/workflows/prisma8-migration.yml)
 ![Roadmap](https://img.shields.io/badge/Roadmap-12_Fase_%C2%B7_99_Langkah-7C3AED?style=flat-square)
 ![Animasi](https://img.shields.io/badge/Motion-Reduced_Motion_Siap-059669?style=flat-square)
@@ -97,7 +97,7 @@
 
 ### Identitas teknis utama
 
-- **Versi aplikasi:** 1.21.0 ("Benteng Digital" — lihat [CHANGELOG](./CHANGELOG.md)), didefinisikan di <code>src/lib/version.ts</code> dan <code>package.json</code>.
+- **Versi aplikasi:** 1.22.1 ("God Mode Audit" — lihat [CHANGELOG](./CHANGELOG.md)), didefinisikan di <code>src/lib/version.ts</code> dan <code>package.json</code>.
 - **Framework:** Next.js App Router dengan TypeScript.
 - **Output Node.js:** <code>output: "standalone"</code> untuk menjalankan <code>node .next/standalone/server.js</code>.
 - **Data aplikasi:** kode saat ini menggunakan Prisma ORM 8 Release Candidate dan adapter PostgreSQL. Konfigurasi database produksi, impor data lama, serta kredensial hosting harus diverifikasi terpisah; jangan mengasumsikan data produksi otomatis telah berpindah.
@@ -120,6 +120,7 @@
 | Kalkulator biaya | <code>cost-calculator.tsx</code>, <code>src/app/kalkulator/</code> |
 | Kursus email | <code>email-course.tsx</code>, API subscribe |
 | Hub wilayah | <code>src/app/wilayah/</code>, <code>src/lib/kabkota-data.ts</code>, generator katalog |
+| Ekosistem akreditasi IATA (14 URL) | Pillar <code>/layanan/iata-accreditation</code>, produk <code>iata-golite/gostandard/goglobal</code>, konversi <code>/konsultasi-iata</code> + <code>/cek-kelayakan-iata</code>, 8 panduan <code>/panduan/iata-*</code> — satu sumber harga <code>src/lib/iata.ts</code>, OG image programatik, motion CSS-first |
 | Halaman legal dan profil | <code>tentang-kami</code>, <code>kontak</code>, <code>kebijakan-privasi</code>, <code>syarat-ketentuan</code> |
 
 ### 2.2 Katalog layanan dan pemesanan
@@ -229,6 +230,8 @@ Berikut rute utama yang terlihat pada App Router. Halaman dinamis menggunakan pa
 | <code>/faq</code> | Pusat FAQ |
 | <code>/glosarium</code> dan <code>/glosarium/[slug]</code> | Glosarium |
 | <code>/panduan</code> dan <code>/panduan/[id]</code> | Panduan perizinan |
+| <code>/layanan/iata-accreditation</code> + <code>/layanan/iata-golite|gostandard|goglobal</code> | Ekosistem akreditasi IATA — pillar + 3 model (harga katalog→promo 50%, JSON-LD Offer) |
+| <code>/konsultasi-iata</code>, <code>/cek-kelayakan-iata</code>, <code>/panduan/iata-*</code> (8) | Konversi lead IATA (POST /api/leads) + panduan akreditasi |
 | <code>/cek-izin</code> | Pemeriksaan izin berbantuan AI |
 | <code>/cek-dokumen</code> | Pemeriksaan dokumen |
 | <code>/roadmap</code> | Roadmap usaha |
@@ -972,7 +975,7 @@ README ini menggunakan Bahasa Indonesia sebagai bahasa utama agar onboarding dan
 
 **PusatPerizinan.com** · [Situs](https://pusatperizinan.com) · [Repository](https://github.com/gunaracorp/pusatperizinan) · [🏆 ROADMAP 99](./ROADMAP-99.md) · [Kembali ke atas ↑](#top)
 
-[![Versi](https://img.shields.io/badge/Versi-1.21.0-059669?style=flat-square)](./CHANGELOG.md)
+[![Versi](https://img.shields.io/badge/Versi-1.22.1-059669?style=flat-square)](./CHANGELOG.md)
 [![ROADMAP](https://img.shields.io/badge/ROADMAP-99_PERFECT-7C3AED?style=flat-square)](./ROADMAP-99.md)
 
 </div>

@@ -62,6 +62,11 @@ export function makeOgImageResponse({ title, subtitle, category }: OgInput): Ima
   const safeSubtitle = subtitle ? clamp(subtitle, 150) : undefined;
   // Judul panjang menyusut proporsional agar tetap 2-3 baris rapi
   const titleSize = safeTitle.length > 90 ? 46 : safeTitle.length > 60 ? 54 : 62;
+  // Kategori panjang (mis. "…Premium Corporate Licensing & Accreditation
+  // Services", 70+ char) menyusut + dibungkus dalam chip — tanpa ini
+  // teks meluber melewati kanvas dan mendorong domain keluar.
+  const safeCategory = clamp((category ?? "PUSATPERIZINAN.COM").toUpperCase(), 110);
+  const categorySize = safeCategory.length > 64 ? 16 : safeCategory.length > 40 ? 19 : 22;
 
   return new ImageResponse(
     (
@@ -79,7 +84,7 @@ export function makeOgImageResponse({ title, subtitle, category }: OgInput): Ima
         }}
       >
         {/* Baris atas: chip kategori + domain */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
           <div
             style={{
               display: "flex",
@@ -87,12 +92,14 @@ export function makeOgImageResponse({ title, subtitle, category }: OgInput): Ima
               color: "#022c22",
               padding: "8px 20px",
               borderRadius: 999,
-              fontSize: 22,
+              fontSize: categorySize,
               fontWeight: 700,
               letterSpacing: 1,
+              lineHeight: 1.3,
+              maxWidth: 760,
             }}
           >
-            {category ? category.toUpperCase() : "PUSATPERIZINAN.COM"}
+            {safeCategory}
           </div>
           <div style={{ display: "flex", fontSize: 22, color: "#6ee7b7", fontWeight: 600 }}>
             pusatperizinan.com
