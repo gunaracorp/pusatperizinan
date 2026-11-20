@@ -206,6 +206,28 @@ function buildStaticPages(): SitemapEntry[] {
     // Halaman Garansi 100% (langkah 48 ROADMAP-99 — trust/E-E-A-T,
     // ditaut dari badge checkout & footer)
     entry("/garansi", "monthly", 0.7),
+    // =========================================================
+    // EKOSISTEM IATA ACCREDITATION (14 URL — pillar + produk +
+    // konversi + panduan; harga & konten dari src/lib/iata*.ts)
+    // =========================================================
+    // Pillar page — pusat informasi & produk akreditasi IATA
+    entry("/layanan/iata-accreditation", "weekly", 0.95),
+    // Halaman produk
+    entry("/layanan/iata-golite", "monthly", 0.9),
+    entry("/layanan/iata-gostandard", "monthly", 0.9),
+    entry("/layanan/iata-goglobal", "monthly", 0.9),
+    // Halaman konversi (lead generation)
+    entry("/konsultasi-iata", "monthly", 0.9),
+    entry("/cek-kelayakan-iata", "monthly", 0.9),
+    // Artikel edukasi /panduan (topical authority IATA)
+    entry("/panduan/iata-accreditation-indonesia", "monthly", 0.8),
+    entry("/panduan/persyaratan-iata-indonesia", "monthly", 0.8),
+    entry("/panduan/perbedaan-iata-golite-gostandard-goglobal", "monthly", 0.8),
+    entry("/panduan/proses-pengajuan-iata", "monthly", 0.8),
+    entry("/panduan/biaya-akreditasi-iata", "monthly", 0.8),
+    entry("/panduan/financial-security-iata", "monthly", 0.8),
+    entry("/panduan/iata-untuk-travel-agent-baru", "monthly", 0.8),
+    entry("/panduan/iata-untuk-travel-agent-umrah", "monthly", 0.8),
   ];
 }
 
