@@ -7,16 +7,16 @@
     "url": "https://pusatperizinan.com"
   },
   "version": {
-    "current": "1.21.0",
-    "label": "v1.21.0 — Benteng Digital",
-    "releaseName": "Benteng Digital",
-    "releasedAt": "2026-11-16",
+    "current": "1.22.0",
+    "label": "v1.22.0 — Premium IATA",
+    "releaseName": "Premium IATA",
+    "releasedAt": "2026-11-20",
     "channel": "stable",
     "timezone": "Asia/Jakarta (WIB)",
     "semverValid": true
   },
   "stats": {
-    "indexedUrls": 11873,
+    "indexedUrls": 11888,
     "sitemapSections": 15,
     "orderableServices": 1500,
     "subscriptionSkus": 6,
@@ -29,23 +29,35 @@
     "changelog": "/CHANGELOG.md",
     "worklog": "/WORKLOG.md",
     "roadmap": "/ROADMAP-99.md",
-    "nextRelease": "v1.22.0 (Unreleased — antrean ROADMAP-99)"
+    "nextRelease": "v1.23.0 (Unreleased — antrean ROADMAP-99)"
   },
   "releases": {
-    "total": 45,
+    "total": 46,
     "current": {
-      "version": "1.21.0",
-      "date": "2026-11-16",
+      "version": "1.22.0",
+      "date": "2026-11-20",
       "type": "minor",
-      "name": "Benteng Digital",
-      "taskId": "47",
+      "name": "Premium IATA",
+      "taskId": "48",
       "highlights": [
-        "Security headers lengkap (ROADMAP-99 langkah 69) di seluruh rute Node standalone via next.config.ts → headers(): CSP granular (default-src 'self', origin integrasi env-gated GA4/Clarity/Sentry/Midtrans Snap hanya untuk yang benar-benar dipakai), X-Frame-Options DENY + frame-ancestors 'none', HSTS 2 tahun includeSubDomains, Permissions-Policy (kamera/mikrofon/geolokasi/payment mati), Referrer-Policy, COOP same-origin-allow-popups (popup Midtrans tetap berfungsi), X-DNS-Prefetch-Control",
-        "Hardening next.config.ts: poweredByHeader false (stack bocor di header tidak lagi terkirim) + mode CSP_REPORT_ONLY env untuk rollout produksi tanpa risiko (laporan pelanggaran dulu, enforce kemudian) + CSP khusus dev (unsafe-eval & ws: HMR hanya saat NODE_ENV development)",
-        "Parity jalur hosting statis: blok security headers identik ditambahkan ke .htaccess (mod_headers) — Node standalone & Apache/LiteSpeed kini sama-sama terbentengi; verifikasi penuh: curl -I 8 header aktif, 7 endpoint kunci tetap 200, browser E2E tanpa satu pun pelanggaran CSP (HMR & Fast Refresh hidup)"
+        "Master Pricing Revision IATA 2026 untuk PusatPerizinan.com (positioning: Premium Corporate Licensing & Accreditation Services) — GoLite Rp29.250.000 → Rp55.575.000 (promo Rp14.625.000 → Rp27.787.500), GoStandard Rp56.250.000 → Rp106.875.000 (promo Rp28.125.000 → Rp53.437.500), GoGlobal Rp112.500.000 → mulai Rp213.750.000 (promo Rp56.250.000 → mulai Rp106.875.000); diskon promo konsisten 50% dari katalog",
+        "Sinkron penuh satu sumber harga (src/lib/iata.ts) ke seluruh titik tampil: kartu harga pillar & produk, JSON-LD Offer (schema.org priceCurrency IDR), metaDescription GoLite, FAQ GoLite/GoStandard/GoGlobal, tabel harga artikel /panduan/biaya-akreditasi-iata + paragraf harga artikel pillar-indonesia & perbedaan; verifikasi grep: nol harga lama tertinggal di konten IATA",
+        "Kepatuhan master brief: promo berlabel 'Promo 2026' tanpa klaim diskon historis, GoGlobal selalu 'mulai dari' + penawaran khusus per cakupan negara & entitas, disclaimer biaya resmi IATA/pihak ketiga & tanpa janji persetujuan tetap tampil; positioning IATA diubah ke 'Premium Corporate Licensing & Accreditation Services' (OG image + badge pillar/artikel); harga kanal GConsultant.web.id & Gunara.web.id TIDAK disentuh (tidak ada di repo ini)"
       ]
     },
     "history": [
+      {
+        "version": "1.22.0",
+        "date": "2026-11-20",
+        "type": "minor",
+        "name": "Premium IATA",
+        "taskId": "48",
+        "highlights": [
+          "Master Pricing Revision IATA 2026 untuk PusatPerizinan.com (positioning: Premium Corporate Licensing & Accreditation Services) — GoLite Rp29.250.000 → Rp55.575.000 (promo Rp14.625.000 → Rp27.787.500), GoStandard Rp56.250.000 → Rp106.875.000 (promo Rp28.125.000 → Rp53.437.500), GoGlobal Rp112.500.000 → mulai Rp213.750.000 (promo Rp56.250.000 → mulai Rp106.875.000); diskon promo konsisten 50% dari katalog",
+          "Sinkron penuh satu sumber harga (src/lib/iata.ts) ke seluruh titik tampil: kartu harga pillar & produk, JSON-LD Offer (schema.org priceCurrency IDR), metaDescription GoLite, FAQ GoLite/GoStandard/GoGlobal, tabel harga artikel /panduan/biaya-akreditasi-iata + paragraf harga artikel pillar-indonesia & perbedaan; verifikasi grep: nol harga lama tertinggal di konten IATA",
+          "Kepatuhan master brief: promo berlabel 'Promo 2026' tanpa klaim diskon historis, GoGlobal selalu 'mulai dari' + penawaran khusus per cakupan negara & entitas, disclaimer biaya resmi IATA/pihak ketiga & tanpa janji persetujuan tetap tampil; positioning IATA diubah ke 'Premium Corporate Licensing & Accreditation Services' (OG image + badge pillar/artikel); harga kanal GConsultant.web.id & Gunara.web.id TIDAK disentuh (tidak ada di repo ini)"
+        ]
+      },
       {
         "version": "1.21.0",
         "date": "2026-11-16",

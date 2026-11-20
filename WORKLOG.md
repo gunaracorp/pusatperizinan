@@ -423,3 +423,22 @@ Lanjutan push (sesi berikutnya, 2026-11-16):
 - PAT owner diberikan di sesi baru → verifikasi ls-remote: remote main masih 0589dc2 (parent Task 47) → fast-forward bersih tanpa force
 - Push origin/main via URL token sekali-pakai — TIDAK disimpan di .git/config dan tidak ditulis di berkas mana pun (pola keamanan Task 43): 0589dc2..046d2ef main → main BERHASIL; origin/main = local main = 046d2ef (terverifikasi ls-remote ulang)
 - Rekomendasi keamanan owner: PAT yang dibagikan via percakapan wajib di-revoke/rotasi di GitHub Settings setelah push ini
+
+---
+Task ID: 48
+Agent: main (mode Master Polymath + Sage Universal + Ultimate Problem Solver)
+Task: Master Pricing Revision IATA 2026 untuk PusatPerizinan.com — positioning baru "Premium Corporate Licensing & Accreditation Services" + sinkronisasi dokumentasi ekosistem IATA (14 URL, komit 41b364e/9a72373) 🏷️ Rilis v1.22.0 "Premium IATA"
+
+Work Log:
+- Master Pricing Revision diterapkan pada satu sumber harga src/lib/iata.ts: GoLite katalog Rp29.250.000 → Rp55.575.000 (promo Rp14.625.000 → Rp27.787.500), GoStandard Rp56.250.000 → Rp106.875.000 (promo Rp28.125.000 → Rp53.437.500), GoGlobal Rp112.500.000 → mulai Rp213.750.000 (promo Rp56.250.000 → mulai Rp106.875.000) — diskon promo tepat 50% dari katalog (verifikasi Python rasio 0,5000 ×3); metaDescription GoLite (iata.ts), FAQ GoLite/GoStandard/GoGlobal (iata-pages-data.ts), paragraf harga artikel pillar-indonesia & perbedaan (iata-articles-1.ts), serta metaDescription + tabel harga artikel biaya-akreditasi-iata (iata-articles-2.ts) ikut diperbarui
+- Grep menyeluruh: nol harga lama tertinggal di seluruh konten IATA (iata.ts, iata-pages-data.ts, iata-articles-1/2.ts, halaman layanan/iata-*, konsultasi-iata, cek-kelayakan-iata, panduan/*, components/iata/*); angka sama-format di katalog NON-IATA (SIUJPT di katalog-lengkap.ts, layanan OJK/Reksa Dana di katalog-v2/v3) terverifikasi konteks layanan berbeda → sengaja tidak disentuh; mention GUNARA.WEB.ID di halaman /pengurusan-perizinan-kbli-85520 (partner khusus halaman itu) juga tidak disentuh
+- Positioning IATA → "Premium Corporate Licensing & Accreditation Services": badge hero pillar, badge artikel panduan, dan kategori OG image (pillar/product-page/article-page); header komentar iata.ts kini mencatat arsitektur brand tiga kanal (GConsultant.web.id = Professional Implementation · Gunara.web.id = Strategic Advisory · PusatPerizinan.com = Premium Corporate Licensing & Accreditation) + aturan GoGlobal selalu "mulai dari" dan memerlukan penawaran khusus per cakupan negara & entitas
+- JSON-LD Offer (schema.org price, IDR) di pillar & 3 halaman produk otomatis mengikuti source of truth — tanpa edit terpisah, nol drift harga
+- Versioning 8 titik sinkron v1.22.0 "Premium IATA" (Task 48): src/lib/version.ts (APP_VERSION 1.22.0 + RELEASE_NAME + RELEASE_DATE 2026-11-20 + RELEASES 45 → 46 entri, taskId 48) · package.json 1.22.0 · scripts/ver.json (mirror 1:1: current/label/releasedAt, stats.indexedUrls 11.888, docs.nextRelease v1.23.0, releases.total 46, history prepend) · CHANGELOG.md (badge header 4 titik + entri v1.22.0 kategori Added/Changed/QA + ladder #46 + v1.21.0 tidak lagi ⭐ AKTIF) · WORKLOG.md + worklog.md (entri ini di kedua lokasi — pola Task 42)
+- Kepatuhan master brief dipertahankan: label "Promo 2026" tanpa klaim diskon historis, disclaimer biaya resmi IATA/pihak ketiga tidak termasuk kecuali tertulis dalam quotation, tanpa janji persetujuan akreditasi, tanpa klaim afiliasi/cabang/mitra resmi IATA; harga kanal GConsultant.web.id & Gunara.web.id TIDAK diubah (bukan bagian repo ini — aturan implementasi #1)
+- QA: tsc --noEmit & eslint nol temuan pada seluruh file ubah; CI prisma8-migration dipantau hingga hijau pasca-push (sebelumnya 15 langkah SUCCESS di 9a72373 untuk ekosistem IATA)
+
+Stage Summary:
+- Harga IATA PusatPerizinan.com kini 100% struktur premium baru di semua titik tampil (kartu harga UI, JSON-LD Offer, metadata deskripsi, FAQ, tabel & paragraf artikel) dengan satu sumber kebenaran src/lib/iata.ts — nol harga lama, nol drift antar halaman
+- Kanal GConsultant.web.id & Gunara.web.id tak tersentuh sesuai aturan implementasi; arsitektur brand tiga kanal terdokumentasi di header source of truth
+- Dokumentasi versi kembali 1:1 dengan kode (version.ts/package.json/ver.json/CHANGELOG/WORKLOG) — v1.22.0 "Premium IATA" menjadi versi berjalan

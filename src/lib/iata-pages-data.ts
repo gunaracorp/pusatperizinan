@@ -139,7 +139,7 @@ export const GOLITE_CONTENT: IataProductContent = {
     },
     {
       q: "Berapa harga jasa konsultasi GoLite?",
-      a: "Harga promo jasa konsultasi PusatPerizinan.com adalah Rp14.625.000 untuk periode promo yang berlaku. Harga katalog Rp29.250.000.",
+      a: "Harga promo jasa konsultasi PusatPerizinan.com adalah Rp27.787.500 untuk periode promo 2026 yang berlaku. Harga katalog Rp55.575.000.",
     },
     {
       q: "Apakah harga sudah termasuk biaya resmi IATA?",
@@ -324,7 +324,7 @@ export const GOSTANDARD_CONTENT: IataProductContent = {
     },
     {
       q: "Berapa harga konsultasi GoStandard?",
-      a: "Rp28.125.000 untuk harga promo jasa konsultasi PusatPerizinan.com pada periode yang berlaku. Harga katalog Rp56.250.000.",
+      a: "Rp53.437.500 untuk harga promo jasa konsultasi PusatPerizinan.com pada periode promo 2026 yang berlaku. Harga katalog Rp106.875.000.",
     },
     {
       q: "Apakah biaya IATA termasuk?",
@@ -494,7 +494,7 @@ export const GOGLOBAL_CONTENT: IataProductContent = {
     },
     {
       q: "Apakah harga GoGlobal tetap?",
-      a: "Tidak. Harga dimulai dari Rp56.250.000 dan dapat berubah berdasarkan ruang lingkup proyek — jumlah negara, entitas, lokasi, kompleksitas struktur, dan kebutuhan dokumen.",
+      a: "Tidak. Harga dimulai dari Rp106.875.000 dan memerlukan penawaran khusus berdasarkan cakupan negara dan entitas — jumlah negara, entitas, lokasi, kompleksitas struktur, dan kebutuhan dokumen.",
     },
     {
       q: "Apakah semua negara memiliki persyaratan sama?",

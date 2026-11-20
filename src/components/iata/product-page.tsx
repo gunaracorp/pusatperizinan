@@ -53,7 +53,7 @@ export function iataProductMetadata(c: IataProductContent): Metadata {
           url: ogImageUrl({
             title: p.h1,
             subtitle: `${p.namaPendek} · ${p.model}`,
-            category: "PusatPerizinan.com — Licensing Consultancy Services",
+            category: "PusatPerizinan.com — Premium Corporate Licensing & Accreditation Services",
           }),
           width: 1200,
           height: 630,

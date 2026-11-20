@@ -6,11 +6,21 @@
 // DILARANG menulis harga IATA di file lain — selalu impor dari sini.
 //
 // POSISI BRAND (WAJIB dipertahankan di seluruh halaman):
+//   • POSITIONING PUSATPERIZINAN.COM: "Premium Corporate Licensing
+//     & Accreditation Services" (arsitektur brand tiga kanal:
+//     GConsultant.web.id = Professional Implementation;
+//     Gunara.web.id = Strategic Advisory — harga kanal lain JANGAN
+//     diubah di repo ini).
 //   • PusatPerizinan.com adalah KONSULTAN INDEPENDEN — bukan
 //     cabang/agen resmi/mitra resmi IATA dan tidak menerbitkan
 //     akreditasi. Keputusan akhir selalu pada IATA.
 //   • Harga di bawah = jasa konsultasi & pendampingan
 //     PT Top Konsultan Internasional, BUKAN biaya resmi IATA.
+//   • Harga promo = 50% dari harga katalog (Master Pricing
+//     Revision IATA 2026); promo 2026, periode dapat diubah
+//     administrator — tanpa klaim diskon historis.
+//   • GoGlobal SELALU "mulai dari" dan memerlukan penawaran
+//     khusus berdasarkan cakupan negara dan entitas.
 //   • Biaya resmi IATA (application fee, annual fee, financial
 //     security, audit, notaris, terjemahan tersumpah, bank, pajak)
 //     TIDAK termasuk kecuali tertulis dalam quotation.
@@ -38,7 +48,7 @@ export const IATA_URLS = {
   },
 } as const;
 
-/** Format rupiah gaya situs: Rp14.625.000 */
+/** Format rupiah gaya situs: Rp27.787.500 */
 export const fmtIdrIata = (n: number): string => `Rp${n.toLocaleString("id-ID")}`;
 
 export interface IataProduct {
@@ -67,13 +77,13 @@ export const IATA_PRODUCTS: IataProduct[] = [
     modelEn: "Standard Accreditation without Cash Facility",
     deskripsiModel:
       "Model akreditasi tanpa cash facility standar — relevan bagi travel agent yang menggunakan metode pembayaran yang diperbolehkan dalam skema GoLite, termasuk kartu kredit dan/atau IATA EasyPay sesuai ketentuan yang berlaku.",
-    hargaKatalog: 29_250_000,
-    hargaPromo: 14_625_000,
+    hargaKatalog: 55_575_000,
+    hargaPromo: 27_787_500,
     hargaMulaiDari: false,
     url: IATA_URLS.golite,
     seoTitle: "Jasa Konsultasi IATA GoLite Indonesia | Harga & Persyaratan",
     metaDescription:
-      "Konsultasi dan pendampingan IATA GoLite untuk travel agent Indonesia. Standard Accreditation without Cash Facility, pemeriksaan legalitas, dokumen dan kesiapan aplikasi. Promo Rp14.625.000.",
+      "Konsultasi dan pendampingan IATA GoLite untuk travel agent Indonesia. Standard Accreditation without Cash Facility, pemeriksaan legalitas, dokumen dan kesiapan aplikasi. Promo Rp27.787.500.",
     h1: "IATA GoLite Indonesia — Konsultasi dan Pendampingan Akreditasi Tanpa Cash Facility",
   },
   {
@@ -84,8 +94,8 @@ export const IATA_PRODUCTS: IataProduct[] = [
     modelEn: "Standard Accreditation with Cash Facility",
     deskripsiModel:
       "Model akreditasi dengan cash facility — kebutuhan finansial dan dokumen keuangan lebih mendalam, termasuk laporan keuangan audited sesuai ketentuan yang dipublikasikan IATA.",
-    hargaKatalog: 56_250_000,
-    hargaPromo: 28_125_000,
+    hargaKatalog: 106_875_000,
+    hargaPromo: 53_437_500,
     hargaMulaiDari: false,
     url: IATA_URLS.gostandard,
     seoTitle: "Jasa Konsultasi IATA GoStandard Indonesia | Cash Facility",
@@ -101,8 +111,8 @@ export const IATA_PRODUCTS: IataProduct[] = [
     modelEn: "Multi-Country Accreditation",
     deskripsiModel:
       "Model akreditasi multi-country untuk kelompok usaha yang memenuhi ketentuan operasi di lebih dari satu negara melalui beberapa entitas dan lokasi.",
-    hargaKatalog: 112_500_000,
-    hargaPromo: 56_250_000,
+    hargaKatalog: 213_750_000,
+    hargaPromo: 106_875_000,
     hargaMulaiDari: true,
     url: IATA_URLS.goglobal,
     seoTitle: "IATA GoGlobal Indonesia | Konsultasi Multi-Country Accreditation",

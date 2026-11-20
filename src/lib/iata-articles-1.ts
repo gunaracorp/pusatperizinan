@@ -109,7 +109,7 @@ export const IATA_ARTICLES_1: IataArticle[] = [
         heading: "Biaya: Jasa Konsultasi vs Biaya Resmi",
         paragraphs: [
           "Ada dua kelompok biaya yang berbeda dan harus tidak pernah dicampur. Pertama, biaya resmi IATA: application fee, annual fee, financial security, audit, dan pihak ketiga lainnya — ditetapkan oleh IATA atau penyedia resminya. Kedua, jasa konsultasi dan pendampingan PusatPerizinan.com.",
-          "Sebagai referensi jasa konsultasi kami: GoLite promo Rp14.625.000 (katalog Rp29.250.000), GoStandard promo Rp28.125.000 (katalog Rp56.250.000), GoGlobal mulai Rp56.250.000 (katalog Rp112.500.000) — semua adalah harga jasa konsultasi, bukan biaya resmi IATA, dan biaya resmi tidak termasuk kecuali dinyatakan tertulis dalam quotation.",
+          "Sebagai referensi jasa konsultasi kami: GoLite promo Rp27.787.500 (katalog Rp55.575.000), GoStandard promo Rp53.437.500 (katalog Rp106.875.000), GoGlobal mulai Rp106.875.000 (katalog Rp213.750.000) — semua adalah harga jasa konsultasi, bukan biaya resmi IATA, dan biaya resmi tidak termasuk kecuali dinyatakan tertulis dalam quotation.",
         ],
         cta: { text: "Rincian lengkap: ", href: IATA_URLS.panduan.biaya, label: "Biaya Akreditasi IATA — resmi vs jasa konsultasi" },
       },
@@ -367,7 +367,7 @@ export const IATA_ARTICLES_1: IataArticle[] = [
       {
         heading: "Harga Jasa Konsultasi per Model",
         paragraphs: [
-          "Sebagai acuan jasa konsultasi PusatPerizinan.com: GoLite promo Rp14.625.000 (katalog Rp29.250.000); GoStandard promo Rp28.125.000 (katalog Rp56.250.000); GoGlobal mulai Rp56.250.000 (katalog Rp112.500.000, harga akhir mengikuti kompleksitas proyek). Semuanya adalah harga jasa — bukan biaya resmi IATA.",
+          "Sebagai acuan jasa konsultasi PusatPerizinan.com: GoLite promo Rp27.787.500 (katalog Rp55.575.000); GoStandard promo Rp53.437.500 (katalog Rp106.875.000); GoGlobal mulai Rp106.875.000 (katalog Rp213.750.000, harga akhir mengikuti kompleksitas proyek). Semuanya adalah harga jasa — bukan biaya resmi IATA.",
         ],
         cta: { text: "Rincian biaya lainnya: ", href: IATA_URLS.panduan.biaya, label: "Biaya akreditasi IATA" },
       },

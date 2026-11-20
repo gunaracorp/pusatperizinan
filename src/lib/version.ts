@@ -17,11 +17,11 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.21.0";
+export const APP_VERSION = "1.22.0";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Benteng Digital";
+export const RELEASE_NAME = "Premium IATA";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
-export const RELEASE_DATE = "2026-11-16";
+export const RELEASE_DATE = "2026-11-20";
 /** Channel rilis: stable | beta | alpha. */
 export const RELEASE_CHANNEL = "stable" as const;
 
@@ -46,6 +46,18 @@ export interface ReleaseEntry {
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.22.0",
+    date: "2026-11-20",
+    type: "minor",
+    name: "Premium IATA",
+    taskId: "48",
+    highlights: [
+      "Master Pricing Revision IATA 2026 untuk PusatPerizinan.com (positioning: Premium Corporate Licensing & Accreditation Services) — GoLite Rp29.250.000 → Rp55.575.000 (promo Rp14.625.000 → Rp27.787.500), GoStandard Rp56.250.000 → Rp106.875.000 (promo Rp28.125.000 → Rp53.437.500), GoGlobal Rp112.500.000 → mulai Rp213.750.000 (promo Rp56.250.000 → mulai Rp106.875.000); diskon promo konsisten 50% dari katalog",
+      "Sinkron penuh satu sumber harga (src/lib/iata.ts) ke seluruh titik tampil: kartu harga pillar & produk, JSON-LD Offer (schema.org priceCurrency IDR), metaDescription GoLite, FAQ GoLite/GoStandard/GoGlobal, tabel harga artikel /panduan/biaya-akreditasi-iata + paragraf harga artikel pillar-indonesia & perbedaan; verifikasi grep: nol harga lama tertinggal di konten IATA",
+      "Kepatuhan master brief: promo berlabel 'Promo 2026' tanpa klaim diskon historis, GoGlobal selalu 'mulai dari' + penawaran khusus per cakupan negara & entitas, disclaimer biaya resmi IATA/pihak ketiga & tanpa janji persetujuan tetap tampil; positioning IATA diubah ke 'Premium Corporate Licensing & Accreditation Services' (OG image + badge pillar/artikel); harga kanal GConsultant.web.id & Gunara.web.id TIDAK disentuh (tidak ada di repo ini)",
+    ],
+  },
   {
     version: "1.21.0",
     date: "2026-11-16",

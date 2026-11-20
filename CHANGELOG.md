@@ -5,21 +5,21 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.21.0_Benteng_Digital-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-21-0)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.22.0_Premium_IATA-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-22-0)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-45_(0.1.0_%E2%86%92_1.21.0)-059669?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-46_(0.1.0_%E2%86%92_1.22.0)-059669?style=flat-square)
 ![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-51_ber_versi-059669?style=flat-square)
-![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.22.0_(Unreleased)-f59e0b?style=flat-square)
+![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.23.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.21.0 — "Benteng Digital"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.22.0 — "Premium IATA"`**
 
-<sub>Versi terlihat hidup di: footer setiap halaman (11.873 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
+<sub>Versi terlihat hidup di: footer setiap halaman (11.888 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=0:059669,100:f59e0b&height=3&section=footer" width="100%" alt=""/>
 
@@ -37,9 +37,34 @@
 | Sumber kebenaran | [`WORKLOG.md`](./WORKLOG.md) (rekam jejak 1:1) · `src/lib/version.ts` (data mesin) · `package.json` (runtime) |
 | Ritme | **1 task/permintaan user = 1 nomor versi baru** — fitur → `MINOR`, perbaikan → `PATCH`, perombakan arah produk → `MAJOR` |
 | Presisi tanggal | Era `0.x` (Sesi 1–2) direkonstruksi dari metadata file & jejak invoice (`INV-20261021`) → presisi bulan; era `1.x` → presisi hari (terverifikasi) |
-| Rilis berikutnya | **`v1.22.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
+| Rilis berikutnya | **`v1.23.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
 
-> 🔗 Navigasi cepat: **[Tabel Lengkap 45 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+> 🔗 Navigasi cepat: **[Tabel Lengkap 46 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+
+---
+
+<a id="v1-22-0"></a>
+
+## [1.22.0] — 2026-11-20 — 💼 "Premium IATA" (Task 48)
+
+Ekosistem halaman akreditasi IATA lengkap (14 URL: pillar + 3 produk + 2 konversi + 8 panduan) dan **Master Pricing Revision IATA 2026** untuk PusatPerizinan.com dengan positioning baru **"Premium Corporate Licensing & Accreditation Services"** — animasi CSS-first ringan, schema.org penuh, satu sumber harga. Digarap mode Master Polymath + Sage Universal + Ultimate Problem Solver.
+
+### 🛍️ Added
+- **14 URL IATA** masuk sitemap.xml (PLATFORM_STATS.indexedUrls 11.874 → **11.888**): pillar `/layanan/iata-accreditation` (3 kartu model + layanan A–H + proses 01–08 + FAQ), produk `/layanan/iata-golite` · `/layanan/iata-gostandard` · `/layanan/iata-goglobal` (konten unik per halaman, kartu harga katalog→promo, CTA quotation WhatsApp), konversi `/konsultasi-iata` (form ringkas) + `/cek-kelayakan-iata` (form 14 kolom → POST `/api/leads` existing dengan validasi server + notifikasi admin, honeypot + consent privasi, tanpa kolom kredensial), dan 8 artikel edukasi `/panduan/*` dengan tabel komparasi, checklist, CTA kontekstual, dan sumber resmi IATA.
+- **Schema.org per halaman**: `Service` + `Offer`×3 (IDR), `Article`, `FAQPage` (hanya di halaman ber-FAQ), `BreadcrumbList`, `WebPage` — tanpa rating/review fiktif, tanpa klaim afiliasi IATA.
+- **Sistem animasi ringan** `components/iata/iata-motion.tsx`: reveal IntersectionObserver sekali-jalan (unobserve setelah masuk), orb float, hero crossfade, border-beam `@property`, shine — **100% transform/opacity** (compositor-only), hormat `prefers-reduced-motion`, **nol dependensi baru**.
+- **GA4 events**: `submit_iata_lead`, `click_product_golite/gostandard/goglobal`, `click_request_quotation`, `click_consultation`, `click_check_eligibility` (via `TrackLink` + helper `trackEvent` warisan).
+
+### 🔧 Changed
+- **Master Pricing Revision IATA 2026** — satu sumber `src/lib/iata.ts`, tersebar otomatis ke kartu harga pillar & produk, JSON-LD `Offer`, metaDescription GoLite, FAQ produk, dan artikel (tabel `/panduan/biaya-akreditasi-iata` + paragraf `/panduan/iata-accreditation-indonesia` & `/panduan/perbedaan-iata-golite-gostandard-goglobal`): GoLite Rp29.250.000 → **Rp55.575.000** (promo Rp14.625.000 → **Rp27.787.500**), GoStandard Rp56.250.000 → **Rp106.875.000** (promo Rp28.125.000 → **Rp53.437.500**), GoGlobal Rp112.500.000 → **mulai Rp213.750.000** (promo Rp56.250.000 → **mulai Rp106.875.000**) — promo **tepat 50% dari katalog** (terverifikasi Python, rasio 0,5000 ×3).
+- **Positioning IATA** → "Premium Corporate Licensing & Accreditation Services" (badge pillar & artikel + kategori OG image); arsitektur brand tiga kanal dihormati — harga & positioning GConsultant.web.id (Professional Implementation) dan Gunara.web.id (Strategic Advisory) **tidak disentuh** (bukan bagian repo ini).
+- **Kepatuhan master brief**: label "Promo 2026" tanpa klaim diskon historis, GoGlobal selalu "mulai dari" + penawaran khusus per cakupan negara & entitas, disclaimer biaya resmi IATA/pihak ketiga tidak termasuk (kecuali tertulis dalam quotation), tanpa janji persetujuan akreditasi.
+- **Versioning**: `src/lib/version.ts` (APP_VERSION **1.22.0** "Premium IATA", RELEASE_DATE 2026-11-20, RELEASES 45 → 46 entri, taskId 48) · `package.json` 1.22.0 · `scripts/ver.json` (mirror 1:1: current/label/stats/nextRelease v1.23.0/total 46) · badge & ladder dokumen ini.
+
+### 🧪 QA
+- Grep menyeluruh: **nol harga lama** tertinggal di seluruh file konten IATA (`iata.ts`, `iata-pages-data.ts`, `iata-articles-1/2.ts`, halaman `layanan/iata-*`, `konsultasi-iata`, `cek-kelayakan-iata`, `panduan/*`, `components/iata/*`) — angka sama-format di katalog non-IATA (SIUJPT, Reksa Dana OJK) terverifikasi konteks layanan berbeda dan sengaja tidak disentuh.
+- `tsc --noEmit` & `eslint`: **nol temuan** pada seluruh file baru/ubah.
+- CI `prisma8-migration`: 15 langkah **SUCCESS** di 9a72373 (ekosistem IATA); push v1.22.0 dipantau hingga hijau.
 
 ---
 
@@ -784,11 +809,12 @@ Rilis pertama dengan **identitas versi resmi**. Seluruh proyek kini punya nomor 
 
 <a id="ladder"></a>
 
-## 🪜 Tabel Lengkap 45 Rilis
+## 🪜 Tabel Lengkap 46 Rilis
 
 | # | Versi | Tanggal (WIB) | Tipe | Nama Rilis | Task WORKLOG | Status |
 |---|---|---|---|---|---|---|
-| 45 | **v1.21.0** ⭐ | **2026-11-16** | minor | **Benteng Digital** | Task 47 | **🟢 AKTIF — versi berjalan** |
+| 46 | **v1.22.0** ⭐ | **2026-11-20** | minor | **Premium IATA** | Task 48 | **🟢 AKTIF — versi berjalan** |
+| 45 | v1.21.0 | 2026-11-16 | minor | Benteng Digital | Task 47 | ✅ Rilis |
 | 44 | v1.20.0 | 2026-10-29 | minor | Footer Mahkota | Task 46 | ✅ Rilis |
 | 43 | v1.19.0 | 2026-10-29 | minor | Footer God Mode | Task 45 | ✅ Rilis |
 | 42 | v1.18.0 | 2026-10-29 | minor | Live Commerce Wanita | Task 44 | ✅ Rilis |

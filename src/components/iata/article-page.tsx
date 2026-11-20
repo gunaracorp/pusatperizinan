@@ -36,7 +36,7 @@ export function iataArticleMetadata(slug: string): Metadata {
           url: ogImageUrl({
             title: a.h1,
             subtitle: "Panduan Akreditasi IATA Indonesia",
-            category: "PusatPerizinan.com — Licensing Consultancy Services",
+            category: "PusatPerizinan.com — Premium Corporate Licensing & Accreditation Services",
           }),
           width: 1200,
           height: 630,
@@ -196,7 +196,7 @@ export function IataArticlePage({ slug }: { slug: string }) {
         <div className="relative mx-auto max-w-4xl px-4 py-12 md:py-16">
           <Reveal>
             <p className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-1.5 text-xs font-semibold text-emerald-200">
-              Panduan IATA — Licensing Consultancy Services
+              Panduan IATA — Premium Corporate Licensing &amp; Accreditation Services
             </p>
             <h1 className="mt-5 text-3xl font-bold leading-tight md:text-4xl">{a.h1}</h1>
             <p className="mt-4 max-w-2xl leading-relaxed text-emerald-100/90">{a.excerpt}</p>

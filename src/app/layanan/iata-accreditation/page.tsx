@@ -32,7 +32,7 @@ export const metadata: Metadata = {
         url: ogImageUrl({
           title: "Konsultasi Akreditasi IATA untuk Travel Agent Indonesia",
           subtitle: "GoLite · GoStandard · GoGlobal",
-          category: "PusatPerizinan.com — Licensing Consultancy Services",
+          category: "PusatPerizinan.com — Premium Corporate Licensing & Accreditation Services",
         }),
         width: 1200,
         height: 630,
@@ -205,7 +205,7 @@ export default function IataAccreditationPillarPage() {
           <Reveal>
             <p className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-1.5 text-xs font-semibold tracking-wide text-emerald-200">
               <Plane className="h-3.5 w-3.5" aria-hidden />
-              Licensing Consultancy Services — Akreditasi IATA
+              Premium Corporate Licensing &amp; Accreditation Services — Akreditasi IATA
             </p>
           </Reveal>
           <Reveal delay={120}>

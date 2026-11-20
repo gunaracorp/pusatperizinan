@@ -17,7 +17,7 @@ export const IATA_ARTICLES_2: IataArticle[] = [
     h1: "Biaya Akreditasi IATA: Memahami Biaya Resmi dan Jasa Konsultasi",
     seoTitle: "Biaya Akreditasi IATA: Resmi vs Jasa Konsultasi | PusatPerizinan.com",
     metaDescription:
-      "Rincian biaya akreditasi IATA: jasa konsultasi (GoLite Rp14.625.000, GoStandard Rp28.125.000, GoGlobal mulai Rp56.250.000) versus biaya resmi IATA — application fee, annual fee, financial security, audit, notaris, dan pihak ketiga.",
+      "Rincian biaya akreditasi IATA: jasa konsultasi (GoLite Rp27.787.500, GoStandard Rp53.437.500, GoGlobal mulai Rp106.875.000) versus biaya resmi IATA — application fee, annual fee, financial security, audit, notaris, dan pihak ketiga.",
     excerpt:
       "Dua kelompok biaya yang sering dicampur — jasa konsultan dan biaya resmi IATA — dijelaskan terpisah, plus daftar biaya pihak ketiga yang harus dianggarkan dan pentingnya quotation tertulis.",
     updatedAt: "2026-11-19",
@@ -41,9 +41,9 @@ export const IATA_ARTICLES_2: IataArticle[] = [
           caption: "Harga jasa konsultasi & pendampingan (bukan biaya resmi IATA).",
           headers: ["Model", "Harga katalog", "Harga promo 2026"],
           rows: [
-            ["IATA GoLite", "Rp29.250.000", "Rp14.625.000"],
-            ["IATA GoStandard", "Rp56.250.000", "Rp28.125.000"],
-            ["IATA GoGlobal", "Rp112.500.000", "Mulai Rp56.250.000"],
+            ["IATA GoLite", "Rp55.575.000", "Rp27.787.500"],
+            ["IATA GoStandard", "Rp106.875.000", "Rp53.437.500"],
+            ["IATA GoGlobal", "Mulai Rp213.750.000", "Mulai Rp106.875.000"],
           ],
         },
         paragraphs: [
