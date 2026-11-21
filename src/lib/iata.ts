@@ -27,6 +27,7 @@
 // ============================================================
 
 import { SITE_URL, SITE_NAME } from "./site";
+import { certProductByKode } from "./sertifikasi-travel";
 
 export const IATA_URLS = {
   pillar: "/layanan/iata-accreditation",
@@ -66,6 +67,8 @@ export interface IataProduct {
   seoTitle: string;
   metaDescription: string;
   h1: string;
+  /** Profil perusahaan yang paling cocok dengan model ini (premium matrix). */
+  cocokUntuk: string;
 }
 
 export const IATA_PRODUCTS: IataProduct[] = [
@@ -85,6 +88,8 @@ export const IATA_PRODUCTS: IataProduct[] = [
     metaDescription:
       "Konsultasi dan pendampingan IATA GoLite untuk travel agent Indonesia. Standard Accreditation without Cash Facility, pemeriksaan legalitas, dokumen dan kesiapan aplikasi. Promo Rp27.787.500.",
     h1: "IATA GoLite Indonesia — Konsultasi dan Pendampingan Akreditasi Tanpa Cash Facility",
+    cocokUntuk:
+      "Travel agent yang fokus pada penjualan tiket dan hotel tanpa kebutuhan cash facility — pembayaran penumpang menggunakan metode yang diperbolehkan skema GoLite.",
   },
   {
     kode: "GOSTANDARD",
@@ -102,6 +107,8 @@ export const IATA_PRODUCTS: IataProduct[] = [
     metaDescription:
       "Konsultasi IATA GoStandard untuk travel agent yang membutuhkan Cash Facility. Pelajari persyaratan finansial, dokumen, financial security, dan pendampingan aplikasi IATA Indonesia.",
     h1: "IATA GoStandard Indonesia — Konsultasi Akreditasi dengan Cash Facility",
+    cocokUntuk:
+      "Agent yang membutuhkan cash facility untuk keluasan penerbitan tiket — dengan kesiapan dokumen keuangan yang lebih mendalam.",
   },
   {
     kode: "GOGLOBAL",
@@ -119,6 +126,8 @@ export const IATA_PRODUCTS: IataProduct[] = [
     metaDescription:
       "Konsultasi IATA GoGlobal untuk grup travel agent multi-negara. Evaluasi struktur perusahaan, lokasi, financial criteria, financial security, dan persiapan akreditasi.",
     h1: "IATA GoGlobal — Konsultasi Multi-Country Accreditation untuk Grup Travel Agent",
+    cocokUntuk:
+      "Grup usaha yang beroperasi di lebih dari satu negara melalui beberapa entitas dan lokasi.",
   },
 ];
 
@@ -131,6 +140,69 @@ export const HARGA_CATATAN =
 export const HARGA_CATATAN_PENDEK =
   "Harga jasa konsultasi & pendampingan — bukan biaya resmi IATA. Biaya resmi IATA dan pihak ketiga tidak termasuk kecuali tertulis dalam quotation.";
 export const PROMO_LABEL = "Promo 2026 — periode dapat diubah oleh administrator";
+
+// ------------------------------------------------------------
+// BUNDLE PRICING (Task 52) — gabungan promo komponen.
+// Harga TIDAK dihardcode: dihitung dari harga komponen existing
+// (IATA_PRODUCTS × SERTIFIKASI_PRODUCTS) mengikuti pola Task 51
+// (bundle = jumlah harga promo komponen; normal = jumlah katalog).
+// ------------------------------------------------------------
+export interface IataBundle {
+  kode: string;
+  nama: string;
+  komponen: string[];
+  deskripsi: string;
+  /** Jumlah harga katalog komponen. */
+  hargaNormal: number;
+  /** Jumlah harga promo/jasa komponen. */
+  hargaPromo: number;
+  url: string;
+}
+
+const iataProd = (kode: string) => {
+  const p = productByKode(kode);
+  if (!p) throw new Error(`Produk IATA tidak ditemukan: ${kode}`);
+  return p;
+};
+const certProd = (kode: string) => {
+  const c = certProductByKode(kode);
+  if (!c) throw new Error(`Produk sertifikasi tidak ditemukan: ${kode}`);
+  return c;
+};
+const sum = (...xs: number[]) => xs.reduce((a, b) => a + b, 0);
+
+export const IATA_BUNDLES: IataBundle[] = [
+  {
+    kode: "TRAVEL-GLOBAL-STARTER",
+    nama: "Travel Global Starter — IATA GoLite + Sertifikasi PPIU",
+    komponen: [
+      "IATA GoLite — konsultasi & pendampingan akreditasi (tanpa cash facility)",
+      "Sertifikasi PPIU — izin penyelenggara umrah (Kemenag, KBLI 79122)",
+    ],
+    deskripsi:
+      "Paket gabungan legalitas domestik + kelas internasional: izin PPIU untuk operasional umrah, disertai persiapan akreditasi IATA GoLite untuk penjualan tiket dan hotel.",
+    hargaNormal: sum(iataProd("GOLITE").hargaKatalog, certProd("PPIU").hargaJasa),
+    hargaPromo: sum(iataProd("GOLITE").hargaPromo, certProd("PPIU").hargaJasa),
+    url: IATA_URLS.pillar,
+  },
+  {
+    kode: "TRAVEL-GLOBAL-PRO",
+    nama: "Travel Global Pro — IATA GoStandard + Sertifikasi PPIU + PIHK",
+    komponen: [
+      "IATA GoStandard — konsultasi & pendampingan akreditasi (dengan cash facility)",
+      "Sertifikasi PPIU — izin penyelenggara umrah (Kemenag, KBLI 79122)",
+      "Sertifikasi PIHK — penetapan haji khusus ONH Plus untuk PPIU aktif",
+    ],
+    deskripsi:
+      "Paket lengkap travel ibadah kelas premium: piramida legalitas PPIU → PIHK sekaligus persiapan akreditasi IATA GoStandard dengan cash facility.",
+    hargaNormal: sum(iataProd("GOSTANDARD").hargaKatalog, certProd("PPIU").hargaJasa, certProd("PIHK").hargaJasa),
+    hargaPromo: sum(iataProd("GOSTANDARD").hargaPromo, certProd("PPIU").hargaJasa, certProd("PIHK").hargaJasa),
+    url: IATA_URLS.pillar,
+  },
+];
+
+export const IATA_BUNDLE_CATATAN =
+  "Harga bundle merupakan penawaran gabungan jasa konsultasi komponen (jumlah harga promo masing-masing komponen), bukan biaya resmi IATA/Kemenag/Baparekraf. Komponen dapat diambil terpisah dengan harga masing-masing pada halaman produknya.";
 
 // ------------------------------------------------------------
 // LAYANAN A–H (pillar) & proses kerja 01–08

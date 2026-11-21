@@ -12,7 +12,7 @@
 | Website | PusatPerizinan.com — konsultan perizinan, pajak & penempatan PMI Indonesia |
 | Repositori | https://github.com/gunaracorp/pusatperizinan (origin utuh, remote terpasang) |
 | Lokasi sandbox | `/home/z/my-project/repos/pusatperizinan` (clone ulang penuh Task 51 — `.git` utuh, origin terpasang) |
-| Versi aplikasi | v1.23.1 "Master Pricing Haji-Umrah" (`src/lib/version.ts`, `package.json`) |
+| Versi aplikasi | v1.24.0 "IATA Premium Matrix" (`src/lib/version.ts`, `package.json`) |
 | Stack | Next.js 16.4 (Turbopack dev) · React 19 · TypeScript 5 · Tailwind 4 · shadcn/ui · Prisma ORM 8 RC (`@prisma/orm-postgres 8.0.0-rc.20`) · PostgreSQL embedded |
 | Database | Embedded PostgreSQL (`node_modules/@embedded-postgres/linux-x64`), cluster di `.pgdata/`, port 5432, user `postgres` (trust), DB `pusatperizinan` |
 | Model data | **16 model** (Lead, Consultation, ChatMessage, LicenseCheck, Subscriber, Testimonial, DocumentCheck, RoadmapRequest, NotificationSetting, Order, Post, FollowUpLog, RecoveryLog, NotificationLog, EditorialSlot, CurrencyRate) — koreksi Task 49: catatan lama "15 model" meleset, CurrencyRate tak tercantum |
@@ -94,3 +94,11 @@ Cron otomatis: konten baru → IndexNow + daftar rotasi harian 12 URL untuk requ
 - **Bukti jaringan**: 200 URL perdana → **HTTP 202** dari api.indexnow.org (koreksi catatan §8: egress sandbox KINI TERBUKA untuk IndexNow). Setelahnya ping tunggal → 403 = IndexNow menolak karena verifikasi file kunci di PRODUKSI (file `public/<key>.txt` ada di repo; pastikan paket deploy terbaru menyajikannya di https://pusatperizinan.com/<key>.txt) — kode menangani 403 dengan anggun, cron berikutnya mencoba ulang.
 - **Google Indexing API (lowongan)** — `scripts/seo/google-indexing.mjs` (`--jobs` auto-seksi jobs sitemap / `--url` / `--urls` / `--check`; JWT RS256 via node:crypto, tanpa dep). Aktifasi: service account GCP (aktifkan "Web Search Indexing API") + jadikan email SA OWNER di Search Console + set `GOOGLE_SERVICE_ACCOUNT_JSON`. NPM: `seo:google`.
 - **Bug laten dimitigasi** — `POST /api/admin/posts` 500 sejak era adapter Prisma 7/8: `publishedAt` kembali objek eksotis `{}` (bukan Date) → `toIsoSafe()` di `blog-cms.ts` (fallback createdAt); E2E login→create(201)→publish(200)→hook terpicu PASS, post uji dihapus bersih.
+
+## 10. IATA Premium Matrix & Bundle Pricing (2026-11-21, Task 52)
+
+- `src/lib/iata.ts`: `IATA_BUNDLES` — 2 bundle gabungan legalitas → IATA yang dihitung **runtime** dari harga komponen (`IATA_PRODUCTS` × `SERTIFIKASI_PRODUCTS` via `certProductByKode`, tanpa hardcode): TRAVEL-GLOBAL-STARTER Rp 47.787.500 promo / Rp 75.575.000 normal (GoLite + PPIU), TRAVEL-GLOBAL-PRO Rp 98.437.500 promo / Rp 151.875.000 normal (GoStandard + PPIU + PIHK). Ubah harga komponen → harga bundle ikut otomatis.
+- `src/components/iata/premium-matrix.tsx` (server component, tanpa "use client"): tabel Premium Matrix 3 model (field baru `cocokUntuk` per produk) + 2 kartu bundle — terpasang di pillar antara "Tiga Model" dan "Mengapa Konsultasi".
+- Knowledge base chat `/api/chat` seksi 9 = bundle IATA; harga PPIU `/katalog` (R.1 + FAQ divisi) diselaraskan 19,5jt → 20jt menyusul master brief Task 50 — sisa angka 19,5jt (EPS Korea/Taiwan/HK/SG, ISO/IEC 17024, Transfer Pricing, kuota haji R.3, perpanjangan R.8) adalah **produk lain, jangan disentuh**.
+- QA terbukti: tsc/eslint NOL; nominal via eksekusi kode; `next build --experimental-build-mode compile` OK. **Catatan lingkungan: prerender penuh 12.053 halaman butuh >9 GB — selalu ENOSPC di sandbox ini; QA lokal = compile-mode + verifikasi runtime dev-server; prerender penuh diserahkan CI/deploy.**
+- Build lokal butuh `.env` DATABASE_URL (tidak ikut repo) untuk postinstall prisma emit — pelajaran Task 51 tetap berlaku.

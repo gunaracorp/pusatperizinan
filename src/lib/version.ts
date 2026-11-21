@@ -17,11 +17,11 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.23.1";
+export const APP_VERSION = "1.24.0";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Master Pricing Haji-Umrah";
+export const RELEASE_NAME = "IATA Premium Matrix";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
-export const RELEASE_DATE = "2026-11-20";
+export const RELEASE_DATE = "2026-11-21";
 /** Channel rilis: stable | beta | alpha. */
 export const RELEASE_CHANNEL = "stable" as const;
 
@@ -46,6 +46,18 @@ export interface ReleaseEntry {
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.24.0",
+    date: "2026-11-21",
+    type: "minor",
+    name: "IATA Premium Matrix",
+    taskId: "52",
+    highlights: [
+      "IATA Premium Matrix: tabel perbandingan harga premium 3 model akreditasi (profil cocok-untuk, katalog, promo 2026, catatan mulai-dari GoGlobal) + Bundle Pricing 2 paket gabungan di pillar /layanan/iata-accreditation — TRAVEL-GLOBAL-STARTER Rp 47.787.500 promo / Rp 75.575.000 normal (GoLite promo + Sertifikasi PPIU) dan TRAVEL-GLOBAL-PRO Rp 98.437.500 promo / Rp 151.875.000 normal (GoStandard promo + PPIU + PIHK)",
+      "Sumber harga bundle src/lib/iata.ts (IataBundle + IATA_BUNDLES — dihitung runtime dari IATA_PRODUCTS x SERTIFIKASI_PRODUCTS, tanpa hardcode; field cocokUntuk untuk matriks); knowledge base AI chat seksi 9 bundle IATA; fix konsistensi harga PPIU di /katalog (R.1 priceFrom 19,5jt -> 20jt + FAQ divisi) menyusul master brief Task 50",
+      "QA god mode: tsc --noEmit & eslint src/ NOL temuan; nominal bundle terverifikasi via eksekusi kode; compile-build sukses semua route; verifikasi runtime pillar & /katalog/travel-haji-umrah HTTP 200 — prerender penuh 12.053 halaman ENOSPC di sandbox 9,9GB (bukan bug kode)"
+    ],
+  },
   {
     version: "1.23.1",
     date: "2026-11-20",

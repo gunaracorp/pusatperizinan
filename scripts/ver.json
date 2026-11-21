@@ -7,13 +7,14 @@
     "url": "https://pusatperizinan.com"
   },
   "version": {
-    "current": "1.23.1",
-    "label": "v1.23.1 — Master Pricing Haji-Umrah",
-    "releaseName": "Master Pricing Haji-Umrah",
-    "releasedAt": "2026-11-20",
+    "current": "1.24.0",
+    "label": "v1.24.0 — IATA Premium Matrix",
+    "releaseName": "IATA Premium Matrix",
+    "releasedAt": "2026-11-21",
     "channel": "stable",
     "timezone": "Asia/Jakarta (WIB)",
-    "semverValid": true
+    "semverValid": true,
+    "nextRelease": "v1.25.0 (Unreleased — antrean ROADMAP-99)"
   },
   "stats": {
     "indexedUrls": 11888,
@@ -32,19 +33,32 @@
     "nextRelease": "v1.24.0 (Unreleased — antrean ROADMAP-99)"
   },
   "releases": {
-    "total": 49,
+    "total": 50,
     "current": {
-      "version": "1.23.1",
-      "date": "2026-11-20",
-      "type": "patch",
-      "name": "Master Pricing Haji-Umrah",
-      "taskId": "51",
+      "version": "1.24.0",
+      "date": "2026-11-21",
+      "type": "minor",
+      "name": "IATA Premium Matrix",
+      "taskId": "52",
       "highlights": [
-        "Repricing bundle travel ibadah atas arahan owner (harga lama terlalu murah — komplain pasar): Paket Pendirian Travel Umrah Lengkap (PT + PPIU) normal Rp200jt → promo 50% = Rp100jt; Upgrade PPIU ke PIHK normal Rp230jt → promo 50% = Rp115jt; GO HAJI PLUS! (gabungan) Rp215jt promo / Rp430jt normal — sinkron di 4 file: katalog sertifikasi, BUNDLES /paket, kartu /paket-usaha, knowledge base AI chat (jasa flagship PPIU mulai Rp20jt & PIHK mulai Rp25jt sesuai trilogi)",
-        "Guardrail audit: 9 file dengan angka 45,5jt/58,5jt/39jt milik produk LAIN (MISA Saudi, virtual office, katalog BPOM/PBG/PKPA/KSP/SNI, PT PMA, ISO Travel Excellence) tidak disentuh; harga IATA PusatPerizinan.com sudah sesuai master pricing (tidak diubah); trilogi sertifikasi (PPIU 20jt/PIHK 25jt/BPW 15jt) tidak berubah"
+        "IATA Premium Matrix: tabel perbandingan harga premium 3 model akreditasi (profil cocok-untuk, katalog, promo 2026, catatan \"mulai dari\" GoGlobal) + Bundle Pricing 2 paket gabungan di pillar /layanan/iata-accreditation — TRAVEL-GLOBAL-STARTER Rp 47.787.500 promo / Rp 75.575.000 normal (GoLite promo + Sertifikasi PPIU) dan TRAVEL-GLOBAL-PRO Rp 98.437.500 promo / Rp 151.875.000 normal (GoStandard promo + PPIU + PIHK)",
+        "Sumber harga bundle src/lib/iata.ts (IataBundle + IATA_BUNDLES — dihitung runtime dari IATA_PRODUCTS x SERTIFIKASI_PRODUCTS, tanpa hardcode; field cocokUntuk untuk matriks); knowledge base AI chat seksi 9 bundle IATA; fix konsistensi harga PPIU di /katalog (R.1 priceFrom 19,5jt -> 20jt + FAQ divisi) menyusul master brief Task 50",
+        "QA god mode: tsc --noEmit & eslint src/ NOL temuan; nominal bundle terverifikasi via eksekusi kode; compile-build sukses semua route; verifikasi runtime pillar & /katalog/travel-haji-umrah HTTP 200 — prerender penuh 12.053 halaman ENOSPC di sandbox 9,9GB (bukan bug kode)"
       ]
     },
     "history": [
+      {
+        "version": "1.24.0",
+        "date": "2026-11-21",
+        "type": "minor",
+        "name": "IATA Premium Matrix",
+        "taskId": "52",
+        "highlights": [
+          "IATA Premium Matrix: tabel perbandingan harga premium 3 model akreditasi (profil cocok-untuk, katalog, promo 2026, catatan \"mulai dari\" GoGlobal) + Bundle Pricing 2 paket gabungan di pillar /layanan/iata-accreditation — TRAVEL-GLOBAL-STARTER Rp 47.787.500 promo / Rp 75.575.000 normal (GoLite promo + Sertifikasi PPIU) dan TRAVEL-GLOBAL-PRO Rp 98.437.500 promo / Rp 151.875.000 normal (GoStandard promo + PPIU + PIHK)",
+          "Sumber harga bundle src/lib/iata.ts (IataBundle + IATA_BUNDLES — dihitung runtime dari IATA_PRODUCTS x SERTIFIKASI_PRODUCTS, tanpa hardcode; field cocokUntuk untuk matriks); knowledge base AI chat seksi 9 bundle IATA; fix konsistensi harga PPIU di /katalog (R.1 priceFrom 19,5jt -> 20jt + FAQ divisi) menyusul master brief Task 50",
+          "QA god mode: tsc --noEmit & eslint src/ NOL temuan; nominal bundle terverifikasi via eksekusi kode; compile-build sukses semua route; verifikasi runtime pillar & /katalog/travel-haji-umrah HTTP 200 — prerender penuh 12.053 halaman ENOSPC di sandbox 9,9GB (bukan bug kode)"
+        ]
+      },
       {
         "version": "1.23.1",
         "date": "2026-11-20",

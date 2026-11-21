@@ -8,6 +8,7 @@ import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { langAlternates } from "@/lib/seo";
 import { ogImageUrl } from "@/lib/og-template";
 import { IataMotionStyles, Reveal } from "@/components/iata/iata-motion";
+import { IataPremiumMatrix } from "@/components/iata/premium-matrix";
 import {
   IATA_PRODUCTS, IATA_SERVICES, IATA_PROCESS, IATA_DISCLAIMER,
   IATA_SOURCES, IATA_URLS, fmtIdrIata, iataWaLink, IATA_WA_UMUM,
@@ -323,6 +324,9 @@ export default function IataAccreditationPillarPage() {
           </Reveal>
         </div>
       </section>
+
+      {/* PREMIUM MATRIX + BUNDLE PRICING (Task 52) */}
+      <IataPremiumMatrix />
 
       {/* MENGAPA KONSULTASI */}
       <section className="mx-auto max-w-6xl px-4 py-14" aria-labelledby="mengapa">

@@ -515,3 +515,24 @@ Stage Summary:
 - Guardrail 9 file produk lain + IATA + trilogi terjaga — nol collateral damage
 - QA: tsc & eslint FULL nol temuan; CI dipantau hijau pasca-push
 - v1.23.1 "Master Pricing Haji-Umrah" menjadi versi berjalan di seluruh 8 titik versioning
+
+---
+Task ID: 52
+Agent: main (mode Master Polymath + Sage Universal + Ultimate Problem Solver — dewan pakar lintas bidang, standar kualitas ISO)
+Task: Push ke GitHub + god mode QA situs — IATA Premium Matrix + bundle pricing gabungan legalitas→IATA + fix konsistensi harga PPIU /katalog 🏷️ Rilis v1.24.0 "IATA Premium Matrix"
+
+Work Log:
+- Lanjutan ekosistem IATA (quotation GoLite 60/40 sudah terbit): owner minta push repo + audit bug situs; diimplementasikan IATA Premium Matrix + Bundle Pricing di pillar
+- `src/lib/iata.ts`: interface `IataBundle` + `IATA_BUNDLES` — harga dihitung runtime dari `IATA_PRODUCTS` × `SERTIFIKASI_PRODUCTS` (import `certProductByKode`; pola Task 51: bundle = jumlah harga promo komponen, normal = jumlah katalog); field `cocokUntuk` pada `IataProduct` (3 model) → TRAVEL-GLOBAL-STARTER Rp 47.787.500 promo / Rp 75.575.000 normal (GoLite + PPIU) & TRAVEL-GLOBAL-PRO Rp 98.437.500 promo / Rp 151.875.000 normal (GoStandard + PPIU + PIHK)
+- Komponen server `src/components/iata/premium-matrix.tsx`: tabel Premium Matrix (4 kolom responsive; GoGlobal "mulai dari" + catatan penawaran khusus) + 2 kartu bundle (daftar komponen, harga promo besar, normal strikethrough, badge hemat amber, CTA konsultasi + WhatsApp ter-prefill per paket) — dipasang di pillar antara "Tiga Model" dan "Mengapa Konsultasi"
+- Knowledge base AI chat (`/api/chat`): seksi 9 "BUNDLE IATA — TRAVEL GLOBAL" (2 bundle + matriks harga 3 model) sehingga jawaban RIZKI konsisten dengan pillar
+- Fix konsistensi harga PPIU `/katalog` (`katalog-lengkap.ts`): R.1 `priceFrom` 19,5jt → 20jt + FAQ divisi "mulai Rp 19,5 juta" → "Rp 20 juta" (menyusul master brief Task 50); sweep konteks: 4 kelompok angka 19,5jt lain (EPS Korea & Taiwan/HK/SG `pmi-services`, ISO/IEC 17024 `certifications`, Transfer Pricing `tax-services`, kuota haji R.3 & perpanjangan R.8) terverifikasi produk lain — guardrail Task 51 dijaga, tidak disentuh
+- QA god mode: npm install (`.env` DATABASE_URL dibuat untuk prisma contract emit — pelajaran Task 51) → `tsc --noEmit` & `eslint src/` FULL NOL temuan → nominal bundle diverifikasi via eksekusi kode bun (47.787.500 / 75.575.000 / 98.437.500 / 151.875.000) → `next build --experimental-build-mode compile` sukses semua route; prerender penuh 12.053 halaman gagal ENOSPC (disk sandbox 9,9 GB habis oleh .next 4,1 GB — bukan bug kode; bukti: compile + TypeScript sukses, error hanya mkdir `.next/server/app/...segments`) → verifikasi runtime dev-server: `/layanan/iata-accreditation` 200 (11/11 penanda matrix + bundle ter-render; "Hemat Rp27.787.500" & "mulai Rp106.875.000" lolos setelah kompensasi JSX comment-delimiter) & `/katalog/travel-haji-umrah` 200 ("PPIU mulai Rp 20 juta" live)
+- Repo hygiene: 36 file "M" ternyata perubahan mode 644→755 (noise chmod tool) di-restore via `git restore src public`; 11 artefak `upload/` (~40 MB: katalog PDF/HTML/MD/JSON, audit SEO, branding wall, foto kantor, logo) dihapus di commit chore terpisah
+- Versioning 8 titik sinkron v1.24.0 "IATA Premium Matrix" (taskId 52, MINOR — fitur baru): version.ts (APP_VERSION + RELEASE_NAME/DATE + RELEASES 49 → 50) · package.json 1.24.0 · scripts/ver.json (total 50, nextRelease v1.25.0) · CHANGELOG (badge + entri + ladder #50) · WORKLOG+worklog (entri ini) · README (3 titik) · STATE.md (seksi 10)
+
+Stage Summary:
+- Kanal IATA kini punya matriks harga premium yang sekaligus menjadi jembatan upsell legalitas→IATA: dua bundle gabungan dihitung kode dari komponen existing — nol harga fiktif, nol kontradiksi antar permukaan (pillar ↔ chat KB ↔ /katalog)
+- Guardrail harga produk lain dijaga penuh; harga IATA & trilogi tidak berubah
+- QA: tsc & eslint NOL; compile-build sukses; verifikasi runtime 2 halaman target PASS; limit disk sandbox dicatat (prerender penuh diserahkan CI/deploy)
+- v1.24.0 "IATA Premium Matrix" menjadi versi berjalan di seluruh 8 titik versioning

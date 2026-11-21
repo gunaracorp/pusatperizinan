@@ -5,19 +5,19 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.23.1_Master_Pricing_Haji_Umrah-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-23-1)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.24.0_IATA_Premium_Matrix-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-24-0)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-49_(0.1.0_%E2%86%92_1.23.1)-059669?style=flat-square)
-![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-53_ber_versi-059669?style=flat-square)
-![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.24.0_(Unreleased)-f59e0b?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-50_(0.1.0_%E2%86%92_1.24.0)-059669?style=flat-square)
+![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-54_ber_versi-059669?style=flat-square)
+![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.25.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.23.1 — "Master Pricing Haji-Umrah"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.24.0 — "IATA Premium Matrix"`**
 
 <sub>Versi terlihat hidup di: footer setiap halaman (11.892 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
@@ -37,9 +37,33 @@
 | Sumber kebenaran | [`WORKLOG.md`](./WORKLOG.md) (rekam jejak 1:1) · `src/lib/version.ts` (data mesin) · `package.json` (runtime) |
 | Ritme | **1 task/permintaan user = 1 nomor versi baru** — fitur → `MINOR`, perbaikan → `PATCH`, perombakan arah produk → `MAJOR` |
 | Presisi tanggal | Era `0.x` (Sesi 1–2) direkonstruksi dari metadata file & jejak invoice (`INV-20261021`) → presisi bulan; era `1.x` → presisi hari (terverifikasi) |
-| Rilis berikutnya | **`v1.23.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
+| Rilis berikutnya | **`v1.25.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
 
-> 🔗 Navigasi cepat: **[Tabel Lengkap 49 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+> 🔗 Navigasi cepat: **[Tabel Lengkap 50 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+
+---
+
+<a id="v1-24-0"></a>
+
+## [1.24.0] — 2026-11-21 — 🧮 "IATA Premium Matrix" (Task 52)
+
+Fitur baru kanal IATA: matriks harga premium tiga model akreditasi + bundle pricing gabungan legalitas → IATA. Seluruh harga bundle dihitung kode dari harga komponen existing (pola Task 51) — nol angka fiktif, nol kontradiksi antar permukaan.
+
+### 🛍️ Added
+- **IATA Premium Matrix** di pillar `/layanan/iata-accreditation`: tabel perbandingan 3 model (profil "cocok untuk", harga katalog, promo 2026, catatan "mulai dari" GoGlobal) — responsive `overflow-x-auto`, harga mengalir dari `IATA_PRODUCTS`.
+- **Bundle Pricing 2 paket gabungan** (section bundle pillar): `TRAVEL-GLOBAL-STARTER` **Rp 47.787.500 promo / Rp 75.575.000 normal** (IATA GoLite promo + Sertifikasi PPIU — hemat Rp 27.787.500) dan `TRAVEL-GLOBAL-PRO` **Rp 98.437.500 promo / Rp 151.875.000 normal** (IATA GoStandard promo + Sertifikasi PPIU + PIHK — hemat Rp 53.437.500), masing-masing dengan CTA konsultasi + WhatsApp ter-prefill.
+- **Satu sumber harga bundle** `src/lib/iata.ts`: interface `IataBundle` + `IATA_BUNDLES` — harga dihitung runtime dari `IATA_PRODUCTS` × `SERTIFIKASI_PRODUCTS` (tanpa hardcode); field `cocokUntuk` pada `IataProduct`; komponen server `src/components/iata/premium-matrix.tsx`.
+
+### 🔧 Changed
+- **Knowledge base AI chat** (`/api/chat`): seksi 9 baru "BUNDLE IATA — TRAVEL GLOBAL" (2 bundle + matriks harga 3 model) sehingga jawaban RIZKI konsisten dengan pillar.
+
+### 🛠️ Fixed
+- **Konsistensi harga PPIU di katalog v1** (`src/lib/katalog-lengkap.ts`): R.1 `priceFrom` 19,5jt → **20jt** + FAQ divisi "PPIU mulai Rp 19,5 juta" → "PPIU mulai Rp 20 juta" — menyusul master brief Task 50 (flagship all-in Rp 20jt). Sweep konteks: 4 kelompok angka 19,5jt lain (EPS Korea & Taiwan/HK/SG `pmi-services`, ISO/IEC 17024 `certifications`, Transfer Pricing `tax-services`, kuota haji R.3 & perpanjangan R.8) terverifikasi produk lain dan **tidak disentuh** (guardrail Task 51).
+
+### 🧪 QA
+- `tsc --noEmit` & `eslint src/` **FULL project: NOL temuan**; nominal bundle terverifikasi via eksekusi kode (47.787.500 / 75.575.000 / 98.437.500 / 151.875.000).
+- `next build --experimental-build-mode compile` sukses (semua route terdaftar); prerender penuh 12.053 halaman melebihi disk sandbox 9,9 GB (ENOSPC — bukan bug kode: compile + TypeScript sukses, gagal hanya mkdir `.next/...segments`).
+- Runtime dev-server: `/layanan/iata-accreditation` & `/katalog/travel-haji-umrah` HTTP 200 — seluruh harga matrix + bundle + hemat ter-render di HTML (kompensasi JSX comment-delimiter saat grep).
 
 ---
 
@@ -880,6 +904,7 @@ Rilis pertama dengan **identitas versi resmi**. Seluruh proyek kini punya nomor 
 
 | # | Versi | Tanggal (WIB) | Tipe | Nama Rilis | Task WORKLOG | Status |
 |---|---|---|---|---|---|---|
+| [1.24.0](#v1-24-0) | 2026-11-21 | minor | IATA Premium Matrix | 52 | IATA Premium Matrix + bundle pricing gabungan legalitas-IATA (TRAVEL-GLOBAL-STARTER/PRO dihitung dari komponen) + fix harga PPIU /katalog | **🟢 AKTIF — versi berjalan** |
 | 49 | **v1.23.1** ⭐ | **2026-11-20** | patch | **Master Pricing Haji-Umrah** | Task 51 | **🟢 AKTIF — versi berjalan** |
 | 48 | v1.23.0 | 2026-11-20 | minor | Trilogi Travel Ibadah | Task 50 | ✅ Rilis |
 | 47 | v1.22.1 | 2026-11-20 | patch | God Mode Audit | Task 49 | ✅ Rilis |
