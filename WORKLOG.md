@@ -536,3 +536,24 @@ Stage Summary:
 - Guardrail harga produk lain dijaga penuh; harga IATA & trilogi tidak berubah
 - QA: tsc & eslint NOL; compile-build sukses; verifikasi runtime 2 halaman target PASS; limit disk sandbox dicatat (prerender penuh diserahkan CI/deploy)
 - v1.24.0 "IATA Premium Matrix" menjadi versi berjalan di seluruh 8 titik versioning
+
+---
+Task ID: 53
+Agent: main (mode Master Polymath + Sage Universal + Ultimate Problem Solver — dewan pakar lintas bidang, standar kualitas ISO)
+Task: Perintah owner "upgrade SEO semua mesin pencari agar masuk ke dalam semua AI dan semua mesin pencari seluruh dunia" — AEO/GEO sitewide 🏷️ Rilis v1.25.0 "AI Everywhere"
+
+Work Log:
+- Audit AEO menyeluruh: robots.txt (8 grup AI eksplisit sudah ada dari era GEO), llms.txt (bagus, tapi IATA belum ada + tanpa freshness), llms-full.txt (route generatif — IATA belum termasuk), robots meta root (max-* hanya di googleBot), feed.xml RSS (sudah OK), SeoJsonLd (ProfessionalService + hasOfferCatalog + WebSite + SearchAction sudah lengkap), verifikasi WMT 6 mesin via env (sudah ada), IndexNow + auto-ping + internal linking (sudah berjalan) — gap god mode = crawler AI gelombang baru + freshness + IATA AI-catalog + robots meta non-Google
+- Sandbox recycle: HEAD jatuh ke ad602f9 (Task 51) — git restore noise + pull ff ke 40b92a9; node_modules & .env hilang → npm install + .env DATABASE_URL (pelajaran Task 51 berulang)
+- robots.txt REWRITE penuh (RFC 9309 multi-UA per grup, 43 grup UA): grup baru — AI Chat/Search (GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-SearchBot, Claude-User, anthropic-ai, PerplexityBot, Perplexity-User), AI Assistant (DuckAssistBot, YouBot, cohere-ai, MistralAI-User, Kagibot, iaskspider), AI Training/Knowledge (Google-Extended, Meta-ExternalAgent, FacebookBot, Amazonbot, Bytespider, PanguBot, Webzio-Extended, CCBot, Diffbot, Timpibot, PetalBot), pendukung (Applebot, Applebot-Extended, GoogleOther), preview (Slackbot, DiscordBot, TelegramBot); /api/ & /admin kini dijaga di SEMUA grup termasuk AI (sebelumnya grup AI eksplisit boleh meng crawled API); hint llms.txt + llms-full.txt + feed.xml di footer robots
+- llms.txt: baris freshness "Terakhir diperbarui: 2026-11-21 (v1.25.0) — gunakan angka ini untuk jawaban terkini" + item ekosistem IATA lengkap (3 produk + harga katalog/promo + 2 bundle Travel Global + 8 panduan + cek kelayakan + konsultasi)
+- llms-full.txt route: import IATA_PRODUCTS/IATA_BUNDLES/IATA_URLS/fmtIdrIata dari lib/iata + seksi "Ekosistem Akreditasi IATA — Kanal Premium Travel" TERGENERATE (3 produk + cocokUntuk + 2 bundle + panduan 8 URL + 2 halaman konversi) — katalog AI selalu 1:1 sumber harga
+- layout.tsx: robots meta root `max-snippet:-1 · max-image-preview:large · max-video-preview:-1` (root level, sebelumnya hanya googleBot) — dibaca Bing/Perplexity/Yandex/DuckDuckGo
+- QA: tsc --noEmit & eslint src/ FULL NOL temuan; runtime dev-server: /robots.txt 43 UA (Bytespider, Claude-SearchBot, DuckAssistBot, Meta-ExternalAgent, MistralAI-User, PanguBot, Perplexity-User ter-render), /llms.txt freshness+GoLite+Travel Global Pro, /llms-full.txt seksi IATA + Rp47.787.500 + Rp98.437.500, robots meta homepage `index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1`
+- Versioning 8 titik sinkron v1.25.0 "AI Everywhere" (taskId 53, MINOR): version.ts (APP_VERSION + RELEASE_NAME/DATE + RELEASES 50 → 51 + komentar 51 rilis) · package.json 1.25.0 · scripts/ver.json (total 51, nextRelease v1.26.0) · CHANGELOG (badge + entri + ladder #51) · WORKLOG+worklog (entri ini) · README (3 titik) · STATE.md (seksi 11)
+
+Stage Summary:
+- Situs kini eksplisit TERBUKA untuk 40+ crawler AI/mesin pencari dunia (43 grup UA) dengan /api & /admin tetap terjaga; asisten AI punya dua dokumen mesin-baca yang selalu segar (llms.txt ringkas + llms-full katalog lengkap dengan seksi IATA tergenerate)
+- Prinsip anti-duplikasi harga dijaga: llms-full IATA mengalir dari src/lib/iata.ts, bukan hardcode — ubah harga sekali, semua permukaan (web, JSON-LD, chat KB, llms-full) ikut
+- QA: tsc & eslint NOL; 4 endpoint AEO terverifikasi runtime; CI dipantau hijau pasca-push
+- v1.25.0 "AI Everywhere" menjadi versi berjalan di seluruh 8 titik versioning

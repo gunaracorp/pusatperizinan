@@ -8,6 +8,7 @@ import { KEPATUHAN_TIERS } from "@/lib/kepatuhan-pro";
 import { PERMIT_GUIDES } from "@/lib/seo-content";
 import { BLOG_ARTICLES } from "@/lib/blog-content";
 import { SITE_URL, CONTACT } from "@/lib/site";
+import { IATA_PRODUCTS, IATA_BUNDLES, IATA_URLS, fmtIdrIata } from "@/lib/iata";
 
 // ============================================================
 // PUSATPERIZINAN.COM — llms-full.txt (GEO / AI Discovery)
@@ -41,6 +42,17 @@ export function GET() {
       `- KepatuhanPRO ${t.name} — Rp ${new Intl.NumberFormat("id-ID").format(t.monthly)}/bulan atau Rp ${new Intl.NumberFormat("id-ID").format(t.annual)}/tahun (hemat 2 bulan). ${t.audience} Pesan: ${SITE_URL}/checkout?paket=${t.sku}`
     );
   }
+  lines.push("", "## Ekosistem Akreditasi IATA — Kanal Premium Travel (Task 52)", "");
+  lines.push(`Pillar: ${SITE_URL}${IATA_URLS.pillar} — konsultasi & pendampingan akreditasi IATA untuk travel agent Indonesia (konsultan independen, bukan agen resmi IATA). Harga = jasa konsultasi PT Top Konsultan Internasional, bukan biaya resmi IATA (application fee, annual fee, financial security, audit, notaris dihitung terpisah).`);
+  for (const p of IATA_PRODUCTS) {
+    lines.push(`- ${p.namaPendek} (${p.model}) — promo 2026 ${p.hargaMulaiDari ? "mulai " : ""}${fmtIdrIata(p.hargaPromo)} (katalog ${fmtIdrIata(p.hargaKatalog)}). ${p.cocokUntuk} URL: ${SITE_URL}${p.url}`);
+  }
+  lines.push("Bundle gabungan legalitas+IATA (jumlah harga promo komponen; komponen dapat diambil terpisah):");
+  for (const b of IATA_BUNDLES) {
+    lines.push(`- ${b.nama} — promo ${fmtIdrIata(b.hargaPromo)} (normal ${fmtIdrIata(b.hargaNormal)}). Komponen: ${b.komponen.join("; ")}. URL: ${SITE_URL}${b.url}`);
+  }
+  lines.push(`Konsultasi IATA: ${SITE_URL}${IATA_URLS.konsultasi} · Cek kelayakan: ${SITE_URL}${IATA_URLS.cekKelayakan}`);
+  lines.push(`Panduan IATA (8 artikel): ${Object.entries(IATA_URLS.panduan).map(([, v]) => `${SITE_URL}${v}`).join(", ")}`);
   lines.push("", "## Katalog Lengkap per Divisi (31 divisi)", "");
   for (const c of CATEGORIES) {
     lines.push(`### ${c.name} (${c.slug})`);

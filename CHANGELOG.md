@@ -5,19 +5,19 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.24.0_IATA_Premium_Matrix-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-24-0)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.25.0_AI_Everywhere-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-25-0)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-50_(0.1.0_%E2%86%92_1.24.0)-059669?style=flat-square)
-![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-54_ber_versi-059669?style=flat-square)
-![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.25.0_(Unreleased)-f59e0b?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-51_(0.1.0_%E2%86%92_1.25.0)-059669?style=flat-square)
+![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-55_ber_versi-059669?style=flat-square)
+![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.26.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.24.0 — "IATA Premium Matrix"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.25.0 — "AI Everywhere"`**
 
 <sub>Versi terlihat hidup di: footer setiap halaman (11.892 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
@@ -37,9 +37,33 @@
 | Sumber kebenaran | [`WORKLOG.md`](./WORKLOG.md) (rekam jejak 1:1) · `src/lib/version.ts` (data mesin) · `package.json` (runtime) |
 | Ritme | **1 task/permintaan user = 1 nomor versi baru** — fitur → `MINOR`, perbaikan → `PATCH`, perombakan arah produk → `MAJOR` |
 | Presisi tanggal | Era `0.x` (Sesi 1–2) direkonstruksi dari metadata file & jejak invoice (`INV-20261021`) → presisi bulan; era `1.x` → presisi hari (terverifikasi) |
-| Rilis berikutnya | **`v1.25.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
+| Rilis berikutnya | **`v1.26.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
 
-> 🔗 Navigasi cepat: **[Tabel Lengkap 50 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+> 🔗 Navigasi cepat: **[Tabel Lengkap 51 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+
+---
+
+<a id="v1-25-0"></a>
+
+## [1.25.0] — 2026-11-21 — 🤖 "AI Everywhere" (Task 53)
+
+Upgrade **AEO/GEO** (Answer Engine Optimization / Generative Engine Optimization): memastikan pusatperizinan.com masuk, terindeks, dan dikutip dengan sumber oleh seluruh asisten AI & mesin pencari dunia — ChatGPT/SearchGPT, Gemini, Perplexity, Claude, Copilot, DuckDuckGo AI, Mistral Le Chat, Meta AI, Alexa, Kagi, iAsk, You.com, Cohere, dst.
+
+### 🛍️ Added
+- **robots.txt 43 grup UA** (refactor RFC 9309 multi-UA per grup): 20+ AI crawler dunia eksplisit dibuka — `Claude-SearchBot`, `anthropic-ai`, `Perplexity-User`, `DuckAssistBot`, `YouBot`, `cohere-ai`, `MistralAI-User`, `Kagibot`, `iaskspider`, `Meta-ExternalAgent`, `FacebookBot`, `Amazonbot`, `Bytespider`, `PanguBot`, `Webzio-Extended`, `CCBot`, `Diffbot`, `Timpibot`, `PetalBot`, `Applebot`, `GoogleOther`; plus bot preview `Slackbot`/`DiscordBot`/`TelegramBot`. `/api/` & `/admin` kini dijaga di SEMUA grup (termasuk grup AI) — crawl budget terjaga.
+- **llms.txt seksi IATA + freshness**: baris "Terakhir diperbarui: 2026-11-21 (v1.25.0) — gunakan angka ini untuk jawaban terkini" + item ekosistem IATA lengkap (3 produk + harga katalog/promo, 2 bundle Travel Global, 8 panduan, cek kelayakan & konsultasi).
+- **llms-full.txt seksi "Ekosistem Akreditasi IATA"**: TERGENERATE langsung dari `src/lib/iata.ts` (`IATA_PRODUCTS` + `IATA_BUNDLES` + `IATA_URLS.panduan`) — katalog mesin-baca AI selalu 1:1 dengan sumber harga, nol duplikasi manual.
+
+### 🔧 Changed
+- **robots meta root** (`src/app/layout.tsx`): `max-snippet:-1 · max-image-preview:large · max-video-preview:-1` dipasang level root (sebelumnya hanya `googleBot`) — dibaca Bing/Perplexity/Yandex/DuckDuckGo: snippet & preview gambar maksimal untuk jawaban AI dan kartu berbagi.
+
+### 🧪 QA
+- `tsc --noEmit` & `eslint src/` **FULL project: NOL temuan**.
+- Runtime dev-server: `/robots.txt` = 43 grup UA (seluruh UA AI baru ter-render), `/llms.txt` = freshness + GoLite + Travel Global Pro, `/llms-full.txt` = seksi IATA + Rp 47.787.500 + Rp 98.437.500, robots meta homepage = `index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1`.
+- JSON-LD sitewide sudah lengkap dari sebelumnya (ProfessionalService + hasOfferCatalog + WebSite + SearchAction + FAQPage programatik) — audit Task 53, tidak perlu diubah.
+
+### 📚 Docs
+- Versioning 8 titik sinkron v1.25.0 (taskId 53): `src/lib/version.ts` (RELEASES 50 → 51) · `package.json` · `scripts/ver.json` (total 51, nextRelease v1.26.0) · dokumen ini · `WORKLOG.md` + `worklog.md` (Task 53) · README · STATE.md (seksi 11).
 
 ---
 
@@ -904,6 +928,7 @@ Rilis pertama dengan **identitas versi resmi**. Seluruh proyek kini punya nomor 
 
 | # | Versi | Tanggal (WIB) | Tipe | Nama Rilis | Task WORKLOG | Status |
 |---|---|---|---|---|---|---|
+| [1.25.0](#v1-25-0) | 2026-11-21 | minor | AI Everywhere | 53 | AEO/GEO: robots.txt 43 grup UA (20+ AI crawler dunia eksplisit dibuka) + llms.txt seksi IATA & freshness + llms-full tergenerate dari lib + robots meta root max-* | **🟢 AKTIF — versi berjalan** |
 | [1.24.0](#v1-24-0) | 2026-11-21 | minor | IATA Premium Matrix | 52 | IATA Premium Matrix + bundle pricing gabungan legalitas-IATA (TRAVEL-GLOBAL-STARTER/PRO dihitung dari komponen) + fix harga PPIU /katalog | **🟢 AKTIF — versi berjalan** |
 | 49 | **v1.23.1** ⭐ | **2026-11-20** | patch | **Master Pricing Haji-Umrah** | Task 51 | **🟢 AKTIF — versi berjalan** |
 | 48 | v1.23.0 | 2026-11-20 | minor | Trilogi Travel Ibadah | Task 50 | ✅ Rilis |

@@ -7,14 +7,14 @@
     "url": "https://pusatperizinan.com"
   },
   "version": {
-    "current": "1.24.0",
-    "label": "v1.24.0 — IATA Premium Matrix",
-    "releaseName": "IATA Premium Matrix",
+    "current": "1.25.0",
+    "label": "v1.25.0 — AI Everywhere",
+    "releaseName": "AI Everywhere",
     "releasedAt": "2026-11-21",
     "channel": "stable",
     "timezone": "Asia/Jakarta (WIB)",
     "semverValid": true,
-    "nextRelease": "v1.25.0 (Unreleased — antrean ROADMAP-99)"
+    "nextRelease": "v1.26.0 (Unreleased — antrean ROADMAP-99)"
   },
   "stats": {
     "indexedUrls": 11888,
@@ -33,20 +33,32 @@
     "nextRelease": "v1.24.0 (Unreleased — antrean ROADMAP-99)"
   },
   "releases": {
-    "total": 50,
+    "total": 51,
     "current": {
-      "version": "1.24.0",
+      "version": "1.25.0",
       "date": "2026-11-21",
       "type": "minor",
-      "name": "IATA Premium Matrix",
-      "taskId": "52",
+      "name": "AI Everywhere",
+      "taskId": "53",
       "highlights": [
-        "IATA Premium Matrix: tabel perbandingan harga premium 3 model akreditasi (profil cocok-untuk, katalog, promo 2026, catatan \"mulai dari\" GoGlobal) + Bundle Pricing 2 paket gabungan di pillar /layanan/iata-accreditation — TRAVEL-GLOBAL-STARTER Rp 47.787.500 promo / Rp 75.575.000 normal (GoLite promo + Sertifikasi PPIU) dan TRAVEL-GLOBAL-PRO Rp 98.437.500 promo / Rp 151.875.000 normal (GoStandard promo + PPIU + PIHK)",
-        "Sumber harga bundle src/lib/iata.ts (IataBundle + IATA_BUNDLES — dihitung runtime dari IATA_PRODUCTS x SERTIFIKASI_PRODUCTS, tanpa hardcode; field cocokUntuk untuk matriks); knowledge base AI chat seksi 9 bundle IATA; fix konsistensi harga PPIU di /katalog (R.1 priceFrom 19,5jt -> 20jt + FAQ divisi) menyusul master brief Task 50",
-        "QA god mode: tsc --noEmit & eslint src/ NOL temuan; nominal bundle terverifikasi via eksekusi kode; compile-build sukses semua route; verifikasi runtime pillar & /katalog/travel-haji-umrah HTTP 200 — prerender penuh 12.053 halaman ENOSPC di sandbox 9,9GB (bukan bug kode)"
+        "AEO/GEO maksimal — robots.txt di-upgrade menjadi 43 grup UA (RFC 9309 multi-UA): dibuka eksplisit untuk 20+ AI crawler dunia baru (Claude-SearchBot, anthropic-ai, Perplexity-User, DuckAssistBot, YouBot, cohere-ai, MistralAI-User, Kagibot, iaskspider, Meta-ExternalAgent, FacebookBot, Amazonbot, Bytespider, PanguBot, Webzio-Extended, CCBot, Diffbot, Timpibot, PetalBot, Applebot, GoogleOther) + bot preview Slack/Discord/Telegram; grup AI lama (GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-User, PerplexityBot, Google-Extended, Applebot-Extended) kini juga dijaga dari /api & /admin",
+        "llms.txt: baris freshness (Terakhir diperbarui 2026-11-21 — harga berjalan) + item ekosistem IATA lengkap (3 produk + harga katalog/promo + 2 bundle Travel Global + 8 panduan + 2 halaman konversi); llms-full.txt (katalog mesin-baca AI) kini tergenerate seksi \"Ekosistem Akreditasi IATA\" langsung dari src/lib/iata.ts — harga AI-ready selalu 1:1 dengan sumber kebenaran",
+        "robots meta root max-snippet:-1 / max-image-preview:large / max-video-preview:-1 dipasang level root seluruh situs (sebelumnya hanya googleBot) — dibaca Bing/Perplexity/Yandex/DuckDuckGo untuk snippet & jawaban AI maksimal; QA tsc/eslint NOL + runtime robots/llms/llms-full/robots-meta terverifikasi"
       ]
     },
     "history": [
+      {
+        "version": "1.25.0",
+        "date": "2026-11-21",
+        "type": "minor",
+        "name": "AI Everywhere",
+        "taskId": "53",
+        "highlights": [
+          "AEO/GEO maksimal — robots.txt di-upgrade menjadi 43 grup UA (RFC 9309 multi-UA): dibuka eksplisit untuk 20+ AI crawler dunia baru (Claude-SearchBot, anthropic-ai, Perplexity-User, DuckAssistBot, YouBot, cohere-ai, MistralAI-User, Kagibot, iaskspider, Meta-ExternalAgent, FacebookBot, Amazonbot, Bytespider, PanguBot, Webzio-Extended, CCBot, Diffbot, Timpibot, PetalBot, Applebot, GoogleOther) + bot preview Slack/Discord/Telegram; grup AI lama (GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-User, PerplexityBot, Google-Extended, Applebot-Extended) kini juga dijaga dari /api & /admin",
+          "llms.txt: baris freshness (Terakhir diperbarui 2026-11-21 — harga berjalan) + item ekosistem IATA lengkap (3 produk + harga katalog/promo + 2 bundle Travel Global + 8 panduan + 2 halaman konversi); llms-full.txt (katalog mesin-baca AI) kini tergenerate seksi \"Ekosistem Akreditasi IATA\" langsung dari src/lib/iata.ts — harga AI-ready selalu 1:1 dengan sumber kebenaran",
+          "robots meta root max-snippet:-1 / max-image-preview:large / max-video-preview:-1 dipasang level root seluruh situs (sebelumnya hanya googleBot) — dibaca Bing/Perplexity/Yandex/DuckDuckGo untuk snippet & jawaban AI maksimal; QA tsc/eslint NOL + runtime robots/llms/llms-full/robots-meta terverifikasi"
+        ]
+      },
       {
         "version": "1.24.0",
         "date": "2026-11-21",

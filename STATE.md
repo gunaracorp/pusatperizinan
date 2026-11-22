@@ -12,7 +12,7 @@
 | Website | PusatPerizinan.com — konsultan perizinan, pajak & penempatan PMI Indonesia |
 | Repositori | https://github.com/gunaracorp/pusatperizinan (origin utuh, remote terpasang) |
 | Lokasi sandbox | `/home/z/my-project/repos/pusatperizinan` (clone ulang penuh Task 51 — `.git` utuh, origin terpasang) |
-| Versi aplikasi | v1.24.0 "IATA Premium Matrix" (`src/lib/version.ts`, `package.json`) |
+| Versi aplikasi | v1.25.0 "AI Everywhere" (`src/lib/version.ts`, `package.json`) |
 | Stack | Next.js 16.4 (Turbopack dev) · React 19 · TypeScript 5 · Tailwind 4 · shadcn/ui · Prisma ORM 8 RC (`@prisma/orm-postgres 8.0.0-rc.20`) · PostgreSQL embedded |
 | Database | Embedded PostgreSQL (`node_modules/@embedded-postgres/linux-x64`), cluster di `.pgdata/`, port 5432, user `postgres` (trust), DB `pusatperizinan` |
 | Model data | **16 model** (Lead, Consultation, ChatMessage, LicenseCheck, Subscriber, Testimonial, DocumentCheck, RoadmapRequest, NotificationSetting, Order, Post, FollowUpLog, RecoveryLog, NotificationLog, EditorialSlot, CurrencyRate) — koreksi Task 49: catatan lama "15 model" meleset, CurrencyRate tak tercantum |
@@ -102,3 +102,10 @@ Cron otomatis: konten baru → IndexNow + daftar rotasi harian 12 URL untuk requ
 - Knowledge base chat `/api/chat` seksi 9 = bundle IATA; harga PPIU `/katalog` (R.1 + FAQ divisi) diselaraskan 19,5jt → 20jt menyusul master brief Task 50 — sisa angka 19,5jt (EPS Korea/Taiwan/HK/SG, ISO/IEC 17024, Transfer Pricing, kuota haji R.3, perpanjangan R.8) adalah **produk lain, jangan disentuh**.
 - QA terbukti: tsc/eslint NOL; nominal via eksekusi kode; `next build --experimental-build-mode compile` OK. **Catatan lingkungan: prerender penuh 12.053 halaman butuh >9 GB — selalu ENOSPC di sandbox ini; QA lokal = compile-mode + verifikasi runtime dev-server; prerender penuh diserahkan CI/deploy.**
 - Build lokal butuh `.env` DATABASE_URL (tidak ikut repo) untuk postinstall prisma emit — pelajaran Task 51 tetap berlaku.
+
+## 11. AEO/GEO "AI Everywhere" (2026-11-21, Task 53)
+
+- `public/robots.txt` di-rewrite RFC 9309 (multi-UA per grup): 43 grup UA; 20+ AI crawler dunia eksplisit dibuka (Claude-SearchBot, Perplexity-User, Meta-ExternalAgent, Amazonbot, Bytespider, CCBot, Webzio-Extended, dsb.); `/api/` & `/admin` dijaga di SEMUA grup termasuk AI. Menambah UA AI baru? Ikuti pola grup multi-UA yang ada — jangan buat grup terpisah satu per satu.
+- `public/llms.txt`: baris freshness (tanggal rilis + "harga berjalan") + seksi ekosistem IATA. `src/app/llms-full.txt/route.ts`: seksi IATA TERGENERATE dari `src/lib/iata.ts` — ubah harga di lib → katalog AI ikut otomatis; jangan hardcode harga di route.
+- `src/app/layout.tsx`: robots meta `max-snippet:-1` + `max-image-preview:large` + `max-video-preview:-1` kini di level ROOT (selain googleBot) — non-Google (Bing/Perplexity/Yandex) ikut membaca.
+- Sandbox recycle berulang: node_modules & `.env` HILANG antar sesi — selalu `npm install` + buat `.env` DATABASE_URL sebelum QA (pelajaran Task 51, berulang di Task 53).

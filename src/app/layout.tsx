@@ -112,6 +112,11 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    // Root max-* dibaca non-Google (Bing, Perplexity, Yandex) — snippet &
+    // preview gambar maksimal untuk jawaban AI & kartu berbagi.
+    "max-snippet": -1,
+    "max-image-preview": "large",
+    "max-video-preview": -1,
     googleBot: {
       index: true,
       follow: true,

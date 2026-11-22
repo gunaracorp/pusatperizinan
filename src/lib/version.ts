@@ -17,9 +17,9 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.24.0";
+export const APP_VERSION = "1.25.0";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "IATA Premium Matrix";
+export const RELEASE_NAME = "AI Everywhere";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
 export const RELEASE_DATE = "2026-11-21";
 /** Channel rilis: stable | beta | alpha. */
@@ -42,10 +42,22 @@ export interface ReleaseEntry {
 }
 
 /**
- * Riwayat lengkap 49 rilis — urut TERBARU lebih dulu.
+ * Riwayat lengkap 51 rilis — urut TERBARU lebih dulu.
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.25.0",
+    date: "2026-11-21",
+    type: "minor",
+    name: "AI Everywhere",
+    taskId: "53",
+    highlights: [
+      "AEO/GEO maksimal — robots.txt di-upgrade menjadi 43 grup UA (RFC 9309 multi-UA): dibuka eksplisit untuk 20+ AI crawler dunia baru (Claude-SearchBot, anthropic-ai, Perplexity-User, DuckAssistBot, YouBot, cohere-ai, MistralAI-User, Kagibot, iaskspider, Meta-ExternalAgent, FacebookBot, Amazonbot, Bytespider, PanguBot, Webzio-Extended, CCBot, Diffbot, Timpibot, PetalBot, Applebot, GoogleOther) + bot preview Slack/Discord/Telegram; grup AI lama (GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-User, PerplexityBot, Google-Extended, Applebot-Extended) kini juga dijaga dari /api & /admin",
+      "llms.txt: baris freshness (Terakhir diperbarui 2026-11-21 — harga berjalan) + item ekosistem IATA lengkap (3 produk + harga katalog/promo + 2 bundle Travel Global + 8 panduan + 2 halaman konversi); llms-full.txt (katalog mesin-baca AI) kini tergenerate seksi 'Ekosistem Akreditasi IATA' langsung dari src/lib/iata.ts — harga AI-ready selalu 1:1 dengan sumber kebenaran",
+      "robots meta root max-snippet:-1 / max-image-preview:large / max-video-preview:-1 dipasang level root seluruh situs (sebelumnya hanya googleBot) — dibaca Bing/Perplexity/Yandex/DuckDuckGo untuk snippet & jawaban AI maksimal; QA tsc/eslint NOL + runtime robots/llms/llms-full/robots-meta terverifikasi"
+    ],
+  },
   {
     version: "1.24.0",
     date: "2026-11-21",
