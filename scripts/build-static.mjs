@@ -198,6 +198,13 @@ try {
   // 4. POST-PROSES SEO (sitemap index + prune + robots)
   postProcessSeo(OUT_DIR);
 
+  // 4a. HEMAT INODE — buang payload RSC yang terbukti tidak pernah diminta
+  //     browser (verifikasi empiris via access-log + grep runtime chunks).
+  //     Matikan dengan PRUNE_RSC=0 bila diperlukan.
+  if (process.env.PRUNE_RSC !== "0") {
+    pruneDeadRscPayloads(OUT_DIR);
+  }
+
   // 4b. Marker mode build — dibaca deploy-pack.mjs (deteksi deterministik)
   writeFileSync(path.join(OUT_DIR, ".pack-mode"), LIGHT ? "light" : "full", "utf8");
 
@@ -216,6 +223,53 @@ try {
 }
 
 process.exit(exitCode);
+
+// ============================================================
+// HEMAT INODE — PRUNE PAYLOAD RSC MATI (hosting statis saja)
+// ------------------------------------------------------------
+// Bukti (paket light v1.25.0, diverifikasi via access-log browser):
+//   1. `__next._full.txt`  — string "_full" TIDAK ADA di satupun chunk
+//      runtime → browser tidak punya jalur untuk memintanya. Isinya juga
+//      duplikat payload rute. 265 file / ±22 MB per paket terbuang.
+//   2. `__next._index.txt` per-dir — 264 dari 265 salinan byte-identik
+//      dengan salinan root (kecuali _not-found). `.htaccess` menyajikan
+//      salinan root untuk dir mana pun tanpa file asli → konten yang
+//      diterima browser identik byte-per-byte.
+// Tidak menyentuh: HTML, sitemap, robots, _tree/_head/__PAGE__ (unik per
+// rute), payload rute polos `<route>.txt` (jalur fallback runtime).
+// ============================================================
+function pruneDeadRscPayloads(outDir) {
+  let files = 0;
+  let bytes = 0;
+
+  function removeIfDead(full) {
+    const st = statSync(full);
+    files += 1;
+    bytes += st.size;
+    rmSync(full, { force: true });
+  }
+
+  (function walk(dir) {
+    for (const e of readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, e.name);
+      if (e.isDirectory()) walk(full);
+      else if (e.name === "__next._full.txt") removeIfDead(full);
+      else if (
+        e.name === "__next._index.txt" &&
+        full !== path.join(outDir, "__next._index.txt") &&
+        full !== path.join(outDir, "_not-found", "__next._index.txt")
+      ) {
+        removeIfDead(full);
+      }
+    }
+  })(outDir);
+
+  if (files) {
+    console.log(
+      `✂️  Hemat inode: ${files} payload RSC mati dibuang (± ${(bytes / 1048576).toFixed(1)} MB) — 0 dampak SEO/fitur/performa`
+    );
+  }
+}
 
 // ============================================================
 // POST-PROSES SEO — hanya memakai file hasil export (tanpa data app)

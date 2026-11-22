@@ -83,6 +83,48 @@ Alur update:
 
 ---
 
+## ♾️ Hemat Inode (batas 600K akun cPanel)
+
+Shared hosting memakai kuota **inode** (1 file = 1 inode, folder juga). Dua hal
+yang membuat inode menumpuk di situs ini — dan cara mengatasinya — sudah
+diotomatisasi sejak v1.25.1:
+
+**1. Paket sekarang sudah ramping (turun ±19% inode per deploy).**
+Payload RSC `__next._full.txt` (265 file, ±22 MB — tidak pernah diminta browser)
+dan salinan duplikat `__next._index.txt` (264 file, ±14,5 MB — kini disajikan
+oleh `.htaccess` dari satu salinan root) tidak lagi ikut dalam paket.
+Tanpa perubahan tampilan, fitur, kecepatan, atau SEO.
+
+**2. Extract menimpa file, tapi TIDAK menghapus file lama.** Aset ber-hash
+(`_next/…`) berganti nama di setiap build → sisa deploy lama menumpuk. Paket
+sekarang membawa dua file pendamping:
+
+- `.inode-manifest.txt` — daftar lengkap file paket terkini
+- `prune-inode-hosting.sh` — bandingkan & bersihkan sisa lama
+
+**Alur update (tambahkan 1 langkah):**
+
+1. Upload & extract paket baru ke `public_html` seperti biasa.
+2. Buka **cPanel → Terminal** (atau SSH), lalu di `public_html`:
+   ```bash
+   bash prune-inode-hosting.sh            # dry-run — lihat dulu daftarnya
+   bash prune-inode-hosting.sh --apply    # hapus sisa deploy lama
+   ```
+3. Selesai — inode kembali ke jumlah file paket terkini.
+
+> Opsi `--apply --include-html` ikut menghapus HTML lama yang tak ada di paket
+> (mis. sisa deploy mode FULL lalu berganti LIGHT). **Pastikan mode build sama**
+> sebelum memakainya — HTML yang dihapus akan 404 dan keluar dari indeks Google
+> secara alami.
+
+**Diagnosis akun (kalau inode tinggi padahal paket kecil):**
+Pemborosan terbesar biasanya ada DI LUAR `public_html` — email lama (1 email =
+1+ inode), `.trash`, backup lama, atau sisa aplikasi lain. Jalankan script
+`cek-inode.sh` (lihat `OPTIMASI-INODE.md` di project) untuk melihat peta
+pemakaian inode akun tanpa menghapus apa pun.
+
+---
+
 ## 🛠️ Troubleshooting
 
 | Gejala                                          | Solusi                                                                                     |

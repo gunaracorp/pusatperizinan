@@ -74,6 +74,29 @@ if (existsSync(docSrc)) {
   cpSync(docSrc, path.join(STAGING, "DEPLOY-IDWEBHOST.md"));
 }
 
+// ---------- 2b. HEMAT INODE — manifest + script prune ke dalam paket ----------
+// .inode-manifest.txt = daftar LENGKAP file paket TERKINI. Script
+// prune-inode-hosting.sh membandingkannya dengan public_html setelah
+// extract → file aset teknis sisa deploy lama (yang tak pernah tertimpa
+// karena namanya ber-hash) teridentifikasi & bisa dihapus → inode akun
+// cPanel tidak menumpuk di setiap update.
+const pruneScriptSrc = path.join(ROOT, "scripts", "prune-inode-hosting.sh");
+if (existsSync(pruneScriptSrc)) {
+  cpSync(pruneScriptSrc, path.join(STAGING, "prune-inode-hosting.sh"));
+}
+const manifestLines = [];
+(function walkManifest(dir) {
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) walkManifest(full);
+    else manifestLines.push(path.relative(STAGING, full).replace(/\\/g, "/"));
+  }
+})(STAGING);
+manifestLines.push(".inode-manifest.txt", "ISI-PACK.txt");
+manifestLines.sort();
+writeFileSync(path.join(STAGING, ".inode-manifest.txt"), manifestLines.join("\n") + "\n", "utf8");
+console.log(`📋 .inode-manifest.txt ditulis (${manifestLines.length} entri) + prune-inode-hosting.sh ikut di-pack`);
+
 // ---------- 3. Hitung isi staging ----------
 function walkCount(dir) {
   let count = 0;
@@ -81,6 +104,13 @@ function walkCount(dir) {
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) count += walkCount(full);
     else count += 1;
+  }
+  return count;
+}
+function walkDirs(dir) {
+  let count = 1; // dir itu sendiri
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    if (entry.isDirectory()) count += walkDirs(path.join(dir, entry.name));
   }
   return count;
 }
@@ -94,6 +124,7 @@ function walkHtml(dir, acc = []) {
 }
 const fileCount = walkCount(STAGING);
 const htmlCount = walkHtml(STAGING).length;
+const dirCount = walkDirs(STAGING) - 1; // tanpa root staging itu sendiri
 
 // ---------- 4. ISI-PACK.txt (checklist di dalam paket) ----------
 const isiPack = `════════════════════════════════════════════════════════════
@@ -115,6 +146,8 @@ STRUKTUR UTAMA
   404.html                → halaman error 404 branded
   _next/                  → aset CSS + JS + font (nama file ber-hash)
   .htaccess               → routing, 404, kompresi GZIP, cache browser
+  .inode-manifest.txt     → daftar file paket (dipakai prune-inode-hosting.sh)
+  prune-inode-hosting.sh  → hapus sisa deploy lama (hemat inode cPanel)
   robots.txt              → instruksi mesin pencari
   sitemap.xml             → INDEKS sitemap (menunjuk seksi per bagian)
   sitemap/                → sitemap per seksi (hanya URL yang ada di paket)
@@ -211,6 +244,7 @@ const packInfo = {
   md5,
   fileCount,
   htmlCount,
+  inodeCount: fileCount + dirCount + 1, // file + dir + dir root public_html
   mode: MODE,
   modeLabel: MODE_LABEL,
   builtAt,
