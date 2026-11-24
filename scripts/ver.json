@@ -7,14 +7,14 @@
     "url": "https://pusatperizinan.com"
   },
   "version": {
-    "current": "1.27.0",
-    "label": "v1.27.0 — Duo Katalog 17025 & KPPA",
-    "releaseName": "Duo Katalog 17025 & KPPA",
+    "current": "1.28.0",
+    "label": "v1.28.0 — Duo Promo 35%",
+    "releaseName": "Duo Promo 35%",
     "releasedAt": "2026-11-24",
     "channel": "stable",
     "timezone": "Asia/Jakarta (WIB)",
     "semverValid": true,
-    "nextRelease": "v1.28.0 (Unreleased — antrean ROADMAP-99)"
+    "nextRelease": "v1.29.0 (Unreleased — antrean ROADMAP-99)"
   },
   "stats": {
     "indexedUrls": 11888,
@@ -33,17 +33,16 @@
     "nextRelease": "v1.24.0 (Unreleased — antrean ROADMAP-99)"
   },
   "releases": {
-    "total": 53,
+    "total": 54,
     "current": {
-      "version": "1.27.0",
+      "version": "1.28.0",
       "date": "2026-11-24",
       "type": "minor",
-      "name": "Duo Katalog 17025 & KPPA",
-      "taskId": "55",
+      "name": "Duo Promo 35%",
+      "taskId": "56",
       "highlights": [
-        "Produk BARU: Pelatihan SNI ISO/IEC 17025:2017 — /layanan/pelatihan-sni-iso-17025-2017 — Rp 4,64jt/peserta, min. 5 peserta, 2 hari/14 jam, e-sertifikat keikutsertaan (bukan akreditasi KAN)",
-        "Match quotation KPPA 2026: Rp 27.362.500 all-in, DP 50% + 50% saat NIB terbit, 4-6 minggu, BKPM 5/2025 — /layanan/kppa + katalog A.10 + detail map",
-        "Sinkron chat KB item 10 + llms.txt 2 item + freshness v1.27.0; katalog sertifikasi 43 → 44 layanan"
+        "Promo 35% atas anchor normal (+50%) untuk 2 produk baru Task 55: Pelatihan 17025 Rp4.524.000/peserta (normal Rp6.960.000, total min. 5 Rp22.620.000) & KPPA Rp26.678.000 all-in (normal Rp41.043.750, DP Rp13.339.000)",
+        "Sinkron 6 permukaan: cert entry + FAQ, SERVICES, detail map, katalog A.10, chat KB item 10, llms.txt v1.28.0"
       ]
     },
     "history": [

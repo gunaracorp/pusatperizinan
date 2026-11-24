@@ -595,3 +595,18 @@ Work Log:
 Stage Summary:
 - Dua produk penawaran owner kini punya halaman katalog resmi dengan link sesuai pola: /layanan/pelatihan-sni-iso-17025-2017 & /layanan/kppa — harga, timeline, syarat dokumen, dan batasan hukum 1:1 dengan dokumen penawaran (tanpa angka fiktif)
 - AI chat RIZKI & llms.txt sudah tahu kedua produk → jawaban asisten AI akurat
+
+---
+Task ID: 56
+Agent: main (mode Master Polymath + Sage Universal + Ultimate Problem Solver — 46 dewan pakar lintas bidang, hulu ke hilir)
+Task: Instruksi owner — "biasakan harganya naikan 50% lalu diskon 35%" untuk 2 kategori/produk baru Task 55 (Pelatihan SNI ISO/IEC 17025:2017 & KPPA) 🏷️ Rilis v1.28.0 "Duo Promo 35%"
+
+Work Log:
+- Sandbox recycle ke-2: repo re-clone dari origin (HEAD 09c7961 = v1.27.0 Task 55); npm install ulang
+- Kalkulasi presisi via python: anchor normal = dasar × 1,5; promo = anchor × 0,65 — Pelatihan: Rp4.640.000 → normal Rp6.960.000 → promo Rp4.524.000/peserta (total min. 5: Rp22.620.000 dari normal Rp34.800.000, hemat Rp12.180.000); KPPA: Rp27.362.500 → normal Rp41.043.750 → promo Rp26.678.000 (floor ribuan, diskon efektif 35,001%, hemat Rp14.365.750, DP 50% Rp13.339.000)
+- Sinkron 6 permukaan harga: (1) cert entry pelatihan (price + FAQ tarif tambahan & total investasi), (2) SERVICES kppa (price + feature DP), (3) LICENSE_DETAIL_MAP kppa (long + FAQ biaya), (4) katalog divisi A.10 (priceFrom 26.678.000 + desc), (5) chat KB item 10, (6) llms.txt 2 item + freshness v1.28.0
+- Versioning sinkron v1.28.0 (taskId 56): version.ts (RELEASES 53 → 54) · package.json · scripts/ver.json (total 54) · CHANGELOG (badge + entri + anchor #v1-28-0) · WORKLOG (entri ini)
+
+Stage Summary:
+- Kedua produk baru kini tampil dengan pola promo katalog yang konsisten (harga normal dicoret + PROMO 35%) — margin anchor terjaga sambil mempertahankan harga efektif ≈ quotation dasar (×0,975)
+- Tidak ada angka quotation lama yang tersisa di permukaan harga mana pun

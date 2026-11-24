@@ -5,19 +5,19 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.27.0_Duo_Katalog_17025_%26_KPPA-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-27-0)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.28.0_Duo_Promo_35%25-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-28-0)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-53_(0.1.0_%E2%86%92_1.27.0)-059669?style=flat-square)
-![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-57_ber_versi-059669?style=flat-square)
-![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.28.0_(Unreleased)-f59e0b?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-54_(0.1.0_%E2%86%92_1.28.0)-059669?style=flat-square)
+![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-58_ber_versi-059669?style=flat-square)
+![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.29.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.27.0 — "Duo Katalog 17025 & KPPA"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.28.0 — "Duo Promo 35%"`**
 
 <sub>Versi terlihat hidup di: footer setiap halaman (11.892 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
@@ -37,9 +37,28 @@
 | Sumber kebenaran | [`WORKLOG.md`](./WORKLOG.md) (rekam jejak 1:1) · `src/lib/version.ts` (data mesin) · `package.json` (runtime) |
 | Ritme | **1 task/permintaan user = 1 nomor versi baru** — fitur → `MINOR`, perbaikan → `PATCH`, perombakan arah produk → `MAJOR` |
 | Presisi tanggal | Era `0.x` (Sesi 1–2) direkonstruksi dari metadata file & jejak invoice (`INV-20261021`) → presisi bulan; era `1.x` → presisi hari (terverifikasi) |
-| Rilis berikutnya | **`v1.28.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
+| Rilis berikutnya | **`v1.29.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
 
-> 🔗 Navigasi cepat: **[Tabel Lengkap 53 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+> 🔗 Navigasi cepat: **[Tabel Lengkap 54 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+
+---
+
+<a id="v1-28-0"></a>
+
+## [1.28.0] — 2026-11-24 — 🏷️ "Duo Promo 35%" (Task 56)
+
+Instruksi owner untuk 2 produk baru Task 55: **harga dinaikkan 50% sebagai anchor normal, lalu diskon 35%** — pola promo konsisten dengan kampanye katalog (PPIU, bundel, IATA).
+
+### 🔧 Changed
+- **Pelatihan SNI ISO/IEC 17025:2017** (`/layanan/pelatihan-sni-iso-17025-2017`): harga katalog **Rp4.524.000/peserta — PROMO 35% (normal Rp6.960.000)** — total min. 5 peserta **Rp22.620.000** dari normal Rp34.800.000 (hemat Rp12.180.000); FAQ "tarif tambahan" & "total investasi" disinkron (Rp4.524.000 & Rp22.620.000 dengan angka normal).
+- **KPPA** (`/layanan/kppa`): harga katalog **Rp26.678.000 — PROMO 35% (normal Rp41.043.750)** — DP 50% **Rp13.339.000** + 50% saat NIB terbit; features SERVICES, long detail (promo + DP dalam Rupiah), FAQ biaya, katalog divisi A.10 (priceFrom 26.678.000 + desc promo) — semuanya sinkron.
+- **AI-ready**: knowledge base chat item 10 (harga promo + DP) & llms.txt 2 item produk + freshness v1.28.0.
+
+### 🧪 QA
+- `tsc --noEmit` & eslint file ubahan: NOL temuan; runtime dev-server memverifikasi string promo "PROMO 35% (normal ...)" tercetak di kedua halaman produk & halaman divisi.
+
+### 📚 Docs
+- Versioning sinkron v1.28.0 (taskId 56): `src/lib/version.ts` (RELEASES 53 → 54) · `package.json` · `scripts/ver.json` (total 54) · dokumen ini · `WORKLOG.md` (Task 56).
 
 ---
 

@@ -17,9 +17,9 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.27.0";
+export const APP_VERSION = "1.28.0";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Duo Katalog 17025 & KPPA";
+export const RELEASE_NAME = "Duo Promo 35%";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
 export const RELEASE_DATE = "2026-11-24";
 /** Channel rilis: stable | beta | alpha. */
@@ -42,10 +42,21 @@ export interface ReleaseEntry {
 }
 
 /**
- * Riwayat lengkap 53 rilis — urut TERBARU lebih dulu.
+ * Riwayat lengkap 54 rilis — urut TERBARU lebih dulu.
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.28.0",
+    date: "2026-11-24",
+    type: "minor",
+    name: "Duo Promo 35%",
+    taskId: "56",
+    highlights: [
+      "Kampanye promo 2 produk baru Task 55 per instruksi owner (harga naik 50% sebagai anchor normal, lalu diskon 35%): Pelatihan SNI ISO/IEC 17025:2017 → Rp4.524.000/peserta PROMO dari normal Rp6.960.000 (total min. 5 peserta Rp22.620.000 dari normal Rp34.800.000); KPPA → Rp26.678.000 all-in PROMO dari normal Rp41.043.750 (DP 50% Rp13.339.000)",
+      "Sinkron 6 permukaan harga: entri katalog sertifikasi (price + 2 FAQ), SERVICES /layanan/kppa (price + features DP), LICENSE_DETAIL_MAP (long + FAQ biaya), katalog divisi A.10 (priceFrom 26.678.000 + desc), knowledge base chat item 10, llms.txt freshness v1.28.0",
+    ],
+  },
   {
     version: "1.27.0",
     date: "2026-11-24",
