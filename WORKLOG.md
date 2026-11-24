@@ -557,3 +557,23 @@ Stage Summary:
 - Prinsip anti-duplikasi harga dijaga: llms-full IATA mengalir dari src/lib/iata.ts, bukan hardcode — ubah harga sekali, semua permukaan (web, JSON-LD, chat KB, llms-full) ikut
 - QA: tsc & eslint NOL; 4 endpoint AEO terverifikasi runtime; CI dipantau hijau pasca-push
 - v1.25.0 "AI Everywhere" menjadi versi berjalan di seluruh 8 titik versioning
+
+---
+Task ID: 54
+Agent: main (mode Master Polymath + Sage Universal + Ultimate Problem Solver — 46 dewan pakar lintas bidang)
+Task: Perintah owner — tambah/promosi produk SERTIFIKASI PPIU promo Rp19,5jt dari Rp25jt, himbauan kewajiban sertifikasi untuk seluruh PPIU Indonesia (berita Kemenhaj wajib dicari & diverifikasi), QRIS resmi pusatperizinan.com dikonek, nomor official +6281269999910, SEO maksimal semua mesin pencari (AI & non-AI), 1000 tagar, fix semua bug, push GitHub 🏷️ Rilis v1.26.0 "Sertifikasi PPIU Promo QRIS"
+
+Work Log:
+- Clone ulang repo di sandbox baru (origin a6881f7-era, HEAD 8165393 = v1.25.1); npm install 1125 paket + approve allowScripts + npm rebuild (embedded-postgres native/bin pulih) + .env sandbox DATABASE_URL postgres
+- Berita kewajiban sertifikasi PPIU DIVerifikasi (web search): kemenag.go.id "438 Penyelenggara Umrah Terancam Dibekukan" (14 Nov 2023 — izin dicabut bila 6 bulan tak tersertifikasi), HIMPUH "Kemenag Bekukan Sementara Ijin Operasional Ratusan Travel Umrah" (9 Okt 2024), Kabar Baitullah "345 Izin Dibekukan Sementara" (Okt 2024), ekualindo.com KMA No. 1251/2021 diktum ke-4 (sertifikasi wajib maks. 2 tahun sejak izin, ulang tiap 5 tahun) + portal resmi haji.go.id — semua URL asli (bukan redirect), dimuat sebagai KEMENHAJ_NEWS di lib sertifikasi-travel.ts
+- Master brief Task 54: SERTIFIKASI PPIU Rp19.500.000 promo / Rp25.000.000 normal (hargaNormal + promoLabel baru di CertTravelProduct) — sinkron 10+ titik: sumber kebenaran trilogi, PriceCard promo dicoret, sertifikasi-pages-data (perbandingan ×3, FAQ, finalCta, heading ruang lingkup), katalog R.1 + FAQ, catalog/certifications (price + FAQ), pillar IATA, chat KB seksi 7 & 45, llms.txt, meta description/SEO title; bundle IATA Travel Global terhitung ulang runtime — Starter Rp47.287.500 promo / Rp80.575.000 normal, Pro Rp97.937.500 promo / Rp156.875.000 normal (tersinkron chat KB seksi 9 + llms.txt)
+- QRIS resmi pusatperizinan.com: upload owner QRIS-PUSATPERIZINAN.COM.jpg → public/qris/qris-pusatperizinan.jpg (1136×1600); seksi "Pembayaran QRIS — Resmi & Otomatis" di CertProductPage (4 langkah scan→bayar→kirim bukti→kontrak; event GA4 baru click_cert_qris_wa di-whitelist CertEventName); panel QRIS di status-client.tsx saat order PENDING (scan + nominal + WA bukti bayar) — dana masuk langsung rekening merchant, webhooks Midtrans/Tripay tetap siap bila owner isi kredensial
+- Seksi "Himbauan Kemenhaj" #himbauan-kemenhaj (hanya PPIU, field opsional himbauan di CertPageContent): 4 kartu berita eksternal + tautan portal haji.go.id + CTA WA — pesan himbauan PPIU se-Indonesia mengikuti fakta resmi (bukan angka fiktif)
+- SEO maksimal: keywords root layout +18 kampanye; JSON-LD Offer diperkaya priceValidUntil + priceSpecification ListPrice; llms.txt freshness v1.26.0 + item harga promo + item "WAJIB SERTIFIKASI PPIU" (fakta + sumber untuk jawaban AI); 1000 tagar unik deterministik → public/tags/sertifikasi-ppiu-1000-tagar.txt + .json (ter-serve statis; generator scripts/gen-tags-ppiu.py)
+- Versioning sinkron v1.26.0 (taskId 54): version.ts (APP_VERSION/RELEASE_NAME/DATE + RELEASES 51 → 52) · package.json · scripts/ver.json (total 52) · CHANGELOG (badge + entri + anchor #v1-26-0) · WORKLOG (entri ini)
+- QA: tsc --noEmit FULL NOL; eslint (11 file ubahan) NOL; runtime dev-server: /layanan/sertifikasi-ppiu (promo, coret, himbauan, QRIS, JSON-LD ListPrice, WA) · /qris/*.jpg 200 · /llms.txt · /katalog · /checkout — semua PASS; push 8165393..4df8063 main → origin; token remote dibersihkan setelah push (pola sekali-pakai)
+
+Stage Summary:
+- Kampanye SERTIFIKASI PPIU hidup end-to-end: harga promo tampil konsisten di semua permukaan, pembayaran QRIS resmi dua jalur (halaman produk + status pesanan), himbauan kewajiban sertifikasi berbasis sumber resmi terverifikasi
+- Situs semakin AI-ready: fakta wajib-sertifikasi + harga promo masuk llms.txt & tags JSON — asisten AI bisa mengutip akurat
+- Token owner WAJIB di-rotate setelah deploy (tercatat: token dipakai sekali di clone+push lalu dibersihkan dari .git/config)
