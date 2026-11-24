@@ -577,3 +577,21 @@ Stage Summary:
 - Kampanye SERTIFIKASI PPIU hidup end-to-end: harga promo tampil konsisten di semua permukaan, pembayaran QRIS resmi dua jalur (halaman produk + status pesanan), himbauan kewajiban sertifikasi berbasis sumber resmi terverifikasi
 - Situs semakin AI-ready: fakta wajib-sertifikasi + harga promo masuk llms.txt & tags JSON — asisten AI bisa mengutip akurat
 - Token owner WAJIB di-rotate setelah deploy (tercatat: token dipakai sekali di clone+push lalu dibersihkan dari .git/config)
+
+---
+Task ID: 55
+Agent: main (mode Master Polymath + Sage Universal + Ultimate Problem Solver — 46 dewan pakar lintas bidang, hulu ke hilir)
+Task: Perintah owner — "match kan 2 produk baru di pusatperizinan.com, buatkan link nya agar sesuai dengan katalog kita" berdasarkan 2 dokumen upload: (1) Proposal_Pelatihan_SNI_ISO_IEC_17025_2017_PT_Haleyora_Powerindo.pdf, (2) Quotation-KPPA-Batam-XI-2026.pdf 🏷️ Rilis v1.27.0 "Duo Katalog 17025 & KPPA"
+
+Work Log:
+- Sandbox recycle: repo re-clone dari origin (HEAD 12f6b59 = v1.26.0 Task 54); npm install 1125 paket + .env sandbox DATABASE_URL postgres
+- Baca kedua PDF utuh: proposal pelatihan korporat 17025 (no. PPI/PROP-LKP/17025/XI/2026 — Rp4.640.000/peserta, min. 5, total min. Rp23.200.000, 2 hari/14 jam, 7 modul klausul 4-8, batasan sertifikat keikutsertaan bukan KAN) & quotation KPPA (no. PP/QUO/KPPA/1124/2026 — Rp27.362.500 all-in, DP 50% + 50% saat NIB terbit, 4-6 minggu, BKPM 5/2025, kasus SH Automation PTE LTD Batam, scope 9 + dokumen 9 + eksklusi 11)
+- Petakan pola katalog: id = slug halaman (/layanan/<id>) via CERT_PAGES/ALL_SERVICE_PAGES + catch-all /layanan/[...slug]; mapping engine katalog → halaman dedikasi (token IDF)
+- Produk 1 BARU di CERTS (katalog sertifikasi 43 → 44): id pelatihan-sni-iso-17025-2017, group lab-kesehatan, synergy iso-17025 + iso-integrated-system + iso-9001 — halaman /layanan/pelatihan-sni-iso-17025-2017 auto-exist (ServicePage builder), FAQ jujur soal batasan sertifikat vs akreditasi KAN
+- Produk 2 match KPPA 3 permukaan: SERVICES kppa (harga Rp27.362.500 all-in quotation resmi 2026, durasi 4-6 minggu, features BKPM+NIB+LOA+handover), LICENSE_DETAIL_MAP kppa (long + legalBasis BKPM 5/2025 + requirements 8 sesuai quotation + steps 6 + faq 4 + keywords batam), katalog-lengkap A.10 (priceFrom 15,6jt → 27.362.500 + desc)
+- Sinkron AI-ready: chat KB item 10 PRODUK BARU 2026 + llms.txt 2 item + freshness v1.27.0
+- Versioning sinkron v1.27.0 (taskId 55): version.ts (RELEASES 52 → 53) · package.json · scripts/ver.json (total 53) · CHANGELOG (badge + entri + anchor #v1-27-0) · WORKLOG (entri ini)
+
+Stage Summary:
+- Dua produk penawaran owner kini punya halaman katalog resmi dengan link sesuai pola: /layanan/pelatihan-sni-iso-17025-2017 & /layanan/kppa — harga, timeline, syarat dokumen, dan batasan hukum 1:1 dengan dokumen penawaran (tanpa angka fiktif)
+- AI chat RIZKI & llms.txt sudah tahu kedua produk → jawaban asisten AI akurat

@@ -5,19 +5,19 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.26.0_Sertifikasi_PPIU_Promo_QRIS-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-26-0)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.27.0_Duo_Katalog_17025_%26_KPPA-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-27-0)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-52_(0.1.0_%E2%86%92_1.26.0)-059669?style=flat-square)
-![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-56_ber_versi-059669?style=flat-square)
-![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.27.0_(Unreleased)-f59e0b?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-53_(0.1.0_%E2%86%92_1.27.0)-059669?style=flat-square)
+![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-57_ber_versi-059669?style=flat-square)
+![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.28.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.26.0 — "Sertifikasi PPIU Promo QRIS"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.27.0 — "Duo Katalog 17025 & KPPA"`**
 
 <sub>Versi terlihat hidup di: footer setiap halaman (11.892 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
@@ -37,9 +37,33 @@
 | Sumber kebenaran | [`WORKLOG.md`](./WORKLOG.md) (rekam jejak 1:1) · `src/lib/version.ts` (data mesin) · `package.json` (runtime) |
 | Ritme | **1 task/permintaan user = 1 nomor versi baru** — fitur → `MINOR`, perbaikan → `PATCH`, perombakan arah produk → `MAJOR` |
 | Presisi tanggal | Era `0.x` (Sesi 1–2) direkonstruksi dari metadata file & jejak invoice (`INV-20261021`) → presisi bulan; era `1.x` → presisi hari (terverifikasi) |
-| Rilis berikutnya | **`v1.27.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
+| Rilis berikutnya | **`v1.28.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
 
-> 🔗 Navigasi cepat: **[Tabel Lengkap 52 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+> 🔗 Navigasi cepat: **[Tabel Lengkap 53 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+
+---
+
+<a id="v1-27-0"></a>
+
+## [1.27.0] — 2026-11-24 — 🧪 "Duo Katalog 17025 & KPPA" (Task 55)
+
+Dua produk resmi masuk katalog per dokumen penawaran owner — proposal pelatihan korporat & quotation KPPA — lengkap dengan link halaman mengikuti pola katalog (`/layanan/<slug>`).
+
+### 🛍️ Added
+- **Produk BARU katalog sertifikasi (44th entry)**: `pelatihan-sni-iso-17025-2017` → halaman **`/layanan/pelatihan-sni-iso-17025-2017`** — "Pelatihan SNI ISO/IEC 17025:2017 — Kompetensi Laboratorium Pengujian & Kalibrasi": Rp4,64jt/peserta (min. 5 peserta, total min. Rp23,2jt), 2 hari/14 jam efektif (08.30–17.00 WIB), in-house & daring live, 7 modul (klausul 4–8 + pengantar akreditasi + latihan terapan), pre/post-test, e-sertifikat keikutsertaan, tarif tambahan Rp4.640.000/peserta — berbasis Proposal PPI/PROP-LKP/17025/XI/2026 (PT Haleyora Powerindo). Batasan sertifikat ditulis jujur: BUKAN akreditasi KAN/LSP — jalur akreditasi 17025 dirujuk sebagai layanan terpisah (synergy `iso-17025`).
+- **Quotation KPPA 2026 dimatch ke katalog** (PP/QUO/KPPA/1124/2026 — kasus SH Automation PTE LTD, Batam): harga all-in **Rp27.362.500** (DP 50% Rp13.681.250 + 50% saat NIB terbit), proses **4–6 minggu** setelah dokumen lengkap & alamat layak, dasar hukum **Peraturan BKPM (Kementerian Investasi & Industri Hilir) No. 5/2025**, batasan non-komersial KPPA, penilaian kelayakan alamat usulan (Batam), 8 dokumen wajib, 6 langkah proses + completion report, 4 FAQ.
+
+### 🔧 Changed
+- **KPPA sinkron 3 permukaan**: base page `/layanan/kppa` (SERVICES: harga "Rp27.362.500 — all-in jasa (quotation resmi 2026)", durasi "4-6 minggu setelah dokumen lengkap", features baru), `LICENSE_DETAIL_MAP` (long, legalBasis BKPM 5/2025, requirements 8, steps 6, faq 4 + keywords "pendirian kppa batam"), katalog divisi A.10 (priceFrom 15,6jt → 27.362.500 + desc timeline).
+- **Knowledge base chat RIZKI**: item 10 baru "PRODUK BARU 2026" (pelatihan 17025 + KPPA lengkap dengan harga & batasan), item 11 katalog.
+- **llms.txt**: freshness v1.27.0 + 2 item produk baru (harga, syarat, batasan — AI-ready); header komentar katalog sertifikasi 43 → 44 layanan.
+
+### 🧪 QA
+- `tsc --noEmit` & eslint pada file ubahan: NOL temuan.
+- Runtime dev-server: halaman baru & KPPA terverifikasi 200 + konten harga/batasan tercetak; mapping engine menghubungkan katalog A.10 → `/layanan/kppa` (exact match token).
+
+### 📚 Docs
+- Versioning sinkron v1.27.0 (taskId 55): `src/lib/version.ts` (RELEASES 52 → 53) · `package.json` · `scripts/ver.json` (total 53) · dokumen ini · `WORKLOG.md` (Task 55).
 
 ---
 

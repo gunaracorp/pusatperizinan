@@ -7,14 +7,14 @@
     "url": "https://pusatperizinan.com"
   },
   "version": {
-    "current": "1.26.0",
-    "label": "v1.26.0 — Sertifikasi PPIU Promo QRIS",
-    "releaseName": "Sertifikasi PPIU Promo QRIS",
+    "current": "1.27.0",
+    "label": "v1.27.0 — Duo Katalog 17025 & KPPA",
+    "releaseName": "Duo Katalog 17025 & KPPA",
     "releasedAt": "2026-11-24",
     "channel": "stable",
     "timezone": "Asia/Jakarta (WIB)",
     "semverValid": true,
-    "nextRelease": "v1.27.0 (Unreleased — antrean ROADMAP-99)"
+    "nextRelease": "v1.28.0 (Unreleased — antrean ROADMAP-99)"
   },
   "stats": {
     "indexedUrls": 11888,
@@ -33,17 +33,17 @@
     "nextRelease": "v1.24.0 (Unreleased — antrean ROADMAP-99)"
   },
   "releases": {
-    "total": 52,
+    "total": 53,
     "current": {
-      "version": "1.26.0",
+      "version": "1.27.0",
       "date": "2026-11-24",
       "type": "minor",
-      "name": "Sertifikasi PPIU Promo QRIS",
-      "taskId": "54",
+      "name": "Duo Katalog 17025 & KPPA",
+      "taskId": "55",
       "highlights": [
-        "Master brief owner Task 54: SERTIFIKASI PPIU promo Rp19.500.000 dari normal Rp25.000.000 — disinkron 10 titik harga + bundle IATA terhitung ulang runtime",
-        "QRIS resmi pusatperizinan.com: kartu harga promo dicoret, seksi Pembayaran QRIS + konfirmasi WA otomatis, panel QRIS di halaman status pesanan saat PENDING",
-        "Seksi Himbauan Kemenhaj (#himbauan-kemenhaj) dengan 4 sumber berita terverifikasi + keywords kampanye + 1000 tagar di public/tags/"
+        "Produk BARU: Pelatihan SNI ISO/IEC 17025:2017 — /layanan/pelatihan-sni-iso-17025-2017 — Rp 4,64jt/peserta, min. 5 peserta, 2 hari/14 jam, e-sertifikat keikutsertaan (bukan akreditasi KAN)",
+        "Match quotation KPPA 2026: Rp 27.362.500 all-in, DP 50% + 50% saat NIB terbit, 4-6 minggu, BKPM 5/2025 — /layanan/kppa + katalog A.10 + detail map",
+        "Sinkron chat KB item 10 + llms.txt 2 item + freshness v1.27.0; katalog sertifikasi 43 → 44 layanan"
       ]
     },
     "history": [

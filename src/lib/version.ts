@@ -17,9 +17,9 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.26.0";
+export const APP_VERSION = "1.27.0";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Sertifikasi PPIU Promo QRIS";
+export const RELEASE_NAME = "Duo Katalog 17025 & KPPA";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
 export const RELEASE_DATE = "2026-11-24";
 /** Channel rilis: stable | beta | alpha. */
@@ -42,10 +42,22 @@ export interface ReleaseEntry {
 }
 
 /**
- * Riwayat lengkap 52 rilis — urut TERBARU lebih dulu.
+ * Riwayat lengkap 53 rilis — urut TERBARU lebih dulu.
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.27.0",
+    date: "2026-11-24",
+    type: "minor",
+    name: "Duo Katalog 17025 & KPPA",
+    taskId: "55",
+    highlights: [
+      "Produk BARU katalog sertifikasi: 'Pelatihan SNI ISO/IEC 17025:2017 — Kompetensi Laboratorium Pengujian & Kalibrasi' (id pelatihan-sni-iso-17025-2017 → /layanan/pelatihan-sni-iso-17025-2017) — Rp 4,64jt/peserta, min. 5 peserta (total min. Rp 23,2jt), 2 hari/14 jam efektif in-house & daring, 7 modul klausul 4-8, e-sertifikat keikutsertaan dengan batasan jujur 'bukan akreditasi KAN' — berbasis proposal korporat PT Haleyora Powerindo (PPI/PROP-LKP/17025/XI/2026)",
+      "Match quotation resmi KPPA 2026 (PP/QUO/KPPA/1124/2026, kasus SH Automation PTE LTD — Batam) ke seluruh permukaan: base page /layanan/kppa (SERVICES), detail map (scope 9 langkah, 8 dokumen, faq biaya & timeline), katalog divisi A.10 — harga all-in Rp 27.362.500 (DP 50% + 50% saat NIB terbit), proses 4-6 minggu, dasar hukum Peraturan BKPM No. 5/2025, non-komersial + wajib kelayakan alamat usulan",
+      "Sinkron AI-ready: knowledge base chat item 10 baru + llms.txt 2 item produk + freshness v1.27.0; katalog sertifikasi 43 → 44 layanan",
+    ],
+  },
   {
     version: "1.26.0",
     date: "2026-11-24",

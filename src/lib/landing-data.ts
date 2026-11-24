@@ -350,9 +350,9 @@ export const SERVICES: ServiceItem[] = [
     title: "Kantor Perwakilan Asing (KPPA)",
     desc: "Hadir di Indonesia tanpa pendirian PT PMA — kantor perwakilan resmi via BKPM/OSS untuk riset pasar & koordinasi regional.",
     icon: Globe2,
-    price: "Mulai Rp 15,6jt",
-    duration: "2-3 minggu",
-    features: ["Surat keputusan persetujuan BKPM", "Kartu identitas kantor perwakilan", "Panduan kewajiban pelaporan LKPM", "Jalur konversi ke PT PMA saat siap"],
+    price: "Rp27.362.500 — all-in jasa (quotation resmi 2026)",
+    duration: "4-6 minggu setelah dokumen lengkap",
+    features: ["Persetujuan BKPM + NIB KPPA via OSS-RBA", "Skema pembayaran 50% awal + 50% saat NIB terbit", "Review dokumen perusahaan induk & Letter of Appointment", "Handover dokumen + completion report & jalur konversi PT PMA"],
   },
   {
     id: "bpjs",

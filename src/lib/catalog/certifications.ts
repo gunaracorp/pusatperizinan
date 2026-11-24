@@ -1,8 +1,9 @@
 // ============================================================
 // PUSATPERIZINAN.COM — KATALOG SERTIFIKASI TERLENGKAP
-// 43 layanan: travel ibadah haji-umrah (PPIU/PIHK/PMHU 2/2026),
+// 44 layanan: travel ibadah haji-umrah (PPIU/PIHK/PMHU 2/2026),
 // ISO sistem manajemen (termasuk ISO 9001:2026 edisi terbaru),
-// halal jasa (PP 42/2024), pangan, lab & kesehatan, badan usaha.
+// halal jasa (PP 42/2024), pangan, lab & kesehatan (termasuk
+// pelatihan SNI ISO/IEC 17025:2017), badan usaha.
 // Sumber: PMHU 2/2026, PP 42/2024, standar ISO terkini, riset 2026.
 // ============================================================
 
@@ -2196,6 +2197,52 @@ export const CERTS: CertEntry[] = [
     keywords: ["iso 15189", "akreditasi lab klinik", "sertifikasi laboratorium medis", "15189 2022"],
     idealFor: ["Lab klinik", "Lab RS", "Jaringan lab"],
     synergy: ["iso-13485", "iso-17025", "iso-integrated-system"],
+  },
+  {
+    id: "pelatihan-sni-iso-17025-2017",
+    name: "Pelatihan SNI ISO/IEC 17025:2017 — Kompetensi Laboratorium Pengujian & Kalibrasi",
+    code: "SNI ISO/IEC 17025:2017 — 2 hari / 14 jam efektif",
+    group: "lab-kesehatan",
+    price: "Rp 4,64jt / peserta — min. 5 peserta (total min. Rp 23,2jt)",
+    duration: "2 hari (08.30–17.00 WIB, 7 jam efektif/hari) — in-house & daring",
+    desc: "Pelatihan korporat memahami & menerapkan persyaratan umum kompetensi laboratorium pengujian dan kalibrasi — dari klausul 4 sampai 8, langsung ke praktik lab Anda.",
+    audience: ["Manajer/pengelola laboratorium", "Personel mutu (QA/QC)", "Manajer teknis", "Analis & teknisi pengujian/kalibrasi", "Korporat dengan lab internal"],
+    longDesc: [
+      "Program ini membangun pemahaman sistematis terhadap SNI ISO/IEC 17025:2017 — persyaratan umum kompetensi laboratorium pengujian dan kalibrasi: struktur & ruang lingkup standar, imparsialitas, kerahasiaan, struktur organisasi, kompetensi personel, fasilitas & peralatan, ketertelusuran metrologi, pengendalian proses (metode, sampling, penanganan barang uji, rekaman teknis, ketidakpastian pengukuran, validitas hasil), sampai sistem manajemen (risiko, tindakan korektif, audit internal, tinjauan manajemen).",
+      "Metodenya terapan, bukan ceramah satu arah: pemaparan interaktif, diskusi, studi kasus, dan latihan pemetaan klausul terhadap proses laboratorium Anda sendiri — peserta pulang membawa daftar awal isu/gap plus rencana tindak lanjut untuk unit kerjanya. Agenda 2 hari mencakup pre-test, pembahasan klausul 4–8, latihan terapan, post-test, dan evaluasi pembelajaran. Jadwal, lokasi (in-house di lokasi Anda), dan moda (daring live) dapat diselaraskan dengan kebutuhan operasional.",
+      "Batasan yang kami tulis jujur & jelas sejak awal: sertifikat yang terbit adalah sertifikat keikutsertaan/penyelesaian pelatihan oleh penyelenggara — BUKAN sertifikat akreditasi laboratorium, bukan sertifikat kompetensi personel dari LSP berlisensi, dan bukan pernyataan bahwa laboratorium telah terakreditasi KAN. Keputusan akreditasi tetap menjadi kewenangan Komite Akreditasi Nasional (KAN). Bila Anda siap naik kelas ke akreditasi, jalurnya layanan akreditasi ISO/IEC 17025 kami (analisis kesenjangan, penyusunan dokumen sistem manajemen, audit internal, persiapan asesmen KAN).",
+    ],
+    features: [
+      "7 modul: pengantar konteks akreditasi + klausul 4–8 lengkap",
+      "Fasilitator berpengalaman — profil penugasan disampaikan sebelum jadwal dikunci",
+      "Materi pelatihan digital (soft copy) + bahan latihan/studi kasus",
+      "Pre-test, post-test & latihan pemetaan persyaratan terhadap proses lab",
+      "E-sertifikat keikutsertaan/penyelesaian pelatihan",
+      "Rekap kehadiran, hasil evaluasi & ringkasan rekomendasi tindak lanjut awal",
+    ],
+    requirements: [
+      "Minimum 5 peserta (jumlah final dikonfirmasi sebelum penerbitan PO)",
+      "Ruang pelatihan, proyektor & koneksi dasar (untuk mode in-house)",
+      "Informasi proses/skop laboratorium (opsional — memperkaya studi kasus)",
+      "Persetujuan proposal/PO tertulis sebelum jadwal dikunci",
+    ],
+    steps: [
+      "Briefing kebutuhan & usulan agenda 2 hari",
+      "Penawaran resmi (berlaku 14 hari kalender) + kesepakatan jumlah peserta final",
+      "PO/persetujuan tertulis — pembayaran 50% uang muka, 50% setelah pelatihan selesai",
+      "Pelaksanaan 2 hari (in-house atau daring live) + latihan terapan",
+      "E-sertifikat, rekap evaluasi pembelajaran & rekomendasi tindak lanjut",
+    ],
+    faq: [
+      { q: "Apakah sertifikat pelatihan ini sama dengan akreditasi KAN?", a: "Tidak — dan itu kami tulis jelas sejak proposal. Sertifikat program ini adalah bukti keikutsertaan/penyelesaian pelatihan dari penyelenggara; akreditasi laboratorium adalah kewenangan KAN lewat asesmen tersendiri. Untuk jalur akreditasi, kami sediakan layanan akreditasi ISO/IEC 17025 lengkap dengan pendampingan asesmen." },
+      { q: "Bisa dilaksanakan daring?", a: "Bisa. Mode default adalah in-house di lokasi Anda (ruang, proyektor, dan koneksi dasar disiapkan klien); opsi daring live dapat diajukan dengan penawaran yang disesuaikan. Tarif tambahan peserta di atas jumlah minimum: Rp4.640.000 per peserta." },
+      { q: "Berapa total investasi untuk 5 peserta?", a: "Rp23.200.000 untuk 5 peserta (Rp4.640.000/peserta) — 2 hari / 14 jam efektif. Transportasi, akomodasi, konsumsi, sewa tempat, dan logistik khusus tatap muka di luar penawaran; bila diperlukan, disepakati tertulis terlebih dahulu. Penawaran berlaku 14 hari kalender sejak tanggal proposal." },
+    ],
+    legalBasis: "SNI ISO/IEC 17025:2017 (adopsi ISO/IEC 17025:2017) — akreditasi laboratorium tetap kewenangan KAN",
+    authority: "Penyelenggara pelatihan: PusatPerizinan.com (PT Top Konsultan Internasional) — bukan lembaga sertifikasi personel",
+    keywords: ["pelatihan iso 17025", "training iso 17025 2017", "pelatihan sni iso iec 17025", "pelatihan kompetensi laboratorium", "training lab pengujian kalibrasi", "pelatihan iso 17025 inhouse", "biaya pelatihan iso 17025"],
+    idealFor: ["Lab uji & kalibrasi", "Lab internal pabrik", "Lab kesehatan", "Korporat energi & infrastruktur"],
+    synergy: ["iso-17025", "iso-integrated-system", "iso-9001"],
   },
   {
     id: "iso-17025",

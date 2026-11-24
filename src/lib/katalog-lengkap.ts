@@ -490,8 +490,8 @@ export const CATEGORIES: CatalogCategory[] = [
       {
         code: "A.10",
         name: "Kantor Perwakilan Asing (KPPA)",
-        priceFrom: 15_600_000,
-        desc: "Representasi perusahaan asing di Indonesia via BKPM/OSS tanpa badan hukum — jalur validasi pasar.",
+        priceFrom: 27_362_500,
+        desc: "Representasi perusahaan asing di Indonesia via BKPM/OSS tanpa badan hukum — all-in Rp27.362.500, NIB KPPA 4–6 minggu setelah dokumen lengkap.",
       },
     ],
     faq: [
