@@ -74,6 +74,13 @@ export const metadata: Metadata = {
     // travel ibadah & aviasi & internasional
     "izin umroh", "izin haji", "syarat izin umroh", "biaya izin umroh", "PPIU", "PPIH", "SIPU", "SPPU",
     "izin travel umroh", "cara jadi PPIU", "registrasi IATA", "akreditasi IATA", "IATA agent Indonesia",
+    // kampanye sertifikasi PPIU (Task 54)
+    "sertifikasi PPIU", "sertifikasi PPIU 2026", "biaya sertifikasi PPIU", "harga sertifikasi PPIU",
+    "kewajiban sertifikasi PPIU", "PPIU tidak sertifikasi dibekukan", "izin PPIU dibekukan",
+    "LSUHK", "sertifikasi LSUHK", "KMA 1251 tahun 2021", "PMHU 2 tahun 2026", "Kemenhaj",
+    "konsultan sertifikasi PPIU", "konsultan sertifikasi BPW PPIU", "jasa sertifikasi PPIU",
+    "sertifikasi PPIU murah", "cara daftar sertifikasi PPIU", "persyaratan sertifikasi PPIU",
+    "pembayaran QRIS sertifikasi PPIU", "izin umrah terkena pembekuan", "daftar PPIU dibekukan",
     "izin usaha arab saudi", "MISA license", "MISA saudi arabia", "buka usaha di arab saudi", "commercial registration saudi",
     "RKAB", "RKAB 3 tahunan", "perpanjangan IUP", "izin jual batubara", "MODI minerba", "izin pertambangan",
     // jangkauan

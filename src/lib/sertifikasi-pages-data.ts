@@ -29,6 +29,8 @@ export interface CertPageContent {
   kesalahanUmum: { heading: string; items: { salah: string; risiko: string }[] };
   checklist: { heading: string; items: string[] };
   faq: { q: string; a: string }[];
+  /** Seksi himbauan wajib sertifikasi + berita terverifikasi (opsional — hanya PPIU). */
+  himbauan?: { heading: string; intro: string };
   terkait: { label: string; href: string; desc: string }[];
   finalCta: { heading: string; desc: string };
 }
@@ -89,7 +91,7 @@ export const PPIU_CONTENT: CertPageContent = {
     ],
   },
   ruangLingkup: {
-    heading: "Ruang Lingkup Jasa All-In Rp20 Juta",
+    heading: "Ruang Lingkup Jasa All-In — PROMO Rp19,5 Juta (Normal Rp25 Juta)",
     items: [
       "Konsultasi blueprint legal: posisi badan usaha, struktur saham, modal, dan target keberangkatan.",
       "Gap analysis menyeluruh terhadap standar PMHU 2/2026 dan checklist penerbit terkini.",
@@ -117,7 +119,7 @@ export const PPIU_CONTENT: CertPageContent = {
       { aspek: "KBLI kunci", ppiu: "79122", pihk: "79122", bpw: "79120" },
       { aspek: "Badan usaha", ppiu: "Wajib PT", pihk: "Wajib PT + PPIU aktif", bpw: "PT/CV/koperasi sesuai ketentuan TDA" },
       { aspek: "Prasyarat kunci", ppiu: "Riwayat izin perjalanan & standar modal", pihk: "Riwayat keberangkatan jamaah + jaminan/asuransi", bpw: "Rencana usaha & bukti kesiapan operasional" },
-      { aspek: "Harga jasa all-in kami", ppiu: "Rp20.000.000", pihk: "Rp25.000.000", bpw: "Rp15.000.000" },
+      { aspek: "Harga jasa all-in kami", ppiu: "Rp19.500.000 (promo dari Rp25.000.000)", pihk: "Rp25.000.000", bpw: "Rp15.000.000" },
     ],
   },
   kesalahanUmum: {
@@ -148,7 +150,7 @@ export const PPIU_CONTENT: CertPageContent = {
   faq: [
     {
       q: "Berapa biaya sertifikasi PPIU?",
-      a: "Jasa pengurusan lengkap kami Rp20.000.000 (all-in konsultasi, dokumen, pengajuan, dan pendampingan verifikasi). Biaya resmi penerbit, LSUHK, notaris, OSS, dan pihak ketiga dihitung terpisah dan disebutkan transparan dalam quotation sebelum kontrak — tidak ada biaya siluman di tengah proses.",
+      a: "Jasa pengurusan lengkap kami saat ini Rp19.500.000 (PROMO dari harga normal Rp25.000.000) — all-in konsultasi, dokumen, pengajuan, dan pendampingan verifikasi. Pembayaran bisa via QRIS resmi pusatperizinan.com (semua e-wallet & m-banking). Biaya resmi penerbit, LSUHK, notaris, OSS, dan pihak ketiga dihitung terpisah dan disebutkan transparan dalam quotation sebelum kontrak — tidak ada biaya siluman di tengah proses.",
     },
     {
       q: "Berapa lama proses izin PPIU sampai terbit?",
@@ -179,6 +181,11 @@ export const PPIU_CONTENT: CertPageContent = {
       a: "Penolakan administratif kami tangani dalam lingkup kontrak: perbaikan berkas dan pengajuan ulang tanpa biaya tambahan jasa. Untuk penolakan karena kebijakan penerbit (mis. kuota tahapan usaha), kami menyusun roadmap pemenuhan syarat dan opsi jalur alternatif — transparan sejak awal, sesuai kebijakan garansi situs kami.",
     },
   ],
+  himbauan: {
+    heading: "PENTING: Yang Tidak Sertifikasi, Izinnya Dibekukan — Himbauan untuk Seluruh PPIU Se-Indonesia",
+    intro:
+      "pemerintah telah membekukan izin operasional ratusan PPIU yang belum tersertifikasi dan mengancam pencabutan izin bila dalam 6 bulan tidak mendapatkan sertifikat. Ini bukan wacana — sudah dieksekusi sejak 2023 dan kembali diperketat pada era PMHU 2/2026. Seluruh PPIU di seluruh Indonesia yang izinnya masuk daftar pemantauan wajib segera memproses sertifikasi sebelum gelombang pembekuan berikutnya.",
+  },
   terkait: [
     { label: "Paket Pendirian Travel Umrah Lengkap (PT + PPIU)", href: SERTIFIKASI_URLS.paketPendirianUmrah, desc: "Untuk yang belum punya PT sama sekali — satu paket dari nol sampai siap keberangkatan." },
     { label: "Sertifikasi PIHK — Haji Khusus (ONH Plus)", href: SERTIFIKASI_URLS.pihk, desc: "Naik kelas dari PPIU aktif menjadi penyelenggara haji khusus." },
@@ -188,7 +195,7 @@ export const PPIU_CONTENT: CertPageContent = {
   ],
   finalCta: {
     heading: "Siap Membuat Travel Umrah Anda 100% Legal?",
-    desc: "Konsultasi awal gratis — tim kami memeriksa posisi badan usaha Anda dan menyusun roadmap PPIU paling efisien, atau langsung eksekusi dengan layanan all-in Rp20 juta.",
+    desc: "Konsultasi awal gratis — tim kami memeriksa posisi badan usaha Anda dan menyusun roadmap PPIU paling efisien, atau langsung eksekusi dengan layanan all-in PROMO Rp19,5 juta (normal Rp25 juta).",
   },
 };
 
@@ -262,7 +269,7 @@ export const PIHK_CONTENT: CertPageContent = {
       { aspek: "KBLI kunci", ppiu: "79122", pihk: "79122", bpw: "79120" },
       { aspek: "Badan usaha", ppiu: "Wajib PT", pihk: "Wajib PT + PPIU aktif", bpw: "PT/CV/koperasi sesuai ketentuan TDA" },
       { aspek: "Prasyarat kunci", ppiu: "Riwayat izin perjalanan & standar modal", pihk: "Riwayat keberangkatan jamaah + jaminan/asuransi", bpw: "Rencana usaha & bukti kesiapan operasional" },
-      { aspek: "Harga jasa all-in kami", ppiu: "Rp20.000.000", pihk: "Rp25.000.000", bpw: "Rp15.000.000" },
+      { aspek: "Harga jasa all-in kami", ppiu: "Rp19.500.000 (promo dari Rp25.000.000)", pihk: "Rp25.000.000", bpw: "Rp15.000.000" },
     ],
   },
   kesalahanUmum: {
@@ -396,7 +403,7 @@ export const BPW_CONTENT: CertPageContent = {
       { aspek: "KBLI kunci", ppiu: "79122", pihk: "79122", bpw: "79120" },
       { aspek: "Badan usaha", ppiu: "Wajib PT", pihk: "Wajib PT + PPIU aktif", bpw: "PT/CV/koperasi sesuai ketentuan TDA" },
       { aspek: "Prasyarat kunci", ppiu: "Riwayat izin perjalanan & standar modal", pihk: "Riwayat keberangkatan jamaah + jaminan/asuransi", bpw: "Rencana usaha & bukti kesiapan operasional" },
-      { aspek: "Harga jasa all-in kami", ppiu: "Rp20.000.000", pihk: "Rp25.000.000", bpw: "Rp15.000.000" },
+      { aspek: "Harga jasa all-in kami", ppiu: "Rp19.500.000 (promo dari Rp25.000.000)", pihk: "Rp25.000.000", bpw: "Rp15.000.000" },
     ],
   },
   kesalahanUmum: {

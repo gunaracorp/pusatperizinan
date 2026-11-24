@@ -522,7 +522,7 @@ export default function IataAccreditationPillarPage() {
             <div className="mt-6 grid gap-4 md:grid-cols-3">
               <Link href={SERTIFIKASI_URLS.ppiu} className="group rounded-2xl border border-stone-200 bg-white p-5 transition hover:border-emerald-400 hover:shadow-md">
                 <p className="font-bold text-emerald-900 group-hover:text-emerald-700">Sertifikasi PPIU — Umrah →</p>
-                <p className="mt-1 text-sm text-stone-600">Izin penyelenggara umrah (Kemenag, KBLI 79122) — jasa all-in Rp20 juta.</p>
+                <p className="mt-1 text-sm text-stone-600">Izin penyelenggara umrah (Kemenag, KBLI 79122) — jasa all-in PROMO Rp19,5 juta (normal Rp25 juta).</p>
               </Link>
               <Link href={SERTIFIKASI_URLS.pihk} className="group rounded-2xl border border-stone-200 bg-white p-5 transition hover:border-emerald-400 hover:shadow-md">
                 <p className="font-bold text-emerald-900 group-hover:text-emerald-700">Sertifikasi PIHK — Haji Khusus →</p>

@@ -17,11 +17,11 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.25.0";
+export const APP_VERSION = "1.26.0";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "AI Everywhere";
+export const RELEASE_NAME = "Sertifikasi PPIU Promo QRIS";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
-export const RELEASE_DATE = "2026-11-21";
+export const RELEASE_DATE = "2026-11-24";
 /** Channel rilis: stable | beta | alpha. */
 export const RELEASE_CHANNEL = "stable" as const;
 
@@ -42,10 +42,22 @@ export interface ReleaseEntry {
 }
 
 /**
- * Riwayat lengkap 51 rilis — urut TERBARU lebih dulu.
+ * Riwayat lengkap 52 rilis — urut TERBARU lebih dulu.
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.26.0",
+    date: "2026-11-24",
+    type: "minor",
+    name: "Sertifikasi PPIU Promo QRIS",
+    taskId: "54",
+    highlights: [
+      "Master brief owner Task 54: SERTIFIKASI PPIU promo Rp19.500.000 dari normal Rp25.000.000 — disinkron ke 10 titik (sertifikasi-travel.ts sumber kebenaran, sertifikasi-pages-data, katalog R.1 + FAQ, catalog/certifications, pillar IATA, knowledge base chat, llms.txt, JSON-LD Offer priceValidUntil + ListPrice); bundle IATA Travel Global ikut terhitung ulang runtime (Starter Rp47.287.500 promo / Rp80.575.000 normal, Pro Rp97.937.500 promo / Rp156.875.000 normal)",
+      "Integrasi QRIS resmi pusatperizinan.com (public/qris/qris-pusatperizinan.jpg): kartu harga promo dicoret + badge hemat di halaman trilogi, seksi Pembayaran QRIS + konfirmasi WhatsApp otomatis (event GA4 click_cert_qris_wa), panel QRIS di halaman status pesanan saat PENDING — dana masuk langsung rekening merchant, tanpa perantara",
+      "Seksi 'Himbauan Kemenhaj' (anchor #himbauan-kemenhaj) di halaman Sertifikasi PPIU: 4 sumber terverifikasi (kemenag.go.id 438 PPIU terancam dibekukan Nov 2023; HIMPUH pembekuan ratusan izin Okt 2024; 345 izin dibekukan Okt 2024; KMA 1251/2021 diktum ke-4 sertifikasi wajib) + portal haji.go.id; llms.txt item wajib-sertifikasi untuk jawaban AI; keywords root kampanye + 1000 tagar kampanye di public/tags/",
+    ],
+  },
   {
     version: "1.25.0",
     date: "2026-11-21",

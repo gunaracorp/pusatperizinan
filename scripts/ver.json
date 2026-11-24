@@ -7,14 +7,14 @@
     "url": "https://pusatperizinan.com"
   },
   "version": {
-    "current": "1.25.0",
-    "label": "v1.25.0 — AI Everywhere",
-    "releaseName": "AI Everywhere",
-    "releasedAt": "2026-11-21",
+    "current": "1.26.0",
+    "label": "v1.26.0 — Sertifikasi PPIU Promo QRIS",
+    "releaseName": "Sertifikasi PPIU Promo QRIS",
+    "releasedAt": "2026-11-24",
     "channel": "stable",
     "timezone": "Asia/Jakarta (WIB)",
     "semverValid": true,
-    "nextRelease": "v1.26.0 (Unreleased — antrean ROADMAP-99)"
+    "nextRelease": "v1.27.0 (Unreleased — antrean ROADMAP-99)"
   },
   "stats": {
     "indexedUrls": 11888,
@@ -33,17 +33,17 @@
     "nextRelease": "v1.24.0 (Unreleased — antrean ROADMAP-99)"
   },
   "releases": {
-    "total": 51,
+    "total": 52,
     "current": {
-      "version": "1.25.0",
-      "date": "2026-11-21",
+      "version": "1.26.0",
+      "date": "2026-11-24",
       "type": "minor",
-      "name": "AI Everywhere",
-      "taskId": "53",
+      "name": "Sertifikasi PPIU Promo QRIS",
+      "taskId": "54",
       "highlights": [
-        "AEO/GEO maksimal — robots.txt di-upgrade menjadi 43 grup UA (RFC 9309 multi-UA): dibuka eksplisit untuk 20+ AI crawler dunia baru (Claude-SearchBot, anthropic-ai, Perplexity-User, DuckAssistBot, YouBot, cohere-ai, MistralAI-User, Kagibot, iaskspider, Meta-ExternalAgent, FacebookBot, Amazonbot, Bytespider, PanguBot, Webzio-Extended, CCBot, Diffbot, Timpibot, PetalBot, Applebot, GoogleOther) + bot preview Slack/Discord/Telegram; grup AI lama (GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-User, PerplexityBot, Google-Extended, Applebot-Extended) kini juga dijaga dari /api & /admin",
-        "llms.txt: baris freshness (Terakhir diperbarui 2026-11-21 — harga berjalan) + item ekosistem IATA lengkap (3 produk + harga katalog/promo + 2 bundle Travel Global + 8 panduan + 2 halaman konversi); llms-full.txt (katalog mesin-baca AI) kini tergenerate seksi \"Ekosistem Akreditasi IATA\" langsung dari src/lib/iata.ts — harga AI-ready selalu 1:1 dengan sumber kebenaran",
-        "robots meta root max-snippet:-1 / max-image-preview:large / max-video-preview:-1 dipasang level root seluruh situs (sebelumnya hanya googleBot) — dibaca Bing/Perplexity/Yandex/DuckDuckGo untuk snippet & jawaban AI maksimal; QA tsc/eslint NOL + runtime robots/llms/llms-full/robots-meta terverifikasi"
+        "Master brief owner Task 54: SERTIFIKASI PPIU promo Rp19.500.000 dari normal Rp25.000.000 — disinkron 10 titik harga + bundle IATA terhitung ulang runtime",
+        "QRIS resmi pusatperizinan.com: kartu harga promo dicoret, seksi Pembayaran QRIS + konfirmasi WA otomatis, panel QRIS di halaman status pesanan saat PENDING",
+        "Seksi Himbauan Kemenhaj (#himbauan-kemenhaj) dengan 4 sumber berita terverifikasi + keywords kampanye + 1000 tagar di public/tags/"
       ]
     },
     "history": [

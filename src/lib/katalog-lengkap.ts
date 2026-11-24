@@ -99,7 +99,7 @@ export const CATEGORIES: CatalogCategory[] = [
       {
         code: "R.1",
         name: "PPIU — Penyelenggara Perjalanan Ibadah Umrah",
-        priceFrom: 20_000_000,
+        priceFrom: 19_500_000,
         priceTo: 32_500_000,
         badge: "FLAGSHIP",
         timeline: "90–120 hari",
@@ -252,7 +252,7 @@ export const CATEGORIES: CatalogCategory[] = [
       },
       {
         q: "Berapa modal minimal untuk bisnis travel umrah yang legal?",
-        a: "Untuk legalitas dasar, paket legalitas perusahaan (R.6) mulai Rp 3,9 juta dan PPIU mulai Rp 20 juta, dengan timeline realistis 90–120 hari. Kementerian Agama juga mensyaratkan kantor operasional tetap yang layak — persiapannya kami bahas di sesi konsultasi kelayakan.",
+        a: "Untuk legalitas dasar, paket legalitas perusahaan (R.6) mulai Rp 3,9 juta dan PPIU mulai Rp 19,5 juta (PROMO dari normal Rp 25 juta), dengan timeline realistis 90–120 hari. Kementerian Agama juga mensyaratkan kantor operasional tetap yang layak — persiapannya kami bahas di sesi konsultasi kelayakan.",
       },
       {
         q: "Apakah izin PPIU/PIHK bisa hangus saat audit Kemenag?",

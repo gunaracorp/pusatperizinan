@@ -401,9 +401,9 @@ export const CERTS: CertEntry[] = [
     name: "Sertifikasi PPIU — Izin Penyelenggara Umrah (All-In)",
     code: "SPPU/SIPU PPIU + Sertifikasi LSUHK",
     group: "travel-ibadah",
-    price: "Rp 20jt — all-in",
+    price: "Rp 19,5jt PROMO (normal Rp 25jt)",
     duration: "45-90 hari kerja",
-    desc: "Pengurusan lengkap izin & sertifikasi PPIU (Penyelenggara Perjalanan Ibadah Umrah) di Kemenag: kesiapan PT, KBLI 79122, dokumen, sertifikasi LSUHK, hingga izin terbit — all-in Rp20 juta.",
+    desc: "Pengurusan lengkap izin & sertifikasi PPIU (Penyelenggara Perjalanan Ibadah Umrah) di Kemenag/Kemenhaj: kesiapan PT, KBLI 79122, dokumen, sertifikasi LSUHK, hingga izin terbit — PROMO Rp19,5 juta dari normal Rp25 juta, bayar via QRIS resmi.",
     audience: ["Travel umrah baru", "Travel wisata yang naik kelas", "Grup usaha ibadah"],
     longDesc: [
       "PPIU adalah legalitas inti untuk menjual paket umrah secara sah — tanpa itu, usaha travel ibadah berisiko pemblokiran keberangkatan jamaah hingga jerat pidana perjalanan ibadah palsu. Layanan all-in kami mencakup pemeriksaan kesiapan badan usaha PT, penyesuaian KBLI 79122 di OSS-RBA, penyusunan seluruh dokumen administratif, dan pendampingan sertifikasi penyelenggara melalui lembaga sertifikasi umrah & haji khusus terakreditasi (LSUHK).",
@@ -439,7 +439,7 @@ export const CERTS: CertEntry[] = [
     faq: [
       {
         q: "Berapa biaya sertifikasi PPIU?",
-        a: "Jasa all-in kami Rp20.000.000 — mencakup konsultasi, dokumen, pengajuan, dan pendampingan verifikasi. Biaya resmi penerbit, LSUHK, notaris, dan pihak ketiga dihitung terpisah dalam quotation.",
+        a: "Jasa all-in kami saat ini Rp19.500.000 — PROMO dari harga normal Rp25.000.000. Mencakup konsultasi, dokumen, pengajuan, dan pendampingan verifikasi; pembayaran via QRIS resmi pusatperizinan.com. Biaya resmi penerbit, LSUHK, notaris, dan pihak ketiga dihitung terpisah dalam quotation.",
       },
       {
         q: "Apakah CV bisa mengajukan PPIU?",

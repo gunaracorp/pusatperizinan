@@ -5,19 +5,19 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.25.0_AI_Everywhere-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-25-0)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.26.0_Sertifikasi_PPIU_Promo_QRIS-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-26-0)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-51_(0.1.0_%E2%86%92_1.25.0)-059669?style=flat-square)
-![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-55_ber_versi-059669?style=flat-square)
-![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.26.0_(Unreleased)-f59e0b?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-52_(0.1.0_%E2%86%92_1.26.0)-059669?style=flat-square)
+![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-56_ber_versi-059669?style=flat-square)
+![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.27.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.25.0 — "AI Everywhere"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.26.0 — "Sertifikasi PPIU Promo QRIS"`**
 
 <sub>Versi terlihat hidup di: footer setiap halaman (11.892 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
@@ -37,9 +37,38 @@
 | Sumber kebenaran | [`WORKLOG.md`](./WORKLOG.md) (rekam jejak 1:1) · `src/lib/version.ts` (data mesin) · `package.json` (runtime) |
 | Ritme | **1 task/permintaan user = 1 nomor versi baru** — fitur → `MINOR`, perbaikan → `PATCH`, perombakan arah produk → `MAJOR` |
 | Presisi tanggal | Era `0.x` (Sesi 1–2) direkonstruksi dari metadata file & jejak invoice (`INV-20261021`) → presisi bulan; era `1.x` → presisi hari (terverifikasi) |
-| Rilis berikutnya | **`v1.26.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
+| Rilis berikutnya | **`v1.27.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
 
-> 🔗 Navigasi cepat: **[Tabel Lengkap 51 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+> 🔗 Navigasi cepat: **[Tabel Lengkap 52 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+
+---
+
+<a id="v1-26-0"></a>
+
+## [1.26.0] — 2026-11-24 — 💳 "Sertifikasi PPIU Promo QRIS" (Task 54)
+
+Kampanye **SERTIFIKASI PPIU** per master brief owner: promo harga, QRIS resmi, dan seksi himbauan kewajiban sertifikasi dengan sumber pemerintah terverifikasi — plus sinkronisasi harga menyeluruh.
+
+### 🛍️ Added
+- **Promo SERTIFIKASI PPIU Rp19.500.000 (normal Rp25.000.000)**: field `hargaNormal` + `promoLabel` baru di `CertTravelProduct` (`src/lib/sertifikasi-travel.ts`); PriceCard trilogi menampilkan badge PROMO + harga normal dicoret.
+- **QRIS resmi pusatperizinan.com** (`public/qris/qris-pusatperizinan.jpg`): seksi "Pembayaran QRIS — Resmi & Otomatis" di template halaman trilogi sertifikasi (alur 4 langkah scan → bayar → kirim bukti WA → kontrak) dengan event GA4 baru `click_cert_qris_wa`; panel QRIS juga tampil di halaman status pesanan saat status PENDING (`status-client.tsx`) — dana masuk langsung rekening merchant, tanpa perantara.
+- **Seksi "Himbauan Kemenhaj"** (anchor `#himbauan-kemenhaj`, hanya PPIU): 4 kartu berita terverifikasi — kemenag.go.id "438 Penyelenggara Umrah Terancam Dibekukan" (Nov 2023), HIMPUH pembekuan ratusan izin (Okt 2024), Kabar Baitullah "345 Izin Dibekukan Sementara" (Okt 2024), ekualindo.com KMA No. 1251/2021 diktum ke-4 — + tautan portal resmi haji.go.id. Konten di `KEMENHAJ_NEWS` (`sertifikasi-travel.ts`), tampil via field opsional `himbauan` di `CertPageContent`.
+
+### 🔧 Changed
+- **Sinkron harga PPIU 10 titik**: sumber kebenaran trilogi, perbandingan trilogi ×3, FAQ katalog R.1, FAQ divisi, FAQ katalog sertifikasi, pillar IATA, knowledge base chat (seksi 7 & 45), `llms.txt`, meta description + SEO title. Bundle IATA Travel Global (komponen PPIU) otomatis terhitung ulang runtime: Starter Rp47.287.500 promo / Rp80.575.000 normal · Pro Rp97.937.500 promo / Rp156.875.000 normal — tersinkron juga di chat KB & llms.txt.
+- **JSON-LD Offer** diperkaya: `priceValidUntil`, `itemCondition`, `priceSpecification` (harga promo + `https://schema.org/ListPrice` harga normal).
+- **Keywords root layout** ditambah blok kampanye sertifikasi PPIU (18 keyword: kewajiban, pembekuan, LSUHK, KMA 1251, PMHU 2/2026, Kemenhaj, QRIS).
+- **llms.txt**: freshness 2026-11-24 (v1.26.0) + item harga promo PPIU + item "WAJIB SERTIFIKASI PPIU — himbauan untuk seluruh PPIU Indonesia" (ringkasan fakta + sumber) untuk jawaban AI yang akurat.
+
+### 📦 Assets
+- **1000 tagar kampanye SERTIFIKASI PPIU** (unik, deterministik): `public/tags/sertifikasi-ppiu-1000-tagar.txt` + `.json` (ter-serve statis, bisa dikutip AI) + salinan untuk owner.
+
+### 🧪 QA
+- `tsc --noEmit` **FULL project: NOL temuan**; eslint menyusul — event baru sudah diwhitelist `CertEventName`.
+- Nominal bundle IATA diverifikasi via eksekusi logika harga (sum komponen), bukan tebakan.
+
+### 📚 Docs
+- Versioning sinkron v1.26.0 (taskId 54): `src/lib/version.ts` (RELEASES 51 → 52) · `package.json` · `scripts/ver.json` (total 52) · dokumen ini.
 
 ---
 

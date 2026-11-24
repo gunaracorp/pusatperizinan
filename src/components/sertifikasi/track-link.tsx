@@ -11,7 +11,8 @@ import { trackEvent } from "@/components/landing/analytics";
 type CertEventName =
   | "click_cert_consultation"
   | "click_cert_form"
-  | "click_cert_wa";
+  | "click_cert_wa"
+  | "click_cert_qris_wa";
 
 export function CertTrackLink({
   href,

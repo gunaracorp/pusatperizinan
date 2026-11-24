@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   CheckCircle2, Clock3, XCircle, Hourglass, Loader2, Copy, Check,
   ChevronRight, Sparkles, Wallet, PartyPopper, Phone,
@@ -231,6 +232,42 @@ export function StatusClient({ orderNo }: { orderNo: string }) {
               <span className="text-xl font-extrabold text-primary">{fmtRupiah(order.amount)}</span>
             </div>
           </div>
+
+          {/* QRIS — scan pembayaran resmi merchant pusatperizinan.com */}
+          {order.status === "PENDING" && (
+            <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-4 text-left space-y-3">
+              <p className="flex items-center gap-1.5 font-bold text-sm text-emerald-800">
+                <Wallet className="h-4 w-4" /> Bayar via QRIS resmi pusatperizinan.com
+              </p>
+              <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-start">
+                <Image
+                  src="/qris/qris-pusatperizinan.jpg"
+                  alt="QRIS resmi pusatperizinan.com — scan dengan GoPay, OVO, DANA, ShopeePay, LinkAja, m-banking dan semua aplikasi QRIS"
+                  width={140}
+                  height={197}
+                  className="h-auto w-[140px] shrink-0 rounded-lg border border-emerald-200 bg-white"
+                />
+                <ol className="flex-1 space-y-1.5 text-xs leading-relaxed text-muted-foreground">
+                  <li><strong className="text-emerald-800">1.</strong> Scan QRIS di samping dari GoPay, OVO, DANA, ShopeePay, LinkAja, atau m-banking apa pun (BCA, Mandiri, BRI, BNI, dll.).</li>
+                  <li><strong className="text-emerald-800">2.</strong> Bayar sesuai nominal pesanan di atas — {fmtRupiah(order.amount)}.</li>
+                  <li><strong className="text-emerald-800">3.</strong> Dana masuk langsung ke rekening resmi PusatPerizinan.com (tanpa perantara).</li>
+                  <li><strong className="text-emerald-800">4.</strong> Kirim bukti bayar ke WhatsApp — status pesanan juga terpantau otomatis di halaman ini.</li>
+                </ol>
+              </div>
+              <a
+                href={`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(
+                  `Halo PusatPerizinan, saya ${order.customerName} — saya sudah BAYAR via QRIS untuk pesanan ${order.orderNo} (${order.serviceName}, ${fmtRupiah(order.amount)}). Bukti pembayaran saya lampirkan di chat ini. Mohon konfirmasinya. Terima kasih.`
+                )}`}
+                target="_blank"
+                rel="noreferrer"
+                className="block"
+              >
+                <Button className="w-full rounded-xl font-bold bg-emerald-700 hover:bg-emerald-600 text-white">
+                  <Phone className="h-4 w-4" /> Kirim Bukti Bayar QRIS via WhatsApp
+                </Button>
+              </a>
+            </div>
+          )}
 
           {/* Aksi sesuai status */}
           {order.status === "PENDING" && (

@@ -34,15 +34,19 @@ export const SERTIFIKASI_URLS = {
   kontak: "/kontak",
 } as const;
 
-/** Format rupiah gaya situs: Rp20.000.000 */
+/** Format rupiah gaya situs: Rp19.500.000 */
 export const fmtIdrCert = (n: number): string => `Rp${n.toLocaleString("id-ID")}`;
 
 export interface CertTravelProduct {
   kode: "PPIU" | "PIHK" | "BPW";
   nama: string;
   namaPendek: string;
-  /** Harga jasa all-in (master brief owner Task 50). */
+  /** Harga jasa all-in saat ini (master brief owner Task 54). */
   hargaJasa: number;
+  /** Harga normal sebelum promo (tampil dicoret) — opsional. */
+  hargaNormal?: number;
+  /** Label promo singkat untuk badge harga. */
+  promoLabel?: string;
   url: string;
   seoTitle: string;
   metaDescription: string;
@@ -60,11 +64,15 @@ export const SERTIFIKASI_PRODUCTS: CertTravelProduct[] = [
     kode: "PPIU",
     nama: "Sertifikasi PPIU — Pengurusan Izin Penyelenggara Perjalanan Ibadah Umrah",
     namaPendek: "Sertifikasi PPIU",
-    hargaJasa: 20_000_000,
+    // Task 54 (master brief owner, 2026-11-24): promo SERTIFIKASI PPIU
+    // Rp19.500.000 dari harga normal Rp25.000.000.
+    hargaJasa: 19_500_000,
+    hargaNormal: 25_000_000,
+    promoLabel: "PROMO — Hemat Rp5,5 Juta",
     url: SERTIFIKASI_URLS.ppiu,
-    seoTitle: "Sertifikasi PPIU 2026 | Biaya Rp20 Juta, Syarat & Proses Izin Umrah",
+    seoTitle: "Sertifikasi PPIU 2026 | Promo Rp19,5 Juta (Normal Rp25 Juta) — Syarat & Proses Izin Umrah",
     metaDescription:
-      "Pengurusan lengkap sertifikasi & izin PPIU (Penyelenggara Perjalanan Ibadah Umrah) di Kemenag: kesiapan badan usaha PT, KBLI 79122, dokumen administratif, pendampingan sertifikasi LSUHK, hingga izin terbit. All-in Rp20 juta — konsultan perizinan travel ibadah berpengalaman.",
+      "Pengurusan lengkap sertifikasi & izin PPIU (Penyelenggara Perjalanan Ibadah Umrah) di Kemenag/Kemenhaj: kesiapan badan usaha PT, KBLI 79122, dokumen administratif, pendampingan sertifikasi LSUHK, hingga izin terbit. PROMO Rp19,5 juta dari normal Rp25 juta — bayar QRIS semua e-wallet, konsultan sertifikasi BPW/PPIU pertama di Indonesia.",
     h1: "Sertifikasi PPIU 2026 — Pengurusan Lengkap Izin Penyelenggara Perjalanan Ibadah Umrah",
     authority: "Kementerian Agama RI (kanal perizinan umrah — era Kementerian Haji dan Umrah)",
     legalBasis:
@@ -153,6 +161,72 @@ export const certWaMessageOf = (p: CertTravelProduct): string =>
 
 export const CERT_WA_UMUM = `Selamat siang ${SITE_NAME}, saya ingin konsultasi sertifikasi travel (PPIU, PIHK, atau BPW) untuk perusahaan kami. Mohon informasi mengenai syarat, biaya, dan tahapan pengurusan.`;
 
+// ------------------------------------------------------------
+// BERITA & HIMBAUAN WAJIB SERTIFIKASI PPIU (Task 54)
+// HANYA memuat sumber yang sudah diverifikasi URL-nya —
+// DILARANG menambah URL tanpa pengecekan langsung.
+// ------------------------------------------------------------
+
+export interface KemenhajNewsItem {
+  title: string;
+  date: string;
+  source: string;
+  url: string;
+  summary: string;
+}
+
+export const KEMENHAJ_NEWS: KemenhajNewsItem[] = [
+  {
+    title: "Belum Lakukan Sertifikasi, 438 Penyelenggara Umrah Terancam Dibekukan",
+    date: "14 November 2023",
+    source: "kemenag.go.id — situs resmi Kementerian Agama RI",
+    url: "https://kemenag.go.id/nasional/belum-lakukan-sertifikasi-438-penyelenggara-umrah-terancam-dibekukan-9vDAc",
+    summary:
+      "Pengumuman resmi pemerintah: izin operasional PPIU dicabut apabila tidak mendapatkan sertifikat baru dalam jangka waktu paling lama 6 (enam) bulan. Sertifikasi penyelenggara umrah ditetapkan sebagai kewajiban, bukan pilihan.",
+  },
+  {
+    title: "Belum Lakukan Sertifikasi, Kemenag Bekukan Sementara Ijin Operasional Ratusan Travel Umrah",
+    date: "9 Oktober 2024",
+    source: "himpuh.or.id — Himpunan Penyelenggara Umrah & Haji Khusus",
+    url: "https://himpuh.or.id/blog/detail/1863/belum-lakukan-sertifikasi-kemenag-bekukan-sementara-ijin-operasional-ratusan-travel-umrah",
+    summary:
+      "Bukan sekadar ancaman — pembekuan benar-benar dieksekusi. Ratusan PPIU mendapat sanksi pembekuan izin operasional sementara karena belum menyelesaikan sertifikasi.",
+  },
+  {
+    title: "345 Izin Operasional Travel Umrah Dibekukan Sementara oleh Kemenag — Ini Sebabnya",
+    date: "Oktober 2024",
+    source: "Kabar Baitullah",
+    url: "https://kabarbaitullah.jatimnetwork.com/umrah/106213703155/345-izin-operasional-travel-umrah-dibekukan-sementara-oleh-kemenag-ini-sebabnya",
+    summary:
+      "Sebanyak 345 PPIU (travel umrah) dibekukan sementara dalam satu gelombang karena belum tersertifikasi — daftar PPIU terdampak dipublikasikan, jamaah diarahkan memilih travel legal bersertifikat.",
+  },
+  {
+    title: "KMA No. 1251 Tahun 2021 — Diktum ke-4: PPIU Wajib Sertifikasi Maksimal 2 Tahun Sejak Izin Diterbitkan",
+    date: "Berlaku sejak 1 Desember 2021",
+    source: "ekualindo.com — LSUHK terakreditasi",
+    url: "https://ekualindo.com/sebanyak-438-zin-ppiu-terancam-akan-dibekukan",
+    summary:
+      "Dasar hukum kewajiban sertifikasi: KMA No. 1251/2021 menetapkan PPIU wajib tersertifikasi paling lama 2 tahun sejak izin diterbitkan, dan wajib sertifikasi ulang setiap 5 tahun sekali — tanpa sertifikat, izin operasional dibekukan/dicabut.",
+  },
+];
+
+/** Portal resmi Kementerian Haji dan Umrah (Kemenhaj) — haji.go.id. */
+export const KEMENHAJ_PORTAL_URL = "https://haji.go.id";
+export const KEMENHAJ_NEWS_INTRO =
+  "Kementerian Agama (kini era Kementerian Haji dan Umrah/Kemenhaj) telah menegaskan dan MENGEKSEKUSI kewajiban sertifikasi PPIU: izin tanpa sertifikat dibekukan sementara, dan dicabut bila dalam 6 bulan tidak tersertifikasi. Berikut sumber resminya:";
+
+// ------------------------------------------------------------
+// QRIS — pembayaran QRIS resmi pusatperizinan.com (Task 54)
+// Gambar statis QRIS merchant di public/qris/ + konfirmasi WA.
+// ------------------------------------------------------------
+
+export const QRIS_IMAGE_PATH = "/qris/qris-pusatperizinan.jpg";
+export const QRIS_IMAGE_ALT = "QRIS resmi pusatperizinan.com — scan dengan GoPay, OVO, DANA, ShopeePay, LinkAja, m-banking (BCA, Mandiri, BRI, BNI) dan semua aplikasi QRIS";
+
+/** Pesan konfirmasi pembayaran via WhatsApp (setelah scan QRIS). */
+export const qrisWaConfirmMessage = (produk: string, nominal: number): string =>
+  `Selamat siang ${SITE_NAME}, saya sudah bayar QRIS untuk ${produk} sebesar ${fmtIdrCert(nominal)}. Berikut saya lampirkan bukti transfer. Mohon konfirmasi dan langkah selanjutnya. Terima kasih.`;
+
 export const absCertUrl = (path: string): string => `${SITE_URL}${path}`;
 
 // ------------------------------------------------------------
@@ -191,7 +265,28 @@ export function certJsonLd(input: CertJsonLdInput) {
         priceCurrency: "IDR",
         url: absCertUrl(product.url),
         availability: "https://schema.org/InStock",
-        description: `Jasa konsultasi dan pendampingan ${product.namaPendek} — all-in (bukan biaya resmi penerbit).`,
+        itemCondition: "https://schema.org/NewCondition",
+        priceValidUntil: "2026-12-31",
+        description: `Jasa konsultasi dan pendampingan ${product.namaPendek} — all-in (bukan biaya resmi penerbit).${product.hargaNormal ? ` Promo ${fmtIdrCert(product.hargaJasa)} dari normal ${fmtIdrCert(product.hargaNormal)}.` : ""}`,
+        ...(product.hargaNormal
+          ? {
+              priceSpecification: [
+                {
+                  "@type": "UnitPriceSpecification",
+                  price: product.hargaJasa,
+                  priceCurrency: "IDR",
+                  valueAddedTaxIncluded: true,
+                },
+                {
+                  "@type": "UnitPriceSpecification",
+                  price: product.hargaNormal,
+                  priceCurrency: "IDR",
+                  valueAddedTaxIncluded: true,
+                  priceType: "https://schema.org/ListPrice",
+                },
+              ],
+            }
+          : {}),
       },
     },
     {

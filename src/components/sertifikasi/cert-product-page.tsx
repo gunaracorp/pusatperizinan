@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   BadgeCheck, BookOpenCheck, CheckCircle2, FileCheck2, Landmark,
@@ -13,7 +14,10 @@ import {
   CERT_DISCLAIMER, CERT_HARGA_CATATAN, CERT_HARGA_CATATAN_PENDEK,
   CERT_PROCESS, CERT_WA_UMUM, certJsonLd, certWaLink, certWaMessageOf,
   fmtIdrCert, SERTIFIKASI_URLS, type CertTravelProduct,
+  KEMENHAJ_NEWS, KEMENHAJ_NEWS_INTRO, KEMENHAJ_PORTAL_URL,
+  QRIS_IMAGE_PATH, QRIS_IMAGE_ALT, qrisWaConfirmMessage,
 } from "@/lib/sertifikasi-travel";
+import { CONTACT } from "@/lib/site";
 import type { CertPageContent } from "@/lib/sertifikasi-pages-data";
 
 // ============================================================
@@ -66,10 +70,23 @@ function JsonLd({ content }: { content: CertPageContent }) {
 /** Harga card — satu sumber harga + catatan transparansi wajib. */
 function PriceCard({ content }: { content: CertPageContent }) {
   const p = content.product;
+  const hasPromo = !!(p.hargaNormal && p.hargaNormal > p.hargaJasa);
   return (
     <div className="rounded-2xl border border-amber-300/60 bg-white/95 p-5 shadow-lg shadow-emerald-950/20 backdrop-blur">
       <p className="text-xs font-semibold uppercase tracking-wider text-amber-700">Jasa All-In — {p.kode}</p>
-      <p className="mt-1 text-3xl font-extrabold text-emerald-950">{fmtIdrCert(p.hargaJasa)}</p>
+      {hasPromo && (
+        <p className="mt-2 inline-flex items-center gap-1 rounded-full bg-red-600 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white">
+          <Sparkles className="h-3 w-3" aria-hidden /> {p.promoLabel}
+        </p>
+      )}
+      <p className="mt-1 text-3xl font-extrabold text-emerald-950">
+        {fmtIdrCert(p.hargaJasa)}
+        {hasPromo && (
+          <span className="ml-2 text-lg font-semibold text-stone-400 line-through" aria-label="harga normal">
+            {fmtIdrCert(p.hargaNormal!)}
+          </span>
+        )}
+      </p>
       <p className="mt-2 text-xs leading-relaxed text-stone-500">{CERT_HARGA_CATATAN_PENDEK}</p>
       <dl className="mt-3 space-y-1.5 border-t border-stone-200 pt-3 text-xs text-stone-600">
         <div className="flex gap-2"><dt className="font-semibold text-stone-700">Penerbit</dt><dd className="flex-1">{p.authority}</dd></div>
@@ -151,6 +168,49 @@ export function CertProductPage({ content }: { content: CertPageContent }) {
           ))}
         </Reveal>
       </section>
+
+      {/* HIMBAUAN WAJIB SERTIFIKASI — hanya PPIU; sumber terverifikasi */}
+      {content.himbauan && (
+        <section id="himbauan-kemenhaj" aria-labelledby="himbauan-kemenhaj-title" className="bg-amber-50/70 py-14 scroll-mt-20">
+          <div className="mx-auto max-w-6xl px-4">
+            <Reveal>
+              <h2 id="himbauan-kemenhaj-title" className="flex items-center gap-2 text-2xl font-bold text-stone-900 md:text-3xl">
+                <ShieldAlert className="h-6 w-6 text-red-600" aria-hidden /> {content.himbauan.heading}
+              </h2>
+              <p className="mt-3 max-w-3xl leading-relaxed text-stone-600">{KEMENHAJ_NEWS_INTRO}</p>
+            </Reveal>
+            <Reveal delay={80}>
+              <div className="mt-6 grid gap-4 md:grid-cols-2">
+                {KEMENHAJ_NEWS.map((n) => (
+                  <a
+                    key={n.url}
+                    href={n.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group rounded-2xl border border-stone-200 bg-white p-5 transition hover:border-red-300 hover:shadow-md"
+                  >
+                    <p className="text-xs font-semibold uppercase tracking-wide text-red-600">{n.date}</p>
+                    <p className="mt-1 font-bold leading-snug text-stone-900 group-hover:text-red-700">{n.title}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-stone-600">{n.summary}</p>
+                    <p className="mt-3 text-xs text-stone-400">Sumber: {n.source} ↗</p>
+                  </a>
+                ))}
+              </div>
+              <p className="mt-5 rounded-xl border border-red-200 bg-red-50 p-4 text-sm leading-relaxed text-stone-700">
+                <strong className="text-red-700">Himbauan kami kepada seluruh PPIU se-Indonesia:</strong>{" "}
+                {content.himbauan.intro} Status pemantauan resmi dapat dilihat langsung di portal{" "}
+                <a href={KEMENHAJ_PORTAL_URL} target="_blank" rel="noopener noreferrer" className="font-semibold text-red-700 underline">
+                  Kemenhaj (haji.go.id) ↗
+                </a>
+                . Jangan tunggu pembekuan datang —{" "}
+                <a href={certWaLink(CERT_WA_UMUM)} target="_blank" rel="noopener noreferrer" className="font-semibold text-emerald-700 underline">
+                  cek kesiapan sertifikasi Anda via WhatsApp gratis ↗
+                </a>
+              </p>
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       {/* DASAR HUKUM */}
       <section className="bg-stone-50/70 py-14">
@@ -327,6 +387,58 @@ export function CertProductPage({ content }: { content: CertPageContent }) {
             </div>
           </Reveal>
         </div>
+      </section>
+
+      {/* PEMBAYARAN QRIS — resmi pusatperizinan.com + konfirmasi WA */}
+      <section className="mx-auto max-w-6xl px-4 py-14">
+        <Reveal>
+          <h2 className="flex items-center gap-2 text-2xl font-bold text-stone-900 md:text-3xl">
+            <MessageCircle className="h-6 w-6 text-emerald-700" aria-hidden /> Pembayaran QRIS — Resmi & Otomatis Masuk Rekening Kami
+          </h2>
+          <p className="mt-3 max-w-3xl leading-relaxed text-stone-600">
+            Pemesanan {p.namaPendek} dapat dibayar lewat QRIS resmi {SITE_NAME}: scan sekali, bayar dari GoPay, OVO, DANA,
+            ShopeePay, LinkAja, atau m-banking apa pun (BCA, Mandiri, BRI, BNI, dll.) — tanpa potongan konfirmasi manual.
+            Setelah bayar, kirim bukti ke WhatsApp resmi kami <strong>{CONTACT.phoneDisplay}</strong> dan tim langsung memproses kontrak Anda.
+          </p>
+        </Reveal>
+        <Reveal delay={80}>
+          <div className="mt-6 grid gap-5 md:grid-cols-[auto_1fr]">
+            <figure className="rounded-2xl border border-stone-200 bg-white p-4 text-center">
+              <Image
+                src={QRIS_IMAGE_PATH}
+                alt={QRIS_IMAGE_ALT}
+                width={284}
+                height={400}
+                className="mx-auto h-auto w-full max-w-[284px] rounded-lg"
+                loading="lazy"
+              />
+              <figcaption className="mt-3 text-xs text-stone-500">
+                QRIS resmi <strong>{SITE_NAME}</strong> — nominal bayar: <strong className="text-emerald-700">{fmtIdrCert(p.hargaJasa)}</strong>
+                {p.hargaNormal && p.hargaNormal > p.hargaJasa ? (
+                  <span className="ml-1 line-through text-stone-400">{fmtIdrCert(p.hargaNormal)}</span>
+                ) : null}
+              </figcaption>
+            </figure>
+            <div className="rounded-2xl border border-emerald-200 bg-emerald-50/60 p-5">
+              <ol className="space-y-3 text-sm leading-relaxed text-stone-700">
+                <li><strong className="text-emerald-800">1.</strong> Klik tombol WhatsApp di bawah — chat otomatis terisi nama produk &amp; nominal promo.</li>
+                <li><strong className="text-emerald-800">2.</strong> Scan QRIS di atas dari aplikasi e-wallet/m-banking Anda, bayar sesuai nominal.</li>
+                <li><strong className="text-emerald-800">3.</strong> Kirim bukti pembayaran ke WhatsApp {CONTACT.phoneDisplay} — dana masuk langsung ke rekening resmi {SITE_NAME} (bukan perantara).</li>
+                <li><strong className="text-emerald-800">4.</strong> Tim kami langsung konfirmasi, kirim quotation + kontrak, dan mulai tahap 01 Konsultasi Blueprint Legal.</li>
+              </ol>
+              <CertTrackLink
+                href={certWaLink(qrisWaConfirmMessage(p.namaPendek, p.hargaJasa))}
+                event="click_cert_qris_wa"
+                product={p.kode}
+                external
+                className="mt-5 flex min-h-11 items-center justify-center gap-2 rounded-xl bg-emerald-700 px-5 py-3 text-sm font-bold text-white transition hover:bg-emerald-600"
+              >
+                <MessageCircle className="h-4 w-4" aria-hidden /> Pesan &amp; Bayar QRIS — {fmtIdrCert(p.hargaJasa)} via WhatsApp
+              </CertTrackLink>
+              <p className="mt-3 text-xs leading-relaxed text-stone-500">{CERT_HARGA_CATATAN_PENDEK}</p>
+            </div>
+          </div>
+        </Reveal>
       </section>
 
       {/* CTA FINAL */}
