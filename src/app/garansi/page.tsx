@@ -15,7 +15,7 @@ import { SITE_NAME, SITE_URL, CONTACT } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Garansi 100% Uang Kembali — Jaminan Layanan Perizinan",
   description:
-    "Garansi 100% uang kembali dari PusatPerizinan.com: bila izin Anda gagal terbit karena kesalahan administratif tim kami, seluruh biaya jasa kami kembalikan penuh. Verifikasi maks. 3 hari kerja, pencairan mengikuti tier Ketentuan Refund — paling cepat 45 hari kerja.",
+    "Garansi 100% uang kembali dari PusatPerizinan.com: bila izin Anda gagal terbit karena kesalahan administratif tim kami, seluruh biaya jasa kami kembalikan penuh. Klaim diakui diterima maks. 3 hari kerja (pemeriksaan administratif); keputusan tertulis dan pencairan dana mengikuti tier Ketentuan Refund — paling cepat 45 hari kerja.",
   alternates: { canonical: "/garansi" },
   robots: { index: true, follow: true },
 };
@@ -54,7 +54,7 @@ const garansiFaqJsonLd = {
       name: "Bagaimana proses klaim garansi dan berapa lama refund masuk?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Kirim permohonan klaim via WhatsApp atau email yang tertera di halaman kontak dengan nomor pesanan Anda. Tim memverifikasi dan memberi putusan tertulis maksimal 3 hari kerja. Pencairan dana mengikuti Ketentuan Refund berjenjang: untuk klaim garansi yang disetujui (kesalahan material tim kami) berlaku Tier 1 — paling lama 45 hari kerja — sejak Klaim Lengkap diterima. Jumlah yang tidak disengketakan dibayar lebih dahulu. Tidak ada biaya klaim, tidak ada syarat tersembunyi.",
+        text: "Kirim permohonan klaim via WhatsApp atau email yang tertera di halaman kontak dengan nomor pesanan Anda. Maksimal 3 hari kerja kami mengonfirmasi bahwa klaim Anda diterima dan menyampaikan daftar kekurangan dokumen bila ada — ini pemeriksaan administratif, BUKAN putusan refund dan BUKAN pencairan dana. Keputusan tertulis disertai perhitungan menyusul mengikuti kompleksitas mandat, karena nilai yang dapat dikembalikan perlu direkonsiliasi dengan instansi, notaris, dan pihak ketiga (PNBP, legalisasi, dan sebagainya). Pencairan mengikuti Ketentuan Refund berjenjang: klaim garansi yang disetujui (kesalahan material tim kami) berada di Tier 1 — paling lama 45 hari kerja sejak Klaim Lengkap diterima; jumlah yang tidak disengketakan dibayar lebih dahulu. Tidak ada biaya klaim, tidak ada syarat tersembunyi.",
       },
     },
   ],
@@ -195,8 +195,8 @@ export default function GaransiPage() {
           <ol className="mt-4 space-y-3">
             {[
               { t: "Hubungi kami", d: "Kirim nomor pesanan Anda via WhatsApp atau email di halaman kontak — satu pesan cukup." },
-              { t: "Putusan tertulis maks. 3 hari kerja", d: "Tim memeriksa berkas dan memberi putusan tertulis: refund penuh, urus ulang gratis, atau solusi alternatif." },
-              { t: "Pencairan mengikuti tier refund", d: "Klaim garansi disetujui berada di Tier 1 — paling lama 45 hari kerja sejak Klaim Lengkap diterima (lihat Ketentuan Refund). Bagian yang tidak disengketakan dibayar lebih dahulu, ke rekening asli pembayaran." },
+              { t: "Konfirmasi penerimaan maks. 3 hari kerja", d: "Klaim Anda ditandai diterima; daftar kekurangan dokumen disampaikan bila ada. Ini pemeriksaan administratif — bukan putusan refund dan bukan pencairan dana." },
+              { t: "Keputusan & pencairan mengikuti tier", d: "Keputusan tertulis dengan perhitungan menyusul mengikuti kompleksitas mandat (rekonsiliasi instansi/notaris/pihak ketiga). Klaim garansi disetujui berada di Tier 1 — paling lama 45 hari kerja sejak Klaim Lengkap diterima; bagian yang tidak disengketakan dibayar lebih dahulu, ke rekening asli pembayaran." },
             ].map((s, i) => (
               <li key={s.t} className="flex items-start gap-3 rounded-2xl border bg-card p-4">
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary font-bold text-primary-foreground" aria-hidden>

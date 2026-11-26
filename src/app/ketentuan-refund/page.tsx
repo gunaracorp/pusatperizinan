@@ -32,7 +32,7 @@ const refundFaqJsonLd = {
       name: "Berapa lama proses refund paling cepat di PusatPerizinan.com?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Paling cepat 45 hari kerja (Tier 1). Berlaku bila pekerjaan belum dimulai secara substantif, atau pembatalan disebabkan kesalahan material perusahaan. Hitungan berjalan sejak permohonan Klaim Lengkap diterima dan putusan refund ditetapkan tertulis. Jumlah yang tidak disengketakan dibayar lebih dahulu setelah perhitungannya dapat ditentukan.",
+        text: "Paling cepat 45 hari kerja (Tier 1). Berlaku bila pekerjaan belum dimulai secara substantif, atau pembatalan disebabkan kesalahan material perusahaan. Hitungan berjalan sejak permohonan Klaim Lengkap diterima. Jumlah yang tidak disengketakan dibayar lebih dahulu setelah perhitungannya dapat ditentukan.",
       },
     },
     {
@@ -213,7 +213,7 @@ const PASAL = [
     h: "Pasal 9 — Prosedur Klaim dan Pengamanan Pembayaran",
     p: [
       `Klaim dapat diajukan melalui formulir resmi website atau alamat email/kanal pengaduan yang diumumkan Perusahaan (${CONTACT.email}), dengan mencantumkan nomor SPK, identitas pemohon, uraian peristiwa, bukti pembayaran, dan dokumen relevan. Perusahaan menyediakan tanda terima/tiket atau konfirmasi penerimaan.`,
-      "Dalam 5 (lima) Hari Kerja sejak penerimaan, Perusahaan memeriksa kelengkapan administratif dan menyampaikan daftar kekurangan secara spesifik. Permintaan dokumen tambahan harus relevan dan proporsional; Perusahaan tidak meminta kata sandi, OTP, PIN, atau kredensial akun Klien.",
+      "Dalam 5 (lima) Hari Kerja sejak penerimaan, Perusahaan memeriksa kelengkapan administratif dan menyampaikan daftar kekurangan secara spesifik. Pemeriksaan ini hanya kelengkapan administratif — bukan putusan refund dan bukan janji pencairan dana; keputusan tertulis diterbitkan mengikuti kompleksitas mandat sesuai ayat (3). Permintaan dokumen tambahan harus relevan dan proporsional; Perusahaan tidak meminta kata sandi, OTP, PIN, atau kredensial akun Klien.",
       "Perusahaan memberikan perhitungan awal dan posisi penanganan dalam jangka waktu yang wajar, serta keputusan tertulis dengan alasan dan dokumen dasar. Jika hanya sebagian nilai disengketakan, bagian yang tidak disengketakan tetap diproses.",
       "Pengembalian pada prinsipnya dilakukan ke rekening atau metode pembayaran asal, atau rekening lain yang dapat diverifikasi sebagai milik pembayar/penerima yang sah. Pemeriksaan identitas dan kepemilikan rekening dilakukan secara proporsional untuk mencegah penipuan, sesuai ketentuan pelindungan data pribadi dan kewajiban hukum yang memang berlaku.",
       "Biaya bank/transfer hanya dapat diperhitungkan jika nyata, wajar, diungkapkan, dan didukung bukti. Pembayaran lintas negara tunduk pada pemeriksaan bank, aturan valuta/transfer, identitas penerima, dan hukum yang berlaku; hambatan tersebut harus dijelaskan dan didokumentasikan.",
@@ -495,8 +495,8 @@ export default function KetentuanRefundPage() {
           <ol className="mt-5 space-y-3">
             {[
               { t: "Kirim Klaim Lengkap", d: "Email ke " + CONTACT.email + " atau formulir di halaman kontak: nomor SPK, identitas pemohon, alasan pembatalan, bukti pembayaran, dan rekening pengembalian. Anda menerima tanda terima/tiket klaim." },
-              { t: "Pemeriksaan kelengkapan — maks. 5 Hari Kerja", d: "Kami memeriksa administrasi dan menyampaikan daftar kekurangan secara spesifik bila ada. Tidak pernah diminta kata sandi, OTP, PIN, atau kredensial akun Anda." },
-              { t: "Putusan tertulis & perhitungan", d: "Keputusan disertai perhitungan tertulis: total pembayaran, nilai pekerjaan yang diakui, biaya pihak ketiga per bukti, pajak/biaya transfer yang sah, dan jumlah bersih." },
+              { t: "Pemeriksaan administratif — maks. 5 Hari Kerja", d: "Kami memeriksa kelengkapan administrasi dan menyampaikan daftar kekurangan secara spesifik bila ada. Pemeriksaan ini BUKAN putusan refund dan BUKAN janji pencairan — keputusan tertulis menyusul mengikuti kompleksitas mandat. Tidak pernah diminta kata sandi, OTP, PIN, atau kredensial akun Anda." },
+              { t: "Putusan tertulis & perhitungan", d: "Tanpa tenggat tetap: waktu keputusan mengikuti kompleksitas mandat, karena nilai yang dapat dikembalikan perlu direkonsiliasi dengan instansi, notaris, dan pihak ketiga. Keputusan disertai perhitungan tertulis: total pembayaran, nilai pekerjaan yang diakui, biaya pihak ketiga per bukti, pajak/biaya transfer yang sah, dan jumlah bersih." },
               { t: "Pencairan sesuai tier", d: "Bagian yang tidak disengketakan dibayar lebih dahulu setelah dapat dihitung — tidak menunggu seluruh proses selesai. Pencairan penuh mengikuti tier (paling cepat 45 Hari Kerja, paling lama 24 bulan untuk mandat lintas negara yang disepakati)." },
               { t: "Laporan berkala (Tier 4 & 5)", d: "Laporan status tertulis sekurang-kurangnya setiap 30 hari kalender sampai penyelesaian, dan lebih cepat bila ada perkembangan material." },
             ].map((s, i) => (

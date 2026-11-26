@@ -627,3 +627,4 @@ Work Log:
 Stage Summary:
 - pusatperizinan.com kini memuat kebijakan refund resmi berjenjang yang konsisten dengan dokumen v2.1 owner: 45 Hari Kerja (tercepat) s.d. 24 bulan (lintas negara), tanpa penghangusan otomatis, tanpa pemotongan default, jumlah tidak disengketakan dibayar lebih dahulu
 - Ketentuan mudah ditemukan dari footer, syarat-ketentuan, dan garansi; dasar hukum yang dikutip sudah dicek terhadap sumber primer per November 2026
+- Revisi instruksi owner (anti-janji refund cepat): "putusan tertulis maks. 3 hari kerja" dihapus dari /garansi; SLA 3/5 hari kini eksplisit hanya pemeriksaan administratif/konfirmasi penerimaan (BUKAN putusan refund, BUKAN pencairan) di metadata, JSON-LD, langkah klaim, FAQ, dan Pasal 9 ayat (2); keputusan tertulis mengikuti kompleksitas mandat dengan penjelasan rekonsiliasi instansi/notaris/pihak ketiga

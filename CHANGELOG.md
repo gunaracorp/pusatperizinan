@@ -55,14 +55,16 @@ Instruksi owner: lengkapi website dengan **Ketentuan Refund resmi** — paling c
 - Link **Ketentuan Refund** & **Dewan Pakar** di footer (COMPANY_LINKS + baris legal) dan entri `/sitemap/static.xml`.
 
 ### 🔧 Changed
-- **`/garansi`**: klaim lama "refund maks. 7 hari kerja" diganti seluruhnya (metadata, JSON-LD, langkah klaim) menjadi putusan tertulis maks. 3 hari kerja + pencairan mengikuti tier Ketentuan Refund (garansi disetujui = Tier 1, paling lama 45 hari kerja); tautan silang ke `/ketentuan-refund`.
+- **`/garansi`**: klaim lama "refund maks. 7 hari kerja" diganti seluruhnya (metadata, JSON-LD, langkah klaim) menjadi pencairan mengikuti tier Ketentuan Refund (garansi disetujui = Tier 1, paling lama 45 hari kerja); tautan silang ke `/ketentuan-refund`.
 - **`/syarat-ketentuan`**: seksi baru "Ketentuan Refund & Pengembalian Dana" (ringkasan tier + prinsip) dengan rujukan ke halaman lengkap.
+- **Revisi instruksi owner (anti-janji refund cepat)**: SLA hari kerja di `/garansi` (3 hari) dan `/ketentuan-refund` (5 hari) kini eksplisit **hanya pemeriksaan administratif/konfirmasi penerimaan klaim** — ditandai BUKAN putusan refund dan BUKAN pencairan dana. "Putusan tertulis maks. 3 hari kerja" dihapus; keputusan tertulis dinyatakan mengikuti kompleksitas mandat dengan penjelasan rekonsiliasi pihak ketiga (instansi, notaris, PNBP, legalisasi). Pasal 9 ayat (2) ditambah kalimat pelindung yang sama; FAQ Tier 1 disederhanakan menjadi satu pemicu hitungan (Klaim Lengkap diterima).
 
 ### 🧪 QA
 - `tsc --noEmit`: **0 error** repo-wide (setelah `prisma contract emit` di-generate).
 - eslint pada 6 file ubahan: **0 temuan**.
 - Dev server runtime: `/ketentuan-refund`, `/dewan-pakar`, `/garansi`, `/syarat-ketentuan` semua **HTTP 200**; verifikasi string konten (5 tier, 14 pasal, dasar hukum, footer link) **LOLOS**; tidak ada residu "7 hari kerja".
 - `/sitemap/static.xml`: kedua rute baru tercantum.
+- Revisi anti-janji refund cepat tervalidasi ulang: tsc 0 error, eslint 0 temuan, `/garansi` & `/ketentuan-refund` HTTP 200, penanda "BUKAN putusan refund dan BUKAN pencairan" tampil di kedua halaman, tanpa residu "Putusan tertulis maks".
 
 ### 📚 Docs
 - Konsistensi pola: batas tier dinyatakan eksplisit sebagai batas layanan kontraktual (bukan tenggat undang-undang), tanpa penghangusan dana otomatis, tanpa pemotongan persentase default — sesuai mandat kepatuhan UUPK (klausula baku).
