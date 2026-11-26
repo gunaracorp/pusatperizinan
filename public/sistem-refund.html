@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Sistem Refund Terpadu pusatperizinan.com — formulir pengajuan, dashboard ACC, dan ketentuan lengkap. PT Top Konsultan Internasional.">
+<title>Sistem Refund Terpadu — pusatperizinan.com</title>
+<style>
+:root{
+  --bg:#070b14;--bg2:#0b1220;--card:rgba(255,255,255,.045);--card2:rgba(255,255,255,.07);
+  --line:rgba(255,255,255,.10);--gold:#e8c877;--gold2:#c39a3f;--txt:#eef2f8;--mut:#9aa7bd;
+  --ok:#34d399;--bad:#f87171;--warn:#fbbf24;--info:#60a5fa;--r:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,-apple-system,Roboto,'Helvetica Neue',Arial,sans-serif;
+  background:var(--bg);color:var(--txt);min-height:100vh;line-height:1.55}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(900px 500px at 85% -10%,rgba(232,200,119,.10),transparent 60%),
+             radial-gradient(800px 500px at -10% 110%,rgba(96,165,250,.08),transparent 60%),
+             linear-gradient(180deg,#070b14 0%,#0a1120 60%,#070b14 100%)}
+a{color:var(--gold);text-decoration:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(14px,4vw,28px)}
+/* ===== HEADER ===== */
+header{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);
+  background:rgba(7,11,20,.82);border-bottom:1px solid var(--line)}
+.hrow{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:14px 0}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.logo{width:44px;height:44px;border-radius:12px;flex:none;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold2) 100%);color:#1a1408;
+  font-weight:800;font-size:19px;box-shadow:0 0 18px rgba(232,200,119,.35)}
+.brand h1{font-size:clamp(15px,2.6vw,18px);letter-spacing:.3px;white-space:nowrap}
+.brand h1 b{background:linear-gradient(90deg,var(--gold),#fff3d6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand small{display:block;color:var(--mut);font-size:11px;letter-spacing:1.6px;text-transform:uppercase}
+nav{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.tab{padding:9px 16px;border-radius:999px;border:1px solid var(--line);color:var(--mut);
+  font-size:13px;font-weight:600;cursor:pointer;background:transparent;transition:.2s}
+.tab:hover{color:var(--txt);border-color:rgba(232,200,119,.4)}
+.tab.on{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1408;border-color:transparent;
+  box-shadow:0 0 16px rgba(232,200,119,.35)}
+/* ===== LAYOUT ===== */
+main{padding:clamp(18px,4vw,34px) 0 60px}
+.view{display:none}.view.on{display:block;animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:clamp(16px,3vw,24px);backdrop-filter:blur(8px)}
+.card+.card{margin-top:16px}
+h2{font-size:clamp(20px,4vw,26px);margin-bottom:6px}
+h2 b{background:linear-gradient(90deg,var(--gold),#fff3d6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--mut);font-size:14px;margin-bottom:18px}
+h3{font-size:16px;margin:0 0 12px;color:var(--gold)}
+/* ===== FORM ===== */
+.steps{display:flex;gap:6px;margin:0 0 18px;flex-wrap:wrap}
+.steps span{flex:1;min-width:110px;text-align:center;font-size:11.5px;font-weight:600;color:var(--mut);
+  padding:8px 6px;border-radius:10px;border:1px solid var(--line);background:var(--card);transition:.2s}
+.steps span.on{color:#1a1408;background:linear-gradient(135deg,var(--gold),var(--gold2));border-color:transparent}
+.steps span.done{color:var(--gold);border-color:rgba(232,200,119,.5)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.frow .full{grid-column:1/-1}
+label{display:block;font-size:12.5px;font-weight:600;color:var(--mut);margin-bottom:6px;letter-spacing:.3px}
+label i{color:var(--bad);font-style:normal}
+input,select,textarea{width:100%;padding:11px 13px;border-radius:11px;font-size:14px;font-family:inherit;
+  background:rgba(255,255,255,.045);border:1px solid var(--line);color:var(--txt);outline:none;transition:.2s}
+input:focus,select:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(232,200,119,.15)}
+select option{background:#0b1220;color:var(--txt)}
+textarea{min-height:84px;resize:vertical}
+.seg{display:flex;gap:8px;flex-wrap:wrap}
+.seg button{flex:1;min-width:130px;padding:11px;border-radius:11px;font-weight:700;font-size:13.5px;
+  border:1px solid var(--line);background:transparent;color:var(--mut);cursor:pointer;transition:.2s;font-family:inherit}
+.seg button.on{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1408;border-color:transparent}
+.hint{font-size:12px;color:var(--mut);margin-top:5px}
+.note{border-left:3px solid var(--gold);background:rgba(232,200,119,.07);padding:11px 14px;border-radius:0 10px 10px 0;font-size:13px;color:#f5e9cd;margin:10px 0}
+.note.red{border-color:var(--bad);background:rgba(248,113,113,.08);color:#fecaca}
+.note.ok{border-color:var(--ok);background:rgba(52,211,153,.08);color:#c6f6e0}
+.radio-opt{display:flex;gap:10px;align-items:flex-start;padding:11px 13px;border:1px solid var(--line);
+  border-radius:11px;margin-bottom:9px;cursor:pointer;font-size:13.5px;transition:.2s}
+.radio-opt:hover{border-color:rgba(232,200,119,.45)}
+.radio-opt input{width:auto;margin-top:3px;accent-color:var(--gold)}
+.radio-opt.on{border-color:var(--gold);background:rgba(232,200,119,.06)}
+.chk{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;margin-bottom:9px}
+.chk input{width:auto;margin-top:3px;accent-color:var(--gold)}
+.wiznav{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.btn{padding:12px 22px;border-radius:12px;font-weight:700;font-size:14px;cursor:pointer;border:none;
+  font-family:inherit;transition:.2s}
+.btn.gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1408;box-shadow:0 0 16px rgba(232,200,119,.3)}
+.btn.gold:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--txt)}
+.btn.ghost:hover{border-color:var(--gold)}
+.btn.ok{background:rgba(52,211,153,.15);color:var(--ok);border:1px solid rgba(52,211,153,.4)}
+.btn.bad{background:rgba(248,113,113,.13);color:var(--bad);border:1px solid rgba(248,113,113,.4)}
+.btn.info{background:rgba(96,165,250,.13);color:var(--info);border:1px solid rgba(96,165,250,.4)}
+.btn.sm{padding:7px 13px;font-size:12.5px;border-radius:9px}
+.right{margin-left:auto}
+.err{color:var(--bad);font-size:12.5px;margin-top:8px;display:none}
+/* success panel */
+.succ{text-align:center;padding:clamp(20px,5vw,40px)}
+.succ .tick{width:74px;height:74px;margin:0 auto 16px;border-radius:50%;display:grid;place-items:center;font-size:34px;
+  background:rgba(52,211,153,.15);border:1.5px solid rgba(52,211,153,.5);color:var(--ok);box-shadow:0 0 30px rgba(52,211,153,.25)}
+.ticket{font-size:clamp(22px,5vw,30px);font-weight:800;letter-spacing:2px;color:var(--gold);margin:6px 0 2px}
+.tline{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0;text-align:left}
+.tline>div{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.tline b{color:var(--gold);font-size:13px;display:block;margin-bottom:3px}
+/* ===== DASHBOARD ===== */
+.gate{max-width:420px;margin:30px auto;text-align:center}
+.gate input{margin:14px 0;text-align:center;font-size:16px;letter-spacing:2px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.stat b{font-size:clamp(20px,3.5vw,26px);display:block}
+.stat span{font-size:11.5px;color:var(--mut);letter-spacing:.5px}
+.stat.g b{color:var(--gold)}.stat.k b{color:var(--ok)}.stat.m b{color:var(--warn)}.stat.b b{color:var(--bad)}.stat.i b{color:var(--info)}
+.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:14px}
+.toolbar input,.toolbar select{width:auto;flex:1;min-width:150px}
+.tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+table{width:100%;border-collapse:collapse;min-width:860px;font-size:13px}
+th{padding:11px 12px;text-align:left;color:var(--mut);font-size:11px;letter-spacing:1px;text-transform:uppercase;
+  border-bottom:1px solid var(--line);white-space:nowrap;background:rgba(255,255,255,.03)}
+td{padding:11px 12px;border-bottom:1px solid rgba(255,255,255,.06);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(255,255,255,.03)}
+.pill{display:inline-block;padding:4px 11px;border-radius:999px;font-size:11px;font-weight:700;white-space:nowrap}
+.p.aj{background:rgba(251,191,36,.14);color:var(--warn);border:1px solid rgba(251,191,36,.4)}
+.p.kt{background:rgba(96,165,250,.14);color:var(--info);border:1px solid rgba(96,165,250,.4)}
+.p.st{background:rgba(52,211,153,.14);color:var(--ok);border:1px solid rgba(52,211,153,.4)}
+.p.pc{background:rgba(167,139,250,.15);color:#c4b5fd;border:1px solid rgba(167,139,250,.4)}
+.p.db{background:rgba(52,211,153,.24);color:#6ee7b7;border:1px solid rgba(52,211,153,.6)}
+.p.tj{background:rgba(248,113,113,.13);color:var(--bad);border:1px solid rgba(248,113,113,.4)}
+.tbadge{display:inline-block;padding:3px 9px;border-radius:8px;font-size:11px;font-weight:700;
+  background:linear-gradient(135deg,rgba(232,200,119,.25),rgba(195,154,63,.25));color:var(--gold);border:1px solid rgba(232,200,119,.35)}
+.acts{display:flex;gap:6px;flex-wrap:wrap}
+.empty{text-align:center;padding:40px 16px;color:var(--mut);font-size:14px}
+/* ===== MODAL ===== */
+.mask{position:fixed;inset:0;background:rgba(4,7,13,.72);backdrop-filter:blur(5px);z-index:100;display:none;
+  align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto}
+.mask.on{display:flex}
+.modal{width:100%;max-width:760px;background:#0c1322;border:1px solid var(--line);border-radius:18px;
+  padding:clamp(16px,3vw,26px);margin:auto;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.modal h3{font-size:18px}
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin:14px 0}
+.dgrid .full{grid-column:1/-1}
+.dv{font-size:13.5px}
+.dv span{display:block;font-size:11px;color:var(--mut);letter-spacing:.6px;text-transform:uppercase;margin-bottom:2px}
+.histlog{border-left:2px solid var(--line);margin:10px 0 4px;padding-left:14px}
+.histlog div{font-size:12.5px;color:var(--mut);margin-bottom:8px;position:relative}
+.histlog div::before{content:"";position:absolute;left:-20px;top:5px;width:9px;height:9px;border-radius:50%;
+  background:var(--gold);box-shadow:0 0 8px rgba(232,200,119,.6)}
+.histlog b{color:var(--txt)}
+/* ===== TERMS ===== */
+.tiergrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:14px 0}
+.tier{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:14px 16px;position:relative;overflow:hidden}
+.tier::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),transparent)}
+.tier b{font-size:12px;color:var(--gold);letter-spacing:.5px}
+.tier .max{font-size:clamp(17px,3vw,21px);font-weight:800;margin:4px 0}
+.tier p{font-size:12px;color:var(--mut)}
+ul.legal{list-style:none;margin:10px 0}
+ul.legal li{padding:7px 0 7px 22px;position:relative;font-size:13.5px;color:#dfe6f0;border-bottom:1px dashed rgba(255,255,255,.07)}
+ul.legal li::before{content:"§";position:absolute;left:2px;color:var(--gold);font-weight:700}
+.matrix td{font-size:12.5px}
+.matrix th{font-size:10px}
+footer{border-top:1px solid var(--line);padding:22px 0 30px;color:var(--mut);font-size:12.5px;text-align:center}
+footer b{color:var(--gold)}
+@media(max-width:640px){
+  .frow,.tline,.dgrid{grid-template-columns:1fr}
+  table{min-width:760px}
+  .toolbar input,.toolbar select{flex-basis:100%}
+  .brand h1{white-space:normal}
+  .brand small{white-space:normal;letter-spacing:.8px}
+  #lampBox{grid-template-columns:1fr!important}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap hrow">
+    <div class="brand">
+      <div class="logo">TK</div>
+      <h1><b>Sistem Refund Terpadu</b><small>PT Top Konsultan Internasional — pusatperizinan.com</small></h1>
+    </div>
+    <nav>
+      <button class="tab on" data-v="form" onclick="go('form')">Formulir Pengajuan</button>
+      <button class="tab" data-v="dash" onclick="go('dash')">Dashboard ACC</button>
+      <button class="tab" data-v="terms" onclick="go('terms')">Ketentuan &amp; Layanan</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+<!-- ================= FORM ================= -->
+<section class="view on" id="v-form">
+  <div class="card" id="formCard">
+    <h2>Formulir <b>Pengajuan Refund</b></h2>
+    <p class="sub">Pengajuan resmi dikirim melalui email ke <b style="color:var(--gold)">refund@pusatperizinan.com</b>. Isi 5 langkah berikut — cepat, terpandu, dan tersimpan otomatis di perangkat Anda.</p>
+    <div class="steps" id="stepsBar">
+      <span class="on">1 · Identitas</span><span>2 · Layanan</span><span>3 · Alasan &amp; Jumlah</span><span>4 · Rekening Bank</span><span>5 · Pernyataan &amp; Kirim</span>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="fstep" id="fs1">
+      <h3>Langkah 1 — Identitas Pemohon</h3>
+      <div class="seg" style="margin-bottom:14px">
+        <button type="button" id="tPer" class="on" onclick="setPemohon('perorangan')">👤 Perorangan</button>
+        <button type="button" id="tBad" onclick="setPemohon('badan')">🏢 Badan Usaha (PT/CV/PT PMA)</button>
+      </div>
+      <div class="frow">
+        <div class="full"><label>Nama Lengkap <i>*</i></label><input id="f_nama" placeholder="Sesuai dokumen identitas / akta"></div>
+        <div id="w_nik"><label>NIK / No. Paspor <i>*</i></label><input id="f_identitas" placeholder="16 digit NIK atau no. paspor"></div>
+        <div id="w_nib" style="display:none"><label>NIB / No. Akta <i>*</i></label><input id="f_identitas" placeholder="Nomor NIB / akta pendirian"></div>
+        <div id="w_npwp"><label>NPWP</label><input id="f_npwp" placeholder="Opsional"></div>
+        <div><label>Email Aktif <i>*</i></label><input id="f_email" type="email" placeholder="nama@email.com"></div>
+        <div><label>No. WhatsApp / Telp <i>*</i></label><input id="f_wa" placeholder="+62 8xx xxxx xxxx"></div>
+        <div class="full"><label>Alamat</label><input id="f_alamat" placeholder="Alamat domisili / kantor"></div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="fstep" id="fs2" style="display:none">
+      <h3>Langkah 2 — Layanan &amp; Perjanjian</h3>
+      <div class="frow">
+        <div class="full"><label>Layanan yang Diajukan Refund <i>*</i> <span style="color:var(--gold)">(semua layanan dapat diajukan refund dengan ketentuan)</span></label>
+          <select id="f_layanan"><option value="">— Pilih layanan —</option></select>
+          <div class="hint" id="tierHint"></div></div>
+        <div id="w_negara" style="display:none"><label>Negara yang Terlibat <i>*</i></label><input id="f_negara" placeholder="Mis. Singapura, Malaysia, dst."></div>
+        <div><label>No. Surat Perjanjian / SPK <i>*</i></label><input id="f_spk" placeholder="No. SPK/perjanjian jasa"></div>
+        <div><label>Tanggal Perjanjian</label><input id="f_tglSpk" type="date"></div>
+        <div><label>Nilai Kontrak (Rp)</label><input id="f_nilai" type="number" min="0" placeholder="0"></div>
+        <div><label>Total Sudah Dibayar (Rp) <i>*</i></label><input id="f_bayar" type="number" min="0" placeholder="0"></div>
+        <div><label>Metode Pembayaran</label>
+          <select id="f_metode"><option>Transfer Bank</option><option>Virtual Account</option><option>Kartu Kredit/Debit</option><option>QRIS</option><option>Tunai</option><option>Lainnya</option></select></div>
+        <div><label>Tanggal Pembayaran</label><input id="f_tglBayar" type="date"></div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="fstep" id="fs3" style="display:none">
+      <h3>Langkah 3 — Alasan &amp; Jumlah Refund</h3>
+      <label>Alasan Permohonan <i>*</i></label>
+      <div id="reasonBox"></div>
+      <div class="frow" style="margin-top:12px">
+        <div><label>Tahapan Pekerjaan Terakhir <i>*</i></label>
+          <select id="f_tahap"></select>
+          <div class="hint" id="tahapHint"></div></div>
+        <div><label>Jumlah Refund Diminta (Rp) <i>*</i></label><input id="f_jumlah" type="number" min="0" placeholder="0"></div>
+        <div><label>Perkiraan Biaya Terpakai (Rp)</label><input id="f_biaya" type="number" min="0" placeholder="Biaya resmi instansi/mitra yang sudah keluar"></div>
+        <div class="full"><label>Penjelasan Tambahan</label><textarea id="f_jelaskan" placeholder="Jelaskan kronologi singkat (opsional, mempercepat putusan tertulis)"></textarea></div>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="fstep" id="fs4" style="display:none">
+      <h3>Langkah 4 — Rekening Tujuan Refund</h3>
+      <div class="note">🔒 Kebijakan kepatuhan: refund <b>hanya</b> ditransfer ke rekening <b>atas nama pemohon yang sama dengan Surat Perjanjian</b>. Rekening pihak ketiga / nomor AB / e-wallet tidak dapat diproses. Biaya transfer antarbank / internasional ditanggung pemohon.</div>
+      <div class="frow">
+        <div class="full"><label>Atas Nama (Nama Pemilik Rekening) <i>*</i></label><input id="f_bankPemilik" placeholder="Wajib sama dengan nama pada Langkah 1"></div>
+        <div><label>Nama Bank <i>*</i></label><input id="f_bankNama" placeholder="Mis. BCA, Mandiri, BNI, CIMB, dst."></div>
+        <div><label>Jenis Rekening</label><select id="f_bankJenis"><option>Tabungan</option><option>Giro</option><option>Rekening Koran</option></select></div>
+        <div><label>Nomor Rekening <i>*</i></label><input id="f_bankNo" placeholder="Nomor rekening tujuan"></div>
+        <div><label>Cabang / Kota Bank</label><input id="f_bankCabang" placeholder="Mis. Jakarta Pusat"></div>
+        <div><label>Negara Bank</label><select id="f_bankNegara" onchange="bankLuar()"><option>Indonesia</option><option>Luar Negeri</option></select></div>
+        <div class="full" id="w_swift" style="display:none"><label>Kode SWIFT/BIC / IBAN <i>*</i></label><input id="f_bankSwift" placeholder="Wajib untuk rekening luar negeri"></div>
+      </div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="fstep" id="fs5" style="display:none">
+      <h3>Langkah 5 — Pernyataan, Lampiran &amp; Kirim</h3>
+      <div id="summary" class="note" style="border-left-color:var(--info);background:rgba(96,165,250,.06);color:#d8e6fb"></div>
+      <label style="margin-top:14px">Pernyataan Pemohon <i>*</i> (wajib dicentang semua)</label>
+      <label class="chk"><input type="checkbox" id="p1"><span>Seluruh data yang saya isikan benar dan dapat dipertanggungjawabkan; saya menyetujui <b>Surat Perjanjian Pengembalian Dana (Refund)</b> sebagai bagian tidak terpisahkan dari perjanjian layanan.</span></label>
+      <label class="chk"><input type="checkbox" id="p2"><span>Saya memahami <b>putusan tertulis ≤ 3 hari kerja</b> adalah <b>konfirmasi penerimaan &amp; pemeriksaan administratif</b>, <b>bukan</b> pencairan dana refund.</span></label>
+      <label class="chk"><input type="checkbox" id="p3"><span>Saya memahami pencairan mengikuti tier ketentuan: <b>paling cepat 45 hari kerja hingga paling lama 24 bulan</b> untuk mandat lintas negara, tergantung tier &amp; tahapan pekerjaan; dana mengalir kembali dari pihak terkait (instansi, bank, mitra luar negeri).</span></label>
+      <label class="chk"><input type="checkbox" id="p4"><span>Biaya yang sudah menjadi <b>biaya terpakai</b> (biaya resmi instansi/pemerintah, biaya mitra/pihak ketiga luar negeri, biaya dokumen) <b>tidak dapat dikembalikan</b> sesuai ketentuan.</span></label>
+      <label style="margin-top:14px">Lampiran yang Disiapkan (centang yang disertakan)</label>
+      <div id="lampBox" style="display:grid;grid-template-columns:1fr 1fr;gap:8px" class="frow"></div>
+      <div class="err" id="formErr"></div>
+      <div class="wiznav">
+        <button class="btn ghost" onclick="prev()">← Kembali</button>
+        <button class="btn gold right" onclick="submitForm()">✉️ Kirim ke refund@pusatperizinan.com</button>
+      </div>
+    </div>
+    <div class="wiznav" id="navMid"><button class="btn ghost" id="backBtn" style="display:none" onclick="prev()">← Kembali</button><button class="btn gold right" id="nextBtn" onclick="next()">Lanjut →</button></div>
+  </div>
+  <div class="card succ" id="succCard" style="display:none">
+    <div class="tick">✓</div>
+    <h2>Pengajuan <b>Terdaftar</b></h2>
+    <p class="sub">Nomor tiket Anda:</p>
+    <div class="ticket" id="succTicket"></div>
+    <p class="sub" id="succSub"></p>
+    <div class="tline" id="succTl"></div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="btn gold" id="btnMail">✉️ Buka Aplikasi Email</button>
+      <button class="btn ghost" onclick="copyMail()">📋 Salin Isi Email</button>
+      <button class="btn ghost" onclick="resetForm(true)">➕ Pengajuan Baru</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DASHBOARD ================= -->
+<section class="view" id="v-dash">
+  <div class="card gate" id="gate">
+    <h2>🔐 <b>Dashboard ACC Refund</b></h2>
+    <p class="sub">Area internal — masukkan kode akses.</p>
+    <input type="password" id="passIn" placeholder="••••••••" onkeydown="if(event.key==='Enter')login()">
+    <br><button class="btn gold" onclick="login()">Masuk Dashboard</button>
+    <p class="hint" style="margin-top:10px">Kode akses diatur pada variabel <code>ADMIN_PASS</code> di file ini.</p>
+  </div>
+
+  <div id="dashBody" style="display:none">
+    <h2>Dashboard <b>ACC Refund</b> <button class="btn ghost sm right" onclick="logout()">Keluar</button></h2>
+    <p class="sub">Alur kerja: <b style="color:var(--warn)">Diajukan</b> → <b style="color:var(--info)">Putusan Tertulis (≤3 HK)</b> → <b style="color:var(--ok)">Disetujui (ACC)</b> → <b style="color:#c4b5fd">Dalam Pencairan</b> → <b style="color:#6ee7b7">Dibayar</b> · atau <b style="color:var(--bad)">Ditolak</b>.</p>
+    <div class="stats" id="stats"></div>
+    <div class="card">
+      <div class="toolbar">
+        <input id="q" placeholder="🔍 Cari tiket / nama / SPK…" oninput="renderTable()">
+        <select id="fStatus" onchange="renderTable()"><option value="">Semua Status</option></select>
+        <select id="fTier" onchange="renderTable()"><option value="">Semua Tier</option></select>
+        <button class="btn info sm" onclick="openImport()">📥 Impor Email</button>
+        <button class="btn ok sm" onclick="exportCSV()">⬇️ Ekspor CSV</button>
+        <button class="btn ghost sm" onclick="loadSample()">🧪 Data Contoh</button>
+        <button class="btn bad sm" onclick="wipe()">🗑️ Kosongkan</button>
+      </div>
+      <div class="note" style="border-left-color:var(--info);background:rgba(96,165,250,.06);color:#d8e6fb">📥 <b>Cara data masuk:</b> setiap pengajuan terkirim sebagai email terstruktur ke <b>refund@pusatperizinan.com</b>. Salin isi email tersebut, klik <b>Impor Email</b>, tempel di sini — tiket otomatis masuk ke dashboard. Data formulir dari perangkat ini juga langsung tersimpan.</div>
+      <div class="tblwrap"><table id="tbl"></table></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TERMS ================= -->
+<section class="view" id="v-terms">
+  <div class="card">
+    <h2>Ketentuan &amp; Syarat <b>Refund</b></h2>
+    <p class="sub">Berlaku untuk seluruh layanan pusatperizinan.com · mengacu Surat Perjanjian Pengembalian Dana &amp; Ketentuan Refund v2.1</p>
+    <div class="note red"><b>⚠️ Penting — Putusan Tertulis ≠ Pencairan.</b> Putusan tertulis dalam <b>3 hari kerja</b> hanyalah <b>konfirmasi penerimaan &amp; pemeriksaan administratif</b> berkas. <b>Bukan</b> janji refund 3 hari, dan <b>bukan</b> tanggal pencairan. Pencairan dana membutuhkan waktu karena dana mengalir kembali dari pihak terkait: instansi pemerintah, perbankan/koresponden, serta mitra di dalam/luar negeri.</div>
+    <h3>Tier Jangka Waktu Pencairan</h3>
+    <div class="tiergrid" id="tierGrid"></div>
+    <p class="hint">Hari Kerja = Senin–Jumat (Indonesia), di luar libur nasional. Untuk mandat lintas negara, hari kerja dihitung gabungan dengan negara terkait. Tier 5 hanya berlaku bila disepakati tertulis dalam SPK/addendum.</p>
+  </div>
+  <div class="card">
+    <h3>Tahapan Pekerjaan &amp; Indikasi Nilai Refund</h3>
+    <div class="note" style="border-left-color:var(--warn);background:rgba(251,191,36,.07);color:#fdeecb">Persentase bersifat <b>indikatif, bukan pemotongan otomatis</b> — nilai final dihitung berdasarkan milestone SPK, bukti pekerjaan, dan biaya pihak ketiga yang terbukti keluar.</div>
+    <div class="tblwrap"><table class="matrix" id="stageTbl"></table></div>
+  </div>
+  <div class="card">
+    <h3>Matriks Semua Layanan — Semuanya Dapat Diajukan Refund</h3>
+    <p class="sub">Semua layanan dapat diajukan refund sesuai tier &amp; tahapan di atas; biaya terpakai dikecualikan.</p>
+    <div class="toolbar"><input id="qSvc" placeholder="🔍 Cari layanan…" oninput="renderMatrix()"></div>
+    <div class="tblwrap"><table class="matrix" id="svcTbl"></table></div>
+  </div>
+  <div class="card">
+    <h3>Biaya yang Tidak Dapat Dikembalikan</h3>
+    <ul class="legal">
+      <li>Biaya resmi instansi/pemerintah yang telah dibayarkan (OSS, Kemenhumkam, BPOM, BPJPH, Kemenlu, kedutaan, dll.).</li>
+      <li>Biaya mitra/pihak ketiga luar negeri: konsuler, notaris asing, penerjemah tersumpah, kurir ekspres, agen koresponden.</li>
+      <li>Biaya bank koresponden, selisih kurs, serta biaya transfer antarbank/internasional.</li>
+      <li>Biaya dokumen yang telah diterbitkan atas nama klien (legalisasi, apostille, stamp duty).</li>
+      <li>Milestone pekerjaan yang telah terbukti diselesaikan sesuai SPK.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Syarat Dokumen Pengajuan</h3>
+    <ul class="legal">
+      <li>Bukti identitas (KTP/paspor) dan NPWP; untuk badan usaha: NIB, akta, NPWP perusahaan.</li>
+      <li>Bukti pembayaran (bukti transfer/kuitansi) dan rekening koran bila diminta.</li>
+      <li>Surat Perjanjian/SPK dan seluruh korespondensi terkait mandat.</li>
+      <li>Formulir Pengajuan Refund yang telah diisi dan ditandatangani (atau kiriman email resmi dari alamat pemohon).</li>
+      <li>Surat kuasa bila diwakilkan.</li>
+    </ul>
+    <h3 style="margin-top:16px">Dasar Hukum</h3>
+    <ul class="legal">
+      <li>KUHPerdata Pasal 1233–1238, 1263 (ganti rugi &amp; pembatalan), Pasal 1320 &amp; 1338 (syarat sah dan kekuatan mengikat perjanjian), Pasal 1601 (perjanjian untuk melakukan pekerjaan).</li>
+      <li>UU No. 8 Tahun 1999 tentang Perlindungan Konsumen — Pasal 4 (hak konsumen atas kenyamanan, keamanan, dan ganti rugi), Pasal 18 (batasan klausul baku — klausul ini disusun agar tidak menyingkirkan hak konsumen), Pasal 19 (kewajiban ganti rugi), Pasal 45 (penyelesaian sengketa via BPSK/pengadilan).</li>
+      <li>UU No. 30 Tahun 1999 tentang Arbitrase — Pasal 1 angka 9 &amp; Pasal 9 (klausul penyelesaian sengketa).</li>
+      <li>UU No. 11 Tahun 2008 jo. UU 19/2016 jo. UU 1/2024 (ITE) — Pasal 17–18 (keabsahan kontrak elektronik, termasuk pengajuan refund via email).</li>
+      <li>PP No. 80 Tahun 2019 tentang Perdagangan Melalui Sistem Elektronik (transaksi &amp; pengembalian dana secara elektronik).</li>
+    </ul>
+    <div class="note ok">✉️ Semua pengajuan, pertanyaan, dan keberatan dikirim ke <b>refund@pusatperizinan.com</b> — dijawab dengan putusan tertulis ≤ 3 hari kerja (konfirmasi &amp; administratif), dan laporan status berkala (minimal per triwulan untuk Tier 4–5) sampai dana cair.</div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <b>PT Top Konsultan Internasional</b> — pusatperizinan.com · Pengaduan &amp; pengajuan: <b>refund@pusatperizinan.com</b><br>
+    Halaman mandiri (offline-friendly) · Database tersimpan di perangkat ini (localStorage) · © 2026
+  </div>
+</footer>
+
+<!-- MODAL DETAIL -->
+<div class="mask" id="mask" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modalBox"></div>
+</div>
+
+<script>
+/* ================= DATA ================= */
+var REFUND_EMAIL='refund@pusatperizinan.com';
+var ADMIN_PASS='ACC-2026';
+var HOLIDAYS=[]; // tambahkan tanggal libur nasional 'YYYY-MM-DD' di sini
+var TIERS={
+ 1:{nm:'Tier 1 — Domestik Standar',max:'45 Hari Kerja',desc:'Pekerjaan belum dimulai substantif, atau pembatalan karena kesalahan material Perusahaan.',v:45,u:'hk'},
+ 2:{nm:'Tier 2 — Domestik Kompleks',max:'90 Hari Kerja',desc:'Pekerjaan telah mencapai tahap dokumen/analisis/deliverable yang telah disusun.',v:90,u:'hk'},
+ 3:{nm:'Tier 3 — Pengajuan Berjalan',max:'180 Hari Kalender (±6 bulan)',desc:'Berkas telah diajukan ke instansi/mitra; perlu rekonsiliasi status & konfirmasi biaya.',v:6,u:'bln'},
+ 4:{nm:'Tier 4 — Kompleksitas Tinggi',max:'12 Bulan Kalender',desc:'Multi kementerian/lembaga/daerah, verifikasi teknis, konsolidasi beberapa izin.',v:12,u:'bln'},
+ 5:{nm:'Tier 5 — Lintas Negara',max:'24 Bulan Kalender (maksimum)',desc:'Hanya mandat lintas negara / luar biasa kompleks, disepakati tertulis dalam SPK/addendum.',v:24,u:'bln'}};
+var STAGES=[
+ {k:'T0',n:'Pekerjaan belum dimulai',p:100,t:'Seluruh dana jasa yang belum menjadi hak Perusahaan dikembalikan, dikurangi biaya pihak ketiga yang terbukti keluar.'},
+ {k:'T1',n:'Diagnosis & due diligence berjalan',p:80,t:'Pemeriksaan dokumen awal dan identifikasi jalur perizinan telah dilakukan.'},
+ {k:'T2',n:'Dokumen / analisis / deliverable telah disusun',p:50,t:'Nilai pekerjaan dihitung berdasarkan milestone SPK dan bukti pekerjaan, bukan pemotongan otomatis.'},
+ {k:'T3',n:'Berkas telah diajukan ke instansi / mitra',p:25,t:'Perlu rekonsiliasi status, penarikan/pencabutan berkas bila memungkinkan, dan konfirmasi biaya instansi.'},
+ {k:'T4',n:'Izin / dokumen telah terbit',p:0,t:'Dana jasa tidak dapat dikembalikan, kecuali pembatalan karena kesalahan material Perusahaan (refund penuh — Tier 1).'}];
+var REASONS=['Pembatalan sebelum pekerjaan dimulai','Pembatalan saat pekerjaan berjalan','Perizinan tidak dapat diproses (regulasi / kuota / dokumen negara tujuan)','Keadaan kahar (force majeure)','Kelebihan bayar / pembayaran ganda / kesalahan tagihan','Wanprestasi Perusahaan (dengan bukti)','Lainnya (jelaskan di kolom penjelasan)'];
+var LAMPS=['KTP / Paspor','NPWP / NPWP Badan','Bukti transfer pembayaran','Surat Perjanjian / SPK','Korespondensi email / WA terkait','Rekening koran','Surat kuasa (bila diwakilkan)','Dokumen proyek / perizinan terkait'];
+var SERVICES=[
+ {id:'D1',g:'Perizinan Domestik',n:'NIB & OSS-RBA',t:1,s:'NIB, dokumen OSS',nr:'Biaya resmi OSS'},
+ {id:'D2',g:'Perizinan Domestik',n:'SIUP / IUMK',t:1,s:'NIB, dokumen usaha',nr:'Biaya resmi instansi'},
+ {id:'D3',g:'Perizinan Domestik',n:'API-U / API-P (Ekspor-Impor)',t:1,s:'NIB, dokumen OSS',nr:'Biaya resmi instansi'},
+ {id:'D4',g:'Perizinan Domestik',n:'Sertifikasi Halal (BPJPH)',t:1,s:'Dokumen produk & fasilitas',nr:'Biaya sertifikasi BPJPH'},
+ {id:'D5',g:'Perizinan Domestik',n:'Sertifikat Kompetensi (SKA/SKT)',t:1,s:'Dokumen personel & portofolio',nr:'Biaya asosiasi/uji'},
+ {id:'D6',g:'Perizinan Domestik',n:'Sertifikat Standar & SLO',t:2,s:'Dokumen teknis bangunan/instalasi',nr:'Biaya resmi & pemeriksaan'},
+ {id:'D7',g:'Perizinan Domestik',n:'Persetujuan Lingkungan (AMDAL/UKL-UPL/SPPL)',t:2,s:'Dokumen lingkungan, KA-ANDAL bila perlu',nr:'Biaya penyusun dokumen lingkungan'},
+ {id:'D8',g:'Perizinan Domestik',n:'PBG & SLF',t:2,s:'Dokumen teknis bangunan',nr:'Biaya resmi & verifikator'},
+ {id:'D9',g:'Perizinan Domestik',n:'Izin Edar BPOM (MD/CPOMB)',t:2,s:'Dokumen produk, laboratorium',nr:'Biaya uji lab & resmi BPOM'},
+ {id:'D10',g:'Perizinan Domestik',n:'Sertifikasi SNI',t:2,s:'Dokumen produk & pabrik',nr:'Biaya audit & uji SNI'},
+ {id:'D11',g:'Perizinan Domestik',n:'RPTKA, Notifikasi & VITAS (Tenaga Kerja Asing)',t:2,s:'Dokumen perusahaan & paspor TKA',nr:'Dana diklat & biaya resmi'},
+ {id:'D12',g:'Perizinan Domestik',n:'Izin Konstruksi (SBU/BUJK)',t:2,s:'Dokumen personel & pengalaman',nr:'Biaya asosiasi & resmi'},
+ {id:'D13',g:'Perizinan Domestik',n:'Perizinan Pertambangan (IUP/WIUP)',t:2,s:'Dokumen teknis & kajian area',nr:'Biaya kajian & resmi kadastral'},
+ {id:'D14',g:'Perizinan Domestik',n:'Perizinan Pertanahan (HGU/HGB)',t:2,s:'Dokumen lokasi & penguasaan lahan',nr:'Biaya BPN & kajian'},
+ {id:'D15',g:'Perizinan Domestik',n:'Izin Bea Cukai (TUB/TGUB)',t:2,s:'Dokumen fasilitas & perusahaan',nr:'Biaya resmi bea cukai'},
+ {id:'L1',g:'Lintas Negara',n:'Legalisasi Kemenlu & Apostille',t:3,s:'Dokumen asli & paspor',nr:'Biaya Kemenlu & kurir'},
+ {id:'L2',g:'Lintas Negara',n:'Legalisasi Kedutaan / Konsuler',t:3,s:'Dokumen legalisasi Kemenlu',nr:'Biaya kedutaan & kurir'},
+ {id:'L3',g:'Lintas Negara',n:'Penerjemah Tersumpah & Dokumen Internasional',t:3,s:'Dokumen sumber',nr:'Biaya penerjemah & notaris'},
+ {id:'L4',g:'Lintas Negara',n:'Visa & Izin Tinggal Luar Negeri',t:3,s:'Paspor, dokumen pendukung negara tujuan',nr:'Biaya kedutaan & mitra luar negeri'},
+ {id:'L5',g:'Lintas Negara',n:'Pendirian Perusahaan Luar Negeri (1 yurisdiksi)',t:4,s:'Dokumen pemegang saham, KYC',nr:'Biaya agen/registrasi lokal'},
+ {id:'L6',g:'Lintas Negara',n:'Registrasi Produk Internasional (CE/FDA/GACC/dll.)',t:4,s:'Dokumen teknis produk, uji lab',nr:'Biaya regulator & uji luar negeri'},
+ {id:'L7',g:'Lintas Negara',n:'Sertifikasi Internasional (ISO/JAKIM/dll.)',t:4,s:'Dokumen sistem mutu',nr:'Biaya sertifikasi & audit'},
+ {id:'L8',g:'Lintas Negara',n:'Kontrak & Legalisasi Berantai Internasional',t:4,s:'Dokumen transaksi, aparat lolos rantai legalisasi',nr:'Biaya notaris/konsuler multi negara'},
+ {id:'L9',g:'Lintas Negara',n:'Lisensi Ekspor-Impor Internasional & Negara Mitra',t:4,s:'Dokumen perusahaan & produk',nr:'Biaya regulator dua negara'},
+ {id:'L10',g:'Lintas Negara',n:'Ekspansi Multi-Yurisdiksi (≥2 negara)',t:5,s:'Master plan ekspansi, KYC lengkap',nr:'Biaya konsorsium & regulator multi negara'},
+ {id:'L11',g:'Lintas Negara',n:'Akuisisi / M&A Entitas Luar Negeri',t:5,s:'Due diligence, dokumen target',nr:'Biaya due diligence & regulator luar negeri'}];
+var STATUS={AJ:'Diajukan',KT:'Putusan Tertulis Terkirim',ST:'Disetujui (ACC)',PC:'Dalam Pencairan',DB:'Dibayar — Selesai',TJ:'Ditolak'};
+var PCLASS={AJ:'aj',KT:'kt',ST:'st',PC:'pc',DB:'db',TJ:'tj'};
+
+/* ================= HELPER ================= */
+function $i(x){return document.getElementById(x)}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function num(x){var n=String(x==null?'':x).replace(/[^\d]/g,'');return n?parseInt(n,10):0}
+function rp(n){return 'Rp '+new Intl.NumberFormat('id-ID',{maximumFractionDigits:0}).format(num(n))}
+function fd(d){try{return new Date(d).toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}catch(e){return '-'}}
+function fdt(ts){try{return new Date(ts).toLocaleString('id-ID',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})}catch(e){return '-'}}
+function addWorkDays(d,n){var r=new Date(d),h=new Set(HOLIDAYS),i=0;while(i<n){r.setDate(r.getDate()+1);var w=r.getDay();if(w!==0&&w!==6&&!h.has(r.toISOString().slice(0,10)))i++}return r}
+function addMonths(d,n){var r=new Date(d);r.setMonth(r.getMonth()+n);return r}
+function tierDate(d,t){return TIERS[t].u==='hk'?addWorkDays(d,TIERS[t].v):addMonths(d,TIERS[t].v)}
+function svcByName(nm){nm=String(nm||'').toLowerCase();for(var i=0;i<SERVICES.length;i++){if(SERVICES[i].n.toLowerCase()===nm||nm.indexOf(SERVICES[i].n.toLowerCase())>-1||SERVICES[i].n.toLowerCase().indexOf(nm)>-1&&nm.length>3)return SERVICES[i]}return null}
+
+/* ================= NAV ================= */
+function go(v){
+ ['form','dash','terms'].forEach(function(x){$i('v-'+x).classList.toggle('on',x===v)});
+ document.querySelectorAll('.tab').forEach(function(b){b.classList.toggle('on',b.dataset.v===v)});
+ if(v==='dash')renderDash();if(v==='terms'){renderTier();renderStage();renderMatrix()}
+ window.scrollTo({top:0,behavior:'smooth'})}
+
+/* ================= FORM ================= */
+var curStep=1,jenis='perorangan',lastMail='';
+function setPemohon(t){jenis=t;
+ $i('tPer').classList.toggle('on',t==='perorangan');$i('tBad').classList.toggle('on',t==='badan');
+ $i('w_nik').style.display=t==='perorangan'?'block':'none';
+ $i('w_nib').style.display=t==='badan'?'block':'none';
+ $i('w_npwp').style.display=t==='badan'?'block':'none';
+ saveDraft()}
+function bankLuar(){$i('w_swift').style.display=$i('f_bankNegara').value==='Luar Negeri'?'block':'none';saveDraft()}
+function showStep(n){curStep=n;
+ [1,2,3,4,5].forEach(function(i){$i('fs'+i).style.display=i===n?'block':'none'});
+ document.querySelectorAll('#stepsBar span').forEach(function(s,i){s.className=i+1===n?'on':(i+1<n?'done':'')});
+ $i('navMid').style.display=n===5?'none':'flex';
+ $i('backBtn').style.display=n>1?'inline-block':'none';
+ $i('nextBtn').textContent=n===4?'Lanjut ke Pernyataan →':'Lanjut →'}
+function next(){var e=validate(curStep);if(e){err(e);return}$i('formErr').style.display='none';if(curStep===4){$i('summary').innerHTML=buildSummary()}showStep(curStep+1);saveDraft()}
+function prev(){showStep(curStep-1)}
+function err(m){var e=$i('formErr');e.textContent='⚠️ '+m;e.style.display='block';e.scrollIntoView({behavior:'smooth',block:'center'})}
+function validate(s){
+ if(s===1){if(!$i('f_nama').value.trim())return 'Nama wajib diisi.';
+   var idv=(jenis==='badan'?document.querySelector('#w_nib input'):document.querySelector('#w_nik input'));
+   if(!idv.value.trim())return jenis==='badan'?'NIB / No. Akta wajib diisi.':'NIK / No. Paspor wajib diisi.';
+   if(!/^\S+@\S+\.\S+$/.test($i('f_email').value))return 'Email tidak valid.';if(!$i('f_wa').value.trim())return 'No. WhatsApp/Telp wajib diisi.'}
+ if(s===2){var sv=$i('f_layanan').value;if(!sv)return 'Pilih layanan terlebih dahulu.';
+   var o=svcById(sv);if(o&&o.g==='Lintas Negara'&&!$i('f_negara').value.trim())return 'Negara yang terlibat wajib diisi (layanan lintas negara).';
+   if(!$i('f_spk').value.trim())return 'Nomor SPK/perjanjian wajib diisi.';
+   if(num($i('f_bayar').value)<=0)return 'Total yang sudah dibayar wajib diisi.'}
+ if(s===3){var r=document.querySelector('input[name=alasan]:checked');if(!r)return 'Pilih alasan permohonan.';
+   if(!$i('f_tahap').value)return 'Pilih tahapan pekerjaan terakhir.';
+   if(num($i('f_jumlah').value)<=0)return 'Jumlah refund diminta wajib diisi.'}
+ if(s===4){if(!$i('f_bankPemilik').value.trim())return 'Nama pemilik rekening wajib diisi.';
+   if(!$i('f_bankNama').value.trim())return 'Nama bank wajib diisi.';
+   if(!$i('f_bankNo').value.trim())return 'Nomor rekening wajib diisi.';
+   if($i('f_bankNegara').value==='Luar Negeri'&&!$i('f_bankSwift').value.trim())return 'Kode SWIFT/BIC wajib untuk rekening luar negeri.'}
+ if(s===5){for(var i=1;i<=4;i++){if(!$i('p'+i).checked)return 'Pernyataan wajib dicentang semua (memenuhi pemeriksaan kepatuhan).'}}return null}
+function svcById(id){for(var i=0;i<SERVICES.length;i++)if(SERVICES[i].id===id)return SERVICES[i];return null}
+function collect(){
+ var idv=jenis==='badan'?document.querySelector('#w_nib input').value:$i('f_identitas').value;
+ var o=svcById($i('f_layanan').value),r=document.querySelector('input[name=alasan]:checked');
+ return {jenis:jenis==='badan'?'Badan Usaha':'Perorangan',nama:$i('f_nama').value.trim(),identitas:idv.trim(),npwp:$i('f_npwp').value.trim(),
+  email:$i('f_email').value.trim(),wa:$i('f_wa').value.trim(),alamat:$i('f_alamat').value.trim(),
+  layanan:o?o.n:'-',layananId:o?o.id:'',grup:o?o.g:'',tier:o?o.t:2,negara:$i('f_negara').value.trim(),
+  spk:$i('f_spk').value.trim(),tglSpk:$i('f_tglSpk').value,nilai:num($i('f_nilai').value),dibayar:num($i('f_bayar').value),
+  metode:$i('f_metode').value,tglBayar:$i('f_tglBayar').value,alasan:r?r.value:'',tahap:$i('f_tahap').value,
+  jumlah:num($i('f_jumlah').value),biaya:num($i('f_biaya').value),jelaskan:$i('f_jelaskan').value.trim(),
+  bankPemilik:$i('f_bankPemilik').value.trim(),bankNama:$i('f_bankNama').value.trim(),bankJenis:$i('f_bankJenis').value,
+  bankNo:$i('f_bankNo').value.trim(),bankCabang:$i('f_bankCabang').value.trim(),bankNegara:$i('f_bankNegara').value,bankSwift:$i('f_bankSwift').value.trim(),
+  lampiran:LAMPS.filter(function(l){return $i('l_'+lampKey(l)).checked})}}
+function lampKey(l){return l.toLowerCase().replace(/[^a-z]/g,'').slice(0,14)}
+function buildSummary(){var d=collect(),t=TIERS[d.tier];
+ return '<b>Ringkasan:</b> '+esc(d.nama)+' ('+esc(d.jenis)+') · Layanan: <b>'+esc(d.layanan)+'</b> ('+esc(t.nm)+' — pencairan paling lama '+esc(t.max)+') · Jumlah diminta: <b>'+rp(d.jumlah)+'</b> · Refund ke rekening '+esc(d.bankNama)+' a.n. '+esc(d.bankPemilik)}
+function submitForm(){
+ if(validate(5)){err(validate(5));return}
+ var norm=function(s){return s.toLowerCase().replace(/[^a-z0-9]/g,'')};
+ if(norm($i('f_bankPemilik').value)!==norm($i('f_nama').value)){
+   err('Nama pemilik rekening harus sama dengan nama pemohon pada Langkah 1 (kebijakan kepatuhan anti-penipuan). Ubah salah satu agar sama.');return}
+ var d=collect(),now=new Date();
+ d.id='f'+now.getTime()+Math.random().toString(36).slice(2,6);
+ d.ticket=getTicket();d.tgl=now.toISOString();d.status='AJ';d.hist=[{ts:now.toISOString(),aksi:'Pengajuan diterima via formulir & dikirim ke '+REFUND_EMAIL,catatan:''}];
+ var db=getDb();db.unshift(d);setDb(db);
+ saveDraft();
+ lastMail=buildEmail(d);
+ showSuccess(d);clearDraft()}
+function showSuccess(d){var t=TIERS[d.tier],base=new Date(d.tgl);
+ $i('formCard').style.display='none';var sc=$i('succCard');sc.style.display='block';sc.scrollIntoView({behavior:'smooth',block:'start'});
+ $i('succTicket').textContent=d.ticket;
+ $i('succSub').innerHTML='Halo <b>'+esc(d.nama)+'</b>, pengajuan refund <b>'+rp(d.jumlah)+'</b> untuk layanan <b>'+esc(d.layanan)+'</b> telah tercatat. Kirim email di bawah ini agar surat masuk resmi ke '+REFUND_EMAIL+'.';
+ $i('succTl').innerHTML='<div><b>1 · Putusan Tertulis (≤ 3 Hari Kerja)</b>Paling lambat: '+fd(addWorkDays(base,3))+'<br><span style="color:var(--mut);font-size:12px">Konfirmasi penerimaan & pemeriksaan administratif — bukan pencairan.</span></div>'+
+ '<div><b>2 · Batas Pencairan ('+esc(t.nm)+')</b>Paling lama: '+fd(tierDate(base,d.tier))+'<br><span style="color:var(--mut);font-size:12px">Bisa lebih cepat bila dana telah kembali dari pihak terkait (instansi/bank/mitra).</span></div>';
+ $i('btnMail').onclick=function(){openMail(d)}}
+function buildEmail(d){var t=TIERS[d.tier];
+ var L=[ 'Ticket: '+d.ticket,'Tanggal: '+fd(d.tgl),'Jenis: '+d.jenis,'Nama: '+d.nama,'Identitas: '+d.identitas,'NPWP: '+d.npwp,'Email: '+d.email,'WhatsApp: '+d.wa,'Alamat: '+d.alamat,'SPK: '+d.spk,'Tanggal SPK: '+d.tglSpk,'Layanan: '+d.layanan,'Negara: '+d.negara,'Nilai Kontrak: '+d.nilai,'Sudah Dibayar: '+d.dibayar,'Metode: '+d.metode,'Tanggal Bayar: '+d.tglBayar,'Alasan: '+d.alasan,'Tahapan: '+d.tahap,'Jumlah Refund: '+d.jumlah,'Biaya Terpakai: '+d.biaya,'Penjelasan: '+d.jelaskan,'Pemilik Rekening: '+d.bankPemilik,'Bank: '+d.bankNama,'Jenis Rekening: '+d.bankJenis,'No Rekening: '+d.bankNo,'Cabang: '+d.bankCabang,'Negara Bank: '+d.bankNegara,'SWIFT: '+d.bankSwift,'Lampiran: '+d.lampiran.join(', '),'-','Saya memahami putusan tertulis ≤3 hari kerja adalah konfirmasi penerimaan & pemeriksaan administratif, bukan pencairan. Pencairan mengikuti '+t.nm+' (paling lama '+t.max+') sesuai Ketentuan Refund pusatperizinan.com.'];
+ return L.join('\n')}
+function openMail(d){var b=buildEmail(d);window.location.href='mailto:'+REFUND_EMAIL+'?subject='+encodeURIComponent('[REFUND] '+d.ticket+' — '+d.nama+' — '+d.layanan)+'&body='+encodeURIComponent(b)}
+function copyMail(){navigator.clipboard.writeText(lastMail||buildEmail(collect())).then(function(){alert('Isi email tersalin. Tempel ke email ke '+REFUND_EMAIL)},function(){var t=document.createElement('textarea');t.value=lastMail;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();alert('Isi email tersalin.')})}
+function resetForm(fromSucc){['f_nama','f_identitas','f_npwp','f_email','f_wa','f_alamat','f_negara','f_spk','f_tglSpk','f_nilai','f_bayar','f_tglBayar','f_jumlah','f_biaya','f_jelaskan','f_bankPemilik','f_bankNama','f_bankNo','f_bankCabang','f_bankSwift'].forEach(function(x){var e=$i(x);if(e)e.value=''});
+ document.querySelectorAll('input[name=alasan]').forEach(function(r){r.checked=false});
+ document.querySelectorAll('.radio-opt').forEach(function(r){r.classList.remove('on')});
+ LAMPS.forEach(function(l){$i('l_'+lampKey(l)).checked=false});[1,2,3,4].forEach(function(i){$i('p'+i).checked=false});
+ showStep(1);
+ if(fromSucc){$i('succCard').style.display='none';$i('formCard').style.display='block'}}
+
+/* ================= DB ================= */
+function getDb(){try{return JSON.parse(localStorage.getItem('ppref_db_v1'))||[]}catch(e){return []}}
+function setDb(d){localStorage.setItem('ppref_db_v1',JSON.stringify(d))}
+function getSeq(){return parseInt(localStorage.getItem('ppref_seq')||'0',10)}
+function getTicket(){var s=Math.max(getSeq(),getDb().length)+1;localStorage.setItem('ppref_seq',s);return 'REF-'+new Date().getFullYear()+'-'+String(s).padStart(3,'0')}
+function saveDraft(){if(!$i('v-form').classList.contains('on')&&curStep===1&&!$i('f_nama').value)return;
+ var d=collect();if(!d.nama&&!d.email)return;localStorage.setItem('ppref_draft',JSON.stringify(d))}
+function clearDraft(){localStorage.removeItem('ppref_draft')}
+
+/* ================= DASHBOARD ================= */
+function login(){if($i('passIn').value===ADMIN_PASS){sessionStorage.setItem('ppref_auth','1');$i('gate').style.display='none';$i('dashBody').style.display='block';renderDash()}else alert('Kode akses salah.')}
+function logout(){sessionStorage.removeItem('ppref_auth');$i('gate').style.display='block';$i('dashBody').style.display='none'}
+function renderDash(){renderStats();fillFilters();renderTable()}
+function renderStats(){var db=getDb(),c={AJ:0,KT:0,ST:0,PC:0,DB:0,TJ:0},val=0;
+ db.forEach(function(d){c[d.status]=(c[d.status]||0)+1;if(['ST','PC','DB'].indexOf(d.status)>-1)val+=num(d.jumlah)});
+ $i('stats').innerHTML='<div class="stat g"><b>'+db.length+'</b><span>TOTAL PENGAJUAN</span></div>'+
+ '<div class="stat m"><b>'+(c.AJ+c.KT)+'</b><span>MENUNGGU PUTUSAN / VERIFIKASI</span></div>'+
+ '<div class="stat k"><b>'+c.ST+'</b><span>DISETUJUI (ACC)</span></div>'+
+ '<div class="stat i"><b>'+c.PC+'</b><span>DALAM PENCAIRAN</span></div>'+
+ '<div class="stat k"><b>'+c.DB+'</b><span>DIBAYAR — SELESAI</span></div>'+
+ '<div class="stat b"><b>'+c.TJ+'</b><span>DITOLAK</span></div>'+
+ '<div class="stat g"><b>'+rp(val)+'</b><span>NILAI ACC + PENCAIRAN + DIBAYAR</span></div>'}
+function fillFilters(){var s=$i('fStatus'),t=$i('fTier');
+ if(s.options.length<=1){Object.keys(STATUS).forEach(function(k){s.insertAdjacentHTML('beforeend','<option value="'+k+'">'+STATUS[k]+'</option>')});
+  Object.keys(TIERS).forEach(function(k){t.insertAdjacentHTML('beforeend','<option value="'+k+'">'+TIERS[k].nm+'</option>')})}}
+function renderTable(){var db=getDb(),q=$i('q').value.toLowerCase(),fs=$i('fStatus').value,ft=$i('fTier').value,rows='';
+ db.forEach(function(d){
+  if(fs&&d.status!==fs)return;if(ft&&String(d.tier)!==ft)return;
+  var blob=(d.ticket+' '+d.nama+' '+d.spk+' '+d.layanan).toLowerCase();if(q&&blob.indexOf(q)===-1)return;
+  rows+='<tr><td><b style="color:var(--gold)">'+esc(d.ticket)+'</b><br><span style="color:var(--mut);font-size:11px">'+fdt(d.tgl)+'</span></td>'+
+  '<td><b>'+esc(d.nama)+'</b><br><span style="color:var(--mut);font-size:11px">'+esc(d.jenis)+' · '+esc(d.email||'')+'</span></td>'+
+  '<td>'+esc(d.layanan)+'<br><span class="tbadge">Tier '+d.tier+'</span></td>'+
+  '<td style="white-space:nowrap"><b>'+rp(d.jumlah)+'</b></td>'+
+  '<td>'+esc(d.bankNama||'-')+'<br><span style="color:var(--mut);font-size:11px">a.n. '+esc(d.bankPemilik||'-')+'</span></td>'+
+  '<td><span class="pill p '+PCLASS[d.status]+'">'+STATUS[d.status]+'</span></td>'+
+  '<td><div class="acts">'+actBtns(d)+'<button class="btn ghost sm" onclick="detail(\''+d.id+'\')">👁</button></div></td></tr>'});
+ $i('tbl').innerHTML='<thead><tr><th>Tiket</th><th>Pemohon</th><th>Layanan</th><th>Jumlah</th><th>Rekening</th><th>Status</th><th>Aksi</th></tr></thead><tbody>'+
+ (rows||'<tr><td colspan="7" class="empty">Belum ada pengajuan. Klik <b>Data Contoh</b> untuk mencoba, atau imporkan dari email '+REFUND_EMAIL+'.</td></tr>')+'</tbody>'}
+function actBtns(d){var b='';
+ if(d.status==='AJ')b+='<button class="btn info sm" onclick="act(\''+d.id+'\',\'KT\')">✍️ Putusan Tertulis</button><button class="btn ok sm" onclick="act(\''+d.id+'\',\'ST\')">✓ ACC</button><button class="btn bad sm" onclick="act(\''+d.id+'\',\'TJ\')">✗ Tolak</button>';
+ if(d.status==='KT')b+='<button class="btn ok sm" onclick="act(\''+d.id+'\',\'ST\')">✓ ACC</button><button class="btn bad sm" onclick="act(\''+d.id+'\',\'TJ\')">✗ Tolak</button>';
+ if(d.status==='ST')b+='<button class="btn info sm" onclick="act(\''+d.id+'\',\'PC\')">→ Pencairan</button>';
+ if(d.status==='PC')b+='<button class="btn ok sm" onclick="act(\''+d.id+'\',\'DB\')">💰 Dibayar</button>';
+ return b}
+function act(id,ns,extra){var db=getDb(),d=db.find(function(x){return x.id===id});if(!d)return;
+ var msg={KT:['✍️ Konfirmasi Putusan Tertulis','Putusan tertulis (konfirmasi penerimaan & pemeriksaan administratif) telah dikirim ke pemohon. Catatan (opsional):'],
+  ST:['✓ ACC — Setujui Refund','Catatan persetujuan (opsional):'],
+  TJ:['✗ Tolak Pengajuan','WAJIB: alasan penolakan yang akan dikirim ke pemohon:'],
+  PC:['→ Mulai Pencairan','Catatan (opsional):'],
+  DB:['💰 Tandai Dibayar','Catatan transfer (opsional):']}[ns];
+ var note=extra;if(note===undefined)note=prompt(msg[1],'')||'';
+ if(ns==='TJ'&&note===undefined)return;if(ns==='TJ'&&!note.trim()){note=prompt('Alasan penolakan wajib diisi:','');if(!note||!note.trim())return}
+ d.status=ns;d.hist.push({ts:new Date().toISOString(),aksi:'Status → '+STATUS[ns],catatan:note.trim()});
+ if(ns==='TJ'&&!d.tolakAlasan)d.tolakAlasan=note.trim();
+ setDb(db);renderDash();if($i('mask').classList.contains('on'))detail(id)}
+function detail(id){var db=getDb(),d=db.find(function(x){return x.id===id});if(!d)return;
+ var t=TIERS[d.tier]||TIERS[2],base=new Date(d.tgl);
+ $i('modalBox').innerHTML='<h3>'+esc(d.ticket)+' — '+esc(d.nama)+' <span class="pill p '+PCLASS[d.status]+'">'+STATUS[d.status]+'</span></h3>'+
+ '<div class="dgrid">'+
+ '<div class="dv"><span>Jenis</span>'+esc(d.jenis)+'</div><div class="dv"><span>Identitas</span>'+esc(d.identitas)+(d.npwp?' · NPWP '+esc(d.npwp):'')+'</div>'+
+ '<div class="dv"><span>Email</span>'+esc(d.email)+'</div><div class="dv"><span>WhatsApp</span>'+esc(d.wa)+'</div>'+
+ '<div class="dv full"><span>Alamat</span>'+esc(d.alamat)+'</div>'+
+ '<div class="dv"><span>Layanan</span>'+esc(d.layanan)+' ('+esc(d.grup||'')+')</div><div class="dv"><span>Tier & Batas Pencairan</span><span class="tbadge">Tier '+d.tier+'</span> paling lama '+esc(t.max)+'</div>'+
+ (d.negara?'<div class="dv"><span>Negara Terlibat</span>'+esc(d.negara)+'</div>':'')+
+ '<div class="dv"><span>SPK</span>'+esc(d.spk)+(d.tglSpk?' ('+esc(d.tglSpk)+')':'')+'</div>'+
+ '<div class="dv"><span>Nilai Kontrak</span>'+rp(d.nilai)+'</div><div class="dv"><span>Sudah Dibayar</span>'+rp(d.dibayar)+' · '+esc(d.metode||'')+'</div>'+
+ '<div class="dv"><span>Alasan</span>'+esc(d.alasan)+'</div><div class="dv"><span>Tahapan</span>'+esc(d.tahap)+'</div>'+
+ '<div class="dv"><span>Jumlah Refund</span><b style="color:var(--gold)">'+rp(d.jumlah)+'</b></div><div class="dv"><span>Biaya Terpakai</span>'+rp(d.biaya)+'</div>'+
+ '<div class="dv full"><span>Penjelasan</span>'+esc(d.jelaskan||'—')+'</div>'+
+ '<div class="dv full"><span>Rekening Tujuan</span>'+esc(d.bankNama)+' — '+esc(d.bankNo)+' ('+esc(d.bankJenis)+') a.n. <b>'+esc(d.bankPemilik)+'</b> · '+esc(d.bankCabang||'-')+' · '+esc(d.bankNegara)+(d.bankSwift?' · SWIFT '+esc(d.bankSwift):'')+'</div>'+
+ '<div class="dv full"><span>Lampiran</span>'+(d.lampiran&&d.lampiran.length?d.lampiran.map(esc).join(', '):'—')+'</div></div>'+
+ '<div class="note"><b>⏱ Timeline:</b> Putusan tertulis paling lambat <b>'+fd(addWorkDays(base,3))+'</b> (konfirmasi & administratif) · Batas pencairan paling lama <b>'+fd(tierDate(base,d.tier))+'</b> ('+esc(t.nm)+') — dapat lebih cepat bila dana kembali dari pihak terkait.</div>'+
+ '<h3 style="margin-top:14px">Riwayat</h3><div class="histlog">'+d.hist.map(function(h){return '<div><b>'+fdt(h.ts)+'</b> — '+esc(h.aksi)+(h.catatan?' · <i>'+esc(h.catatan)+'</i>':'')+'</div>'}).join('')+'</div>'+
+ '<div class="wiznav">'+actBtns(d)+'<button class="btn gold sm" onclick="decisionMail(\''+d.id+'\')">✉️ Kirim Putusan via Email</button><button class="btn ghost sm right" onclick="closeModal()">Tutup</button></div>';
+ $i('mask').classList.add('on')}
+function closeModal(){$i('mask').classList.remove('on')}
+function decisionMail(id){var db=getDb(),d=db.find(function(x){return x.id===id});if(!d)return;
+ var t=TIERS[d.tier]||TIERS[2],body=['Yth. '+d.nama+',','Terima kasih atas pengajuan refund Anda dengan nomor tiket '+d.ticket+'.','Status terkini: '+STATUS[d.status]+(d.tolakAlasan?' — alasan: '+d.tolakAlasan:''),'','Catatan penting: putusan tertulis dalam 3 hari kerja merupakan konfirmasi penerimaan & pemeriksaan administratif, bukan pencairan dana. Pencairan mengikuti '+t.nm+' — paling lama '+t.max+' — sesuai Ketentuan Refund pusatperizinan.com, karena dana mengalir kembali dari pihak terkait (instansi, perbankan, mitra).','','Jumlah disetujui/diproses: '+rp(d.jumlah),'Rekening tujuan: '+d.bankNama+' a.n. '+d.bankPemilik,'','Hormat kami,','PT Top Konsultan Internasional — pusatperizinan.com',REFUND_EMAIL].join('\n');
+ window.location.href='mailto:'+encodeURIComponent(d.email)+'?subject='+encodeURIComponent('[PUTUSAN '+d.ticket+'] — '+STATUS[d.status])+'&body='+encodeURIComponent(body)}
+
+/* ================= IMPORT EMAIL ================= */
+var EKEYS=[['ticket',/^ticket|no\.? tiket|nomor tiket/],['tgl',/^tanggal( pengajuan)?$/],['jenis',/^jenis/],['nama',/^nama/],['identitas',/^identitas|^nik|^nib/],['npwp',/^npwp/],['email',/^email/],['wa',/^whatsapp|^wa|^telepon/],['alamat',/^alamat/],['spk',/^spk|^no\.? spk|^surat perjanjian/],['tglSpk',/^tanggal spk/],['layanan',/^layanan/],['negara',/^negara( yang terlibat)?$/],['nilai',/^nilai/],['dibayar',/^sudah dibayar|^total.*dibayar|^dibayar/],['metode',/^metode/],['tglBayar',/^tanggal bayar/],['alasan',/^alasan/],['tahap',/^tahap/],['jumlah',/^jumlah/],['biaya',/^biaya|perkiraan biaya/],['jelaskan',/^penjelasan/],['bankPemilik',/^pemilik rekening|^atas nama/],['bankNama',/^bank$|^nama bank/],['bankJenis',/^jenis rekening/],['bankNo',/^no\.? rekening|^nomor rekening/],['bankCabang',/^cabang/],['bankNegara',/^negara bank/],['bankSwift',/^swift|kode swift/]];
+function openImport(){$i('modalBox').innerHTML='<h3>📥 Impor Pengajuan dari Email</h3><p class="sub">Salin <b>isi email</b> yang masuk ke '+REFUND_EMAIL+' (format terstruktur dari formulir ini atau manual), tempel di bawah, lalu klik Impor.</p><textarea id="impBox" style="min-height:220px" placeholder="Ticket: REF-2026-001&#10;Nama: ...&#10;Layanan: ...&#10;Jumlah Refund: ...&#10;Pemilik Rekening: ...&#10;Bank: ...&#10;No Rekening: ...&#10;..."></textarea><div class="err" id="impErr"></div><div class="wiznav"><button class="btn gold" onclick="doImport()">Impor ke Dashboard</button><button class="btn ghost right" onclick="closeModal()">Batal</button></div>';$i('mask').classList.add('on')}
+function doImport(){var txt=$i('impBox').value,obj={},lines=txt.split(/\r?\n/),matched=0;
+ lines.forEach(function(l){var m=l.match(/^(.+?)\s*:\s*(.+)$/);if(!m)return;
+  var k=m[1].toLowerCase().replace(/\s+/g,' ').trim(),v=m[2].trim();
+  for(var i=0;i<EKEYS.length;i++){if(EKEYS[i][1].test(k)){obj[EKEYS[i][0]]=v;matched++;break}}});
+ if(!obj.nama||!(obj.jumlah||obj.bankNo)){$i('impErr').textContent='⚠️ Tidak terbaca. Pastikan ada baris "Nama: …" serta "Jumlah Refund: …" / "No Rekening: …".';$i('impErr').style.display='block';return}
+ var svc=obj.layanan?svcByName(obj.layanan):null,tier=svc?svc.t:(obj.ticket&&/tier\s*(\d)/i.test(txt)?parseInt(txt.match(/tier\s*(\d)/i)[1],10):2);
+ var d={id:'i'+Date.now(),ticket:obj.ticket||getTicket(),tgl:obj.tgl&&/\d{4}/.test(obj.tgl)?obj.tgl:new Date().toISOString(),
+  jenis:obj.jenis||'Perorangan',nama:obj.nama,identitas:obj.identitas||'',npwp:obj.npwp||'',email:obj.email||'',wa:obj.wa||'',alamat:obj.alamat||'',
+  layanan:obj.layanan||(svc?svc.n:'-'),layananId:svc?svc.id:'',grup:svc?svc.g:'',tier:tier,negara:obj.negara||'',
+  spk:obj.spk||'',tglSpk:obj.tglSpk||'',nilai:num(obj.nilai),dibayar:num(obj.dibayar),metode:obj.metode||'',tglBayar:obj.tglBayar||'',
+  alasan:obj.alasan||'',tahap:obj.tahap||'',jumlah:num(obj.jumlah),biaya:num(obj.biaya),jelaskan:obj.jelaskan||'',
+  bankPemilik:obj.bankPemilik||'',bankNama:obj.bankNama||'',bankJenis:obj.bankJenis||'Tabungan',bankNo:obj.bankNo||'',bankCabang:obj.bankCabang||'',bankNegara:obj.bankNegara||'Indonesia',bankSwift:obj.bankSwift||'',
+  lampiran:[],status:'AJ',hist:[{ts:new Date().toISOString(),aksi:'Diimpor dari email '+REFUND_EMAIL+' ('+matched+' kolom terbaca)',catatan:''}]};
+ var db=getDb();if(db.some(function(x){return x.ticket===d.ticket})){$i('impErr').textContent='⚠️ Tiket '+d.ticket+' sudah ada di dashboard.';$i('impErr').style.display='block';return}
+ db.unshift(d);setDb(db);closeModal();renderDash();alert('✅ '+d.ticket+' — '+d.nama+' berhasil diimpor ke dashboard.')}
+
+/* ================= EXPORT / SAMPLE / WIPE ================= */
+function exportCSV(){var db=getDb();if(!db.length){alert('Database kosong.');return}
+ var cols=['ticket','tgl','jenis','nama','identitas','npwp','email','wa','alamat','layanan','tier','negara','spk','nilai','dibayar','metode','alasan','tahap','jumlah','biaya','bankPemilik','bankNama','bankNo','bankCabang','bankNegara','bankSwift','status','tolakAlasan'];
+ var q=function(v){return '"'+String(v==null?'':v).replace(/"/g,'""')+'"'};
+ var csv=cols.map(q).join(',')+'\n'+db.map(function(d){return cols.map(function(c){return q(d[c])}).join(',')}).join('\n');
+ var a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}));a.download='database-refund-pusatperizinan.csv';a.click()}
+function loadSample(){var now=Date.now(),s=[
+ {id:'s1',ticket:'REF-2026-001',tgl:new Date(now-9*864e5).toISOString(),jenis:'Badan Usaha',nama:'PT Maju Bersama Nusantara (contoh)',identitas:'NIB 8120012345678',npwp:'01.234.567.8-901.000',email:'finance@majubersama.co.id',wa:'+62 812-3456-7890',alamat:'Jl. Jenderal Sudirman Kav. 52, Jakarta Selatan',layanan:'Persetujuan Lingkungan (AMDAL/UKL-UPL/SPPL)',layananId:'D7',grup:'Perizinan Domestik',tier:2,negara:'',spk:'SPK/2026/MBN/017',tglSpk:'2026-10-15',nilai:45000000,dibayar:22500000,metode:'Transfer Bank',tglBayar:'2026-10-16',alasan:'Pembatalan saat pekerjaan berjalan',tahap:'T2 — Dokumen/analisis telah disusun',jumlah:11000000,biaya:3500000,jelaskan:'Proyek ditunda oleh manajemen pusat.',bankPemilik:'PT Maju Bersama Nusantara',bankNama:'BCA',bankJenis:'Giro',bankNo:'1234567890',bankCabang:'Jakarta Kuningan',bankNegara:'Indonesia',bankSwift:'',lampiran:['Bukti transfer pembayaran','Surat Perjanjian / SPK'],status:'KT',hist:[{ts:new Date(now-9*864e5).toISOString(),aksi:'Pengajuan diterima',catatan:''},{ts:new Date(now-7*864e5).toISOString(),aksi:'Status → Putusan Tertulis Terkirim',catatan:'Konfirmasi administratif terkirim.'}]},
+ {id:'s2',ticket:'REF-2026-002',tgl:new Date(now-4*864e5).toISOString(),jenis:'Perorangan',nama:'Andi Wirawan (contoh)',identitas:'3175012345678901',npwp:'',email:'andi.w@email.com',wa:'+62 878-1111-2222',alamat:'Bandung',layanan:'Legalisasi Kemenlu & Apostille',layananId:'L1',grup:'Lintas Negara',tier:3,negara:'Belanda',spk:'SPK/2026/AW/104',tglSpk:'2026-11-10',nilai:8500000,dibayar:8500000,metode:'Transfer Bank',tglBayar:'2026-11-11',alasan:'Kelebihan bayar / pembayaran ganda / kesalahan tagihan',tahap:'T0 — Pekerjaan belum dimulai',jumlah:4250000,biaya:0,jelaskan:'Tagihan terbayar dua kali pada tanggal yang sama.',bankPemilik:'Andi Wirawan',bankNama:'Mandiri',bankJenis:'Tabungan',bankNo:'1300011223344',bankCabang:'Bandung Dago',bankNegara:'Indonesia',bankSwift:'',lampiran:['Bukti transfer pembayaran'],status:'AJ',hist:[{ts:new Date(now-4*864e5).toISOString(),aksi:'Pengajuan diterima via email',catatan:''}]},
+ {id:'s3',ticket:'REF-2026-003',tgl:new Date(now-30*864e5).toISOString(),jenis:'Badan Usaha',nama:'PT Global Trade Asia (contoh)',identitas:'NIB 8120098765432',npwp:'02.987.654.3-210.000',email:'corporate@globaltrade.co.id',wa:'+62 811-9999-8888',alamat:'Surabaya',layanan:'Ekspansi Multi-Yurisdiksi (≥2 negara)',layananId:'L10',grup:'Lintas Negara',tier:5,negara:'Malaysia; Uni Emirat Arab',spk:'SPK/2026/GTA/003',tglSpk:'2026-08-01',nilai:320000000,dibayar:160000000,metode:'Transfer Bank',tglBayar:'2026-08-03',alasan:'Perizinan tidak dapat diproses (regulasi / kuota / dokumen negara tujuan)',tahap:'T3 — Berkas telah diajukan ke instansi/mitra',jumlah:68000000,biaya:64000000,jelaskan:'Kuota lisensi negara tujuan ditutup oleh regulator.',bankPemilik:'PT Global Trade Asia',bankNama:'CIMB Niaga',bankJenis:'Rekening Koran',bankNo:'8001122334455',bankCabang:'Surabaya Pusat',bankNegara:'Indonesia',bankSwift:'BNIAIDJA',lampiran:['Surat Perjanjian / SPK','Korespondensi email / WA terkait'],status:'ST',hist:[{ts:new Date(now-30*864e5).toISOString(),aksi:'Pengajuan diterima',catatan:''},{ts:new Date(now-27*864e5).toISOString(),aksi:'Status → Putusan Tertulis Terkirim',catatan:''},{ts:new Date(now-20*864e5).toISOString(),aksi:'Status → Disetujui (ACC)',catatan:'Disetujui sebagian sesuai milestone; menunggu rekonsiliasi dana mitra luar negeri.'}]}];
+ var db=getDb();s.forEach(function(x){if(!db.some(function(d){return d.ticket===x.ticket}))db.unshift(x)});setDb(db);renderDash();alert('✅ 3 data contoh dimuat. Gunakan 🗑️ Kosongkan untuk menghapus semuanya.')}
+function wipe(){if(confirm('Hapus SEMUA data pengajuan di perangkat ini? Tindakan ini tidak dapat dibatalkan.')){setDb([]);renderDash()}}
+
+/* ================= TERMS RENDER ================= */
+function renderTier(){var h='';Object.keys(TIERS).forEach(function(k){var t=TIERS[k];h+='<div class="tier"><b>'+esc(t.nm)+'</b><div class="max">'+esc(t.max)+'</div><p>'+esc(t.desc)+'</p></div>'});$i('tierGrid').innerHTML=h}
+function renderStage(){var h='<thead><tr><th>Kode</th><th>Tahapan Pekerjaan</th><th>Indikasi Nilai Refund</th><th>Ketentuan</th></tr></thead><tbody>';
+ STAGES.forEach(function(s){h+='<tr><td><span class="tbadge">'+s.k+'</span></td><td><b>'+esc(s.n)+'</b></td><td><b style="color:var(--gold)">'+s.p+'%</b> dari dana jasa</td><td>'+esc(s.t)+'</td></tr>'});$i('stageTbl').innerHTML=h+'</tbody>'}
+function renderMatrix(){var q=($i('qSvc').value||'').toLowerCase(),h='<thead><tr><th>Layanan</th><th>Kelompok</th><th>Tier</th><th>Pencairan Paling Lama</th><th>Syarat Kunci</th><th>Biaya Tidak Dikembalikan</th></tr></thead><tbody>';
+ SERVICES.forEach(function(s){if(q&&(s.n+' '+s.g).toLowerCase().indexOf(q)===-1)return;
+  h+='<tr><td><b>'+esc(s.n)+'</b></td><td>'+esc(s.g)+'</td><td><span class="tbadge">Tier '+s.t+'</span></td><td style="white-space:nowrap"><b>'+esc(TIERS[s.t].max)+'</b></td><td>'+esc(s.s)+'</td><td>'+esc(s.nr)+'</td></tr>'});
+ $i('svcTbl').innerHTML=h+'</tbody>'}
+
+/* ================= INIT ================= */
+(function migrate(){var db=getDb(),ch=false;db.forEach(function(d){if(!d.id){d.id='m'+Date.now()+Math.random().toString(36).slice(2,6);ch=true}
+ if(!d.hist)d.hist=[{ts:d.tgl||new Date().toISOString(),aksi:'Pengajuan diterima',catatan:''}]});if(ch)setDb(db)})();
+(function init(){
+ var html='<option value="">— Pilih layanan —</option>',curG='';
+ SERVICES.forEach(function(s){if(s.g!==curG){if(curG)html+='</optgroup>';curG=s.g;html+='<optgroup label="'+s.g+'">'}html+='<option value="'+s.id+'">'+s.n+'</option>'});
+ html+='</optgroup>';
+ $i('f_layanan').innerHTML=html;
+ REASONS.forEach(function(r,i){$i('reasonBox').insertAdjacentHTML('beforeend','<label class="radio-opt"><input type="radio" name="alasan" value="'+r+'" onchange="this.closest(\'.radio-opt\').classList.add(\'on\');this.parentNode.parentNode.querySelectorAll(\'.radio-opt\').forEach(function(x){if(x.contains(this))return;x.classList.remove(\'on\')},this);saveDraft()"><span>'+r+'</span></label>')});
+ STAGES.forEach(function(s){$i('f_tahap').insertAdjacentHTML('beforeend','<option value="'+s.k+' — '+s.n+'">'+s.k+' — '+s.n+'</option>')});
+ $i('f_tahap').addEventListener('change',function(){var k=this.value.split(' — ')[0],st=STAGES.find(function(x){return x.k===k});
+  if(st){$i('tahapHint').innerHTML='<b style="color:var(--gold)">Indikasi '+st.p+'%</b> — '+st.t;
+   var bayar=num($i('f_bayar').value),biaya=num($i('f_biaya').value);
+   if(!document.activeElement.isSameNode($i('f_jumlah'))&&num($i('f_jumlah').value)===0&&bayar>0){$i('f_jumlah').value=Math.max(0,Math.round(bayar*st.p/100)-biaya)}}saveDraft()});
+ LAMPS.forEach(function(l){var k=lampKey(l);$i('lampBox').insertAdjacentHTML('beforeend','<label class="chk"><input type="checkbox" id="l_'+k+'"><span>'+l+'</span></label>')});
+ $i('f_layanan').addEventListener('change',function(){var o=svcById(this.value);
+  if(o){$i('tierHint').innerHTML='<b style="color:var(--gold)">'+TIERS[o.t].nm+'</b> — pencairan paling lama <b>'+TIERS[o.t].max+'</b>.'+TIERS[o.t].desc;
+   $i('w_negara').style.display=o.g==='Lintas Negara'?'block':'none';if(o.g!=='Lintas Negara')$i('f_negara').value=''}saveDraft()});
+ document.querySelectorAll('#formCard input,#formCard textarea,#formCard select').forEach(function(e){e.addEventListener('change',saveDraft);e.addEventListener('blur',saveDraft)});
+ ['f_tahap','f_layanan'].forEach(function(x){$i(x).addEventListener('change',saveDraft)});
+ ['p1','p2','p3','p4'].forEach(function(x){$i(x).addEventListener('change',saveDraft)});
+ try{var dr=JSON.parse(localStorage.getItem('ppref_draft'));if(dr&&dr.nama){var map={f_nama:dr.nama,f_npwp:dr.npwp,f_email:dr.email,f_wa:dr.wa,f_alamat:dr.alamat,f_negara:dr.negara,f_spk:dr.spk,f_tglSpk:dr.tglSpk,f_nilai:dr.nilai||'',f_bayar:dr.dibayar||'',f_jumlah:dr.jumlah||'',f_biaya:dr.biaya||'',f_jelaskan:dr.jelaskan,f_bankPemilik:dr.bankPemilik,f_bankNama:dr.bankNama,f_bankNo:dr.bankNo,f_bankCabang:dr.bankCabang,f_bankSwift:dr.bankSwift};
+  Object.keys(map).forEach(function(k){if(map[k])$i(k).value=map[k]});
+  if(dr.identitas){if(dr.jenis==='Badan Usaha'){var bi=document.querySelector('#w_nib input');if(bi)bi.value=dr.identitas}else $i('f_identitas').value=dr.identitas}
+  if(dr.jenis)setPemohon(dr.jenis==='Badan Usaha'?'badan':'perorangan');
+  if(dr.layananId)$i('f_layanan').value=dr.layananId}}catch(e){}
+ if(sessionStorage.getItem('ppref_auth')==='1'){$i('gate').style.display='none';$i('dashBody').style.display='block';renderDash()}
+})();
+</script>
+</body>
+</html>
