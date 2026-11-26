@@ -7,99 +7,99 @@
 <title>Sistem Refund Terpadu — pusatperizinan.com</title>
 <style>
 :root{
-  --bg:#070b14;--bg2:#0b1220;--card:rgba(255,255,255,.045);--card2:rgba(255,255,255,.07);
-  --line:rgba(255,255,255,.10);--gold:#e8c877;--gold2:#c39a3f;--txt:#eef2f8;--mut:#9aa7bd;
-  --ok:#34d399;--bad:#f87171;--warn:#fbbf24;--info:#60a5fa;--r:16px;
+  --bg:#f6faf7;--bg2:#eef5f0;--card:#ffffff;--card2:#f2f9f4;--line:#dce6df;--acc:#00885a;--acc2:#006940;
+  --goldtx:#9a6200;--goldp:#f39f1d;--goldp2:#bb7400;--txt:#0c1711;--mut:#5a675f;
+  --ok:#00885a;--bad:#e7000b;--warn:#b45309;--info:#2563eb;--r:16px
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:'Segoe UI',system-ui,-apple-system,Roboto,'Helvetica Neue',Arial,sans-serif;
   background:var(--bg);color:var(--txt);min-height:100vh;line-height:1.55}
 body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background:radial-gradient(900px 500px at 85% -10%,rgba(232,200,119,.10),transparent 60%),
-             radial-gradient(800px 500px at -10% 110%,rgba(96,165,250,.08),transparent 60%),
-             linear-gradient(180deg,#070b14 0%,#0a1120 60%,#070b14 100%)}
-a{color:var(--gold);text-decoration:none}
+  background:radial-gradient(900px 500px at 85% -10%,rgba(0,136,90,.08),transparent 60%),
+             radial-gradient(800px 500px at -10% 110%,rgba(243,159,29,.08),transparent 60%),
+             linear-gradient(180deg,#f6faf7 0%,#eef5f0 60%,#f6faf7 100%)}
+a{color:var(--acc);text-decoration:none}
 .wrap{max-width:1120px;margin:0 auto;padding:0 clamp(14px,4vw,28px)}
 /* ===== HEADER ===== */
 header{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);
-  background:rgba(7,11,20,.82);border-bottom:1px solid var(--line)}
+  background:rgba(253,254,251,.86);border-bottom:1px solid var(--line);box-shadow:0 1px 20px rgba(12,60,40,.05)}
 .hrow{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:14px 0}
 .brand{display:flex;align-items:center;gap:12px;min-width:0}
 .logo{width:44px;height:44px;border-radius:12px;flex:none;display:grid;place-items:center;
-  background:linear-gradient(135deg,var(--gold) 0%,var(--gold2) 100%);color:#1a1408;
-  font-weight:800;font-size:19px;box-shadow:0 0 18px rgba(232,200,119,.35)}
+  background:linear-gradient(135deg,var(--acc) 0%,var(--acc2) 100%);color:#ffffff;
+  font-weight:800;font-size:19px;box-shadow:0 0 18px rgba(0,136,90,.35)}
 .brand h1{font-size:clamp(15px,2.6vw,18px);letter-spacing:.3px;white-space:nowrap}
-.brand h1 b{background:linear-gradient(90deg,var(--gold),#fff3d6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand h1 b{background:linear-gradient(90deg,var(--acc),#009966);-webkit-background-clip:text;background-clip:text;color:transparent}
 .brand small{display:block;color:var(--mut);font-size:11px;letter-spacing:1.6px;text-transform:uppercase}
 nav{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
 .tab{padding:9px 16px;border-radius:999px;border:1px solid var(--line);color:var(--mut);
   font-size:13px;font-weight:600;cursor:pointer;background:transparent;transition:.2s}
-.tab:hover{color:var(--txt);border-color:rgba(232,200,119,.4)}
-.tab.on{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1408;border-color:transparent;
-  box-shadow:0 0 16px rgba(232,200,119,.35)}
+.tab:hover{color:var(--txt);border-color:rgba(0,136,90,.4)}
+.tab.on{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#ffffff;border-color:transparent;
+  box-shadow:0 0 16px rgba(0,136,90,.35)}
 /* ===== LAYOUT ===== */
 main{padding:clamp(18px,4vw,34px) 0 60px}
 .view{display:none}.view.on{display:block;animation:fade .35s ease}
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
-  padding:clamp(16px,3vw,24px);backdrop-filter:blur(8px)}
+  padding:clamp(16px,3vw,24px);backdrop-filter:blur(8px);box-shadow:0 10px 30px rgba(12,60,40,.06)}
 .card+.card{margin-top:16px}
 h2{font-size:clamp(20px,4vw,26px);margin-bottom:6px}
-h2 b{background:linear-gradient(90deg,var(--gold),#fff3d6);-webkit-background-clip:text;background-clip:text;color:transparent}
+h2 b{background:linear-gradient(90deg,var(--acc),#009966);-webkit-background-clip:text;background-clip:text;color:transparent}
 .sub{color:var(--mut);font-size:14px;margin-bottom:18px}
-h3{font-size:16px;margin:0 0 12px;color:var(--gold)}
+h3{font-size:16px;margin:0 0 12px;color:var(--acc)}
 /* ===== FORM ===== */
 .steps{display:flex;gap:6px;margin:0 0 18px;flex-wrap:wrap}
 .steps span{flex:1;min-width:110px;text-align:center;font-size:11.5px;font-weight:600;color:var(--mut);
   padding:8px 6px;border-radius:10px;border:1px solid var(--line);background:var(--card);transition:.2s}
-.steps span.on{color:#1a1408;background:linear-gradient(135deg,var(--gold),var(--gold2));border-color:transparent}
-.steps span.done{color:var(--gold);border-color:rgba(232,200,119,.5)}
+.steps span.on{color:#ffffff;background:linear-gradient(135deg,var(--acc),var(--acc2));border-color:transparent}
+.steps span.done{color:var(--acc);border-color:rgba(0,136,90,.5)}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .frow .full{grid-column:1/-1}
 label{display:block;font-size:12.5px;font-weight:600;color:var(--mut);margin-bottom:6px;letter-spacing:.3px}
 label i{color:var(--bad);font-style:normal}
 input,select,textarea{width:100%;padding:11px 13px;border-radius:11px;font-size:14px;font-family:inherit;
-  background:rgba(255,255,255,.045);border:1px solid var(--line);color:var(--txt);outline:none;transition:.2s}
-input:focus,select:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(232,200,119,.15)}
-select option{background:#0b1220;color:var(--txt)}
+  background:#fbfdfc;border:1px solid var(--line);color:var(--txt);outline:none;transition:.2s}
+input:focus,select:focus,textarea:focus{border-color:var(--acc);box-shadow:0 0 0 3px rgba(0,136,90,.15)}
+select option{background:#ffffff;color:var(--txt)}
 textarea{min-height:84px;resize:vertical}
 .seg{display:flex;gap:8px;flex-wrap:wrap}
 .seg button{flex:1;min-width:130px;padding:11px;border-radius:11px;font-weight:700;font-size:13.5px;
   border:1px solid var(--line);background:transparent;color:var(--mut);cursor:pointer;transition:.2s;font-family:inherit}
-.seg button.on{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1408;border-color:transparent}
+.seg button.on{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#ffffff;border-color:transparent}
 .hint{font-size:12px;color:var(--mut);margin-top:5px}
-.note{border-left:3px solid var(--gold);background:rgba(232,200,119,.07);padding:11px 14px;border-radius:0 10px 10px 0;font-size:13px;color:#f5e9cd;margin:10px 0}
-.note.red{border-color:var(--bad);background:rgba(248,113,113,.08);color:#fecaca}
-.note.ok{border-color:var(--ok);background:rgba(52,211,153,.08);color:#c6f6e0}
+.note{border-left:3px solid var(--acc);background:rgba(0,136,90,.07);padding:11px 14px;border-radius:0 10px 10px 0;font-size:13px;color:#0e4d33;margin:10px 0}
+.note.red{border-color:var(--bad);background:rgba(231,0,11,.06);color:#8f0d0d}
+.note.ok{border-color:var(--ok);background:rgba(0,136,90,.07);color:#0e4d33}
 .radio-opt{display:flex;gap:10px;align-items:flex-start;padding:11px 13px;border:1px solid var(--line);
   border-radius:11px;margin-bottom:9px;cursor:pointer;font-size:13.5px;transition:.2s}
-.radio-opt:hover{border-color:rgba(232,200,119,.45)}
-.radio-opt input{width:auto;margin-top:3px;accent-color:var(--gold)}
-.radio-opt.on{border-color:var(--gold);background:rgba(232,200,119,.06)}
+.radio-opt:hover{border-color:rgba(0,136,90,.45)}
+.radio-opt input{width:auto;margin-top:3px;accent-color:var(--acc)}
+.radio-opt.on{border-color:var(--acc);background:rgba(0,136,90,.06)}
 .chk{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;margin-bottom:9px}
-.chk input{width:auto;margin-top:3px;accent-color:var(--gold)}
+.chk input{width:auto;margin-top:3px;accent-color:var(--acc)}
 .wiznav{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
 .btn{padding:12px 22px;border-radius:12px;font-weight:700;font-size:14px;cursor:pointer;border:none;
   font-family:inherit;transition:.2s}
-.btn.gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1408;box-shadow:0 0 16px rgba(232,200,119,.3)}
+.btn.gold{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#ffffff;box-shadow:0 0 16px rgba(0,136,90,.3)}
 .btn.gold:hover{filter:brightness(1.1)}
 .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--txt)}
-.btn.ghost:hover{border-color:var(--gold)}
-.btn.ok{background:rgba(52,211,153,.15);color:var(--ok);border:1px solid rgba(52,211,153,.4)}
-.btn.bad{background:rgba(248,113,113,.13);color:var(--bad);border:1px solid rgba(248,113,113,.4)}
-.btn.info{background:rgba(96,165,250,.13);color:var(--info);border:1px solid rgba(96,165,250,.4)}
+.btn.ghost:hover{border-color:var(--acc)}
+.btn.ok{background:rgba(0,136,90,.12);color:var(--ok);border:1px solid rgba(0,136,90,.4)}
+.btn.bad{background:rgba(231,0,11,.08);color:var(--bad);border:1px solid rgba(231,0,11,.35)}
+.btn.info{background:rgba(37,99,235,.1);color:var(--info);border:1px solid rgba(37,99,235,.35)}
 .btn.sm{padding:7px 13px;font-size:12.5px;border-radius:9px}
 .right{margin-left:auto}
 .err{color:var(--bad);font-size:12.5px;margin-top:8px;display:none}
 /* success panel */
 .succ{text-align:center;padding:clamp(20px,5vw,40px)}
 .succ .tick{width:74px;height:74px;margin:0 auto 16px;border-radius:50%;display:grid;place-items:center;font-size:34px;
-  background:rgba(52,211,153,.15);border:1.5px solid rgba(52,211,153,.5);color:var(--ok);box-shadow:0 0 30px rgba(52,211,153,.25)}
-.ticket{font-size:clamp(22px,5vw,30px);font-weight:800;letter-spacing:2px;color:var(--gold);margin:6px 0 2px}
+  background:rgba(0,136,90,.1);border:1.5px solid rgba(0,136,90,.5);color:var(--ok);box-shadow:0 0 30px rgba(0,136,90,.2)}
+.ticket{font-size:clamp(22px,5vw,30px);font-weight:800;letter-spacing:2px;color:var(--acc);margin:6px 0 2px}
 .tline{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0;text-align:left}
 .tline>div{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
-.tline b{color:var(--gold);font-size:13px;display:block;margin-bottom:3px}
+.tline b{color:var(--acc);font-size:13px;display:block;margin-bottom:3px}
 /* ===== DASHBOARD ===== */
 .gate{max-width:420px;margin:30px auto;text-align:center}
 .gate input{margin:14px 0;text-align:center;font-size:16px;letter-spacing:2px}
@@ -107,33 +107,33 @@ textarea{min-height:84px;resize:vertical}
 .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
 .stat b{font-size:clamp(20px,3.5vw,26px);display:block}
 .stat span{font-size:11.5px;color:var(--mut);letter-spacing:.5px}
-.stat.g b{color:var(--gold)}.stat.k b{color:var(--ok)}.stat.m b{color:var(--warn)}.stat.b b{color:var(--bad)}.stat.i b{color:var(--info)}
+.stat.g b{color:var(--goldtx)}.stat.k b{color:var(--ok)}.stat.m b{color:var(--warn)}.stat.b b{color:var(--bad)}.stat.i b{color:var(--info)}
 .toolbar{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:14px}
 .toolbar input,.toolbar select{width:auto;flex:1;min-width:150px}
 .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
 table{width:100%;border-collapse:collapse;min-width:860px;font-size:13px}
 th{padding:11px 12px;text-align:left;color:var(--mut);font-size:11px;letter-spacing:1px;text-transform:uppercase;
-  border-bottom:1px solid var(--line);white-space:nowrap;background:rgba(255,255,255,.03)}
-td{padding:11px 12px;border-bottom:1px solid rgba(255,255,255,.06);vertical-align:top}
+  border-bottom:1px solid var(--line);white-space:nowrap;background:#f2f9f4}
+td{padding:11px 12px;border-bottom:1px solid rgba(12,23,17,.07);vertical-align:top}
 tr:last-child td{border-bottom:none}
-tr:hover td{background:rgba(255,255,255,.03)}
+tr:hover td{background:#f4faf6}
 .pill{display:inline-block;padding:4px 11px;border-radius:999px;font-size:11px;font-weight:700;white-space:nowrap}
-.p.aj{background:rgba(251,191,36,.14);color:var(--warn);border:1px solid rgba(251,191,36,.4)}
-.p.kt{background:rgba(96,165,250,.14);color:var(--info);border:1px solid rgba(96,165,250,.4)}
-.p.st{background:rgba(52,211,153,.14);color:var(--ok);border:1px solid rgba(52,211,153,.4)}
-.p.pc{background:rgba(167,139,250,.15);color:#c4b5fd;border:1px solid rgba(167,139,250,.4)}
-.p.db{background:rgba(52,211,153,.24);color:#6ee7b7;border:1px solid rgba(52,211,153,.6)}
-.p.tj{background:rgba(248,113,113,.13);color:var(--bad);border:1px solid rgba(248,113,113,.4)}
+.p.aj{background:rgba(180,83,9,.1);color:var(--warn);border:1px solid rgba(180,83,9,.4)}
+.p.kt{background:rgba(37,99,235,.08);color:var(--info);border:1px solid rgba(37,99,235,.4)}
+.p.st{background:rgba(0,136,90,.1);color:var(--ok);border:1px solid rgba(0,136,90,.4)}
+.p.pc{background:rgba(124,58,237,.1);color:#6d28d9;border:1px solid rgba(124,58,237,.4)}
+.p.db{background:rgba(0,136,90,.16);color:#006940;border:1px solid rgba(0,136,90,.6)}
+.p.tj{background:rgba(231,0,11,.08);color:var(--bad);border:1px solid rgba(231,0,11,.35)}
 .tbadge{display:inline-block;padding:3px 9px;border-radius:8px;font-size:11px;font-weight:700;
-  background:linear-gradient(135deg,rgba(232,200,119,.25),rgba(195,154,63,.25));color:var(--gold);border:1px solid rgba(232,200,119,.35)}
+  background:linear-gradient(135deg,rgba(243,159,29,.18),rgba(187,116,0,.16));color:var(--goldtx);border:1px solid rgba(243,159,29,.45)}
 .acts{display:flex;gap:6px;flex-wrap:wrap}
 .empty{text-align:center;padding:40px 16px;color:var(--mut);font-size:14px}
 /* ===== MODAL ===== */
-.mask{position:fixed;inset:0;background:rgba(4,7,13,.72);backdrop-filter:blur(5px);z-index:100;display:none;
+.mask{position:fixed;inset:0;background:rgba(12,23,17,.45);backdrop-filter:blur(5px);z-index:100;display:none;
   align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto}
 .mask.on{display:flex}
-.modal{width:100%;max-width:760px;background:#0c1322;border:1px solid var(--line);border-radius:18px;
-  padding:clamp(16px,3vw,26px);margin:auto;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.modal{width:100%;max-width:760px;background:#ffffff;border:1px solid var(--line);border-radius:18px;
+  padding:clamp(16px,3vw,26px);margin:auto;box-shadow:0 24px 70px rgba(12,23,17,.25)}
 .modal h3{font-size:18px}
 .dgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin:14px 0}
 .dgrid .full{grid-column:1/-1}
@@ -142,22 +142,22 @@ tr:hover td{background:rgba(255,255,255,.03)}
 .histlog{border-left:2px solid var(--line);margin:10px 0 4px;padding-left:14px}
 .histlog div{font-size:12.5px;color:var(--mut);margin-bottom:8px;position:relative}
 .histlog div::before{content:"";position:absolute;left:-20px;top:5px;width:9px;height:9px;border-radius:50%;
-  background:var(--gold);box-shadow:0 0 8px rgba(232,200,119,.6)}
+  background:var(--acc);box-shadow:0 0 8px rgba(0,136,90,.6)}
 .histlog b{color:var(--txt)}
 /* ===== TERMS ===== */
 .tiergrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:14px 0}
 .tier{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:14px 16px;position:relative;overflow:hidden}
-.tier::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),transparent)}
-.tier b{font-size:12px;color:var(--gold);letter-spacing:.5px}
+.tier::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--acc),var(--goldp),transparent)}
+.tier b{font-size:12px;color:var(--acc);letter-spacing:.5px}
 .tier .max{font-size:clamp(17px,3vw,21px);font-weight:800;margin:4px 0}
 .tier p{font-size:12px;color:var(--mut)}
 ul.legal{list-style:none;margin:10px 0}
-ul.legal li{padding:7px 0 7px 22px;position:relative;font-size:13.5px;color:#dfe6f0;border-bottom:1px dashed rgba(255,255,255,.07)}
-ul.legal li::before{content:"§";position:absolute;left:2px;color:var(--gold);font-weight:700}
+ul.legal li{padding:7px 0 7px 22px;position:relative;font-size:13.5px;color:#24352c;border-bottom:1px dashed rgba(12,23,17,.08)}
+ul.legal li::before{content:"§";position:absolute;left:2px;color:var(--acc);font-weight:700}
 .matrix td{font-size:12.5px}
 .matrix th{font-size:10px}
 footer{border-top:1px solid var(--line);padding:22px 0 30px;color:var(--mut);font-size:12.5px;text-align:center}
-footer b{color:var(--gold)}
+footer b{color:var(--acc)}
 @media(max-width:640px){
   .frow,.tline,.dgrid{grid-template-columns:1fr}
   table{min-width:760px}
@@ -188,7 +188,7 @@ footer b{color:var(--gold)}
 <section class="view on" id="v-form">
   <div class="card" id="formCard">
     <h2>Formulir <b>Pengajuan Refund</b></h2>
-    <p class="sub">Pengajuan resmi dikirim melalui email ke <b style="color:var(--gold)">refund@pusatperizinan.com</b>. Isi 5 langkah berikut — cepat, terpandu, dan tersimpan otomatis di perangkat Anda.</p>
+    <p class="sub">Pengajuan resmi dikirim melalui email ke <b style="color:var(--acc)">refund@pusatperizinan.com</b>. Isi 5 langkah berikut — cepat, terpandu, dan tersimpan otomatis di perangkat Anda.</p>
     <div class="steps" id="stepsBar">
       <span class="on">1 · Identitas</span><span>2 · Layanan</span><span>3 · Alasan &amp; Jumlah</span><span>4 · Rekening Bank</span><span>5 · Pernyataan &amp; Kirim</span>
     </div>
@@ -215,7 +215,7 @@ footer b{color:var(--gold)}
     <div class="fstep" id="fs2" style="display:none">
       <h3>Langkah 2 — Layanan &amp; Perjanjian</h3>
       <div class="frow">
-        <div class="full"><label>Layanan yang Diajukan Refund <i>*</i> <span style="color:var(--gold)">(semua layanan dapat diajukan refund dengan ketentuan)</span></label>
+        <div class="full"><label>Layanan yang Diajukan Refund <i>*</i> <span style="color:var(--acc)">(semua layanan dapat diajukan refund dengan ketentuan)</span></label>
           <select id="f_layanan"><option value="">— Pilih layanan —</option></select>
           <div class="hint" id="tierHint"></div></div>
         <div id="w_negara" style="display:none"><label>Negara yang Terlibat <i>*</i></label><input id="f_negara" placeholder="Mis. Singapura, Malaysia, dst."></div>
@@ -262,7 +262,7 @@ footer b{color:var(--gold)}
     <!-- STEP 5 -->
     <div class="fstep" id="fs5" style="display:none">
       <h3>Langkah 5 — Pernyataan, Lampiran &amp; Kirim</h3>
-      <div id="summary" class="note" style="border-left-color:var(--info);background:rgba(96,165,250,.06);color:#d8e6fb"></div>
+      <div id="summary" class="note" style="border-left-color:var(--info);background:rgba(96,165,250,.06);color:#1e3a8a"></div>
       <label style="margin-top:14px">Pernyataan Pemohon <i>*</i> (wajib dicentang semua)</label>
       <label class="chk"><input type="checkbox" id="p1"><span>Seluruh data yang saya isikan benar dan dapat dipertanggungjawabkan; saya menyetujui <b>Surat Perjanjian Pengembalian Dana (Refund)</b> sebagai bagian tidak terpisahkan dari perjanjian layanan.</span></label>
       <label class="chk"><input type="checkbox" id="p2"><span>Saya memahami <b>putusan tertulis ≤ 3 hari kerja</b> adalah <b>konfirmasi penerimaan &amp; pemeriksaan administratif</b>, <b>bukan</b> pencairan dana refund.</span></label>
@@ -305,7 +305,7 @@ footer b{color:var(--gold)}
 
   <div id="dashBody" style="display:none">
     <h2>Dashboard <b>ACC Refund</b> <button class="btn ghost sm right" onclick="logout()">Keluar</button></h2>
-    <p class="sub">Alur kerja: <b style="color:var(--warn)">Diajukan</b> → <b style="color:var(--info)">Putusan Tertulis (≤3 HK)</b> → <b style="color:var(--ok)">Disetujui (ACC)</b> → <b style="color:#c4b5fd">Dalam Pencairan</b> → <b style="color:#6ee7b7">Dibayar</b> · atau <b style="color:var(--bad)">Ditolak</b>.</p>
+    <p class="sub">Alur kerja: <b style="color:var(--warn)">Diajukan</b> → <b style="color:var(--info)">Putusan Tertulis (≤3 HK)</b> → <b style="color:var(--ok)">Disetujui (ACC)</b> → <b style="color:#6d28d9">Dalam Pencairan</b> → <b style="color:#006940">Dibayar</b> · atau <b style="color:var(--bad)">Ditolak</b>.</p>
     <div class="stats" id="stats"></div>
     <div class="card">
       <div class="toolbar">
@@ -317,7 +317,7 @@ footer b{color:var(--gold)}
         <button class="btn ghost sm" onclick="loadSample()">🧪 Data Contoh</button>
         <button class="btn bad sm" onclick="wipe()">🗑️ Kosongkan</button>
       </div>
-      <div class="note" style="border-left-color:var(--info);background:rgba(96,165,250,.06);color:#d8e6fb">📥 <b>Cara data masuk:</b> setiap pengajuan terkirim sebagai email terstruktur ke <b>refund@pusatperizinan.com</b>. Salin isi email tersebut, klik <b>Impor Email</b>, tempel di sini — tiket otomatis masuk ke dashboard. Data formulir dari perangkat ini juga langsung tersimpan.</div>
+      <div class="note" style="border-left-color:var(--info);background:rgba(96,165,250,.06);color:#1e3a8a">📥 <b>Cara data masuk:</b> setiap pengajuan terkirim sebagai email terstruktur ke <b>refund@pusatperizinan.com</b>. Salin isi email tersebut, klik <b>Impor Email</b>, tempel di sini — tiket otomatis masuk ke dashboard. Data formulir dari perangkat ini juga langsung tersimpan.</div>
       <div class="tblwrap"><table id="tbl"></table></div>
     </div>
   </div>
@@ -335,7 +335,7 @@ footer b{color:var(--gold)}
   </div>
   <div class="card">
     <h3>Tahapan Pekerjaan &amp; Indikasi Nilai Refund</h3>
-    <div class="note" style="border-left-color:var(--warn);background:rgba(251,191,36,.07);color:#fdeecb">Persentase bersifat <b>indikatif, bukan pemotongan otomatis</b> — nilai final dihitung berdasarkan milestone SPK, bukti pekerjaan, dan biaya pihak ketiga yang terbukti keluar.</div>
+    <div class="note" style="border-left-color:var(--warn);background:rgba(180,83,9,.06);color:#92400e">Persentase bersifat <b>indikatif, bukan pemotongan otomatis</b> — nilai final dihitung berdasarkan milestone SPK, bukti pekerjaan, dan biaya pihak ketiga yang terbukti keluar.</div>
     <div class="tblwrap"><table class="matrix" id="stageTbl"></table></div>
   </div>
   <div class="card">
@@ -567,7 +567,7 @@ function renderTable(){var db=getDb(),q=$i('q').value.toLowerCase(),fs=$i('fStat
  db.forEach(function(d){
   if(fs&&d.status!==fs)return;if(ft&&String(d.tier)!==ft)return;
   var blob=(d.ticket+' '+d.nama+' '+d.spk+' '+d.layanan).toLowerCase();if(q&&blob.indexOf(q)===-1)return;
-  rows+='<tr><td><b style="color:var(--gold)">'+esc(d.ticket)+'</b><br><span style="color:var(--mut);font-size:11px">'+fdt(d.tgl)+'</span></td>'+
+  rows+='<tr><td><b style="color:var(--acc)">'+esc(d.ticket)+'</b><br><span style="color:var(--mut);font-size:11px">'+fdt(d.tgl)+'</span></td>'+
   '<td><b>'+esc(d.nama)+'</b><br><span style="color:var(--mut);font-size:11px">'+esc(d.jenis)+' · '+esc(d.email||'')+'</span></td>'+
   '<td>'+esc(d.layanan)+'<br><span class="tbadge">Tier '+d.tier+'</span></td>'+
   '<td style="white-space:nowrap"><b>'+rp(d.jumlah)+'</b></td>'+
@@ -605,7 +605,7 @@ function detail(id){var db=getDb(),d=db.find(function(x){return x.id===id});if(!
  '<div class="dv"><span>SPK</span>'+esc(d.spk)+(d.tglSpk?' ('+esc(d.tglSpk)+')':'')+'</div>'+
  '<div class="dv"><span>Nilai Kontrak</span>'+rp(d.nilai)+'</div><div class="dv"><span>Sudah Dibayar</span>'+rp(d.dibayar)+' · '+esc(d.metode||'')+'</div>'+
  '<div class="dv"><span>Alasan</span>'+esc(d.alasan)+'</div><div class="dv"><span>Tahapan</span>'+esc(d.tahap)+'</div>'+
- '<div class="dv"><span>Jumlah Refund</span><b style="color:var(--gold)">'+rp(d.jumlah)+'</b></div><div class="dv"><span>Biaya Terpakai</span>'+rp(d.biaya)+'</div>'+
+ '<div class="dv"><span>Jumlah Refund</span><b style="color:var(--acc)">'+rp(d.jumlah)+'</b></div><div class="dv"><span>Biaya Terpakai</span>'+rp(d.biaya)+'</div>'+
  '<div class="dv full"><span>Penjelasan</span>'+esc(d.jelaskan||'—')+'</div>'+
  '<div class="dv full"><span>Rekening Tujuan</span>'+esc(d.bankNama)+' — '+esc(d.bankNo)+' ('+esc(d.bankJenis)+') a.n. <b>'+esc(d.bankPemilik)+'</b> · '+esc(d.bankCabang||'-')+' · '+esc(d.bankNegara)+(d.bankSwift?' · SWIFT '+esc(d.bankSwift):'')+'</div>'+
  '<div class="dv full"><span>Lampiran</span>'+(d.lampiran&&d.lampiran.length?d.lampiran.map(esc).join(', '):'—')+'</div></div>'+
@@ -653,7 +653,7 @@ function wipe(){if(confirm('Hapus SEMUA data pengajuan di perangkat ini? Tindaka
 /* ================= TERMS RENDER ================= */
 function renderTier(){var h='';Object.keys(TIERS).forEach(function(k){var t=TIERS[k];h+='<div class="tier"><b>'+esc(t.nm)+'</b><div class="max">'+esc(t.max)+'</div><p>'+esc(t.desc)+'</p></div>'});$i('tierGrid').innerHTML=h}
 function renderStage(){var h='<thead><tr><th>Kode</th><th>Tahapan Pekerjaan</th><th>Indikasi Nilai Refund</th><th>Ketentuan</th></tr></thead><tbody>';
- STAGES.forEach(function(s){h+='<tr><td><span class="tbadge">'+s.k+'</span></td><td><b>'+esc(s.n)+'</b></td><td><b style="color:var(--gold)">'+s.p+'%</b> dari dana jasa</td><td>'+esc(s.t)+'</td></tr>'});$i('stageTbl').innerHTML=h+'</tbody>'}
+ STAGES.forEach(function(s){h+='<tr><td><span class="tbadge">'+s.k+'</span></td><td><b>'+esc(s.n)+'</b></td><td><b style="color:var(--acc)">'+s.p+'%</b> dari dana jasa</td><td>'+esc(s.t)+'</td></tr>'});$i('stageTbl').innerHTML=h+'</tbody>'}
 function renderMatrix(){var q=($i('qSvc').value||'').toLowerCase(),h='<thead><tr><th>Layanan</th><th>Kelompok</th><th>Tier</th><th>Pencairan Paling Lama</th><th>Syarat Kunci</th><th>Biaya Tidak Dikembalikan</th></tr></thead><tbody>';
  SERVICES.forEach(function(s){if(q&&(s.n+' '+s.g).toLowerCase().indexOf(q)===-1)return;
   h+='<tr><td><b>'+esc(s.n)+'</b></td><td>'+esc(s.g)+'</td><td><span class="tbadge">Tier '+s.t+'</span></td><td style="white-space:nowrap"><b>'+esc(TIERS[s.t].max)+'</b></td><td>'+esc(s.s)+'</td><td>'+esc(s.nr)+'</td></tr>'});
@@ -670,12 +670,12 @@ function renderMatrix(){var q=($i('qSvc').value||'').toLowerCase(),h='<thead><tr
  REASONS.forEach(function(r,i){$i('reasonBox').insertAdjacentHTML('beforeend','<label class="radio-opt"><input type="radio" name="alasan" value="'+r+'" onchange="this.closest(\'.radio-opt\').classList.add(\'on\');this.parentNode.parentNode.querySelectorAll(\'.radio-opt\').forEach(function(x){if(x.contains(this))return;x.classList.remove(\'on\')},this);saveDraft()"><span>'+r+'</span></label>')});
  STAGES.forEach(function(s){$i('f_tahap').insertAdjacentHTML('beforeend','<option value="'+s.k+' — '+s.n+'">'+s.k+' — '+s.n+'</option>')});
  $i('f_tahap').addEventListener('change',function(){var k=this.value.split(' — ')[0],st=STAGES.find(function(x){return x.k===k});
-  if(st){$i('tahapHint').innerHTML='<b style="color:var(--gold)">Indikasi '+st.p+'%</b> — '+st.t;
+  if(st){$i('tahapHint').innerHTML='<b style="color:var(--acc)">Indikasi '+st.p+'%</b> — '+st.t;
    var bayar=num($i('f_bayar').value),biaya=num($i('f_biaya').value);
    if(!document.activeElement.isSameNode($i('f_jumlah'))&&num($i('f_jumlah').value)===0&&bayar>0){$i('f_jumlah').value=Math.max(0,Math.round(bayar*st.p/100)-biaya)}}saveDraft()});
  LAMPS.forEach(function(l){var k=lampKey(l);$i('lampBox').insertAdjacentHTML('beforeend','<label class="chk"><input type="checkbox" id="l_'+k+'"><span>'+l+'</span></label>')});
  $i('f_layanan').addEventListener('change',function(){var o=svcById(this.value);
-  if(o){$i('tierHint').innerHTML='<b style="color:var(--gold)">'+TIERS[o.t].nm+'</b> — pencairan paling lama <b>'+TIERS[o.t].max+'</b>.'+TIERS[o.t].desc;
+  if(o){$i('tierHint').innerHTML='<b style="color:var(--acc)">'+TIERS[o.t].nm+'</b> — pencairan paling lama <b>'+TIERS[o.t].max+'</b>.'+TIERS[o.t].desc;
    $i('w_negara').style.display=o.g==='Lintas Negara'?'block':'none';if(o.g!=='Lintas Negara')$i('f_negara').value=''}saveDraft()});
  document.querySelectorAll('#formCard input,#formCard textarea,#formCard select').forEach(function(e){e.addEventListener('change',saveDraft);e.addEventListener('blur',saveDraft)});
  ['f_tahap','f_layanan'].forEach(function(x){$i(x).addEventListener('change',saveDraft)});
