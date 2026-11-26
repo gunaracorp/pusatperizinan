@@ -37,6 +37,13 @@ const SECTIONS = [
     ],
   },
   {
+    h: "Ketentuan Refund & Pengembalian Dana",
+    p: [
+      "Pengembalian dana mengikuti Ketentuan Refund berjenjang (Versi 2.1): paling cepat 45 Hari Kerja (Tier 1 — pekerjaan belum dimulai secara substantif atau kesalahan material perusahaan) hingga paling lama 24 bulan kalender untuk mandat lintas negara yang disepakati tertulis dalam SPK/addendum (Tier 5). Tier ditentukan oleh tahapan pekerjaan T0–T5 yang benar-benar terlaksana, bukan pemotongan otomatis.",
+      "Hanya Biaya Pihak Ketiga yang disetujui, dibayarkan, terbukti resmi, dan tidak dapat dipulihkan yang dapat diperhitungkan (mis. PNBP, notaris, legalisasi/apostille); dana yang belum terpakai wajib dikembalikan. Jumlah yang tidak disengketakan dibayar lebih dahulu, laporan status diberikan berkala untuk tier panjang, dan hak menempuh BPSK/pengadilan tetap dihormati sesuai UU Perlindungan Konsumen.",
+    ],
+  },
+  {
     h: "Penggunaan Situs",
     p: [
       "Dilarang menggunakan situs ini untuk penyalahgunaan, scraping massal, atau upaya yang mengganggu ketersediaan layanan.",
@@ -75,7 +82,10 @@ export default function SyaratKetentuanPage() {
           ))}
           <p className="text-sm text-muted-foreground">
             Pertanyaan tentang ketentuan ini? Hubungi kami via{" "}
-            <Link href="/kontak" className="font-semibold text-primary hover:underline">halaman kontak</Link>.
+            <Link href="/kontak" className="font-semibold text-primary hover:underline">halaman kontak</Link>
+            . Naskah lengkap pengembalian dana (14 pasal + dasar hukum) tersedia di{" "}
+            <Link href="/ketentuan-refund" className="font-semibold text-primary hover:underline">Ketentuan Refund</Link>
+            .
           </p>
         </div>
       </div>

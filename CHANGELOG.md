@@ -43,6 +43,32 @@
 
 ---
 
+<a id="unreleased"></a>
+
+## [Unreleased] — Ketentuan Refund Berjenjang & Dewan Pakar (Role Activation v2.1)
+
+Instruksi owner: lengkapi website dengan **Ketentuan Refund resmi** — paling cepat **45 Hari Kerja** (Tier 1) hingga paling lama **24 bulan kalender** (Tier 5, mandat lintas negara yang disepakati tertulis), dari hulu ke hilir dengan dasar hukum terverifikasi.
+
+### 🛍️ Added
+- **`/ketentuan-refund`** — halaman kebijakan pengembalian dana v2.1 FINAL: peta 5 tier (45 Hari Kerja / 90 Hari Kerja / 180 Hari Kalender / 12 bulan / 24 bulan), tahapan pekerjaan T0–T5, **naskah lengkap 14 pasal** (identitas, definisi, prinsip perhitungan, tier, nilai pekerjaan, biaya pihak ketiga, pembatalan/wanprestasi, prosedur klaim, force majeure, mandat lintas negara, sengketa, PDP, penutup), prosedur klaim 5 langkah, FAQ 6 Q&A (JSON-LD FAQPage sinkron), dan **dasar hukum terverifikasi** via JDIH/BPK per November 2026 (UUPK 8/1999, KUHPerdata, PP 80/2019 Pasal 69–74, Permendag 19/2026, UU 6/2023 + PP 28/2025 + Permeninves 5/2025, UU 25/2009, UU PPN Pasal 16B, UU 27/2022 PDP, Perpres 2/2021 Apostille, UU 24/2009 Pasal 31, Keppres 34/1981 + UU 30/1999, UU 31/1999 jo. UU 20/2001, PP 43/2015 jo. PP 61/2021; catatan Putusan MK 006/PUU-II/2004 & 126/PUU-XXIV/2026).
+- **`/dewan-pakar`** — halaman role activation: 46 domain kepakaran lintas bidang (hulu ke hilir), 46 kursi spesialisasi hukum, protokol kerja 6 langkah, dan transparansi kapasitas (kerangka analisis, bukan klaim jumlah advokat nyata).
+- Link **Ketentuan Refund** & **Dewan Pakar** di footer (COMPANY_LINKS + baris legal) dan entri `/sitemap/static.xml`.
+
+### 🔧 Changed
+- **`/garansi`**: klaim lama "refund maks. 7 hari kerja" diganti seluruhnya (metadata, JSON-LD, langkah klaim) menjadi putusan tertulis maks. 3 hari kerja + pencairan mengikuti tier Ketentuan Refund (garansi disetujui = Tier 1, paling lama 45 hari kerja); tautan silang ke `/ketentuan-refund`.
+- **`/syarat-ketentuan`**: seksi baru "Ketentuan Refund & Pengembalian Dana" (ringkasan tier + prinsip) dengan rujukan ke halaman lengkap.
+
+### 🧪 QA
+- `tsc --noEmit`: **0 error** repo-wide (setelah `prisma contract emit` di-generate).
+- eslint pada 6 file ubahan: **0 temuan**.
+- Dev server runtime: `/ketentuan-refund`, `/dewan-pakar`, `/garansi`, `/syarat-ketentuan` semua **HTTP 200**; verifikasi string konten (5 tier, 14 pasal, dasar hukum, footer link) **LOLOS**; tidak ada residu "7 hari kerja".
+- `/sitemap/static.xml`: kedua rute baru tercantum.
+
+### 📚 Docs
+- Konsistensi pola: batas tier dinyatakan eksplisit sebagai batas layanan kontraktual (bukan tenggat undang-undang), tanpa penghangusan dana otomatis, tanpa pemotongan persentase default — sesuai mandat kepatuhan UUPK (klausula baku).
+
+---
+
 <a id="v1-28-0"></a>
 
 ## [1.28.0] — 2026-11-24 — 🏷️ "Duo Promo 35%" (Task 56)

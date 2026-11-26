@@ -610,3 +610,20 @@ Work Log:
 Stage Summary:
 - Kedua produk baru kini tampil dengan pola promo katalog yang konsisten (harga normal dicoret + PROMO 35%) — margin anchor terjaga sambil mempertahankan harga efektif ≈ quotation dasar (×0,975)
 - Tidak ada angka quotation lama yang tersisa di permukaan harga mana pun
+
+---
+Task ID: 57
+Agent: main (mode Master Polymath + Sage Universal + Ultimate Problem Solver — 46 dewan pakar lintas bidang, hulu ke hilir)
+Task: Instruksi owner — lengkapi website dengan Ketentuan Refund resmi (tercepat 45 Hari Kerja; makin rumit/tinggi perizinan apalagi lintas negara makin lama, maksimal 24 bulan) + role activation 46 dewan pakar dari hulu ke hilir, dengan dasar hukum lengkap terverifikasi
+
+Work Log:
+- Clone repo dari origin (HEAD f2e9da0); verifikasi dasar hukum via pencarian web ke sumber primer (peraturan.bpk.go.id, JDIH komdigi/kemendag, DDTC/Ortax): UUPK 8/1999 (Pasal 4/7/9/18/19/45/47/49), PP 80/2019 Pasal 69-74 (mekanisme refund PMSE), PP 28/2025 menggantikan PP 5/2021, Permeninves 5/2025, Permendag 19/2026 (mencabut 50/2020 & 31/2023), UU PPN Pasal 16B, Perpres 2/2021 Apostille (efektif 4 Juni 2022), Keppres 34/1981 + UU 30/1999 Pasal 66, Putusan MK 126/PUU-XXIV/2026 (UU Advokat, 17 Juni 2026) — SEMUA klaim dokumen owner v2.1 TERVERIFIKASI
+- Halaman BARU /ketentuan-refund: peta 5 tier (T1 45 Hari Kerja / T2 90 Hari Kerja / T3 180 Hari Kalender / T4 12 bulan / T5 24 bulan lintas negara via SPK), tahapan T0-T5, naskah 14 pasal utuh dari dokumen v2.1, dasar hukum terkelompokkan 6 kategori, prosedur klaim 5 langkah, FAQ 6 (JSON-LD sinkron), kontak dari lib/site.ts (placeholder dokumen diisi data resmi)
+- Halaman BARU /dewan-pakar: 46 domain kepakaran + 46 kursi spesialisasi hukum + protokol 6 langkah + transparansi kapasitas (kerangka analisis, bukan klaim advokat nyata — sesuai mandat kepatuhan)
+- Sinkron /garansi (hapus "refund 7 hari kerja" di metadata/JSON-LD/langkah → putusan 3 hari kerja + pencairan Tier 1 45 Hari Kerja), /syarat-ketentuan (seksi baru), footer (2 link), sitemap static.xml (2 entri)
+- QA: tsc --noEmit 0 error repo-wide (setelah prisma contract emit); eslint 6 file 0 temuan; dev server 4 halaman HTTP 200; verifikasi string konten & footer & sitemap LOLOS; zero residu "7 hari kerja"
+- Catatan: versioning SemVer TIDAK di-bump (masuk [Unreleased]); checkout badge belum ditaut ke /ketentuan-refund (opsional task berikutnya); dokumen PDF/DOCX owner tetap sumber referensi di folder upload
+
+Stage Summary:
+- pusatperizinan.com kini memuat kebijakan refund resmi berjenjang yang konsisten dengan dokumen v2.1 owner: 45 Hari Kerja (tercepat) s.d. 24 bulan (lintas negara), tanpa penghangusan otomatis, tanpa pemotongan default, jumlah tidak disengketakan dibayar lebih dahulu
+- Ketentuan mudah ditemukan dari footer, syarat-ketentuan, dan garansi; dasar hukum yang dikutip sudah dicek terhadap sumber primer per November 2026

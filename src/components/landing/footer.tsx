@@ -132,6 +132,8 @@ const COMPANY_LINKS = [
   { label: "Direktori Kanal Resmi Pemerintah", href: "/kanal-resmi" },
   { label: "Testimoni Klien (4,9/5)", href: "/testimoni" },
   { label: "Garansi 100%", href: "/garansi" },
+  { label: "Ketentuan Refund (45 Hari Kerja – 24 Bulan)", href: "/ketentuan-refund" },
+  { label: "Dewan Pakar (46 Bidang)", href: "/dewan-pakar" },
   { label: "Lowongan Kerja Khusus Wanita", href: "/lowongan-kerja" },
   { label: "FAQ", href: "/faq" },
   { label: "Webmaster Tools Master (26 Mesin)", href: "/webmaster" },
@@ -777,6 +779,20 @@ export function Footer() {
                 className="text-xs text-emerald-100/50 hover:text-emerald-300 transition-colors"
               >
                 Syarat &amp; Ketentuan
+              </Link>
+              <span aria-hidden>·</span>
+              <Link
+                href="/ketentuan-refund"
+                className="text-xs text-emerald-100/50 hover:text-emerald-300 transition-colors"
+              >
+                Ketentuan Refund
+              </Link>
+              <span aria-hidden>·</span>
+              <Link
+                href="/dewan-pakar"
+                className="text-xs text-emerald-100/50 hover:text-emerald-300 transition-colors"
+              >
+                Dewan Pakar 46 Bidang
               </Link>
               <span aria-hidden>·</span>
               <Link

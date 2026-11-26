@@ -15,7 +15,7 @@ import { SITE_NAME, SITE_URL, CONTACT } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Garansi 100% Uang Kembali — Jaminan Layanan Perizinan",
   description:
-    "Garansi 100% uang kembali dari PusatPerizinan.com: bila izin Anda gagal terbit karena kesalahan administratif tim kami, seluruh biaya jasa kami kembalikan penuh. Syarat jelas, proses refund 7 hari kerja, tanpa drama.",
+    "Garansi 100% uang kembali dari PusatPerizinan.com: bila izin Anda gagal terbit karena kesalahan administratif tim kami, seluruh biaya jasa kami kembalikan penuh. Verifikasi maks. 3 hari kerja, pencairan mengikuti tier Ketentuan Refund — paling cepat 45 hari kerja.",
   alternates: { canonical: "/garansi" },
   robots: { index: true, follow: true },
 };
@@ -54,7 +54,7 @@ const garansiFaqJsonLd = {
       name: "Bagaimana proses klaim garansi dan berapa lama refund masuk?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Kirim permohonan klaim via WhatsApp atau email yang tertera di halaman kontak dengan nomor pesanan Anda. Tim memverifikasi maksimal 3 hari kerja. Setelah disetujui, refund diproses maksimal 7 hari kerja ke rekening asli pembayaran. Tidak ada biaya klaim, tidak ada syarat tersembunyi.",
+        text: "Kirim permohonan klaim via WhatsApp atau email yang tertera di halaman kontak dengan nomor pesanan Anda. Tim memverifikasi dan memberi putusan tertulis maksimal 3 hari kerja. Pencairan dana mengikuti Ketentuan Refund berjenjang: untuk klaim garansi yang disetujui (kesalahan material tim kami) berlaku Tier 1 — paling lama 45 hari kerja — sejak Klaim Lengkap diterima. Jumlah yang tidak disengketakan dibayar lebih dahulu. Tidak ada biaya klaim, tidak ada syarat tersembunyi.",
       },
     },
   ],
@@ -195,8 +195,8 @@ export default function GaransiPage() {
           <ol className="mt-4 space-y-3">
             {[
               { t: "Hubungi kami", d: "Kirim nomor pesanan Anda via WhatsApp atau email di halaman kontak — satu pesan cukup." },
-              { t: "Verifikasi maks. 3 hari kerja", d: "Tim memeriksa berkas dan memberi putusan tertulis: refund penuh, urus ulang gratis, atau solusi alternatif." },
-              { t: "Refund maks. 7 hari kerja", d: "Bila refund disetujui, dana kembali ke rekening asli pembayaran. Tanpa biaya klaim, tanpa syarat tersembunyi." },
+              { t: "Putusan tertulis maks. 3 hari kerja", d: "Tim memeriksa berkas dan memberi putusan tertulis: refund penuh, urus ulang gratis, atau solusi alternatif." },
+              { t: "Pencairan mengikuti tier refund", d: "Klaim garansi disetujui berada di Tier 1 — paling lama 45 hari kerja sejak Klaim Lengkap diterima (lihat Ketentuan Refund). Bagian yang tidak disengketakan dibayar lebih dahulu, ke rekening asli pembayaran." },
             ].map((s, i) => (
               <li key={s.t} className="flex items-start gap-3 rounded-2xl border bg-card p-4">
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary font-bold text-primary-foreground" aria-hidden>
@@ -249,6 +249,10 @@ export default function GaransiPage() {
           </div>
           <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
             Ketentuan lengkap per layanan tertulis dalam perjanjian jasa. Lihat juga{" "}
+            <Link href="/ketentuan-refund" className="font-semibold text-primary hover:underline">
+              Ketentuan Refund
+            </Link>
+            ,{" "}
             <Link href="/syarat-ketentuan" className="font-semibold text-primary hover:underline">
               Syarat &amp; Ketentuan
             </Link>{" "}

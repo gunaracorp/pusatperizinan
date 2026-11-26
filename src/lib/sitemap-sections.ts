@@ -206,6 +206,13 @@ function buildStaticPages(): SitemapEntry[] {
     // Halaman Garansi 100% (langkah 48 ROADMAP-99 — trust/E-E-A-T,
     // ditaut dari badge checkout & footer)
     entry("/garansi", "monthly", 0.7),
+    // Ketentuan Refund berjenjang v2.1 (45 Hari Kerja s.d. 24 bulan lintas
+    // negara; 14 pasal + dasar hukum — ditaut dari footer, syarat-ketentuan,
+    // garansi, dan SPK)
+    entry("/ketentuan-refund", "monthly", 0.6),
+    // Kerangka Dewan Pakar v2.1 (46 domain kepakaran + 46 kursi
+    // spesialisasi hukum — role activation hulu ke hilir)
+    entry("/dewan-pakar", "monthly", 0.5),
     // =========================================================
     // EKOSISTEM IATA ACCREDITATION (14 URL — pillar + produk +
     // konversi + panduan; harga & konten dari src/lib/iata*.ts)
