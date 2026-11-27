@@ -191,6 +191,10 @@ function buildStaticPages(): SitemapEntry[] {
     // Paket All-In KBLI 85520 + 2 Website (PP-KBLI85520-ALLIN) —
     // halaman produk funnel WhatsApp Business & katalog
     entry("/pengurusan-perizinan-kbli-85520", "monthly", 0.9),
+    // Duo Profil Digital (PP-CP-001 & PP-WCP-001) — company profile
+    // dokumen + website company profile all-in domain web.id
+    entry("/jasa-pembuatan-company-profile", "monthly", 0.9),
+    entry("/jasa-pembuatan-website-company-profile", "monthly", 0.9),
     // KEPATUHANPRO — mesin pendapatan berulang (langganan kepatuhan)
     entry("/kepatuhan-pro", "weekly", 0.95),
     // Hub navigasi wilayah (memperkuat ±654 halaman lokal: 38 hub provinsi

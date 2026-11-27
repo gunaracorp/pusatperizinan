@@ -17,9 +17,9 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.29.0";
+export const APP_VERSION = "1.30.0";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Admin Media Sosial WFH";
+export const RELEASE_NAME = "Duo Profil Digital";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
 export const RELEASE_DATE = "2026-11-27";
 /** Channel rilis: stable | beta | alpha. */
@@ -46,6 +46,18 @@ export interface ReleaseEntry {
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.30.0",
+    date: "2026-11-27",
+    type: "minor",
+    name: "Duo Profil Digital",
+    taskId: "58",
+    highlights: [
+      "Dua layanan baru per instruksi owner — Duo Profil Digital: Jasa Pembuatan Company Profile Lengkap Rp1.500.000 all-in (kode item PP-CP-001, DP 50% Rp750.000 dibayar dulu saat mulai + pelunasan Rp750.000 saat hasil jadi & diserahkan) dan Jasa Pembuatan Website Company Profile Rp1.500.000 all-in termasuk domain web.id 1 tahun (kode item PP-WCP-001; domain premium lain .com/.id/.co.id +Rp500.000 → Rp2.000.000; WAJIB DP 50% Rp750.000 web.id / Rp1.000.000 domain premium, pelunasan saat website live)",
+      "SEO super lengkap per halaman produk: meta + keywords long-tail Indonesia, hreflang alternates, Open Graph dinamis, JSON-LD Service + Offer(s) + PriceSpecification DP + BreadcrumbList + HowTo + FAQPage (6-8 Q&A), heading semantik, cross-link dua-duanya + 8 link internal satu ekosistem (NIB, PT/CV, virtual office, paket all-in KBLI 85520)",
+      "Distribusi mesin-baca penuh: 2 URL baru masuk sitemap seksi static (monthly 0.9 → auto-ping IndexNow), entri baru di public/llms.txt (# Layanan utama, marker Task 58 + freshness v1.30.0) + seksi baru 'Duo Profil Digital' di llms-full.txt; PLATFORM_STATS.indexedUrls 11.893 → 11.895",
+    ],
+  },
   {
     version: "1.29.0",
     date: "2026-11-27",
@@ -672,11 +684,11 @@ export const CURRENT_RELEASE: ReleaseEntry = RELEASES[0];
 
 /** Statistik platform yang dikirim /api/version — singkron dengan site.ts. */
 export const PLATFORM_STATS = {
-  // Sinkron Task 57: lowongan aktif 6 → 7 (+1 URL) dari hitungan sebelumnya (11.892).
+  // Sinkron Task 58: duo profil digital (+2 URL) dari hitungan Task 57 (11.893).
+  // +1 URL: lowongan Admin Media Sosial (Task 57).
   // +1 URL: halaman produk Paket All-In KBLI 85520 + 2 Website (PP-KBLI85520-ALLIN).
   // +14 URL: ekosistem IATA Accreditation (pillar + 3 produk + 2 konversi + 8 panduan).
-  // +4 URL: trilogi sertifikasi travel (PPIU + PIHK + BPW + konsultasi) — Task 50.
-  indexedUrls: 11893,
+  indexedUrls: 11895,
   sitemapSections: 15,
   orderableServices: 1500,
   subscriptionSkus: 6,

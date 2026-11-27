@@ -90,6 +90,11 @@ export function GET() {
   }
   lines.push("", "## Jasa Perpajakan", "");
   for (const t of TAX_ALL) lines.push(`- ${t.title} — ${t.desc}`);
+  lines.push("", "## Duo Profil Digital — Company Profile & Website (Task 58)", "");
+  lines.push(`Jasa pembuatan company profile dokumen dan website company profile all-in: harga = jasa penyusunan & pembangunan; DP 50% wajib dibayar dulu saat pengerjaan dimulai, pelunasan saat hasil jadi/live. WhatsApp: ${CONTACT.phoneDisplay}.`);
+  lines.push(`- Company Profile Lengkap (PP-CP-001) — Rp1.500.000 all-in: desain premium, copywriting profesional, struktur lengkap (sejarah, visi misi, legalitas, produk & layanan, struktur organisasi, portofolio, testimoni, kontak), PDF siap kirim + versi siap cetak + file master, 2 putaran revisi, 3-5 hari kerja; DP 50% Rp750.000 + pelunasan Rp750.000 saat hasil diserahkan. URL: ${SITE_URL}/jasa-pembuatan-company-profile`);
+  lines.push(`- Website Company Profile Lengkap (PP-WCP-001) — Rp1.500.000 all-in termasuk domain web.id 1 tahun + hosting 1 tahun + SSL + 6 halaman (Beranda, Tentang, Produk/Layanan, Portofolio, Kontak, Artikel) + responsif + SEO on-page (meta unik, schema JSON-LD, sitemap.xml, robots.txt, canonical, Open Graph) + Google Search Console + tombol WhatsApp + form kontak + Google Analytics 4; domain premium lain (.com/.id/.co.id/.net/.org) tambah Rp500.000 (total Rp2.000.000); WAJIB DP 50% (Rp750.000 web.id / Rp1.000.000 domain premium), pelunasan saat website live; pengerjaan 5-7 hari kerja. URL: ${SITE_URL}/jasa-pembuatan-website-company-profile`);
+  lines.push(`- Paket pendukung: urus NIB/OSS (${SITE_URL}/layanan/nib), pendirian PT/CV (${SITE_URL}/layanan/pt), virtual office (${SITE_URL}/virtual-office), paket all-in perizinan + 2 website (${SITE_URL}/pengurusan-perizinan-kbli-85520).`);
   lines.push("", "## Penempatan Pekerja Migran (PMI)", "");
   for (const p of [...PMI_B2B_SERVICES, ...PMI_B2C_SERVICES]) lines.push(`- ${p.title} — ${p.desc}`);
   lines.push("", "## Panduan Mendalam (Knowledge Hub)", "");
