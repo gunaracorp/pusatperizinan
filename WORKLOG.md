@@ -628,3 +628,19 @@ Stage Summary:
 - pusatperizinan.com kini memuat kebijakan refund resmi berjenjang yang konsisten dengan dokumen v2.1 owner: 45 Hari Kerja (tercepat) s.d. 24 bulan (lintas negara), tanpa penghangusan otomatis, tanpa pemotongan default, jumlah tidak disengketakan dibayar lebih dahulu
 - Ketentuan mudah ditemukan dari footer, syarat-ketentuan, dan garansi; dasar hukum yang dikutip sudah dicek terhadap sumber primer per November 2026
 - Revisi instruksi owner (anti-janji refund cepat): "putusan tertulis maks. 3 hari kerja" dihapus dari /garansi; SLA 3/5 hari kini eksplisit hanya pemeriksaan administratif/konfirmasi penerimaan (BUKAN putusan refund, BUKAN pencairan) di metadata, JSON-LD, langkah klaim, FAQ, dan Pasal 9 ayat (2); keputusan tertulis mengikuti kompleksitas mandat dengan penjelasan rekonsiliasi instansi/notaris/pihak ketiga
+
+---
+Task ID: 58
+Agent: main (mode Master Polymath + Sage Universal + Ultimate Problem Solver — 46 dewan pakar lintas bidang, hulu ke hilir)
+Task: Instruksi owner — (1) revisi skema gaji lowongan: TIDAK langsung UMR, semua posisi masuk KONTRAK KERJA 3 BULAN dulu, setelah lolos evaluasi baru UMR sesuai domisili; (2) pasang logo pusatperizinan.com asli di header Sistem Refund Terpadu (menggantikan monogram "TK" yang ditandai owner); (3) artikel upah minimum seluruh Indonesia per November 2026
+
+Work Log:
+- Revisi skema gaji menyeluruh di 3 file (commit dcb3373): jobs-data.ts (kebijakan rekrutmen header, UMR_NOTE→GAJI_NOTE dengan narasi kontrak 3 bulan → lolos → UMR acuan UMP DKI 2026 Rp5.729.876/UMK Bekasi Rp5.999.422, 12 titik deskripsi & benefits "Gaji awal masa kontrak 3 bulan + bonus", 6 salaryDisplay "Kontrak 3 Bln → UMR + Bonus Target", catatan Admin Media Sosial Rp1,5 jt × 3 bln kini contoh skema umum bukan pengecualian), lowongan-kerja/page.tsx (title/meta/OG/h1/badge/kartu "Gaji Awal: Kontrak 3 Bulan → UMR"), lowongan-kerja/[slug]/page.tsx (fallback FAQ "Berapa gaji awalnya?"); grep residu pola lama = 0; tsc --noEmit PASS; salaryMin/Max numerik JSON-LD Google Jobs tetap level UMR (gaji pasca-kontrak)
+- Logo: header public/sistem-refund.html monogram div.logo "TK" → <img src="/logo-icon.png" alt="Logo PusatPerizinan.com"> (aset sama dengan header landing), CSS .logo disederhanakan jadi 44×44 object-fit:contain tanpa gradien; grep residu "TK" = 0
+- Artikel eksternal (deliverable di folder download, di luar repo): artikel-ump-umk-indonesia-2026.docx + .pdf — UMP 2026 38 provinsi + UMK 2026 53 kota/kabupaten utama + UMP 2027 yang sudah diumumkan (DKI Rp6.136.941 +7,1% Kegub 20 Nov 2026; Aceh Rp4.197.134 +6,73%), dasar hukum PP 49/2025 (alfa 0,5-0,9); riset web multi-sumber (CNN, MetroTVNews, Kompas, Bisnis, beritajakarta.id, jakarta.go.id, SK Kegub Aceh, PDF UMK berbasis SK Kegub Jabar/Banten/Jateng/DIY/Jatim/Bali/Riau/Kepri/Kalsel/Sulsel/Sulteng via ptgasi.co.id); aritmetika diverifikasi python (rasio tertinggi/terendah 2,47x; rata-rata kenaikan 6,02%; selisih himpunan Papua Selatan Rp4.508.850 vs Rp4.508.100 diungkap di catatan kaki); docx skill chain penuh (R1/DS-1, TOC field, postcheck 9/9, QA visual 10 halaman)
+- Catatan: versioning SemVer TIDAK di-bump (konsisten Task 57, masuk [Unreleased]); halaman lowongan perlu redeploy hosting agar skema baru tampil live
+
+Stage Summary:
+- Skema rekrutmen kini seragam: semua posisi kontrak kerja 3 bulan dulu (gaji masa kontrak per SPK) + bonus target, UMR penuh setelah lolos evaluasi — pesan yang konsisten di data lowongan, listing, detail, FAQ, dan meta SEO
+- Header Sistem Refund Terpadu kini memakai logo resmi pusatperizinan.com, konsisten dengan identitas header landing
+- Referensi upah minimum nasional 2026 (38 provinsi + 53 kota + proyeksi 2027) tersedia sebagai dokumen siap publikasi dengan 11 sumber ber-URL

@@ -26,9 +26,7 @@ header{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);
   background:rgba(253,254,251,.86);border-bottom:1px solid var(--line);box-shadow:0 1px 20px rgba(12,60,40,.05)}
 .hrow{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:14px 0}
 .brand{display:flex;align-items:center;gap:12px;min-width:0}
-.logo{width:44px;height:44px;border-radius:12px;flex:none;display:grid;place-items:center;
-  background:linear-gradient(135deg,var(--acc) 0%,var(--acc2) 100%);color:#ffffff;
-  font-weight:800;font-size:19px;box-shadow:0 0 18px rgba(0,136,90,.35)}
+.logo{width:44px;height:44px;border-radius:12px;flex:none;display:block;object-fit:contain}
 .brand h1{font-size:clamp(15px,2.6vw,18px);letter-spacing:.3px;white-space:nowrap}
 .brand h1 b{background:linear-gradient(90deg,var(--acc),#009966);-webkit-background-clip:text;background-clip:text;color:transparent}
 .brand small{display:block;color:var(--mut);font-size:11px;letter-spacing:1.6px;text-transform:uppercase}
@@ -172,7 +170,7 @@ footer b{color:var(--acc)}
 <header>
   <div class="wrap hrow">
     <div class="brand">
-      <div class="logo">TK</div>
+      <img class="logo" src="/logo-icon.png" alt="Logo PusatPerizinan.com">
       <h1><b>Sistem Refund Terpadu</b><small>PT Top Konsultan Internasional — pusatperizinan.com</small></h1>
     </div>
     <nav>
