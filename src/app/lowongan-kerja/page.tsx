@@ -43,7 +43,7 @@ export async function generateMetadata(): Promise<Metadata> {
     images: [{ url: ogImageUrl({ title: "Lowongan Kerja Khusus Wanita — Remote, UMR + Bonus Target" }), width: 1200, height: 630, alt: "Lowongan Kerja Khusus Wanita — Remote, UMR + Bonus Target" }],
   
       title: "Lowongan Kerja Khusus Wanita — Remote, UMR + Bonus Target",
-      description: `${JOBS.length} posisi aktif khusus perempuan: host live streaming TikTok & Shopee, programmer full-stack, admin marketing, admin melayani pelanggan, staf perpajakan, staf perizinan NIB & OSS, admin customer service, admin media sosial. Gaji awal UMR + bonus target, bisa remote penuh. Lamar via WhatsApp.`,
+      description: `${JOBS.length} posisi aktif khusus perempuan: host live streaming TikTok, Shopee, Facebook & Instagram, programmer full-stack, konsultan pajak, staf perpajakan, staf perizinan NIB & OSS, dan staf LKPM BKPM/OSS. Gaji awal UMR + bonus target, bisa remote penuh. Lamar via email hrd@pusatperizinan.com (CV + pas foto terbaru) + konfirmasi WhatsApp.`,
       url: "/lowongan-kerja",
     },
   };
@@ -108,9 +108,10 @@ export default function LowonganPage() {
           </h1>
           <p className="mt-3 text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed">
             {JOBS.length} posisi aktif khusus perempuan: host live streaming TikTok, Shopee, Facebook &amp; Instagram,
-            programmer full-stack, admin marketing, admin melayani pelanggan, staf perpajakan, staf perizinan NIB
-            &amp; OSS, admin customer service, dan admin media sosial. Gaji awal UMR, bonus dari target perusahaan,
-            sepenuhnya bisa remote, dan jenjang karier jelas. Lamar langsung via WhatsApp — tanpa biaya apa pun.
+            programmer full-stack, konsultan pajak, staf perpajakan, staf perizinan NIB &amp; OSS, dan staf LKPM
+            BKPM/OSS. Gaji awal UMR, bonus dari target perusahaan, sepenuhnya bisa remote, dan jenjang karier jelas.
+            Cara lamar: kirim CV + pas foto terbaru ke email hrd@pusatperizinan.com, lalu konfirmasi WAJIB via
+            WhatsApp — tanpa biaya apa pun.
           </p>
           <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
             <span className="flex items-center gap-1.5"><Briefcase className="h-4 w-4 text-primary" aria-hidden /> {JOBS.length} posisi aktif — semua khusus wanita</span>
@@ -196,6 +197,43 @@ export default function LowonganPage() {
         </div>
       </section>
 
+      {/* Cara melamar */}
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pb-10">
+        <div className="rounded-2xl border bg-card p-6 md:p-8">
+          <h2 className="font-bold text-xl mb-4 flex items-center gap-2">
+            <CheckCircle2 className="h-5 w-5 text-primary" aria-hidden /> Cara Melamar — 3 Langkah, Semua Wajib
+          </h2>
+          <ol className="space-y-3 text-sm leading-relaxed text-muted-foreground">
+            <li>
+              <b className="text-foreground">1. Siapkan berkas lamaran:</b> CV terbaru +{" "}
+              <b className="text-foreground">pas foto terbaru (wajib)</b>.
+            </li>
+            <li>
+              <b className="text-foreground">2. Kirim ke email resmi HRD:</b>{" "}
+              <a
+                href={`mailto:hrd@pusatperizinan.com?subject=${encodeURIComponent("Lamaran — [Nama Posisi] — [Nama Anda]")}`}
+                className="font-semibold text-primary hover:underline"
+              >
+                hrd@pusatperizinan.com
+              </a>{" "}
+              — subjek email: <i>Lamaran — [Nama Posisi] — [Nama Anda]</i>.
+            </li>
+            <li>
+              <b className="text-foreground">3. Konfirmasi WAJIB via WhatsApp</b>{" "}
+              <a
+                href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Halo, saya sudah mengirim lamaran (CV + pas foto terbaru) ke hrd@pusatperizinan.com. Nama: [isi] · Posisi dilamar: [isi]. Mohon konfirmasi penerimaannya. Terima kasih!")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-primary hover:underline"
+              >
+                0812-6999-9910
+              </a>{" "}
+              — lamaran yang tidak dikonfirmasi via WhatsApp tidak diproses.
+            </li>
+          </ol>
+        </div>
+      </section>
+
       {/* Perhatian anti-penipuan */}
       <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pb-10">
         <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5">
@@ -216,7 +254,7 @@ export default function LowonganPage() {
         <div className="rounded-2xl border bg-card p-6 text-center">
           <p className="text-sm text-muted-foreground">
             Belum menemukan posisi yang cocok? Perempuan dengan keahlian IT/perizinan bisa kirim CV terbuka ke
-            WhatsApp kami, atau jelajahi{" "}
+            email hrd@pusatperizinan.com lalu konfirmasi via WhatsApp kami, atau jelajahi{" "}
             <Link href="/layanan" className="font-semibold text-primary hover:underline">layanan perizinan</Link> &{" "}
             <Link href="/roadmap" className="font-semibold text-primary hover:underline">alat AI gratis</Link> kami.
           </p>

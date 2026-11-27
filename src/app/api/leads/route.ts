@@ -78,6 +78,7 @@ export async function POST(req: NextRequest) {
       source: lead.source,
       estimatedValue: lead.estimatedValue,
       notes: lead.businessDesc,
+      email: lead.email,
     });
 
     return NextResponse.json({

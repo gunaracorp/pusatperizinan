@@ -25,6 +25,7 @@ export interface LeadPayload {
   source: string; // landing | chat | roadmap | test
   estimatedValue?: number;
   notes?: string | null;
+  email?: string | null;
   createdAt?: Date;
 }
 
@@ -256,7 +257,7 @@ async function writeLog(entry: {
   leadName: string;
   leadWa: string;
   source: string;
-  channel: "telegram" | "whatsapp";
+  channel: "telegram" | "whatsapp" | "email";
   status: "sent" | "failed";
   message?: string;
   error?: string;
@@ -279,15 +280,89 @@ async function writeLog(entry: {
   }
 }
 
+// ---------- EMAIL LEAD VIA RESEND ----------
+// Kirim salinan lead ke email tim (default: konsultasi@pusatperizinan.com).
+// Aktif otomatis bila RESEND_API_KEY terisi di environment (Hostinger → Variables).
+// CATATAN: Resend menolak pengirim gmail.com — verifikasi domain pusatperizinan.com
+// di resend.com/domains agar RESEND_FROM valid. Gagal kirim dicatat ke NotificationLog.
+const LEAD_EMAIL_TO = (process.env.LEAD_EMAIL_TO || "konsultasi@pusatperizinan.com").trim();
+const RESEND_FROM = (process.env.RESEND_FROM || "PusatPerizinan.com <noreply@pusatperizinan.com>").trim();
+
+export async function sendLeadEmail(lead: LeadPayload): Promise<{ ok: boolean; error?: string }> {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) return { ok: false, error: "RESEND_API_KEY belum diisi di environment" };
+
+  const body = [
+    "LEAD BARU MASUK — PusatPerizinan.com",
+    "",
+    `Nama          : ${lead.name}`,
+    `WhatsApp      : ${lead.whatsapp}`,
+    `Email         : ${lead.email || "-"}`,
+    `Jenis usaha   : ${lead.businessType ?? "-"}`,
+    `Paket diminati: ${lead.package ?? "-"}`,
+    `Nilai estimasi: ${lead.estimatedValue ? "Rp " + lead.estimatedValue.toLocaleString("id-ID") : "-"}`,
+    `Catatan       : ${lead.notes ?? "-"}`,
+    `Sumber        : ${lead.source}`,
+    `Waktu         : ${lead.createdAt ? new Date(lead.createdAt).toLocaleString("id-ID", { timeZone: "Asia/Jakarta" }) + " WIB" : "-"}`,
+    lead.leadId ? `Lead ID       : ${lead.leadId}` : null,
+    "",
+    `Follow-up cepat: wa.me/${lead.whatsapp.replace(/[^0-9]/g, "")}`,
+  ]
+    .filter((l): l is string => l !== null)
+    .join("\n");
+
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        from: RESEND_FROM,
+        to: [LEAD_EMAIL_TO],
+        subject: `🔥 Lead Baru: ${lead.name}${lead.package ? " (" + lead.package + ")" : ""} — ${lead.whatsapp}`,
+        text: body,
+      }),
+    });
+    if (!res.ok) {
+      const err = (await res.json().catch(() => ({}))) as { message?: string };
+      return { ok: false, error: `HTTP ${res.status}: ${err.message ?? "gagal kirim email"}` };
+    }
+    return { ok: true };
+  } catch (e) {
+    return { ok: false, error: String(e) };
+  }
+}
+
 // ---------- MAIN: dipanggil tiap lead baru ----------
 /** Fire-and-forget — tidak perlu di-await, tidak pernah melempar error. */
 export async function notifyNewLead(lead: LeadPayload): Promise<void> {
   try {
+    const jobs: Promise<void>[] = [];
+
+    // Email via Resend — aktif otomatis bila RESEND_API_KEY terisi (independen dari setelan Telegram/WhatsApp)
+    if (process.env.RESEND_API_KEY) {
+      jobs.push(
+        sendLeadEmail(lead).then((r) =>
+          writeLog({
+            leadId: lead.leadId,
+            leadName: lead.name,
+            leadWa: lead.whatsapp,
+            source: lead.source,
+            channel: "email",
+            status: r.ok ? "sent" : "failed",
+            message: `Forward email lead ke ${LEAD_EMAIL_TO}`,
+            error: r.error,
+          })
+        )
+      );
+    }
+
     const s = await getEffectiveSettings();
-    if (!s.telegramEnabled && !s.whatsappEnabled) return;
+    if (!s.telegramEnabled && !s.whatsappEnabled) {
+      await Promise.allSettled(jobs);
+      return;
+    }
 
     const text = renderTemplate(s.templateNewLead, lead);
-    const jobs: Promise<void>[] = [];
 
     if (s.telegramEnabled && s.telegramBotToken && s.telegramChatId) {
       jobs.push(

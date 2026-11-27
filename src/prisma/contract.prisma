@@ -248,7 +248,7 @@ model NotificationLog {
   leadName  String
   leadWa    String
   source    String   // landing | chat | roadmap | test
-  channel   String   // telegram | whatsapp
+  channel   String   // telegram | whatsapp | email
   status    String   // sent | failed
   message   String?  // pesan ter-render (dipakai ulang saat retry)
   error     String?  // pesan error bila gagal

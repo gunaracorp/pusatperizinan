@@ -9,6 +9,7 @@ import {
   CheckCircle2,
   GraduationCap,
   ListChecks,
+  Mail,
   MapPin,
   PhoneCall,
   Send,
@@ -41,7 +42,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return { robots: { index: false, follow: false } };
   }
   const title = `${job.title} — ${job.city}`;
-  const desc = `Lowongan khusus wanita: ${job.title} di ${job.city}. Gaji ${salaryText(job)}/bulan, ${job.employmentType === "FULL_TIME" ? "penuh waktu" : job.employmentType === "PART_TIME" ? "paruh waktu" : "kontrak"}. ${job.description[0].slice(0, 100)}… Lamar via WhatsApp, proses < 7 hari.`;
+  const desc = `Lowongan khusus wanita: ${job.title} di ${job.city}. Gaji ${salaryText(job)}/bulan, ${job.employmentType === "FULL_TIME" ? "penuh waktu" : job.employmentType === "PART_TIME" ? "paruh waktu" : "kontrak"}. ${job.description[0].slice(0, 100)}… Cara lamar: email hrd@pusatperizinan.com (CV + pas foto terbaru) + konfirmasi WhatsApp.`;
   return {
     title,
     description: desc,
@@ -76,7 +77,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ slug
     .concat(JOBS.filter((j) => j.slug !== job.slug && j.category !== job.category))
     .slice(0, 3);
 
-  const waText = `Halo, saya perempuan dan ingin melamar posisi "${job.title}" (${job.city}) yang saya lihat di website PusatPerizinan.com.\n\nNama saya: \nPengalaman singkat: \n\nMohon informasi proses selanjutnya. Terima kasih!`;
+  const waText = `Halo, saya perempuan dan ingin melamar posisi "${job.title}" (${job.city}) yang saya lihat di website PusatPerizinan.com.\n\nNama saya: \nPengalaman singkat: \n\nSaya sudah mengirim CV + pas foto terbaru ke hrd@pusatperizinan.com sebagai berkas lamaran resmi. Mohon informasi proses selanjutnya. Terima kasih!`;
 
   const employmentLabel =
     job.employmentType === "FULL_TIME"
@@ -244,15 +245,22 @@ export default async function JobDetailPage({ params }: { params: Promise<{ slug
             </div>
           </div>
 
-          <div className="mt-6 flex flex-col sm:flex-row gap-3">
+          <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            <a
+              href={`mailto:hrd@pusatperizinan.com?subject=${encodeURIComponent(`Lamaran — ${job.title} — [Nama Anda]`)}`}
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-4 text-base font-bold text-primary-foreground shadow-md transition-all hover:shadow-lg min-h-[44px]"
+            >
+              <Mail className="h-5 w-5" aria-hidden />
+              Kirim CV via Email HRD
+            </a>
             <a
               href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waText)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-4 text-base font-bold text-primary-foreground shadow-md transition-all hover:shadow-lg min-h-[44px]"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-primary px-5 py-4 text-base font-bold text-primary transition-all hover:bg-primary/5 min-h-[44px]"
             >
               <Send className="h-5 w-5" aria-hidden />
-              Lamar via WhatsApp — Proses &lt; 7 Hari
+              Konfirmasi WhatsApp — WAJIB
             </a>
             <div className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-xs text-rose-800 flex items-center gap-2 sm:max-w-[220px]">
               <UserCheck className="h-4 w-4 text-rose-600 shrink-0" aria-hidden />
@@ -332,7 +340,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ slug
                 { q: "Berapa gaji awalnya?", a: "Gaji awal UMR sesuai domisili pelamar — acuan UMP DKI Jakarta 2026 Rp5.729.876/bulan. Di atasnya ada bonus bulanan dari target yang ditetapkan perusahaan, angkanya jelas dan disepakati di awal." },
                 { q: "Apakah bisa dikerjakan remote?", a: "Ya. Seluruh posisi saat ini remote penuh — dikerjakan dari rumah di seluruh Indonesia dengan koordinasi online harian. Tanpa biaya transport." },
                 { q: "Bagaimana jenjang kariernya?", a: "Jenjang jelas: Staff → Senior → Team Lead → Manager, dengan evaluasi kenaikan tiap 6 bulan berdasarkan performa." },
-                { q: "Bagaimana cara melamar?", a: "Klik tombol 'Lamar via WhatsApp' di atas, lengkapi template pesan (nama + pengalaman singkat), kirim. Tim HR merespons dalam 1-3 hari kerja." },
+                { q: "Bagaimana cara melamar?", a: "Dua langkah, keduanya wajib: (1) kirim CV + pas foto TERBARU ke email hrd@pusatperizinan.com dengan subjek 'Lamaran — [Posisi] — [Nama Anda]'; (2) konfirmasi via tombol WhatsApp di atas (isi nama + posisi). Lamaran tanpa konfirmasi WhatsApp tidak diproses. Tim HR merespons dalam 1-3 hari kerja." },
                 { q: "Apakah ada biaya lamaran?", a: "Tidak ada sama sekali. Rekrutmen kami gratis — jika ada pihak meminta pembayaran, itu bukan kami." },
               ].map((f, i) => (
                 <div key={i} className="rounded-xl border bg-card p-4">
