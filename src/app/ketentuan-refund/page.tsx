@@ -549,6 +549,12 @@ export default function KetentuanRefundPage() {
               Ajukan Klaim / Hubungi Kami
             </Link>
             <Link
+              href="/sistem-refund.html"
+              className="rounded-xl border border-primary bg-primary/10 px-5 py-3 text-sm font-bold text-primary transition hover:bg-primary/20"
+            >
+              Isi Formulir Refund (Sistem Terpadu)
+            </Link>
+            <Link
               href="/garansi"
               className="rounded-xl border px-5 py-3 text-sm font-semibold transition hover:bg-muted/60"
             >

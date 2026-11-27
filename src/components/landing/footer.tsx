@@ -133,6 +133,7 @@ const COMPANY_LINKS = [
   { label: "Testimoni Klien (4,9/5)", href: "/testimoni" },
   { label: "Garansi 100%", href: "/garansi" },
   { label: "Ketentuan Refund (45 Hari Kerja – 24 Bulan)", href: "/ketentuan-refund" },
+  { label: "Form Pengajuan Refund (Sistem Terpadu)", href: "/sistem-refund.html" },
   { label: "Dewan Pakar (46 Bidang)", href: "/dewan-pakar" },
   { label: "Lowongan Kerja Khusus Wanita", href: "/lowongan-kerja" },
   { label: "FAQ", href: "/faq" },
