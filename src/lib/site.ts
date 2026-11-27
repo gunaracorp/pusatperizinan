@@ -45,6 +45,19 @@ export const CONTACT = {
     postalCode: "12190",
     country: "ID",
   },
+  // Kantor koresponden — untuk surat menyurat resmi & kiriman dokumen fisik (Task 59).
+  // Kode pos diverifikasi: Kelurahan Grogol Utara, Kec. Kebayoran Lama,
+  // Jakarta Selatan = 12210 (46461 salah — itu kode pos wilayah Brebes, Jawa Tengah).
+  correspondenceAddress: {
+    label: "Kantor Koresponden — Belezza BSA",
+    street: "Belezza BSA, 1st Floor, Unit 106, Jl. Letjen Soepeno",
+    village: "Grogol Utara",
+    district: "Kebayoran Lama",
+    city: "Jakarta Selatan",
+    region: "DKI Jakarta",
+    postalCode: "12210",
+    country: "ID",
+  },
   geo: { lat: -6.2249, lng: 106.809 },
   hours: "Senin–Sabtu, 08.00–20.00 WIB",
   foundingYear: "2024",

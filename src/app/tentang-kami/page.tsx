@@ -61,6 +61,13 @@ export default function TentangKamiPage() {
             <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
               {CONTACT.address.street}, {CONTACT.address.city} {CONTACT.address.postalCode}
             </p>
+            <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
+              Korespondensi: {CONTACT.correspondenceAddress.street},{" "}
+              {CONTACT.correspondenceAddress.village},{" "}
+              {CONTACT.correspondenceAddress.district},{" "}
+              {CONTACT.correspondenceAddress.city}{" "}
+              {CONTACT.correspondenceAddress.postalCode}
+            </p>
           </div>
           <div className="rounded-2xl border border-border/70 bg-secondary/40 p-5">
             <Building2 className="h-5 w-5 text-primary" aria-hidden />

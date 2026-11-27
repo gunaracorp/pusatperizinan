@@ -100,14 +100,26 @@ const kontakJsonLd = {
         absUrl("/kantor/kantor-bandung-lobi.jpg"),
         absUrl("/kantor/kantor-resepsionis.jpg"),
       ],
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: CONTACT.address.street,
-        addressLocality: CONTACT.address.city,
-        addressRegion: CONTACT.address.region,
-        postalCode: CONTACT.address.postalCode,
-        addressCountry: CONTACT.address.country,
-      },
+      address: [
+        {
+          "@type": "PostalAddress",
+          name: "Kantor Pusat (SCBD)",
+          streetAddress: CONTACT.address.street,
+          addressLocality: CONTACT.address.city,
+          addressRegion: CONTACT.address.region,
+          postalCode: CONTACT.address.postalCode,
+          addressCountry: CONTACT.address.country,
+        },
+        {
+          "@type": "PostalAddress",
+          name: "Kantor Koresponden (Belezza BSA)",
+          streetAddress: CONTACT.correspondenceAddress.street,
+          addressLocality: CONTACT.correspondenceAddress.city,
+          addressRegion: CONTACT.correspondenceAddress.region,
+          postalCode: CONTACT.correspondenceAddress.postalCode,
+          addressCountry: CONTACT.correspondenceAddress.country,
+        },
+      ],
       geo: {
         "@type": "GeoCoordinates",
         latitude: CONTACT.geo.lat,
@@ -308,6 +320,28 @@ export default function KontakPage() {
                       {CONTACT.address.street}, {CONTACT.address.city},{" "}
                       {CONTACT.address.region} {CONTACT.address.postalCode}
                     </address>
+                  </div>
+                </div>
+
+                {/* Kantor Koresponden Belezza BSA (Task 59) — surat menyurat resmi */}
+                <div className="flex items-start gap-4 rounded-2xl border border-border/70 bg-card p-5 transition-colors hover:border-primary/40">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                    <Mail className="h-5 w-5 text-primary" aria-hidden />
+                  </span>
+                  <div>
+                    <h3 className="font-bold">Kantor Koresponden (Belezza BSA)</h3>
+                    <address className="mt-1 text-sm not-italic leading-relaxed text-muted-foreground">
+                      {CONTACT.correspondenceAddress.street},{" "}
+                      {CONTACT.correspondenceAddress.village},{" "}
+                      {CONTACT.correspondenceAddress.district},{" "}
+                      {CONTACT.correspondenceAddress.city},{" "}
+                      {CONTACT.correspondenceAddress.region}{" "}
+                      {CONTACT.correspondenceAddress.postalCode}
+                    </address>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      Alamat korespondensi untuk surat resmi, penawaran, dan kiriman
+                      dokumen fisik.
+                    </p>
                   </div>
                 </div>
 

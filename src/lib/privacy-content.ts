@@ -38,6 +38,9 @@ export const PRIVACY_UPDATED: Record<PrivacyContentLang, string> = {
 // Alamat lengkap satu baris — dari site.ts agar NAP konsisten.
 const ALAMAT_KANTOR = `${CONTACT.address.street}, ${CONTACT.address.city}, ${CONTACT.address.region} ${CONTACT.address.postalCode}`;
 
+// Alamat korespondensi untuk surat resmi & kiriman dokumen fisik (Task 59) — kode pos 12210 terverifikasi (Grogol Utara, Kebayoran Lama, Jaksel).
+const ALAMAT_KORESPONDEN = `${CONTACT.correspondenceAddress.street}, ${CONTACT.correspondenceAddress.village}, ${CONTACT.correspondenceAddress.district}, ${CONTACT.correspondenceAddress.city}, ${CONTACT.correspondenceAddress.region} ${CONTACT.correspondenceAddress.postalCode}`;
+
 // ------------------------------------------------------------
 // KONTEN — BAHASA INDONESIA (versi yang mengikat / governing)
 // ------------------------------------------------------------
@@ -370,7 +373,7 @@ const SECTIONS_ID: PrivacySection[] = [
     blocks: [
       {
         type: "p",
-        text: `Pertanyaan privasi, permintaan hak subjek data, atau laporan insiden: hubungi privacy@pusatperizinan.com (kanal pelindungan data resmi kami) atau WhatsApp ${CONTACT.phoneDisplay}. Surat resmi dapat dikirim ke kantor kami: ${ALAMAT_KANTOR}.`,
+        text: `Pertanyaan privasi, permintaan hak subjek data, atau laporan insiden: hubungi privacy@pusatperizinan.com (kanal pelindungan data resmi kami) atau WhatsApp ${CONTACT.phoneDisplay}. Surat resmi dapat dikirim ke kantor kami: ${ALAMAT_KANTOR}, atau ke alamat korespondensi: ${ALAMAT_KORESPONDEN}.`,
       },
       {
         type: "p",
@@ -716,7 +719,7 @@ const SECTIONS_EN: PrivacySection[] = [
     blocks: [
       {
         type: "p",
-        text: `Privacy questions, data-subject requests, or incident reports: contact privacy@pusatperizinan.com (our official data protection channel) or WhatsApp ${CONTACT.phoneIntl}. Formal mail can be sent to our office: ${ALAMAT_KANTOR}.`,
+        text: `Privacy questions, data-subject requests, or incident reports: contact privacy@pusatperizinan.com (our official data protection channel) or WhatsApp ${CONTACT.phoneIntl}. Formal mail can be sent to our office: ${ALAMAT_KANTOR}, or to our correspondence address: ${ALAMAT_KORESPONDEN}.`,
       },
       {
         type: "p",

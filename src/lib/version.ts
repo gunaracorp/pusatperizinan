@@ -17,9 +17,9 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.30.0";
+export const APP_VERSION = "1.30.1";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Duo Profil Digital";
+export const RELEASE_NAME = "Kantor Koresponden";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
 export const RELEASE_DATE = "2026-11-27";
 /** Channel rilis: stable | beta | alpha. */
@@ -46,6 +46,18 @@ export interface ReleaseEntry {
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.30.1",
+    date: "2026-11-27",
+    type: "patch",
+    name: "Kantor Koresponden",
+    taskId: "59",
+    highlights: [
+      "Kantor koresponden baru per instruksi owner: Belezza BSA, 1st Floor, Unit 106, Jl. Letjen Soepeno, Grogol Utara, Kebayoran Lama, Jakarta Selatan, DKI Jakarta — untuk surat resmi & kiriman dokumen fisik, selain kantor pusat SCBD",
+      "Kode pos dikoreksi & diverifikasi: 46461 (input owner) adalah kode pos wilayah Brebes, Jawa Tengah — kode pos yang benar untuk Kelurahan Grogol Utara, Kec. Kebayoran Lama, Jakarta Selatan adalah 12210 (verifikasi nomor.net & data kelurahan 31.74.05.1004)",
+      "Sinkron 8 permukaan: CONTACT.correspondenceAddress di site.ts (sumber kebenaran), kartu kantor koresponden di /kontak, blok kantor di /tentang-kami, baris korespondensi di /ketentuan-refund & kebijakan-privasi (ID+EN), JSON-LD address array 2 PostalAddress (seo-jsonld + /kontak), header llms-full.txt, Fakta kunci public/llms.txt + freshness v1.30.1",
+    ],
+  },
   {
     version: "1.30.0",
     date: "2026-11-27",

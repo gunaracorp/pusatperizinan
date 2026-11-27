@@ -22,7 +22,7 @@ export function GET() {
   const lines: string[] = [
     "# PusatPerizinan.com — Full Machine-Readable Catalog",
     "",
-    `> Konsultan perizinan usaha, perpajakan, sertifikasi & penempatan PMI Indonesia. ${CONTACT.hours}. WhatsApp: ${CONTACT.phoneDisplay}. Kantor: ${CONTACT.address.street}, ${CONTACT.address.city}. Garansi tertulis 100% uang kembali bila izin gagal terbit karena proses kami.`,
+    `> Konsultan perizinan usaha, perpajakan, sertifikasi & penempatan PMI Indonesia. ${CONTACT.hours}. WhatsApp: ${CONTACT.phoneDisplay}. Kantor pusat: ${CONTACT.address.street}, ${CONTACT.address.city} ${CONTACT.address.postalCode}. Kantor koresponden (surat resmi & dokumen fisik): ${CONTACT.correspondenceAddress.street}, ${CONTACT.correspondenceAddress.village}, ${CONTACT.correspondenceAddress.district}, ${CONTACT.correspondenceAddress.city}, ${CONTACT.correspondenceAddress.region} ${CONTACT.correspondenceAddress.postalCode}. Garansi tertulis 100% uang kembali bila izin gagal terbit karena proses kami.`,
     "",
     "## Layanan Utama (SERVICES)",
     "",

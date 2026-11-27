@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import {
   Wallet, Clock, FileText, ShieldCheck, Scale, Globe2, Landmark,
-  Database, Users, MessageSquareWarning,
+  Database, Users, MessageSquareWarning, Mail,
 } from "lucide-react";
 import { SITE_NAME, SITE_URL, LEGAL_ENTITY, CONTACT } from "@/lib/site";
 
@@ -538,6 +538,7 @@ export default function KetentuanRefundPage() {
             <div className="space-y-2">
               <p className="flex items-start gap-2"><FileText className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden /> {LEGAL_ENTITY}</p>
               <p className="flex items-start gap-2"><Landmark className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden /> {CONTACT.address.street}, {CONTACT.address.city} {CONTACT.address.postalCode}</p>
+              <p className="flex items-start gap-2"><Mail className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden /> Korespondensi: {CONTACT.correspondenceAddress.street}, {CONTACT.correspondenceAddress.village}, {CONTACT.correspondenceAddress.district}, {CONTACT.correspondenceAddress.city} {CONTACT.correspondenceAddress.postalCode}</p>
             </div>
           </div>
           <div className="mt-4 flex flex-col justify-center gap-2 sm:flex-row">
