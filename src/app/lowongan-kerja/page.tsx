@@ -21,9 +21,9 @@ export function generateStaticParams() {
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: `Lowongan Kerja Khusus Wanita Remote — Gaji UMR + Bonus Target (${JOBS.length} Posisi)`,
+    title: `Lowongan Kerja Khusus Wanita Remote — Kontrak 3 Bulan → UMR + Bonus Target (${JOBS.length} Posisi)`,
     description:
-      `${JOBS.length} lowongan kerja KHUSUS WANITA di PusatPerizinan.com: host live streaming TikTok & Shopee, programmer full-stack, konsultan pajak, staf perpajakan, staf perizinan NIB & OSS, staf LKPM BKPM/OSS, dan admin media sosial (IG, TikTok, LinkedIn, FB, X). Gaji awal UMR + bonus target perusahaan, bisa remote penuh/WFH, jenjang karier jelas.`,
+      `${JOBS.length} lowongan kerja KHUSUS WANITA di PusatPerizinan.com: host live streaming TikTok & Shopee, programmer full-stack, konsultan pajak, staf perpajakan, staf perizinan NIB & OSS, staf LKPM BKPM/OSS, dan admin media sosial (IG, TikTok, LinkedIn, FB, X). Gaji awal masa kontrak 3 bulan (setelah lolos kontrak → UMR) + bonus target perusahaan, bisa remote penuh/WFH, jenjang karier jelas.`,
     keywords: [
       "lowongan kerja khusus wanita",
       "loker wanita remote",
@@ -41,10 +41,10 @@ export async function generateMetadata(): Promise<Metadata> {
     ],
     alternates: { canonical: "/lowongan-kerja" },
     openGraph: {
-    images: [{ url: ogImageUrl({ title: "Lowongan Kerja Khusus Wanita — Remote, UMR + Bonus Target" }), width: 1200, height: 630, alt: "Lowongan Kerja Khusus Wanita — Remote, UMR + Bonus Target" }],
-  
-      title: "Lowongan Kerja Khusus Wanita — Remote, UMR + Bonus Target",
-      description: `${JOBS.length} posisi aktif khusus perempuan: host live streaming TikTok, Shopee, Facebook & Instagram, programmer full-stack, konsultan pajak, staf perpajakan, staf perizinan NIB & OSS, staf LKPM BKPM/OSS, dan admin media sosial semua platform (IG, TikTok, LinkedIn, FB, X). Gaji awal UMR + bonus target, bisa remote penuh. Lamar via email hrd@pusatperizinan.com (CV + pas foto terbaru) + konfirmasi WhatsApp.`,
+    images: [{ url: ogImageUrl({ title: "Lowongan Kerja Khusus Wanita — Remote, Kontrak 3 Bulan → UMR + Bonus Target" }), width: 1200, height: 630, alt: "Lowongan Kerja Khusus Wanita — Remote, Kontrak 3 Bulan → UMR + Bonus Target" }],
+
+      title: "Lowongan Kerja Khusus Wanita — Remote, Kontrak 3 Bulan → UMR + Bonus Target",
+      description: `${JOBS.length} posisi aktif khusus perempuan: host live streaming TikTok, Shopee, Facebook & Instagram, programmer full-stack, konsultan pajak, staf perpajakan, staf perizinan NIB & OSS, staf LKPM BKPM/OSS, dan admin media sosial semua platform (IG, TikTok, LinkedIn, FB, X). Gaji awal masa kontrak 3 bulan (setelah lolos kontrak → UMR) + bonus target, bisa remote penuh. Lamar via email hrd@pusatperizinan.com (CV + pas foto terbaru) + konfirmasi WhatsApp.`,
       url: "/lowongan-kerja",
     },
   };
@@ -105,12 +105,13 @@ export default function LowonganPage() {
             </Badge>
           </div>
           <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-balance">
-            Lowongan Kerja Khusus Wanita — Remote, Gaji UMR + Bonus Target
+            Lowongan Kerja Khusus Wanita — Remote, Kontrak 3 Bulan → UMR + Bonus Target
           </h1>
           <p className="mt-3 text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed">
             {JOBS.length} posisi aktif khusus perempuan: host live streaming TikTok, Shopee, Facebook &amp; Instagram,
             programmer full-stack, konsultan pajak, staf perpajakan, staf perizinan NIB &amp; OSS, staf LKPM
-            BKPM/OSS, dan admin media sosial semua platform (IG, TikTok, LinkedIn, FB, X). Gaji awal UMR, bonus dari
+            BKPM/OSS, dan admin media sosial semua platform (IG, TikTok, LinkedIn, FB, X). Gaji awal masa kontrak
+            3 bulan — setelah lolos kontrak naik ke UMR — bonus dari
             target perusahaan, sepenuhnya bisa remote/WFH, dan jenjang karier jelas.
             Cara lamar: kirim CV + pas foto terbaru ke email hrd@pusatperizinan.com, lalu konfirmasi WAJIB via
             WhatsApp — tanpa biaya apa pun.
@@ -118,7 +119,7 @@ export default function LowonganPage() {
           <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
             <span className="flex items-center gap-1.5"><Briefcase className="h-4 w-4 text-primary" aria-hidden /> {JOBS.length} posisi aktif — semua khusus wanita</span>
             <span className="flex items-center gap-1.5"><MapPin className="h-4 w-4 text-primary" aria-hidden /> Remote penuh — dari seluruh Indonesia</span>
-            <span className="flex items-center gap-1.5"><BadgeDollarSign className="h-4 w-4 text-primary" aria-hidden /> Gaji awal UMR + bonus target</span>
+            <span className="flex items-center gap-1.5"><BadgeDollarSign className="h-4 w-4 text-primary" aria-hidden /> Kontrak 3 bulan → UMR + bonus target</span>
             <span className="flex items-center gap-1.5"><Users className="h-4 w-4 text-primary" aria-hidden /> Proses lamaran &lt; 7 hari</span>
           </div>
         </div>
@@ -144,10 +145,12 @@ export default function LowonganPage() {
           </h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 text-sm">
             <div className="rounded-xl border bg-background p-4">
-              <p className="font-bold mb-1">Gaji Awal UMR</p>
+              <p className="font-bold mb-1">Gaji Awal: Kontrak 3 Bulan → UMR</p>
               <p className="text-muted-foreground leading-relaxed">
-                Gaji awal UMR sesuai domisili — acuan UMP DKI Jakarta 2026 Rp5.729.876/bulan. Tanpa potongan
-                aneh-aneh, cair tiap bulan. <i>Pengecualian: Admin Media Sosial memakai skema khusus — Rp1,5 jt/bulan × 3 bulan pertama, lalu UMR sesuai daerah.</i>
+                Semua posisi memulai dengan masa kontrak kerja 3 bulan — gaji masa kontrak sesuai angka di
+                masing-masing lowongan &amp; surat perjanjian kerja, cair tiap bulan tanpa potongan aneh-aneh.
+                Setelah lolos evaluasi kontrak 3 bulan, gaji menjadi UMR sesuai domisili — acuan UMP DKI Jakarta
+                2026 Rp5.729.876/bulan. <i>Contoh: Admin Media Sosial Rp1,5 jt/bulan selama masa kontrak 3 bulan, lalu UMR sesuai daerah.</i>
               </p>
             </div>
             <div className="rounded-xl border bg-background p-4">
