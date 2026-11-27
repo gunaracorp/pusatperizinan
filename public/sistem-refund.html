@@ -216,6 +216,8 @@ footer b{color:var(--acc)}
       <h3>Langkah 2 — Layanan &amp; Perjanjian</h3>
       <div class="frow">
         <div class="full"><label>Layanan yang Diajukan Refund <i>*</i> <span style="color:var(--acc)">(semua layanan dapat diajukan refund dengan ketentuan)</span></label>
+          <input id="f_kbliCari" placeholder="🔍 Cari layanan / kode KBLI 2025 — mis. 56101, kafe, konstruksi…" autocomplete="off" style="margin-bottom:8px">
+          <div class="hint" id="kbliHint" style="display:none"></div>
           <select id="f_layanan"><option value="">— Pilih layanan —</option></select>
           <div class="hint" id="tierHint"></div></div>
         <div id="w_negara" style="display:none"><label>Negara yang Terlibat <i>*</i></label><input id="f_negara" placeholder="Mis. Singapura, Malaysia, dst."></div>
@@ -388,6 +390,7 @@ footer b{color:var(--acc)}
   <div class="modal" id="modalBox"></div>
 </div>
 
+<script src="kbli2025.js"></script>
 <script>
 /* ================= DATA ================= */
 var REFUND_EMAIL='refund@pusatperizinan.com';
@@ -510,7 +513,9 @@ function validate(s){
    if(!$i('f_bankNo').value.trim())return 'Nomor rekening wajib diisi.';
    if($i('f_bankNegara').value==='Luar Negeri'&&!$i('f_bankSwift').value.trim())return 'Kode SWIFT/BIC wajib untuk rekening luar negeri.'}
  if(s===5){for(var i=1;i<=4;i++){if(!$i('p'+i).checked)return 'Pernyataan wajib dicentang semua (memenuhi pemeriksaan kepatuhan).'}}return null}
-function svcById(id){for(var i=0;i<SERVICES.length;i++)if(SERVICES[i].id===id)return SERVICES[i];return null}
+function svcById(id){for(var i=0;i<SERVICES.length;i++)if(SERVICES[i].id===id)return SERVICES[i];
+ if(typeof KBLI2025!=='undefined'&&id&&id.indexOf('K-')===0){var kk=id.slice(2);for(var j=0;j<KBLI2025.length;j++){var e=KBLI2025[j];if(e[0]===kk)return {id:id,g:'KBLI 2025',n:'KBLI 2025 — '+kk+' '+e[1],t:2,s:'Bidang usaha KBLI 2025 — seksi '+(KBLI2025_SECTIONS[e[2]]||''),nr:'Biaya pihak ketiga terkait bidang usaha'}}}
+ return null}
 function collect(){
  var idv=jenis==='badan'?document.querySelector('#w_nib input').value:$i('f_identitas').value;
  var o=svcById($i('f_layanan').value),r=document.querySelector('input[name=alasan]:checked');
@@ -699,8 +704,34 @@ function renderMatrix(){var q=($i('qSvc').value||'').toLowerCase(),h='<thead><tr
    if(!document.activeElement.isSameNode($i('f_jumlah'))&&num($i('f_jumlah').value)===0&&bayar>0){$i('f_jumlah').value=Math.max(0,Math.round(bayar*st.p/100)-biaya)}}saveDraft()});
  LAMPS.forEach(function(l){var k=lampKey(l);$i('lampBox').insertAdjacentHTML('beforeend','<label class="chk"><input type="checkbox" id="l_'+k+'"><span>'+l+'</span></label>')});
  $i('f_layanan').addEventListener('change',function(){var o=svcById(this.value);
-  if(o){$i('tierHint').innerHTML='<b style="color:var(--acc)">'+TIERS[o.t].nm+'</b> — pencairan paling lama <b>'+TIERS[o.t].max+'</b>.'+TIERS[o.t].desc;
+  if(o){var isi='<b style="color:var(--acc)">'+TIERS[o.t].nm+'</b> — pencairan paling lama <b>'+TIERS[o.t].max+'</b>.'+TIERS[o.t].desc;
+   if(o.g==='KBLI 2025')isi+='<br><span style="color:var(--mut)">Kode KBLI 2025 (Peraturan BPS No. 7/2025) terpilih sebagai bidang usaha — penjadwalan memakai Tier 2 standar dan dipastukan pada verifikasi administratif.</span>';
+   $i('tierHint').innerHTML=isi;
    $i('w_negara').style.display=o.g==='Lintas Negara'?'block':'none';if(o.g!=='Lintas Negara')$i('f_negara').value=''}saveDraft()});
+ // Pencarian layanan + seluruh KBLI 2025 (1.559 kode resmi Peraturan BPS No. 7/2025)
+ var KB=(typeof KBLI2025!=='undefined')?KBLI2025:[],kbliT=null;
+ function kbliMatch(e,tok,q){var kodeC=(q&&!tok.length)?e[0].indexOf(q)===0:false,semua=true,judulC=false;
+  if(tok.length){var jd=e[1].toLowerCase();judulC=jd.indexOf(q)>=0;
+   for(var t2=0;t2<tok.length;t2++){if(jd.indexOf(tok[t2])<0&&e[0].indexOf(tok[t2])<0){semua=false;break}}}
+  else judulC=q&&e[1].toLowerCase().indexOf(q)>=0;
+  return kodeC||judulC||semua}
+ function kbliFilter(raw){var q=(raw||'').trim().toLowerCase(),tok=q.split(/\s+/).filter(function(x){return x}),
+  sel=$i('f_layanan'),keep=sel.value,hint=$i('kbliHint'),
+  html='<option value="">'+(q?'— Pilih layanan / kode KBLI —':'— Pilih layanan —')+'</option>',curG='';
+  SERVICES.forEach(function(s){if(s.g!==curG){if(curG)html+='</optgroup>';curG=s.g;html+='<optgroup label="'+s.g+'">'}html+='<option value="'+s.id+'">'+s.n+'</option>'});
+  html+='</optgroup>';
+  if(q&&KB.length){var res=[],total=0;
+   for(var i=0;i<KB.length;i++){var e=KB[i];
+    if(kbliMatch(e,tok,q)){total++;if(res.length<60)res.push(e)}}
+   if(res.length){curG='';html+='<optgroup label="KBLI 2025 — hasil pencarian">';
+    res.forEach(function(e){html+='<option value="K-'+e[0]+'">'+e[0]+' — '+e[1]+' · seksi '+e[2]+'</option>'});
+    html+='</optgroup>';
+    hint.style.display='block';
+    hint.innerHTML='<b style="color:var(--acc)">'+(total>res.length?'Menampilkan '+res.length+' dari '+total+' kode':'Total '+total+' kode')+'</b> cocok. Seluruh 1.559 kode KBLI 2025 resmi (Peraturan BPS No. 7/2025) dapat diajukan refund.'}
+   else{hint.style.display='block';hint.innerHTML='Tidak ada kode KBLI 2025 yang cocok dengan "<b>'+esc(q)+'</b>" — coba kata kunci lain (kode 5-digit atau nama bidang usaha).'}}
+  else hint.style.display='none';
+  sel.innerHTML=html;if(keep)sel.value=keep}
+ $i('f_kbliCari').addEventListener('input',function(){clearTimeout(kbliT);var v=this.value;kbliT=setTimeout(function(){kbliFilter(v)},140)});
  document.querySelectorAll('#formCard input,#formCard textarea,#formCard select').forEach(function(e){e.addEventListener('change',saveDraft);e.addEventListener('blur',saveDraft)});
  ['f_tahap','f_layanan'].forEach(function(x){$i(x).addEventListener('change',saveDraft)});
  ['p1','p2','p3','p4'].forEach(function(x){$i(x).addEventListener('change',saveDraft)});

@@ -17,9 +17,9 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.30.1";
+export const APP_VERSION = "1.31.0";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Kantor Koresponden";
+export const RELEASE_NAME = "KBLI 2025 di Sistem Refund";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
 export const RELEASE_DATE = "2026-11-27";
 /** Channel rilis: stable | beta | alpha. */
@@ -46,6 +46,18 @@ export interface ReleaseEntry {
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.31.0",
+    date: "2026-11-27",
+    type: "minor",
+    name: "KBLI 2025 di Sistem Refund",
+    taskId: "60",
+    highlights: [
+      "Seluruh KBLI 2025 masuk ke dropdown layanan Sistem Refund (/sistem-refund.html): 1.559 kode 5-digit, 21 seksi A–U, per Peraturan BPS No. 7 Tahun 2025 (ditetapkan 18 Des 2025, penyempurnaan KBLI 2020, mengacu ISIC Rev. 5)",
+      "Sumber data resmi: lampiran PDF Peraturan BPS No. 7/2025 (623 hlm) di-parse & divalidasi silang dengan API publik TenderX Open Data — kecocokan 100% (1.559/1.559 kode); struktur baru ISIC Rev. 5 terserap (seksi 45 diler motor dilebur ke 46611/4662x, huruf seksi bergeser: L=Keuangan, M=Real Estat)",
+      "Pencarian instan kode/nama KBLI di Langkah 2 form refund (hasil terfilter maks 60 opsi + info jumlah kecocokan); kode terpilih tercatat sebagai layananId 'K-<kode>' dengan penjadwalan Tier 2 standar yang dipastukan saat verifikasi administratif; file data baru public/kbli2025.js (94 KB); QA headless browser PASS end-to-end (tiket REF-2026-001 terbit dengan layanan KBLI 2025 — 46611)",
+    ],
+  },
   {
     version: "1.30.1",
     date: "2026-11-27",
