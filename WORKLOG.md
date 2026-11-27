@@ -644,3 +644,19 @@ Stage Summary:
 - Skema rekrutmen kini seragam: semua posisi kontrak kerja 3 bulan dulu (gaji masa kontrak per SPK) + bonus target, UMR penuh setelah lolos evaluasi — pesan yang konsisten di data lowongan, listing, detail, FAQ, dan meta SEO
 - Header Sistem Refund Terpadu kini memakai logo resmi pusatperizinan.com, konsisten dengan identitas header landing
 - Referensi upah minimum nasional 2026 (38 provinsi + 53 kota + proyeksi 2027) tersedia sebagai dokumen siap publikasi dengan 11 sumber ber-URL
+
+---
+Task ID: 59
+Agent: main (mode Master Polymath + Sage Universal + Ultimate Problem Solver — 46 dewan pakar lintas bidang, hulu ke hilir)
+Task: Instruksi owner — branding header Sistem Refund Terpadu disamakan persis dengan beranda (wordmark PusatPerizinan.com hijau+emas — versi img logo Task 58 belum tampil di layar owner karena hosting belum redeploy) + dashboard ACC dibuat sekeren mungkin
+
+Work Log:
+- Branding header seperti beranda: markup brand direplikasi dari src/components/landing/header.tsx — wordmark 3 warna (Pusat gelap · Perizinan hijau var(--acc) · .com emas var(--goldp2)) + tagline "Sistem Refund Terpadu — PT Top Konsultan Internasional" di bawahnya, logo-icon.png dengan drop-shadow & ukuran clamp(34px,6vw,42px); favicon <link rel="icon"> /logo-icon.png ditambahkan (sebelumnya tidak ada)
+- Dashboard overhaul (CSS + markup + JS render): (1) KPI .stat — kartu gradient top-bar per warna status, ikon dalam chip tint (🗂️⏳✅💸🏦🚫💰), hover lift + shadow, animasi pop masuk; (2) pipeline alur status VISUAL .flow menggantikan paragraf teks alur kerja — chip ber-dot glow berwarna + jumlah per status (Diajukan→Verifikasi→ACC→Pencairan→Dibayar · Ditolak) dirender renderStats dari data live; (3) tabel — th gradient + border 2px aksen, hover baris inset 3px hijau, tiket .tk bold aksen, pill status inline-flex ber-dot glow (box-shadow currentColor); (4) gate login — kartu gradient + logo 54px drop-shadow
+- QA visual via agent-browser (headless Chrome): header & form LOLOS, dashboard dengan 3 data contoh (bypass gate via sessionStorage, alert di-override) LOLOS — pipeline + 7 KPI + tabel render benar; mobile 375px NO_OVERFLOW (scrollWidth ≤ 376), brand & chip wrap rapi; agent-browser errors = kosong (0 error JS)
+- Catatan: perubahan Task 58 (img logo) + Task 59 ini sama-sama perlu REDEPLOY hosting untuk tampil live di layar owner; screenshot QA tersimpan di scripts/qa-refund-*.png (bukan deliverable)
+
+Stage Summary:
+- Identitas brand halaman refund kini seragam dengan beranda pusatperizinan.com: logo ikon resmi + wordmark 3 warna + tagline — tidak ada lagi monogram generik
+- Dashboard ACC kini berkelas: KPI gradient ber-ikon dengan animasi, pipeline status visual real-time, tabel dengan aksen hover & pill ber-dot glow, gate login ber-logo — semuanya tetap vanilla HTML/CSS/JS satu file tanpa dependensi baru
+- Verifikasi: QA visual desktop + mobile LOLOS, 0 error konsol, tidak ada perubahan logika bisnis (status flow, impor email, CSV, hash admin tidak tersentuh)

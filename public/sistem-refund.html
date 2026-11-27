@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Sistem Refund Terpadu pusatperizinan.com — formulir pengajuan, dashboard ACC, dan ketentuan lengkap. PT Top Konsultan Internasional.">
 <title>Sistem Refund Terpadu — pusatperizinan.com</title>
+<link rel="icon" type="image/png" href="/logo-icon.png">
 <style>
 :root{
   --bg:#f6faf7;--bg2:#eef5f0;--card:#ffffff;--card2:#f2f9f4;--line:#dce6df;--acc:#00885a;--acc2:#006940;
@@ -25,11 +26,13 @@ a{color:var(--acc);text-decoration:none}
 header{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);
   background:rgba(253,254,251,.86);border-bottom:1px solid var(--line);box-shadow:0 1px 20px rgba(12,60,40,.05)}
 .hrow{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:14px 0}
-.brand{display:flex;align-items:center;gap:12px;min-width:0}
-.logo{width:44px;height:44px;border-radius:12px;flex:none;display:block;object-fit:contain}
-.brand h1{font-size:clamp(15px,2.6vw,18px);letter-spacing:.3px;white-space:nowrap}
-.brand h1 b{background:linear-gradient(90deg,var(--acc),#009966);-webkit-background-clip:text;background-clip:text;color:transparent}
-.brand small{display:block;color:var(--mut);font-size:11px;letter-spacing:1.6px;text-transform:uppercase}
+.brand{display:flex;align-items:center;gap:11px;min-width:0}
+.logo{width:clamp(34px,6vw,42px);height:clamp(34px,6vw,42px);flex:none;display:block;object-fit:contain;
+  filter:drop-shadow(0 3px 9px rgba(0,136,90,.28))}
+.brand h1{font-size:clamp(16px,2.8vw,19px);font-weight:800;letter-spacing:-.2px;color:var(--txt);line-height:1.15;white-space:nowrap}
+.brand h1 b{color:var(--acc)}
+.brand h1 i{color:var(--goldp2);font-style:normal}
+.brand small{display:block;color:var(--mut);font-size:10.5px;font-weight:600;letter-spacing:.5px;margin-top:2px;white-space:nowrap}
 nav{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
 .tab{padding:9px 16px;border-radius:999px;border:1px solid var(--line);color:var(--mut);
   font-size:13px;font-weight:600;cursor:pointer;background:transparent;transition:.2s}
@@ -99,23 +102,54 @@ textarea{min-height:84px;resize:vertical}
 .tline>div{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
 .tline b{color:var(--acc);font-size:13px;display:block;margin-bottom:3px}
 /* ===== DASHBOARD ===== */
-.gate{max-width:420px;margin:30px auto;text-align:center}
+.gate{max-width:420px;margin:30px auto;text-align:center;border:1px solid rgba(0,136,90,.3);
+  background:linear-gradient(180deg,#ffffff 0%,#f3faf6 100%);box-shadow:0 18px 44px rgba(12,60,40,.12)}
+.gate .glogo{width:54px;height:54px;object-fit:contain;display:block;margin:0 auto 8px;filter:drop-shadow(0 4px 10px rgba(0,136,90,.25))}
 .gate input{margin:14px 0;text-align:center;font-size:16px;letter-spacing:2px}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px}
-.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
-.stat b{font-size:clamp(20px,3.5vw,26px);display:block}
-.stat span{font-size:11.5px;color:var(--mut);letter-spacing:.5px}
-.stat.g b{color:var(--goldtx)}.stat.k b{color:var(--ok)}.stat.m b{color:var(--warn)}.stat.b b{color:var(--bad)}.stat.i b{color:var(--info)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:16px 0}
+.stat{position:relative;overflow:hidden;background:var(--card);border:1px solid var(--line);border-radius:16px;
+  padding:15px 16px 13px;box-shadow:0 6px 16px rgba(12,60,40,.06);transition:transform .25s,box-shadow .25s;animation:pop .45s ease both}
+.stat:hover{transform:translateY(-3px);box-shadow:0 16px 32px rgba(12,60,40,.13)}
+.stat::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--acc),var(--goldp))}
+.stat .ic{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:11px;font-size:17px;margin-bottom:7px;background:rgba(0,136,90,.1)}
+.stat b{font-size:clamp(21px,3.5vw,27px);display:block;line-height:1.15}
+.stat span{font-size:10.5px;color:var(--mut);letter-spacing:.7px;font-weight:700}
+.stat.g::before{background:linear-gradient(90deg,var(--goldp),var(--goldp2))}
+.stat.g .ic{background:rgba(243,159,29,.14)}
+.stat.g b{color:var(--goldtx)}
+.stat.k::before{background:linear-gradient(90deg,var(--acc),#00b371)}
+.stat.m::before{background:linear-gradient(90deg,#f59e0b,#d97706)}
+.stat.m .ic{background:rgba(180,83,9,.1)}
+.stat.m b{color:var(--warn)}
+.stat.b::before{background:linear-gradient(90deg,#ef4444,#b91c1c)}
+.stat.b .ic{background:rgba(231,0,11,.08)}
+.stat.b b{color:var(--bad)}
+.stat.i::before{background:linear-gradient(90deg,#3b82f6,#1d4ed8)}
+.stat.i .ic{background:rgba(37,99,235,.1)}
+.stat.i b{color:var(--info)}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.97)}to{opacity:1;transform:none}}
+.flow{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:0 0 4px;padding:12px 14px;background:var(--card);
+  border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 16px rgba(12,60,40,.05)}
+.flow .st{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;font-size:11.5px;font-weight:700;
+  border:1px solid var(--line);background:var(--card2);color:#33473c;white-space:nowrap;transition:.2s}
+.flow .st:hover{border-color:rgba(0,136,90,.45)}
+.flow .st b{color:var(--txt)}
+.flow .st i{width:8px;height:8px;border-radius:50%;background:var(--mut);flex:none;font-style:normal;box-shadow:0 0 6px currentColor}
+.flow .st.aj i{background:var(--warn)}.flow .st.kt i{background:var(--info)}.flow .st.st i{background:var(--ok)}
+.flow .st.pc i{background:#7c3aed}.flow .st.db i{background:#006940}.flow .st.tj i{background:var(--bad)}
+.flow .ar{color:var(--mut);opacity:.55;font-size:12px;flex:none}
 .toolbar{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:14px}
 .toolbar input,.toolbar select{width:auto;flex:1;min-width:150px}
-.tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card);box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}
 table{width:100%;border-collapse:collapse;min-width:860px;font-size:13px}
-th{padding:11px 12px;text-align:left;color:var(--mut);font-size:11px;letter-spacing:1px;text-transform:uppercase;
-  border-bottom:1px solid var(--line);white-space:nowrap;background:#f2f9f4}
-td{padding:11px 12px;border-bottom:1px solid rgba(12,23,17,.07);vertical-align:top}
+th{padding:12px;text-align:left;color:#33503f;font-size:10.5px;letter-spacing:1.1px;text-transform:uppercase;
+  border-bottom:2px solid rgba(0,136,90,.35);white-space:nowrap;background:linear-gradient(180deg,#f4faf6,#eef5ef)}
+td{padding:12px;border-bottom:1px solid rgba(12,23,17,.06);vertical-align:top;transition:background .15s,box-shadow .15s}
 tr:last-child td{border-bottom:none}
-tr:hover td{background:#f4faf6}
-.pill{display:inline-block;padding:4px 11px;border-radius:999px;font-size:11px;font-weight:700;white-space:nowrap}
+tbody tr:hover td{background:#f2f9f4;box-shadow:inset 3px 0 0 var(--acc)}
+.tk{font-weight:800;color:var(--acc);letter-spacing:.4px}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;font-size:11px;font-weight:700;white-space:nowrap}
+.pill::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 7px currentColor;opacity:.9;flex:none}
 .p.aj{background:rgba(180,83,9,.1);color:var(--warn);border:1px solid rgba(180,83,9,.4)}
 .p.kt{background:rgba(37,99,235,.08);color:var(--info);border:1px solid rgba(37,99,235,.4)}
 .p.st{background:rgba(0,136,90,.1);color:var(--ok);border:1px solid rgba(0,136,90,.4)}
@@ -171,7 +205,10 @@ footer b{color:var(--acc)}
   <div class="wrap hrow">
     <div class="brand">
       <img class="logo" src="/logo-icon.png" alt="Logo PusatPerizinan.com">
-      <h1><b>Sistem Refund Terpadu</b><small>PT Top Konsultan Internasional — pusatperizinan.com</small></h1>
+      <div>
+        <h1>Pusat<b>Perizinan</b><i>.com</i></h1>
+        <small>Sistem Refund Terpadu — PT Top Konsultan Internasional</small>
+      </div>
     </div>
     <nav>
       <button class="tab on" data-v="form" onclick="go('form')">Formulir Pengajuan</button>
@@ -303,6 +340,7 @@ footer b{color:var(--acc)}
 <!-- ================= DASHBOARD ================= -->
 <section class="view" id="v-dash">
   <div class="card gate" id="gate">
+    <img class="glogo" src="/logo-icon.png" alt="Logo PusatPerizinan.com">
     <h2>🔐 <b>Dashboard ACC Refund</b></h2>
     <p class="sub">Area internal — masukkan kode akses.</p>
     <input type="password" id="passIn" placeholder="••••••••" onkeydown="if(event.key==='Enter')login()">
@@ -312,7 +350,7 @@ footer b{color:var(--acc)}
 
   <div id="dashBody" style="display:none">
     <h2>Dashboard <b>ACC Refund</b> <button class="btn ghost sm right" onclick="logout()">Keluar</button></h2>
-    <p class="sub">Alur kerja: <b style="color:var(--warn)">Diajukan</b> → <b style="color:var(--info)">Putusan Tertulis (setelah verifikasi)</b> → <b style="color:var(--ok)">Disetujui (ACC)</b> → <b style="color:#6d28d9">Dalam Pencairan</b> → <b style="color:#006940">Dibayar</b> · atau <b style="color:var(--bad)">Ditolak</b>.</p>
+    <div class="flow" id="flow"></div>
     <div class="stats" id="stats"></div>
     <div class="card">
       <div class="toolbar">
@@ -618,13 +656,21 @@ function logout(){sessionStorage.removeItem('ppref_auth');$i('gate').style.displ
 function renderDash(){renderStats();fillFilters();renderTable()}
 function renderStats(){var db=getDb(),c={AJ:0,KT:0,ST:0,PC:0,DB:0,TJ:0},val=0;
  db.forEach(function(d){c[d.status]=(c[d.status]||0)+1;if(['ST','PC','DB'].indexOf(d.status)>-1&&(d.mataUang||'IDR')==='IDR')val+=num(d.jumlah)});
- $i('stats').innerHTML='<div class="stat g"><b>'+db.length+'</b><span>TOTAL PENGAJUAN</span></div>'+
- '<div class="stat m"><b>'+(c.AJ+c.KT)+'</b><span>MENUNGGU PUTUSAN / VERIFIKASI</span></div>'+
- '<div class="stat k"><b>'+c.ST+'</b><span>DISETUJUI (ACC)</span></div>'+
- '<div class="stat i"><b>'+c.PC+'</b><span>DALAM PENCAIRAN</span></div>'+
- '<div class="stat k"><b>'+c.DB+'</b><span>DIBAYAR — SELESAI</span></div>'+
- '<div class="stat b"><b>'+c.TJ+'</b><span>DITOLAK</span></div>'+
- '<div class="stat g"><b>'+rp(val)+'</b><span>NILAI ACC + PENCAIRAN + DIBAYAR (IDR)</span></div>'}
+ $i('stats').innerHTML='<div class="stat g"><div class="ic">🗂️</div><b>'+db.length+'</b><span>TOTAL PENGAJUAN</span></div>'+
+ '<div class="stat m"><div class="ic">⏳</div><b>'+(c.AJ+c.KT)+'</b><span>MENUNGGU PUTUSAN / VERIFIKASI</span></div>'+
+ '<div class="stat k"><div class="ic">✅</div><b>'+c.ST+'</b><span>DISETUJUI (ACC)</span></div>'+
+ '<div class="stat i"><div class="ic">💸</div><b>'+c.PC+'</b><span>DALAM PENCAIRAN</span></div>'+
+ '<div class="stat k"><div class="ic">🏦</div><b>'+c.DB+'</b><span>DIBAYAR — SELESAI</span></div>'+
+ '<div class="stat b"><div class="ic">🚫</div><b>'+c.TJ+'</b><span>DITOLAK</span></div>'+
+ '<div class="stat g"><div class="ic">💰</div><b style="font-size:clamp(17px,2.8vw,23px)">'+rp(val)+'</b><span>NILAI ACC + PENCAIRAN + DIBAYAR (IDR)</span></div>';
+ var fl=$i('flow');
+ if(fl)fl.innerHTML='<span class="st aj"><i></i>Diajukan <b>'+c.AJ+'</b></span><span class="ar">→</span>'+
+ '<span class="st kt"><i></i>Verifikasi <b>'+c.KT+'</b></span><span class="ar">→</span>'+
+ '<span class="st st"><i></i>ACC <b>'+c.ST+'</b></span><span class="ar">→</span>'+
+ '<span class="st pc"><i></i>Pencairan <b>'+c.PC+'</b></span><span class="ar">→</span>'+
+ '<span class="st db"><i></i>Dibayar <b>'+c.DB+'</b></span>'+
+ '<span class="ar" style="margin:0 2px">·</span>'+
+ '<span class="st tj"><i></i>Ditolak <b>'+c.TJ+'</b></span>'}
 function fillFilters(){var s=$i('fStatus'),t=$i('fTier');
  if(s.options.length<=1){Object.keys(STATUS).forEach(function(k){s.insertAdjacentHTML('beforeend','<option value="'+k+'">'+STATUS[k]+'</option>')});
   Object.keys(TIERS).forEach(function(k){t.insertAdjacentHTML('beforeend','<option value="'+k+'">'+TIERS[k].nm+'</option>')})}}
@@ -632,7 +678,7 @@ function renderTable(){var db=getDb(),q=$i('q').value.toLowerCase(),fs=$i('fStat
  db.forEach(function(d){
   if(fs&&d.status!==fs)return;if(ft&&String(d.tier)!==ft)return;
   var blob=(d.ticket+' '+d.nama+' '+d.spk+' '+d.layanan).toLowerCase();if(q&&blob.indexOf(q)===-1)return;
-  rows+='<tr><td><b style="color:var(--acc)">'+esc(d.ticket)+'</b><br><span style="color:var(--mut);font-size:11px">'+fdt(d.tgl)+'</span></td>'+
+  rows+='<tr><td><span class="tk">'+esc(d.ticket)+'</span><br><span style="color:var(--mut);font-size:11px">'+fdt(d.tgl)+'</span></td>'+
   '<td><b>'+esc(d.nama)+'</b><br><span style="color:var(--mut);font-size:11px">'+esc(d.jenis)+' · '+esc(d.email||'')+'</span></td>'+
   '<td>'+esc(d.layanan)+'<br><span class="tbadge">Tier '+d.tier+'</span></td>'+
   '<td style="white-space:nowrap"><b>'+money(d.jumlah,d.mataUang)+'</b></td>'+
