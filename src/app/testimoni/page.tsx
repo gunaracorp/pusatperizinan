@@ -253,7 +253,7 @@ export default function TestimoniPage() {
         <div className="rounded-2xl bg-[oklch(0.23_0.03_165)] p-8 md:p-10 text-emerald-50 text-center">
           <h2 className="text-2xl font-bold">Bergabung dengan 1.247 Klien yang Sudah Puas</h2>
           <p className="mt-3 text-sm md:text-base text-emerald-100/85 max-w-2xl mx-auto leading-relaxed">
-            Konsultasi gratis, penawaran transparan sebelum mulai, dan garansi uang kembali 100%.
+            Konsultasi gratis, penawaran transparan sebelum mulai, dan garansi uang kembali 100% bila gagal karena kesalahan proses kami.
             Ceritakan kebutuhan Anda — pengalaman seperti di atas bisa jadi milik Anda juga.
           </p>
           <a

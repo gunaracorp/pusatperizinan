@@ -372,7 +372,7 @@ footer b{color:var(--acc)}
 <section class="view" id="v-terms">
   <div class="card">
     <h2>Ketentuan &amp; Syarat <b>Refund</b></h2>
-    <p class="sub">Berlaku untuk seluruh layanan pusatperizinan.com · mengacu Surat Perjanjian Pengembalian Dana &amp; Ketentuan Refund v2.1</p>
+    <p class="sub">Berlaku untuk seluruh layanan pusatperizinan.com · mengacu Surat Perjanjian Pengembalian Dana &amp; Ketentuan Refund v3.0 (15 Pasal, termasuk Pasal 6A Skema Refund Indikatif untuk pembatalan oleh Klien)</p>
     <div class="note red"><b>⚠️ Penting — Konfirmasi ≠ Putusan ≠ Pencairan.</b> <b>Konfirmasi penerimaan &amp; pemeriksaan administratif (maksimal 3 hari kerja)</b> hanyalah pemeriksaan kelengkapan berkas — <b>bukan</b> putusan refund dan <b>bukan</b> tanggal pencairan. Putusan tertulis disertai perhitungan menyusul mengikuti kompleksitas mandat. Pencairan dana membutuhkan waktu karena dana mengalir kembali dari pihak terkait (instansi pemerintah, perbankan/koresponden, mitra di dalam/luar negeri): <b>paling cepat 45 hari kerja (Tier 1)</b> hingga maksimal 24 bulan (Tier 5).</div>
     <h3>Tier Jangka Waktu Pencairan</h3>
     <div class="tiergrid" id="tierGrid"></div>
@@ -380,7 +380,7 @@ footer b{color:var(--acc)}
   </div>
   <div class="card">
     <h3>Tahapan Pekerjaan &amp; Indikasi Nilai Refund</h3>
-    <div class="note" style="border-left-color:var(--warn);background:rgba(180,83,9,.06);color:#92400e">Persentase bersifat <b>indikatif, bukan pemotongan otomatis</b> — nilai final dihitung berdasarkan milestone SPK, bukti pekerjaan, dan biaya pihak ketiga yang terbukti keluar.</div>
+    <div class="note" style="border-left-color:var(--warn);background:rgba(180,83,9,.06);color:#92400e">Persentase adalah <b>Skema Refund Indikatif Default resmi (Ketentuan Refund Pasal 6A)</b> untuk pembatalan/penghentian mandat oleh Klien — titik awal perhitungan berdasarkan pekerjaan yang benar-benar terlaksana. Nilai final dapat disesuaikan dengan milestone SPK dan bukti pekerjaan, serta tetap dikurangi biaya pihak ketiga yang terbukti keluar dan tidak dapat dipulihkan. Dana pihak ketiga yang belum terpakai selalu dikembalikan.</div>
     <div class="tblwrap"><table class="matrix" id="stageTbl"></table></div>
   </div>
   <div class="card">
@@ -467,10 +467,11 @@ var TIERS={
 var STAGES=[
  {k:'T0',n:'Pekerjaan belum dimulai',p:100,t:'Seluruh dana jasa yang belum menjadi hak Perusahaan dikembalikan, dikurangi biaya pihak ketiga yang terbukti keluar.'},
  {k:'T1',n:'Diagnosis & due diligence berjalan',p:80,t:'Pemeriksaan dokumen awal dan identifikasi jalur perizinan telah dilakukan.'},
- {k:'T2',n:'Dokumen / analisis / deliverable telah disusun',p:50,t:'Nilai pekerjaan dihitung berdasarkan milestone SPK dan bukti pekerjaan, bukan pemotongan otomatis.'},
+ {k:'T2',n:'Dokumen / analisis / deliverable telah disusun',p:50,t:'Skema default Pasal 6A; nilai final dihitung berdasarkan milestone SPK dan bukti pekerjaan.'},
  {k:'T3',n:'Berkas telah diajukan ke instansi / mitra',p:25,t:'Perlu rekonsiliasi status, penarikan/pencabutan berkas bila memungkinkan, dan konfirmasi biaya instansi.'},
- {k:'T4',n:'Izin / dokumen telah terbit',p:0,t:'Dana jasa tidak dapat dikembalikan, kecuali pembatalan karena kesalahan material Perusahaan (refund penuh — Tier 1).'}];
-var REASONS=['Pembatalan sebelum pekerjaan dimulai','Pembatalan saat pekerjaan berjalan','Perizinan tidak dapat diproses (regulasi / kuota / dokumen negara tujuan)','Keadaan kahar (force majeure)','Kelebihan bayar / pembayaran ganda / kesalahan tagihan','Wanprestasi Perusahaan (dengan bukti)','Lainnya (jelaskan di kolom penjelasan)'];
+ {k:'T4',n:'Izin / dokumen telah terbit',p:0,t:'Dana jasa tidak dapat dikembalikan, kecuali pembatalan karena kesalahan material Perusahaan (refund penuh — Tier 1).'},
+ {k:'T5',n:'Integrasi lintas negara & penutupan mandat',p:0,t:'Mandat telah mencapai tahap integrasi/penutupan; tidak ada pengembalian dana jasa, kecuali kesalahan material Perusahaan (refund penuh — Tier 1).'}];
+var REASONS=['Pembatalan sebelum pekerjaan dimulai','Pembatalan / penghentian sepihak oleh klien di tengah pekerjaan (termasuk perubahan rencana bisnis)','Pembatalan saat pekerjaan berjalan','Perizinan tidak dapat diproses (regulasi / kuota / dokumen negara tujuan)','Keadaan kahar (force majeure)','Kelebihan bayar / pembayaran ganda / kesalahan tagihan','Wanprestasi Perusahaan (dengan bukti)','Lainnya (jelaskan di kolom penjelasan)'];
 var LAMPS=['KTP / Paspor','NPWP / NPWP Badan','Bukti transfer pembayaran','Surat Perjanjian / SPK','Korespondensi email / WA terkait','Rekening koran','Surat kuasa (bila diwakilkan)','Dokumen proyek / perizinan terkait'];
 var SERVICES=[
  {id:'D1',g:'Perizinan Domestik',n:'NIB & OSS-RBA',t:1,s:'NIB, dokumen OSS',nr:'Biaya resmi OSS'},

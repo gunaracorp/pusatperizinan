@@ -15,7 +15,7 @@ export default function NotFound() {
       <p className="mt-4 max-w-md text-muted-foreground leading-relaxed">
         Maaf, halaman yang Anda cari tidak tersedia atau sudah dipindahkan.
         Kembali ke beranda untuk lanjut mengurus izin usaha Anda — NIB 1 hari,
-        PT 3 hari, garansi 100%.
+        PT 3 hari, garansi 100% bila gagal karena kesalahan kami.
       </p>
       <div className="mt-8 flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
         <a

@@ -431,7 +431,7 @@ export default async function BlogArticlePage({
         <div className="mt-12 flex flex-col sm:flex-row items-center gap-3 rounded-2xl bg-gradient-to-r from-primary to-emerald-700 p-6 text-primary-foreground">
           <Sparkles className="h-5 w-5 shrink-0 hidden sm:block" aria-hidden />
           <p className="text-sm font-semibold flex-1 text-center sm:text-left">
-            Tidak mau repot? Serahkan semuanya ke tim ahli kami — garansi 100% uang kembali.
+            Tidak mau repot? Serahkan semuanya ke tim ahli kami — garansi 100% uang kembali bila gagal karena kesalahan kami.
           </p>
           <Button asChild variant="secondary" className="rounded-full font-bold shrink-0 w-full sm:w-auto">
             <a href={waHref} target="_blank" rel="noopener noreferrer">

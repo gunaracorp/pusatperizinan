@@ -402,7 +402,7 @@ export const PROCESS_STEPS = [
   {
     step: 4,
     title: "Izin Terbit, Bisnis Jalan",
-    desc: "Dokumen resmi dikirim ke tangan Anda + panduan kewajiban pasca-terbit. Garansi uang kembali 100%.",
+    desc: "Dokumen resmi dikirim ke tangan Anda + panduan kewajiban pasca-terbit. Garansi uang kembali 100% bila gagal karena kesalahan proses kami.",
   },
 ];
 

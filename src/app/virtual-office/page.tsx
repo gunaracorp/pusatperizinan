@@ -573,7 +573,7 @@ export default function VirtualOfficePage() {
           </h2>
           <p className="mt-4 text-emerald-100/85 max-w-2xl mx-auto leading-relaxed">
             Konsultasi gratis: ceritakan usaha Anda, dan tim kami rekomendasikan lokasi + paket yang
-            paling strategis. Aktivasi 1-2 hari kerja, dokumen legal lengkap, garansi uang kembali 100%.
+            paling strategis. Aktivasi 1-2 hari kerja, dokumen legal lengkap, garansi uang kembali 100% bila gagal karena kesalahan proses kami.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <a

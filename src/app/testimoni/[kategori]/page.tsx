@@ -231,7 +231,7 @@ export default async function TestimoniKategoriPage({
             </span>
             <span className="flex items-center gap-1.5 text-muted-foreground">
               <ShieldCheck className="h-4 w-4 text-primary" aria-hidden />
-              garansi 100% uang kembali
+              garansi 100% uang kembali bila gagal karena kesalahan proses kami
             </span>
           </div>
 

@@ -39,7 +39,7 @@ export const TRANSLATIONS_D: Partial<Record<LangCode, Partial<Translation>>> = {
     heroBullet2:
       "Официальные государственные каналы — документы действительны и подтверждены",
     heroBullet3:
-      "Гарантия 100% возврата денег, если лицензию не выдадут",
+      "Гарантия 100% возврата денег, если лицензию не выдадут по нашей вине",
     heroReviews: "на основе 890+ отзывов клиентов",
     // Hero form
     formTitle: "Бесплатная консультация за 15 минут",
@@ -235,7 +235,7 @@ export const TRANSLATIONS_D: Partial<Record<LangCode, Partial<Translation>>> = {
     heroBullet2:
       "Oficjalne kanały rządowe — dokumenty ważne i zweryfikowane",
     heroBullet3:
-      "100% gwarancji zwrotu pieniędzy, jeśli licencja nie zostanie wydana",
+      "100% gwarancji zwrotu pieniędzy, jeśli licencja nie zostanie wydana z naszej winy",
     heroReviews: "na podstawie 890+ opinii klientów",
     // Hero form
     formTitle: "Darmowa 15-minutowa konsultacja",
@@ -431,7 +431,7 @@ export const TRANSLATIONS_D: Partial<Record<LangCode, Partial<Translation>>> = {
     heroBullet2:
       "Офіційні державні канали — документи дійсні та перевірені",
     heroBullet3:
-      "Гарантія 100% повернення коштів, якщо ліцензію не видають",
+      "Гарантія 100% повернення коштів, якщо ліцензію не видають з нашої вини",
     heroReviews: "на основі 890+ відгуків клієнтів",
     // Hero form
     formTitle: "Безкоштовна 15-хвилинна консультація",
@@ -626,7 +626,7 @@ export const TRANSLATIONS_D: Partial<Record<LangCode, Partial<Translation>>> = {
     heroBullet1: "NIB 1 günde • PT 3 günde • Kamu kurumlarında kuyruk yok",
     heroBullet2:
       "Resmi devlet kanalları — belgeler geçerli ve doğrulanmış",
-    heroBullet3: "Ruhsat çıkmazsa %100 para iade garantisi",
+    heroBullet3: "Hata bizden kaynaklanıp ruhsat çıkmazsa %100 para iade garantisi",
     heroReviews: "890+ müşteri yorumuna göre",
     // Hero form
     formTitle: "15 Dakikalık Ücretsiz Danışmanlık",
@@ -822,7 +822,7 @@ export const TRANSLATIONS_D: Partial<Record<LangCode, Partial<Translation>>> = {
     heroBullet2:
       "Njia rasmi za serikali — hati halali na zilizothibitishwa",
     heroBullet3:
-      "Dhamana ya 100% ya kurejesha pesa ikiwa leseni haitolewi",
+      "Dhamana ya 100% ya kurejesha pesa ikiwa leseni haitolewi kwa makosa yetu",
     heroReviews: "kutokana na maoni 890+ ya wateja",
     // Hero form
     formTitle: "Ushauri wa Bure wa Dakika 15",
@@ -1018,7 +1018,7 @@ export const TRANSLATIONS_D: Partial<Record<LangCode, Partial<Translation>>> = {
     heroBullet2:
       "ਸਰਕਾਰੀ ਅਧਿਕਾਰਤ ਰਾਹ — ਦਸਤਾਵੇਜ਼ ਸਹੀ ਅਤੇ ਤਸਦੀਕ ਸ਼ੁਦਾ",
     heroBullet3:
-      "ਜੇ ਲਾਇਸੈਂਸ ਜਾਰੀ ਨਾ ਹੋਵੇ ਤਾਂ 100% ਪੈਸੇ ਵਾਪਸੀ ਦੀ ਗਰੰਟੀ",
+      "ਸਾਡੀ ਗਲਤੀ ਕਾਰਨ ਲਾਇਸੈਂਸ ਜਾਰੀ ਨਾ ਹੋਵੇ ਤਾਂ 100% ਪੈਸੇ ਵਾਪਸੀ ਦੀ ਗਰੰਟੀ",
     heroReviews: "890+ ਗਾਹਕਾਂ ਦੀਆਂ ਸਮੀਖਿਆਵਾਂ ਦੇ ਆਧਾਰ 'ਤੇ",
     // Hero form
     formTitle: "15 ਮਿੰਟ ਦੀ ਮੁਫ਼ਤ ਸਲਾਹ",
@@ -1213,7 +1213,7 @@ export const TRANSLATIONS_D: Partial<Record<LangCode, Partial<Translation>>> = {
     heroBullet1: "NIB 1 dina • PT 3 dina • Ora usah antre ing instansi",
     heroBullet2:
       "Jalur resmi pemerintah — dokumen sah & terverifikasi",
-    heroBullet3: "Garansi 100% dhuwit bali yen izine ora terbit",
+    heroBullet3: "Garansi 100% dhuwit bali yen izine ora terbit amarga kesalahan tim kula",
     heroReviews: "saka 890+ ulasan pelanggan",
     // Hero form
     formTitle: "Konsultasi Gratis 15 Menit",

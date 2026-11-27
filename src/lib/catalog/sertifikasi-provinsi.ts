@@ -484,7 +484,7 @@ function buildCertRegionPage(cert: CertEntry, provIdx: number): ServicePage | nu
     title: `Jasa ${cert.name} di ${prov.name} — Biaya & Proses 2026`,
     h1: `${cert.name} di ${prov.name}`,
     desc: `${cert.desc} Melayani ${cities} & seluruh ${prov.name}.`,
-    metaDesc: `Pengurusan ${certNameLower} di ${prov.name}: resmi via ${authorityShort}, mulai ${cert.price}, proses ${cert.duration}. Melayani ${cities} & seluruh ${prov.name}. Konsultasi gratis via WhatsApp — garansi 100%.`,
+    metaDesc: `Pengurusan ${certNameLower} di ${prov.name}: resmi via ${authorityShort}, mulai ${cert.price}, proses ${cert.duration}. Melayani ${cities} & seluruh ${prov.name}. Konsultasi gratis via WhatsApp — garansi 100% bila gagal karena kesalahan proses kami.`,
     intro,
     longDesc: [
       cert.longDesc[1],
@@ -576,7 +576,7 @@ function buildCertProvHub(provIdx: number): ServicePage | null {
     region: prov.name,
     title: `Konsultan Sertifikasi & ISO di ${prov.name} — ${members.length} Layanan Terlengkap`,
     h1: `Konsultan Sertifikasi & ISO di ${prov.name}`,
-    desc: `${members.length} sertifikasi (PPIU/PIHK, ISO 9001:2026, 27001, halal PP 42/2024, HACCP, SBU) untuk ${prov.name} — ${prov.majors.slice(0, 3).join(", ")}. Mulai ${cheapest.price}, garansi 100%.`,
+    desc: `${members.length} sertifikasi (PPIU/PIHK, ISO 9001:2026, 27001, halal PP 42/2024, HACCP, SBU) untuk ${prov.name} — ${prov.majors.slice(0, 3).join(", ")}. Mulai ${cheapest.price}, garansi 100% bila gagal karena kesalahan proses kami.`,
     metaDesc: `Jasa sertifikasi & ISO di ${prov.name}: PPIU/PIHK haji-umrah, ISO 9001:2026, 27001, halal jasa, HACCP, SBU LPJK — ${members.length} layanan, mulai ${cheapest.price}. Melayani ${prov.majors.join(", ")}. Konsultasi gratis!`,
     intro: `${members.length} sertifikasi resmi untuk usaha di ${prov.name}: izin travel ibadah haji-umrah (PPIU/PIHK sesuai PMHU 2/2026), keluarga ISO (termasuk 9001:2026 edisi terbaru), halal jasa PP 42/2024, keamanan pangan, laboratorium & kesehatan, sampai SBU untuk tender. ${profile.economy.charAt(0).toUpperCase() + profile.economy.slice(1)} — katalisator alami permintaan sertifikasi yang rapi.`,
     longDesc: [

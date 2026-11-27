@@ -84,7 +84,7 @@ const MINI_FAQ = [
   },
   {
     q: "Setelah dapat peta izin, lalu apa?",
-    a: "Tiga pilihan: (1) urus sendiri memakai panduan kami di /panduan, (2) lanjut konsultasi gratis 30 menit untuk merapikan rencana, (3) serahkan penuh ke kami — NIB 1 hari, PT 3 hari, garansi 100%.",
+    a: "Tiga pilihan: (1) urus sendiri memakai panduan kami di /panduan, (2) lanjut konsultasi gratis 30 menit untuk merapikan rencana, (3) serahkan penuh ke kami — NIB 1 hari, PT 3 hari, garansi 100% bila gagal karena kesalahan kami.",
   },
   {
     q: "Bahasa lain didukung?",

@@ -131,7 +131,7 @@ const COMPANY_LINKS = [
   { label: "Virtual Office (48 Lokasi)", href: "/virtual-office" },
   { label: "Direktori Kanal Resmi Pemerintah", href: "/kanal-resmi" },
   { label: "Testimoni Klien (4,9/5)", href: "/testimoni" },
-  { label: "Garansi 100%", href: "/garansi" },
+  { label: "Garansi 100% (Syarat Berlaku)", href: "/garansi" },
   { label: "Ketentuan Refund (45 Hari Kerja – 24 Bulan)", href: "/ketentuan-refund" },
   { label: "Form Pengajuan Refund (Sistem Terpadu)", href: "/sistem-refund.html" },
   { label: "Dewan Pakar (46 Bidang)", href: "/dewan-pakar" },
@@ -415,7 +415,7 @@ export function Footer() {
                 </li>
                 <li className="inline-flex items-center gap-1.5">
                   <ShieldCheck className="h-3.5 w-3.5 shrink-0 text-emerald-400" aria-hidden="true" />
-                  Garansi 100%
+                  Garansi 100% (karena kesalahan kami)
                 </li>
                 <li className="inline-flex items-center gap-1.5">
                   <Zap className="h-3.5 w-3.5 shrink-0 text-amber-400" aria-hidden="true" />
@@ -800,7 +800,7 @@ export function Footer() {
                 href="/garansi"
                 className="text-xs text-emerald-100/50 hover:text-emerald-300 transition-colors"
               >
-                Garansi 100%
+                Garansi 100% (Syarat Berlaku)
               </Link>
             </nav>
             <div className="flex items-center justify-center gap-2">

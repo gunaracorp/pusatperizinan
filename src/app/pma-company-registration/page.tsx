@@ -14,7 +14,7 @@ import { ogImageUrl } from "@/lib/og-template";
 export const metadata: Metadata = {
   title: "Company Registration in Indonesia — PT PMA Setup from USD 800",
   description:
-    "Register your PT PMA (foreign investment company) in Indonesia with licensed consultants: OSS-RBA NIB, DGT tax registration, work permits (KITAS), office in SCBD Jakarta. 38 provinces covered, money-back guarantee.",
+    "Register your PT PMA (foreign investment company) in Indonesia with licensed consultants: OSS-RBA NIB, DGT tax registration, work permits (KITAS), office in SCBD Jakarta. 38 provinces covered, money-back guarantee if we fail.",
   alternates: { canonical: "/pma-company-registration" },
   openGraph: {
     images: [{ url: ogImageUrl({ title: "Company Registration in Indonesia — PT PMA Setup" }), width: 1200, height: 630, alt: "Company Registration in Indonesia — PT PMA Setup" }],
@@ -80,7 +80,7 @@ export default function PmaRegistrationPage() {
         </nav>
 
         <header className="max-w-3xl">
-          <p className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700">LICENSED • SCBD JAKARTA • MONEY-BACK GUARANTEE</p>
+          <p className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700">LICENSED • SCBD JAKARTA • MONEY-BACK GUARANTEE IF WE FAIL</p>
           <h1 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">
             Company Registration in Indonesia — Done Right, From Day One
           </h1>

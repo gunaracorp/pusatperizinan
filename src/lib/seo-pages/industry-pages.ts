@@ -98,7 +98,7 @@ function buildIndustryPage(industrySlug: string): SeoPage | null {
     industrySlug: industry.slug,
     title: `Perizinan & Legalitas Usaha ${industry.name} ${CURRENT_YEAR} — Panduan Sektor`,
     h1: `Legalitas Usaha ${industry.name}`,
-    metaDesc: capMeta(`Panduan legalitas usaha ${industry.name.toLowerCase()} ${CURRENT_YEAR}: ${services.length} layanan prioritas dengan alasan spesifik sektor, KBLI umum, regulasi utama, tantangan khas. ${cheapestLabel} — garansi 100%.`),
+    metaDesc: capMeta(`Panduan legalitas usaha ${industry.name.toLowerCase()} ${CURRENT_YEAR}: ${services.length} layanan prioritas dengan alasan spesifik sektor, KBLI umum, regulasi utama, tantangan khas. ${cheapestLabel} — garansi 100% bila gagal karena kesalahan proses kami.`),
     intro: [intros[v % intros.length]],
     sections,
     faq: industry.faq,
@@ -135,7 +135,7 @@ export function buildBiayaIndexPage(total: number): SeoIndexPage {
     kind: "biaya-index",
     title: `Biaya Layanan Pengurusan Izin ${CURRENT_YEAR} — Daftar Harga Transparan`,
     h1: "Biaya Layanan — Daftar Harga Transparan",
-    metaDesc: `Daftar biaya ${total} layanan pengurusan izin & legalitas usaha: rincian jasa, biaya resmi pemerintah, faktor harga & cara hemat. Transparan sejak penawaran — garansi 100%.`,
+    metaDesc: `Daftar biaya ${total} layanan pengurusan izin & legalitas usaha: rincian jasa, biaya resmi pemerintah, faktor harga & cara hemat. Transparan sejak penawaran — garansi 100% bila gagal karena kesalahan proses kami.`,
     intro: [
       `Harga yang transparan adalah standar, bukan bonus. Di halaman ini Anda bisa membandingkan biaya ${total} layanan kami — setiap halaman merinci komponen biaya (jasa vs biaya resmi pemerintah), faktor yang membuat angka bergerak, dan cara mendapatkan harga paling efisien. Semua tanpa biaya tersembunyi, dengan garansi uang kembali 100% bila gagal karena kesalahan proses kami.`,
     ],

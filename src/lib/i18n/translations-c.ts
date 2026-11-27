@@ -28,7 +28,7 @@ export const TRANSLATIONS_C: Partial<Record<LangCode, Partial<Translation>>> = {
       "Desde el NIB, PT, CV, Halal, BPOM hasta el AMDAL — gestionados por un equipo de expertos, 100% legal y con garantía de devolución. Desde 350 mil rupias, en tan solo 1 día hábil.",
     heroBullet1: "NIB en 1 día • PT en 3 días • Sin filas en oficinas públicas",
     heroBullet2: "Canales oficiales del gobierno — documentos válidos y verificados",
-    heroBullet3: "Garantía de devolución del 100% si la licencia no se emite",
+    heroBullet3: "Garantía de devolución del 100% si la licencia no se emite por un error nuestro",
     heroReviews: "según más de 890 reseñas de clientes",
     // Hero form
     formTitle: "Consulta Gratuita de 15 Minutos",
@@ -212,7 +212,7 @@ export const TRANSLATIONS_C: Partial<Record<LangCode, Partial<Translation>>> = {
       "Du NIB, PT, CV, Halal, BPOM jusqu'à l'AMDAL — le tout traité par des experts, 100 % légal, avec garantie de remboursement. À partir de 350 000 roupies, en 1 jour ouvré seulement.",
     heroBullet1: "NIB en 1 jour • PT en 3 jours • Zéro file d'attente en administration",
     heroBullet2: "Canaux gouvernementaux officiels — documents valides et vérifiés",
-    heroBullet3: "Garantie de remboursement à 100 % si votre licence n'est pas délivrée",
+    heroBullet3: "Garantie de remboursement à 100 % si votre licence n'est pas délivrée en raison de notre erreur",
     heroReviews: "sur plus de 890 avis clients",
     // Hero form
     formTitle: "Consultation Gratuite de 15 Minutes",
@@ -396,7 +396,7 @@ export const TRANSLATIONS_C: Partial<Record<LangCode, Partial<Translation>>> = {
       "Vom NIB über PT, CV, Halal und BPOM bis zum AMDAL — bearbeitet von Experten, 100 % legal, mit Geld-zurück-Garantie. Ab 350.000 Rupien, in nur 1 Werktag.",
     heroBullet1: "NIB in 1 Tag • PT in 3 Tagen • Kein Behörden-Marathon",
     heroBullet2: "Offizielle Regierungswege — gültige & verifizierte Dokumente",
-    heroBullet3: "100 % Geld-zurück-Garantie, falls die Genehmigung nicht erteilt wird",
+    heroBullet3: "100 % Geld-zurück-Garantie, falls die Genehmigung aufgrund unseres Fehlers nicht erteilt wird",
     heroReviews: "aus über 890 Kundenbewertungen",
     // Hero form
     formTitle: "Kostenlose Beratung in 15 Minuten",
@@ -580,7 +580,7 @@ export const TRANSLATIONS_C: Partial<Record<LangCode, Partial<Translation>>> = {
       "Da NIB, PT, CV, Halal, BPOM fino ad AMDAL — pratiche seguite da esperti, 100% legali, con garanzia di rimborso. A partire da 350 mila rupie, in soli 1 giorno lavorativo.",
     heroBullet1: "NIB in 1 giorno • PT in 3 giorni • Zero code negli uffici pubblici",
     heroBullet2: "Canali governativi ufficiali — documenti validi e verificati",
-    heroBullet3: "Garanzia di rimborso al 100% se la licenza non viene rilasciata",
+    heroBullet3: "Garanzia di rimborso al 100% se la licenza non viene rilasciata per un nostro errore",
     heroReviews: "su oltre 890 recensioni dei clienti",
     // Hero form
     formTitle: "Consulenza Gratuita di 15 Minuti",
@@ -764,7 +764,7 @@ export const TRANSLATIONS_C: Partial<Record<LangCode, Partial<Translation>>> = {
       "Van NIB, PT, CV, Halal en BPOM tot AMDAL — verzorgd door experts, 100% legaal, met geld-terug-garantie. Al vanaf 350.000 roepia, mogelijk binnen 1 werkdag.",
     heroBullet1: "NIB in 1 dag • PT in 3 dagen • Geen wachtrijen bij instanties",
     heroBullet2: "Officiële overheidskanalen — geldige & geverifieerde documenten",
-    heroBullet3: "100% geld-terug-garantie als de vergunning niet wordt afgegeven",
+    heroBullet3: "100% geld-terug-garantie als de vergunning door een fout van ons niet wordt afgegeven",
     heroReviews: "uit 890+ klantbeoordelingen",
     // Hero form
     formTitle: "Gratis Consult van 15 Minuten",
@@ -948,7 +948,7 @@ export const TRANSLATIONS_C: Partial<Record<LangCode, Partial<Translation>>> = {
       "Do NIB, PT, CV, Halal e BPOM ao AMDAL — processado por especialistas, 100% legal, com garantia de devolução do dinheiro. A partir de 350 mil rupias indonésias, em apenas 1 dia útil.",
     heroBullet1: "NIB em 1 dia • PT em 3 dias • Sem filas em órgãos públicos",
     heroBullet2: "Canais governamentais oficiais — documentos válidos e verificados",
-    heroBullet3: "Garantia de reembolso de 100% se a licença não for emitida",
+    heroBullet3: "Garantia de reembolso de 100% se a licença não for emitida por erro nosso",
     heroReviews: "de mais de 890 avaliações de clientes",
     // Hero form
     formTitle: "Consultoria Gratuita de 15 Minutos",
@@ -1132,7 +1132,7 @@ export const TRANSLATIONS_C: Partial<Record<LangCode, Partial<Translation>>> = {
       "Από το NIB, PT, CV, Halal και BPOM έως το AMDAL — όλα εκτελούνται από ειδικούς, 100% νόμιμα, με εγγύηση επιστροφής χρημάτων. Από 350 χιλιάδες ρουπίες, σε μόλις 1 εργάσιμη ημέρα.",
     heroBullet1: "NIB σε 1 ημέρα • PT σε 3 ημέρες • Χωρίς ουρές σε δημόσιες υπηρεσίες",
     heroBullet2: "Επίσημα κυβερνητικά κανάλια — έγγραφα έγκυρα και επαληθευμένα",
-    heroBullet3: "Εγγύηση 100% επιστροφής χρημάτων αν η άδεια δεν εκδοθεί",
+    heroBullet3: "Εγγύηση 100% επιστροφής χρημάτων αν η άδεια δεν εκδοθεί λόγω δικού μας σφάλματος",
     heroReviews: "από 890+ κριτικές πελατών",
     // Hero form
     formTitle: "Δωρεάν Συμβουλευτική 15 Λεπτών",

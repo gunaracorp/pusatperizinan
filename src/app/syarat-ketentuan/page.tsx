@@ -37,9 +37,11 @@ const SECTIONS = [
     ],
   },
   {
-    h: "Ketentuan Refund & Pengembalian Dana",
+    h: "Garansi, Pembatalan oleh Klien & Pengembalian Dana",
     p: [
-      "Pengembalian dana mengikuti Ketentuan Refund berjenjang (Versi 2.1): paling cepat 45 Hari Kerja (Tier 1 — pekerjaan belum dimulai secara substantif atau kesalahan material perusahaan) hingga paling lama 24 bulan kalender untuk mandat lintas negara yang disepakati tertulis dalam SPK/addendum (Tier 5). Tier ditentukan oleh tahapan pekerjaan T0–T5 yang benar-benar terlaksana, bukan pemotongan otomatis.",
+      "Garansi 100% uang kembali berlaku khusus bila izin gagal terbit karena kesalahan administratif/proses di pihak kami — tertulis dalam perjanjian jasa per klien. Garansi ini TIDAK berlaku untuk pembatalan, penghentian mandat, atau perubahan rencana bisnis oleh klien.",
+      "Pembatalan atau penghentian mandat oleh klien — dengan alasan apa pun — dihitung dengan Skema Refund Indikatif Default berdasarkan tahapan pekerjaan yang benar-benar terlaksana: T0 belum dimulai 100%, T1 diagnosis 80%, T2 dokumen tersusun 50%, T3 berkas diajukan 25%, T4–T5 izin terbit/penutupan 0% dari dana jasa; dikurangi biaya pihak ketiga yang disetujui, terbukti, dan tidak dapat dipulihkan. Dana pihak ketiga yang belum terpakai selalu dikembalikan.",
+      "Pengembalian dana mengikuti Ketentuan Refund berjenjang (Versi 3.0): paling cepat 45 Hari Kerja (Tier 1 — pekerjaan belum dimulai secara substantif atau kesalahan material perusahaan) hingga paling lama 24 bulan kalender untuk mandat lintas negara yang disepakati tertulis dalam SPK/addendum (Tier 5). Tier ditentukan oleh tahapan pekerjaan T0–T5 yang benar-benar terlaksana.",
       "Hanya Biaya Pihak Ketiga yang disetujui, dibayarkan, terbukti resmi, dan tidak dapat dipulihkan yang dapat diperhitungkan (mis. PNBP, notaris, legalisasi/apostille); dana yang belum terpakai wajib dikembalikan. Jumlah yang tidak disengketakan dibayar lebih dahulu, laporan status diberikan berkala untuk tier panjang, dan hak menempuh BPSK/pengadilan tetap dihormati sesuai UU Perlindungan Konsumen.",
     ],
   },
@@ -83,7 +85,7 @@ export default function SyaratKetentuanPage() {
           <p className="text-sm text-muted-foreground">
             Pertanyaan tentang ketentuan ini? Hubungi kami via{" "}
             <Link href="/kontak" className="font-semibold text-primary hover:underline">halaman kontak</Link>
-            . Naskah lengkap pengembalian dana (14 pasal + dasar hukum) tersedia di{" "}
+            . Naskah lengkap pengembalian dana (15 pasal + skema refund indikatif + dasar hukum) tersedia di{" "}
             <Link href="/ketentuan-refund" className="font-semibold text-primary hover:underline">Ketentuan Refund</Link>
             .
           </p>

@@ -145,7 +145,7 @@ function buildMatrixPage(industrySlug: string, serviceId: string): SeoPage | nul
     industrySlug: industry.slug,
     title: `${b.h1} untuk Usaha ${industry.name} ${CURRENT_YEAR} — Syarat, Biaya & Proses`,
     h1: `${b.h1} untuk Usaha ${industry.name}`,
-    metaDesc: capMeta(`${b.h1} untuk sektor ${industry.name.toLowerCase()}: kenapa krusial, syarat khusus sektor, proses via ${b.authority}. Mulai ${b.price}, ${b.duration}, garansi 100%. Konsultasi gratis.`),
+    metaDesc: capMeta(`${b.h1} untuk sektor ${industry.name.toLowerCase()}: kenapa krusial, syarat khusus sektor, proses via ${b.authority}. Mulai ${b.price}, ${b.duration}, garansi 100% bila gagal karena kesalahan proses kami. Konsultasi gratis.`),
     intro: [intros[v % intros.length]],
     sections,
     faq,

@@ -351,7 +351,12 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       {
         qid: "kebijakan-refund",
         q: "Bagaimana kebijakan pengembalian dana (refund)?",
-        a: "Jika izin gagal terbit karena kesalahan proses kami, jasa yang dibayar dikembalikan 100% sesuai kontrak — prosesnya berjalan sejak pengajuan resmi dan biasanya rampung dalam beberapa hari kerja. Biaya resmi yang sudah masuk kas negara (PNBP) atau honor notaris tidak bisa ditarik kembali karena memang diserahkan ke pihak ketiga. Semua kondisi refund kami bacakan jelas sebelum Anda menandatangani.",
+        a: "Dua jalur. (1) Bila izin gagal terbit karena kesalahan proses kami, 100% jasa yang dibayar dikembalikan sesuai kontrak — pencairan mengikuti Ketentuan Refund berjenjang, paling cepat 45 hari kerja (Tier 1) sejak klaim lengkap diterima. (2) Bila Anda sendiri yang membatalkan di tengah pekerjaan, refund dihitung dengan Skema Refund Berjenjang T0–T5 berdasarkan pekerjaan yang benar-benar terlaksana. Biaya resmi yang sudah masuk kas negara (PNBP) atau honor notaris tidak bisa ditarik kembali karena memang diserahkan ke pihak ketiga; dana pihak ketiga yang belum terpakai selalu dikembalikan. Semua kondisi refund kami bacakan jelas sebelum Anda menandatangani.",
+      },
+      {
+        qid: "membatalkan-di-tengah",
+        q: "Kalau saya membatalkan pesanan di tengah pekerjaan, apakah uang kembali 100%?",
+        a: "Tidak otomatis 100%. Garansi 100% hanya berlaku untuk kegagalan yang disebabkan kesalahan kami. Bila Anda menghentikan mandat sepihak — alasan apa pun, termasuk perubahan rencana bisnis — refund dana jasa mengikuti Skema Refund Berjenjang: T0 belum dimulai 100%, T1 diagnosis 80%, T2 dokumen tersusun 50%, T3 berkas diajukan 25%, T4–T5 izin terbit 0%, dikurangi biaya pihak ketiga yang terbukti keluar. Pekerjaan yang sudah dikerjakan tetap menjadi hak yang dibayar — prinsip yang sama seperti konsultan, arsitek, atau dokter: jasa yang telanjur diberikan tetap dihargai. Rincian di halaman Ketentuan Refund Pasal 6A dan 8.",
       },
     ],
   },
@@ -1531,7 +1536,11 @@ export const FAQ_CONTENT: Partial<
     },
     "kebijakan-refund": {
       q: "What is your refund policy?",
-      a: "If the permit fails to be issued due to an error in our process, 100% of the service fee is refunded as stated in the contract — processing starts from the formal request and usually completes within a few working days. Official fees already paid to the state (PNBP) or notary honorariums cannot be recovered because they went to third parties. All refund conditions are read out clearly before you sign.",
+      a: "There are two tracks. (1) If the permit fails to be issued due to an error in our process, 100% of the service fee is refunded as stated in the contract — disbursement follows the tiered Refund Policy, fastest 45 working days (Tier 1) from a complete claim. (2) If you cancel midway yourself, the refund follows the Graduated Refund Schedule T0–T5 based on the work actually completed. Official fees already paid to the state (PNBP) or notary honorariums cannot be recovered because they went to third parties; unused third-party funds are always returned. All refund conditions are read out clearly before you sign.",
+    },
+    "membatalkan-di-tengah": {
+      q: "If I cancel my order midway, do I get 100% of my money back?",
+      a: "Not automatically. The 100% guarantee applies only to failures caused by our error. If you terminate the mandate unilaterally — for any reason, including a change of business plans — the service-fee refund follows the Graduated Refund Schedule: T0 not started 100%, T1 diagnosis 80%, T2 documents prepared 50%, T3 filed with the authority 25%, T4–T5 permit issued 0%, minus proven third-party costs already paid out. Work already performed remains payable — the same principle that applies to consultants, architects, or doctors: services already rendered are still valued. Details on the Refund Policy page, Articles 6A and 8.",
     },
     "perpanjangan-izin": {
       q: "Do business permits need renewal?",

@@ -64,7 +64,7 @@ export function SeoJsonLd() {
       `${SITE_URL}/kantor/kantor-bandung-fasade.jpg`,
     ],
     description:
-      "Konsultan perizinan usaha, perpajakan & penempatan pekerja migran #1 Indonesia. Jasa pengurusan NIB, pendirian PT/CV/PMA, OSS-RBA, sertifikasi halal, izin BPOM, PBG/SLF, AMDAL, pajak pribadi & badan (NPWP, SPT, PKP, Coretax), penempatan PMI ke 17 negara (Jepang, Korea, Saudi, dsb), izin PPTKIS/P3MI, izin umroh (PPIU) & haji (PPIH), registrasi IATA, izin usaha Arab Saudi (MISA), RKAB & perizinan tambang — melayani 38 provinsi & 514 kabupaten/kota dengan garansi 100% uang kembali.",
+      "Konsultan perizinan usaha, perpajakan & penempatan pekerja migran #1 Indonesia. Jasa pengurusan NIB, pendirian PT/CV/PMA, OSS-RBA, sertifikasi halal, izin BPOM, PBG/SLF, AMDAL, pajak pribadi & badan (NPWP, SPT, PKP, Coretax), penempatan PMI ke 17 negara (Jepang, Korea, Saudi, dsb), izin PPTKIS/P3MI, izin umroh (PPIU) & haji (PPIH), registrasi IATA, izin usaha Arab Saudi (MISA), RKAB & perizinan tambang — melayani 38 provinsi & 514 kabupaten/kota dengan garansi 100% uang kembali bila gagal karena kesalahan proses kami.",
     telephone: CONTACT.phoneIntl,
     email: "halo@pusatperizinan.com",
     foundingDate: CONTACT.foundingYear,

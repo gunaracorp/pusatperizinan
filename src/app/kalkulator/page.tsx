@@ -168,7 +168,7 @@ export default function KalkulatorPage() {
                 <Wallet className="h-4 w-4 text-primary" aria-hidden /> Rincian per item
               </span>
               <span className="flex items-center gap-1.5">
-                <ShieldCheck className="h-4 w-4 text-primary" aria-hidden /> Garansi 100% uang kembali
+                <ShieldCheck className="h-4 w-4 text-primary" aria-hidden /> Garansi 100% uang kembali — bila gagal karena kesalahan kami
               </span>
               <span className="flex items-center gap-1.5">
                 <PiggyBank className="h-4 w-4 text-primary" aria-hidden /> Termin 50/50 tersedia

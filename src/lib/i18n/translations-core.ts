@@ -27,10 +27,10 @@ const id: Translation = {
   heroTitle2: "Tinggal Terima",
   heroHigh2: "Beres",
   heroSubtitle:
-    "NIB, PT, CV, Halal, BPOM, sampai AMDAL — diproses tim ahli, legal 100%, garansi uang kembali. Mulai dari Rp 455 ribu, tercepat 1 hari kerja.",
+    "NIB, PT, CV, Halal, BPOM, sampai AMDAL — diproses tim ahli, legal 100%, garansi uang kembali bila gagal karena kesalahan kami. Mulai dari Rp 455 ribu, tercepat 1 hari kerja.",
   heroBullet1: "NIB 1 hari • PT 3 hari • Tanpa ribet antre instansi",
   heroBullet2: "Jalur resmi pemerintah — dokumen sah & terverifikasi",
-  heroBullet3: "Garansi 100% uang kembali jika izin gagal terbit",
+  heroBullet3: "Garansi 100% uang kembali bila izin gagal terbit karena kesalahan kami",
   heroReviews: "dari 890+ ulasan klien",
   // Hero form
   formTitle: "Konsultasi Gratis 15 Menit",
@@ -252,10 +252,10 @@ const en: Translation = {
   heroTitle2: "Handled — Sit Back &",
   heroHigh2: "Relax",
   heroSubtitle:
-    "From NIB, PT, CV, Halal, BPOM to AMDAL — processed by experts, 100% legal, money-back guarantee. Starting from Rp 455 thousand, as fast as 1 business day.",
+    "From NIB, PT, CV, Halal, BPOM to AMDAL — processed by experts, 100% legal, money-back guarantee if we fail. Starting from Rp 455 thousand, as fast as 1 business day.",
   heroBullet1: "NIB in 1 day • PT in 3 days • No queuing at government offices",
   heroBullet2: "Official government channels — valid & verified documents",
-  heroBullet3: "100% money-back guarantee if your license fails to issue",
+  heroBullet3: "100% money-back guarantee if your license fails to issue due to our error",
   heroReviews: "from 890+ client reviews",
   // Hero form
   formTitle: "Free 15-Minute Consultation",

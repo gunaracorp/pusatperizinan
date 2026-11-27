@@ -89,14 +89,14 @@ export async function generateMetadata({
   const v2 = page ? undefined : resolveKatalogV2(slug.join("/"));
   if (v2) {
     const title = `${v2.name} — Harga ${new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(v2.discountPrice)} (${v2.code})`;
-    const description = `Pengurusan ${v2.name} (${v2.code}) mulai ${new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(v2.discountPrice)} — estimasi ${v2.estimate}, diterbitkan ${v2.authority}. Syarat lengkap, garansi 100%, pendampingan hingga terbit oleh PusatPerizinan.com.`;
+    const description = `Pengurusan ${v2.name} (${v2.code}) mulai ${new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(v2.discountPrice)} — estimasi ${v2.estimate}, diterbitkan ${v2.authority}. Syarat lengkap, garansi 100% bila gagal karena kesalahan proses kami, pendampingan hingga terbit oleh PusatPerizinan.com.`;
     return {
       title,
       description,
       alternates: langAlternates(`/layanan/${v2.slug}`),
       openGraph: {
         title, description, url: `/layanan/${v2.slug}`, type: "article", siteName: "PusatPerizinan.com", locale: "id_ID",
-        images: [{ url: ogImageUrl({ title: `${v2.name} (${v2.code})`, subtitle: "Harga transparan, syarat lengkap, garansi 100% uang kembali.", category: "Layanan Perizinan" }), width: 1200, height: 630, alt: v2.name }],
+        images: [{ url: ogImageUrl({ title: `${v2.name} (${v2.code})`, subtitle: "Harga transparan, syarat lengkap, garansi 100% bila gagal karena kesalahan kami.", category: "Layanan Perizinan" }), width: 1200, height: 630, alt: v2.name }],
       },
       twitter: { card: "summary_large_image", title, description, images: [ogImageUrl({ title: `${v2.name} (${v2.code})`, category: "Layanan Perizinan" })] },
     };
@@ -106,7 +106,7 @@ export async function generateMetadata({
   if (v3) {
     const fmtIdr = new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 });
     const title = `${v3.name} — Harga ${fmtIdr.format(v3.discountPrice)} (${v3.code})`;
-    const description = `Jasa pengurusan ${v3.name} (${v3.code}) mulai ${fmtIdr.format(v3.discountPrice)} — estimasi ${v3.estimate}, diterbitkan ${v3.authority}, masa berlaku ${v3.validity}. Syarat lengkap, garansi 100%, pendampingan hingga terbit oleh PusatPerizinan.com.`;
+    const description = `Jasa pengurusan ${v3.name} (${v3.code}) mulai ${fmtIdr.format(v3.discountPrice)} — estimasi ${v3.estimate}, diterbitkan ${v3.authority}, masa berlaku ${v3.validity}. Syarat lengkap, garansi 100% bila gagal karena kesalahan proses kami, pendampingan hingga terbit oleh PusatPerizinan.com.`;
     return {
       title,
       description,
@@ -149,7 +149,7 @@ export async function generateMetadata({
       locale: "id_ID",
       // Gambar share unik per-halaman (dulunya via file-convention
       // opengraph-image yang memicu panic Turbopack di catch-all).
-      images: [{ url: ogImageUrl({ title: page.title, subtitle: "Dikerjakan konsultan berpengalaman — resmi, terverifikasi, garansi 100% uang kembali.", category: "Layanan Perizinan" }), width: 1200, height: 630, alt: page.title }],
+      images: [{ url: ogImageUrl({ title: page.title, subtitle: "Dikerjakan konsultan berpengalaman — resmi, terverifikasi, garansi 100% bila gagal karena kesalahan kami.", category: "Layanan Perizinan" }), width: 1200, height: 630, alt: page.title }],
     },
     twitter: {
       card: "summary_large_image",
@@ -357,7 +357,7 @@ function LeadForm({ page }: { page: NonNullable<ReturnType<typeof getServicePage
       </div>
       <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-muted-foreground">
         <span className="flex items-center gap-1">
-          <ShieldCheck className="h-3.5 w-3.5 text-primary" aria-hidden /> Garansi 100%
+          <ShieldCheck className="h-3.5 w-3.5 text-primary" aria-hidden /> Garansi 100% — bila gagal karena kesalahan kami
         </span>
         <span className="flex items-center gap-1">
           <BadgeCheck className="h-3.5 w-3.5 text-primary" aria-hidden /> Jalur resmi pemerintah
@@ -622,7 +622,7 @@ export default async function ServiceDetailPage({
             </div>
             <div className="rounded-xl border bg-card p-3.5">
               <p className="text-[11px] uppercase tracking-wide text-muted-foreground font-semibold">Garansi</p>
-              <p className="mt-0.5 text-sm font-semibold leading-snug text-primary">100% uang kembali</p>
+              <p className="mt-0.5 text-sm font-semibold leading-snug text-primary">100% uang kembali bila gagal karena kesalahan kami</p>
             </div>
           </div>
         </header>
@@ -783,7 +783,7 @@ export default async function ServiceDetailPage({
                 <strong className="text-emerald-300">4,9/5</strong>.
               </p>
               <p className="mt-2 text-xs text-emerald-100/70 leading-relaxed">
-                3.899+ izin terbit · Garansi 100% · Support WhatsApp setelah selesai
+                3.899+ izin terbit · Garansi 100% (kesalahan kami) · Support WhatsApp setelah selesai
               </p>
             </div>
           </aside>

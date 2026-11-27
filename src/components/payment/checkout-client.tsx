@@ -74,6 +74,7 @@ export function CheckoutClient({ initialPaket }: { initialPaket: string }) {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [created, setCreated] = useState<CreateResponse | null>(null);
+  const [agreedRefund, setAgreedRefund] = useState(false);
 
   useEffect(() => {
     fetch("/api/payment/config")
@@ -457,10 +458,40 @@ export function CheckoutClient({ initialPaket }: { initialPaket: string }) {
                 </p>
               )}
 
+              {/* Persetujuan Ketentuan Refund — PP 80/2019 Pasal 71 & UU 8/1999 Pasal 18:
+                  syarat refund harus terlihat & disetujui SEBELUM pembayaran */}
+              <label
+                htmlFor="agree-refund"
+                className="flex cursor-pointer items-start gap-2.5 rounded-lg border border-border bg-muted/30 px-3 py-3 text-[11px] leading-relaxed text-foreground/85"
+              >
+                <input
+                  id="agree-refund"
+                  type="checkbox"
+                  checked={agreedRefund}
+                  onChange={(e) => setAgreedRefund(e.target.checked)}
+                  className="mt-0.5 h-4 w-4 shrink-0 accent-primary"
+                />
+                <span>
+                  Saya telah membaca dan menyetujui{" "}
+                  <Link href="/ketentuan-refund" target="_blank" className="font-semibold text-primary hover:underline">
+                    Ketentuan Refund
+                  </Link>{" "}
+                  dan{" "}
+                  <Link href="/garansi" target="_blank" className="font-semibold text-primary hover:underline">
+                    Ketentuan Garansi
+                  </Link>
+                  : garansi 100% uang kembali berlaku bila izin gagal terbit karena
+                  kesalahan PusatPerizinan.com; pembatalan atau penghentian oleh saya di
+                  tengah pekerjaan dihitung dengan Skema Refund Berjenjang T0–T5
+                  (100%/80%/50%/25%/0% dana jasa) dikurangi biaya pihak ketiga yang terbukti
+                  keluar dan tidak dapat dipulihkan.
+                </span>
+              </label>
+
               <Button
                 className="w-full rounded-xl font-extrabold text-base h-12 shadow-lg shadow-primary/20"
                 onClick={submit}
-                disabled={submitting}
+                disabled={submitting || !agreedRefund}
               >
                 {submitting ? (
                   <>
@@ -470,6 +501,11 @@ export function CheckoutClient({ initialPaket }: { initialPaket: string }) {
                   <>Bayar Sekarang — {fmtRupiah(paket.price)}</>
                 )}
               </Button>
+              {!agreedRefund && (
+                <p className="text-center text-[11px] text-muted-foreground">
+                  Centang persetujuan ketentuan refund di atas untuk mengaktifkan tombol pembayaran.
+                </p>
+              )}
 
               {/* ROADMAP-99 langkah 8 — social proof per layanan (angka sama
                   dgn halaman detail: sumber social-proof.ts bersumber
@@ -478,12 +514,14 @@ export function CheckoutClient({ initialPaket }: { initialPaket: string }) {
                 <Users className="h-3.5 w-3.5" aria-hidden /> ±{proof.label}
               </p>
 
-              {/* ROADMAP-99 langkah 48 — badge Garansi 100% uang kembali */}
+              {/* ROADMAP-99 langkah 48 — badge Garansi 100% uang kembali
+                  (revisi dewan pakar v3.0: + rujukan Ketentuan Refund) */}
               <Link
                 href="/garansi"
                 className="flex items-center justify-center gap-1.5 rounded-lg border border-primary/30 bg-primary/5 px-3 py-2 text-[11px] font-semibold text-foreground transition hover:bg-primary/10"
               >
-                <ShieldCheck className="h-3.5 w-3.5 text-primary" aria-hidden /> Garansi 100% uang kembali — bila gagal karena kesalahan kami
+                <ShieldCheck className="h-3.5 w-3.5 text-primary" aria-hidden /> Garansi 100% uang kembali — bila gagal karena kesalahan kami ·{" "}
+                <span className="text-primary">Skema refund pembatalan klien: T0–T5</span>
               </Link>
 
               <div className="flex items-center justify-center gap-4 text-[11px] text-muted-foreground">

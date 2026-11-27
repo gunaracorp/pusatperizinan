@@ -958,7 +958,7 @@ function buildCityHubPageUncached(
     province: prov.name,
     title: `Konsultan Perizinan & Legalitas Usaha di ${city} — Semua Izin`,
     h1: `Konsultan Perizinan & Legalitas Usaha di ${city}`,
-    desc: `${totalServices}+ layanan perizinan, pajak & PMI untuk ${city}, ${prov.name} — NIB, PT, CV, halal, BPOM, merek, SPT. Mulai ${sample.price}, garansi 100%.`,
+    desc: `${totalServices}+ layanan perizinan, pajak & PMI untuk ${city}, ${prov.name} — NIB, PT, CV, halal, BPOM, merek, SPT. Mulai ${sample.price}, garansi 100% bila gagal karena kesalahan proses kami.`,
     metaDesc: `Jasa konsultan perizinan usaha di ${city}, ${prov.name}: NIB, PT, CV, halal, BPOM, merek & pajak. Mulai ${sample.price}, proses dominan online, garansi uang kembali 100%. Konsultasi gratis via WhatsApp!`,
     intro,
     longDesc,
@@ -1225,7 +1225,7 @@ export function getRegionHub(provinceIdx: number): ServicePage | null {
     title: `Layanan Perizinan & Konsultan di ${prov.name} — Semua Izin`,
     h1: `Layanan Konsultan di ${prov.name}`,
     desc: prov.note,
-    metaDesc: `Semua jasa perizinan, pajak & penempatan PMI untuk ${prov.name}: NIB, PT, halal, SPT, kerja luar negeri. Melayani ${prov.majors.join(", ")}. Konsultasi gratis — garansi 100%.`,
+    metaDesc: `Semua jasa perizinan, pajak & penempatan PMI untuk ${prov.name}: NIB, PT, halal, SPT, kerja luar negeri. Melayani ${prov.majors.join(", ")}. Konsultasi gratis — garansi 100% bila gagal karena kesalahan proses kami.`,
     intro: `${prov.note} PusatPerizinan.com melayani seluruh ${prov.name} — dari ${prov.majors.join(", ")} sampai kabupaten/kota lainnya — dengan ${members.length}+ layanan yang bisa dikombinasikan sesuai kebutuhan usaha Anda.`,
     longDesc: [
       `${prov.note} Tim kami sudah menangani ratusan kasus di ${prov.name}: dari NIB UMKM sampai perizinan korporasi, dari SPT orang pribadi sampai tax planning perusahaan, dari dokumen PMI sampai keberangkatan ke 17 negara tujuan.`,

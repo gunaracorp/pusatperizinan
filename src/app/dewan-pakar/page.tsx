@@ -269,7 +269,11 @@ export default function DewanPakarPage() {
                 (tahapan T0–T5 yang dapat dibuktikan), biaya pihak ketiga yang sah dan terbukti,
                 ketentuan SPK, serta hukum yang berlaku — dari <strong>paling cepat 45 Hari Kerja</strong>{" "}
                 hingga <strong>paling lama 24 bulan kalender</strong> untuk mandat lintas negara yang
-                disepakati tertulis. Rincian lengkap di{" "}
+                disepakati tertulis. Sejak <strong>Ketentuan Refund v3.0</strong>, pembatalan atau
+                penghentian mandat oleh Klien dihitung dengan <strong>Skema Refund Indikatif Default</strong>{" "}
+                (Pasal 6A): T0 100%, T1 80%, T2 50%, T3 25%, T4–T5 0% dari dana jasa — dikurangi
+                biaya pihak ketiga yang terbukti keluar; kegagalan karena kesalahan material
+                Perusahaan tetap dijamin 100% (Tier 1). Rincian lengkap di{" "}
                 <Link href="/ketentuan-refund" className="font-semibold text-primary hover:underline">Ketentuan Refund &amp; Pengembalian Dana</Link>.
               </p>
             </div>

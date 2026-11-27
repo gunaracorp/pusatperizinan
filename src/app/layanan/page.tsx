@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Katalog Layanan Lengkap — Perizinan, Pajak & Kerja Luar Negeri",
     description:
-      "Direktori lengkap jasa konsultan PusatPerizinan.com: perizinan usaha (NIB, PT, halal, BPOM), pajak pribadi & perusahaan, kerja luar negeri ke 17 negara. 38 provinsi, harga transparan, garansi 100%.",
+      "Direktori lengkap jasa konsultan PusatPerizinan.com: perizinan usaha (NIB, PT, halal, BPOM), pajak pribadi & perusahaan, kerja luar negeri ke 17 negara. 38 provinsi, harga transparan, garansi 100% bila gagal karena kesalahan proses kami.",
     keywords: [
       "katalog layanan konsultan",
       "jasa perizinan lengkap",

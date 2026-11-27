@@ -45,7 +45,7 @@ export const KATALOG_V3: KatalogV3Service[] = [
     authority: "Dinas Pendidikan Provinsi",
     requirements: "Akta & SK Kemenkumham yayasan, NIB, NPWP, KTP & ijazah pimpinan lembaga, kurikulum & silabus program, bukti kepemilikan/sewa gedung, daftar tenaga pendidik",
     validity: "5 tahun",
-    notes: "Garansi terbit atau biaya jasa dikembalikan 100%.",
+    notes: "Garansi terbit atau biaya jasa dikembalikan 100% bila gagal karena kesalahan proses kami.",
     description: "Izin Operasional LKP Bidang Bahasa Asing adalah dokumen wajib dari Dinas Pendidikan provinsi untuk lembaga yang menyelenggarakan kursus bahasa Inggris, Jepang, Mandarin, atau bahasa lain. Kami menyusun kurikulum, formifikasi, hingga verifikasi lapangan hingga izin terbit. Tanpa izin ini, lembaga berisiko sanksi penutupan dan kehilangan akses sertifikat resmi bagi peserta didik.",
   },
   {

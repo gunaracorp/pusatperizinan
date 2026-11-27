@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     template: "%s | PusatPerizinan.com",
   },
   description:
-    "Konsultan perizinan usaha terbaik Indonesia: NIB 1 hari, pendirian PT 3 hari, sertifikasi halal, izin BPOM/PIRT, PBG & SLF, izin lingkungan, PMA, izin umroh (PPIU) & haji (PPIH), registrasi IATA, izin usaha Arab Saudi (MISA), RKAB tambang. Melayani 38 provinsi & 514 kabupaten/kota. Panduan perizinan terlengkap + AI checker + kalkulator biaya gratis. Kantor SCBD se-lantai Bursa Efek Indonesia. Garansi 100% uang kembali.",
+    "Konsultan perizinan usaha terbaik Indonesia: NIB 1 hari, pendirian PT 3 hari, sertifikasi halal, izin BPOM/PIRT, PBG & SLF, izin lingkungan, PMA, izin umroh (PPIU) & haji (PPIH), registrasi IATA, izin usaha Arab Saudi (MISA), RKAB tambang. Melayani 38 provinsi & 514 kabupaten/kota. Panduan perizinan terlengkap + AI checker + kalkulator biaya gratis. Kantor SCBD se-lantai Bursa Efek Indonesia. Garansi 100% uang kembali bila gagal karena kesalahan kami.",
   keywords: [
     // inti layanan
     "jasa perizinan usaha", "jasa pengurusan izin usaha", "konsultan perizinan", "konsultan izin usaha",
@@ -145,7 +145,7 @@ export const metadata: Metadata = {
     siteName: "PusatPerizinan.com",
     title: "PusatPerizinan.com — Urus Semua Izin Usaha, Tinggal Terima Beres",
     description:
-      "Konsultan perizinan #1 Indonesia dari kantor SCBD. NIB 1 hari, PT 3 hari, Halal, BPOM, PBG/SLF, AMDAL, PMA, Izin Umroh/Haji (PPIU/PPIH), IATA, Arab Saudi (MISA), RKAB tambang — garansi 100%. Melayani 38 provinsi & 514 kabupaten/kota.",
+      "Konsultan perizinan #1 Indonesia dari kantor SCBD. NIB 1 hari, PT 3 hari, Halal, BPOM, PBG/SLF, AMDAL, PMA, Izin Umroh/Haji (PPIU/PPIH), IATA, Arab Saudi (MISA), RKAB tambang — garansi 100% bila gagal karena kesalahan kami. Melayani 38 provinsi & 514 kabupaten/kota.",
     images: [
       {
         url: "/og-pusatperizinan.png",
@@ -159,7 +159,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "PusatPerizinan.com — Konsultan Perizinan Usaha #1 Indonesia",
     description:
-      "NIB 1 hari, PT 3 hari, garansi 100%. Panduan perizinan terlengkap Indonesia + Cek Izin AI gratis.",
+      "NIB 1 hari, PT 3 hari, garansi 100% bila gagal karena kesalahan kami. Panduan perizinan terlengkap Indonesia + Cek Izin AI gratis.",
     images: ["/og-pusatperizinan.png"],
   },
   formatDetection: {

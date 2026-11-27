@@ -595,7 +595,7 @@ function buildVoProvinceHub(provName: string): ServicePage | null {
     longDesc: [
       `Pelaku usaha di ${provName} memakai virtual office untuk tiga tujuan: legalitas alamat di NIB & dokumen perusahaan, kredibilitas di depan klien/bank/marketplace, dan perlindungan privasi alamat rumah. Proses 100% daring — Anda di mana pun di ${provName} (termasuk ${prov.majors.join(", ")}), alamat aktif dalam 1-2 hari kerja.`,
       `${prov.note} Lokasi yang paling relevan untuk ${provName}: ${nearest.map((l) => `${l.name} di ${l.city}`).join("; ")}. ${local.length > 0 ? `Semuanya berada langsung di ${provName}.` : `Semuanya dapat dijangkau dari ${provName} dengan proses yang sama karena layanan kami 100% daring.`}`,
-      `Semua paket tersedia: Virtual Office Address mulai ${fmtHargaTahun(harga.yearly)}, VO Plus Pajak untuk PKP, bundling Pendirian PT/CV/PT Perorangan, Serviced Office, Meeting Room, dan PPA untuk PT PMA. Kombinasikan dengan jasa perizinan kami (NIB, halal, BPOM, merek, pajak) — satu tim, dokumen selalu konsisten, garansi uang kembali 100%.`,
+      `Semua paket tersedia: Virtual Office Address mulai ${fmtHargaTahun(harga.yearly)}, VO Plus Pajak untuk PKP, bundling Pendirian PT/CV/PT Perorangan, Serviced Office, Meeting Room, dan PPA untuk PT PMA. Kombinasikan dengan jasa perizinan kami (NIB, halal, BPOM, merek, pajak) — satu tim, dokumen selalu konsisten, garansi uang kembali 100% bila gagal karena kesalahan proses kami.`,
     ],
     price: `Mulai ${fmtHargaTahun(harga.yearly)}`,
     priceNumeric: harga.yearly,

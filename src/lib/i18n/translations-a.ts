@@ -37,7 +37,7 @@ export const TRANSLATIONS_A: Partial<Record<LangCode, Partial<Translation>>> = {
       "从 NIB、PT、CV、清真认证、BPOM 到 AMDAL — 专家团队全程代办，100% 合法合规，未下证全额退款。35万印尼盾起，最快 1 个工作日出证。",
     heroBullet1: "NIB 1 天 • PT 3 天 • 告别政府部门排队奔波",
     heroBullet2: "官方政府渠道 — 文件合法且经认证",
-    heroBullet3: "执照未获签发，100% 全额退款保证",
+    heroBullet3: "若因我方失误导致执照未签发，100% 全额退款保证",
     heroReviews: "来自 890+ 条客户评价",
     // Hero form
     formTitle: "15 分钟免费咨询",
@@ -224,7 +224,7 @@ export const TRANSLATIONS_A: Partial<Record<LangCode, Partial<Translation>>> = {
       "NIB、PT、CV、ハラル認証、BPOMからAMDALまで — 専門チームがすべて代行、100%合法、許可が下りなければ全額返金保証。35万ルピアから、最短1営業日で取得。",
     heroBullet1: "NIB 1日 • PT 3日 • 役所へ並ぶ手間はゼロ",
     heroBullet2: "政府の正規ルート — 有効かつ認証済みの書類",
-    heroBullet3: "許可が発行されない場合は100%全額返金保証",
+    heroBullet3: "当社の誤りにより許可が発行されない場合は100%全額返金保証",
     heroReviews: "890件以上のお客様レビューから",
     // Hero form
     formTitle: "15分の無料相談",
@@ -411,7 +411,7 @@ export const TRANSLATIONS_A: Partial<Record<LangCode, Partial<Translation>>> = {
       "NIB, PT, CV, 할랄 인증, BPOM부터 AMDAL까지 — 전문가 팀이 처리하고 100% 합법, 허가 미발급 시 전액 환불 보장. 35만 루피아부터, 최단 1영업일.",
     heroBullet1: "NIB 1일 • PT 3일 • 관공서 줄 서기 없이",
     heroBullet2: "정부 공식 채널 — 유효하고 검증된 서류",
-    heroBullet3: "허가 발급 실패 시 100% 전액 환불 보장",
+    heroBullet3: "당사 실수로 허가 발급이 실패한 경우 100% 전액 환불 보장",
     heroReviews: "890개 이상 고객 후기 기준",
     // Hero form
     formTitle: "15분 무료 상담",
@@ -598,7 +598,7 @@ export const TRANSLATIONS_A: Partial<Record<LangCode, Partial<Translation>>> = {
       "Từ NIB, PT, CV, Halal, BPOM đến AMDAL — đội chuyên gia xử lý trọn gói, hợp pháp 100%, cam kết hoàn tiền nếu không được cấp. Chỉ từ 350 nghìn Rupiah, nhanh nhất 1 ngày làm việc.",
     heroBullet1: "NIB 1 ngày • PT 3 ngày • Không cần xếp hàng ở cơ quan nhà nước",
     heroBullet2: "Kênh chính thống của nhà nước — hồ sơ hợp lệ & được xác minh",
-    heroBullet3: "Cam kết hoàn tiền 100% nếu giấy phép không được cấp",
+    heroBullet3: "Cam kết hoàn tiền 100% nếu giấy phép không được cấp do lỗi của chúng tôi",
     heroReviews: "từ hơn 890 đánh giá của khách hàng",
     // Hero form
     formTitle: "Tư vấn miễn phí 15 phút",
@@ -785,7 +785,7 @@ export const TRANSLATIONS_A: Partial<Record<LangCode, Partial<Translation>>> = {
       "ตั้งแต่ NIB, PT, CV, ฮาลาล, BPOM ไปจนถึง AMDAL — ทีมผู้เชี่ยวชาญดูแลให้ครบ ถูกกฎหมาย 100% การันตีคืนเงินหากใบอนุญาตไม่ออก เริ่มต้นเพียง 350,000 รูเปียห์ เร็วสุด 1 วันทำการ",
     heroBullet1: "NIB 1 วัน • PT 3 วัน • ไม่ต้องไปต่อคิวหน่วยงานราชการ",
     heroBullet2: "ช่องทางราชการแท้ — เอกสารถูกต้องและตรวจสอบได้",
-    heroBullet3: "การันตีคืนเงิน 100% หากใบอนุญาตไม่ออก",
+    heroBullet3: "การันตีคืนเงิน 100% หากใบอนุญาตไม่ออกเพราะความผิดพลาดของเรา",
     heroReviews: "จากรีวิวลูกค้ากว่า 890 รายการ",
     // Hero form
     formTitle: "ปรึกษาฟรี 15 นาที",
@@ -969,10 +969,10 @@ export const TRANSLATIONS_A: Partial<Record<LangCode, Partial<Translation>>> = {
     heroTitle2: "kami na ang bahala —",
     heroHigh2: "hintayin mo lang",
     heroSubtitle:
-      "Mula NIB, PT, CV, Halal, BPOM hanggang AMDAL — pinoproseso ng mga eksperto, 100% legal, may money-back guarantee. Mula Rp 455,000, pinakamabilis na 1 working day.",
+      "Mula NIB, PT, CV, Halal, BPOM hanggang AMDAL — pinoproseso ng mga eksperto, 100% legal, may money-back guarantee kung kami ang nagkamali. Mula Rp 455,000, pinakamabilis na 1 working day.",
     heroBullet1: "NIB 1 araw • PT 3 araw • Walang pila sa mga ahensya ng gobyerno",
     heroBullet2: "Opisyal na daloy ng gobyerno — wasto at beripikadong dokumento",
-    heroBullet3: "100% money-back guarantee kung hindi ma-isyu ang permit",
+    heroBullet3: "100% money-back guarantee kung hindi ma-isyu ang permit dahil sa aming pagkakamali",
     heroReviews: "mula sa 890+ review ng mga kliyente",
     // Hero form
     formTitle: "Libreng 15-Minutong Konsultasyon",
@@ -1159,7 +1159,7 @@ export const TRANSLATIONS_A: Partial<Record<LangCode, Partial<Translation>>> = {
       "NIB, PT, CV, Halal, BPOM hinggalah AMDAL — diproses pasukan pakar, sah 100%, dengan jaminan wang dikembalikan. Bermula Rp 455 ribu, paling pantas 1 hari bekerja.",
     heroBullet1: "NIB 1 hari • PT 3 hari • Tak perlu beratur di jabatan kerajaan",
     heroBullet2: "Saluran rasmi kerajaan — dokumen sah & disahkan",
-    heroBullet3: "Jaminan 100% wang dikembalikan sekiranya lesen gagal dikeluarkan",
+    heroBullet3: "Jaminan 100% wang dikembalikan sekiranya lesen gagal dikeluarkan disebabkan kesilapan kami",
     heroReviews: "daripada 890+ ulasan pelanggan",
     // Hero form
     formTitle: "Konsultasi Percuma 15 Minit",

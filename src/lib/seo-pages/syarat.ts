@@ -144,7 +144,7 @@ function buildSyaratPage(base: ServicePage): SeoPage | null {
     serviceId: b.slug,
     title: `Syarat ${b.h1} ${CURRENT_YEAR} — Checklist Dokumen Lengkap`,
     h1: `Syarat ${b.h1} ${CURRENT_YEAR}`,
-    metaDesc: capMeta(`Syarat ${b.h1.toLowerCase()} lengkap ${CURRENT_YEAR}: checklist dokumen dasar & khusus, kesalahan yang bikin gagal, langkah setelah dokumen lengkap. Audit dokumen gratis — garansi 100%.`),
+    metaDesc: capMeta(`Syarat ${b.h1.toLowerCase()} lengkap ${CURRENT_YEAR}: checklist dokumen dasar & khusus, kesalahan yang bikin gagal, langkah setelah dokumen lengkap. Audit dokumen gratis — garansi 100% bila gagal karena kesalahan proses kami.`),
     intro: [intros[v % intros.length]],
     sections,
     faq,

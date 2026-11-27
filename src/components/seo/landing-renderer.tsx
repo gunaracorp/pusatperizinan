@@ -129,7 +129,7 @@ export function SeoLandingView({ page }: { page: SeoPage }) {
             <Sparkles className="h-3 w-3 mr-1" aria-hidden /> {KIND_LABEL[page.kind]}
           </Badge>
           <Badge variant="outline" className="text-muted-foreground">
-            <ShieldCheck className="h-3 w-3 mr-1" aria-hidden /> Garansi uang kembali 100%
+            <ShieldCheck className="h-3 w-3 mr-1" aria-hidden /> Garansi uang kembali 100% — bila gagal karena kesalahan kami
           </Badge>
         </div>
         <h1 className="text-2xl md:text-4xl font-extrabold tracking-tight text-balance">{page.h1}</h1>

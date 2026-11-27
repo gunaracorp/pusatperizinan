@@ -6,16 +6,19 @@ import {
 import { SITE_NAME, SITE_URL, CONTACT } from "@/lib/site";
 
 // ============================================================
-// PUSATPERIZINAN.COM — /garansi (langkah 48 ROADMAP-99, FASE 6)
-// "Garansi 100% uang kembali bila gagal karena kesalahan kami."
-// Halaman trust E-E-A-T: janji eksplisit, syarat jelas, FAQ schema.
+// PUSATPERIZINAN.COM — /garansi (REVISI DEWAN PAKAR v3.0, 2026-11-27)
+// "Garansi 100% uang kembali BILA GAGAL KARENA KESALAHAN KAMI."
+// Pembatalan oleh Klien di tengah pekerjaan TIDAK berhak refund 100% —
+// dihitung dengan Skema Refund Berjenjang T0–T5 (lihat /ketentuan-refund).
+// Halaman trust E-E-A-T: janji eksplisit, syarat jelas & PROMINEN
+// (UU 8/1999 Pasal 18 — klausula baku tidak boleh tersembunyi).
 // Ditaut dari: badge checkout, footer, dan final CTA.
 // ============================================================
 
 export const metadata: Metadata = {
-  title: "Garansi 100% Uang Kembali — Jaminan Layanan Perizinan",
+  title: "Garansi 100% Uang Kembali (Bila Gagal Karena Kesalahan Kami) — Jaminan Layanan Perizinan",
   description:
-    "Garansi 100% uang kembali dari PusatPerizinan.com: bila izin Anda gagal terbit karena kesalahan administratif tim kami, seluruh biaya jasa kami kembalikan penuh. Klaim diakui diterima maks. 3 hari kerja (pemeriksaan administratif); keputusan tertulis dan pencairan dana mengikuti tier Ketentuan Refund — paling cepat 45 hari kerja.",
+    "Garansi 100% uang kembali dari PusatPerizinan.com berlaku bila izin gagal terbit karena kesalahan administratif tim kami. Pembatalan atau penghentian mandat oleh klien di tengah pekerjaan dihitung dengan Skema Refund Berjenjang T0–T5 (100%/80%/50%/25%/0% dari dana jasa), dikurangi biaya pihak ketiga yang terbukti keluar.",
   alternates: { canonical: "/garansi" },
   robots: { index: true, follow: true },
 };
@@ -46,7 +49,15 @@ const garansiFaqJsonLd = {
       name: "Situasi apa yang TIDAK tercakup garansi?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Garansi tidak mencakup: penolakan karena data/dokumen dari klien yang tidak benar atau dipalsukan; perubahan regulasi atau kebijakan instansi setelah pengajuan; keterlambatan yang berasal dari antrean instansi atau keabsahan verifikasi lapangan; serta biaya resmi negara (PNBP, notaris, uji lab) yang sudah dibayarkan ke pihak ketiga. Situasi di luar cakupan tetap kami urus ulang dengan biaya jasa seminimal mungkin.",
+        text: "Garansi tidak mencakup: (1) pembatalan, penghentian, atau perubahan mandat oleh Klien sendiri di tengah pekerjaan — termasuk perubahan rencana bisnis, pergantian pemegang saham, relokasi, atau keputusan komersial lain; refund untuk situasi ini dihitung dengan Skema Refund Berjenjang T0–T5; (2) penolakan karena data/dokumen dari klien yang tidak benar atau dipalsukan; (3) perubahan regulasi atau kebijakan instansi setelah pengajuan; (4) keterlambatan yang berasal dari antrean instansi atau keabsahan verifikasi lapangan; serta (5) biaya resmi negara (PNBP, notaris, uji lab) yang sudah dibayarkan ke pihak ketiga. Situasi di luar cakupan tetap kami urus ulang dengan biaya jasa seminimal mungkin.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Bagaimana kalau saya sendiri yang membatalkan di tengah pekerjaan — apakah tetap dapat refund 100%?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Tidak. Garansi 100% berlaku khusus untuk kegagalan yang disebabkan kesalahan administratif tim kami. Bila Klien menghentikan mandat sepihak — dengan alasan apa pun, termasuk perubahan rencana bisnis — pengembalian dana jasa dihitung dengan Skema Refund Berjenjang berdasarkan tahapan pekerjaan yang benar-benar terlaksana: T0 belum dimulai 100%, T1 diagnosis 80%, T2 dokumen tersusun 50%, T3 berkas diajukan 25%, T4–T5 izin terbit/penutupan 0%. Semua dikurangi Biaya Pihak Ketiga yang terbukti sudah keluar dan tidak dapat dipulihkan; dana pihak ketiga yang belum terpakai selalu dikembalikan. Pekerjaan yang sudah kami laksanakan tetap menjadi hak yang dibayar (KUHPerdata Pasal 1234 jo. 1601 — terminasi tidak menghapus kewajiban atas pekerjaan yang telanjur dikerjakan). Rincian lengkap di halaman Ketentuan Refund Pasal 6A dan 8.",
       },
     },
     {
@@ -64,7 +75,7 @@ const JANJI = [
   {
     icon: ShieldCheck,
     t: "Garansi 100% uang kembali",
-    d: "Izin gagal terbit karena kesalahan administratif tim kami? Seluruh biaya jasa kembali penuh — tanpa potongan, tanpa biaya klaim.",
+    d: "Izin gagal terbit karena kesalahan administratif tim kami? Seluruh biaya jasa kembali penuh — tanpa potongan, tanpa biaya klaim. Berlaku khusus untuk kegagalan karena kesalahan kami, bukan untuk pembatalan oleh klien.",
   },
   {
     icon: FileCheck,
@@ -125,6 +136,16 @@ export default function GaransiPage() {
               kami kembalikan 100%. Janji ini berlaku untuk semua layanan di katalog
               situs — tanpa perlu upgrade paket.
             </p>
+            <p className="mt-3 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-sm leading-relaxed text-foreground/90">
+              <strong className="text-amber-700">Batasan penting:</strong> garansi 100%
+              TIDAK berlaku bila Anda membatalkan atau menghentikan mandat di tengah
+              pekerjaan — termasuk perubahan rencana bisnis. Refund untuk pembatalan
+              oleh klien dihitung dengan{" "}
+              <Link href="#skema" className="font-semibold text-primary hover:underline">
+                Skema Refund Berjenjang T0–T5
+              </Link>{" "}
+              berdasarkan pekerjaan yang benar-benar terlaksana.
+            </p>
           </div>
         </div>
 
@@ -167,8 +188,16 @@ export default function GaransiPage() {
             </ul>
           </div>
           <div className="rounded-2xl border bg-muted/40 p-5">
-            <h3 className="font-bold">Di luar cakupan — tetap kami urus ulang dengan biaya seminimal mungkin:</h3>
+            <h3 className="font-bold">Di luar cakupan — refund dihitung dengan Skema Refund Berjenjang, bukan 100%:</h3>
             <ul className="mt-2.5 space-y-2 text-muted-foreground">
+              <li className="flex items-start gap-2">
+                <FileCheck className="mt-0.5 h-4 w-4 shrink-0" aria-hidden />
+                <span>
+                  <strong className="text-foreground">Pembatalan/penghentian mandat oleh Klien</strong> di tengah
+                  pekerjaan — dengan alasan apa pun, termasuk perubahan rencana bisnis,
+                  pergantian pemegang saham/pengurus, relokasi, atau keputusan komersial lain.
+                </span>
+              </li>
               <li className="flex items-start gap-2">
                 <FileCheck className="mt-0.5 h-4 w-4 shrink-0" aria-hidden />
                 Penolakan karena data atau dokumen dari klien tidak benar/dipalsukan.
@@ -187,6 +216,53 @@ export default function GaransiPage() {
               </li>
             </ul>
           </div>
+        </section>
+
+        {/* Skema Refund Berjenjang — pembatalan oleh klien */}
+        <section aria-labelledby="skema" id="skema" className="mt-10">
+          <h2 id="skema-h" className="text-xl font-bold">Skema Refund Berjenjang — Bila Klien Membatalkan</h2>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+            Berlaku untuk pembatalan/penghentian mandat oleh Klien dengan alasan apa pun
+            (perubahan rencana bisnis, keputusan komersial, dan lainnya). Besaran refund
+            dana jasa ditentukan oleh <strong>tahapan pekerjaan yang benar-benar terlaksana</strong> —
+            bukan lama waktu berjalan. Nilai final dihitung dari milestone SPK dan bukti
+            pekerjaan; persentase berikut adalah titik awal resmi bila SPK tidak menetapkan
+            milestone tersendiri (Ketentuan Refund Pasal 6A).
+          </p>
+          <div className="mt-4 overflow-x-auto rounded-2xl border">
+            <table className="w-full min-w-[560px] text-sm">
+              <thead>
+                <tr className="border-b bg-muted/50 text-left">
+                  <th className="px-4 py-3 font-bold">Tahapan</th>
+                  <th className="px-4 py-3 font-bold">Posisi Pekerjaan</th>
+                  <th className="px-4 py-3 font-bold text-right">Refund Dana Jasa*</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { t: "T0", n: "Pekerjaan belum dimulai secara substantif", r: "100%" },
+                  { t: "T1", n: "Diagnosis & due diligence berjalan (pemeriksaan dokumen, pemetaan jalur)", r: "80%" },
+                  { t: "T2", n: "Dokumen, analisis, dan deliverable telah disusun", r: "50%" },
+                  { t: "T3", n: "Berkas telah diajukan ke instansi/mitra", r: "25%" },
+                  { t: "T4–T5", n: "Izin/dokumen telah terbit; integrasi & penutupan mandat", r: "0%" },
+                ].map((row) => (
+                  <tr key={row.t} className="border-b last:border-0">
+                    <td className="px-4 py-3 font-bold text-primary">{row.t}</td>
+                    <td className="px-4 py-3 text-foreground/85">{row.n}</td>
+                    <td className="px-4 py-3 text-right font-bold">{row.r}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+            *Dikurangi Biaya Pihak Ketiga yang disetujui, benar-benar dibayarkan, terbukti
+            resmi, dan tidak dapat dipulihkan (PNBP, notaris, legalisasi/apostille, uji lab,
+            dan sejenisnya). Dana pihak ketiga yang <strong>belum terpakai selalu
+            dikembalikan</strong>. Kegagalan karena kesalahan material kami tetap
+            dikembalikan penuh 100% (Tier 1) sesuai cakupan garansi di atas. Tidak ada
+            penghangusan otomatis atas seluruh dana.
+          </p>
         </section>
 
         {/* Proses klaim */}

@@ -7,17 +7,19 @@ import {
 import { SITE_NAME, SITE_URL, LEGAL_ENTITY, CONTACT } from "@/lib/site";
 
 // ============================================================
-// PUSATPERIZINAN.COM — /ketentuan-refund (v2.1 FINAL)
-// Kebijakan pengembalian dana berjenjang: Tier 1 = 45 Hari Kerja
-// (tercepat) s.d. Tier 5 = 24 bulan kalender (mandat lintas negara).
-// 14 pasal + tahapan T0-T5 + dasar hukum terverifikasi (JDIH/BPK).
+// PUSATPERIZINAN.COM — /ketentuan-refund (v3.0 FINAL, 27 Nov 2026)
+// REVISI DEWAN PAKAR: + Pasal 6A (Skema Refund Indikatif Default
+// T0-T5 untuk pembatalan oleh Klien) + penguatan Pasal 8 — menegaskan
+// pembatalan sepihak oleh Klien TIDAK berhak refund 100% dana jasa.
+// Tier 1 = 45 Hari Kerja (tercepat) s.d. Tier 5 = 24 bulan kalender.
+// 15 pasal + tahapan T0-T5 + dasar hukum terverifikasi (JDIH/BPK).
 // Ditaut dari: footer, /syarat-ketentuan, /garansi, checkout.
 // ============================================================
 
 export const metadata: Metadata = {
   title: "Ketentuan Refund & Pengembalian Dana — Kebijakan Berjenjang",
   description:
-    "Ketentuan refund resmi PusatPerizinan.com: paling cepat 45 hari kerja (Tier 1) hingga maksimal 24 bulan untuk mandat lintas negara (Tier 5). 14 pasal lengkap, tahapan T0-T5, dan dasar hukum Indonesia yang terverifikasi.",
+    "Ketentuan refund resmi PusatPerizinan.com: paling cepat 45 hari kerja (Tier 1) hingga maksimal 24 bulan untuk mandat lintas negara (Tier 5). 15 pasal lengkap, tahapan T0-T5, Skema Refund Indikatif untuk pembatalan oleh klien (Pasal 6A), dan dasar hukum Indonesia yang terverifikasi.",
   alternates: { canonical: "/ketentuan-refund" },
   robots: { index: true, follow: true },
 };
@@ -65,6 +67,14 @@ const refundFaqJsonLd = {
       acceptedAnswer: {
         "@type": "Answer",
         text: "Pada prinsipnya ke rekening atau metode pembayaran asal, atau rekening lain yang dapat diverifikasi sebagai milik pembayar/penerima yang sah. Verifikasi identitas dilakukan proporsional untuk mencegah penipuan, sesuai ketentuan pelindungan data pribadi. Biaya bank/transfer hanya diperhitungkan bila nyata, wajar, diungkapkan, dan didukung bukti.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Apakah saya berhak refund 100% jika saya sendiri yang membatalkan di tengah pekerjaan?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Tidak. Refund 100% Dana Jasa berlaku bila pekerjaan belum dimulai secara substantif (T0) atau bila pembatalan disebabkan kesalahan material perusahaan (garansi 100% — Tier 1). Bila klien menghentikan mandat sepihak di tengah pekerjaan — dengan alasan apa pun, termasuk perubahan rencana bisnis — pengembalian Dana Jasa dihitung dengan Skema Refund Indikatif Default (Pasal 6A) berdasarkan tahapan yang benar-benar terlaksana: T0 = 100%, T1 = 80%, T2 = 50%, T3 = 25%, T4–T5 = 0%, dikurangi Biaya Pihak Ketiga yang terbukti keluar dan tidak dapat dipulihkan. Dana pihak ketiga yang belum terpakai selalu dikembalikan penuh. Pekerjaan yang sudah dilaksanakan tetap menjadi hak yang dibayar sesuai KUHPerdata Pasal 1234 juncto 1601.",
       },
     },
     {
@@ -190,6 +200,18 @@ const PASAL = [
     ],
   },
   {
+    h: "Pasal 6A — Skema Refund Indikatif Default untuk Pembatalan oleh Klien",
+    p: [
+      "Ayat (1) Skema dalam pasal ini berlaku bila Klien menghentikan atau membatalkan mandat — dengan alasan apa pun, termasuk namun tidak terbatas pada perubahan rencana bisnis, keputusan komersial, pergantian pemegang saham/pengurus, relokasi, atau perubahan pandangan — dan SPK tidak menetapkan nilai milestone tersendiri.",
+      "Ayat (2) Besaran pengembalian Dana Jasa ditetapkan berdasarkan tahapan pekerjaan yang benar-benar terlaksana (Pasal 4): T0 (belum dimulai secara substantif) — 100% dikembalikan; T1 (diagnosis & due diligence berjalan) — 80%; T2 (dokumen/analisis/deliverable telah disusun) — 50%; T3 (berkas telah diajukan ke instansi/mitra) — 25%; T4–T5 (izin/dokumen telah terbit, integrasi & penutupan mandat) — 0%.",
+      "Ayat (3) Persentase pada ayat (2) adalah titik awal perhitungan resmi (presumsi nilai pekerjaan terlaksana), bukan angka final yang mutlak. Setiap pihak dapat membuktikan sebaliknya dengan milestone SPK dan bukti pekerjaan (Pasal 6); penyesuaian dapat dilakukan ke arah yang lebih besar atau lebih kecil berdasarkan bukti tersebut.",
+      "Ayat (4) Dari jumlah yang dihitung menurut ayat (2), diperhitungkan Biaya Pihak Ketiga yang memenuhi Pasal 7. Dana pihak ketiga yang belum terpakai wajib dikembalikan penuh kepada Klien tanpa kecuali.",
+      "Ayat (5) Skema ini TIDAK berlaku bila pembatalan disebabkan kesalahan material Perusahaan — dalam hal tersebut berlaku Garansi 100% sebagaimana diatur pada halaman Garansi dan Pasal 8 ayat (6), dengan waktu penyelesaian Tier 1.",
+      "Ayat (6) Skema ini juga berlaku sebagai titik awal perhitungan bila SPK berakhir karena wanprestasi Klien sebagaimana dimaksud Pasal 8 ayat (2) dan ayat (5), tanpa mengurangi hak Perusahaan untuk menagih pekerjaan yang telanjur dilaksanakan dan kerugian yang terbukti menurut hukum.",
+      "Ayat (7) Skema ini tidak mengurangi hak-hak konsumen yang bersifat memaksa menurut peraturan perundang-undangan, termasuk hak yang diatur PP No. 80 Tahun 2019 dan UU No. 8 Tahun 1999.",
+    ],
+  },
+  {
     h: "Pasal 7 — Biaya Pihak Ketiga",
     p: [
       "Biaya pihak ketiga dapat meliputi PNBP/retribusi, honorarium notaris/PPAT, penerjemah tersumpah, legalisasi/apostille/konsuler, pengujian/laboratorium, perjalanan dan akomodasi yang disetujui, kurir, biaya bank, serta biaya lain yang secara tertulis disetujui Klien.",
@@ -201,7 +223,7 @@ const PASAL = [
   {
     h: "Pasal 8 — Pembatalan, Wanprestasi, dan Keadaan Klien",
     p: [
-      "Klien dapat mengajukan penghentian mandat secara tertulis. Penghentian tidak dengan sendirinya menghapus kewajiban pembayaran atas pekerjaan yang benar-benar telah dilaksanakan dan Biaya Pihak Ketiga yang memenuhi Pasal 7; sebaliknya, Perusahaan wajib mengembalikan bagian yang belum menjadi haknya.",
+      "Klien dapat mengajukan penghentian mandat secara tertulis. Penghentian tidak dengan sendirinya menghapus kewajiban pembayaran atas pekerjaan yang benar-benar telah dilaksanakan dan Biaya Pihak Ketiga yang memenuhi Pasal 7; sebaliknya, Perusahaan wajib mengembalikan bagian yang belum menjadi haknya. Kecuali SPK menetapkan nilai milestone tersendiri, pengembalian Dana Jasa dihitung mengikuti Skema Refund Indikatif Default pada Pasal 6A. Dengan demikian, pembatalan sepihak oleh Klien di tengah pekerjaan TIDAK memberi hak atas pengembalian 100% Dana Jasa — KUHPerdata Pasal 1234 juncto Pasal 1601: terminasi tidak menghapuskan hak imbalan atas pekerjaan yang telanjur dikerjakan.",
       "Apabila Klien memberikan data/dokumen yang terbukti tidak benar, tidak lengkap, palsu, atau menyesatkan, Perusahaan dapat menghentikan sementara pekerjaan, meminta klarifikasi/perbaikan, atau mengakhiri SPK sesuai tingkat materialitas dan hukum. Perusahaan tetap wajib membuat perhitungan objektif atas pekerjaan yang telah dilaksanakan dan dana yang belum terpakai; tidak ada penghangusan otomatis atas seluruh dana.",
       "Jika izin/permohonan ditolak karena ketidaklayakan substantif Klien yang telah dijelaskan secara spesifik dan tertulis sebelum SPK, penolakan oleh instansi bukan dengan sendirinya bukti wanprestasi Perusahaan. Namun Perusahaan hanya berhak atas nilai pekerjaan yang benar-benar dilakukan dan Biaya Pihak Ketiga yang memenuhi Pasal 7; sisa dana tetap diperhitungkan.",
       "Perubahan rencana usaha, perubahan pemegang saham, pindah lokasi, pergantian KBLI, atau keputusan komersial Klien dapat menjadi dasar perubahan ruang lingkup atau penghentian. Para pihak terlebih dahulu menyusun addendum/perhitungan; pekerjaan yang belum dilakukan dan biaya belum terpakai tidak boleh dianggap hangus.",
@@ -364,9 +386,9 @@ export default function KetentuanRefundPage() {
               disengketakan lebih dahulu.
             </p>
             <div className="mt-4 flex flex-wrap gap-2 text-xs text-muted-foreground">
-              <span className="rounded-full border px-3 py-1">Versi 2.1 FINAL</span>
-              <span className="rounded-full border px-3 py-1">Berlaku sejak 26 November 2026</span>
-              <span className="rounded-full border px-3 py-1">14 Pasal + Dasar Hukum Terverifikasi</span>
+              <span className="rounded-full border px-3 py-1">Versi 3.0 FINAL</span>
+              <span className="rounded-full border px-3 py-1">Berlaku sejak 27 November 2026</span>
+              <span className="rounded-full border px-3 py-1">15 Pasal + Skema Refund Indikatif + Dasar Hukum Terverifikasi</span>
             </div>
           </div>
         </div>
@@ -430,9 +452,53 @@ export default function KetentuanRefundPage() {
           </ol>
         </section>
 
-        {/* 14 Pasal */}
+        {/* Skema Refund Indikatif — tabel visual Pasal 6A */}
+        <section aria-labelledby="skema-6a" className="mt-12">
+          <h2 id="skema-6a" className="text-xl font-bold">Skema Refund Indikatif — Bila Klien Membatalkan (Pasal 6A)</h2>
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+            Pembatalan atau penghentian mandat oleh Klien — dengan alasan apa pun — tidak
+            memberi hak atas refund 100% Dana Jasa. Pengembalian dihitung dari tahapan
+            pekerjaan yang benar-benar terlaksana (tabel berikut), kecuali SPK menetapkan
+            milestone tersendiri. Kegagalan karena <strong>kesalahan material Perusahaan</strong>
+            tetap dijamin 100% (Tier 1).
+          </p>
+          <div className="mt-5 overflow-x-auto rounded-2xl border">
+            <table className="w-full min-w-[520px] text-sm">
+              <thead>
+                <tr className="border-b bg-muted/50 text-left">
+                  <th className="px-4 py-3 font-bold">Tahap Terlaksana</th>
+                  <th className="px-4 py-3 font-bold">Posisi Pekerjaan</th>
+                  <th className="px-4 py-3 text-right font-bold">Refund Dana Jasa</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { k: "T0", n: "Pekerjaan belum dimulai secara substantif", r: "100%" },
+                  { k: "T1", n: "Diagnosis & due diligence berjalan", r: "80%" },
+                  { k: "T2", n: "Dokumen, analisis, deliverable telah disusun", r: "50%" },
+                  { k: "T3", n: "Berkas telah diajukan ke instansi/mitra", r: "25%" },
+                  { k: "T4–T5", n: "Izin/dokumen terbit; integrasi & penutupan mandat", r: "0%" },
+                ].map((row) => (
+                  <tr key={row.k} className="border-b last:border-0">
+                    <td className="px-4 py-3 font-bold text-primary">{row.k}</td>
+                    <td className="px-4 py-3 text-foreground/85">{row.n}</td>
+                    <td className="px-4 py-3 text-right font-bold">{row.r}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+            Dikurangi Biaya Pihak Ketiga yang memenuhi Pasal 7 (disetujui, benar-benar dibayarkan,
+            terbukti resmi, tidak dapat dipulihkan). Dana pihak ketiga yang belum terpakai wajib
+            dikembalikan penuh. Persentase adalah titik awal resmi (presumsi) — setiap pihak dapat
+            membuktikan sebaliknya dengan milestone SPK dan bukti pekerjaan (Pasal 6 ayat 1–2).
+          </p>
+        </section>
+
+        {/* 15 Pasal */}
         <section aria-labelledby="pasal" className="mt-12">
-          <h2 id="pasal" className="text-xl font-bold">Naskah Lengkap Ketentuan (14 Pasal)</h2>
+          <h2 id="pasal" className="text-xl font-bold">Naskah Lengkap Ketentuan (15 Pasal)</h2>
           <div className="mt-5 space-y-8">
             {PASAL.map((ps) => (
               <div key={ps.h}>

@@ -150,7 +150,7 @@ export function makeOgImageResponse({ title, subtitle, category }: OgInput): Ima
             </div>
           </div>
           <div style={{ display: "flex", fontSize: 23, color: "#a7f3d0" }}>
-            Garansi 100% • SCBD Jakarta • 38 Provinsi
+            Garansi 100% bila keliru kami • SCBD Jakarta • 38 Provinsi
           </div>
         </div>
       </div>
