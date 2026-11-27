@@ -231,8 +231,8 @@ footer b{color:var(--acc)}
         <div><label>Mata Uang Transaksi <i>*</i></label>
           <select id="f_mataUang"></select>
           <div class="hint">🌐 Seluruh mata uang dunia (ISO 4217) tersedia di dropdown — tinggal klik &amp; pilih, tidak perlu mengetik.</div></div>
-        <div><label>Nilai Kontrak (<span id="curNilai">Rp</span>)</label><input id="f_nilai" type="number" min="0" placeholder="0"></div>
-        <div><label>Total Sudah Dibayar (<span id="curBayar">Rp</span>) <i>*</i></label><input id="f_bayar" type="number" min="0" placeholder="0"></div>
+        <div><label>Nilai Kontrak (<span id="curNilai">Rp</span>)</label><input id="f_nilai" type="text" inputmode="numeric" autocomplete="off" placeholder="0"></div>
+        <div><label>Total Sudah Dibayar (<span id="curBayar">Rp</span>) <i>*</i></label><input id="f_bayar" type="text" inputmode="numeric" autocomplete="off" placeholder="0"></div>
         <div><label>Metode Pembayaran</label>
           <select id="f_metode"><option>Transfer Bank</option><option>Virtual Account</option><option>Kartu Kredit/Debit</option><option>QRIS</option><option>Tunai</option><option>Lainnya</option></select></div>
         <div><label>Tanggal Pembayaran</label><input id="f_tglBayar" type="date"></div>
@@ -248,8 +248,8 @@ footer b{color:var(--acc)}
         <div><label>Tahapan Pekerjaan Terakhir <i>*</i></label>
           <select id="f_tahap"></select>
           <div class="hint" id="tahapHint"></div></div>
-        <div><label>Jumlah Refund Diminta (<span id="curJumlah">Rp</span>) <i>*</i></label><input id="f_jumlah" type="number" min="0" placeholder="0"></div>
-        <div><label>Perkiraan Biaya Terpakai (<span id="curBiaya">Rp</span>)</label><input id="f_biaya" type="number" min="0" placeholder="Biaya resmi instansi/mitra yang sudah keluar"></div>
+        <div><label>Jumlah Refund Diminta (<span id="curJumlah">Rp</span>) <i>*</i></label><input id="f_jumlah" type="text" inputmode="numeric" autocomplete="off" placeholder="0"></div>
+        <div><label>Perkiraan Biaya Terpakai (<span id="curBiaya">Rp</span>)</label><input id="f_biaya" type="text" inputmode="numeric" autocomplete="off" placeholder="Biaya resmi instansi/mitra yang sudah keluar"></div>
         <div class="full"><label>Penjelasan Tambahan</label><textarea id="f_jelaskan" placeholder="Jelaskan kronologi singkat (opsional, mempercepat verifikasi administratif)"></textarea></div>
       </div>
     </div>
@@ -481,6 +481,20 @@ function curSym(c){return (!c||c==='IDR')?'Rp':c}
 function money(n,c){return curSym(c)+' '+new Intl.NumberFormat('id-ID',{maximumFractionDigits:0}).format(num(n))}
 function curLabels(){var s=curSym($i('f_mataUang')?$i('f_mataUang').value:'IDR');
  ['curNilai','curBayar','curJumlah','curBiaya'].forEach(function(id){var e=$i(id);if(e)e.textContent=s})}
+/* Format titik ribuan gaya penulisan Rupiah sambil mengetik: 10000 → 10.000,- */
+function fmtMoneyVal(v){var raw=String(v==null?'':v).replace(/[^\d]/g,'').replace(/^0+(?=\d)/,'').slice(0,15);
+ return raw?new Intl.NumberFormat('id-ID',{maximumFractionDigits:0}).format(parseInt(raw,10))+',-':''}
+function moneyFmtEl(el){if(!el)return;
+ var caret=el.selectionStart||0,v=el.value,oldDigits=v.replace(/[^\d]/g,'').length,
+  digitsBefore=v.slice(0,caret).replace(/[^\d]/g,'').length,out=fmtMoneyVal(v);
+ el.value=out;
+ if(el===document.activeElement){var pos=0;
+  if(out){
+   if(digitsBefore>=oldDigits&&caret>=v.length-2){pos=out.length-2}
+   else{var count=0;
+    for(var j=0;j<out.length;j++){if(/\d/.test(out[j])){count++;if(count>=digitsBefore){pos=j+1;break}}}}}
+  try{el.setSelectionRange(pos,pos)}catch(e){}}}
+function moneyInputFmt(e){moneyFmtEl(e.target)}
 function fd(d){try{return new Date(d).toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}catch(e){return '-'}}
 function fdt(ts){try{return new Date(ts).toLocaleString('id-ID',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})}catch(e){return '-'}}
 function addWorkDays(d,n){var r=new Date(d),h=new Set(HOLIDAYS),i=0;while(i<n){r.setDate(r.getDate()+1);var w=r.getDay();if(w!==0&&w!==6&&!h.has(r.toISOString().slice(0,10)))i++}return r}
@@ -750,12 +764,14 @@ function renderMatrix(){var q=($i('qSvc').value||'').toLowerCase(),h='<thead><tr
   $i('f_mataUang').value='IDR';
   $i('f_mataUang').addEventListener('change',curLabels);
   curLabels()})();
+ // Kolom nominal: titik ribuan gaya Rupiah otomatis sambil mengetik (10000 → 10.000,-)
+ ['f_nilai','f_bayar','f_jumlah','f_biaya'].forEach(function(id){var e=$i(id);e.addEventListener('input',moneyInputFmt);if(e.value)moneyFmtEl(e)});
  REASONS.forEach(function(r,i){$i('reasonBox').insertAdjacentHTML('beforeend','<label class="radio-opt"><input type="radio" name="alasan" value="'+r+'" onchange="this.closest(\'.radio-opt\').classList.add(\'on\');this.parentNode.parentNode.querySelectorAll(\'.radio-opt\').forEach(function(x){if(x.contains(this))return;x.classList.remove(\'on\')},this);saveDraft()"><span>'+r+'</span></label>')});
  STAGES.forEach(function(s){$i('f_tahap').insertAdjacentHTML('beforeend','<option value="'+s.k+' — '+s.n+'">'+s.k+' — '+s.n+'</option>')});
  $i('f_tahap').addEventListener('change',function(){var k=this.value.split(' — ')[0],st=STAGES.find(function(x){return x.k===k});
   if(st){$i('tahapHint').innerHTML='<b style="color:var(--acc)">Indikasi '+st.p+'%</b> — '+st.t;
    var bayar=num($i('f_bayar').value),biaya=num($i('f_biaya').value);
-   if(!document.activeElement.isSameNode($i('f_jumlah'))&&num($i('f_jumlah').value)===0&&bayar>0){$i('f_jumlah').value=Math.max(0,Math.round(bayar*st.p/100)-biaya)}}saveDraft()});
+   if(!document.activeElement.isSameNode($i('f_jumlah'))&&num($i('f_jumlah').value)===0&&bayar>0){$i('f_jumlah').value=fmtMoneyVal(Math.max(0,Math.round(bayar*st.p/100)-biaya))}}saveDraft()});
  LAMPS.forEach(function(l){var k=lampKey(l);$i('lampBox').insertAdjacentHTML('beforeend','<label class="chk"><input type="checkbox" id="l_'+k+'"><span>'+l+'</span></label>')});
  $i('f_layanan').addEventListener('change',function(){var o=svcById(this.value);
   if(o){var isi='<b style="color:var(--acc)">'+TIERS[o.t].nm+'</b> — pencairan paling lama <b>'+TIERS[o.t].max+'</b>.'+TIERS[o.t].desc;
@@ -790,7 +806,7 @@ function renderMatrix(){var q=($i('qSvc').value||'').toLowerCase(),h='<thead><tr
  document.querySelectorAll('#formCard input,#formCard textarea,#formCard select').forEach(function(e){e.addEventListener('change',saveDraft);e.addEventListener('blur',saveDraft)});
  ['f_tahap','f_layanan'].forEach(function(x){$i(x).addEventListener('change',saveDraft)});
  ['p1','p2','p3','p4'].forEach(function(x){$i(x).addEventListener('change',saveDraft)});
- try{var dr=JSON.parse(localStorage.getItem('ppref_draft'));if(dr&&dr.nama){var map={f_nama:dr.nama,f_npwp:dr.npwp,f_email:dr.email,f_wa:dr.wa,f_alamat:dr.alamat,f_negara:dr.negara,f_spk:dr.spk,f_tglSpk:dr.tglSpk,f_nilai:dr.nilai||'',f_bayar:dr.dibayar||'',f_jumlah:dr.jumlah||'',f_biaya:dr.biaya||'',f_jelaskan:dr.jelaskan,f_bankPemilik:dr.bankPemilik,f_bankNama:dr.bankNama,f_bankNo:dr.bankNo,f_bankCabang:dr.bankCabang,f_bankSwift:dr.bankSwift};
+ try{var dr=JSON.parse(localStorage.getItem('ppref_draft'));if(dr&&dr.nama){var map={f_nama:dr.nama,f_npwp:dr.npwp,f_email:dr.email,f_wa:dr.wa,f_alamat:dr.alamat,f_negara:dr.negara,f_spk:dr.spk,f_tglSpk:dr.tglSpk,f_nilai:dr.nilai?fmtMoneyVal(dr.nilai):'',f_bayar:dr.dibayar?fmtMoneyVal(dr.dibayar):'',f_jumlah:dr.jumlah?fmtMoneyVal(dr.jumlah):'',f_biaya:dr.biaya?fmtMoneyVal(dr.biaya):'',f_jelaskan:dr.jelaskan,f_bankPemilik:dr.bankPemilik,f_bankNama:dr.bankNama,f_bankNo:dr.bankNo,f_bankCabang:dr.bankCabang,f_bankSwift:dr.bankSwift};
   Object.keys(map).forEach(function(k){if(map[k])$i(k).value=map[k]});
   if(dr.identitas){if(dr.jenis==='Badan Usaha'){var bi=document.querySelector('#w_nib input');if(bi)bi.value=dr.identitas}else $i('f_identitas').value=dr.identitas}
   if(dr.jenis)setPemohon(dr.jenis==='Badan Usaha'?'badan':'perorangan');
