@@ -55,6 +55,31 @@ function normalizeInput(value: any): any {
 
 const DATETIME_FIELDS = new Set(["createdAt", "updatedAt", "paidAt", "expiresAt"]);
 
+/**
+ * Ratakan kunci compound-unique gaya Prisma 7 (mis. "weekStart_slotIndex":
+ * { weekStart, slotIndex }) menjadi field biasa ({ weekStart, slotIndex }).
+ * Runtime Prisma 8 (orm-postgres) tidak mengenal nama compound pada where —
+ * tanpa flattening ini, findUnique/findFirst/count/update/delete dengan kunci
+ * compound melempar `Model "X" has no field "a_b"` (lihat upsert() yang sudah
+ * memakai pola ini sejak awal). Aman: tidak ada field schema yang mengandung
+ * underscore, sehingga kunci bergaris bawah + nilai objek pasti compound.
+ */
+function flattenCompoundWhere(where: AnyRecord | undefined): AnyRecord {
+  const out: AnyRecord = {};
+  for (const [key, value] of Object.entries(where ?? {})) {
+    if (key.includes("_") && value && typeof value === "object" && !Array.isArray(value)) {
+      Object.assign(out, flattenCompoundWhere(value as AnyRecord));
+    } else if ((key === "OR" || key === "AND") && Array.isArray(value)) {
+      out[key] = value.map((item) => flattenCompoundWhere(item as AnyRecord));
+    } else if (key === "NOT" && value && typeof value === "object") {
+      out[key] = flattenCompoundWhere(value as AnyRecord);
+    } else {
+      out[key] = value;
+    }
+  }
+  return out;
+}
+
 function normalizeOutput<T>(value: T): T {
   if (Array.isArray(value)) return value.map(normalizeOutput) as T;
   if (!value || typeof value !== "object") return value;
@@ -185,12 +210,13 @@ function availableMethods(value: AnyCollection): string {
 
 function buildQuery(model: AnyCollection, options: AnyRecord = {}): AnyCollection {
   let query = model;
-  if (options.where && Object.keys(options.where).length) {
+  const where = flattenCompoundWhere(options.where);
+  if (options.where && Object.keys(where).length) {
     // Prisma 8's object filter is both simpler and safer for equality-only
     // predicates. Use expression callbacks only for legacy query-shape operators.
-    query = isEqualityFilter(options.where)
-      ? query.where(normalizeInput(options.where))
-      : query.where((fields: AnyRecord) => filterExpression(options.where, fields));
+    query = isEqualityFilter(where)
+      ? query.where(normalizeInput(where))
+      : query.where((fields: AnyRecord) => filterExpression(where, fields));
     if (typeof query.limit !== "function") {
       throw new Error(`Prisma ORM 8 where() did not return a chainable collection. Methods: ${availableMethods(query)}`);
     }
@@ -311,7 +337,7 @@ function makeDelegate(name: ModelName) {
     },
     async update(options: AnyRecord) {
       ensureDatabaseConfigured();
-      const where = options.where ?? {};
+      const where = flattenCompoundWhere(options.where);
       const row = await collection().where((fields: AnyRecord) => filterExpression(where, fields))
         .update(normalizeInput(options.data ?? {}));
       if (!row) throw new Error(`Record ${name} tidak ditemukan untuk diubah.`);
@@ -319,33 +345,30 @@ function makeDelegate(name: ModelName) {
     },
     async updateMany(options: AnyRecord) {
       ensureDatabaseConfigured();
-      const result = await collection().where((fields: AnyRecord) => filterExpression(options.where ?? {}, fields))
+      const where = flattenCompoundWhere(options.where);
+      const result = await collection().where((fields: AnyRecord) => filterExpression(where, fields))
         .updateAndCount(normalizeInput(options.data ?? {}));
       return rowCountResult(extractMutationCount(result));
     },
     async upsert(options: AnyRecord) {
       ensureDatabaseConfigured();
-      const where = { ...(options.where ?? {}) };
-      const flattened: AnyRecord = {};
-      for (const [key, value] of Object.entries(where)) {
-        if (key.includes("_") && value && typeof value === "object") Object.assign(flattened, value);
-        else flattened[key] = value;
-      }
       return normalizeOutput(await collection().upsert({
         create: normalizeInput(options.create),
         update: normalizeInput(options.update),
-        conflictOn: normalizeInput(flattened),
+        conflictOn: normalizeInput(flattenCompoundWhere(options.where)),
       }));
     },
     async delete(options: AnyRecord) {
       ensureDatabaseConfigured();
-      const row = await collection().where((fields: AnyRecord) => filterExpression(options.where ?? {}, fields)).delete();
+      const where = flattenCompoundWhere(options.where);
+      const row = await collection().where((fields: AnyRecord) => filterExpression(where, fields)).delete();
       if (!row) throw new Error(`Record ${name} tidak ditemukan untuk dihapus.`);
       return normalizeOutput(row);
     },
     async deleteMany(options: AnyRecord) {
       ensureDatabaseConfigured();
-      const result = await collection().where((fields: AnyRecord) => filterExpression(options.where ?? {}, fields)).deleteAndCount();
+      const where = flattenCompoundWhere(options.where);
+      const result = await collection().where((fields: AnyRecord) => filterExpression(where, fields)).deleteAndCount();
       return rowCountResult(extractMutationCount(result));
     },
     async aggregate(options: AnyRecord = {}) {

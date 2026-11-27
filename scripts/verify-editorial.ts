@@ -1,6 +1,6 @@
 // ============================================================
 // QA — Verifikasi Kalender Editorial Blog (ROADMAP-99 langkah 35)
-// Jalankan: bun run scripts/verify-editorial.ts
+// Jalankan: npx tsx scripts/verify-editorial.ts
 // ============================================================
 
 import { db } from "../src/lib/db";
@@ -101,6 +101,9 @@ const ex = starterExcerpt({ title: TOPIC_BANK.PANDUAN[0].title, notes: TOPIC_BAN
 if (ex.length < 60 || ex.length > 300) fail(`starterExcerpt panjang tak wajar: ${ex.length}`);
 else ok(`starterExcerpt ${ex.length} kar. (60–300)`);
 
+// Top-level await tidak didukung pada konteks CJS (tsx/esbuild) —
+// bungkus seksi async + verdict dalam async IIFE.
+(async () => {
 console.log("\n═══ 5. DB — ensure idempoten & papan konsisten ═══");
 try {
   await ensureUpcomingWeeks();
@@ -135,3 +138,7 @@ if (errors === 0) {
   console.log(`VERDICT: FAIL ❌  (${errors} error, ${warnings} warning)`);
   process.exit(1);
 }
+})().catch((e) => {
+  console.error(e);
+  process.exit(1);
+});

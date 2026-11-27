@@ -9,7 +9,7 @@
 //   3. areaServed State/City
 //   4. meta geo.region = kode ISO 3166-2:ID provinsi
 //   5. Node non-wilayah (kategori) TIDAK mendapat #service
-// Jalankan: bun scripts/verify-wilayah-schema.ts  (dev server :3000)
+// Jalankan: npx tsx scripts/verify-wilayah-schema.ts  (dev server :3000)
 // ============================================================
 
 import { PROVINCES } from "../src/lib/coverage-data";
@@ -117,4 +117,9 @@ async function main() {
   console.log("VERDICT: PASS — schema wilayah lengkap & bersih");
 }
 
-await main();
+// Top-level await tidak didukung pada konteks CJS (tsx/esbuild) —
+// jalankan main() lewat promise chain agar aman di Node maupun Bun.
+main().catch((e) => {
+  console.error(e);
+  process.exit(1);
+});
