@@ -111,7 +111,7 @@ export async function applyOrderStatus(
   }
 }
 
-/** Ambil appUrl dari request headers (aman di Hostinger/Passenger & lokal). */
+/** Ambil appUrl dari request headers (aman di VPS Hostinger/Caddy & lokal). */
 export function appUrlFromHeaders(h: Headers): string {
   const host = h.get("x-forwarded-host") || h.get("host") || "";
   if (!host) return process.env.NEXT_PUBLIC_SITE_URL || "https://pusatperizinan.com";

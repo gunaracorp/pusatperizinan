@@ -21,8 +21,8 @@ const buildCpus =
 // SECURITY HEADERS — ROADMAP-99 langkah 69 (v1.21.0 "Benteng Digital")
 // ============================================================
 // Satu sumber kebenaran untuk seluruh header keamanan pada deployment
-// Node standalone (Hostinger/VPS). Header sama juga ditulis di .htaccess
-// untuk jalur hosting statis (Apache/LiteSpeed) — ubah KEDUANYA bila
+// Node standalone (VPS Hostinger). Jalur hosting statis (Apache/LiteSpeed
+// via .htaccess) telah dihapus sejak v1.32.0 — cukup ubah file ini bila
 // daftar origin integrasi berubah.
 //
 // Mode CSP: default ENFORCE. Untuk rollout aman di produksi, set

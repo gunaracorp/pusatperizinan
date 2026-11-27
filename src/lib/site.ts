@@ -8,7 +8,7 @@
 // CANONICAL HOST DECISION (P0-01):
 //   https://pusatperizinan.com  (apex, HTTPS, tanpa www)
 //   Semua varian lain (www / http) WAJIB 301 ke host ini —
-//   dikonfigurasi di .htaccess (hosting statis) / Caddy (self-host).
+//   dikonfigurasi di Caddy (VPS Hostinger).
 // ============================================================
 
 /** Canonical host — satu-satunya bentuk URL yang diindeks. */

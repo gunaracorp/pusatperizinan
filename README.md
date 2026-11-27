@@ -800,7 +800,7 @@ Saat melaporkan masalah, sertakan:
 
 ## 15. Keamanan dan Data Produksi
 
-- **Security headers sitewide** (v1.21.0 "Benteng Digital", ROADMAP-99 langkah 69): CSP granular + HSTS + X-Frame-Options DENY + nosniff + Referrer-Policy + Permissions-Policy + COOP dikelola di <code>next.config.ts → headers()</code> (jalur Node standalone) dan diblok identik di <code>.htaccess</code> (jalur statis Apache/LiteSpeed). Rollout produksi nol-risiko: set <code>CSP_REPORT_ONLY="true"</code> untuk mode laporan dulu, pantau pelanggaran, lalu enforce. Bila menambah origin integrasi pihak ketiga (GA4/Clarity/Sentry/Midtrans sudah terdaftar), perbarui KEDUA lokasi CSP.
+- **Security headers sitewide** (v1.21.0 "Benteng Digital", ROADMAP-99 langkah 69): CSP granular + HSTS + X-Frame-Options DENY + nosniff + Referrer-Policy + Permissions-Policy + COOP dikelola di <code>next.config.ts → headers()</code> (jalur Node standalone VPS Hostinger — jalur statis <code>.htaccess</code> dihapus di v1.32.0). Rollout produksi nol-risiko: set <code>CSP_REPORT_ONLY="true"</code> untuk mode laporan dulu, pantau pelanggaran, lalu enforce. Bila menambah origin integrasi pihak ketiga (GA4/Clarity/Sentry/Midtrans sudah terdaftar), perbarui blok CSP di <code>next.config.ts</code>.
 - Jangan commit <code>.env</code>, kredensial database, API key, backup, token webhook, atau data pelanggan.
 - Gunakan <code>ADMIN_SECRET</code> acak dengan panjang minimal 32 karakter pada produksi.
 - Password dan secret admin produksi wajib diatur melalui environment.

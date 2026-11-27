@@ -1,7 +1,6 @@
 // ============================================================
 // PUSATPERIZINAN.COM — Halaman 404 Branded
-// Static export akan merender file ini sebagai out/404.html
-// (dirujuk oleh .htaccess: ErrorDocument 404 /404.html)
+// Di-render oleh Next.js runtime (VPS Hostinger, Node standalone).
 // ============================================================
 
 export default function NotFound() {
