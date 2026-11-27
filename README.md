@@ -428,7 +428,6 @@ pusatperizinan/
 ├── WORKLOG.md                       # Penunjuk/rekam jejak pengembangan
 ├── ROADMAP-99.md                    # Roadmap pengembangan
 ├── README.md                        # Dokumentasi utama Bahasa Indonesia
-└── DEPLOY-IDWEBHOST.md              # Panduan paket hosting statis
 </pre>
 
 ### File yang sering disentuh
@@ -447,8 +446,6 @@ pusatperizinan/
 | <code>next.config.ts</code> | Konfigurasi Next.js |
 | <code>scripts/verify-prisma-contract.mjs</code> | Validasi versi dan artefak kontrak |
 | <code>scripts/postbuild.mjs</code> | Validasi dan pengemasan output standalone |
-| <code>scripts/build-static.mjs</code> | Build ekspor statis khusus |
-| <code>scripts/deploy-pack.mjs</code> | Membuat paket tar.gz untuk hosting statis |
 
 ---
 
@@ -703,9 +700,9 @@ Untuk penyiapan Search Console, baca [panduan Search Console dan Analitik](./doc
 
 ## 12. Build dan Deployment
 
-### Mode A — Node.js standalone
+### Deploy produksi — Node.js standalone di VPS Hostinger
 
-Mode utama untuk deployment yang menjalankan server Node.js.
+Situs produksi **pusatperizinan.com** berjalan di **VPS Hostinger** yang **rebuild langsung dari branch <code>main</code> GitHub** — setiap perubahan yang di-push ke <code>main</code> ditarik VPS, di-build ulang, dan dijalankan sebagai server Node.js standalone. Seluruh fitur backend (API AI, database, admin, pembayaran, webhook, follow-up) berjalan penuh.
 
 Build dijalankan melalui <code>npm run build</code> dengan urutan:
 
@@ -724,25 +721,13 @@ Prasyarat:
 
 Panduan khusus: [<code>docs/HOSTINGER-NODEJS-DEPLOY.md</code>](./docs/HOSTINGER-NODEJS-DEPLOY.md).
 
-### Mode B — hosting statis / cPanel
+> 🧹 **Catatan v1.32.0**: alur deploy statis/cPanel lama (<code>scripts/build-static.mjs</code>, <code>scripts/deploy-pack.mjs</code>, paket <code>pusatperizinan-static-hosting.tar.gz</code> upload-only, dan panel <code>/?admin=1</code>) telah **dihapus** karena produksi kini sepenuhnya di VPS Hostinger. Tidak ada lagi paket yang perlu di-upload manual ke <code>public_html</code>.
 
-Repository menyediakan alur ekspor statis terpisah. Mode ini tidak menjalankan route API, database, atau job server seperti mode Node.js.
+### Ringkasan jalur
 
-<pre><code>PACK_LIGHT=1 node scripts/build-static.mjs
-node scripts/deploy-pack.mjs</code></pre>
-
-- Mode <code>PACK_LIGHT=1</code> menghasilkan paket lebih ringan dengan halaman inti.
-- Tanpa <code>PACK_LIGHT=1</code>, skrip mencoba mengekspor halaman long-tail yang lebih luas dan dapat membutuhkan resource lebih besar.
-- Paket statis siap diunggah ke document root hosting setelah hasil <code>out/</code> dibentuk.
-
-Baca [<code>DEPLOY-IDWEBHOST.md</code>](./DEPLOY-IDWEBHOST.md) dan skrip build sebelum memilih mode. Pada mode statis, beberapa fitur backend memakai fallback atau tidak tersedia—jangan menyamakan kapabilitasnya dengan server Node.js penuh.
-
-### Memilih mode
-
-| Kebutuhan | Mode yang tepat |
+| Kebutuhan | Jalur yang tepat |
 |---|---|
-| API AI, database, admin, pembayaran, webhook, follow-up | Node.js standalone |
-| Hosting hanya menerima file statis | Ekspor statis, dengan fitur backend terbatas |
+| Produksi (API AI, database, admin, pembayaran, webhook, follow-up) | VPS Hostinger — Node.js standalone, rebuild otomatis dari GitHub <code>main</code> |
 | Pengembangan lokal dengan hot reload | <code>npm run dev</code> |
 
 ### Batas worker build
@@ -925,9 +910,9 @@ Tidak. Simpan penggunaan SDK dan kredensial di backend/API route; client meminta
 </details>
 
 <details>
-<summary><strong>Bagaimana rebuild paket hosting statis?</strong></summary>
+<summary><strong>Bagaimana meng-update situs produksi?</strong></summary>
 
-Periksa prosedur terbaru di [DEPLOY-IDWEBHOST.md](./DEPLOY-IDWEBHOST.md), lalu jalankan skrip ekspor dan packaging sesuai mode yang dibutuhkan.
+Push perubahan ke branch <code>main</code> di GitHub — VPS Hostinger menarik perubahan tersebut, menjalankan <code>npm run build</code>, lalu menjalankan ulang server standalone. Tidak ada lagi paket statis yang perlu di-upload manual (alur lama dihapus di v1.32.0).
 </details>
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=0:064e3b,50:059669,100:f59e0b&height=4&section=footer&animation=twinkling" width="100%" alt="Pemisah animasi dokumentasi"/>
@@ -944,7 +929,6 @@ Periksa prosedur terbaru di [DEPLOY-IDWEBHOST.md](./DEPLOY-IDWEBHOST.md), lalu j
 | [CHANGELOG.md](./CHANGELOG.md) | Riwayat versi |
 | [WORKLOG.md](./WORKLOG.md) | Penunjuk rekam jejak kerja |
 | [ROADMAP-99.md](./ROADMAP-99.md) | Roadmap perbaikan dan pengembangan |
-| [DEPLOY-IDWEBHOST.md](./DEPLOY-IDWEBHOST.md) | Ekspor statis dan paket hosting tanpa Node.js |
 
 ### Kontribusi dan alur perubahan
 

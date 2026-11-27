@@ -660,3 +660,19 @@ Stage Summary:
 - Identitas brand halaman refund kini seragam dengan beranda pusatperizinan.com: logo ikon resmi + wordmark 3 warna + tagline — tidak ada lagi monogram generik
 - Dashboard ACC kini berkelas: KPI gradient ber-ikon dengan animasi, pipeline status visual real-time, tabel dengan aksen hover & pill ber-dot glow, gate login ber-logo — semuanya tetap vanilla HTML/CSS/JS satu file tanpa dependensi baru
 - Verifikasi: QA visual desktop + mobile LOLOS, 0 error konsol, tidak ada perubahan logika bisnis (status flow, impor email, CSV, hash admin tidak tersentuh)
+
+---
+Task ID: 61
+Agent: main (mode Master Polymath + Sage Universal + Ultimate Problem Solver — 46 dewan pakar lintas bidang, hulu ke hilir)
+Task: Instruksi owner — (1) konfirmasi seluruh update sudah ter-publish ke pusatperizinan.com; (2) hapus sistem deploy-idwebhost karena produksi kini pakai VPS Hostinger yang rebuild langsung dari GitHub
+
+Work Log:
+- Verifikasi sinkron GitHub: git ls-remote origin main == HEAD lokal b2aea9c (Revisi Dewan Pakar v3.0 — restrukturisasi garansi & ketentuan refund, plus seluruh Task 57-60) — SEMUA sudah ter-push ke origin/main; VPS Hostinger tinggal menarik & rebuild (sandbox tidak dapat menjangkau domain produksi langsung — verifikasi dilakukan via GitHub)
+- Penghapusan menyeluruh 12 file sistem deploy shared hosting idwebhost: DEPLOY-IDWEBHOST.md (root + salinan public/download/), paket pusatperizinan-static-hosting.tar.gz + pack-info.json + ISI-PACK.txt → public/download/ kini hanya berisi katalog PDF resmi; scripts/deploy-pack.mjs + scripts/build-static.mjs (pipeline ekspor statis PACK_LIGHT/full), 3 script hemat inode (prune-inode-hosting.sh, bersihkan-inode.sh, cek-inode.sh) + OPTIMASI-INODE.md, dan panel AdminDeploy (src/components/landing/admin-deploy.tsx + import & render di src/app/page.tsx)
+- README seksi 12 ditulis ulang: "Mode A/Mode B" → satu jalur produksi VPS Hostinger rebuild otomatis dari branch main GitHub (npm run build → node .next/standalone/server.js) + catatan penghapusan v1.32.0 + FAQ "Bagaimana meng-update situs produksi?" + tabel ringkasan jalur + pohon file & tabel dokumen pendukung disinkronkan; tip GSC src/lib/webmaster-tools.ts di-netralkan (idwebhost → registrar/penyedia domain Anda); verifikasi trigger CI prisma8-migration.yml pull_request.branches sudah benar [main] (kecurigaan typo "ain]" ternyata artefak render output terminal — file asli tak tersentuh)
+- Versioning sinkron v1.32.0 (taskId 61): version.ts (APP_VERSION, RELEASE_NAME, RELEASES 58 → 59, komentar riwayat) · package.json 1.28.0 → 1.32.0 · CHANGELOG (badge Versi Saat Ini/Total Rilis/Rilis Berikutnya + baris "berjalan di" + seksi [1.32.0] + ladder di-rebuild penuh 59 baris dari RELEASES mesin, memperbaiki baris cacat & rilis 1.26-1.31 yang hilang) · ver.json (current 1.32.0, history di-rebuild penuh 58 entri dari RELEASES tanpa celah, total 59, indexedUrls 11.895, nextRelease v1.33.0) · WORKLOG (entri ini)
+
+Stage Summary:
+- Repositori kini murni satu jalur deploy: VPS Hostinger + GitHub main — nol artefak shared hosting idwebhost tersisa di pohon repo; panel privat ?admin=1 tidak lagi merender apa pun
+- Konfirmasi owner terjawab: origin/main berisi seluruh revisi hulu-hilir (garansi, ketentuan refund, sistem refund terpadu, KBLI 2025) — rebuild VPS akan menyajikannya live di pusatperizinan.com
+- QA: tsc --noEmit 0 error, eslint file ubahan 0 temuan, sweep residu referensi idwebhost/deploy-pack/build-static/AdminDeploy = nol di kode & dokumen aktif (jejak historis CHANGELOG/WORKLOG/RELEASES dipertahankan)

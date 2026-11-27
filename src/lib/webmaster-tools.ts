@@ -531,7 +531,7 @@ export const GSC_STEPS = [
   {
     title: "Buat properti Domain",
     desc: "Di Search Console, pilih tipe DOMAIN → tulis pusatperizinan.com (sc-domain:). Tipe domain mencakup semua subdomain + http/https sekaligus.",
-    tip: "Butuh akses DNS domain (idwebhost/registrar). Kalau belum punya akses DNS, pilih tipe URL-prefix dulu.",
+    tip: "Butuh akses DNS domain (registrar/penyedia domain Anda). Kalau belum punya akses DNS, pilih tipe URL-prefix dulu.",
   },
   {
     title: "Verifikasi kepemilikan",

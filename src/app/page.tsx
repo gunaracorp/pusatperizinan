@@ -25,7 +25,6 @@ import { Faq } from "@/components/landing/faq";
 import { FinalCta } from "@/components/landing/final-cta";
 import { Footer } from "@/components/landing/footer";
 import { ChatWidgetLazy } from "@/components/landing/chat-widget-lazy";
-import { AdminDeploy } from "@/components/landing/admin-deploy";
 import { CatalogTeaser } from "@/components/landing/catalog-teaser";
 import { FAQS } from "@/lib/landing-data";
 import { SITE_URL } from "@/lib/site";
@@ -92,8 +91,6 @@ export default function Home() {
       </main>
       <Footer />
       <ChatWidgetLazy />
-      {/* Panel deploy privat — hanya aktif via /?admin=1, tidak tampil di publik */}
-      <AdminDeploy />
     </div>
   );
 }

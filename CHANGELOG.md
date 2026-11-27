@@ -5,21 +5,21 @@
 
 <br>
 
-[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.28.0_Duo_Promo_35%25-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-28-0)
+[![Versi Saat Ini](https://img.shields.io/badge/Versi_Saat_Ini-v1.32.0_VPS_Hostinger-059669?style=for-the-badge&logo=semanticweb&logoColor=white)](#v1-32-0)
 [![SemVer](https://img.shields.io/badge/Versioning-Semantic_2.0.0-3178C6?style=for-the-badge&logo=semver&logoColor=white)](#aturan)
 [![Format](https://img.shields.io/badge/Format-Keep_a_Changelog_1.1.0-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white)](#aturan)
 [![Status](https://img.shields.io/badge/Channel-stable-059669?style=for-the-badge&logo=vercel&logoColor=white)](#top)
 
-![Total Rilis](https://img.shields.io/badge/Total_Rilis-54_(0.1.0_%E2%86%92_1.28.0)-059669?style=flat-square)
+![Total Rilis](https://img.shields.io/badge/Total_Rilis-59_(0.1.0_%E2%86%92_1.32.0)-059669?style=flat-square)
 ![Entri Worklog](https://img.shields.io/badge/Entri_Worklog-58_ber_versi-059669?style=flat-square)
-![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.29.0_(Unreleased)-f59e0b?style=flat-square)
+![Rilis Berikutnya](https://img.shields.io/badge/Rilis_Berikutnya-v1.33.0_(Unreleased)-f59e0b?style=flat-square)
 ![Zona Waktu](https://img.shields.io/badge/Zona_Waktu-Asia%2FJakarta_(WIB)-059669?style=flat-square)
 
 <br>
 
-**📆 `pusatperizinan.com` → sekarang berjalan di `v1.28.0 — "Duo Promo 35%"`**
+**📆 `pusatperizinan.com` → sekarang berjalan di `v1.32.0 — "VPS Hostinger"`**
 
-<sub>Versi terlihat hidup di: footer setiap halaman (11.892 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
+<sub>Versi terlihat hidup di: footer setiap halaman (11.895 URL) · <a href="/api/version"><code>GET /api/version</code></a> · <code>package.json</code> · JSON-LD <code>softwareVersion</code> · dokumen ini</sub>
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=0:059669,100:f59e0b&height=3&section=footer" width="100%" alt=""/>
 
@@ -37,9 +37,9 @@
 | Sumber kebenaran | [`WORKLOG.md`](./WORKLOG.md) (rekam jejak 1:1) · `src/lib/version.ts` (data mesin) · `package.json` (runtime) |
 | Ritme | **1 task/permintaan user = 1 nomor versi baru** — fitur → `MINOR`, perbaikan → `PATCH`, perombakan arah produk → `MAJOR` |
 | Presisi tanggal | Era `0.x` (Sesi 1–2) direkonstruksi dari metadata file & jejak invoice (`INV-20261021`) → presisi bulan; era `1.x` → presisi hari (terverifikasi) |
-| Rilis berikutnya | **`v1.29.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
+| Rilis berikutnya | **`v1.33.0`** — diisi dari seksi `[Unreleased]` saat ROADMAP-99 lanjut dieksekusi |
 
-> 🔗 Navigasi cepat: **[Tabel Lengkap 54 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
+> 🔗 Navigasi cepat: **[Tabel Lengkap 59 Rilis](#ladder)** · **[Aturan Versioning](#aturan)** · **[WORKLOG.md](./WORKLOG.md)** · **[README.md](./README.md)** · **[ROADMAP-99.md](./ROADMAP-99.md)**
 
 ---
 
@@ -68,6 +68,29 @@ Instruksi owner: lengkapi website dengan **Ketentuan Refund resmi** — paling c
 
 ### 📚 Docs
 - Konsistensi pola: batas tier dinyatakan eksplisit sebagai batas layanan kontraktual (bukan tenggat undang-undang), tanpa penghangusan dana otomatis, tanpa pemotongan persentase default — sesuai mandat kepatuhan UUPK (klausula baku).
+
+---
+
+<a id="v1-32-0"></a>
+
+## [1.32.0] — 2026-11-27 — 🧹 "VPS Hostinger" (Task 61)
+
+Instruksi owner: **hapus deploy-idwebhost** — produksi kini sepenuhnya berjalan di VPS Hostinger yang rebuild langsung dari GitHub, sehingga seluruh alur deploy shared hosting (cPanel, paket upload-only) tidak terpakai lagi.
+
+### 🗑️ Removed
+- **12 file sistem deploy idwebhost dihapus**: `DEPLOY-IDWEBHOST.md` (root + salinan `public/download/`), paket `pusatperizinan-static-hosting.tar.gz` + `pack-info.json` + `ISI-PACK.txt`, builder `scripts/deploy-pack.mjs` + `scripts/build-static.mjs` (ekspor statis `PACK_LIGHT`/full), 3 script hemat inode shared hosting (`prune-inode-hosting.sh`, `bersihkan-inode.sh`, `cek-inode.sh`), `OPTIMASI-INODE.md`, dan komponen `src/components/landing/admin-deploy.tsx` (panel unduh paket privat `/?admin=1`, dihapus dari `src/app/page.tsx`).
+- `public/download/` kini hanya berisi katalog PDF resmi; `/?admin=1` tidak lagi merender apa pun.
+
+### 🔧 Changed
+- **README §12 Build dan Deployment** ditulis ulang: "Mode A/Mode B" menjadi satu jalur produksi — **VPS Hostinger rebuild otomatis dari branch `main` GitHub** (`npm run build` → `node .next/standalone/server.js`), plus tabel ringkasan jalur, FAQ "Bagaimana meng-update situs produksi?", pohon file, dan tabel dokumen pendukung disinkronkan.
+- Tip Google Search Console (`src/lib/webmaster-tools.ts`) di-netralkan: "akses DNS domain (idwebhost/registrar)" → "(registrar/penyedia domain Anda)".
+
+### 🧪 QA
+- `tsc --noEmit`: **0 error**; eslint file ubahan: **0 temuan**.
+- Sweep residu: **nol** referensi `idwebhost`/`deploy-pack`/`build-static`/`AdminDeploy`/`static-hosting` di kode & dokumen aktif — jejak historis CHANGELOG/WORKLOG/RELEASES dipertahankan.
+
+### 📚 Docs
+- Versioning sinkron v1.32.0 (taskId 61): `src/lib/version.ts` (RELEASES 58 → 59) · `package.json` · `scripts/ver.json` · dokumen ini · `WORKLOG.md` (Task 61).
 
 ---
 
@@ -1024,61 +1047,69 @@ Rilis pertama dengan **identitas versi resmi**. Seluruh proyek kini punya nomor 
 
 <a id="ladder"></a>
 
-## 🪜 Tabel Lengkap 49 Rilis
+## 🪜 Tabel Lengkap 59 Rilis
 
 | # | Versi | Tanggal (WIB) | Tipe | Nama Rilis | Task WORKLOG | Status |
 |---|---|---|---|---|---|---|
-| [1.25.0](#v1-25-0) | 2026-11-21 | minor | AI Everywhere | 53 | AEO/GEO: robots.txt 43 grup UA (20+ AI crawler dunia eksplisit dibuka) + llms.txt seksi IATA & freshness + llms-full tergenerate dari lib + robots meta root max-* | **🟢 AKTIF — versi berjalan** |
-| [1.24.0](#v1-24-0) | 2026-11-21 | minor | IATA Premium Matrix | 52 | IATA Premium Matrix + bundle pricing gabungan legalitas-IATA (TRAVEL-GLOBAL-STARTER/PRO dihitung dari komponen) + fix harga PPIU /katalog | **🟢 AKTIF — versi berjalan** |
-| 49 | **v1.23.1** ⭐ | **2026-11-20** | patch | **Master Pricing Haji-Umrah** | Task 51 | **🟢 AKTIF — versi berjalan** |
-| 48 | v1.23.0 | 2026-11-20 | minor | Trilogi Travel Ibadah | Task 50 | ✅ Rilis |
-| 47 | v1.22.1 | 2026-11-20 | patch | God Mode Audit | Task 49 | ✅ Rilis |
-| 46 | v1.22.0 | 2026-11-20 | minor | Premium IATA | Task 48 | ✅ Rilis |
-| 45 | v1.21.0 | 2026-11-16 | minor | Benteng Digital | Task 47 | ✅ Rilis |
-| 44 | v1.20.0 | 2026-10-29 | minor | Footer Mahkota | Task 46 | ✅ Rilis |
-| 43 | v1.19.0 | 2026-10-29 | minor | Footer God Mode | Task 45 | ✅ Rilis |
-| 42 | v1.18.0 | 2026-10-29 | minor | Live Commerce Wanita | Task 44 | ✅ Rilis |
-| 41 | v1.17.1 | 2026-10-28 | patch | Dokumen Terkini | Task 42 | ✅ Rilis |
-| 40 | v1.17.0 | 2026-10-28 | minor | Loker UMR Remote | Task 41 | ✅ Rilis |
-| 39 | v1.16.0 | 2026-10-28 | minor | Rekrutmen Khusus Wanita | Task 40 | ✅ Rilis |
-| 38 | v1.15.0 | **2026-10-28** | minor | Mesin Kepercayaan | Task 39 | ✅ Rilis |
-| 37 | v1.14.2 | 2026-10-27 | patch | Fondasi Baru | Task 38 | ✅ Rilis |
-| 36 | v1.14.1 | 2026-10-26 | patch | Detak Jantung | Task 37 | ✅ Rilis |
-| 35 | v1.14.0 | 2026-10-26 | minor | Kejar Order | Task 36 | ✅ Rilis |
-| 34 | v1.13.5 | 2026-10-26 | patch | Jaring Pengaman | Task 35 | ✅ Rilis |
-| 33 | v1.13.4 | 2026-10-26 | patch | Dokumen Hidup II | Task 34 | ✅ Rilis |
-| 32 | v1.13.3 | 2026-10-26 | patch | Analitik Penuh | Task 33 | ✅ Rilis |
-| 31 | v1.13.2 | 2026-10-25 | patch | Peta Live | Task 32 | ✅ Rilis |
-| 30 | v1.13.1 | 2026-10-25 | patch | Logo Resmi | Task 31 | ✅ Rilis |
-| 29 | v1.13.0 | 2026-10-25 | minor | Peta Provinsi | Task 29 | ✅ Rilis |
-| 28 | v1.12.0 | 2026-10-25 | minor | Identitas Resmi | Task 28 | ✅ Rilis |
-| 27 | v1.11.0 | 2026-10-25 | minor | Sapa Langsung | Task 27 | ✅ Rilis |
-| 26 | v1.10.0 | 2026-10-25 | minor | Mesin Redaksi | Task 26 | ✅ Rilis |
-| 25 | v1.9.0 | 2026-10-25 | minor | Kamus Raja | Task 25 | ✅ Rilis |
-| 24 | v1.8.0 | 2026-10-25 | minor | Arena Banding | Task 24 | ✅ Rilis |
-| 23 | v1.7.0 | 2026-10-25 | minor | Konten Raja | Task 23 | ✅ Rilis |
-| 22 | v1.6.0 | 2026-10-25 | minor | Peta Nusantara | Task 22 | ✅ Rilis |
-| 21 | v1.5.0 | 2026-10-24 | minor | SEO Titan | Task 21 | ✅ Rilis |
-| 20 | v1.4.0 ⭐ | **2026-10-22** | minor | **Version Master** | Task 20 | ✅ Rilis |
-| 19 | v1.3.0 | 2026-10-21 | minor | Search Master | Task 19 | ✅ Rilis |
-| 18 | v1.2.0 | 2026-10-21 | minor | Blueprint 99 | Task 18 | ✅ Rilis |
-| 17 | v1.1.0 | 2026-10-21 | minor | Emerald Docs | Task 17 | ✅ Rilis |
-| 16 | v1.0.1 | 2026-10-21 | patch | Restart | Task fix-preview | ✅ Rilis |
-| 15 | **v1.0.0** 🚀 | 2026-10-21 | **major** | **Mesin Revenue** | Task 16 | ✅ Rilis |
-| 14 | v0.10.0 | 2026-10 | minor | Pro v3 | Task 4-a/b/c, 5 (S2) | ✅ Rilis |
-| 13 | v0.9.1 | 2026-10 | patch | Phoenix | Task 1 reinstall (S2) | ✅ Rilis |
-| 12 | v0.9.0 | 2026-10 | minor | Premium v2 | Task 14 | ✅ Rilis |
-| 11 | v0.8.0 | 2026-10 | minor | Kemitraan | Task 13 | ✅ Rilis |
-| 10 | v0.7.0 | 2026-10 | minor | Funnel Emas | Task 12/12-b | ✅ Rilis |
-| 9 | v0.6.1 | 2026-10 | patch | Dokumen Hidup | Task 11 | ✅ Rilis |
-| 8 | v0.6.0 | 2026-10 | minor | Mesin Deploy | Task 10 | ✅ Rilis |
-| 7 | v0.5.0 | 2026-10 | minor | Kepercayaan Visual | Task 8–9 | ✅ Rilis |
-| 6 | v0.4.1 | 2026-10 | patch | Patch Sitemap | Task 7 🚨 | ✅ Rilis |
-| 5 | v0.4.0 | 2026-10 | minor | Gerak & Presisi | Task 6-a/b/c/final | ✅ Rilis |
-| 4 | v0.3.0 | 2026-10 | minor | Nusantara 30 Bahasa | Task 4-a/b, 4, 5 | ✅ Rilis |
-| 3 | v0.2.0 | 2026-10 | minor | Katalog 500 | Task 3 | ✅ Rilis |
-| 2 | v0.1.1 | 2026-10 | patch | Verifikasi Pertama | Task 2 | ✅ Rilis |
-| 1 | v0.1.0 | 2026-10 | minor | Fondasi | Task 1 | ✅ Rilis |
+| 59 | **[1.32.0](#v1-32-0)** | 2026-11-27 | minor | VPS Hostinger | Task 61 | **🟢 AKTIF — versi berjalan** |
+| 58 | **1.31.0** | 2026-11-27 | minor | KBLI 2025 di Sistem Refund | Task 60 | ✅ Rilis |
+| 57 | **1.30.1** | 2026-11-27 | patch | Kantor Koresponden | Task 59 | ✅ Rilis |
+| 56 | **1.30.0** | 2026-11-27 | minor | Duo Profil Digital | Task 58 | ✅ Rilis |
+| 55 | **1.29.0** | 2026-11-27 | minor | Admin Media Sosial WFH | Task 57 | ✅ Rilis |
+| 54 | **[1.28.0](#v1-28-0)** | 2026-11-24 | minor | Duo Promo 35% | Task 56 | ✅ Rilis |
+| 53 | **[1.27.0](#v1-27-0)** | 2026-11-24 | minor | Duo Katalog 17025 & KPPA | Task 55 | ✅ Rilis |
+| 52 | **[1.26.0](#v1-26-0)** | 2026-11-24 | minor | Sertifikasi PPIU Promo QRIS | Task 54 | ✅ Rilis |
+| 51 | **[1.25.0](#v1-25-0)** | 2026-11-21 | minor | AI Everywhere | Task 53 | ✅ Rilis |
+| 50 | **[1.24.0](#v1-24-0)** | 2026-11-21 | minor | IATA Premium Matrix | Task 52 | ✅ Rilis |
+| 49 | **[1.23.1](#v1-23-1)** ⭐ | **2026-11-20** | patch | Master Pricing Haji-Umrah | Task 51 | ✅ Rilis |
+| 48 | **[1.23.0](#v1-23-0)** | 2026-11-20 | minor | Trilogi Travel Ibadah | Task 50 | ✅ Rilis |
+| 47 | **[1.22.1](#v1-22-1)** | 2026-11-20 | patch | God Mode Audit | Task 49 | ✅ Rilis |
+| 46 | **[1.22.0](#v1-22-0)** | 2026-11-20 | minor | Premium IATA | Task 48 | ✅ Rilis |
+| 45 | **[1.21.0](#v1-21-0)** | 2026-11-16 | minor | Benteng Digital | Task 47 | ✅ Rilis |
+| 44 | **[1.20.0](#v1-20-0)** | 2026-10-29 | minor | Footer Mahkota | Task 46 | ✅ Rilis |
+| 43 | **[1.19.0](#v1-19-0)** | 2026-10-29 | minor | Footer God Mode | Task 45 | ✅ Rilis |
+| 42 | **[1.18.0](#v1-18-0)** | 2026-10-29 | minor | Live Commerce Wanita | Task 43 | ✅ Rilis |
+| 41 | **[1.17.1](#v1-17-1)** | 2026-10-28 | patch | Dokumen Terkini | Task 42 | ✅ Rilis |
+| 40 | **[1.17.0](#v1-17-0)** | 2026-10-28 | minor | Loker UMR Remote | Task 41 | ✅ Rilis |
+| 39 | **[1.16.0](#v1-16-0)** | 2026-10-28 | minor | Rekrutmen Khusus Wanita | Task 40 | ✅ Rilis |
+| 38 | **[1.15.0](#v1-15-0)** | 2026-10-28 | minor | Mesin Kepercayaan | Task 39 | ✅ Rilis |
+| 37 | **[1.14.2](#v1-14-2)** | 2026-10-27 | patch | Fondasi Baru | Task 38 | ✅ Rilis |
+| 36 | **[1.14.1](#v1-14-1)** | 2026-10-26 | patch | Detak Jantung | Task 37 | ✅ Rilis |
+| 35 | **[1.14.0](#v1-14-0)** | 2026-10-26 | minor | Kejar Order | Task 36 | ✅ Rilis |
+| 34 | **[1.13.5](#v1-13-5)** | 2026-10-26 | patch | Jaring Pengaman | Task 35 | ✅ Rilis |
+| 33 | **[1.13.4](#v1-13-4)** | 2026-10-26 | patch | Dokumen Hidup II | Task 34 | ✅ Rilis |
+| 32 | **[1.13.3](#v1-13-3)** | 2026-10-26 | patch | Analitik Penuh | Task 33 | ✅ Rilis |
+| 31 | **[1.13.2](#v1-13-2)** | 2026-10-25 | patch | Peta Live | Task 32 | ✅ Rilis |
+| 30 | **[1.13.1](#v1-13-1)** | 2026-10-25 | patch | Logo Resmi | Task 31 | ✅ Rilis |
+| 29 | **[1.13.0](#v1-13-0)** | 2026-10-25 | minor | Peta Provinsi | Task 29 | ✅ Rilis |
+| 28 | **[1.12.0](#v1-12-0)** | 2026-10-25 | minor | Identitas Resmi | Task 28 | ✅ Rilis |
+| 27 | **[1.11.0](#v1-11-0)** | 2026-10-25 | minor | Sapa Langsung | Task 27 | ✅ Rilis |
+| 26 | **[1.10.0](#v1-10-0)** | 2026-10-25 | minor | Mesin Redaksi | Task 26 | ✅ Rilis |
+| 25 | **[1.9.0](#v1-9-0)** | 2026-10-25 | minor | Kamus Raja | Task 25 | ✅ Rilis |
+| 24 | **[1.8.0](#v1-8-0)** | 2026-10-25 | minor | Arena Banding | Task 24 | ✅ Rilis |
+| 23 | **[1.7.0](#v1-7-0)** | 2026-10-25 | minor | Konten Raja | Task 23 | ✅ Rilis |
+| 22 | **[1.6.0](#v1-6-0)** | 2026-10-25 | minor | Peta Nusantara | Task 22 | ✅ Rilis |
+| 21 | **[1.5.0](#v1-5-0)** | 2026-10-24 | minor | SEO Titan | Task 21 | ✅ Rilis |
+| 20 | **[1.4.0](#v1-4-0)** ⭐ | **2026-10-22** | minor | Version Master | Task 20 | ✅ Rilis |
+| 19 | **[1.3.0](#v1-3-0)** | 2026-10-21 | minor | Search Master | Task 19 | ✅ Rilis |
+| 18 | **[1.2.0](#v1-2-0)** | 2026-10-21 | minor | Blueprint 99 | Task 18 | ✅ Rilis |
+| 17 | **[1.1.0](#v1-1-0)** | 2026-10-21 | minor | Emerald Docs | Task 17 | ✅ Rilis |
+| 16 | **[1.0.1](#v1-0-1)** | 2026-10-21 | patch | Restart | Task fix-preview | ✅ Rilis |
+| 15 | **[1.0.0](#v1-0-0)** 🚀 | 2026-10-21 | **major** | Mesin Revenue | Task 16 | ✅ Rilis |
+| 14 | **0.10.0** | 2026-10 | minor | Pro v3 | Task 4-a/b/c, 5 (Sesi 2) | ✅ Rilis |
+| 13 | **0.9.1** | 2026-10 | patch | Phoenix | Task 1 reinstall (Sesi 2) | ✅ Rilis |
+| 12 | **0.9.0** | 2026-10 | minor | Premium v2 | Task 14 | ✅ Rilis |
+| 11 | **0.8.0** | 2026-10 | minor | Kemitraan | Task 13 | ✅ Rilis |
+| 10 | **0.7.0** | 2026-10 | minor | Funnel Emas | Task 12 / 12-b | ✅ Rilis |
+| 9 | **0.6.1** | 2026-10 | patch | Dokumen Hidup | Task 11 | ✅ Rilis |
+| 8 | **0.6.0** | 2026-10 | minor | Mesin Deploy | Task 10 | ✅ Rilis |
+| 7 | **0.5.0** | 2026-10 | minor | Kepercayaan Visual | Task 8–9 | ✅ Rilis |
+| 6 | **0.4.1** | 2026-10 | patch | Patch Sitemap | Task 7 | ✅ Rilis |
+| 5 | **0.4.0** | 2026-10 | minor | Gerak & Presisi | Task 6-a/b/c/final | ✅ Rilis |
+| 4 | **0.3.0** | 2026-10 | minor | Nusantara 30 Bahasa | Task 4-a/b, 4, 5 | ✅ Rilis |
+| 3 | **0.2.0** | 2026-10 | minor | Katalog 500 | Task 3 | ✅ Rilis |
+| 2 | **0.1.1** | 2026-10 | patch | Verifikasi Pertama | Task 2 | ✅ Rilis |
+| 1 | **0.1.0** | 2026-10 | minor | Fondasi | Task 1 | ✅ Rilis |
 
 ---
 

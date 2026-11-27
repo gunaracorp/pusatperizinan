@@ -7,17 +7,17 @@
     "url": "https://pusatperizinan.com"
   },
   "version": {
-    "current": "1.28.0",
-    "label": "v1.28.0 — Duo Promo 35%",
-    "releaseName": "Duo Promo 35%",
-    "releasedAt": "2026-11-24",
+    "current": "1.32.0",
+    "label": "v1.32.0 — VPS Hostinger",
+    "releaseName": "VPS Hostinger",
+    "releasedAt": "2026-11-27",
     "channel": "stable",
     "timezone": "Asia/Jakarta (WIB)",
     "semverValid": true,
-    "nextRelease": "v1.29.0 (Unreleased — antrean ROADMAP-99)"
+    "nextRelease": "v1.33.0 (Unreleased — antrean ROADMAP-99)"
   },
   "stats": {
-    "indexedUrls": 11888,
+    "indexedUrls": 11895,
     "sitemapSections": 15,
     "orderableServices": 1500,
     "subscriptionSkus": 6,
@@ -30,22 +30,106 @@
     "changelog": "/CHANGELOG.md",
     "worklog": "/WORKLOG.md",
     "roadmap": "/ROADMAP-99.md",
-    "nextRelease": "v1.24.0 (Unreleased — antrean ROADMAP-99)"
+    "nextRelease": "v1.33.0 (Unreleased — antrean ROADMAP-99)"
   },
   "releases": {
-    "total": 54,
+    "total": 59,
     "current": {
-      "version": "1.28.0",
-      "date": "2026-11-24",
+      "version": "1.32.0",
+      "date": "2026-11-27",
       "type": "minor",
-      "name": "Duo Promo 35%",
-      "taskId": "56",
+      "name": "VPS Hostinger",
+      "taskId": "61",
       "highlights": [
-        "Promo 35% atas anchor normal (+50%) untuk 2 produk baru Task 55: Pelatihan 17025 Rp4.524.000/peserta (normal Rp6.960.000, total min. 5 Rp22.620.000) & KPPA Rp26.678.000 all-in (normal Rp41.043.750, DP Rp13.339.000)",
-        "Sinkron 6 permukaan: cert entry + FAQ, SERVICES, detail map, katalog A.10, chat KB item 10, llms.txt v1.28.0"
+        "Sistem deploy shared hosting idwebhost dihapus menyeluruh (12 file) karena produksi kini sepenuhnya VPS Hostinger yang rebuild langsung dari GitHub main: DEPLOY-IDWEBHOST.md (root + salinan public/download), paket pusatperizinan-static-hosting.tar.gz + pack-info.json + ISI-PACK.txt, builder scripts/deploy-pack.mjs + scripts/build-static.mjs, 3 script hemat inode (prune-inode-hosting/bersihkan-inode/cek-inode) + OPTIMASI-INODE.md, dan panel AdminDeploy /?admin=1",
+        "README seksi Build & Deployment ditulis ulang: Mode A/Mode B menjadi satu jalur produksi (VPS Hostinger rebuild otomatis dari branch main GitHub — npm run build → node .next/standalone/server.js) + FAQ update produksi + tabel dokumen sinkron; tip GSC webmaster-tools di-netralkan (idwebhost → registrar/penyedia domain)",
+        "QA: tsc --noEmit 0 error, eslint file ubahan 0 temuan, sweep residu idwebhost/deploy-pack/build-static/AdminDeploy nol di kode & dokumen aktif — jejak historis CHANGELOG/WORKLOG/RELEASES dipertahankan"
       ]
     },
     "history": [
+      {
+        "version": "1.31.0",
+        "date": "2026-11-27",
+        "type": "minor",
+        "name": "KBLI 2025 di Sistem Refund",
+        "taskId": "60",
+        "highlights": [
+          "Seluruh KBLI 2025 masuk ke dropdown layanan Sistem Refund (/sistem-refund.html): 1.559 kode 5-digit, 21 seksi A–U, per Peraturan BPS No. 7 Tahun 2025 (ditetapkan 18 Des 2025, penyempurnaan KBLI 2020, mengacu ISIC Rev. 5)",
+          "Sumber data resmi: lampiran PDF Peraturan BPS No. 7/2025 (623 hlm) di-parse & divalidasi silang dengan API publik TenderX Open Data — kecocokan 100% (1.559/1.559 kode); struktur baru ISIC Rev. 5 terserap (seksi 45 diler motor dilebur ke 46611/4662x, huruf seksi bergeser: L=Keuangan, M=Real Estat)",
+          "Pencarian instan kode/nama KBLI di Langkah 2 form refund (hasil terfilter maks 60 opsi + info jumlah kecocokan); kode terpilih tercatat sebagai layananId 'K-<kode>' dengan penjadwalan Tier 2 standar yang dipastukan saat verifikasi administratif; file data baru public/kbli2025.js (94 KB); QA headless browser PASS end-to-end (tiket REF-2026-001 terbit dengan layanan KBLI 2025 — 46611)"
+        ]
+      },
+      {
+        "version": "1.30.1",
+        "date": "2026-11-27",
+        "type": "patch",
+        "name": "Kantor Koresponden",
+        "taskId": "59",
+        "highlights": [
+          "Kantor koresponden baru per instruksi owner: Belezza BSA, 1st Floor, Unit 106, Jl. Letjen Soepeno, Grogol Utara, Kebayoran Lama, Jakarta Selatan, DKI Jakarta — untuk surat resmi & kiriman dokumen fisik, selain kantor pusat SCBD",
+          "Kode pos dikoreksi & diverifikasi: 46461 (input owner) adalah kode pos wilayah Brebes, Jawa Tengah — kode pos yang benar untuk Kelurahan Grogol Utara, Kec. Kebayoran Lama, Jakarta Selatan adalah 12210 (verifikasi nomor.net & data kelurahan 31.74.05.1004)",
+          "Sinkron 8 permukaan: CONTACT.correspondenceAddress di site.ts (sumber kebenaran), kartu kantor koresponden di /kontak, blok kantor di /tentang-kami, baris korespondensi di /ketentuan-refund & kebijakan-privasi (ID+EN), JSON-LD address array 2 PostalAddress (seo-jsonld + /kontak), header llms-full.txt, Fakta kunci public/llms.txt + freshness v1.30.1"
+        ]
+      },
+      {
+        "version": "1.30.0",
+        "date": "2026-11-27",
+        "type": "minor",
+        "name": "Duo Profil Digital",
+        "taskId": "58",
+        "highlights": [
+          "Dua layanan baru per instruksi owner — Duo Profil Digital: Jasa Pembuatan Company Profile Lengkap Rp1.500.000 all-in (kode item PP-CP-001, DP 50% Rp750.000 dibayar dulu saat mulai + pelunasan Rp750.000 saat hasil jadi & diserahkan) dan Jasa Pembuatan Website Company Profile Rp1.500.000 all-in termasuk domain web.id 1 tahun (kode item PP-WCP-001; domain premium lain .com/.id/.co.id +Rp500.000 → Rp2.000.000; WAJIB DP 50% Rp750.000 web.id / Rp1.000.000 domain premium, pelunasan saat website live)",
+          "SEO super lengkap per halaman produk: meta + keywords long-tail Indonesia, hreflang alternates, Open Graph dinamis, JSON-LD Service + Offer(s) + PriceSpecification DP + BreadcrumbList + HowTo + FAQPage (6-8 Q&A), heading semantik, cross-link dua-duanya + 8 link internal satu ekosistem (NIB, PT/CV, virtual office, paket all-in KBLI 85520)",
+          "Distribusi mesin-baca penuh: 2 URL baru masuk sitemap seksi static (monthly 0.9 → auto-ping IndexNow), entri baru di public/llms.txt (# Layanan utama, marker Task 58 + freshness v1.30.0) + seksi baru 'Duo Profil Digital' di llms-full.txt; PLATFORM_STATS.indexedUrls 11.893 → 11.895"
+        ]
+      },
+      {
+        "version": "1.29.0",
+        "date": "2026-11-27",
+        "type": "minor",
+        "name": "Admin Media Sosial WFH",
+        "taskId": "57",
+        "highlights": [
+          "Posisi baru Admin Media Sosial — khusus wanita, maksimal 40 tahun, WFH dengan HP + laptop sendiri, mengelola seluruh platform (Instagram, TikTok, LinkedIn, Facebook, X, dan semua media sosial lainnya)",
+          "Skema gaji khusus per instruksi owner: 3 bulan pertama Rp1.500.000/bulan (di luar bonus jika kinerja bagus), setelah kontrak 3 bulan dinilai baik → UMR sesuai daerah masing-masing; pengalaman mengurus media sosial diutamakan",
+          "Halaman /lowongan-kerja kini 7 posisi aktif: meta deskripsi dinamis mengikuti JOBS.length, hero + openGraph menyebut admin media sosial, kartu skema gaji mendapat catatan pengecualian, FAQ 'Berapa gaji awalnya?' kini dinamis per job (salaryNote)"
+        ]
+      },
+      {
+        "version": "1.28.0",
+        "date": "2026-11-24",
+        "type": "minor",
+        "name": "Duo Promo 35%",
+        "taskId": "56",
+        "highlights": [
+          "Kampanye promo 2 produk baru Task 55 per instruksi owner (harga naik 50% sebagai anchor normal, lalu diskon 35%): Pelatihan SNI ISO/IEC 17025:2017 → Rp4.524.000/peserta PROMO dari normal Rp6.960.000 (total min. 5 peserta Rp22.620.000 dari normal Rp34.800.000); KPPA → Rp26.678.000 all-in PROMO dari normal Rp41.043.750 (DP 50% Rp13.339.000)",
+          "Sinkron 6 permukaan harga: entri katalog sertifikasi (price + 2 FAQ), SERVICES /layanan/kppa (price + features DP), LICENSE_DETAIL_MAP (long + FAQ biaya), katalog divisi A.10 (priceFrom 26.678.000 + desc), knowledge base chat item 10, llms.txt freshness v1.28.0"
+        ]
+      },
+      {
+        "version": "1.27.0",
+        "date": "2026-11-24",
+        "type": "minor",
+        "name": "Duo Katalog 17025 & KPPA",
+        "taskId": "55",
+        "highlights": [
+          "Produk BARU katalog sertifikasi: 'Pelatihan SNI ISO/IEC 17025:2017 — Kompetensi Laboratorium Pengujian & Kalibrasi' (id pelatihan-sni-iso-17025-2017 → /layanan/pelatihan-sni-iso-17025-2017) — Rp 4,64jt/peserta, min. 5 peserta (total min. Rp 23,2jt), 2 hari/14 jam efektif in-house & daring, 7 modul klausul 4-8, e-sertifikat keikutsertaan dengan batasan jujur 'bukan akreditasi KAN' — berbasis proposal korporat PT Haleyora Powerindo (PPI/PROP-LKP/17025/XI/2026)",
+          "Match quotation resmi KPPA 2026 (PP/QUO/KPPA/1124/2026, kasus SH Automation PTE LTD — Batam) ke seluruh permukaan: base page /layanan/kppa (SERVICES), detail map (scope 9 langkah, 8 dokumen, faq biaya & timeline), katalog divisi A.10 — harga all-in Rp 27.362.500 (DP 50% + 50% saat NIB terbit), proses 4-6 minggu, dasar hukum Peraturan BKPM No. 5/2025, non-komersial + wajib kelayakan alamat usulan",
+          "Sinkron AI-ready: knowledge base chat item 10 baru + llms.txt 2 item produk + freshness v1.27.0; katalog sertifikasi 43 → 44 layanan"
+        ]
+      },
+      {
+        "version": "1.26.0",
+        "date": "2026-11-24",
+        "type": "minor",
+        "name": "Sertifikasi PPIU Promo QRIS",
+        "taskId": "54",
+        "highlights": [
+          "Master brief owner Task 54: SERTIFIKASI PPIU promo Rp19.500.000 dari normal Rp25.000.000 — disinkron ke 10 titik (sertifikasi-travel.ts sumber kebenaran, sertifikasi-pages-data, katalog R.1 + FAQ, catalog/certifications, pillar IATA, knowledge base chat, llms.txt, JSON-LD Offer priceValidUntil + ListPrice); bundle IATA Travel Global ikut terhitung ulang runtime (Starter Rp47.287.500 promo / Rp80.575.000 normal, Pro Rp97.937.500 promo / Rp156.875.000 normal)",
+          "Integrasi QRIS resmi pusatperizinan.com (public/qris/qris-pusatperizinan.jpg): kartu harga promo dicoret + badge hemat di halaman trilogi, seksi Pembayaran QRIS + konfirmasi WhatsApp otomatis (event GA4 click_cert_qris_wa), panel QRIS di halaman status pesanan saat PENDING — dana masuk langsung rekening merchant, tanpa perantara",
+          "Seksi 'Himbauan Kemenhaj' (anchor #himbauan-kemenhaj) di halaman Sertifikasi PPIU: 4 sumber terverifikasi (kemenag.go.id 438 PPIU terancam dibekukan Nov 2023; HIMPUH pembekuan ratusan izin Okt 2024; 345 izin dibekukan Okt 2024; KMA 1251/2021 diktum ke-4 sertifikasi wajib) + portal haji.go.id; llms.txt item wajib-sertifikasi untuk jawaban AI; keywords root kampanye + 1000 tagar kampanye di public/tags/"
+        ]
+      },
       {
         "version": "1.25.0",
         "date": "2026-11-21",
@@ -54,7 +138,7 @@
         "taskId": "53",
         "highlights": [
           "AEO/GEO maksimal — robots.txt di-upgrade menjadi 43 grup UA (RFC 9309 multi-UA): dibuka eksplisit untuk 20+ AI crawler dunia baru (Claude-SearchBot, anthropic-ai, Perplexity-User, DuckAssistBot, YouBot, cohere-ai, MistralAI-User, Kagibot, iaskspider, Meta-ExternalAgent, FacebookBot, Amazonbot, Bytespider, PanguBot, Webzio-Extended, CCBot, Diffbot, Timpibot, PetalBot, Applebot, GoogleOther) + bot preview Slack/Discord/Telegram; grup AI lama (GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-User, PerplexityBot, Google-Extended, Applebot-Extended) kini juga dijaga dari /api & /admin",
-          "llms.txt: baris freshness (Terakhir diperbarui 2026-11-21 — harga berjalan) + item ekosistem IATA lengkap (3 produk + harga katalog/promo + 2 bundle Travel Global + 8 panduan + 2 halaman konversi); llms-full.txt (katalog mesin-baca AI) kini tergenerate seksi \"Ekosistem Akreditasi IATA\" langsung dari src/lib/iata.ts — harga AI-ready selalu 1:1 dengan sumber kebenaran",
+          "llms.txt: baris freshness (Terakhir diperbarui 2026-11-21 — harga berjalan) + item ekosistem IATA lengkap (3 produk + harga katalog/promo + 2 bundle Travel Global + 8 panduan + 2 halaman konversi); llms-full.txt (katalog mesin-baca AI) kini tergenerate seksi 'Ekosistem Akreditasi IATA' langsung dari src/lib/iata.ts — harga AI-ready selalu 1:1 dengan sumber kebenaran",
           "robots meta root max-snippet:-1 / max-image-preview:large / max-video-preview:-1 dipasang level root seluruh situs (sebelumnya hanya googleBot) — dibaca Bing/Perplexity/Yandex/DuckDuckGo untuk snippet & jawaban AI maksimal; QA tsc/eslint NOL + runtime robots/llms/llms-full/robots-meta terverifikasi"
         ]
       },
@@ -65,7 +149,7 @@
         "name": "IATA Premium Matrix",
         "taskId": "52",
         "highlights": [
-          "IATA Premium Matrix: tabel perbandingan harga premium 3 model akreditasi (profil cocok-untuk, katalog, promo 2026, catatan \"mulai dari\" GoGlobal) + Bundle Pricing 2 paket gabungan di pillar /layanan/iata-accreditation — TRAVEL-GLOBAL-STARTER Rp 47.787.500 promo / Rp 75.575.000 normal (GoLite promo + Sertifikasi PPIU) dan TRAVEL-GLOBAL-PRO Rp 98.437.500 promo / Rp 151.875.000 normal (GoStandard promo + PPIU + PIHK)",
+          "IATA Premium Matrix: tabel perbandingan harga premium 3 model akreditasi (profil cocok-untuk, katalog, promo 2026, catatan mulai-dari GoGlobal) + Bundle Pricing 2 paket gabungan di pillar /layanan/iata-accreditation — TRAVEL-GLOBAL-STARTER Rp 47.787.500 promo / Rp 75.575.000 normal (GoLite promo + Sertifikasi PPIU) dan TRAVEL-GLOBAL-PRO Rp 98.437.500 promo / Rp 151.875.000 normal (GoStandard promo + PPIU + PIHK)",
           "Sumber harga bundle src/lib/iata.ts (IataBundle + IATA_BUNDLES — dihitung runtime dari IATA_PRODUCTS x SERTIFIKASI_PRODUCTS, tanpa hardcode; field cocokUntuk untuk matriks); knowledge base AI chat seksi 9 bundle IATA; fix konsistensi harga PPIU di /katalog (R.1 priceFrom 19,5jt -> 20jt + FAQ divisi) menyusul master brief Task 50",
           "QA god mode: tsc --noEmit & eslint src/ NOL temuan; nominal bundle terverifikasi via eksekusi kode; compile-build sukses semua route; verifikasi runtime pillar & /katalog/travel-haji-umrah HTTP 200 — prerender penuh 12.053 halaman ENOSPC di sandbox 9,9GB (bukan bug kode)"
         ]
@@ -77,8 +161,8 @@
         "name": "Master Pricing Haji-Umrah",
         "taskId": "51",
         "highlights": [
-          "Repricing bundle travel ibadah atas arahan owner (harga lama terlalu murah — komplain pasar): Paket Pendirian Travel Umrah Lengkap (PT + PPIU) normal Rp200jt → promo 50% = Rp100jt; Upgrade PPIU ke PIHK normal Rp230jt → promo 50% = Rp115jt; GO HAJI PLUS! (gabungan) Rp215jt promo / Rp430jt normal — sinkron di 4 file: katalog sertifikasi, BUNDLES /paket, kartu /paket-usaha, knowledge base AI chat (jasa flagship PPIU mulai Rp20jt & PIHK mulai Rp25jt sesuai trilogi)",
-          "Guardrail audit: 9 file dengan angka 45,5jt/58,5jt/39jt milik produk LAIN (MISA Saudi, virtual office, katalog BPOM/PBG/PKPA/KSP/SNI, PT PMA, ISO Travel Excellence) tidak disentuh; harga IATA PusatPerizinan.com sudah sesuai master pricing (tidak diubah); trilogi sertifikasi (PPIU 20jt/PIHK 25jt/BPW 15jt) tidak berubah"
+          "Repricing bundle travel ibadah atas arahan owner (harga lama terlalu murah — komplain pasar): Paket Pendirian Travel Umrah Lengkap (PT + PPIU) normal Rp200jt → promo 50% = Rp100jt; Upgrade PPIU ke PIHK normal Rp230jt → promo 50% = Rp115jt; GO HAJI PLUS! (gabungan) Rp215jt promo / Rp430jt normal — disinkron di 4 file: katalog sertifikasi (CertEntry), BUNDLES /paket, kartu /paket-usaha, dan knowledge base AI chat (termasuk jasa flagship PPIU mulai Rp20jt & PIHK mulai Rp25jt sesuai trilogi v1.23.0)",
+          "Guardrail audit: 9 file dengan angka 45,5jt/58,5jt/39jt milik produk LAIN (MISA Saudi, virtual office, katalog BPOM/PBG/PKPA/KSP/SNI, PT PMA, ISO Travel Excellence) teridentifikasi dan TIDAK disentuh; harga IATA PusatPerizinan.com (GoLite/GoStandard/GoGlobal) sudah sesuai master pricing dan tidak diubah; harga trilogi sertifikasi (PPIU 20jt/PIHK 25jt/BPW 15jt) tidak berubah"
         ]
       },
       {
@@ -88,9 +172,9 @@
         "name": "Trilogi Travel Ibadah",
         "taskId": "50",
         "highlights": [
-          "Trilogi sertifikasi travel (jasa all-in, master brief owner): Sertifikasi PPIU — izin umrah Rp20.000.000 (Kemenag, KBLI 79122, sertifikasi LSUHK era PMHU 2/2026), Sertifikasi PIHK — haji khusus ONH Plus Rp25.000.000 (prasyarat PPIU aktif), Sertifikasi BPW — TDA Biro Perjalanan Wisata Rp15.000.000 (Baparekraf, KBLI 79120); satu sumber harga src/lib/sertifikasi-travel.ts",
-          "4 halaman premium baru + PPIU halaman utama SEO ('1000 pagar'): /layanan/sertifikasi-ppiu|pihk|bpw (dasar hukum, syarat, ruang lingkup, proses 01-08, tabel perbandingan, kesalahan umum, checklist, FAQ + JSON-LD Service/Offer/FAQPage/BreadcrumbList) + /konsultasi-sertifikasi-travel (POST /api/leads, honeypot+consent, GA4)",
-          "SEO & distribusi: sitemap ×4, llms.txt trilogi, silo dua arah IATA pillar ↔ sertifikasi, 3 entri CertEntry (homepage/kategori/catch-all; CERT_STATS 43 → 46, CERT_REGION 1.634 → 1.748 dinamis), indexedUrls 11.888 → 11.892"
+          "Trilogi sertifikasi travel lengkap dengan harga master brief owner (jasa all-in): Sertifikasi PPIU — izin Penyelenggara Perjalanan Ibadah Umrah Rp20.000.000 (Kemenag, KBLI 79122, pendampingan sertifikasi LSUHK era PMHU 2/2026), Sertifikasi PIHK — haji khusus ONH Plus Rp25.000.000 (prasyarat PPIU aktif, jaminan/asuransi/akomodasi), Sertifikasi BPW — Tanda Daftar Usaha Biro Perjalanan Wisata Rp15.000.000 (Kemenparekraf/Baparekraf, KBLI 79120); satu sumber harga src/lib/sertifikasi-travel.ts",
+          "4 halaman premium baru + PPIU halaman utama SEO (master brief '1000 pagar'): /layanan/sertifikasi-ppiu|pihk|bpw (renderer penuh: hero, dasar hukum, syarat 10 item, ruang lingkup 12, proses 01-08, tabel perbandingan trilogi, 5 kesalahan umum, checklist dokumen, FAQ 6-8 + FAQPage/Service/Offer/BreadcrumbList JSON-LD) + /konsultasi-sertifikasi-travel (form pemeriksaan kesiapan → POST /api/leads, honeypot+consent, source sertifikasi-ppiu|pihk|bpw, GA4 submit_cert_travel_lead + click_cert_wa/form via CertTrackLink)",
+          "SEO & distribusi: sitemap ×4 (ppiu weekly 0.95), llms.txt seksi trilogi, silo dua arah IATA pillar ↔ sertifikasi (satu konsultan seluruh piramida legalitas travel), 3 entri CertEntry di katalog sertifikasi (homepage section + kategori + catch-all CERT_MAP; CERT_STATS 43 → 46 otomatis, CERT_REGION 1.634 → 1.748 halaman × 38 provinsi dengan angka kini dinamis), PLATFORM_STATS.indexedUrls 11.888 → 11.892"
         ]
       },
       {
@@ -100,9 +184,9 @@
         "name": "God Mode Audit",
         "taskId": "49",
         "highlights": [
-          "Bug hunt god mode (Master Polymath + Sage Universal + Ultimate Problem Solver): tsc --noEmit & eslint FULL project nol temuan; audit menyeluruh terverifikasi — 15 route IATA ada, 14 entri sitemap utuh, whitelist API lead cocok dengan kedua form, honeypot+consent utuh, mirror WORKLOG identik, nol harga lama",
-          "4 bug diperbaiki: chip kategori OG image tanpa maxWidth (kategori IATA premium 74-char meluber) → adaptive fontSize + maxWidth 760 + clamp 110; /api/og truncate kategori 60 → 110 char; README 3 versi stale + badge Model Data 14 → 16 (aktual 16 model, CurrencyRate); STATE.md versi/lokasi/model stale → refresh Task 49",
-          "README diperluas: seksi 2.1 + Peta Halaman mencatat ekosistem IATA 14 URL; versioning 8 titik sinkron v1.22.1 (version.ts RELEASES 46 → 47, package.json, ver.json, CHANGELOG, WORKLOG+worklog Task 49)"
+          "Bug hunt god mode (Master Polymath + Sage Universal + Ultimate Problem Solver): tsc --noEmit & eslint FULL project nol temuan; audit menyeluruh terverifikasi — 15 route IATA ada, 14 entri sitemap utuh, whitelist API lead (SECTORS/PACKAGES) cocok dengan kedua form, honeypot+consent+error handling utuh, mirror WORKLOG.md = worklog.md identik, nol harga lama, nol hydration risk baru",
+          "4 bug diperbaiki: (1) chip kategori OG image tanpa maxWidth — kategori IATA premium 74-char meluber melewati kanvas 1200px dan mendorong domain keluar → adaptive fontSize (22/19/16) + maxWidth 760 + flexWrap + clamp 110; (2) /api/og memotong kategori ke 60 char → 110 (posisi positioning tidak terpotong lagi); (3) README 3 identitas versi stale 1.21.0 → 1.22.1 + badge Model Data 14 → 16 (koreksi: kontrak aktual 16 model, CurrencyRate tak tercantum di STATE); (4) STATE.md versi/lokasi/model stale → refresh penuh Task 49",
+          "README diperluas: seksi 2.1 + Peta Halaman kini mencatat ekosistem akreditasi IATA 14 URL (pillar, 3 produk, 2 konversi, 8 panduan, satu sumber harga src/lib/iata.ts); versioning 8 titik sinkron v1.22.1 (version.ts RELEASES 46 → 47, package.json, scripts/ver.json, CHANGELOG badge+entri+ladder #47, WORKLOG+worklog Task 49)"
         ]
       },
       {
@@ -333,7 +417,7 @@
         "taskId": "28",
         "highlights": [
           "Entitas legal resmi situs → PT Top Konsultan Internasional: satu sumber LEGAL_ENTITY (site.ts) mengalir ke JSON-LD legalName/alternateName, meta publisher, /kontak, /kebijakan-privasi (id+en), FAQ invoice, halaman biaya & generator katalog, dokumen deploy publik",
-          "Kredit support system → \"Support system by PT Digital Bisnis Manajemen — digiman.id\" di 30 locale footer + badge footer jadi tautan digiman.id; © footer kini atas nama PT Top Konsultan Internasional",
+          "Kredit support system → \"Support system by PT Top Konsultan Internasional\" di 30 locale footer + badge footer jadi tautan digiman.id; © footer kini atas nama PT Top Konsultan Internasional",
           "/tentang-kami: kartu Badan Usaha memuat entitas + dukungan sistem (tautan digiman.id); konstanta baru SUPPORT_SYSTEM + SUPPORT_SYSTEM_URL di site.ts"
         ]
       },

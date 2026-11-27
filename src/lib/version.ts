@@ -17,9 +17,9 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.31.0";
+export const APP_VERSION = "1.32.0";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "KBLI 2025 di Sistem Refund";
+export const RELEASE_NAME = "VPS Hostinger";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
 export const RELEASE_DATE = "2026-11-27";
 /** Channel rilis: stable | beta | alpha. */
@@ -42,10 +42,22 @@ export interface ReleaseEntry {
 }
 
 /**
- * Riwayat lengkap 54 rilis — urut TERBARU lebih dulu.
+ * Riwayat lengkap 59 rilis — urut TERBARU lebih dulu.
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.32.0",
+    date: "2026-11-27",
+    type: "minor",
+    name: "VPS Hostinger",
+    taskId: "61",
+    highlights: [
+      "Sistem deploy shared hosting idwebhost dihapus menyeluruh (12 file) karena produksi kini sepenuhnya VPS Hostinger yang rebuild langsung dari GitHub main: DEPLOY-IDWEBHOST.md (root + salinan public/download), paket pusatperizinan-static-hosting.tar.gz + pack-info.json + ISI-PACK.txt, builder scripts/deploy-pack.mjs + scripts/build-static.mjs, 3 script hemat inode (prune-inode-hosting/bersihkan-inode/cek-inode) + OPTIMASI-INODE.md, dan panel AdminDeploy /?admin=1",
+      "README seksi Build & Deployment ditulis ulang: Mode A/Mode B menjadi satu jalur produksi (VPS Hostinger rebuild otomatis dari branch main GitHub — npm run build → node .next/standalone/server.js) + FAQ update produksi + tabel dokumen sinkron; tip GSC webmaster-tools di-netralkan (idwebhost → registrar/penyedia domain)",
+      "QA: tsc --noEmit 0 error, eslint file ubahan 0 temuan, sweep residu idwebhost/deploy-pack/build-static/AdminDeploy nol di kode & dokumen aktif — jejak historis CHANGELOG/WORKLOG/RELEASES dipertahankan",
+    ],
+  },
   {
     version: "1.31.0",
     date: "2026-11-27",
