@@ -216,10 +216,15 @@ footer b{color:var(--acc)}
       <h3>Langkah 2 — Layanan &amp; Perjanjian</h3>
       <div class="frow">
         <div class="full"><label>Layanan yang Diajukan Refund <i>*</i> <span style="color:var(--acc)">(semua layanan dapat diajukan refund dengan ketentuan)</span></label>
-          <input id="f_kbliCari" placeholder="🔍 Cari layanan / kode KBLI 2025 — mis. 56101, kafe, konstruksi…" autocomplete="off" style="margin-bottom:8px">
+          <input id="f_kbliCari" placeholder="🔍 (opsional) Cari cepat layanan / kode KBLI 2025 — mis. 56101, kafe, konstruksi…" autocomplete="off" style="margin-bottom:8px">
           <div class="hint" id="kbliHint" style="display:none"></div>
           <select id="f_layanan"><option value="">— Pilih layanan —</option></select>
-          <div class="hint" id="tierHint"></div></div>
+          <div class="hint" style="margin-top:6px">💡 <b>Seluruh 1.559 kode KBLI 2025 (21 seksi A–U) sudah tersedia di dropdown</b> — tinggal klik dan gulir, tidak perlu mengetik. Pakai kolom pencarian di atas bila ingin lebih cepat menemukan kode.</div>
+          <div id="w_manual" style="display:none;margin-top:8px">
+            <input id="f_layananManual" placeholder="Tulis nama layanan yang tidak ada di daftar — mis. Jasa pendampingan audit kepatuhan…" autocomplete="off">
+            <div class="hint" style="margin-top:5px">Layanan di luar daftar layanan &amp; KBLI 2025 — tetap dapat diajukan refund dengan ketentuan yang sama (tier dipastukan saat verifikasi administratif).</div>
+          </div>
+          <div class="hint" id="tierHint" style="margin-top:8px"></div></div>
         <div id="w_negara" style="display:none"><label>Negara yang Terlibat <i>*</i></label><input id="f_negara" placeholder="Mis. Singapura, Malaysia, dst."></div>
         <div><label>No. Surat Perjanjian / SPK <i>*</i></label><input id="f_spk" placeholder="No. SPK/perjanjian jasa"></div>
         <div><label>Tanggal Perjanjian</label><input id="f_tglSpk" type="date"></div>
@@ -381,7 +386,7 @@ footer b{color:var(--acc)}
 <footer>
   <div class="wrap">
     <b>PT Top Konsultan Internasional</b> — pusatperizinan.com · Pengaduan &amp; pengajuan: <b>refund@pusatperizinan.com</b><br>
-    Halaman mandiri (offline-friendly) · Database tersimpan di perangkat ini (localStorage) · © 2026
+    © 2026
   </div>
 </footer>
 
@@ -502,6 +507,7 @@ function validate(s){
    if(!idv.value.trim())return jenis==='badan'?'NIB / No. Akta wajib diisi.':'NIK / No. Paspor wajib diisi.';
    if(!/^\S+@\S+\.\S+$/.test($i('f_email').value))return 'Email tidak valid.';if(!$i('f_wa').value.trim())return 'No. WhatsApp/Telp wajib diisi.'}
  if(s===2){var sv=$i('f_layanan').value;if(!sv)return 'Pilih layanan terlebih dahulu.';
+   if(sv==='M'&&!$i('f_layananManual').value.trim())return 'Kolom "Lainnya" dipilih — tulis nama layanan pada kolom yang tersedia.';
    var o=svcById(sv);if(o&&o.g==='Lintas Negara'&&!$i('f_negara').value.trim())return 'Negara yang terlibat wajib diisi (layanan lintas negara).';
    if(!$i('f_spk').value.trim())return 'Nomor SPK/perjanjian wajib diisi.';
    if(num($i('f_bayar').value)<=0)return 'Total yang sudah dibayar wajib diisi.'}
@@ -515,6 +521,8 @@ function validate(s){
  if(s===5){for(var i=1;i<=4;i++){if(!$i('p'+i).checked)return 'Pernyataan wajib dicentang semua (memenuhi pemeriksaan kepatuhan).'}}return null}
 function svcById(id){for(var i=0;i<SERVICES.length;i++)if(SERVICES[i].id===id)return SERVICES[i];
  if(typeof KBLI2025!=='undefined'&&id&&id.indexOf('K-')===0){var kk=id.slice(2);for(var j=0;j<KBLI2025.length;j++){var e=KBLI2025[j];if(e[0]===kk)return {id:id,g:'KBLI 2025',n:'KBLI 2025 — '+kk+' '+e[1],t:2,s:'Bidang usaha KBLI 2025 — seksi '+(KBLI2025_SECTIONS[e[2]]||''),nr:'Biaya pihak ketiga terkait bidang usaha'}}}
+ if(id==='M'){var mv=$i('f_layananManual')?$i('f_layananManual').value.trim():'';
+  return {id:'M',g:'Lainnya (Manual)',n:mv?'Lainnya — '+mv:'Lainnya — Tulis Manual',t:2,s:'Layanan khusus di luar daftar layanan & KBLI 2025',nr:'Biaya pihak ketiga terkait layanan'}}
  return null}
 function collect(){
  var idv=jenis==='badan'?document.querySelector('#w_nib input').value:$i('f_identitas').value;
@@ -522,6 +530,7 @@ function collect(){
  return {jenis:jenis==='badan'?'Badan Usaha':'Perorangan',nama:$i('f_nama').value.trim(),identitas:idv.trim(),npwp:$i('f_npwp').value.trim(),
   email:$i('f_email').value.trim(),wa:$i('f_wa').value.trim(),alamat:$i('f_alamat').value.trim(),
   layanan:o?o.n:'-',layananId:o?o.id:'',grup:o?o.g:'',tier:o?o.t:2,negara:$i('f_negara').value.trim(),
+  layananManual:$i('f_layananManual')?$i('f_layananManual').value.trim():'',
   spk:$i('f_spk').value.trim(),tglSpk:$i('f_tglSpk').value,nilai:num($i('f_nilai').value),dibayar:num($i('f_bayar').value),
   metode:$i('f_metode').value,tglBayar:$i('f_tglBayar').value,alasan:r?r.value:'',tahap:$i('f_tahap').value,
   jumlah:num($i('f_jumlah').value),biaya:num($i('f_biaya').value),jelaskan:$i('f_jelaskan').value.trim(),
@@ -555,10 +564,12 @@ function buildEmail(d){var t=TIERS[d.tier];
  return L.join('\n')}
 function openMail(d){var b=buildEmail(d);window.location.href='mailto:'+REFUND_EMAIL+'?subject='+encodeURIComponent('[REFUND] '+d.ticket+' — '+d.nama+' — '+d.layanan)+'&body='+encodeURIComponent(b)}
 function copyMail(){navigator.clipboard.writeText(lastMail||buildEmail(collect())).then(function(){alert('Isi email tersalin. Tempel ke email ke '+REFUND_EMAIL)},function(){var t=document.createElement('textarea');t.value=lastMail;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();alert('Isi email tersalin.')})}
-function resetForm(fromSucc){['f_nama','f_identitas','f_npwp','f_email','f_wa','f_alamat','f_negara','f_spk','f_tglSpk','f_nilai','f_bayar','f_tglBayar','f_jumlah','f_biaya','f_jelaskan','f_bankPemilik','f_bankNama','f_bankNo','f_bankCabang','f_bankSwift'].forEach(function(x){var e=$i(x);if(e)e.value=''});
+function resetForm(fromSucc){['f_nama','f_identitas','f_npwp','f_email','f_wa','f_alamat','f_negara','f_spk','f_tglSpk','f_nilai','f_bayar','f_tglBayar','f_jumlah','f_biaya','f_jelaskan','f_bankPemilik','f_bankNama','f_bankNo','f_bankCabang','f_bankSwift','f_layananManual'].forEach(function(x){var e=$i(x);if(e)e.value=''});
  document.querySelectorAll('input[name=alasan]').forEach(function(r){r.checked=false});
  document.querySelectorAll('.radio-opt').forEach(function(r){r.classList.remove('on')});
  LAMPS.forEach(function(l){$i('l_'+lampKey(l)).checked=false});[1,2,3,4].forEach(function(i){$i('p'+i).checked=false});
+ $i('f_layanan').value='';$i('w_manual').style.display='none';$i('tierHint').innerHTML='';$i('w_negara').style.display='none';$i('kbliHint').style.display='none';
+ var kc=$i('f_kbliCari');if(kc.value){kc.value='';kc.dispatchEvent(new Event('input'))}
  showStep(1);
  if(fromSucc){$i('succCard').style.display='none';$i('formCard').style.display='block'}}
 
@@ -668,7 +679,7 @@ function doImport(){var txt=$i('impBox').value,obj={},lines=txt.split(/\r?\n/),m
 
 /* ================= EXPORT / SAMPLE / WIPE ================= */
 function exportCSV(){var db=getDb();if(!db.length){alert('Database kosong.');return}
- var cols=['ticket','tgl','jenis','nama','identitas','npwp','email','wa','alamat','layanan','tier','negara','spk','nilai','dibayar','metode','alasan','tahap','jumlah','biaya','bankPemilik','bankNama','bankNo','bankCabang','bankNegara','bankSwift','status','tolakAlasan'];
+ var cols=['ticket','tgl','jenis','nama','identitas','npwp','email','wa','alamat','layanan','layananManual','tier','negara','spk','nilai','dibayar','metode','alasan','tahap','jumlah','biaya','bankPemilik','bankNama','bankNo','bankCabang','bankNegara','bankSwift','status','tolakAlasan'];
  var q=function(v){return '"'+String(v==null?'':v).replace(/"/g,'""')+'"'};
  var csv=cols.map(q).join(',')+'\n'+db.map(function(d){return cols.map(function(c){return q(d[c])}).join(',')}).join('\n');
  var a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}));a.download='database-refund-pusatperizinan.csv';a.click()}
@@ -692,10 +703,20 @@ function renderMatrix(){var q=($i('qSvc').value||'').toLowerCase(),h='<thead><tr
 (function migrate(){var db=getDb(),ch=false;db.forEach(function(d){if(!d.id){d.id='m'+Date.now()+Math.random().toString(36).slice(2,6);ch=true}
  if(!d.hist)d.hist=[{ts:d.tgl||new Date().toISOString(),aksi:'Pengajuan diterima',catatan:''}]});if(ch)setDb(db)})();
 (function init(){
- var html='<option value="">— Pilih layanan —</option>',curG='';
- SERVICES.forEach(function(s){if(s.g!==curG){if(curG)html+='</optgroup>';curG=s.g;html+='<optgroup label="'+s.g+'">'}html+='<option value="'+s.id+'">'+s.n+'</option>'});
- html+='</optgroup>';
- $i('f_layanan').innerHTML=html;
+ // Dropdown layanan: 26 layanan unggulan + SELURUH 1.559 kode KBLI 2025 (21 seksi A–U, Peraturan BPS No. 7/2025) + opsi tulis manual
+ var svcG='',curG='';
+ SERVICES.forEach(function(s){if(s.g!==curG){if(curG)svcG+='</optgroup>';curG=s.g;svcG+='<optgroup label="'+s.g+'">'}svcG+='<option value="'+s.id+'">'+s.n+'</option>'});
+ svcG+='</optgroup>';
+ var KB=(typeof KBLI2025!=='undefined')?KBLI2025:[],kbliT=null,KBLI_FULL='';
+ function kbliFull(){if(KBLI_FULL)return KBLI_FULL;
+  var bySec={},order=[];
+  KB.forEach(function(e){if(!bySec[e[2]]){bySec[e[2]]=[];order.push(e[2])}bySec[e[2]].push(e)});
+  order.forEach(function(s){KBLI_FULL+='<optgroup label="KBLI 2025 · Seksi '+s+' — '+(KBLI2025_SECTIONS[s]||'')+'">';
+   bySec[s].forEach(function(e){KBLI_FULL+='<option value="K-'+e[0]+'">'+e[0]+' — '+e[1]+'</option>'});
+   KBLI_FULL+='</optgroup>'});
+  return KBLI_FULL}
+ function manualOpt(){return '<option value="M">✍️ Lainnya — Tulis Manual (di luar daftar)</option>'}
+ $i('f_layanan').innerHTML='<option value="">— Pilih layanan —</option>'+svcG+(KB.length?kbliFull():'')+manualOpt();
  REASONS.forEach(function(r,i){$i('reasonBox').insertAdjacentHTML('beforeend','<label class="radio-opt"><input type="radio" name="alasan" value="'+r+'" onchange="this.closest(\'.radio-opt\').classList.add(\'on\');this.parentNode.parentNode.querySelectorAll(\'.radio-opt\').forEach(function(x){if(x.contains(this))return;x.classList.remove(\'on\')},this);saveDraft()"><span>'+r+'</span></label>')});
  STAGES.forEach(function(s){$i('f_tahap').insertAdjacentHTML('beforeend','<option value="'+s.k+' — '+s.n+'">'+s.k+' — '+s.n+'</option>')});
  $i('f_tahap').addEventListener('change',function(){var k=this.value.split(' — ')[0],st=STAGES.find(function(x){return x.k===k});
@@ -706,10 +727,12 @@ function renderMatrix(){var q=($i('qSvc').value||'').toLowerCase(),h='<thead><tr
  $i('f_layanan').addEventListener('change',function(){var o=svcById(this.value);
   if(o){var isi='<b style="color:var(--acc)">'+TIERS[o.t].nm+'</b> — pencairan paling lama <b>'+TIERS[o.t].max+'</b>.'+TIERS[o.t].desc;
    if(o.g==='KBLI 2025')isi+='<br><span style="color:var(--mut)">Kode KBLI 2025 (Peraturan BPS No. 7/2025) terpilih sebagai bidang usaha — penjadwalan memakai Tier 2 standar dan dipastukan pada verifikasi administratif.</span>';
+   if(o.g==='Lainnya (Manual)')isi+='<br><span style="color:var(--mut)">Layanan tulis manual di luar daftar — lengkapi kolom yang tersedia; tier standar dipastukan pada verifikasi administratif.</span>';
    $i('tierHint').innerHTML=isi;
-   $i('w_negara').style.display=o.g==='Lintas Negara'?'block':'none';if(o.g!=='Lintas Negara')$i('f_negara').value=''}saveDraft()});
- // Pencarian layanan + seluruh KBLI 2025 (1.559 kode resmi Peraturan BPS No. 7/2025)
- var KB=(typeof KBLI2025!=='undefined')?KBLI2025:[],kbliT=null;
+   $i('w_negara').style.display=o.g==='Lintas Negara'?'block':'none';if(o.g!=='Lintas Negara')$i('f_negara').value=''}
+  else{$i('tierHint').innerHTML='';$i('w_negara').style.display='none'}
+  $i('w_manual').style.display=this.value==='M'?'block':'none';saveDraft()});
+ // Pencarian cepat layanan/KBLI — saat kosong, dropdown memuat SELURUH 1.559 kode KBLI 2025
  function kbliMatch(e,tok,q){var kodeC=(q&&!tok.length)?e[0].indexOf(q)===0:false,semua=true,judulC=false;
   if(tok.length){var jd=e[1].toLowerCase();judulC=jd.indexOf(q)>=0;
    for(var t2=0;t2<tok.length;t2++){if(jd.indexOf(tok[t2])<0&&e[0].indexOf(tok[t2])<0){semua=false;break}}}
@@ -717,19 +740,18 @@ function renderMatrix(){var q=($i('qSvc').value||'').toLowerCase(),h='<thead><tr
   return kodeC||judulC||semua}
  function kbliFilter(raw){var q=(raw||'').trim().toLowerCase(),tok=q.split(/\s+/).filter(function(x){return x}),
   sel=$i('f_layanan'),keep=sel.value,hint=$i('kbliHint'),
-  html='<option value="">'+(q?'— Pilih layanan / kode KBLI —':'— Pilih layanan —')+'</option>',curG='';
-  SERVICES.forEach(function(s){if(s.g!==curG){if(curG)html+='</optgroup>';curG=s.g;html+='<optgroup label="'+s.g+'">'}html+='<option value="'+s.id+'">'+s.n+'</option>'});
-  html+='</optgroup>';
+  html='<option value="">'+(q?'— Pilih layanan / kode KBLI —':'— Pilih layanan —')+'</option>'+svcG;
   if(q&&KB.length){var res=[],total=0;
    for(var i=0;i<KB.length;i++){var e=KB[i];
     if(kbliMatch(e,tok,q)){total++;if(res.length<60)res.push(e)}}
-   if(res.length){curG='';html+='<optgroup label="KBLI 2025 — hasil pencarian">';
+   if(res.length){html+='<optgroup label="KBLI 2025 — hasil pencarian">';
     res.forEach(function(e){html+='<option value="K-'+e[0]+'">'+e[0]+' — '+e[1]+' · seksi '+e[2]+'</option>'});
     html+='</optgroup>';
     hint.style.display='block';
     hint.innerHTML='<b style="color:var(--acc)">'+(total>res.length?'Menampilkan '+res.length+' dari '+total+' kode':'Total '+total+' kode')+'</b> cocok. Seluruh 1.559 kode KBLI 2025 resmi (Peraturan BPS No. 7/2025) dapat diajukan refund.'}
-   else{hint.style.display='block';hint.innerHTML='Tidak ada kode KBLI 2025 yang cocok dengan "<b>'+esc(q)+'</b>" — coba kata kunci lain (kode 5-digit atau nama bidang usaha).'}}
-  else hint.style.display='none';
+   else{hint.style.display='block';hint.innerHTML='Tidak ada kode KBLI 2025 yang cocok dengan "<b>'+esc(q)+'</b>" — coba kata kunci lain, atau pilih <b>Lainnya — Tulis Manual</b> di dropdown.'}}
+  else{hint.style.display='none';if(KB.length)html+=kbliFull()}
+  html+=manualOpt();
   sel.innerHTML=html;if(keep)sel.value=keep}
  $i('f_kbliCari').addEventListener('input',function(){clearTimeout(kbliT);var v=this.value;kbliT=setTimeout(function(){kbliFilter(v)},140)});
  document.querySelectorAll('#formCard input,#formCard textarea,#formCard select').forEach(function(e){e.addEventListener('change',saveDraft);e.addEventListener('blur',saveDraft)});
@@ -739,7 +761,8 @@ function renderMatrix(){var q=($i('qSvc').value||'').toLowerCase(),h='<thead><tr
   Object.keys(map).forEach(function(k){if(map[k])$i(k).value=map[k]});
   if(dr.identitas){if(dr.jenis==='Badan Usaha'){var bi=document.querySelector('#w_nib input');if(bi)bi.value=dr.identitas}else $i('f_identitas').value=dr.identitas}
   if(dr.jenis)setPemohon(dr.jenis==='Badan Usaha'?'badan':'perorangan');
-  if(dr.layananId)$i('f_layanan').value=dr.layananId}}catch(e){}
+  if(dr.layananId){$i('f_layanan').value=dr.layananId;
+   if(dr.layananId==='M'&&dr.layananManual){$i('f_layananManual').value=dr.layananManual;$i('w_manual').style.display='block'}}}}catch(e){}
  if(sessionStorage.getItem('ppref_auth')==='1'){$i('gate').style.display='none';$i('dashBody').style.display='block';renderDash()}
 })();
 </script>
