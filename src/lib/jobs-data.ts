@@ -54,6 +54,12 @@ export const UMR_NOTE =
 const REMOTE_CITY = "Remote (Nasional)";
 const REMOTE_ADDRESS = "Bekerja penuh dari rumah, koordinasi online harian (WIB)";
 
+// Skema gaji khusus Admin Media Sosial (instruksi owner):
+// 3 bulan pertama Rp1.500.000/bulan WFH + bonus kinerja di luar gaji,
+// setelah kontrak 3 bulan dinilai baik → UMR sesuai daerah masing-masing.
+export const MEDIA_SOSIAL_SALARY_NOTE =
+  "Skema gaji posisi ini: 3 bulan pertama Rp1.500.000/bulan (kontrak, WFH) — di luar itu ada BONUS jika kinerja bagus. Setelah kontrak 3 bulan dinilai baik, gaji menjadi UMR sesuai daerah domisili masing-masing.";
+
 export const JOBS: Job[] = [
   {
     id: "job-live-streaming",
@@ -346,6 +352,57 @@ export const JOBS: Job[] = [
     salaryMax: 5729876,
     salaryDisplay: "UMR + Bonus Target",
     education: "D3/S1 semua jurusan (Akuntansi/Manajemen/Hukum lebih disukai) atau pengalaman LKPM setara",
+    experienceMonths: 0,
+    featured: true,
+    postedDaysAgo: 0,
+  },
+  {
+    id: "job-admin-media-sosial",
+    femaleOnly: true,
+    slug: "admin-media-sosial",
+    title: "Admin Media Sosial Semua Platform (IG, TikTok, LinkedIn, FB, X) — Khusus Wanita (WFH)",
+    organization: ORG_MAIN,
+    isPartner: false,
+    category: "Marketing & Media Sosial",
+    employmentType: "FULL_TIME",
+    workType: "remote",
+    city: REMOTE_CITY,
+    province: "Nasional",
+    address: REMOTE_ADDRESS,
+    description: [
+      "Kami mencari admin media sosial wanita yang mengelola SELURUH akun resmi perusahaan: Instagram, TikTok, LinkedIn, Facebook, X (Twitter), dan semua platform media sosial lainnya — dari menyiapkan konten, menjadwalkan posting, membalas komentar/DM, sampai mengubah followers menjadi lead WhatsApp.",
+      "Kerja penuh WFH dari rumah dengan HP dan laptop sendiri. Gaji awal 3 bulan pertama Rp1.500.000/bulan (di luar bonus kinerja), dan setelah kontrak 3 bulan dinilai baik gaji naik menjadi UMR sesuai daerah masing-masing. Pengalaman mengurus media sosial diutamakan — tapi yang baru belajar dan serius berkembang kami latih juga.",
+    ],
+    responsibilities: [
+      "Mengelola akun resmi Instagram, TikTok, LinkedIn, Facebook, X (Twitter), dan seluruh platform media sosial perusahaan",
+      "Menyiapkan & menjadwalkan konten harian: caption, desain grafis, dan video pendek",
+      "Membalas komentar, DM, dan pesan masuk dengan cepat, ramah, dan mengarahkan prospek ke WhatsApp resmi",
+      "Memantau performa akun (reach, engagement, follower, lead) dan melaporkan pertumbuhan rutin",
+      "Menjaga konsistensi identitas brand & tone of voice di semua platform",
+      "Riset tren, hashtag, dan kompetitor untuk ide konten mingguan",
+    ],
+    qualifications: [
+      "WANITA — sesuai kebijakan rekrutmen perusahaan (lowongan khusus perempuan)",
+      "Usia maksimal 40 tahun",
+      "WAJIB punya HP dan laptop sendiri + internet stabil untuk kerja WFH",
+      "Diutamakan berpengalaman mengurus media sosial (pernah pegang akun IG/TikTok/FB/LinkedIn/X, milik sendiri atau perusahaan)",
+      "Mahir dasar Canva/CapCut atau tools desain & edit video sederhana nilai plus",
+      "Aktif, responsif, dan nyaman dengan ritme konten harian",
+    ],
+    benefits: [
+      "Gaji awal 3 bulan pertama Rp1.500.000/bulan — WFH langsung, di luar bonus jika kinerja bagus",
+      "Setelah kontrak 3 bulan berjalan baik → gaji menjadi UMR sesuai daerah masing-masing",
+      "Bonus kinerja dari pertumbuhan akun & lead yang masuk",
+      "Remote penuh — bekerja dari rumah di seluruh Indonesia dengan HP + laptop sendiri",
+      "Jenjang karier: Admin Media Sosial → Social Media Specialist → Social Media Manager",
+      "Pelatihan content plan, brand voice, dan tools scheduling",
+    ],
+    skills: ["Instagram", "TikTok", "LinkedIn", "Facebook", "X (Twitter)", "Content Planning", "Canva", "CapCut", "Community Management"],
+    salaryMin: 1500000,
+    salaryMax: 1500000,
+    salaryDisplay: "Rp1,5 jt × 3 bln pertama → lalu UMR",
+    salaryNote: MEDIA_SOSIAL_SALARY_NOTE,
+    education: "Minimal SMA/SMK/D3 semua jurusan",
     experienceMonths: 0,
     featured: true,
     postedDaysAgo: 0,

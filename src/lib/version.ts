@@ -17,11 +17,11 @@ export const APP_TAGLINE =
   "Konsultan Perizinan, Perpajakan & Penempatan PMI #1 Indonesia";
 
 /** Versi berjalan — tanpa prefiks "v" (SemVer murni). */
-export const APP_VERSION = "1.28.0";
+export const APP_VERSION = "1.29.0";
 /** Nama rilis berjalan. */
-export const RELEASE_NAME = "Duo Promo 35%";
+export const RELEASE_NAME = "Admin Media Sosial WFH";
 /** Tanggal rilis berjalan (WIB — Asia/Jakarta). */
-export const RELEASE_DATE = "2026-11-24";
+export const RELEASE_DATE = "2026-11-27";
 /** Channel rilis: stable | beta | alpha. */
 export const RELEASE_CHANNEL = "stable" as const;
 
@@ -46,6 +46,18 @@ export interface ReleaseEntry {
  * Sumber: CHANGELOG.md (1:1 dengan WORKLOG.md).
  */
 export const RELEASES: ReleaseEntry[] = [
+  {
+    version: "1.29.0",
+    date: "2026-11-27",
+    type: "minor",
+    name: "Admin Media Sosial WFH",
+    taskId: "57",
+    highlights: [
+      "Posisi baru Admin Media Sosial — khusus wanita, maksimal 40 tahun, WFH dengan HP + laptop sendiri, mengelola seluruh platform (Instagram, TikTok, LinkedIn, Facebook, X, dan semua media sosial lainnya)",
+      "Skema gaji khusus per instruksi owner: 3 bulan pertama Rp1.500.000/bulan (di luar bonus jika kinerja bagus), setelah kontrak 3 bulan dinilai baik → UMR sesuai daerah masing-masing; pengalaman mengurus media sosial diutamakan",
+      "Halaman /lowongan-kerja kini 7 posisi aktif: meta deskripsi dinamis mengikuti JOBS.length, hero + openGraph menyebut admin media sosial, kartu skema gaji mendapat catatan pengecualian, FAQ 'Berapa gaji awalnya?' kini dinamis per job (salaryNote)",
+    ],
+  },
   {
     version: "1.28.0",
     date: "2026-11-24",
@@ -660,11 +672,11 @@ export const CURRENT_RELEASE: ReleaseEntry = RELEASES[0];
 
 /** Statistik platform yang dikirim /api/version — singkron dengan site.ts. */
 export const PLATFORM_STATS = {
-  // Sinkron Task 43: lowongan aktif 7 → 8 (+1 URL) dari hitungan v1.17.1 (11.872).
+  // Sinkron Task 57: lowongan aktif 6 → 7 (+1 URL) dari hitungan sebelumnya (11.892).
   // +1 URL: halaman produk Paket All-In KBLI 85520 + 2 Website (PP-KBLI85520-ALLIN).
   // +14 URL: ekosistem IATA Accreditation (pillar + 3 produk + 2 konversi + 8 panduan).
   // +4 URL: trilogi sertifikasi travel (PPIU + PIHK + BPW + konsultasi) — Task 50.
-  indexedUrls: 11892,
+  indexedUrls: 11893,
   sitemapSections: 15,
   orderableServices: 1500,
   subscriptionSkus: 6,

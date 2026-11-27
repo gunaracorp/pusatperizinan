@@ -23,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: `Lowongan Kerja Khusus Wanita Remote — Gaji UMR + Bonus Target (${JOBS.length} Posisi)`,
     description:
-      "8 lowongan kerja KHUSUS WANITA di PusatPerizinan.com: host live streaming TikTok & Shopee, programmer full-stack, admin marketing, admin melayani pelanggan, staf perpajakan, staf perizinan NIB & OSS, admin customer service, dan admin media sosial. Gaji awal UMR + bonus target perusahaan, bisa remote penuh, jenjang karier jelas.",
+      `${JOBS.length} lowongan kerja KHUSUS WANITA di PusatPerizinan.com: host live streaming TikTok & Shopee, programmer full-stack, konsultan pajak, staf perpajakan, staf perizinan NIB & OSS, staf LKPM BKPM/OSS, dan admin media sosial (IG, TikTok, LinkedIn, FB, X). Gaji awal UMR + bonus target perusahaan, bisa remote penuh/WFH, jenjang karier jelas.`,
     keywords: [
       "lowongan kerja khusus wanita",
       "loker wanita remote",
@@ -35,6 +35,7 @@ export async function generateMetadata(): Promise<Metadata> {
       "lowongan staf perpajakan remote",
       "lowongan perizinan nib oss",
       "lowongan admin media sosial wanita",
+      "loker sosial media wfh wanita",
       "loker umr plus bonus",
       "lowongan kerja remote indonesia",
     ],
@@ -43,7 +44,7 @@ export async function generateMetadata(): Promise<Metadata> {
     images: [{ url: ogImageUrl({ title: "Lowongan Kerja Khusus Wanita — Remote, UMR + Bonus Target" }), width: 1200, height: 630, alt: "Lowongan Kerja Khusus Wanita — Remote, UMR + Bonus Target" }],
   
       title: "Lowongan Kerja Khusus Wanita — Remote, UMR + Bonus Target",
-      description: `${JOBS.length} posisi aktif khusus perempuan: host live streaming TikTok, Shopee, Facebook & Instagram, programmer full-stack, konsultan pajak, staf perpajakan, staf perizinan NIB & OSS, dan staf LKPM BKPM/OSS. Gaji awal UMR + bonus target, bisa remote penuh. Lamar via email hrd@pusatperizinan.com (CV + pas foto terbaru) + konfirmasi WhatsApp.`,
+      description: `${JOBS.length} posisi aktif khusus perempuan: host live streaming TikTok, Shopee, Facebook & Instagram, programmer full-stack, konsultan pajak, staf perpajakan, staf perizinan NIB & OSS, staf LKPM BKPM/OSS, dan admin media sosial semua platform (IG, TikTok, LinkedIn, FB, X). Gaji awal UMR + bonus target, bisa remote penuh. Lamar via email hrd@pusatperizinan.com (CV + pas foto terbaru) + konfirmasi WhatsApp.`,
       url: "/lowongan-kerja",
     },
   };
@@ -108,8 +109,9 @@ export default function LowonganPage() {
           </h1>
           <p className="mt-3 text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed">
             {JOBS.length} posisi aktif khusus perempuan: host live streaming TikTok, Shopee, Facebook &amp; Instagram,
-            programmer full-stack, konsultan pajak, staf perpajakan, staf perizinan NIB &amp; OSS, dan staf LKPM
-            BKPM/OSS. Gaji awal UMR, bonus dari target perusahaan, sepenuhnya bisa remote, dan jenjang karier jelas.
+            programmer full-stack, konsultan pajak, staf perpajakan, staf perizinan NIB &amp; OSS, staf LKPM
+            BKPM/OSS, dan admin media sosial semua platform (IG, TikTok, LinkedIn, FB, X). Gaji awal UMR, bonus dari
+            target perusahaan, sepenuhnya bisa remote/WFH, dan jenjang karier jelas.
             Cara lamar: kirim CV + pas foto terbaru ke email hrd@pusatperizinan.com, lalu konfirmasi WAJIB via
             WhatsApp — tanpa biaya apa pun.
           </p>
@@ -138,14 +140,14 @@ export default function LowonganPage() {
         {/* Skema gaji, bonus & jenjang karier */}
         <div className="mb-10 rounded-2xl border bg-card p-5 md:p-6">
           <h2 className="font-bold text-lg flex items-center gap-2 mb-4">
-            <BadgeDollarSign className="h-5 w-5 text-gold" aria-hidden /> Gaji, Bonus & Jenjang Karier — Sama untuk Semua Posisi
+            <BadgeDollarSign className="h-5 w-5 text-gold" aria-hidden /> Gaji, Bonus &amp; Jenjang Karier
           </h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 text-sm">
             <div className="rounded-xl border bg-background p-4">
               <p className="font-bold mb-1">Gaji Awal UMR</p>
               <p className="text-muted-foreground leading-relaxed">
                 Gaji awal UMR sesuai domisili — acuan UMP DKI Jakarta 2026 Rp5.729.876/bulan. Tanpa potongan
-                aneh-aneh, cair tiap bulan.
+                aneh-aneh, cair tiap bulan. <i>Pengecualian: Admin Media Sosial memakai skema khusus — Rp1,5 jt/bulan × 3 bulan pertama, lalu UMR sesuai daerah.</i>
               </p>
             </div>
             <div className="rounded-xl border bg-background p-4">
